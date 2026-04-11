@@ -89,6 +89,23 @@ h1{font-size:88px;max-width:760px;animation:rise .7s ease both .08s}
 .system-index{font-family:var(--font-display);font-size:13px;color:var(--blue);font-weight:900;margin-bottom:44px}
 .system-item h3{font-family:var(--font-display);font-size:25px;line-height:1.05;margin-bottom:16px}
 .system-item p{color:var(--muted);line-height:1.65}
+.product-depth{background:#f7f8fb}
+.product-story{display:grid;grid-template-columns:.82fr 1.18fr;gap:58px;align-items:center;margin-top:58px}
+.product-story + .product-story{margin-top:84px}
+.product-story.flip{grid-template-columns:1.18fr .82fr}
+.screen-frame{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 24px 80px rgba(7,17,31,.12)}
+.screen-frame img{width:100%;display:block}
+.screen-copy{max-width:520px}
+.screen-copy h3{font-family:var(--font-display);font-size:38px;line-height:1.05;margin-bottom:18px}
+.screen-copy p{font-size:17px;line-height:1.75;color:var(--muted)}
+.screen-points{display:grid;gap:14px;margin-top:28px}
+.screen-point{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;color:#334154;font-size:15px;line-height:1.55}
+.screen-point span{width:28px;height:28px;border-radius:8px;background:#eaf0ff;color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
+.proof-band{margin-top:72px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr)}
+.proof-metric{padding:26px 24px;border-right:1px solid var(--line)}
+.proof-metric:last-child{border-right:0}
+.proof-metric b{display:block;font-family:var(--font-display);font-size:34px;margin-bottom:8px}
+.proof-metric span{color:var(--muted);font-size:14px;line-height:1.5}
 .flow{background:#fff}
 .flow-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
 .timeline{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
@@ -122,14 +139,15 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
 @media (max-width:980px){
   .nav{padding:16px 22px}.nav-links a{display:none}.hero{padding:106px 22px 34px}.hero-inner{grid-template-columns:1fr;gap:42px}
   h1{font-size:64px}.section-title{font-size:48px}.cta h2{font-size:56px}
-  .dashboard-shell img{min-height:260px}.section{padding:76px 22px}.system-grid,.flow-wrap,.journey-head,.journey-lanes{grid-template-columns:1fr}
-  .dashboard-caption{grid-template-columns:1fr 1fr}.cta{padding:86px 22px}footer{padding:28px 22px}.marquee-head{width:calc(100% - 44px)}
+  .dashboard-shell img{min-height:260px}.section{padding:76px 22px}.system-grid,.flow-wrap,.journey-head,.journey-lanes,.product-story,.product-story.flip{grid-template-columns:1fr}
+  .dashboard-caption,.proof-band{grid-template-columns:1fr 1fr}.cta{padding:86px 22px}footer{padding:28px 22px}.marquee-head{width:calc(100% - 44px)}
 }
 @media (max-width:620px){
   .brand img{height:28px}.brand-word{font-size:19px}.nav-cta{min-height:40px;padding:0 14px;font-size:13px}
   h1{font-size:44px}.section-title{font-size:36px}.cta h2{font-size:42px}.hero-copy{font-size:17px}.hero-actions{align-items:stretch;flex-direction:column}.btn-primary,.btn-secondary{width:100%}
   .signal{position:relative;left:auto;bottom:auto;width:100%;margin-top:14px}.metric-row,.dashboard-caption{grid-template-columns:1fr}
-  .caption-item{border-right:0;border-bottom:1px solid var(--line)}.caption-item:last-child{border-bottom:0}.system-item{min-height:auto}
+  .proof-band{grid-template-columns:1fr}.proof-metric{border-right:0;border-bottom:1px solid var(--line)}.proof-metric:last-child{border-bottom:0}
+  .caption-item{border-right:0;border-bottom:1px solid var(--line)}.caption-item:last-child{border-bottom:0}.system-item{min-height:auto}.screen-copy h3{font-size:31px}
   .timeline-step{grid-template-columns:1fr;gap:8px}.partner-logo{min-width:130px}.marquee-track{gap:38px}.nav{gap:12px}
 }
 </style>
@@ -143,6 +161,7 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
   <div class="nav-links">
     <a href="#journey">Yolculuk</a>
     <a href="#platform">Platform</a>
+    <a href="#product">Ürün</a>
     <a href="#workflow">Akış</a>
     <a href="#dashboard">Dashboard</a>
     <a class="nav-cta" href="mailto:hello@stoaix.com">Demo iste</a>
@@ -248,6 +267,51 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
         <article class="system-item"><p class="system-index">01</p><h3>AI voice agent</h3><p>Çağrıları anında karşılar, uygunluğu kontrol eder, randevu talebini toplar ve notları sisteme işler.</p></article>
         <article class="system-item"><p class="system-index">02</p><h3>Lead takip motoru</h3><p>Form, reklam ve WhatsApp leadleri bekletmeden döner; ilgiyi kaybetmeden görüşmeye taşır.</p></article>
         <article class="system-item"><p class="system-index">03</p><h3>CRM ve dashboard</h3><p>Hasta hareketleri, ekip performansı ve kanal verileri tek kontrol panelinde izlenir.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section product-depth" id="product">
+    <div class="section-inner reveal">
+      <p class="section-kicker">Ürün yüzeyi</p>
+      <h2 class="section-title">Satış ekibinin her gün bakacağı kadar sade.</h2>
+      <p class="section-lead">Conversation-led büyüme mantığını kliniklere indiriyoruz: lead nereden gelirse gelsin tek pipeline’a düşer, AI ilk teması yönetir, ekip sadece karar gerektiren hastalara odaklanır.</p>
+
+      <div class="product-story">
+        <div class="screen-copy">
+          <h3>Lead pipeline, kanal değil niyet üzerinden akar.</h3>
+          <p>WhatsApp, web, Instagram ve voice leadleri aynı kanbanda takip edilir. Ekip sıcak leadleri, temsilci taleplerini ve randevuya yaklaşan hastaları tek bakışta ayırır.</p>
+          <div class="screen-points">
+            <div class="screen-point"><span>1</span><p>Yeni, aktif, temsilci talep, takipte ve randevu aşamaları tek ekranda.</p></div>
+            <div class="screen-point"><span>2</span><p>AI skorları satış önceliğini belirler; ekip en sıcak hastadan başlar.</p></div>
+            <div class="screen-point"><span>3</span><p>Kanal etiketi her kartta görünür, ama hasta kaydı bölünmez.</p></div>
+          </div>
+        </div>
+        <figure class="screen-frame">
+          <img src="assets/images/leads-pipeline.png" alt="STOAIX leads pipeline ekranı" loading="lazy">
+        </figure>
+      </div>
+
+      <div class="product-story flip">
+        <figure class="screen-frame">
+          <img src="assets/images/ai-agent.png" alt="STOAIX AI agent ayar ekranı" loading="lazy">
+        </figure>
+        <div class="screen-copy">
+          <h3>AI agent kuralları dashboarddan yönetilir.</h3>
+          <p>Asistan kimliği, konuşma tonu, ilk karşılama mesajı, veri toplama alanları ve test akışı tek yerde kalır. Klinik ekibi promptu ve senaryoyu kod yazmadan kontrol eder.</p>
+          <div class="screen-points">
+            <div class="screen-point"><span>1</span><p>Voice ve mesajlaşma asistanı aynı bilgi tabanından cevap verir.</p></div>
+            <div class="screen-point"><span>2</span><p>Eksik alanlar canlı öneriyle görünür; lead kalitesi düzenli artar.</p></div>
+            <div class="screen-point"><span>3</span><p>Guardrail’ler tıbbi teşhis, fiyat uydurma ve hatalı yönlendirme riskini azaltır.</p></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="proof-band">
+        <div class="proof-metric"><b>77</b><span>dashboardda izlenen toplam lead</span></div>
+        <div class="proof-metric"><b>30</b><span>öncelikli hot lead</span></div>
+        <div class="proof-metric"><b>24/7</b><span>AI karşılama ve takip ritmi</span></div>
+        <div class="proof-metric"><b>1</b><span>kanallar arası tek hasta kaydı</span></div>
       </div>
     </div>
   </section>
