@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>STOAIX | Klinikler için AI işletim sistemi</title>
 <meta name="description" content="STOAIX; klinikler için AI voice agent, hasta takibi, CRM entegrasyonu ve operasyon dashboardunu tek sistemde toplar.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@500;700;800;900&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#07111f;
@@ -21,17 +18,19 @@
   --green:#35b26f;
   --rose:#e85d75;
   --shadow:0 28px 90px rgba(7,17,31,.13);
+  --font:"SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
+  --font-display:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:"DM Sans",system-ui,sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+body{font-family:var(--font);background:var(--paper);color:var(--ink);overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(115deg,#f7f8fb 0%,#eef4ff 45%,#f9fbf7 100%)}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:18px 44px;background:rgba(247,248,251,.78);backdrop-filter:blur(22px);border-bottom:1px solid rgba(7,17,31,.08)}
 .brand{display:flex;align-items:center;gap:12px}
 .brand img{height:34px;width:auto}
-.brand-word{font-family:"Anybody",sans-serif;font-weight:900;font-size:23px;letter-spacing:0;color:var(--ink)}
+.brand-word{font-family:var(--font-display);font-weight:900;font-size:23px;letter-spacing:0;color:var(--ink)}
 .nav-links{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:14px;font-weight:500}
 .nav-links a{transition:color .2s ease}
 .nav-links a:hover{color:var(--ink)}
@@ -39,10 +38,11 @@ img{max-width:100%;display:block}
 .nav-cta:hover,.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(7,17,31,.24);background:#10243d}
 .btn-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:1px solid var(--line);border-radius:8px;color:var(--ink);font-weight:700;background:rgba(255,255,255,.55);transition:transform .2s ease,background .2s ease}
 .btn-secondary:hover{transform:translateY(-2px);background:white}
-.hero{min-height:100svh;position:relative;display:grid;align-items:center;padding:118px 44px 42px;overflow:hidden}
+.hero{min-height:100svh;position:relative;display:grid;align-items:center;padding:118px 44px 42px;overflow:hidden;background:#f7f8fb}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,248,251,.98) 0%,rgba(247,248,251,.88) 43%,rgba(247,248,251,.22) 100%),url("assets/images/dashboard.PNG");background-size:cover;background-position:center top;filter:saturate(.92);opacity:.42;transform:scale(1.04);pointer-events:none}
 .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.9fr) minmax(460px,1.1fr);gap:52px;align-items:center;width:min(1220px,100%);margin:0 auto}
-.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--blue);font-weight:800;margin-bottom:22px}
-h1,.section-title,.cta h2{font-family:"Anybody",sans-serif;font-weight:900;letter-spacing:0;line-height:.96}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:0;color:var(--blue);font-weight:800;margin-bottom:22px}
+h1,.section-title,.cta h2{font-family:var(--font-display);font-weight:900;letter-spacing:0;line-height:.96}
 h1{font-size:88px;max-width:760px;animation:rise .7s ease both .08s}
 .hero-copy{margin-top:28px;font-size:19px;line-height:1.7;color:var(--muted);max-width:600px;animation:rise .7s ease both .2s}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px;animation:rise .7s ease both .32s}
@@ -56,32 +56,41 @@ h1{font-size:88px;max-width:760px;animation:rise .7s ease both .08s}
 .dashboard-shell img{width:100%;min-height:360px;object-fit:cover;object-position:top}
 .signal{position:absolute;left:-24px;bottom:32px;width:min(330px,70%);background:rgba(255,255,255,.92);border:1px solid rgba(7,17,31,.08);border-radius:8px;padding:18px;box-shadow:0 20px 70px rgba(7,17,31,.18);backdrop-filter:blur(18px);animation:softPulse 4s ease-in-out infinite}
 .signal-top{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:14px}
-.signal strong{font-family:"Anybody",sans-serif;font-size:25px}
+.signal strong{font-family:var(--font-display);font-size:25px}
 .metric-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
 .metric{background:var(--soft);border-radius:8px;padding:12px}
-.metric b{display:block;font-family:"Anybody",sans-serif;font-size:20px}
+.metric b{display:block;font-family:var(--font-display);font-size:20px}
 .metric span{font-size:12px;color:var(--muted)}
 .section{padding:100px 44px;border-top:1px solid rgba(7,17,31,.08)}
 .section-inner{width:min(1160px,100%);margin:0 auto}
-.section-kicker{font-size:12px;text-transform:uppercase;letter-spacing:.18em;color:var(--blue);font-weight:800;margin-bottom:15px}
+.section-kicker{font-size:12px;text-transform:uppercase;letter-spacing:0;color:var(--blue);font-weight:800;margin-bottom:15px}
 .section-title{font-size:62px;max-width:850px}
 .section-lead{margin-top:22px;color:var(--muted);font-size:18px;line-height:1.7;max-width:700px}
 .logo-marquee{padding:58px 0;background:var(--ink);color:white;overflow:hidden}
-.marquee-head{width:min(1160px,calc(100% - 88px));margin:0 auto 26px;color:#b9c4d6;font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:800}
+.marquee-head{width:min(1160px,calc(100% - 88px));margin:0 auto 26px;color:#b9c4d6;font-size:13px;letter-spacing:0;text-transform:uppercase;font-weight:800}
 .marquee-track{display:flex;width:max-content;gap:16px;animation:marquee 28s linear infinite}
-.logo-pill{height:54px;min-width:170px;padding:0 28px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.13);border-radius:8px;background:rgba(255,255,255,.06);font-family:"Anybody",sans-serif;font-weight:800;color:#eef4ff}
+.logo-pill{height:54px;min-width:170px;padding:0 28px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.13);border-radius:8px;background:rgba(255,255,255,.06);font-family:var(--font-display);font-weight:800;color:#eef4ff}
+.journey{background:#fff}
+.journey-head{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:end}
+.journey-lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.journey-lane{background:#fff;padding:34px;min-height:330px;display:flex;flex-direction:column;justify-content:space-between}
+.lane-label{font-size:13px;color:var(--blue);font-weight:800;margin-bottom:28px}
+.journey-lane h3{font-family:var(--font-display);font-size:31px;line-height:1.05;margin-bottom:18px}
+.journey-lane p{color:var(--muted);line-height:1.65}
+.lane-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.lane-chips span{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:#f7f8fb;font-size:13px;color:#334154}
 .system-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:50px}
 .system-item{min-height:250px;padding:28px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.64);transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
 .system-item:hover{transform:translateY(-6px);background:white;box-shadow:0 18px 55px rgba(7,17,31,.1)}
-.system-index{font-family:"Anybody",sans-serif;font-size:13px;color:var(--blue);font-weight:900;margin-bottom:44px}
-.system-item h3{font-family:"Anybody",sans-serif;font-size:25px;line-height:1.05;margin-bottom:16px}
+.system-index{font-family:var(--font-display);font-size:13px;color:var(--blue);font-weight:900;margin-bottom:44px}
+.system-item h3{font-family:var(--font-display);font-size:25px;line-height:1.05;margin-bottom:16px}
 .system-item p{color:var(--muted);line-height:1.65}
 .flow{background:#fff}
 .flow-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
 .timeline{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
 .timeline-step{display:grid;grid-template-columns:82px 1fr;gap:20px;padding:26px;background:white}
-.timeline-no{font-family:"Anybody",sans-serif;color:var(--blue);font-weight:900}
-.timeline-step h3{font-family:"Anybody",sans-serif;font-size:22px;margin-bottom:8px}
+.timeline-no{font-family:var(--font-display);color:var(--blue);font-weight:900}
+.timeline-step h3{font-family:var(--font-display);font-size:22px;margin-bottom:8px}
 .timeline-step p{color:var(--muted);line-height:1.65}
 .dashboard-section{background:linear-gradient(180deg,#fff 0%,#f2f6fb 100%)}
 .wide-dashboard{margin-top:48px;border-radius:8px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:white}
@@ -90,7 +99,7 @@ h1{font-size:88px;max-width:760px;animation:rise .7s ease both .08s}
 .dashboard-caption{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);background:white}
 .caption-item{padding:24px;border-right:1px solid var(--line)}
 .caption-item:last-child{border-right:0}
-.caption-item b{display:block;font-family:"Anybody",sans-serif;font-size:20px;margin-bottom:8px}
+.caption-item b{display:block;font-family:var(--font-display);font-size:20px;margin-bottom:8px}
 .caption-item span{color:var(--muted);font-size:14px;line-height:1.5}
 .cta{position:relative;padding:110px 44px;background:var(--ink);color:white;overflow:hidden}
 .cta-inner{position:relative;width:min(1050px,100%);margin:0 auto}
@@ -109,7 +118,7 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
 @media (max-width:980px){
   .nav{padding:16px 22px}.nav-links a{display:none}.hero{padding:106px 22px 34px}.hero-inner{grid-template-columns:1fr;gap:42px}
   h1{font-size:64px}.section-title{font-size:48px}.cta h2{font-size:56px}
-  .dashboard-shell img{min-height:260px}.section{padding:76px 22px}.system-grid,.flow-wrap{grid-template-columns:1fr}
+  .dashboard-shell img{min-height:260px}.section{padding:76px 22px}.system-grid,.flow-wrap,.journey-head,.journey-lanes{grid-template-columns:1fr}
   .dashboard-caption{grid-template-columns:1fr 1fr}.cta{padding:86px 22px}footer{padding:28px 22px}.marquee-head{width:calc(100% - 44px)}
 }
 @media (max-width:620px){
@@ -128,6 +137,7 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
     <span class="brand-word" style="display:none">STOAIX</span>
   </a>
   <div class="nav-links">
+    <a href="#journey">Yolculuk</a>
     <a href="#platform">Platform</a>
     <a href="#workflow">Akış</a>
     <a href="#dashboard">Dashboard</a>
@@ -170,6 +180,44 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
     <div class="marquee-track">
       <div class="logo-pill">OpenAI</div><div class="logo-pill">Claude</div><div class="logo-pill">Deepgram</div><div class="logo-pill">Cartesia</div><div class="logo-pill">Komo CRM</div><div class="logo-pill">Dentsoft</div><div class="logo-pill">WhatsApp</div><div class="logo-pill">Meta</div>
       <div class="logo-pill">OpenAI</div><div class="logo-pill">Claude</div><div class="logo-pill">Deepgram</div><div class="logo-pill">Cartesia</div><div class="logo-pill">Komo CRM</div><div class="logo-pill">Dentsoft</div><div class="logo-pill">WhatsApp</div><div class="logo-pill">Meta</div>
+    </div>
+  </section>
+
+  <section class="section journey" id="journey">
+    <div class="section-inner reveal">
+      <div class="journey-head">
+        <div>
+          <p class="section-kicker">Hasta yolculuğu</p>
+          <h2 class="section-title">Kanal değişse bile konuşma kopmaz.</h2>
+        </div>
+        <p class="section-lead">Çağrı, WhatsApp, web formu ve reklam leadleri aynı hasta kaydında birleşir. AI agent ilk teması yönetir, uygun hastayı randevuya taşır ve takip akışını kapatmaz.</p>
+      </div>
+      <div class="journey-lanes">
+        <article class="journey-lane">
+          <div>
+            <p class="lane-label">Capture</p>
+            <h3>Lead her kanaldan yakalanır.</h3>
+            <p>Missed call, reklam formu, WhatsApp mesajı veya web chat tek klinik inboxına düşer.</p>
+          </div>
+          <div class="lane-chips"><span>Telefon</span><span>WhatsApp</span><span>Web</span><span>Meta Ads</span></div>
+        </article>
+        <article class="journey-lane">
+          <div>
+            <p class="lane-label">Convert</p>
+            <h3>AI agent randevu niyetini netleştirir.</h3>
+            <p>Hasta sorularını yanıtlar, hizmeti doğrular, ön bilgiyi toplar ve ekibe hazır kayıt bırakır.</p>
+          </div>
+          <div class="lane-chips"><span>AI voice</span><span>Chatbot</span><span>Routing</span><span>Booking</span></div>
+        </article>
+        <article class="journey-lane">
+          <div>
+            <p class="lane-label">Retain</p>
+            <h3>Takip ve geri dönüş ritmi korunur.</h3>
+            <p>Randevu hatırlatma, kontrol mesajı, kapanmayan lead ve kampanya dönüşleri aynı sistemden izlenir.</p>
+          </div>
+          <div class="lane-chips"><span>Reminder</span><span>Follow-up</span><span>CRM</span><span>Rapor</span></div>
+        </article>
+      </div>
     </div>
   </section>
 
