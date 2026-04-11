@@ -68,8 +68,12 @@ h1{font-size:88px;max-width:760px;animation:rise .7s ease both .08s}
 .section-lead{margin-top:22px;color:var(--muted);font-size:18px;line-height:1.7;max-width:700px}
 .logo-marquee{padding:58px 0;background:var(--ink);color:white;overflow:hidden}
 .marquee-head{width:min(1160px,calc(100% - 88px));margin:0 auto 26px;color:#b9c4d6;font-size:13px;letter-spacing:0;text-transform:uppercase;font-weight:800}
-.marquee-track{display:flex;width:max-content;gap:16px;animation:marquee 28s linear infinite}
-.logo-pill{height:54px;min-width:170px;padding:0 28px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.13);border-radius:8px;background:rgba(255,255,255,.06);font-family:var(--font-display);font-weight:800;color:#eef4ff}
+.marquee-track{display:flex;width:max-content;gap:64px;align-items:center;animation:marquee 34s linear infinite}
+.partner-logo{height:48px;min-width:150px;display:flex;align-items:center;justify-content:center;gap:12px;opacity:.64;filter:saturate(.65);transition:opacity .2s ease,filter .2s ease}
+.partner-logo:hover{opacity:.96;filter:saturate(1)}
+.partner-logo img{width:30px;height:30px;object-fit:contain;filter:invert(1) brightness(1.6)}
+.partner-logo span{font-family:var(--font-display);font-size:20px;font-weight:750;color:#eef4ff;white-space:nowrap}
+.partner-logo.wordmark span{font-size:22px}
 .journey{background:#fff}
 .journey-head{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:end}
 .journey-lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
@@ -126,7 +130,7 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
   h1{font-size:44px}.section-title{font-size:36px}.cta h2{font-size:42px}.hero-copy{font-size:17px}.hero-actions{align-items:stretch;flex-direction:column}.btn-primary,.btn-secondary{width:100%}
   .signal{position:relative;left:auto;bottom:auto;width:100%;margin-top:14px}.metric-row,.dashboard-caption{grid-template-columns:1fr}
   .caption-item{border-right:0;border-bottom:1px solid var(--line)}.caption-item:last-child{border-bottom:0}.system-item{min-height:auto}
-  .timeline-step{grid-template-columns:1fr;gap:8px}.logo-pill{min-width:150px}.nav{gap:12px}
+  .timeline-step{grid-template-columns:1fr;gap:8px}.partner-logo{min-width:130px}.marquee-track{gap:38px}.nav{gap:12px}
 }
 </style>
 </head>
@@ -178,8 +182,22 @@ footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;paddin
   <section class="logo-marquee" aria-label="Entegrasyonlar">
     <p class="marquee-head">AI ve klinik operasyon ekosistemiyle uyumlu yapı</p>
     <div class="marquee-track">
-      <div class="logo-pill">OpenAI</div><div class="logo-pill">Claude</div><div class="logo-pill">Deepgram</div><div class="logo-pill">Cartesia</div><div class="logo-pill">Komo CRM</div><div class="logo-pill">Dentsoft</div><div class="logo-pill">WhatsApp</div><div class="logo-pill">Meta</div>
-      <div class="logo-pill">OpenAI</div><div class="logo-pill">Claude</div><div class="logo-pill">Deepgram</div><div class="logo-pill">Cartesia</div><div class="logo-pill">Komo CRM</div><div class="logo-pill">Dentsoft</div><div class="logo-pill">WhatsApp</div><div class="logo-pill">Meta</div>
+      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg" alt="" loading="lazy"><span>OpenAI</span></div>
+      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg" alt="" loading="lazy"><span>Claude</span></div>
+      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/deepgram.svg" alt="" loading="lazy"><span>Deepgram</span></div>
+      <div class="partner-logo wordmark"><span>Cartesia</span></div>
+      <div class="partner-logo wordmark"><span>Komo CRM</span></div>
+      <div class="partner-logo wordmark"><span>Dentsoft</span></div>
+      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/whatsapp.svg" alt="" loading="lazy"><span>WhatsApp</span></div>
+      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/meta.svg" alt="" loading="lazy"><span>Meta</span></div>
+      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg" alt="" loading="lazy"><span>OpenAI</span></div>
+      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg" alt="" loading="lazy"><span>Claude</span></div>
+      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/deepgram.svg" alt="" loading="lazy"><span>Deepgram</span></div>
+      <div class="partner-logo wordmark"><span>Cartesia</span></div>
+      <div class="partner-logo wordmark"><span>Komo CRM</span></div>
+      <div class="partner-logo wordmark"><span>Dentsoft</span></div>
+      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/whatsapp.svg" alt="" loading="lazy"><span>WhatsApp</span></div>
+      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/meta.svg" alt="" loading="lazy"><span>Meta</span></div>
     </div>
   </section>
 
