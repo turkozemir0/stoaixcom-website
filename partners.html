@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partner Program — STOAIX | Earn Recurring Revenue Selling AI Automation</title>
+  <meta name="description" content="Join the STOAIX partner program. Sell AI automation to any business — clinics, real estate, e-commerce, and more. Earn 10–40% recurring commission. White-label option available." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <style>
+    /* ─── Override to match index.html typography exactly ─── */
+    .partner-page * {
+      font-family: var(--font);
+    }
+
+    /* ─── Hero ─── */
+    .partner-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 130px 0 90px;
+      background:
+        radial-gradient(ellipse 70% 60% at 10% 20%, rgba(37,99,235,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 50% at 90% 10%, rgba(124,58,237,0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 45% at 50% 100%, rgba(59,130,246,0.10) 0%, transparent 55%),
+        #f5f8ff;
+      text-align: center;
+    }
+    .partner-hero-inner {
+      position: relative;
+      z-index: 3;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .partner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37,99,235,0.07);
+      border: 1px solid rgba(37,99,235,0.18);
+      color: var(--blue);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: var(--r-full);
+      margin-bottom: 28px;
+    }
+    .partner-h1 {
+      font-size: clamp(2.1rem, 5vw, 3.6rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 22px;
+    }
+    /* Rotating industry words — reuses same pattern as index.html hero */
+    .partner-word-wrap {
+      position: relative;
+      display: inline-block;
+      vertical-align: bottom;
+    }
+    .partner-word {
+      display: inline-block;
+      position: absolute;
+      left: 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      white-space: nowrap;
+      background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .partner-word.active {
+      position: relative;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .partner-word.exit {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    .partner-sub {
+      font-size: 1.1rem;
+      color: var(--text-2);
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .partner-hero-cta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .partner-hero-note {
+      margin-top: 18px;
+      font-size: 0.82rem;
+      color: var(--text-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .partner-hero-note span {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ─── Stats bar ─── */
+    .partner-stats {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+    }
+    .partner-stats-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .pstat {
+      text-align: center;
+      padding: 0 24px;
+      border-right: 1px solid var(--border);
+    }
+    .pstat:last-child { border-right: none; }
+    .pstat-value {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+    .pstat-label {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      line-height: 1.4;
+    }
+
+    /* ─── Sections ─── */
+    .psection {
+      padding: 88px 0;
+    }
+    .psection-alt {
+      background:
+        radial-gradient(ellipse 60% 50% at 0% 50%, rgba(37,99,235,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 100% 50%, rgba(124,58,237,0.04) 0%, transparent 60%),
+        var(--bg-2);
+    }
+    .psection-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .psection-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 12px;
+    }
+    .psection-h2 {
+      font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .psection-desc {
+      font-size: 1rem;
+      color: var(--text-2);
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 52px;
+    }
+
+    /* ─── Persona cards (who it's for) ─── */
+    .persona-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .persona-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 28px 24px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .persona-card:hover {
+      border-color: rgba(37,99,235,0.3);
+      box-shadow: 0 4px 20px rgba(37,99,235,0.08);
+    }
+    .persona-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(37,99,235,0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: var(--blue);
+    }
+    .persona-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .persona-desc {
+      font-size: 0.875rem;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* ─── Opportunity banner ─── */
+    .opp-banner {
+      background: linear-gradient(135deg, rgba(37,99,235,0.06) 0%, rgba(124,58,237,0.05) 100%);
+      border: 1.5px solid rgba(37,99,235,0.15);
+      border-radius: 20px;
+      padding: 40px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: center;
+      margin-top: 64px;
+    }
+    .opp-banner-text h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .opp-banner-text p {
+      font-size: 0.925rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 560px;
+    }
+    .opp-banner-cta {
+      flex-shrink: 0;
+    }
+
+    /* ─── Earnings calculator ─── */
+    .earnings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .earn-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 18px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .earn-card--highlight {
+      border-color: var(--blue);
+      background: rgba(37,99,235,0.025);
+    }
+    .earn-scenario {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text-2);
+      margin-bottom: 12px;
+    }
+    .earn-amount {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .earn-freq {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      margin-bottom: 16px;
+    }
+    .earn-breakdown {
+      font-size: 0.82rem;
+      color: var(--text-2);
+      line-height: 1.6;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      text-align: left;
+    }
+    .earn-breakdown strong {
+      color: var(--text);
+    }
+
+    /* ─── Partner type cards ─── */
+    .ptype-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .ptype-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+    }
+    .ptype-card--featured {
+      border-color: var(--blue);
+      background: rgba(37,99,235,0.025);
+    }
+    .ptype-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(37,99,235,0.08);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      color: var(--blue);
+    }
+    .ptype-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: rgba(37,99,235,0.09);
+      padding: 4px 10px;
+      border-radius: var(--r-full);
+      margin-bottom: 12px;
+    }
+    .ptype-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .ptype-commission {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+    .ptype-commission-note {
+      font-size: 0.82rem;
+      color: var(--text-2);
+      margin-bottom: 20px;
+    }
+    .ptype-desc {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .ptype-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ptype-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--text-2);
+    }
+    .ptype-item-dot {
+      width: 18px;
+      height: 18px;
+      background: rgba(37,99,235,0.09);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--blue);
+    }
+
+    /* ─── Comparison table ─── */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+    }
+    .compare-table th {
+      padding: 16px 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: left;
+    }
+    .compare-table th:first-child { background: var(--bg-2); color: var(--text-2); }
+    .compare-table th.col-old    { background: #fef2f2; color: #b91c1c; }
+    .compare-table th.col-stoaix { background: rgba(37,99,235,0.06); color: var(--blue); }
+    .compare-table td {
+      padding: 14px 20px;
+      font-size: 0.875rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+    }
+    .compare-table td:last-child { border-right: none; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td.col-old    { color: #b91c1c; }
+    .compare-table td.col-stoaix { color: #16a34a; font-weight: 600; }
+
+    /* ─── Commission tiers table ─── */
+    .tiers-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+    }
+    .tiers-table th {
+      padding: 14px 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-align: left;
+      background: var(--bg-2);
+      color: var(--text-2);
+      border-bottom: 1px solid var(--border);
+    }
+    .tiers-table td {
+      padding: 18px 20px;
+      font-size: 0.9rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .tiers-table tr:last-child td { border-bottom: none; }
+    .tiers-table tr:hover td { background: rgba(37,99,235,0.02); }
+    .tier-name {
+      font-weight: 700;
+      color: var(--text);
+    }
+    .tier-req {
+      font-size: 0.78rem;
+      color: var(--text-2);
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    .tier-pct {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--blue);
+      letter-spacing: -0.02em;
+    }
+    .tier-cap {
+      font-size: 0.78rem;
+      color: var(--text-2);
+      margin-top: 2px;
+    }
+    .tier-tag {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: var(--r-full);
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-left: 6px;
+    }
+    .tag-blue   { background: rgba(37,99,235,0.1); color: var(--blue); }
+    .tag-purple { background: rgba(124,58,237,0.1); color: #7c3aed; }
+    .tag-gold   { background: rgba(234,179,8,0.12); color: #a16207; }
+
+    /* ─── Steps ─── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 52px;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(33.33% - 0px);
+      right: calc(33.33% - 0px);
+      height: 1px;
+      background: var(--border);
+    }
+    .step-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      position: relative;
+    }
+    .step-num {
+      width: 44px;
+      height: 44px;
+      background: var(--blue);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .step-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .step-desc {
+      font-size: 0.875rem;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    /* ─── Support & resources ─── */
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .support-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      display: flex;
+      gap: 18px;
+    }
+    .support-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(37,99,235,0.08);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue);
+    }
+    .support-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .support-desc {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      line-height: 1.6;
+    }
+
+    /* ─── White label packages ─── */
+    .wl-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 0;
+    }
+    .wl-card {
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 32px;
+    }
+    .wl-card--featured {
+      border-color: var(--blue);
+      background: rgba(37,99,235,0.025);
+    }
+    .wl-price {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+    .wl-price-note {
+      font-size: 0.82rem;
+      color: var(--text-2);
+      margin-bottom: 8px;
+    }
+    .wl-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+    }
+    .wl-desc {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 24px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+    .wl-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .wl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--text-2);
+    }
+    .wl-item-dot {
+      width: 18px;
+      height: 18px;
+      background: rgba(37,99,235,0.09);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+      color: var(--blue);
+    }
+
+    /* ─── Final CTA section ─── */
+    .partner-cta {
+      padding: 110px 0;
+      background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 45%, #4f46e5 100%);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .partner-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 36px 36px;
+    }
+    .partner-cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .partner-cta-h2 {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 18px;
+    }
+    .partner-cta-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      margin-bottom: 44px;
+    }
+    .partner-cta-btns {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 30px;
+      background: #fff;
+      color: var(--blue);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    .btn-outline-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.35);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+    .btn-outline-white:hover { border-color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.07); }
+    .cta-trust {
+      margin-top: 24px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.55);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1024px) {
+      .persona-grid { grid-template-columns: repeat(2, 1fr); }
+      .earnings-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+    }
+    @media (max-width: 900px) {
+      .partner-stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .pstat { border-right: none; border-bottom: 1px solid var(--border); padding: 20px 0; }
+      .pstat:nth-child(even) { border-bottom: none; }
+      .ptype-grid, .wl-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .support-grid { grid-template-columns: 1fr; }
+      .persona-grid { grid-template-columns: 1fr; }
+      .opp-banner { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .tiers-table th, .tiers-table td { padding: 12px 14px; font-size: 0.82rem; }
+      .earnings-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="partner-page">
+
+  <!-- Nav -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img fetchpriority="high" src="assets/logo-iconwithname.svg" class="nav-logo-wordmark" alt="STOAIX" />
+      </a>
+
+      <div class="nav-links">
+        <div class="nav-dropdown-item">
+          <button class="nav-link-btn">Product <span class="nav-chevron">↓</span></button>
+          <div class="nav-dropdown">
+            <div class="dropdown-inner">
+              <a href="index.html#features" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 18.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z"/>
+                    <path d="M19.14 19.14 22 22M2 22l2.86-2.86"/>
+                    <path d="M12 12v-2M12 8v-.5"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Voice AI</div>
+                  <div class="dropdown-desc">Answer every call, 24/7</div>
+                </div>
+              </a>
+              <a href="index.html#channels" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">WhatsApp & Chat</div>
+                  <div class="dropdown-desc">Automate message channels</div>
+                </div>
+              </a>
+              <a href="index.html#features" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">CRM & Pipeline</div>
+                  <div class="dropdown-desc">Track and score every lead</div>
+                </div>
+              </a>
+              <a href="index.html#features" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Integrations</div>
+                  <div class="dropdown-desc">Connect your existing tools</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="index.html#pricing" class="nav-link">Pricing</a>
+        <div class="nav-dropdown-item">
+          <button class="nav-link-btn">Solutions <span class="nav-chevron">↓</span></button>
+          <div class="nav-dropdown">
+            <div class="dropdown-inner">
+              <a href="healthcare-clinics.html" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Healthcare Clinics</div>
+                  <div class="dropdown-desc">Hair transplant, dental, aesthetics</div>
+                </div>
+              </a>
+              <a href="partners.html" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Partner Program</div>
+                  <div class="dropdown-desc">Earn up to 40% recurring commission</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login">Log in</a>
+        <a href="signup.html" class="btn-primary btn-sm">Start free trial</a>
+      </div>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#features">Product</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="healthcare-clinics.html">Healthcare Clinics</a>
+    <a href="partners.html">Partner Program</a>
+    <a href="login.html" class="nav-login">Log in</a>
+    <a href="signup.html" class="btn-primary">Start free trial</a>
+  </div>
+
+
+  <!-- ═══ HERO ═══ -->
+  <section class="partner-hero">
+    <div class="hero-bg-grid"></div>
+    <div class="partner-hero-inner">
+      <div class="partner-badge reveal">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Partner Program — Now Open
+      </div>
+      <h1 class="partner-h1 reveal">
+        Earn recurring revenue selling AI to<br /><span class="partner-word-wrap"><span class="partner-word active">dental clinics.</span><span class="partner-word">real estate agencies.</span><span class="partner-word">e-commerce brands.</span><span class="partner-word">law firms.</span><span class="partner-word">beauty salons.</span><span class="partner-word">any business.</span></span>
+      </h1>
+      <p class="partner-sub reveal">
+        Every business needs AI automation — especially for customer communication, sales, and lead follow-up. Sell STOAIX to any of them and earn 10–40% recurring commission every month.
+      </p>
+      <div class="partner-hero-cta reveal">
+        <a href="/partners/apply" class="btn-primary btn-lg">
+          Apply to Partner Program
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="#how-it-works" class="btn-outline btn-lg">See how it works</a>
+      </div>
+      <div class="partner-hero-note reveal">
+        <span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Free to join
+        </span>
+        <span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          No technical skills needed
+        </span>
+        <span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Commission paid every month
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="marquee-section">
+    <p class="marquee-label">Powered by the best. Connects with everything.</p>
+    <div class="marquee-track-wrapper">
+      <div class="marquee-fade marquee-fade-left"></div>
+      <div class="marquee-fade marquee-fade-right"></div>
+
+      <div class="marquee-track">
+        <div class="marquee-inner marquee-left">
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/whatsapp.svg" alt="WhatsApp">WhatsApp</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zapier.svg" alt="Zapier">Zapier</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/make.svg" alt="Make">Make</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/hubspot.svg" alt="HubSpot">HubSpot</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/salesforce.svg" alt="Salesforce">Salesforce</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/twilio.svg" alt="Twilio">Twilio</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/gohighlevel.png" alt="Go High Level">Go High Level</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/calendly.svg" alt="Calendly">Calendly</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pipedrive.png" alt="Pipedrive">Pipedrive</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zoho.svg" alt="Zoho CRM">Zoho CRM</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googleads.svg" alt="Google Ads">Google Ads</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/tiktok.svg" alt="TikTok">TikTok</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/linkedin.svg" alt="LinkedIn">LinkedIn</div>
+          <!-- Duplicate for seamless loop -->
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/whatsapp.svg" alt="WhatsApp">WhatsApp</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zapier.svg" alt="Zapier">Zapier</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/make.svg" alt="Make">Make</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/hubspot.svg" alt="HubSpot">HubSpot</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/salesforce.svg" alt="Salesforce">Salesforce</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/twilio.svg" alt="Twilio">Twilio</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/gohighlevel.png" alt="Go High Level">Go High Level</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/calendly.svg" alt="Calendly">Calendly</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pipedrive.png" alt="Pipedrive">Pipedrive</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zoho.svg" alt="Zoho CRM">Zoho CRM</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googleads.svg" alt="Google Ads">Google Ads</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/tiktok.svg" alt="TikTok">TikTok</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/linkedin.svg" alt="LinkedIn">LinkedIn</div>
+        </div>
+      </div>
+
+      <div class="marquee-track">
+        <div class="marquee-inner marquee-right">
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/instagram.svg" alt="Instagram">Instagram DM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/telegram.svg" alt="Telegram">Telegram</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/facebook.svg" alt="Facebook">Facebook</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googlecalendar.svg" alt="Google Calendar">Google Calendar</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/slack.svg" alt="Slack">Slack</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentsoft.png" alt="Dentsoft">Dentsoft</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/komocrm.png" alt="Komo CRM">Komo CRM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/typeform.svg" alt="Typeform">Typeform</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/notion.svg" alt="Notion">Notion</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/airtable.svg" alt="Airtable">Airtable</div>
+          <div class="logo-pill logo-pill-dim">Webhook API</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentally.png" alt="Dentally">Dentally</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pabau.png" alt="Pabau">Pabau</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/fresha.png" alt="Fresha">Fresha</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/acuity.png" alt="Acuity Scheduling">Acuity Scheduling</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/freshworks.png" alt="Freshworks">Freshworks</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/youtube.svg" alt="YouTube">YouTube</div>
+          <!-- Duplicate -->
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/instagram.svg" alt="Instagram">Instagram DM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/telegram.svg" alt="Telegram">Telegram</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/facebook.svg" alt="Facebook">Facebook</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googlecalendar.svg" alt="Google Calendar">Google Calendar</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/slack.svg" alt="Slack">Slack</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentsoft.png" alt="Dentsoft">Dentsoft</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/komocrm.png" alt="Komo CRM">Komo CRM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/typeform.svg" alt="Typeform">Typeform</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/notion.svg" alt="Notion">Notion</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/airtable.svg" alt="Airtable">Airtable</div>
+          <div class="logo-pill logo-pill-dim">Webhook API</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentally.png" alt="Dentally">Dentally</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pabau.png" alt="Pabau">Pabau</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/fresha.png" alt="Fresha">Fresha</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/acuity.png" alt="Acuity Scheduling">Acuity Scheduling</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/freshworks.png" alt="Freshworks">Freshworks</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/youtube.svg" alt="YouTube">YouTube</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS BAR ═══ -->
+  <div class="partner-stats">
+    <div class="partner-stats-inner">
+      <div class="pstat">
+        <div class="pstat-value">40%</div>
+        <div class="pstat-label">Max recurring<br/>commission</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-value">$0</div>
+        <div class="pstat-label">Cost to join —<br/>ever</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-value">20+</div>
+        <div class="pstat-label">Pre-built AI<br/>workflows</div>
+      </div>
+      <div class="pstat">
+        <div class="pstat-value">15+</div>
+        <div class="pstat-label">Languages<br/>supported</div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══ WHO IS THIS FOR ═══ -->
+  <section class="psection" id="who">
+    <div class="psection-inner">
+      <div class="psection-label reveal">Is this for you?</div>
+      <h2 class="psection-h2 reveal">You already talk to the people who need this.</h2>
+      <p class="psection-desc reveal">You don't need to be an AI expert. You need to know businesses that are tired of missing leads, slow follow-up, and manual customer communication. If you work with or sell to any type of business — you're the right fit.</p>
+
+      <div class="persona-grid">
+        <div class="persona-card reveal">
+          <div class="persona-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+            </svg>
+          </div>
+          <div class="persona-title">Digital Marketing Agencies</div>
+          <div class="persona-desc">You already manage clinics' ads and SEO. Add AI automation to your service stack — and earn 40% recurring on every client you bring in.</div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <div class="persona-title">Healthcare Consultants</div>
+          <div class="persona-desc">You advise clinics on operations, growth, and efficiency. STOAIX is the tool they need — and you already have the trust to recommend it.</div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div class="persona-title">Tech & AI Freelancers</div>
+          <div class="persona-desc">Stop building one-off projects. Resell STOAIX under your own brand and earn passively from a growing client base instead of project-by-project.</div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <div class="persona-title">Sales Professionals</div>
+          <div class="persona-desc">You're comfortable closing deals. STOAIX gives you a compelling, proven product to sell with a recurring commission structure that rewards every close — forever.</div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <div class="persona-title">CRM & SaaS Resellers</div>
+          <div class="persona-desc">You already sell software to businesses. STOAIX is a natural add-on to any CRM, booking, or communication stack — and the recurring commission compounds fast.</div>
+        </div>
+
+        <div class="persona-card reveal">
+          <div class="persona-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <div class="persona-title">Business Coaches & Trainers</div>
+          <div class="persona-desc">Your clients are small and mid-size business owners. When you recommend STOAIX, you earn recurring commission — and add real, measurable value to every engagement.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ═══ WHAT YOU ACTUALLY SELL ═══ -->
+  <section class="psection psection-alt">
+    <div class="psection-inner">
+      <div class="psection-label reveal">The product</div>
+      <h2 class="psection-h2 reveal">Every business has the same problem. STOAIX solves it.</h2>
+      <p class="psection-desc reveal">Across every industry — clinics, agencies, salons, e-commerce, real estate — businesses are losing revenue because customer communication, sales follow-up, and lead tracking are still manual. That's what you sell against.</p>
+      <div class="ptype-grid">
+
+        <div class="ptype-card reveal">
+          <div class="ptype-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <div class="ptype-title">The problem every business has</div>
+          <div class="ptype-desc">Calls go unanswered after hours. WhatsApp and website inquiries sit for hours with no reply. Leads that don't get followed up within minutes go cold — and convert elsewhere. Sales teams spend time on admin instead of closing.</div>
+          <div class="ptype-items">
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+              Missed calls = lost revenue, every single day
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+              Slow WhatsApp & chat responses kill conversions
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+              Manual lead follow-up is inconsistent and incomplete
+            </div>
+          </div>
+        </div>
+
+        <div class="ptype-card ptype-card--featured reveal">
+          <div class="ptype-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="ptype-title">What STOAIX does for them</div>
+          <div class="ptype-desc">One AI platform that handles customer communication, sales, and follow-up across every channel — calls, WhatsApp, web chat — automatically, 24/7, in any language.</div>
+          <div class="ptype-items">
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              AI Voice: answers every call, qualifies, and books 24/7
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              WhatsApp & Web Chat: instant replies and automated follow-up
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              CRM & Pipeline: every lead scored, tracked, and nurtured
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              15+ languages — works for international customers too
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ NO NEED TO LEARN OTHER TOOLS ═══ -->
+  <section class="psection">
+    <div class="psection-inner">
+      <div class="psection-label reveal">Why STOAIX is different to sell</div>
+      <h2 class="psection-h2 reveal">You don't need to learn N8N, VAPI, or any other tool. We've already built it.</h2>
+      <p class="psection-desc reveal">Most AI automation requires stitching together 4–6 different platforms, writing code, and maintaining it forever. With STOAIX, the infrastructure is done. You just sell the result.</p>
+      <div class="support-grid">
+
+        <div class="support-card reveal">
+          <div class="support-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <div>
+            <div class="support-title">20+ pre-built AI workflows, ready to deploy</div>
+            <div class="support-desc">We've identified the most in-demand automation workflows across industries — missed call recovery, lead follow-up, appointment reminders, re-engagement campaigns, and more. All built. All tested. You don't configure anything.</div>
+          </div>
+        </div>
+
+        <div class="support-card reveal">
+          <div class="support-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div>
+            <div class="support-title">No VAPI, no GHL, no Make — one platform</div>
+            <div class="support-desc">Your clients don't need to sign up for 5 different tools or pay someone to integrate them. STOAIX is Voice AI, WhatsApp, Web Chat, CRM, and Pipeline — all in one. That's your selling point.</div>
+          </div>
+        </div>
+
+        <div class="support-card reveal">
+          <div class="support-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/>
+            </svg>
+          </div>
+          <div>
+            <div class="support-title">Live in under 5 minutes — no setup needed</div>
+            <div class="support-desc">You close the deal. We onboard the client. STOAIX goes live in minutes with no technical setup — which means clients see results immediately, stay longer, and you keep earning.</div>
+          </div>
+        </div>
+
+        <div class="support-card reveal">
+          <div class="support-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="support-title">We handle all support — you just refer</div>
+            <div class="support-desc">Technical questions, onboarding, troubleshooting — all handled by STOAIX. You're not a support agent. You make introductions and earn every month those clients stay active.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ EARNINGS ═══ -->
+  <section class="psection" id="earnings">
+    <div class="psection-inner">
+      <div class="psection-label reveal">What you earn</div>
+      <h2 class="psection-h2 reveal">Recurring. Every month. For as long as they stay.</h2>
+      <p class="psection-desc reveal">Unlike a one-time referral fee, your commission is paid every month your clients are active. Build a portfolio of 10–20 clients and you have a meaningful passive income — from introductions you've already made.</p>
+
+      <div class="earnings-grid">
+        <div class="earn-card reveal">
+          <div class="earn-scenario">3 Active Clients</div>
+          <div class="earn-amount">$269</div>
+          <div class="earn-freq">per month, recurring</div>
+          <div class="earn-breakdown">
+            3 clients × <strong>$299/mo</strong> plan × <strong>30%</strong> commission<br/>
+            Starter to Pro tier — automatic as you grow
+          </div>
+        </div>
+
+        <div class="earn-card earn-card--highlight reveal">
+          <div class="earn-scenario">10 Active Clients</div>
+          <div class="earn-amount">$897</div>
+          <div class="earn-freq">per month, recurring</div>
+          <div class="earn-breakdown">
+            10 clients × <strong>$299/mo</strong> plan × <strong>30%</strong> commission<br/>
+            Pro tier unlocked — tier adjusts automatically
+          </div>
+        </div>
+
+        <div class="earn-card reveal">
+          <div class="earn-scenario">White-Label: 15 Clients</div>
+          <div class="earn-amount">$1,794</div>
+          <div class="earn-freq">per month, recurring</div>
+          <div class="earn-breakdown">
+            15 clients × <strong>$299/mo</strong> × <strong>40%</strong> white-label rate<br/>
+            Sell under your own brand — you set the margin
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ TWO WAYS TO PARTNER ═══ -->
+  <section class="psection psection-alt">
+    <div class="psection-inner">
+      <div class="psection-label reveal">Partnership types</div>
+      <h2 class="psection-h2 reveal">Two ways to work with us. You choose the level.</h2>
+      <p class="psection-desc reveal">Start as a referral partner and earn from day one. Or go white-label and sell the full platform under your brand. Both earn recurring commission — the difference is how involved you want to be.</p>
+      <div class="ptype-grid">
+
+        <div class="ptype-card reveal">
+          <div class="ptype-badge">Affiliate / Referral</div>
+          <div class="ptype-title">Refer clients. Earn passively.</div>
+          <div class="ptype-commission">10–30%</div>
+          <div class="ptype-commission-note">recurring monthly commission</div>
+          <div class="ptype-desc">You introduce STOAIX to businesses in your network. We handle the demo, onboarding, support, and everything technical. You get credited every month they stay active — automatically.</div>
+          <div class="ptype-items">
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              No technical knowledge required
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              STOAIX manages onboarding & support for every client
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Commission rises automatically as your client base grows
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Best for: consultants, coaches, sales professionals
+            </div>
+          </div>
+        </div>
+
+        <div class="ptype-card ptype-card--featured reveal">
+          <div class="ptype-badge">Agency / White-Label</div>
+          <div class="ptype-title">Sell it as your own product.</div>
+          <div class="ptype-commission">40%</div>
+          <div class="ptype-commission-note">recurring monthly commission — or set your own pricing</div>
+          <div class="ptype-desc">Run the full STOAIX platform under your brand. Your logo, your domain, your pricing. Manage multiple clinic clients from a single dashboard. You control the client relationship — we power the product.</div>
+          <div class="ptype-items">
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Full white-label: your brand on every screen
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Set your own pricing — earn the full margin above cost
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Multi-client dashboard — manage everything in one place
+            </div>
+            <div class="ptype-item">
+              <div class="ptype-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Best for: digital agencies, AI consultants, tech resellers
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ COMMISSION TIERS ═══ -->
+  <section class="psection" id="tiers">
+    <div class="psection-inner">
+      <div class="psection-label reveal">Commission structure</div>
+      <h2 class="psection-h2 reveal">The more you grow, the more you earn.</h2>
+      <p class="psection-desc reveal">Your tier is based on active clients — it adjusts automatically as your book grows. There's no application or approval needed to move up. Every referral that stays active counts.</p>
+      <table class="tiers-table">
+        <thead>
+          <tr>
+            <th>Tier</th>
+            <th>Commission</th>
+            <th>Active clients</th>
+            <th>What changes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="tier-name">Starter <span class="tier-tag tag-blue">Entry</span></div>
+              <div class="tier-req">Open to everyone — start earning from client #1. No approval, no waiting.</div>
+            </td>
+            <td><div class="tier-pct">10%</div><div class="tier-cap">Recurring monthly</div></td>
+            <td>1–4 active clients</td>
+            <td>You get a referral link and partner dashboard immediately upon signing up.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="tier-name">Growth <span class="tier-tag tag-purple">Popular</span></div>
+              <div class="tier-req">Automatically unlocked. No action needed from you.</div>
+            </td>
+            <td><div class="tier-pct">20%</div><div class="tier-cap">Recurring monthly</div></td>
+            <td>5–9 active clients</td>
+            <td>Commission rate upgrades automatically on all active clients — not just new ones.</td>
+          </tr>
+          <tr>
+            <td>
+              <div class="tier-name">Pro <span class="tier-tag tag-gold">Top Tier</span></div>
+              <div class="tier-req">For high-volume partners building a serious book of business.</div>
+            </td>
+            <td><div class="tier-pct">30%</div><div class="tier-cap">Recurring monthly</div></td>
+            <td>10+ active clients</td>
+            <td>At 10 clients on a $299 plan, you're earning $897/mo recurring — automatically.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ═══ WHITE LABEL PACKAGES ═══ -->
+  <section class="psection psection-alt" id="white-label">
+    <div class="psection-inner">
+      <div class="psection-label reveal">White-label packages</div>
+      <h2 class="psection-h2 reveal">Your brand. Our infrastructure. Their results.</h2>
+      <p class="psection-desc reveal">White-label partners earn 40% on every active client — or set your own pricing and keep even more. A one-time setup fee, no recurring platform cost. Pay once, earn forever.</p>
+      <div class="wl-grid">
+
+        <div class="wl-card reveal">
+          <div class="wl-price">$997</div>
+          <div class="wl-price-note">one-time setup fee · no monthly platform cost</div>
+          <div class="wl-title">WL Basic — Full White-Label Access</div>
+          <div class="wl-desc">Everything you need to launch your own AI automation brand on top of STOAIX. Your logo, your domain, your client relationships. We configure the backend — you own the front.</div>
+          <div class="wl-items">
+            <div class="wl-item">
+              <div class="wl-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Custom branding: logo, domain, and color scheme
+            </div>
+            <div class="wl-item">
+              <div class="wl-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Multi-client reseller dashboard
+            </div>
+            <div class="wl-item">
+              <div class="wl-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              40% recurring commission on all active clients
+            </div>
+            <div class="wl-item">
+              <div class="wl-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Dedicated onboarding & technical support
+            </div>
+          </div>
+          <a href="/partners/apply?plan=wl-basic" class="btn-outline btn-md" style="width:100%;justify-content:center;">Apply for WL Basic</a>
+        </div>
+
+        <div class="wl-card wl-card--featured reveal">
+          <div class="wl-price">$1,497</div>
+          <div class="wl-price-note">one-time setup fee · includes sales training program</div>
+          <div class="wl-title">WL Pro — Full Access + Sales Training</div>
+          <div class="wl-desc">Everything in WL Basic, plus a structured 4-session live training program. Learn exactly how to pitch, demo, and close AI automation deals with healthcare clinics. Built for partners who want to move fast.</div>
+          <div class="wl-items">
+            <div class="wl-item">
+              <div class="wl-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Everything in WL Basic
+            </div>
+            <div class="wl-item">
+              <div class="wl-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              4 live sales training sessions (over 1 month)
+            </div>
+            <div class="wl-item">
+              <div class="wl-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Discovery call frameworks & objection handling
+            </div>
+            <div class="wl-item">
+              <div class="wl-item-dot"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              Closing scripts tailored for healthcare clinic owners
+            </div>
+          </div>
+          <a href="/partners/apply?plan=wl-pro" class="btn-primary btn-md" style="width:100%;justify-content:center;">Apply for WL Pro</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ HOW IT WORKS ═══ -->
+  <section class="psection" id="how-it-works">
+    <div class="psection-inner">
+      <div class="psection-label reveal">Process</div>
+      <h2 class="psection-h2 reveal">From application to first commission in days.</h2>
+      <p class="psection-desc reveal">We keep it simple. You focus on relationships and introductions — we handle everything else.</p>
+      <div class="steps-grid">
+        <div class="step-card reveal">
+          <div class="step-num">1</div>
+          <div class="step-title">Apply in 2 minutes</div>
+          <div class="step-desc">Fill in the short application form. Tell us a bit about your background and who you work with. Most applications are reviewed within 24 hours — your partner dashboard and referral link are ready immediately.</div>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">2</div>
+          <div class="step-title">Make the introduction</div>
+          <div class="step-desc">Share your unique referral link or introduce us directly. Not sure how to pitch it? We'll give you ready-to-use talking points, email templates, and a demo you can walk clients through yourself.</div>
+        </div>
+        <div class="step-card reveal">
+          <div class="step-num">3</div>
+          <div class="step-title">Earn every month</div>
+          <div class="step-desc">Once your referred client goes live, your commission starts. It's paid monthly for as long as they stay active — no caps, no expiry. The more active clients you have, the higher your tier and rate.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ WHAT WE PROVIDE ═══ -->
+  <section class="psection psection-alt">
+    <div class="psection-inner">
+      <div class="psection-label reveal">Partner support</div>
+      <h2 class="psection-h2 reveal">You're not selling alone. We back every partner.</h2>
+      <p class="psection-desc reveal">We want you to succeed. That means giving you real resources — not just a referral link and a good-luck message.</p>
+      <div class="support-grid">
+
+        <div class="support-card reveal">
+          <div class="support-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <div>
+            <div class="support-title">Live partner dashboard</div>
+            <div class="support-desc">See every referred client, their status, and your commission breakdown in real time. Know exactly what you're earning and when it's paid.</div>
+          </div>
+        </div>
+
+        <div class="support-card reveal">
+          <div class="support-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+            </svg>
+          </div>
+          <div>
+            <div class="support-title">Sales & marketing materials</div>
+            <div class="support-desc">Ready-to-send email templates, pitch decks, demo scripts, and objection-handling guides — specifically written for selling to clinic owners.</div>
+          </div>
+        </div>
+
+        <div class="support-card reveal">
+          <div class="support-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="support-title">Direct partner support</div>
+            <div class="support-desc">A dedicated contact at STOAIX for any question you or your clients have. We don't disappear after you sign up — we stay in it with you.</div>
+          </div>
+        </div>
+
+        <div class="support-card reveal">
+          <div class="support-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="support-title">Fast onboarding for your clients</div>
+            <div class="support-desc">STOAIX is live in under 5 minutes. No weeks-long setup, no technical complexity. That's a real selling point — and it means your clients see results fast.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══ WHY STOAIX IS EASY TO SELL ═══ -->
+  <section class="psection">
+    <div class="psection-inner">
+      <div class="psection-label reveal">Your competitive advantage</div>
+      <h2 class="psection-h2 reveal">Your clients save $400–$600/month compared to building it themselves.</h2>
+      <p class="psection-desc reveal">When a business tries to piece together a comparable system — VAPI for voice, GoHighLevel for CRM, Make or N8N for automation — they spend $800–$1,000+/month and 2–4 weeks setting it up. STOAIX is $299–$499/month, live in minutes, no IT team required. That's not a hard pitch.</p>
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="col-old">VAPI + GHL + Make / N8N</th>
+            <th class="col-stoaix">STOAIX — All Included</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monthly cost</td>
+            <td class="col-old">$800–$1,000+</td>
+            <td class="col-stoaix">$299–$499/month</td>
+          </tr>
+          <tr>
+            <td>Voice AI (inbound + outbound)</td>
+            <td class="col-old">VAPI — separate billing, usage caps</td>
+            <td class="col-stoaix">Included — unlimited inbound</td>
+          </tr>
+          <tr>
+            <td>WhatsApp + Web Chat</td>
+            <td class="col-old">Separate integration + additional cost</td>
+            <td class="col-stoaix">Included — same knowledge base</td>
+          </tr>
+          <tr>
+            <td>CRM + Pipeline management</td>
+            <td class="col-old">GHL subscription required</td>
+            <td class="col-stoaix">Built-in — lead scoring + follow-up</td>
+          </tr>
+          <tr>
+            <td>Multi-client management</td>
+            <td class="col-old">Manual setup per client</td>
+            <td class="col-stoaix">Reseller dashboard — one panel</td>
+          </tr>
+          <tr>
+            <td>Time to go live</td>
+            <td class="col-old">2–4 weeks per client</td>
+            <td class="col-stoaix">Under 5 minutes — self-serve</td>
+          </tr>
+          <tr>
+            <td>Language support</td>
+            <td class="col-old">Manual prompt engineering per language</td>
+            <td class="col-stoaix">15+ languages — native support</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <!-- ═══ CTA ═══ -->
+  <section class="partner-cta">
+    <div class="partner-cta-inner">
+      <h2 class="partner-cta-h2">Every business needs AI automation. You can be the one to bring it to them.</h2>
+      <p class="partner-cta-sub">Apply today, get your partner link within 24 hours, and start earning from your first referral. No setup, no technical work, no other tools to learn.</p>
+      <div class="partner-cta-btns">
+        <a href="/partners/apply" class="btn-white">
+          Apply Now — It's Free
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="mailto:hello@stoaix.com?subject=Partner%20Question" class="btn-outline-white">Ask us a question</a>
+      </div>
+      <p class="cta-trust">$0 to join · No technical skills required · Commission paid monthly</p>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo">
+          <img fetchpriority="high" src="assets/logo-iconwithname.svg" class="nav-logo-wordmark" alt="STOAIX" />
+        </a>
+        <p class="footer-tagline">AI receptionist for any business. Answer every call, handle every message, convert every lead.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="X / Twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+              <polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">Product</div>
+          <a href="#">Voice AI</a>
+          <a href="#">WhatsApp Chatbot</a>
+          <a href="#">Web Chat Widget</a>
+          <a href="#">Outbound AI</a>
+          <a href="#">CRM &amp; Pipeline</a>
+          <a href="#">Integrations</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Solutions</div>
+          <a href="healthcare-clinics.html">Healthcare Clinics</a>
+          <a href="#solutions">Real Estate</a>
+          <a href="#solutions">Education</a>
+          <a href="#solutions">E-Commerce</a>
+          <a href="partners.html">Agencies &amp; Resellers</a>
+          <a href="partners.html">White Label</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="partners.html">Partners</a>
+          <a href="#">Careers</a>
+          <a href="mailto:hello@stoaix.com">hello@stoaix.com</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">GDPR</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 STOAIX Ltd. — London, UK</span>
+        <span>Made for businesses that refuse to miss a lead.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/js/components.js"></script>
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/i18n.js"></script>
+  <script>
+    /* ─── Partner hero rotating industries ─── */
+    (function initPartnerWords() {
+      const words = document.querySelectorAll('.partner-word');
+      if (!words.length) return;
+      let current = 0;
+      const INTERVAL = 2200;
+      function next() {
+        const prev = current;
+        current = (current + 1) % words.length;
+        words[prev].classList.add('exit');
+        words[prev].classList.remove('active');
+        setTimeout(() => { words[prev].classList.remove('exit'); }, 450);
+        words[current].classList.add('active');
+      }
+      setInterval(next, INTERVAL);
+    })();
+  </script>
+</body>
+</html>

@@ -1,375 +1,1044 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STOAIX | Klinikler için AI işletim sistemi</title>
-<meta name="description" content="STOAIX; klinikler için AI voice agent, hasta takibi, CRM entegrasyonu ve operasyon dashboardunu tek sistemde toplar.">
-<style>
-:root{
-  --ink:#07111f;
-  --paper:#f7f8fb;
-  --surface:#ffffff;
-  --line:rgba(7,17,31,.11);
-  --muted:#5e6a7d;
-  --soft:#eef2f7;
-  --blue:#2457ff;
-  --cyan:#4fc5d2;
-  --green:#35b26f;
-  --rose:#e85d75;
-  --shadow:0 28px 90px rgba(7,17,31,.13);
-  --font:"SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
-  --font-display:"SF Pro Display","SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--font);background:var(--paper);color:var(--ink);overflow-x:hidden}
-body::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(115deg,#f7f8fb 0%,#eef4ff 45%,#f9fbf7 100%)}
-a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
-.nav{position:fixed;top:0;left:0;right:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:18px 44px;background:rgba(247,248,251,.78);backdrop-filter:blur(22px);border-bottom:1px solid rgba(7,17,31,.08)}
-.brand{display:flex;align-items:center;gap:12px}
-.brand img{height:34px;width:auto}
-.brand-word{font-family:var(--font-display);font-weight:900;font-size:23px;letter-spacing:0;color:var(--ink)}
-.nav-links{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:14px;font-weight:500}
-.nav-links a{transition:color .2s ease}
-.nav-links a:hover{color:var(--ink)}
-.nav-cta,.btn-primary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:8px;background:var(--ink);color:white;font-weight:700;box-shadow:0 14px 32px rgba(7,17,31,.18);transition:transform .2s ease,box-shadow .2s ease,background .2s ease}
-.nav-cta:hover,.btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 42px rgba(7,17,31,.24);background:#10243d}
-.btn-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 20px;border:1px solid var(--line);border-radius:8px;color:var(--ink);font-weight:700;background:rgba(255,255,255,.55);transition:transform .2s ease,background .2s ease}
-.btn-secondary:hover{transform:translateY(-2px);background:white}
-.hero{min-height:100svh;position:relative;display:grid;align-items:center;padding:118px 44px 42px;overflow:hidden;background:#f7f8fb}
-.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(247,248,251,.98) 0%,rgba(247,248,251,.86) 43%,rgba(247,248,251,.12) 100%),url("assets/images/hero-gradient-v3-37.jpg");background-size:cover;background-position:center top;filter:saturate(.96);opacity:.9;transform:scale(1.02);pointer-events:none}
-.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.9fr) minmax(460px,1.1fr);gap:52px;align-items:center;width:min(1220px,100%);margin:0 auto}
-.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:0;color:var(--blue);font-weight:800;margin-bottom:22px}
-h1,.section-title,.cta h2{font-family:var(--font-display);font-weight:900;letter-spacing:0;line-height:.96}
-h1{font-size:88px;max-width:760px;animation:rise .7s ease both .08s}
-.hero-copy{margin-top:28px;font-size:19px;line-height:1.7;color:var(--muted);max-width:600px;animation:rise .7s ease both .2s}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px;animation:rise .7s ease both .32s}
-.hero-note{margin-top:22px;color:var(--muted);font-size:14px;animation:rise .7s ease both .42s}
-.product-frame{position:relative;animation:floatIn .9s cubic-bezier(.2,.8,.2,1) both .2s}
-.dashboard-shell{position:relative;border-radius:8px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow);border:1px solid rgba(7,17,31,.1);transform:translateZ(0);transition:transform .32s ease,box-shadow .32s ease,border-color .32s ease}
-.dashboard-shell:hover{transform:translateY(-8px) scale(1.012);box-shadow:0 38px 120px rgba(7,17,31,.2);border-color:rgba(36,87,255,.2)}
-.shell-top{height:42px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;background:#111827;color:#dbe4f0;font-size:12px}
-.shell-dots{display:flex;gap:7px}
-.shell-dots i{width:9px;height:9px;border-radius:50%;display:block}
-.shell-dots i:nth-child(1){background:var(--rose)}.shell-dots i:nth-child(2){background:#e9be4c}.shell-dots i:nth-child(3){background:var(--green)}
-.dashboard-shell img{width:100%;min-height:360px;object-fit:cover;object-position:top}
-.signal{position:absolute;left:-24px;bottom:32px;width:min(330px,70%);background:rgba(255,255,255,.92);border:1px solid rgba(7,17,31,.08);border-radius:8px;padding:18px;box-shadow:0 20px 70px rgba(7,17,31,.18);backdrop-filter:blur(18px);animation:softPulse 4s ease-in-out infinite}
-.signal-top{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:14px}
-.signal strong{font-family:var(--font-display);font-size:25px}
-.metric-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
-.metric{background:var(--soft);border-radius:8px;padding:12px}
-.metric b{display:block;font-family:var(--font-display);font-size:20px}
-.metric span{font-size:12px;color:var(--muted)}
-.section{padding:100px 44px;border-top:1px solid rgba(7,17,31,.08)}
-.section-inner{width:min(1160px,100%);margin:0 auto}
-.section-kicker{font-size:12px;text-transform:uppercase;letter-spacing:0;color:var(--blue);font-weight:800;margin-bottom:15px}
-.section-title{font-size:62px;max-width:850px}
-.section-lead{margin-top:22px;color:var(--muted);font-size:18px;line-height:1.7;max-width:700px}
-.logo-marquee{padding:58px 0;background:var(--ink);color:white;overflow:hidden}
-.marquee-head{width:min(1160px,calc(100% - 88px));margin:0 auto 26px;color:#b9c4d6;font-size:13px;letter-spacing:0;text-transform:uppercase;font-weight:800}
-.marquee-track{display:flex;width:max-content;gap:64px;align-items:center;animation:marquee 34s linear infinite}
-.partner-logo{height:48px;min-width:150px;display:flex;align-items:center;justify-content:center;gap:12px;opacity:.64;filter:saturate(.65);transition:opacity .2s ease,filter .2s ease}
-.partner-logo:hover{opacity:.96;filter:saturate(1)}
-.partner-logo img{width:30px;height:30px;object-fit:contain;filter:invert(1) brightness(1.6)}
-.partner-logo span{font-family:var(--font-display);font-size:20px;font-weight:750;color:#eef4ff;white-space:nowrap}
-.partner-logo.wordmark span{font-size:22px}
-.journey{background:#fff}
-.journey-head{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:end}
-.journey-lanes{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:56px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.journey-lane{background:#fff;padding:34px;min-height:330px;display:flex;flex-direction:column;justify-content:space-between}
-.lane-label{font-size:13px;color:var(--blue);font-weight:800;margin-bottom:28px}
-.journey-lane h3{font-family:var(--font-display);font-size:31px;line-height:1.05;margin-bottom:18px}
-.journey-lane p{color:var(--muted);line-height:1.65}
-.lane-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
-.lane-chips span{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:#f7f8fb;font-size:13px;color:#334154}
-.system-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:50px}
-.system-item{min-height:250px;padding:28px;border:1px solid var(--line);border-radius:8px;background:rgba(255,255,255,.64);transition:transform .25s ease,background .25s ease,box-shadow .25s ease}
-.system-item:hover{transform:translateY(-6px);background:white;box-shadow:0 18px 55px rgba(7,17,31,.1)}
-.system-index{font-family:var(--font-display);font-size:13px;color:var(--blue);font-weight:900;margin-bottom:44px}
-.system-item h3{font-family:var(--font-display);font-size:25px;line-height:1.05;margin-bottom:16px}
-.system-item p{color:var(--muted);line-height:1.65}
-.product-depth{background:#f7f8fb}
-.product-story{display:grid;grid-template-columns:.82fr 1.18fr;gap:58px;align-items:center;margin-top:58px}
-.product-story + .product-story{margin-top:84px}
-.product-story.flip{grid-template-columns:1.18fr .82fr}
-.screen-frame{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;box-shadow:0 24px 80px rgba(7,17,31,.12);transform:translateZ(0);transition:transform .32s ease,box-shadow .32s ease,border-color .32s ease}
-.screen-frame:hover{transform:translateY(-8px) scale(1.018);box-shadow:0 34px 110px rgba(7,17,31,.18);border-color:rgba(36,87,255,.22)}
-.screen-frame img{width:100%;display:block;transition:transform .45s ease,filter .45s ease}
-.screen-frame:hover img{transform:scale(1.018);filter:saturate(1.04) contrast(1.02)}
-.screen-copy{max-width:520px}
-.screen-copy h3{font-family:var(--font-display);font-size:38px;line-height:1.05;margin-bottom:18px}
-.screen-copy p{font-size:17px;line-height:1.75;color:var(--muted)}
-.screen-points{display:grid;gap:14px;margin-top:28px}
-.screen-point{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;color:#334154;font-size:15px;line-height:1.55}
-.screen-point span{width:28px;height:28px;border-radius:8px;background:#eaf0ff;color:var(--blue);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px}
-.flow{background:#fff}
-.flow-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
-.timeline{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.timeline-step{display:grid;grid-template-columns:82px 1fr;gap:20px;padding:26px;background:white}
-.timeline-no{font-family:var(--font-display);color:var(--blue);font-weight:900}
-.timeline-step h3{font-family:var(--font-display);font-size:22px;margin-bottom:8px}
-.timeline-step p{color:var(--muted);line-height:1.65}
-.dashboard-section{background:linear-gradient(180deg,#fff 0%,#f2f6fb 100%)}
-.wide-dashboard{margin-top:48px;border-radius:8px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);background:white;transform:translateZ(0);transition:transform .32s ease,box-shadow .32s ease,border-color .32s ease}
-.wide-dashboard:hover{transform:translateY(-8px) scale(1.01);box-shadow:0 38px 120px rgba(7,17,31,.18);border-color:rgba(36,87,255,.2)}
-.wide-dashboard .shell-top{height:46px}
-.wide-dashboard img{width:100%;transition:transform .45s ease,filter .45s ease}
-.wide-dashboard:hover img{transform:scale(1.012);filter:saturate(1.04) contrast(1.02)}
-.dashboard-caption{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);background:white}
-.caption-item{padding:24px;border-right:1px solid var(--line)}
-.caption-item:last-child{border-right:0}
-.caption-item b{display:block;font-family:var(--font-display);font-size:20px;margin-bottom:8px}
-.caption-item span{color:var(--muted);font-size:14px;line-height:1.5}
-.cta{position:relative;padding:110px 44px;background:var(--ink);color:white;overflow:hidden}
-.cta-inner{position:relative;width:min(1050px,100%);margin:0 auto}
-.cta h2{font-size:76px;max-width:900px}
-.cta p{margin-top:24px;color:#c1cad9;font-size:18px;line-height:1.7;max-width:640px}
-.cta-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px}
-.cta .btn-primary{background:white;color:var(--ink);box-shadow:none}
-.cta .btn-secondary{background:transparent;color:white;border-color:rgba(255,255,255,.22)}
-footer{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;padding:32px 44px;background:var(--ink);color:#9eaabd;border-top:1px solid rgba(255,255,255,.1);font-size:14px}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
-@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-@keyframes floatIn{from{opacity:0;transform:translateY(28px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-@keyframes softPulse{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media (max-width:980px){
-  .nav{padding:16px 22px}.nav-links a{display:none}.hero{padding:106px 22px 34px}.hero-inner{grid-template-columns:1fr;gap:42px}
-  h1{font-size:64px}.section-title{font-size:48px}.cta h2{font-size:56px}
-  .dashboard-shell img{min-height:260px}.section{padding:76px 22px}.system-grid,.flow-wrap,.journey-head,.journey-lanes,.product-story,.product-story.flip{grid-template-columns:1fr}
-  .dashboard-caption{grid-template-columns:1fr 1fr}.cta{padding:86px 22px}footer{padding:28px 22px}.marquee-head{width:calc(100% - 44px)}
-}
-@media (max-width:620px){
-  .brand img{height:28px}.brand-word{font-size:19px}.nav-cta{min-height:40px;padding:0 14px;font-size:13px}
-  h1{font-size:44px}.section-title{font-size:36px}.cta h2{font-size:42px}.hero-copy{font-size:17px}.hero-actions{align-items:stretch;flex-direction:column}.btn-primary,.btn-secondary{width:100%}
-  .signal{position:relative;left:auto;bottom:auto;width:100%;margin-top:14px}.metric-row,.dashboard-caption{grid-template-columns:1fr}
-  .caption-item{border-right:0;border-bottom:1px solid var(--line)}.caption-item:last-child{border-bottom:0}.system-item{min-height:auto}.screen-copy h3{font-size:31px}
-  .timeline-step{grid-template-columns:1fr;gap:8px}.partner-logo{min-width:130px}.marquee-track{gap:38px}.nav{gap:12px}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STOAIX — AI Voice & Chat Platform for Any Business</title>
+  <meta name="description" content="Deploy an AI receptionist that answers calls, handles WhatsApp, and converts leads — 24/7. No code. No meetings. Any industry. Start free in 5 minutes." />
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Performance: preload LCP asset -->
+  <link rel="preload" href="assets/logo-iconwithname.svg" as="image" type="image/svg+xml" />
+
+  <!-- Performance: preconnect to external origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
 </head>
 <body>
-<nav class="nav">
-  <a class="brand" href="#top" aria-label="STOAIX ana sayfa">
-    <img src="assets/images/logo.png" alt="STOAIX logo" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-    <span class="brand-word" style="display:none">STOAIX</span>
-  </a>
-  <div class="nav-links">
-    <a href="#journey">Yolculuk</a>
-    <a href="#platform">Platform</a>
-    <a href="#product">Ürün</a>
-    <a href="#workflow">Akış</a>
-    <a href="#dashboard">Dashboard</a>
-    <a class="nav-cta" href="mailto:hello@stoaix.com">Demo iste</a>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img fetchpriority="high" src="assets/logo-iconwithname.svg" class="nav-logo-wordmark" alt="STOAIX" />
+      </a>
+
+      <div class="nav-links">
+        <div class="nav-dropdown-item">
+          <button class="nav-link-btn">Product <span class="nav-chevron">↓</span></button>
+          <div class="nav-dropdown">
+            <div class="dropdown-inner">
+              <a href="#features" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 18.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z"/>
+                    <path d="M19.14 19.14 22 22M2 22l2.86-2.86"/>
+                    <path d="M12 12v-2M12 8v-.5"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Voice AI</div>
+                  <div class="dropdown-desc">Answer every call, 24/7</div>
+                </div>
+              </a>
+              <a href="#channels" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">WhatsApp & Chat</div>
+                  <div class="dropdown-desc">Automate message channels</div>
+                </div>
+              </a>
+              <a href="#features" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">CRM & Pipeline</div>
+                  <div class="dropdown-desc">Track and score every lead</div>
+                </div>
+              </a>
+              <a href="#features" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Integrations</div>
+                  <div class="dropdown-desc">Connect your existing tools</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <div class="nav-dropdown-item">
+          <button class="nav-link-btn">Solutions <span class="nav-chevron">↓</span></button>
+          <div class="nav-dropdown">
+            <div class="dropdown-inner">
+              <a href="healthcare-clinics.html" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Healthcare Clinics</div>
+                  <div class="dropdown-desc">Hair transplant, dental, aesthetics</div>
+                </div>
+              </a>
+              <a href="partners.html" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Partner Program</div>
+                  <div class="dropdown-desc">Earn up to 50% recurring commission</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <a href="login.html" class="nav-login">Log in</a>
+        <a href="signup.html" class="btn-primary btn-sm">Start free trial</a>
+      </div>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features">Product</a>
+    <a href="#pricing">Pricing</a>
+    <a href="healthcare-clinics.html">Healthcare Clinics</a>
+    <a href="partners.html">Partner Program</a>
+    <a href="login.html" class="nav-login">Log in</a>
+    <a href="signup.html" class="btn-primary">Start free trial</a>
   </div>
-</nav>
 
-<main id="top">
-  <section class="hero">
-    <div class="hero-inner">
-      <div>
-        <p class="eyebrow">Klinikler için AI altyapısı</p>
-        <h1>Hasta iletişimi, takip ve CRM tek sistemde.</h1>
-        <p class="hero-copy">STOAIX; inbound çağrıları, kaçan leadleri, WhatsApp takiplerini ve randevu operasyonunu AI agentlarla yönetir. Klinik ekibi sadece hastaya ve tedaviye odaklanır.</p>
-        <div class="hero-actions">
-          <a class="btn-primary" href="mailto:hello@stoaix.com">Demo planla</a>
-          <a class="btn-secondary" href="#dashboard">Dashboardu gör</a>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+
+    <div class="container hero-content hero-content-centered">
+      <div class="hero-text hero-text-centered">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          7-day free trial · No credit card required
         </div>
-        <p class="hero-note">Türkiye ve global klinik operasyonları için tasarlandı.</p>
+
+        <h1 class="hero-headline">
+          Your AI <span class="hero-word-wrap"><span class="hero-word active">receptionist</span><span class="hero-word">call center</span><span class="hero-word">sales agent</span><span class="hero-word">chatbot</span><span class="hero-word">voice agent</span><span class="hero-word">CRM</span></span>,<br />
+          <span class="gradient-text">live in minutes.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Voice calls, WhatsApp, and web chat — fully automated.<br class="br-desktop" />
+          No code. No meetings. Works for any business.
+        </p>
+
+        <div class="hero-cta hero-cta-centered">
+          <a href="signup.html" class="btn-primary btn-lg">
+            Start free trial
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#demo" class="btn-ghost btn-lg">
+            <span class="play-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5,3 19,12 5,21"/>
+              </svg>
+            </span>
+            Watch demo
+          </a>
+        </div>
+
+        <p class="hero-trust">
+          Trusted by clinics, agencies, and businesses across
+          <span class="trust-highlight">12+ countries</span>
+        </p>
       </div>
-      <div class="product-frame" aria-label="STOAIX dashboard önizlemesi">
-        <div class="dashboard-shell">
-          <div class="shell-top"><span>STOAIX Command Center</span><span class="shell-dots"><i></i><i></i><i></i></span></div>
-          <img src="assets/images/dashboard.PNG" alt="STOAIX klinik operasyon dashboardu">
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       MARQUEE — INTEGRATION LOGOS
+  ═══════════════════════════════════════════════ -->
+  <section class="marquee-section">
+    <p class="marquee-label">Powered by the best. Connects with everything.</p>
+    <div class="marquee-track-wrapper">
+      <div class="marquee-fade marquee-fade-left"></div>
+      <div class="marquee-fade marquee-fade-right"></div>
+
+      <div class="marquee-track">
+        <div class="marquee-inner marquee-left">
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/whatsapp.svg" alt="WhatsApp">WhatsApp</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/zapier.svg" alt="Zapier">Zapier</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/make.svg" alt="Make">Make</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/hubspot.svg" alt="HubSpot">HubSpot</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/salesforce.svg" alt="Salesforce">Salesforce</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/twilio.svg" alt="Twilio">Twilio</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/gohighlevel.png" alt="Go High Level">Go High Level</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/calendly.svg" alt="Calendly">Calendly</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/pipedrive.png" alt="Pipedrive">Pipedrive</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/zoho.svg" alt="Zoho CRM">Zoho CRM</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/googleads.svg" alt="Google Ads">Google Ads</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/tiktok.svg" alt="TikTok">TikTok</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/linkedin.svg" alt="LinkedIn">LinkedIn</div>
+          <!-- Duplicate for seamless loop -->
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/whatsapp.svg" alt="WhatsApp">WhatsApp</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/zapier.svg" alt="Zapier">Zapier</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/make.svg" alt="Make">Make</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/hubspot.svg" alt="HubSpot">HubSpot</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/salesforce.svg" alt="Salesforce">Salesforce</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/twilio.svg" alt="Twilio">Twilio</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/gohighlevel.png" alt="Go High Level">Go High Level</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/calendly.svg" alt="Calendly">Calendly</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/pipedrive.png" alt="Pipedrive">Pipedrive</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/zoho.svg" alt="Zoho CRM">Zoho CRM</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/googleads.svg" alt="Google Ads">Google Ads</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/tiktok.svg" alt="TikTok">TikTok</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/linkedin.svg" alt="LinkedIn">LinkedIn</div>
         </div>
-        <div class="signal">
-          <div class="signal-top"><span>Bugünkü operasyon</span><span>Canlı</span></div>
-          <strong>127 hasta etkileşimi</strong>
-          <div class="metric-row">
-            <div class="metric"><b>31</b><span>randevu isteği</span></div>
-            <div class="metric"><b>94%</b><span>yanıtlanan kanal</span></div>
+      </div>
+
+      <div class="marquee-track">
+        <div class="marquee-inner marquee-right">
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/instagram.svg" alt="Instagram">Instagram DM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/telegram.svg" alt="Telegram">Telegram</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/facebook.svg" alt="Facebook">Facebook</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/googlecalendar.svg" alt="Google Calendar">Google Calendar</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/slack.svg" alt="Slack">Slack</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/dentsoft.png" alt="Dentsoft">Dentsoft</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/komocrm.png" alt="Komo CRM">Komo CRM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/typeform.svg" alt="Typeform">Typeform</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/notion.svg" alt="Notion">Notion</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/airtable.svg" alt="Airtable">Airtable</div>
+          <div class="logo-pill logo-pill-dim">Webhook API</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/dentally.png" alt="Dentally">Dentally</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/pabau.png" alt="Pabau">Pabau</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/fresha.png" alt="Fresha">Fresha</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/acuity.png" alt="Acuity Scheduling">Acuity Scheduling</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/freshworks.png" alt="Freshworks">Freshworks</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/youtube.svg" alt="YouTube">YouTube</div>
+          <!-- Duplicate -->
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/instagram.svg" alt="Instagram">Instagram DM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/telegram.svg" alt="Telegram">Telegram</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/facebook.svg" alt="Facebook">Facebook</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/googlecalendar.svg" alt="Google Calendar">Google Calendar</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/slack.svg" alt="Slack">Slack</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/dentsoft.png" alt="Dentsoft">Dentsoft</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/komocrm.png" alt="Komo CRM">Komo CRM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/typeform.svg" alt="Typeform">Typeform</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/notion.svg" alt="Notion">Notion</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/airtable.svg" alt="Airtable">Airtable</div>
+          <div class="logo-pill logo-pill-dim">Webhook API</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/dentally.png" alt="Dentally">Dentally</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/pabau.png" alt="Pabau">Pabau</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/fresha.png" alt="Fresha">Fresha</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/acuity.png" alt="Acuity Scheduling">Acuity Scheduling</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/freshworks.png" alt="Freshworks">Freshworks</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/youtube.svg" alt="YouTube">YouTube</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       OVERVIEW — "WHAT IS STOAIX"
+  ═══════════════════════════════════════════════ -->
+  <section class="overview-section" id="overview">
+    <div class="container overview-grid">
+      <div class="overview-left reveal">
+        <div class="section-badge">What is STOAIX?</div>
+        <h2 class="section-headline">
+          Stop missing leads.<br />
+          Start converting them.
+        </h2>
+        <p class="section-body">
+          Every unanswered call is a lead handed to your competitor.
+          STOAIX deploys an AI agent that never sleeps — it picks up every call,
+          replies to every message, and books appointments while you focus on
+          what you do best.
+        </p>
+        <a href="signup.html" class="btn-primary btn-md">See how it works</a>
+      </div>
+
+      <div class="overview-right reveal">
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+            </svg>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="logo-marquee" aria-label="Entegrasyonlar">
-    <p class="marquee-head">AI ve klinik operasyon ekosistemiyle uyumlu yapı</p>
-    <div class="marquee-track">
-      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg" alt="" loading="lazy"><span>OpenAI</span></div>
-      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg" alt="" loading="lazy"><span>Claude</span></div>
-      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/deepgram.svg" alt="" loading="lazy"><span>Deepgram</span></div>
-      <div class="partner-logo wordmark"><span>Cartesia</span></div>
-      <div class="partner-logo wordmark"><span>Komo CRM</span></div>
-      <div class="partner-logo wordmark"><span>Dentsoft</span></div>
-      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/whatsapp.svg" alt="" loading="lazy"><span>WhatsApp</span></div>
-      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/meta.svg" alt="" loading="lazy"><span>Meta</span></div>
-      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/openai.svg" alt="" loading="lazy"><span>OpenAI</span></div>
-      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/anthropic.svg" alt="" loading="lazy"><span>Claude</span></div>
-      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/deepgram.svg" alt="" loading="lazy"><span>Deepgram</span></div>
-      <div class="partner-logo wordmark"><span>Cartesia</span></div>
-      <div class="partner-logo wordmark"><span>Komo CRM</span></div>
-      <div class="partner-logo wordmark"><span>Dentsoft</span></div>
-      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/whatsapp.svg" alt="" loading="lazy"><span>WhatsApp</span></div>
-      <div class="partner-logo"><img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/meta.svg" alt="" loading="lazy"><span>Meta</span></div>
-    </div>
-  </section>
-
-  <section class="section journey" id="journey">
-    <div class="section-inner reveal">
-      <div class="journey-head">
-        <div>
-          <p class="section-kicker">Hasta yolculuğu</p>
-          <h2 class="section-title">Kanal değişse bile konuşma kopmaz.</h2>
-        </div>
-        <p class="section-lead">Çağrı, WhatsApp, web formu ve reklam leadleri aynı hasta kaydında birleşir. AI agent ilk teması yönetir, uygun hastayı randevuya taşır ve takip akışını kapatmaz.</p>
-      </div>
-      <div class="journey-lanes">
-        <article class="journey-lane">
           <div>
-            <p class="lane-label">Capture</p>
-            <h3>Lead her kanaldan yakalanır.</h3>
-            <p>Missed call, reklam formu, WhatsApp mesajı veya web chat tek klinik inboxına düşer.</p>
+            <div class="feature-title">Voice AI Receptionist</div>
+            <div class="feature-desc">Answers every inbound call in your language, 24/7. Books appointments, answers FAQs, and hands off to your team when needed.</div>
           </div>
-          <div class="lane-chips"><span>Telefon</span><span>WhatsApp</span><span>Web</span><span>Meta Ads</span></div>
-        </article>
-        <article class="journey-lane">
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
           <div>
-            <p class="lane-label">Convert</p>
-            <h3>AI agent randevu niyetini netleştirir.</h3>
-            <p>Hasta sorularını yanıtlar, hizmeti doğrular, ön bilgiyi toplar ve ekibe hazır kayıt bırakır.</p>
+            <div class="feature-title">WhatsApp & Chat Automation</div>
+            <div class="feature-desc">The same AI brain across WhatsApp, web chat, and Instagram DM. One knowledge base, every channel covered.</div>
           </div>
-          <div class="lane-chips"><span>AI voice</span><span>Chatbot</span><span>Routing</span><span>Booking</span></div>
-        </article>
-        <article class="journey-lane">
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
           <div>
-            <p class="lane-label">Retain</p>
-            <h3>Takip ve geri dönüş ritmi korunur.</h3>
-            <p>Randevu hatırlatma, kontrol mesajı, kapanmayan lead ve kampanya dönüşleri aynı sistemden izlenir.</p>
-          </div>
-          <div class="lane-chips"><span>Reminder</span><span>Follow-up</span><span>CRM</span><span>Rapor</span></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="platform">
-    <div class="section-inner reveal">
-      <p class="section-kicker">Platform</p>
-      <h2 class="section-title">Klinik büyüdükçe dağılmayan hasta operasyonu.</h2>
-      <p class="section-lead">Voice agent, chatbot, CRM, takip ve raporlama aynı merkezden çalışır. STOAIX mevcut sistemlere bağlanır, eksik olan yerde kendi operasyon katmanını sağlar.</p>
-      <div class="system-grid">
-        <article class="system-item"><p class="system-index">01</p><h3>AI voice agent</h3><p>Çağrıları anında karşılar, uygunluğu kontrol eder, randevu talebini toplar ve notları sisteme işler.</p></article>
-        <article class="system-item"><p class="system-index">02</p><h3>Lead takip motoru</h3><p>Form, reklam ve WhatsApp leadleri bekletmeden döner; ilgiyi kaybetmeden görüşmeye taşır.</p></article>
-        <article class="system-item"><p class="system-index">03</p><h3>CRM ve dashboard</h3><p>Hasta hareketleri, ekip performansı ve kanal verileri tek kontrol panelinde izlenir.</p></article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section product-depth" id="product">
-    <div class="section-inner reveal">
-      <p class="section-kicker">Ürün yüzeyi</p>
-      <h2 class="section-title">Satış ekibinin her gün bakacağı kadar sade.</h2>
-      <p class="section-lead">Conversation-led büyüme mantığını kliniklere indiriyoruz: lead nereden gelirse gelsin tek pipeline’a düşer, AI ilk teması yönetir, ekip sadece karar gerektiren hastalara odaklanır.</p>
-
-      <div class="product-story">
-        <div class="screen-copy">
-          <h3>Lead pipeline, kanal değil niyet üzerinden akar.</h3>
-          <p>WhatsApp, web, Instagram ve voice leadleri aynı kanbanda takip edilir. Ekip sıcak leadleri, temsilci taleplerini ve randevuya yaklaşan hastaları tek bakışta ayırır.</p>
-          <div class="screen-points">
-            <div class="screen-point"><span>1</span><p>Yeni, aktif, temsilci talep, takipte ve randevu aşamaları tek ekranda.</p></div>
-            <div class="screen-point"><span>2</span><p>AI skorları satış önceliğini belirler; ekip en sıcak hastadan başlar.</p></div>
-            <div class="screen-point"><span>3</span><p>Kanal etiketi her kartta görünür, ama hasta kaydı bölünmez.</p></div>
+            <div class="feature-title">Smart CRM & Lead Pipeline</div>
+            <div class="feature-desc">Every conversation auto-logged. Leads scored, qualified, and routed — without anyone touching a spreadsheet.</div>
           </div>
         </div>
-        <figure class="screen-frame">
-          <img src="assets/images/leads-pipeline.png" alt="STOAIX leads pipeline ekranı" loading="lazy">
-        </figure>
-      </div>
-
-      <div class="product-story flip">
-        <figure class="screen-frame">
-          <img src="assets/images/ai-agent.png" alt="STOAIX AI agent ayar ekranı" loading="lazy">
-        </figure>
-        <div class="screen-copy">
-          <h3>AI agent kuralları dashboarddan yönetilir.</h3>
-          <p>Asistan kimliği, konuşma tonu, ilk karşılama mesajı, veri toplama alanları ve test akışı tek yerde kalır. Klinik ekibi promptu ve senaryoyu kod yazmadan kontrol eder.</p>
-          <div class="screen-points">
-            <div class="screen-point"><span>1</span><p>Voice ve mesajlaşma asistanı aynı bilgi tabanından cevap verir.</p></div>
-            <div class="screen-point"><span>2</span><p>Eksik alanlar canlı öneriyle görünür; lead kalitesi düzenli artar.</p></div>
-            <div class="screen-point"><span>3</span><p>Guardrail’ler tıbbi teşhis, fiyat uydurma ve hatalı yönlendirme riskini azaltır.</p></div>
+        <div class="feature-card">
+          <div class="feature-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+          </div>
+          <div>
+            <div class="feature-title">15+ Languages by Default</div>
+            <div class="feature-desc">English, Turkish, Arabic, Spanish, French, Russian, German and more. Your AI detects and switches languages automatically — no setup needed.</div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section flow" id="workflow">
-    <div class="section-inner flow-wrap">
-      <div class="reveal">
-        <p class="section-kicker">Akış</p>
-        <h2 class="section-title">İlk temastan onaylı randevuya.</h2>
-        <p class="section-lead">Sistem hasta adayını yakalar, doğru senaryoyla konuşur, bilgiyi temiz tutar ve ekibe aksiyon alınabilir kayıt bırakır.</p>
-      </div>
-      <div class="timeline reveal">
-        <div class="timeline-step"><span class="timeline-no">01</span><div><h3>Kanal yakalanır</h3><p>Telefon, WhatsApp, form veya reklam leadi aynı hasta akışına düşer.</p></div></div>
-        <div class="timeline-step"><span class="timeline-no">02</span><div><h3>AI konuşur</h3><p>Hasta ihtiyacı, uygunluk, hizmet soruları ve randevu niyeti doğal şekilde yönetilir.</p></div></div>
-        <div class="timeline-step"><span class="timeline-no">03</span><div><h3>CRM güncellenir</h3><p>Konuşma özeti, randevu bilgisi ve takip durumu otomatik olarak kayda işlenir.</p></div></div>
-        <div class="timeline-step"><span class="timeline-no">04</span><div><h3>Ekip aksiyon alır</h3><p>Dashboard, hangi hastanın hangi aşamada olduğunu sade ve gerçek zamanlı gösterir.</p></div></div>
-      </div>
-    </div>
-  </section>
 
-  <section class="section dashboard-section" id="dashboard">
-    <div class="section-inner reveal">
-      <p class="section-kicker">Dashboard</p>
-      <h2 class="section-title">Yönetilebilir AI, ölçülebilir klinik operasyonu.</h2>
-      <p class="section-lead">STOAIX dashboardu; çağrı kayıtlarını, hasta durumlarını, lead kaynaklarını ve ekip çıktısını tek yerde toplar.</p>
-      <div class="wide-dashboard">
-        <div class="shell-top"><span>STOAIX Dashboard</span><span class="shell-dots"><i></i><i></i><i></i></span></div>
-        <img src="assets/images/dashboard.PNG" alt="STOAIX dashboard ekranı">
-        <div class="dashboard-caption">
-          <div class="caption-item"><b>Lead durumu</b><span>Yeni, takipte, randevulu ve kapanan hasta kayıtları.</span></div>
-          <div class="caption-item"><b>AI kayıtları</b><span>Çağrı ve mesajlaşma özetleri, ekip notlarıyla birlikte.</span></div>
-          <div class="caption-item"><b>Kanal ölçümü</b><span>Telefon, WhatsApp, web ve reklam kaynaklarının net görünümü.</span></div>
-          <div class="caption-item"><b>Kontrol</b><span>Bilgi tabanı, çalışma saatleri ve hizmet senaryoları.</span></div>
+  <!-- ═══════════════════════════════════════════════
+       ROTATING USE CASES — "SPEAKS LIKE PEOPLE"
+  ═══════════════════════════════════════════════ -->
+  <section class="rotating-section">
+    <div class="container">
+      <div class="rotating-inner reveal">
+        <p class="rotating-label">Works for every business</p>
+        <h2 class="rotating-headline">
+          AI that <span class="gradient-text">talks like your team.</span><br />
+          Built for
+          <span class="rotating-word-wrapper">
+            <span class="rotating-word active">dental clinics.</span>
+            <span class="rotating-word">hair transplants.</span>
+            <span class="rotating-word">real estate agencies.</span>
+            <span class="rotating-word">education centers.</span>
+            <span class="rotating-word">e-commerce brands.</span>
+            <span class="rotating-word">law firms.</span>
+            <span class="rotating-word">any business.</span>
+          </span>
+        </h2>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="stats-strip reveal">
+        <div class="stat-item">
+          <div class="stat-num-lg">24/7</div>
+          <div class="stat-label-lg">Always answering</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num-lg">15+ langs</div>
+          <div class="stat-label-lg">Auto-detected</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num-lg">&lt; 5 min</div>
+          <div class="stat-label-lg">Time to go live</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num-lg">$0</div>
+          <div class="stat-label-lg">Setup fee</div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="cta" id="contact">
-    <div class="cta-inner reveal">
-      <p class="section-kicker">Demo</p>
-      <h2>Klinik operasyonunu AI ile yeniden kurun.</h2>
-      <p>15 dakikalık görüşmede çağrı senaryonuzu, dashboard akışını ve mevcut CRM bağlantılarınızı birlikte netleştirelim.</p>
+  <!-- ═══════════════════════════════════════════════
+       OMNICHANNEL — EVERY CHANNEL, ONE PLATFORM
+  ═══════════════════════════════════════════════ -->
+  <section class="channels-section" id="channels">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-badge">Omnichannel</div>
+        <h2 class="section-headline centered">Every channel.<br />One platform.</h2>
+        <p class="section-sub centered">
+          Your customers reach you however they want. STOAIX handles all of it —
+          from the same dashboard, with the same AI brain.
+        </p>
+      </div>
+
+      <div class="channels-tabs reveal">
+        <div class="channels-tab-nav">
+          <button class="ch-tab active" data-tab="voice">
+            <span class="ch-tab-icon-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+              </svg>
+            </span>
+            Voice AI
+          </button>
+          <button class="ch-tab" data-tab="whatsapp">
+            <span class="ch-tab-icon-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </span>
+            WhatsApp
+          </button>
+          <button class="ch-tab" data-tab="webchat">
+            <span class="ch-tab-icon-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+              </svg>
+            </span>
+            Web Chat
+          </button>
+          <button class="ch-tab" data-tab="outbound">
+            <span class="ch-tab-icon-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 11.15a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+            </span>
+            Outbound
+          </button>
+          <button class="ch-tab" data-tab="instagram">
+            <span class="ch-tab-icon-wrap">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </span>
+            Instagram DM
+          </button>
+        </div>
+
+        <div class="channels-tab-content">
+          <div class="ch-panel active" data-panel="voice">
+            <div class="ch-panel-text">
+              <h3>Inbound calls, handled instantly.</h3>
+              <p>Your AI agent picks up every call — no hold music, no voicemail. It answers questions, takes appointment requests, and transfers to your team only when necessary. Works in 15+ languages out of the box — detects the caller's language automatically.</p>
+              <ul class="ch-features">
+                <li>Instant pickup, zero hold time</li>
+                <li>Full call recording + transcript</li>
+                <li>Smart handoff — human when needed</li>
+                <li>Appointment booking included</li>
+              </ul>
+            </div>
+            <div class="ch-panel-visual">
+              <div class="phone-card">
+                <div class="phone-call-header">
+                  <div class="call-icon-wrap">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 11.15a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="call-status">Incoming call</div>
+                    <div class="call-number">+44 7700 900123</div>
+                  </div>
+                  <div class="call-timer">00:42</div>
+                </div>
+                <div class="phone-transcript">
+                  <div class="tr-line tr-ai">AI: Good afternoon, this is Sarah from City Dental. How can I help?</div>
+                  <div class="tr-line tr-caller">Caller: Hi, I need a checkup appointment</div>
+                  <div class="tr-line tr-ai">AI: Of course! We have availability Thursday at 2pm or Friday morning. Which works better?</div>
+                  <div class="tr-cursor"></div>
+                </div>
+                <div class="phone-actions">
+                  <div class="action-pill green">Appointment booked</div>
+                  <div class="action-pill blue">CRM updated</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ch-panel" data-panel="whatsapp">
+            <div class="ch-panel-text">
+              <h3>WhatsApp automation that feels human.</h3>
+              <p>The same AI knowledge base — now in your customers' most-used app. Handle price inquiries, FAQs, document collection, and appointment confirmations over WhatsApp, 24/7.</p>
+              <ul class="ch-features">
+                <li>Official WhatsApp Business API</li>
+                <li>Media &amp; document collection</li>
+                <li>Multilingual auto-detection</li>
+                <li>Human handoff in 1 tap</li>
+              </ul>
+            </div>
+            <div class="ch-panel-visual">
+              <div class="whatsapp-card">
+                <div class="wa-header">
+                  <div class="wa-avatar">CD</div>
+                  <div>
+                    <div class="wa-name">City Dental AI</div>
+                    <div class="wa-status">Online</div>
+                  </div>
+                </div>
+                <div class="wa-messages">
+                  <div class="wa-msg wa-incoming">How much is a dental implant?</div>
+                  <div class="wa-msg wa-outgoing">Our implant packages start from £1,800, including the crown. Would you like a free consultation to get a personalised quote?</div>
+                  <div class="wa-msg wa-incoming">Yes please!</div>
+                  <div class="wa-msg wa-outgoing">Great! When works best for you? We have slots this week on Wednesday and Friday.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ch-panel" data-panel="webchat">
+            <div class="ch-panel-text">
+              <h3>Convert website visitors into booked leads.</h3>
+              <p>A smart chat widget on your site that does more than answer questions — it qualifies visitors, collects their details, and books appointments directly in your calendar.</p>
+              <ul class="ch-features">
+                <li>1-line embed, any website</li>
+                <li>Lead qualification built-in</li>
+                <li>Calendar integration</li>
+                <li>Fully branded to your business</li>
+              </ul>
+            </div>
+            <div class="ch-panel-visual">
+              <div class="webchat-card">
+                <div class="wc-header">
+                  <div class="wc-avatar">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="wc-name">AI Assistant</div>
+                    <div class="wc-online"><span class="live-pulse"></span>Online</div>
+                  </div>
+                </div>
+                <div class="wc-body">
+                  <div class="wc-msg wc-ai">Hi! I'm here to help. What are you looking for today?</div>
+                  <div class="wc-options">
+                    <button class="wc-opt">Treatment prices</button>
+                    <button class="wc-opt">Book appointment</button>
+                    <button class="wc-opt">Find us</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ch-panel" data-panel="outbound">
+            <div class="ch-panel-text">
+              <h3>Your AI calls leads before your competitor does.</h3>
+              <p>New lead comes in at midnight? Your AI agent calls them back within 60 seconds. Set up automated outbound sequences for lead follow-up, appointment reminders, and reactivation campaigns.</p>
+              <ul class="ch-features">
+                <li>First call within 60 seconds</li>
+                <li>Automated follow-up sequences</li>
+                <li>Old lead reactivation</li>
+                <li>No-show prevention reminders</li>
+              </ul>
+            </div>
+            <div class="ch-panel-visual">
+              <div class="outbound-card">
+                <div class="ob-title">Outbound Campaign</div>
+                <div class="ob-stat-row">
+                  <div class="ob-stat"><div class="ob-num">247</div><div class="ob-label">Leads dialled</div></div>
+                  <div class="ob-stat"><div class="ob-num">89</div><div class="ob-label">Connected</div></div>
+                  <div class="ob-stat"><div class="ob-num">34</div><div class="ob-label">Booked</div></div>
+                </div>
+                <div class="ob-timeline">
+                  <div class="ob-event ob-done">Lead created — 11:47 PM</div>
+                  <div class="ob-event ob-done">AI call placed — 11:47 PM (60s later)</div>
+                  <div class="ob-event ob-done">Voicemail left — 11:48 PM</div>
+                  <div class="ob-event ob-active">Follow-up SMS — 9:00 AM</div>
+                  <div class="ob-event">WhatsApp — Day 3</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="ch-panel" data-panel="instagram">
+            <div class="ch-panel-text">
+              <h3>Turn DMs into booked appointments.</h3>
+              <p>Instagram DMs are your highest-intent leads — and most businesses reply hours later. STOAIX responds instantly, qualifies the lead, and moves them toward booking before they check a competitor.</p>
+              <ul class="ch-features">
+                <li>Instant DM responses</li>
+                <li>Story reply automation</li>
+                <li>Link to WhatsApp or booking page</li>
+                <li>Lead captured to CRM automatically</li>
+              </ul>
+            </div>
+            <div class="ch-panel-visual">
+              <div class="instagram-card">
+                <div class="ig-header">
+                  <div class="ig-avatar">IG</div>
+                  <div class="ig-name">@citydental — DM</div>
+                </div>
+                <div class="ig-msgs">
+                  <div class="ig-msg ig-incoming">Saw your story about the implant offer, how much?</div>
+                  <div class="ig-msg ig-outgoing">Hi! The offer is £1,800 all-in (implant + crown). Want me to check availability for a free consultation?</div>
+                  <div class="ig-msg ig-incoming">Yes please, this week if possible</div>
+                  <div class="ig-msg ig-outgoing">We have Thursday 2pm and Friday 10am free. Which works? I can book it right here.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       INTERACTIVE DEMO PLACEHOLDER
+  ═══════════════════════════════════════════════ -->
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-badge">Live Demo</div>
+        <h2 class="section-headline centered">See it in action.</h2>
+        <p class="section-sub centered">
+          Try STOAIX live — ask it anything, book an appointment, hear the voice.
+          No signup required.
+        </p>
+      </div>
+
+      <div class="demo-aura-wrap reveal">
+        <canvas id="aura-canvas" class="aura-canvas" width="480" height="480" aria-hidden="true"></canvas>
+        <div class="demo-aura-info">
+          <span class="demo-placeholder-badge">Coming Soon</span>
+          <h3>Interactive Voice Demo</h3>
+          <p>Speak with STOAIX's AI agent live — no signup required. Ask questions, hear the voice, book an appointment in real time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PLATFORM SCREENSHOTS PLACEHOLDER
+  ═══════════════════════════════════════════════ -->
+  <section class="screenshots-section">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-badge">Platform</div>
+        <h2 class="section-headline centered">Built for results,<br />not complexity.</h2>
+        <p class="section-sub centered">
+          A clean dashboard that gives you everything you need — calls, leads,
+          conversations, and performance — in one place.
+        </p>
+      </div>
+
+      <div class="screenshots-grid stagger">
+        <div class="screenshot-card">
+          <div class="screenshot-label">Dashboard Overview</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-label">CRM Pipeline</div>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-label">Call Transcript</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SETUP — LIVE IN 5 MINUTES
+  ═══════════════════════════════════════════════ -->
+  <section class="setup-section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-badge">Effortless setup</div>
+        <h2 class="section-headline centered">Live in 5 minutes.<br />No engineer needed.</h2>
+      </div>
+
+      <div class="setup-steps reveal">
+        <div class="setup-step">
+          <div class="step-num">01</div>
+          <div class="step-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10,9 9,9 8,9"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Tell us about your business</h3>
+          <p class="step-desc">Answer a few questions. Paste your FAQs or let our AI generate them from your website. Your knowledge base is ready instantly.</p>
+        </div>
+        <div class="setup-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">02</div>
+          <div class="step-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.07 4.93a10 10 0 0 1 1.41 14.14l-1.41-1.41A8 8 0 0 0 5.34 5.34L3.93 3.93A10 10 0 0 1 19.07 4.93z"/>
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Configure your AI agent</h3>
+          <p class="step-desc">Choose your agent's name, voice, and channels. Set your booking rules and handoff conditions. All without writing a single line of code.</p>
+        </div>
+        <div class="setup-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">03</div>
+          <div class="step-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Go live</h3>
+          <p class="step-desc">Forward your number. Add the chat widget. Connect WhatsApp. Your AI agent is answering calls and messages — right now.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PRICING
+  ═══════════════════════════════════════════════ -->
+  <section class="pricing-section" id="pricing">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-badge">Pricing</div>
+        <h2 class="section-headline centered">Simple, transparent pricing.</h2>
+        <p class="section-sub centered">Start free. Scale when you're ready. No contracts, cancel anytime.</p>
+
+        <div class="billing-toggle">
+          <span class="toggle-label toggle-monthly" id="label-monthly">Monthly</span>
+          <button class="toggle-switch annual" id="billingToggle" aria-label="Toggle billing period">
+            <span class="toggle-knob"></span>
+          </button>
+          <span class="toggle-label active-label" id="label-annual">Annual <span class="save-badge">Save 20%</span></span>
+        </div>
+      </div>
+
+      <div class="pricing-grid reveal">
+
+        <div class="price-card">
+          <div class="price-tier">Lite</div>
+          <div class="price-amount">
+            <span class="price-currency">$</span>
+            <span class="price-num" data-monthly="79" data-annual="63">63</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <div class="price-sub">WhatsApp & web chat to get started</div>
+          <a href="signup.html" class="btn-outline btn-full">Start free trial</a>
+          <ul class="price-features">
+            <li>WhatsApp messages — 500/mo</li>
+            <li class="inactive">Voice agent</li>
+            <li>Kanban board</li>
+            <li>CSV import</li>
+            <li class="inactive">Instagram DM</li>
+            <li class="inactive">Advanced analytics</li>
+            <li class="inactive">Outbound webhook</li>
+            <li>Team members — 1</li>
+          </ul>
+        </div>
+
+        <div class="price-card">
+          <div class="price-tier">Plus</div>
+          <div class="price-amount">
+            <span class="price-currency">$</span>
+            <span class="price-num" data-monthly="149" data-annual="119">119</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <div class="price-sub">Add Voice AI to your channels</div>
+          <a href="signup.html" class="btn-outline btn-full">Start free trial</a>
+          <ul class="price-features">
+            <li>WhatsApp messages — 2,000/mo</li>
+            <li>Voice agent — 60 min/mo</li>
+            <li>Kanban board</li>
+            <li>CSV import</li>
+            <li>Instagram DM</li>
+            <li class="inactive">Advanced analytics</li>
+            <li class="inactive">Outbound webhook</li>
+            <li>Team members — 3</li>
+          </ul>
+        </div>
+
+        <div class="price-card price-card-featured">
+          <div class="featured-badge">Most popular</div>
+          <div class="price-tier">Advanced</div>
+          <div class="price-amount">
+            <span class="price-currency">$</span>
+            <span class="price-num" data-monthly="299" data-annual="239">239</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <div class="price-sub">Full system. Outbound included.</div>
+          <a href="signup.html" class="btn-primary btn-full">Start free trial</a>
+          <ul class="price-features">
+            <li>WhatsApp messages — 5,000/mo</li>
+            <li>Voice agent — 200 min/mo</li>
+            <li>Kanban board</li>
+            <li>CSV import</li>
+            <li>Instagram DM</li>
+            <li>Advanced analytics</li>
+            <li>Outbound webhook</li>
+            <li>Team members — 10</li>
+          </ul>
+        </div>
+
+        <div class="price-card price-card-enterprise">
+          <div class="featured-badge enterprise-badge">Most Exclusive</div>
+          <div class="price-tier">Enterprise</div>
+          <div class="price-amount">
+            <span class="price-custom">Custom Pricing</span>
+          </div>
+          <div class="price-sub">Done-with-you. Fully managed. Built around your business.</div>
+          <a href="#contact" class="btn-primary btn-full btn-enterprise">Book a Meeting</a>
+          <ul class="price-features">
+            <li>Everything in the lower-tier plans</li>
+            <li>Direct 1-on-1 business development partnership</li>
+            <li>AI operations consulting &amp; full implementation</li>
+            <li>Custom AI workflows tailored to your business</li>
+            <li>Multi-location / multi-branch support</li>
+            <li>Dedicated account management &amp; ongoing support</li>
+            <li>No SaaS self-service — fully managed, done-with-you model</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pricing-note reveal">
+        <span>Voice AI usage: $0.15/min after plan limit · </span>
+        <span>All plans: 7-day free trial, no credit card · </span>
+        <span>Annual billing saves 20%</span>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       WHITE LABEL / PARTNERS
+  ═══════════════════════════════════════════════ -->
+  <section class="partner-section" id="partners">
+    <div class="container">
+      <div class="partner-inner reveal">
+        <div class="partner-left">
+          <div class="section-badge">Partners & White Label</div>
+          <h2 class="section-headline">
+            Build your own<br />
+            <span class="gradient-text">AI business.</span>
+          </h2>
+          <p class="section-body">
+            Sell STOAIX under your own brand. White-label our platform, set
+            your own prices, keep the margin. Perfect for agencies, consultants,
+            and resellers worldwide.
+          </p>
+          <div class="partner-perks">
+            <div class="perk">
+              <span class="perk-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20.59,13.41 15,7.83 9.41,13.41 5,9 5,19h14l-8.59-5.59z"/>
+                  <rect x="2" y="2" width="20" height="20" rx="3"/>
+                  <path d="M7 7h.01M17 7h.01"/>
+                </svg>
+              </span>
+              <div>
+                <div class="perk-title">Your brand, zero dev cost</div>
+                <div class="perk-desc">Custom domain, logo, agent name — STOAIX invisible</div>
+              </div>
+            </div>
+            <div class="perk">
+              <span class="perk-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+              </span>
+              <div>
+                <div class="perk-title">~40% margin per client</div>
+                <div class="perk-desc">10 Advanced clients = ~$1,200/mo recurring profit</div>
+              </div>
+            </div>
+            <div class="perk">
+              <span class="perk-icon-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"/>
+                  <line x1="2" y1="12" x2="22" y2="12"/>
+                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+              </span>
+              <div>
+                <div class="perk-title">Sell globally</div>
+                <div class="perk-desc">No geography limits. Any sector. Any language.</div>
+              </div>
+            </div>
+          </div>
+          <a href="#trial" class="btn-primary btn-md">Become a partner</a>
+        </div>
+
+        <div class="partner-right">
+          <div class="margin-card">
+            <div class="mc-title">Example: 10 Advanced clients</div>
+            <div class="mc-row">
+              <span>STOAIX wholesale (10 × $149)</span>
+              <span class="mc-cost">$1,788/mo</span>
+            </div>
+            <div class="mc-row">
+              <span>Your platform fee</span>
+              <span class="mc-cost">$299/mo</span>
+            </div>
+            <div class="mc-divider"></div>
+            <div class="mc-row mc-total-row">
+              <span>Your revenue (10 × $299)</span>
+              <span class="mc-revenue">$2,990/mo</span>
+            </div>
+            <div class="mc-row mc-profit-row">
+              <span>Net profit</span>
+              <span class="mc-profit">~$1,200/mo</span>
+            </div>
+            <div class="mc-note">+ Activation fee: $1,497 one-time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       CTA — FREE TRIAL
+  ═══════════════════════════════════════════════ -->
+  <section class="cta-section" id="trial">
+    <div class="cta-bg-glow"></div>
+    <div class="container cta-inner reveal">
+      <h2 class="cta-headline">
+        Your AI receptionist is<br />
+        <span class="cta-gradient-text">one signup away.</span>
+      </h2>
+      <p class="cta-sub">
+        7-day free trial. No credit card. Set up in minutes.
+      </p>
       <div class="cta-actions">
-        <a class="btn-primary" href="mailto:hello@stoaix.com">hello@stoaix.com</a>
-        <a class="btn-secondary" href="#top">Başa dön</a>
+        <a href="signup.html" class="cta-btn-primary">Start your free trial</a>
+        <a href="mailto:hello@stoaix.com" class="cta-btn-ghost">Talk to sales</a>
       </div>
+      <p class="cta-note">No contracts · Cancel anytime · 10-day free trial</p>
     </div>
   </section>
-</main>
 
-<footer>
-  <span>© 2026 Stoaix Ltd. Registered in England and Wales · Company No. 17131250</span>
-  <span>4 Raven Road, Unit 1C3-1121, London, E18 1HB, United Kingdom</span>
-  <span style="display:flex;gap:16px;">
-    <a href="https://platform.stoaix.com/privacy" style="color:inherit;">Privacy Policy</a>
-    <a href="https://platform.stoaix.com/terms" style="color:inherit;">Terms of Service</a>
-  </span>
-</footer>
 
-<script>
-const reveals=document.querySelectorAll(".reveal");
-const observer=new IntersectionObserver((entries)=>{
-  entries.forEach((entry)=>{if(entry.isIntersecting)entry.target.classList.add("visible")});
-},{threshold:.16});
-reveals.forEach((el)=>observer.observe(el));
-</script>
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo">
+          <img fetchpriority="high" src="assets/logo-iconwithname.svg" class="nav-logo-wordmark" alt="STOAIX" />
+        </a>
+        <p class="footer-tagline">AI receptionist for any business. Answer every call, handle every message, convert every lead.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-link" aria-label="X / Twitter">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="#" class="social-link" aria-label="YouTube">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+              <polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">Product</div>
+          <a href="#">Voice AI</a>
+          <a href="#">WhatsApp Chatbot</a>
+          <a href="#">Web Chat Widget</a>
+          <a href="#">Outbound AI</a>
+          <a href="#">CRM & Pipeline</a>
+          <a href="#">Integrations</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Solutions</div>
+          <a href="healthcare-clinics.html">Healthcare Clinics</a>
+          <a href="#solutions">Real Estate</a>
+          <a href="#solutions">Education</a>
+          <a href="#solutions">E-Commerce</a>
+          <a href="partners.html">Agencies &amp; Resellers</a>
+          <a href="partners.html">White Label</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <a href="#">About</a>
+          <a href="#">Blog</a>
+          <a href="partners.html">Partners</a>
+          <a href="#">Careers</a>
+          <a href="mailto:hello@stoaix.com">hello@stoaix.com</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+          <a href="#">GDPR</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 STOAIX Ltd. — London, UK</span>
+        <span>Made for businesses that refuse to miss a lead.</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Scripts -->
+  <script defer src="/js/components.js"></script>
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/i18n.js"></script>
 </body>
 </html>
