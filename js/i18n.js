@@ -122,7 +122,7 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'chatbot': 'chatbot',
   'voice agent': 'sesli ajan',
   'CRM': 'CRM',
-  'Your AI': 'AI\'ınız',
+  'Your AI': 'Yapay Zeka',
   'live in minutes.': 'dakikalar içinde hazır.',
   'Voice calls, WhatsApp, and web chat — fully automated.': 'Sesli aramalar, WhatsApp ve web chat — tamamen otomatik.',
   'No code. No meetings. Works for any business.': 'Kod gerektirmez. Toplantı gerektirmez. Her işletme için çalışır.',
