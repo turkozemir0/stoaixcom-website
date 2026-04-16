@@ -18,7 +18,7 @@ function translateTree(root, dict) {
   if (root.nodeType === Node.TEXT_NODE) {
     const n = norm(root.nodeValue);
     if (n && Object.prototype.hasOwnProperty.call(dict, n)) {
-      root.nodeValue = root.nodeValue.replace(n, dict[n]);
+      root.nodeValue = dict[n];
     }
     return;
   }
@@ -122,6 +122,7 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'chatbot': 'chatbot',
   'voice agent': 'sesli ajan',
   'CRM': 'CRM',
+  'Your AI': 'AI\'ınız',
   'live in minutes.': 'dakikalar içinde hazır.',
   'Voice calls, WhatsApp, and web chat — fully automated.': 'Sesli aramalar, WhatsApp ve web chat — tamamen otomatik.',
   'No code. No meetings. Works for any business.': 'Kod gerektirmez. Toplantı gerektirmez. Her işletme için çalışır.',
