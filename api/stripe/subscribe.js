@@ -8,6 +8,16 @@ const supabase = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 )
 
+function generateSlug(name) {
+  return name
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .substring(0, 48) || 'org'
+}
+
 const PRICE_MAP = {
   essential: {
     monthly: process.env.STRIPE_PRICE_ESSENTIAL_MONTHLY,
@@ -93,13 +103,61 @@ export default async function handler(req, res) {
     })
 
     if (authError) {
-      // User might already exist
       if (!authError.message?.includes('already')) {
         return res.status(400).json({ error: authError.message })
       }
     }
 
-    // 5. Generate magic link → platform.stoaix.com/onboarding
+    const userId = authData?.user?.id
+    if (!userId) {
+      return res.status(500).json({ error: 'User creation failed' })
+    }
+
+    // 5. Create organization + org_users record
+    const slug = generateSlug(company || firstName || 'org')
+
+    // Check slug uniqueness, append number if needed
+    let finalSlug = slug
+    const { data: existing } = await supabase
+      .from('organizations')
+      .select('slug')
+      .like('slug', `${slug}%`)
+
+    if (existing && existing.length > 0) {
+      finalSlug = `${slug}-${existing.length + 1}`
+    }
+
+    const { data: org, error: orgError } = await supabase
+      .from('organizations')
+      .insert({
+        name: company || `${firstName}'s Clinic`,
+        slug: finalSlug,
+        sector: 'clinic',
+        status: 'onboarding',
+        onboarding_status: 'in_progress',
+        email,
+        country: 'GB',
+      })
+      .select('id')
+      .single()
+
+    if (orgError) {
+      return res.status(500).json({ error: `Organization creation failed: ${orgError.message}` })
+    }
+
+    const { error: orgUserError } = await supabase
+      .from('org_users')
+      .insert({
+        user_id: userId,
+        organization_id: org.id,
+        role: 'admin',
+      })
+
+    if (orgUserError) {
+      return res.status(500).json({ error: `Org user link failed: ${orgUserError.message}` })
+    }
+
+    // 6. Generate magic link → platform.stoaix.com/auth/callback → onboarding
     const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
       type: 'magiclink',
       email,
@@ -109,7 +167,6 @@ export default async function handler(req, res) {
     })
 
     if (linkError || !linkData?.properties?.action_link) {
-      // Fallback: redirect to platform login
       return res.status(200).json({
         success: true,
         redirect_url: 'https://platform.stoaix.com/login',
