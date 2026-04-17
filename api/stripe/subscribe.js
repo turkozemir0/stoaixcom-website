@@ -1,5 +1,6 @@
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
+import { sendEvent } from '../_lib/fb-capi.js'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -54,6 +55,13 @@ export default async function handler(req, res) {
   const planKey = plan.toLowerCase()
   const billingKey = billing === 'annual' ? 'annual' : 'monthly'
   const priceId = PRICE_MAP[planKey]?.[billingKey]
+
+  const PLAN_PRICES = {
+    essential:    { monthly: 79, annual: 63 },
+    professional: { monthly: 149, annual: 119 },
+    business:     { monthly: 299, annual: 239 },
+  }
+  const price = PLAN_PRICES[planKey]?.[billingKey] || 0
 
   if (!priceId) {
     return res.status(400).json({ error: 'Invalid plan or billing period' })
@@ -157,7 +165,22 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: `Org user link failed: ${orgUserError.message}` })
     }
 
-    // 6. Generate magic link → platform.stoaix.com/auth/callback → onboarding
+    // 6. Mark lead as converted + FB CAPI Purchase event
+    await supabase
+      .from('signup_leads')
+      .update({ converted: true, converted_at: new Date().toISOString() })
+      .eq('email', email.toLowerCase())
+
+    sendEvent({
+      eventName: 'Purchase',
+      email,
+      firstName,
+      lastName,
+      value: price,
+      sourceUrl: 'https://stoaix.com/checkout',
+    }).catch(() => {})
+
+    // 7. Generate magic link → platform.stoaix.com/auth/callback → onboarding
     const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
       type: 'magiclink',
       email,

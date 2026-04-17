@@ -664,7 +664,15 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       const res = await fetch('/api/auth/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: currentEmail, recaptchaToken }),
+        body: JSON.stringify({
+          email: currentEmail,
+          recaptchaToken,
+          firstName: document.getElementById('first_name').value,
+          lastName: document.getElementById('last_name').value,
+          company: document.getElementById('company').value,
+          plan: document.querySelector('input[name="plan"]:checked')?.value,
+          billing: toggle.checked ? 'annual' : 'monthly',
+        }),
       })
 
       const data = await res.json()

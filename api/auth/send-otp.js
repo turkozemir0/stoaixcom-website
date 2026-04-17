@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
-  const { email, recaptchaToken } = req.body
+  const { email, recaptchaToken, firstName, lastName, company, plan, billing } = req.body
 
   if (!email || !recaptchaToken) {
     return res.status(400).json({ error: 'Missing email or reCAPTCHA token' })
@@ -71,7 +71,19 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: 'Failed to save verification code' })
     }
 
-    // 5. Send email via Resend
+    // 5. Upsert signup lead
+    await supabase
+      .from('signup_leads')
+      .upsert({
+        email: email.toLowerCase(),
+        first_name: firstName || null,
+        last_name: lastName || null,
+        company: company || null,
+        plan: plan || null,
+        billing: billing || null,
+      }, { onConflict: 'email' })
+
+    // 6. Send email via Resend
     const { error: emailError } = await resend.emails.send({
       from: 'STOAIX <noreply@stoaix.com>',
       to: email,

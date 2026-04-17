@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
+import { sendEvent } from '../_lib/fb-capi.js'
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -58,6 +59,24 @@ export default async function handler(req, res) {
       console.error('Update error:', updateError)
       return res.status(500).json({ error: 'Failed to verify code' })
     }
+
+    // Mark lead as email verified
+    const { data: leadData } = await supabase
+      .from('signup_leads')
+      .update({ email_verified: true, verified_at: new Date().toISOString() })
+      .eq('email', email.toLowerCase())
+      .select('first_name, last_name')
+      .single()
+
+    // Send FB CAPI Lead event
+    sendEvent({
+      eventName: 'Lead',
+      email: email.toLowerCase(),
+      firstName: leadData?.first_name,
+      lastName: leadData?.last_name,
+      value: 10,
+      sourceUrl: 'https://stoaix.com/signup',
+    }).catch(() => {})
 
     return res.status(200).json({ success: true })
   } catch (err) {
