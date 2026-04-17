@@ -433,7 +433,8 @@
 
     // ── Pricing ─────────────────────────────────────────────
     if (pricingEl) {
-      replaceWithFragment(pricingEl, PRICING_HTML);
+      pricingEl.insertAdjacentHTML('afterend', PRICING_HTML);
+      pricingEl.remove();
     }
   }
 
