@@ -144,8 +144,40 @@
 
     /* ── Section: Pain points ──────────────────────────────── */
     .hc-pain {
-      background: var(--bg);
-      padding: 96px 0;
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 108px;
+      background:
+        radial-gradient(ellipse 70% 55% at 8% 15%,  rgba(37,99,235,0.52)  0%, transparent 52%),
+        radial-gradient(ellipse 55% 50% at 94% 85%,  rgba(124,58,237,0.48) 0%, transparent 52%),
+        radial-gradient(ellipse 48% 42% at 55% 52%,  rgba(99,102,241,0.28) 0%, transparent 58%),
+        radial-gradient(ellipse 38% 35% at 25% 78%,  rgba(59,130,246,0.22) 0%, transparent 54%),
+        #070d1f;
+    }
+    .hc-pain::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(99,102,241,0.18) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .hc-pain .hc-section-center,
+    .hc-pain .section-headline,
+    .hc-pain .section-sub {
+      position: relative;
+    }
+    .hc-pain .section-badge {
+      background: rgba(99,102,241,0.18);
+      border-color: rgba(99,102,241,0.40);
+      color: #a5b4fc;
+    }
+    .hc-pain .section-headline {
+      color: #fff;
+    }
+    .hc-pain .section-sub {
+      color: rgba(255,255,255,0.62);
     }
     .hc-section-center {
       max-width: 680px;
@@ -209,6 +241,53 @@
       font-size: 0.875rem;
       color: var(--text-2);
       line-height: 1.6;
+    }
+
+    /* Pain section card overrides for dark bg */
+    .hc-pain .hc-card {
+      position: relative;
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.11);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .hc-pain .hc-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(99,102,241,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hc-pain .hc-card:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(99,102,241,0.45);
+      box-shadow: 0 0 0 1px rgba(99,102,241,0.25), 0 16px 40px rgba(7,13,31,0.55);
+      transform: translateY(-4px);
+    }
+    .hc-pain .hc-card-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: rgba(99,102,241,0.22);
+      border: 1px solid rgba(99,102,241,0.42);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #a5b4fc;
+      margin-bottom: 18px;
+      flex-shrink: 0;
+    }
+    .hc-pain .hc-card h3 {
+      color: #f0f4ff;
+    }
+    .hc-pain .hc-card p {
+      color: rgba(220,228,255,0.68);
+    }
+    .hc-pain .hc-card-icon.red-bg {
+      background: rgba(220,38,38,0.15);
+      border-color: rgba(220,38,38,0.30);
     }
 
     /* ── Section: How STOAIX works ─────────────────────────── */
@@ -1064,36 +1143,40 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       <div class="hc-section-center reveal">
         <div class="section-badge">The real cost</div>
         <h2 class="section-headline">Four ways your clinic leaks revenue every day</h2>
-        <p class="section-sub centered">Every clinic we talk to — hair transplant, dental, aesthetic — has the same four problems.</p>
+        <p class="section-sub centered">Every clinic we talk to — hair transplant, dental, aesthetic — faces the same four problems.</p>
       </div>
       <div class="hc-4col stagger">
         <div class="hc-card">
+          <div class="hc-card-number">01</div>
           <div class="hc-card-icon red-bg">
             <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
           </div>
-          <h3>Missed calls = missed revenue</h3>
-          <p>International patients call at midnight your time. After-hours and weekends are your busiest windows — and exactly when your team is offline. Every unanswered ring goes to a competitor.</p>
+          <h3>Slow first response</h3>
+          <p>The first clinic to respond wins the patient. When a lead calls after hours, waits in a WhatsApp queue, or spends 10 minutes getting FAQ answers — intent cools fast. Most clinics respond in hours. Your competitor responds in seconds.</p>
         </div>
         <div class="hc-card">
+          <div class="hc-card-number">02</div>
           <div class="hc-card-icon red-bg">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
           </div>
-          <h3>Failed follow-ups</h3>
-          <p>A consultation ends with "I'll think about it." Nobody calls back on day 3. Nobody sends a WhatsApp on day 7. That warm lead cools in silence — and you never knew how close they were.</p>
+          <h3>No follow-up system</h3>
+          <p>A patient says "I'll think about it." Day 3 — no call. Day 7 — no message. Converting a lead takes 5–8 touchpoints on average. Without an automated sequence, most leads get one attempt and are permanently forgotten.</p>
         </div>
         <div class="hc-card">
+          <div class="hc-card-number">03</div>
           <div class="hc-card-icon red-bg">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="9" y1="16" x2="15" y2="16"/></svg>
           </div>
-          <h3>Dead lead lists</h3>
-          <p>Hundreds of old enquiries buried in Excel, WhatsApp, and your CRM. Each one asked about a procedure, then went quiet. They haven't said no — they just haven't been re-engaged.</p>
+          <h3>Booked but never arrived</h3>
+          <p>A consultation is confirmed. No reminder at 24 hours. No confirmation message the morning of. The patient forgets, double-books, or chooses a competitor who followed up. Every empty chair is a paid acquisition that never converted.</p>
         </div>
         <div class="hc-card">
+          <div class="hc-card-number">04</div>
           <div class="hc-card-icon red-bg">
-            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4.03 3-9 3S3 13.66 3 12"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/></svg>
           </div>
-          <h3>Call center overload</h3>
-          <p>Your team spends hours answering "how much does a hair transplant cost?" over and over. Repetitive questions eat the time that should go to closing actual consultations.</p>
+          <h3>Thousands of cold leads sitting idle</h3>
+          <p>Across 800+ clinics we've spoken with, the average lead acquisition cost is ~$15. Most hold thousands of old enquiries — never re-engaged, never re-qualified. That's tens of thousands in paid acquisition left completely on the table.</p>
         </div>
       </div>
     </div>
