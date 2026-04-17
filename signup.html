@@ -29,7 +29,7 @@
     .signup-main {
       flex: 1;
       display: grid;
-      grid-template-columns: 1fr 480px;
+      grid-template-columns: 1fr 500px;
       min-height: calc(100vh - 69px);
     }
 
@@ -86,33 +86,29 @@
       font-size: 0.9rem;
     }
     .signup-perk-icon {
-      width: 22px;
-      height: 22px;
+      width: 22px; height: 22px;
       background: rgba(255,255,255,0.15);
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 1px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; margin-top: 1px;
     }
     .signup-perk-icon svg { color: #fff; }
 
     /* Right panel */
     .signup-right {
       background: #fff;
-      padding: 56px 48px;
+      padding: 48px 44px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       overflow-y: auto;
     }
 
-    .auth-header { margin-bottom: 32px; }
+    .auth-header { margin-bottom: 24px; }
     .auth-title { font-size: 1.5rem; font-weight: 800; color: var(--text-1); margin-bottom: 6px; }
     .auth-subtitle { font-size: 0.875rem; color: var(--text-2); }
 
-    .auth-form { display: flex; flex-direction: column; gap: 16px; }
+    .auth-form { display: flex; flex-direction: column; gap: 14px; }
 
     .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .form-group { display: flex; flex-direction: column; gap: 6px; }
@@ -135,21 +131,72 @@
     }
     .form-input::placeholder { color: #9aabcc; }
 
-    /* Plan selector */
+    /* Billing toggle */
+    .billing-toggle-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+    .billing-toggle-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-2);
+      cursor: pointer;
+      transition: color 0.15s;
+    }
+    .billing-toggle-label.active { color: var(--text-1); }
+    .billing-save-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #16a34a;
+      background: rgba(22,163,74,0.1);
+      border-radius: 20px;
+      padding: 2px 8px;
+      margin-left: 4px;
+    }
+    .toggle-switch {
+      position: relative;
+      width: 40px; height: 22px;
+      cursor: pointer;
+    }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-track {
+      position: absolute;
+      inset: 0;
+      background: #cbd5e1;
+      border-radius: 20px;
+      transition: background 0.2s;
+    }
+    .toggle-switch input:checked + .toggle-track { background: var(--blue); }
+    .toggle-thumb {
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 16px; height: 16px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.2s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    .toggle-switch input:checked ~ .toggle-thumb { transform: translateX(18px); }
+
+    /* Plan cards */
     .plan-selector-label { font-size: 0.85rem; font-weight: 600; color: var(--text-1); margin-bottom: 8px; }
-    .plan-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .plan-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
     .plan-option { position: relative; }
     .plan-option input { position: absolute; opacity: 0; width: 0; height: 0; }
     .plan-option-label {
       display: flex;
       flex-direction: column;
       gap: 2px;
-      padding: 12px 14px;
+      padding: 11px 13px;
       border: 1.5px solid var(--border);
       border-radius: 10px;
       cursor: pointer;
       transition: border-color 0.18s, background 0.18s;
       background: var(--bg-2);
+      height: 100%;
     }
     .plan-option input:checked + .plan-option-label {
       border-color: var(--blue);
@@ -158,23 +205,32 @@
     .plan-option-name { font-size: 0.85rem; font-weight: 700; color: var(--text-1); }
     .plan-option-price { font-size: 0.78rem; color: var(--text-2); }
     .plan-option-badge {
-      font-size: 0.65rem;
-      font-weight: 700;
+      font-size: 0.65rem; font-weight: 700;
       color: var(--blue);
       background: rgba(37,99,235,0.08);
-      border-radius: 4px;
-      padding: 1px 5px;
-      align-self: flex-start;
-      margin-top: 2px;
+      border-radius: 4px; padding: 1px 5px;
+      align-self: flex-start; margin-top: 2px;
+    }
+    /* Custom plan special style */
+    .plan-option.custom-plan .plan-option-label {
+      border-style: dashed;
+    }
+    .plan-option.custom-plan input:checked + .plan-option-label {
+      border-color: #7c3aed;
+      background: rgba(124,58,237,0.04);
+      border-style: dashed;
+    }
+    .plan-option-custom-tag {
+      font-size: 0.65rem; font-weight: 700;
+      color: #7c3aed;
+      background: rgba(124,58,237,0.08);
+      border-radius: 4px; padding: 1px 5px;
+      align-self: flex-start; margin-top: 2px;
     }
 
     .form-terms {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 0.82rem;
-      color: var(--text-2);
-      line-height: 1.5;
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: 0.82rem; color: var(--text-2); line-height: 1.5;
     }
     .form-terms input { accent-color: var(--blue); margin-top: 2px; flex-shrink: 0; }
     .form-terms a { color: var(--blue); text-decoration: none; }
@@ -192,20 +248,19 @@
       margin-top: 4px;
     }
     .btn-auth:hover { background: var(--blue-h); transform: translateY(-1px); }
+    .btn-auth.enterprise-btn {
+      background: #7c3aed;
+    }
+    .btn-auth.enterprise-btn:hover { background: #6d28d9; }
 
     .auth-trial-note {
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--text-2);
-      margin-top: 12px;
+      text-align: center; font-size: 0.8rem; color: var(--text-2); margin-top: 10px;
     }
     .auth-trial-note strong { color: var(--text-1); }
 
     .auth-footer-note {
-      text-align: center;
-      margin-top: 24px;
-      font-size: 0.85rem;
-      color: var(--text-2);
+      text-align: center; margin-top: 20px;
+      font-size: 0.85rem; color: var(--text-2);
     }
     .auth-footer-note a { color: var(--blue); font-weight: 600; text-decoration: none; }
     .auth-footer-note a:hover { text-decoration: underline; }
@@ -258,7 +313,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       <div class="signup-left-inner">
         <div class="signup-left-badge">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          10-day free trial — no credit card required
+          7-day free trial — no charge today
         </div>
         <div class="signup-left-title">Your AI receptionist,<br />live in 5 minutes.</div>
         <div class="signup-left-sub">Set up your AI voice assistant and chatbot yourself — no meetings, no developers, no waiting.</div>
@@ -302,10 +357,10 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     <div class="signup-right">
       <div class="auth-header">
         <div class="auth-title">Create your account</div>
-        <div class="auth-subtitle">Start your 10-day free trial today</div>
+        <div class="auth-subtitle">Start your 7-day free trial today</div>
       </div>
 
-      <form class="auth-form" action="checkout.html" method="GET">
+      <form class="auth-form" id="signupForm">
         <div class="form-row-2">
           <div class="form-group">
             <label class="form-label" for="first_name">First name</label>
@@ -332,36 +387,52 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           <input class="form-input" type="password" id="password" name="password" placeholder="Min. 8 characters" required autocomplete="new-password" minlength="8" />
         </div>
 
+        <!-- Plan selector -->
         <div class="form-group">
           <div class="plan-selector-label">Choose your plan</div>
+
+          <!-- Billing toggle -->
+          <div class="billing-toggle-wrap" style="margin-bottom: 10px;">
+            <span class="billing-toggle-label active" id="labelMonthly">Monthly</span>
+            <label class="toggle-switch">
+              <input type="checkbox" id="billingToggle" />
+              <div class="toggle-track"></div>
+              <div class="toggle-thumb"></div>
+            </label>
+            <span class="billing-toggle-label" id="labelAnnual">
+              Annual <span class="billing-save-badge">Save 20%</span>
+            </span>
+          </div>
+
           <div class="plan-cards">
             <div class="plan-option">
-              <input type="radio" name="plan" id="plan_lite" value="lite" />
-              <label class="plan-option-label" for="plan_lite">
-                <span class="plan-option-name">Lite</span>
-                <span class="plan-option-price">$79 / month</span>
+              <input type="radio" name="plan" id="plan_essential" value="essential" />
+              <label class="plan-option-label" for="plan_essential">
+                <span class="plan-option-name">Essential</span>
+                <span class="plan-option-price" id="price_essential">$79 / month</span>
               </label>
             </div>
             <div class="plan-option">
-              <input type="radio" name="plan" id="plan_plus" value="plus" />
-              <label class="plan-option-label" for="plan_plus">
-                <span class="plan-option-name">Plus</span>
-                <span class="plan-option-price">$149 / month</span>
+              <input type="radio" name="plan" id="plan_professional" value="professional" />
+              <label class="plan-option-label" for="plan_professional">
+                <span class="plan-option-name">Professional</span>
+                <span class="plan-option-price" id="price_professional">$149 / month</span>
               </label>
             </div>
             <div class="plan-option">
-              <input type="radio" name="plan" id="plan_advanced" value="advanced" checked />
-              <label class="plan-option-label" for="plan_advanced">
-                <span class="plan-option-name">Advanced</span>
-                <span class="plan-option-price">$299 / month</span>
+              <input type="radio" name="plan" id="plan_business" value="business" checked />
+              <label class="plan-option-label" for="plan_business">
+                <span class="plan-option-name">Business</span>
+                <span class="plan-option-price" id="price_business">$299 / month</span>
                 <span class="plan-option-badge">Most popular</span>
               </label>
             </div>
-            <div class="plan-option">
-              <input type="radio" name="plan" id="plan_agency" value="agency" />
-              <label class="plan-option-label" for="plan_agency">
-                <span class="plan-option-name">Agency</span>
-                <span class="plan-option-price">$499 / month</span>
+            <div class="plan-option custom-plan">
+              <input type="radio" name="plan" id="plan_custom" value="custom" />
+              <label class="plan-option-label" for="plan_custom">
+                <span class="plan-option-name">Custom</span>
+                <span class="plan-option-price">Let's talk</span>
+                <span class="plan-option-custom-tag">Enterprise</span>
               </label>
             </div>
           </div>
@@ -372,15 +443,15 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
         </div>
 
-        <button type="submit" class="btn-auth">
+        <button type="submit" class="btn-auth" id="submitBtn">
           Continue to payment
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
         </button>
 
-        <div class="auth-trial-note">
-          <strong>10-day free trial.</strong> No charge until your trial ends. Cancel anytime.
+        <div class="auth-trial-note" id="trialNote">
+          <strong>7-day free trial.</strong> No charge until your trial ends. Cancel anytime.
         </div>
       </form>
 
@@ -390,6 +461,78 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     </div>
   </div>
 
+<script>
+  const ENTERPRISE_URL = 'https://calendly.com/stoaix/enterprise'
+
+  const prices = {
+    monthly: { essential: '$79', professional: '$149', business: '$299' },
+    annual:  { essential: '$63', professional: '$119', business: '$239' },
+  }
+
+  const toggle = document.getElementById('billingToggle')
+  const labelMonthly = document.getElementById('labelMonthly')
+  const labelAnnual = document.getElementById('labelAnnual')
+  const submitBtn = document.getElementById('submitBtn')
+  const trialNote = document.getElementById('trialNote')
+
+  function updatePrices() {
+    const billing = toggle.checked ? 'annual' : 'monthly'
+    const suffix = billing === 'annual' ? '/ mo, billed annually' : '/ month'
+    ;['essential', 'professional', 'business'].forEach(p => {
+      const el = document.getElementById('price_' + p)
+      if (el) el.textContent = prices[billing][p] + ' ' + suffix
+    })
+    labelMonthly.classList.toggle('active', !toggle.checked)
+    labelAnnual.classList.toggle('active', toggle.checked)
+  }
+
+  toggle.addEventListener('change', updatePrices)
+
+  // Custom plan selection → change button
+  document.querySelectorAll('input[name="plan"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+      const isCustom = radio.value === 'custom'
+      if (isCustom) {
+        submitBtn.textContent = 'Book a call →'
+        submitBtn.classList.add('enterprise-btn')
+        trialNote.innerHTML = 'Our team will contact you to set up a custom plan.'
+      } else {
+        submitBtn.innerHTML = 'Continue to payment <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+        submitBtn.classList.remove('enterprise-btn')
+        trialNote.innerHTML = '<strong>7-day free trial.</strong> No charge until your trial ends. Cancel anytime.'
+      }
+    })
+  })
+
+  document.getElementById('signupForm').addEventListener('submit', function(e) {
+    e.preventDefault()
+    const plan = document.querySelector('input[name="plan"]:checked')?.value
+    if (plan === 'custom') {
+      window.open(ENTERPRISE_URL, '_blank')
+      return
+    }
+    const billing = toggle.checked ? 'annual' : 'monthly'
+    const params = new URLSearchParams({
+      plan,
+      billing,
+      first_name: document.getElementById('first_name').value,
+      last_name: document.getElementById('last_name').value,
+      email: document.getElementById('email').value,
+      company: document.getElementById('company').value,
+    })
+    // Password is NOT passed via URL — it will be re-entered or handled differently
+    sessionStorage.setItem('signup_password', document.getElementById('password').value)
+    sessionStorage.setItem('signup_data', JSON.stringify({
+      firstName: document.getElementById('first_name').value,
+      lastName: document.getElementById('last_name').value,
+      email: document.getElementById('email').value,
+      company: document.getElementById('company').value,
+      plan,
+      billing,
+    }))
+    window.location.href = 'checkout.html?' + params.toString()
+  })
+</script>
 <script defer src="js/i18n.js"></script>
 </body>
 </html>

@@ -6,6 +6,7 @@
   <title>Start Your Trial — STOAIX</title>
   <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://js.stripe.com/v3/"></script>
   <style>
     body { background: #f5f8ff; }
     .auth-page { min-height: 100vh; display: flex; flex-direction: column; }
@@ -37,13 +38,12 @@
 
     .checkout-layout {
       display: grid;
-      grid-template-columns: 1fr 380px;
+      grid-template-columns: 1fr 360px;
       gap: 32px;
-      max-width: 860px;
+      max-width: 840px;
       width: 100%;
     }
 
-    /* Payment form */
     .checkout-card {
       background: #fff;
       border: 1.5px solid var(--border);
@@ -52,81 +52,49 @@
       box-shadow: 0 4px 24px rgba(37,99,235,0.06);
     }
     .checkout-section-title {
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--text-1);
-      margin-bottom: 20px;
-      padding-bottom: 12px;
+      font-size: 1rem; font-weight: 700; color: var(--text-1);
+      margin-bottom: 20px; padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
     }
     .checkout-form { display: flex; flex-direction: column; gap: 16px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .form-label { font-size: 0.83rem; font-weight: 600; color: var(--text-1); }
-    .form-input {
-      padding: 11px 14px;
-      border: 1.5px solid var(--border);
-      border-radius: 10px;
-      font-size: 0.9rem;
-      color: var(--text-1);
-      background: var(--bg-2);
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      font-family: inherit;
-    }
-    .form-input:focus {
-      border-color: var(--blue);
-      box-shadow: 0 0 0 3px rgba(37,99,235,0.10);
-      background: #fff;
-    }
-    .form-input::placeholder { color: #9aabcc; }
-
-    .card-field-wrap {
-      position: relative;
-    }
-    .card-brands {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      gap: 4px;
-      align-items: center;
-    }
-    .card-brand {
-      width: 32px;
-      height: 20px;
-      border-radius: 3px;
-      background: #f0f4f8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      font-weight: 800;
-      color: var(--text-2);
-    }
-    .card-brand.visa { background: #1a1f71; color: #fff; }
-    .card-brand.mc { background: #eb001b; color: #fff; }
 
     .trial-callout {
       background: linear-gradient(135deg, rgba(22,163,74,0.06) 0%, rgba(37,99,235,0.04) 100%);
       border: 1.5px solid rgba(22,163,74,0.25);
       border-radius: 12px;
       padding: 16px 18px;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
+      display: flex; align-items: flex-start; gap: 12px;
     }
     .trial-callout-icon {
       width: 32px; height: 32px;
       background: rgba(22,163,74,0.1);
       border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      color: #16a34a;
-      flex-shrink: 0;
+      color: #16a34a; flex-shrink: 0;
     }
     .trial-callout-title { font-size: 0.875rem; font-weight: 700; color: var(--text-1); margin-bottom: 2px; }
     .trial-callout-desc { font-size: 0.8rem; color: var(--text-2); line-height: 1.5; }
+
+    /* Stripe Element container */
+    .stripe-element-wrap {
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-2);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .stripe-element-wrap.focused {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.10);
+      background: #fff;
+    }
+    .stripe-element-wrap.error {
+      border-color: #dc2626;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-label { font-size: 0.83rem; font-weight: 600; color: var(--text-1); }
+    .form-error { font-size: 0.78rem; color: #dc2626; margin-top: 2px; }
 
     .btn-checkout {
       display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -135,19 +103,50 @@
       border: none; border-radius: 12px;
       font-size: 1rem; font-weight: 700;
       cursor: pointer;
-      transition: background 0.18s, transform 0.15s;
+      transition: background 0.18s, transform 0.15s, opacity 0.15s;
       font-family: inherit;
     }
-    .btn-checkout:hover { background: var(--blue-h); transform: translateY(-1px); }
+    .btn-checkout:hover:not(:disabled) { background: var(--blue-h); transform: translateY(-1px); }
+    .btn-checkout:disabled { opacity: 0.6; cursor: not-allowed; }
 
     .checkout-legal {
-      text-align: center;
-      font-size: 0.78rem;
-      color: var(--text-2);
-      margin-top: 12px;
-      line-height: 1.6;
+      text-align: center; font-size: 0.78rem; color: var(--text-2);
+      margin-top: 8px; line-height: 1.6;
     }
     .checkout-legal a { color: var(--blue); text-decoration: none; }
+
+    /* Error banner */
+    .checkout-error-banner {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-size: 0.85rem;
+      color: #dc2626;
+      display: none;
+    }
+    .checkout-error-banner.visible { display: block; }
+
+    /* Success overlay */
+    .success-overlay {
+      position: fixed; inset: 0;
+      background: rgba(255,255,255,0.96);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      z-index: 100;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    .success-overlay.visible { opacity: 1; pointer-events: all; }
+    .success-icon {
+      width: 72px; height: 72px;
+      background: rgba(22,163,74,0.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: #16a34a; margin-bottom: 20px;
+    }
+    .success-title { font-size: 1.5rem; font-weight: 800; color: var(--text-1); margin-bottom: 8px; }
+    .success-sub { font-size: 0.9rem; color: var(--text-2); }
 
     /* Order summary */
     .order-summary {
@@ -156,8 +155,7 @@
       border-radius: 20px;
       padding: 32px 28px;
       box-shadow: 0 4px 24px rgba(37,99,235,0.06);
-      position: sticky;
-      top: 24px;
+      position: sticky; top: 24px;
     }
     .order-title { font-size: 1rem; font-weight: 700; color: var(--text-1); margin-bottom: 20px; }
 
@@ -165,14 +163,10 @@
       background: var(--bg-2);
       border: 1.5px solid var(--border);
       border-radius: 12px;
-      padding: 16px 18px;
-      margin-bottom: 20px;
+      padding: 16px 18px; margin-bottom: 20px;
     }
     .plan-display-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 6px;
+      display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;
     }
     .plan-display-name { font-weight: 700; font-size: 0.95rem; color: var(--text-1); }
     .plan-display-badge {
@@ -180,18 +174,14 @@
       color: var(--blue); background: rgba(37,99,235,0.08);
       border-radius: 4px; padding: 2px 7px;
     }
-    .plan-display-price {
-      font-size: 1.5rem; font-weight: 800; color: var(--text-1);
-      margin: 8px 0 4px;
-    }
-    .plan-display-price span { font-size: 0.85rem; font-weight: 500; color: var(--text-2); }
+    .plan-display-price { font-size: 1.4rem; font-weight: 800; color: var(--text-1); margin: 8px 0 4px; }
+    .plan-display-price span { font-size: 0.82rem; font-weight: 500; color: var(--text-2); }
     .plan-display-sub { font-size: 0.78rem; color: var(--text-2); }
 
     .order-line {
       display: flex; justify-content: space-between; align-items: center;
       font-size: 0.85rem; color: var(--text-2);
-      padding: 8px 0;
-      border-bottom: 1px solid var(--border);
+      padding: 8px 0; border-bottom: 1px solid var(--border);
     }
     .order-line:last-of-type { border-bottom: none; }
     .order-line strong { color: var(--text-1); }
@@ -199,20 +189,14 @@
     .order-total {
       display: flex; justify-content: space-between; align-items: center;
       font-size: 1rem; font-weight: 700; color: var(--text-1);
-      padding: 16px 0 0;
-      margin-top: 4px;
+      padding: 16px 0 0; margin-top: 4px;
       border-top: 2px solid var(--border);
     }
-    .order-total-due {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: #16a34a;
-    }
+    .order-total-due { font-size: 0.8rem; font-weight: 500; color: #16a34a; }
 
     .order-features {
       display: flex; flex-direction: column; gap: 8px;
-      margin-top: 20px;
-      padding-top: 20px;
+      margin-top: 20px; padding-top: 20px;
       border-top: 1px solid var(--border);
     }
     .order-feature {
@@ -222,13 +206,9 @@
     .order-feature svg { color: #16a34a; flex-shrink: 0; }
 
     .change-plan {
-      display: block;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--blue);
-      text-decoration: none;
-      margin-top: 16px;
-      font-weight: 500;
+      display: block; text-align: center;
+      font-size: 0.8rem; color: var(--blue);
+      text-decoration: none; margin-top: 16px; font-weight: 500;
     }
     .change-plan:hover { text-decoration: underline; }
 
@@ -236,9 +216,6 @@
       .checkout-layout { grid-template-columns: 1fr; }
       .order-summary { position: static; }
       .checkout-card { padding: 28px 20px; }
-    }
-    @media (max-width: 480px) {
-      .form-row-2 { grid-template-columns: 1fr; }
     }
   </style>
 <!-- Meta Pixel Code -->
@@ -260,6 +237,15 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 <!-- End Meta Pixel Code -->
 </head>
 <body class="auth-page">
+
+  <!-- Success overlay -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-icon">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="success-title">Trial started!</div>
+    <div class="success-sub">Taking you to your dashboard…</div>
+  </div>
 
   <nav class="auth-nav">
     <div class="auth-nav-inner">
@@ -288,69 +274,48 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           </div>
           <div>
             <div class="trial-callout-title">You won't be charged today</div>
-            <div class="trial-callout-desc">Your 10-day free trial starts now. We'll only charge you after your trial ends. Cancel any time before then — no questions asked.</div>
+            <div class="trial-callout-desc">Your 7-day free trial starts now. We'll only charge you after your trial ends. Cancel any time before then — no questions asked.</div>
           </div>
         </div>
 
-        <form class="checkout-form" style="margin-top: 24px;" action="#" method="POST">
+        <div class="checkout-error-banner" id="errorBanner"></div>
+
+        <form class="checkout-form" id="checkoutForm" style="margin-top: 24px;">
+
+          <!-- Stripe Card Element -->
           <div class="form-group">
-            <label class="form-label" for="card_name">Name on card</label>
-            <input class="form-input" type="text" id="card_name" name="card_name" placeholder="Jane Smith" required autocomplete="cc-name" />
+            <label class="form-label">Card number</label>
+            <div class="stripe-element-wrap" id="cardNumberWrap">
+              <div id="cardNumber"></div>
+            </div>
+            <div class="form-error" id="cardNumberError"></div>
           </div>
 
-          <div class="form-group">
-            <label class="form-label" for="card_number">Card number</label>
-            <div class="card-field-wrap">
-              <input class="form-input" type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required autocomplete="cc-number" maxlength="19" style="padding-right: 96px;" />
-              <div class="card-brands">
-                <div class="card-brand visa">VISA</div>
-                <div class="card-brand mc">MC</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label">Expiry date</label>
+              <div class="stripe-element-wrap" id="cardExpiryWrap">
+                <div id="cardExpiry"></div>
               </div>
-            </div>
-          </div>
-
-          <div class="form-row-2">
-            <div class="form-group">
-              <label class="form-label" for="card_expiry">Expiry date</label>
-              <input class="form-input" type="text" id="card_expiry" name="card_expiry" placeholder="MM / YY" required autocomplete="cc-exp" maxlength="7" />
+              <div class="form-error" id="cardExpiryError"></div>
             </div>
             <div class="form-group">
-              <label class="form-label" for="card_cvc">CVC</label>
-              <input class="form-input" type="text" id="card_cvc" name="card_cvc" placeholder="123" required autocomplete="cc-csc" maxlength="4" />
+              <label class="form-label">CVC</label>
+              <div class="stripe-element-wrap" id="cardCvcWrap">
+                <div id="cardCvc"></div>
+              </div>
+              <div class="form-error" id="cardCvcError"></div>
             </div>
           </div>
 
-          <div class="checkout-section-title" style="margin-top: 8px;">Billing address</div>
-
-          <div class="form-group">
-            <label class="form-label" for="country">Country</label>
-            <select class="form-input" id="country" name="country" required>
-              <option value="">Select country</option>
-              <option value="gb" selected>United Kingdom</option>
-              <option value="us">United States</option>
-              <option value="tr">Turkey</option>
-              <option value="de">Germany</option>
-              <option value="fr">France</option>
-              <option value="ae">UAE</option>
-              <option value="au">Australia</option>
-              <option value="ca">Canada</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label class="form-label" for="postal">Postal / ZIP code</label>
-            <input class="form-input" type="text" id="postal" name="postal" placeholder="EC1A 1BB" autocomplete="postal-code" />
-          </div>
-
-          <button type="submit" class="btn-checkout">
+          <button type="submit" class="btn-checkout" id="submitBtn">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             Start my free trial
           </button>
 
           <div class="checkout-legal">
             By starting your trial you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.<br />
-            Subscription auto-renews after trial. Cancel anytime.
+            Subscription auto-renews after 7-day trial. Cancel anytime.
           </div>
         </form>
       </div>
@@ -361,20 +326,20 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
         <div class="plan-display" id="planDisplay">
           <div class="plan-display-header">
-            <span class="plan-display-name">Advanced Plan</span>
-            <span class="plan-display-badge">Most popular</span>
+            <span class="plan-display-name" id="summaryPlanName">Business Plan</span>
+            <span class="plan-display-badge" id="summaryBadge">Most popular</span>
           </div>
-          <div class="plan-display-price">$299<span> / month</span></div>
-          <div class="plan-display-sub">Billed monthly after 10-day trial</div>
+          <div class="plan-display-price" id="summaryPrice">$299<span> / month</span></div>
+          <div class="plan-display-sub" id="summarySub">Billed monthly after 7-day trial</div>
         </div>
 
         <div class="order-line">
-          <span>Advanced Plan (monthly)</span>
-          <strong>$299.00</strong>
+          <span id="lineItemLabel">Business Plan (monthly)</span>
+          <strong id="lineItemPrice">$299.00</strong>
         </div>
         <div class="order-line">
-          <span>Trial discount (10 days)</span>
-          <strong style="color: #16a34a;">-$99.67</strong>
+          <span>7-day trial discount</span>
+          <strong style="color: #16a34a;" id="trialDiscount">-$69.77</strong>
         </div>
         <div class="order-line">
           <span>Setup fee</span>
@@ -389,7 +354,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           <div>$0.00</div>
         </div>
 
-        <div class="order-features">
+        <div class="order-features" id="featureList">
           <div class="order-feature">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             Voice AI — inbound + outbound
@@ -408,58 +373,181 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           </div>
           <div class="order-feature">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Zapier / Make / Webhook
-          </div>
-          <div class="order-feature">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             Cancel before trial ends — no charge
           </div>
         </div>
 
-        <a href="signup.html" class="change-plan">Change plan</a>
+        <a href="signup.html" class="change-plan">← Change plan</a>
       </div>
 
     </div>
   </main>
 
   <script>
-    // Read plan from URL params and update order summary
-    const params = new URLSearchParams(window.location.search);
-    const plan = params.get('plan') || 'advanced';
+    // ─── Read URL params & sessionStorage ───────────────────────────────────────
+    const params  = new URLSearchParams(window.location.search)
+    const plan    = params.get('plan') || 'business'
+    const billing = params.get('billing') || 'monthly'
 
-    const plans = {
-      lite:     { name: 'Lite Plan',     price: 79,  badge: '',             features: ['WhatsApp AI chatbot','Web chat widget','Knowledge base (30 FAQs)','CRM lite','2 users','Email support'] },
-      plus:     { name: 'Plus Plan',     price: 149, badge: '',             features: ['Everything in Lite','Voice AI — inbound','300 min/month','Call recording + transcript','5 users','Priority support'] },
-      advanced: { name: 'Advanced Plan', price: 299, badge: 'Most popular', features: ['Voice AI — inbound + outbound','WhatsApp & web chat','750 minutes/month','15+ languages · CRM · Lead scoring','Zapier / Make / Webhook','Cancel before trial — no charge'] },
-      agency:   { name: 'Agency Plan',   price: 499, badge: '',             features: ['Everything in Advanced','Multi-org management','Reseller dashboard','White-label ready','Unlimited users','Priority tech support'] }
-    };
+    const signupData = JSON.parse(sessionStorage.getItem('signup_data') || '{}')
+    const password   = sessionStorage.getItem('signup_password') || ''
 
-    const p = plans[plan] || plans.advanced;
-    const trialDiscount = (p.price / 30 * 10).toFixed(2);
-
-    const display = document.getElementById('planDisplay');
-    if (display) {
-      display.querySelector('.plan-display-name').textContent = p.name;
-      const badge = display.querySelector('.plan-display-badge');
-      if (p.badge) { badge.textContent = p.badge; badge.style.display = ''; }
-      else { badge.style.display = 'none'; }
-      display.querySelector('.plan-display-price').innerHTML = `$${p.price}<span> / month</span>`;
+    // ─── Plan metadata ───────────────────────────────────────────────────────────
+    const PLANS = {
+      essential:    { name: 'Essential',    monthly: 79,  annual: 63,  badge: '',             features: ['WhatsApp AI chatbot','Web chat widget','Knowledge base','CRM lite','2 users','Email support'] },
+      professional: { name: 'Professional', monthly: 149, annual: 119, badge: '',             features: ['Everything in Essential','Voice AI — inbound','300 min/month','Call recording + transcript','5 users','Priority support'] },
+      business:     { name: 'Business',     monthly: 299, annual: 239, badge: 'Most popular', features: ['Voice AI — inbound + outbound','WhatsApp & web chat','750 min/month','15+ languages · CRM · Lead scoring','Zapier / Make / Webhook','Cancel before trial — no charge'] },
     }
 
-    // Update line items
-    const lines = document.querySelectorAll('.order-line strong');
-    if (lines[0]) lines[0].textContent = `$${p.price}.00`;
-    if (lines[1]) lines[1].textContent = `-$${trialDiscount}`;
+    const p = PLANS[plan] || PLANS.business
+    const price = billing === 'annual' ? p.annual : p.monthly
+    const billingLabel = billing === 'annual' ? 'billed annually' : 'monthly'
+    const trialDays = 7
+    const discount = (price / 30 * trialDays).toFixed(2)
 
-    // Update features list
-    const featureList = document.querySelector('.order-features');
-    if (featureList) {
-      featureList.innerHTML = p.features.map(f => `
-        <div class="order-feature">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          ${f}
-        </div>`).join('');
+    // Update order summary
+    document.getElementById('summaryPlanName').textContent = p.name + ' Plan'
+    const badge = document.getElementById('summaryBadge')
+    if (p.badge) { badge.textContent = p.badge; badge.style.display = '' }
+    else badge.style.display = 'none'
+    document.getElementById('summaryPrice').innerHTML = `$${price}<span> / mo</span>`
+    document.getElementById('summarySub').textContent = `Billed ${billingLabel} after ${trialDays}-day trial`
+    document.getElementById('lineItemLabel').textContent = `${p.name} (${billingLabel})`
+    document.getElementById('lineItemPrice').textContent = `$${price}.00`
+    document.getElementById('trialDiscount').textContent = `-$${discount}`
+
+    const featureList = document.getElementById('featureList')
+    featureList.innerHTML = p.features.map(f => `
+      <div class="order-feature">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        ${f}
+      </div>`).join('')
+
+    // ─── Stripe Elements ─────────────────────────────────────────────────────────
+    const PUBLISHABLE_KEY = 'pk_live_51RIf5fFSvBPKWpOl4B8uVYqC2nUjqsM6tRfIioV5hEOjz23p7PGCCWi26FEF3AVOP32fBm2YZ4HtAWrujb9pnwE00htZjE2gT'
+    const stripe   = Stripe(PUBLISHABLE_KEY)
+    const elements = stripe.elements()
+
+    const style = {
+      base: {
+        fontSize: '15px',
+        color: '#1e293b',
+        fontFamily: 'inherit',
+        '::placeholder': { color: '#9aabcc' },
+      },
+      invalid: { color: '#dc2626' },
     }
+
+    const cardNumber = elements.create('cardNumber', { style })
+    const cardExpiry = elements.create('cardExpiry', { style })
+    const cardCvc    = elements.create('cardCvc', { style })
+
+    cardNumber.mount('#cardNumber')
+    cardExpiry.mount('#cardExpiry')
+    cardCvc.mount('#cardCvc')
+
+    function handleFocus(wrapId) {
+      document.getElementById(wrapId).classList.add('focused')
+    }
+    function handleBlur(wrapId) {
+      document.getElementById(wrapId).classList.remove('focused')
+    }
+    function handleChange(e, wrapId, errorId) {
+      const wrap = document.getElementById(wrapId)
+      const err  = document.getElementById(errorId)
+      if (e.error) {
+        wrap.classList.add('error')
+        err.textContent = e.error.message
+      } else {
+        wrap.classList.remove('error')
+        err.textContent = ''
+      }
+    }
+
+    cardNumber.on('focus', () => handleFocus('cardNumberWrap'))
+    cardNumber.on('blur',  () => handleBlur('cardNumberWrap'))
+    cardNumber.on('change', e => handleChange(e, 'cardNumberWrap', 'cardNumberError'))
+
+    cardExpiry.on('focus', () => handleFocus('cardExpiryWrap'))
+    cardExpiry.on('blur',  () => handleBlur('cardExpiryWrap'))
+    cardExpiry.on('change', e => handleChange(e, 'cardExpiryWrap', 'cardExpiryError'))
+
+    cardCvc.on('focus', () => handleFocus('cardCvcWrap'))
+    cardCvc.on('blur',  () => handleBlur('cardCvcWrap'))
+    cardCvc.on('change', e => handleChange(e, 'cardCvcWrap', 'cardCvcError'))
+
+    // ─── Form submit ─────────────────────────────────────────────────────────────
+    const submitBtn   = document.getElementById('submitBtn')
+    const errorBanner = document.getElementById('errorBanner')
+
+    document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
+      e.preventDefault()
+      submitBtn.disabled = true
+      submitBtn.textContent = 'Processing…'
+      errorBanner.classList.remove('visible')
+
+      try {
+        // Create payment method
+        const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
+          type: 'card',
+          card: cardNumber,
+          billing_details: {
+            name: `${signupData.firstName || ''} ${signupData.lastName || ''}`.trim(),
+            email: signupData.email || '',
+          },
+        })
+
+        if (pmError) {
+          errorBanner.textContent = pmError.message
+          errorBanner.classList.add('visible')
+          submitBtn.disabled = false
+          submitBtn.textContent = 'Start my free trial'
+          return
+        }
+
+        // Call our API
+        const res = await fetch('/api/stripe/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email:           signupData.email,
+            firstName:       signupData.firstName,
+            lastName:        signupData.lastName,
+            company:         signupData.company,
+            plan,
+            billing,
+            password,
+            paymentMethodId: paymentMethod.id,
+          }),
+        })
+
+        const data = await res.json()
+
+        if (!res.ok || !data.success) {
+          errorBanner.textContent = data.error || 'Something went wrong. Please try again.'
+          errorBanner.classList.add('visible')
+          submitBtn.disabled = false
+          submitBtn.textContent = 'Start my free trial'
+          return
+        }
+
+        // Clear session storage
+        sessionStorage.removeItem('signup_data')
+        sessionStorage.removeItem('signup_password')
+
+        // Show success, then redirect
+        document.getElementById('successOverlay').classList.add('visible')
+        setTimeout(() => {
+          window.location.href = data.redirect_url
+        }, 1500)
+
+      } catch (err) {
+        errorBanner.textContent = 'Network error. Please check your connection and try again.'
+        errorBanner.classList.add('visible')
+        submitBtn.disabled = false
+        submitBtn.textContent = 'Start my free trial'
+      }
+    })
   </script>
 <script defer src="js/i18n.js"></script>
 </body>
