@@ -226,7 +226,7 @@ export default async function handler(req, res) {
       type: 'magiclink',
       email,
       options: {
-        redirectTo: 'https://platform.stoaix.com/onboarding',
+        redirectTo: 'https://platform.stoaix.com/auth/callback?next=/onboarding',
       },
     })
 

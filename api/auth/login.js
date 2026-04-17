@@ -49,7 +49,7 @@ export default async function handler(req, res) {
         type: 'magiclink',
         email: email.toLowerCase(),
         options: {
-          redirectTo: 'https://platform.stoaix.com/dashboard',
+          redirectTo: 'https://platform.stoaix.com/auth/callback?next=/dashboard',
         },
       })
 
