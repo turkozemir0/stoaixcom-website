@@ -85,16 +85,23 @@ export default async function handler(req, res) {
       },
     })
 
+    let userId = authData?.user?.id
+
     if (authError) {
-      // If user already exists (re-verification), that's ok
-      if (!authError.message?.includes('already')) {
+      // If user already exists (re-verification), look up existing user via generateLink
+      if (authError.message?.includes('already')) {
+        const { data: linkData } = await supabase.auth.admin.generateLink({
+          type: 'magiclink',
+          email: email.toLowerCase(),
+        })
+        userId = linkData?.user?.id
+      } else {
         console.error('User creation error:', authError)
         return res.status(500).json({ error: 'Failed to create account' })
       }
     }
 
     // Save user_id to signup_leads
-    const userId = authData?.user?.id
     if (userId) {
       await supabase
         .from('signup_leads')

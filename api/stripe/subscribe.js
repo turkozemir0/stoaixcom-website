@@ -135,12 +135,20 @@ export default async function handler(req, res) {
       })
 
       if (authError) {
-        if (!authError.message?.includes('already')) {
+        if (authError.message?.includes('already')) {
+          // User exists — look up via generateLink
+          const { data: linkData } = await supabase.auth.admin.generateLink({
+            type: 'magiclink',
+            email: email.toLowerCase(),
+          })
+          userId = linkData?.user?.id
+        } else {
           return res.status(400).json({ error: authError.message })
         }
+      } else {
+        userId = authData?.user?.id
       }
 
-      userId = authData?.user?.id
       if (!userId) {
         return res.status(500).json({ error: 'User creation failed' })
       }
