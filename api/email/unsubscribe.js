@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js'
-import { createHmac } from 'crypto'
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -8,8 +7,25 @@ const supabase = createClient(
 
 const SECRET = process.env.UNSUBSCRIBE_SECRET || process.env.SUPABASE_SERVICE_ROLE_KEY
 
+// Pure JS keyed hash — matches the n8n Code node implementation
+function simpleHash(str, key) {
+  let hash = 0x811c9dc5
+  const combined = key + ':' + str
+  for (let i = 0; i < combined.length; i++) {
+    hash ^= combined.charCodeAt(i)
+    hash = Math.imul(hash, 0x01000193)
+  }
+  let result = ''
+  for (let round = 0; round < 8; round++) {
+    hash ^= (round * 0x9e3779b9)
+    hash = Math.imul(hash, 0x01000193)
+    result += (hash >>> 0).toString(16).padStart(8, '0')
+  }
+  return result
+}
+
 function generateToken(email) {
-  return createHmac('sha256', SECRET).update(email.toLowerCase()).digest('hex')
+  return simpleHash(email.toLowerCase(), SECRET)
 }
 
 export default async function handler(req, res) {
