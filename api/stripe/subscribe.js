@@ -93,32 +93,57 @@ export default async function handler(req, res) {
       expand: ['latest_invoice.payment_intent'],
     })
 
-    // 4. Create Supabase user
-    const { data: authData, error: authError } = await supabase.auth.admin.createUser({
-      email,
-      password: req.body.password,
-      email_confirm: true,
-      user_metadata: {
-        first_name: firstName,
-        last_name: lastName,
-        company,
-        plan: planKey,
-        billing: billingKey,
-        stripe_customer_id: customer.id,
-        stripe_subscription_id: subscription.id,
-        trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
-      },
-    })
+    // 4. Get existing user from signup_leads (created during OTP verification)
+    const { data: leadRow } = await supabase
+      .from('signup_leads')
+      .select('user_id')
+      .eq('email', email.toLowerCase())
+      .single()
 
-    if (authError) {
-      if (!authError.message?.includes('already')) {
-        return res.status(400).json({ error: authError.message })
+    let userId = leadRow?.user_id
+
+    if (userId) {
+      // User exists (hybrid flow) — update metadata with Stripe info
+      await supabase.auth.admin.updateUserById(userId, {
+        user_metadata: {
+          first_name: firstName,
+          last_name: lastName,
+          company,
+          plan: planKey,
+          billing: billingKey,
+          stripe_customer_id: customer.id,
+          stripe_subscription_id: subscription.id,
+          trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+        },
+      })
+    } else {
+      // Legacy fallback: user_id not set (old leads before hybrid flow)
+      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+        email,
+        password: req.body.password || Math.random().toString(36).slice(2) + 'A1!',
+        email_confirm: true,
+        user_metadata: {
+          first_name: firstName,
+          last_name: lastName,
+          company,
+          plan: planKey,
+          billing: billingKey,
+          stripe_customer_id: customer.id,
+          stripe_subscription_id: subscription.id,
+          trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+        },
+      })
+
+      if (authError) {
+        if (!authError.message?.includes('already')) {
+          return res.status(400).json({ error: authError.message })
+        }
       }
-    }
 
-    const userId = authData?.user?.id
-    if (!userId) {
-      return res.status(500).json({ error: 'User creation failed' })
+      userId = authData?.user?.id
+      if (!userId) {
+        return res.status(500).json({ error: 'User creation failed' })
+      }
     }
 
     // 5. Create organization + org_users record
@@ -171,6 +196,7 @@ export default async function handler(req, res) {
       .update({ converted: true, converted_at: new Date().toISOString() })
       .eq('email', email.toLowerCase())
 
+    const planName = PLAN_PRICES[planKey] ? planKey.charAt(0).toUpperCase() + planKey.slice(1) : planKey
     sendEvent({
       eventName: 'Purchase',
       email,
@@ -182,7 +208,7 @@ export default async function handler(req, res) {
       clientUserAgent: getUserAgent(req),
       fbc,
       fbp,
-      contentName: `${p.name} Plan`,
+      contentName: `${planName} Plan`,
       contentCategory: 'subscription',
       contentIds: planKey,
     }).catch(() => {})

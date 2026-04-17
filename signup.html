@@ -774,7 +774,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       const res = await fetch('/api/auth/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: currentEmail, code, ...getFbCookies() }),
+        body: JSON.stringify({ email: currentEmail, code, password: document.getElementById('password').value, ...getFbCookies() }),
       })
       const data = await res.json()
 

@@ -20,10 +20,14 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
-  const { email, code, fbc, fbp } = req.body
+  const { email, code, password, fbc, fbp } = req.body
 
   if (!email || !code) {
     return res.status(400).json({ error: 'Missing email or code' })
+  }
+
+  if (!password || password.length < 8) {
+    return res.status(400).json({ error: 'Password must be at least 8 characters' })
   }
 
   try {
@@ -65,8 +69,38 @@ export default async function handler(req, res) {
       .from('signup_leads')
       .update({ email_verified: true, verified_at: new Date().toISOString() })
       .eq('email', email.toLowerCase())
-      .select('first_name, last_name, plan')
+      .select('first_name, last_name, plan, company')
       .single()
+
+    // Create Supabase auth user
+    const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+      email: email.toLowerCase(),
+      password,
+      email_confirm: true,
+      user_metadata: {
+        first_name: leadData?.first_name,
+        last_name: leadData?.last_name,
+        company: leadData?.company,
+        plan: leadData?.plan,
+      },
+    })
+
+    if (authError) {
+      // If user already exists (re-verification), that's ok
+      if (!authError.message?.includes('already')) {
+        console.error('User creation error:', authError)
+        return res.status(500).json({ error: 'Failed to create account' })
+      }
+    }
+
+    // Save user_id to signup_leads
+    const userId = authData?.user?.id
+    if (userId) {
+      await supabase
+        .from('signup_leads')
+        .update({ user_id: userId })
+        .eq('email', email.toLowerCase())
+    }
 
     // Send FB CAPI Lead event
     sendEvent({
