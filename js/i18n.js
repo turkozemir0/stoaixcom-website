@@ -411,6 +411,18 @@ const TR_PARTNERS = Object.assign({}, TR_COMMON, {
 /* ─── Healthcare Clinics page ────────────────────────────── */
 const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   'Built for healthcare clinics': 'Sağlık klinikleri için tasarlandı',
+  // Pain section
+  'The real cost': 'Gerçek Maliyet',
+  'Four ways your clinic leaks revenue every day': 'Kliniğinizin her gün gelir kaybettiği dört yol',
+  'Every clinic we talk to — hair transplant, dental, aesthetic — faces the same four problems.': 'Konuştuğumuz her klinik — saç ekimi, diş, estetik — aynı dört problemle karşı karşıya.',
+  'Slow first response': 'Yavaş ilk yanıt',
+  'The first clinic to respond wins the patient. When a lead calls after hours, waits in a WhatsApp queue, or spends 10 minutes getting FAQ answers — intent cools fast. Most clinics respond in hours. Your competitor responds in seconds.': 'İlk yanıt veren klinik hastayı kazanır. Bir lead mesai dışı aradığında, WhatsApp kuyruğunda beklediğinde veya SSS yanıtları için 10 dakika harcadığında — niyet hızla soğur. Çoğu klinik saatler içinde yanıt verir. Rakibiniz saniyeler içinde.',
+  'No follow-up system': 'Follow-up sistemi yok',
+  'A patient says "I\'ll think about it." Day 3 — no call. Day 7 — no message. Converting a lead takes 5–8 touchpoints on average. Without an automated sequence, most leads get one attempt and are permanently forgotten.': 'Hasta "Düşüneceğim" diyor. 3. gün — arama yok. 7. gün — mesaj yok. Bir lead\'i dönüştürmek ortalama 5–8 temas noktası gerektirir. Otomatik bir seri olmadan, çoğu lead tek girişimle kalıcı olarak unutulur.',
+  'Booked but never arrived': 'Randevu alındı, hasta gelmedi',
+  'A consultation is confirmed. No reminder at 24 hours. No confirmation message the morning of. The patient forgets, double-books, or chooses a competitor who followed up. Every empty chair is a paid acquisition that never converted.': 'Konsültasyon onaylandı. 24 saat öncesinde hatırlatma yok. Sabah konfirmasyon mesajı yok. Hasta unutuyor, çift rezervasyon yapıyor ya da takip eden rakibi tercih ediyor. Her boş sandalye, dönüşüme ulaşamamış ücretli bir kazanımdır.',
+  'Thousands of cold leads sitting idle': 'Binlerce soğuk lead bekliyor',
+  'Across 800+ clinics we\'ve spoken with, the average lead acquisition cost is ~$15. Most hold thousands of old enquiries — never re-engaged, never re-qualified. That\'s tens of thousands in paid acquisition left completely on the table.': 'Görüştüğümüz 800\'den fazla klinikte ortalama lead edinim maliyeti ~15 dolardır. Çoğu klinik binlerce eski sorguyu elinde tutuyor — hiç yeniden temas kurulmamış, hiç yeniden nitelendirilmemiş. Bu, tamamen masada bırakılmış onlarca bin dolarlık ücretli edinimdir.',
   // Hero animated word translations
   'Your AI': 'AI',
   'receptionist': 'resepsiyonist',
