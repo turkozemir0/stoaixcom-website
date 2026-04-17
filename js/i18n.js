@@ -40,24 +40,31 @@ function getPath() {
 }
 
 /* ─── Language toggle button ─────────────────────────────── */
-function injectToggle(activeLang, onToggle) {
-  const nav = document.querySelector('.nav-actions');
-  if (!nav || document.querySelector('.lang-toggle')) return;
-
+function createToggleEl(activeLang, onToggle) {
   const w = document.createElement('div');
   w.className = 'lang-toggle';
   w.innerHTML =
     '<button class="lang-btn' + (activeLang === 'en' ? ' lang-active' : '') + '" data-lang="en">EN</button>' +
     '<span class="lang-sep">|</span>' +
     '<button class="lang-btn' + (activeLang === 'tr' ? ' lang-active' : '') + '" data-lang="tr">TR</button>';
-
-  nav.insertBefore(w, nav.firstChild);
-
   w.querySelectorAll('.lang-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       if (btn.dataset.lang !== activeLang) onToggle(btn.dataset.lang);
     });
   });
+  return w;
+}
+
+function injectToggle(activeLang, onToggle) {
+  const nav = document.querySelector('.nav-actions');
+  if (nav && !nav.querySelector('.lang-toggle')) {
+    nav.insertBefore(createToggleEl(activeLang, onToggle), nav.firstChild);
+  }
+
+  const mobileMenu = document.querySelector('#mobileMenu');
+  if (mobileMenu && !mobileMenu.querySelector('.lang-toggle')) {
+    mobileMenu.appendChild(createToggleEl(activeLang, onToggle));
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════

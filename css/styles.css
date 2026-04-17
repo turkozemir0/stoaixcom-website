@@ -2206,3 +2206,6 @@ ul { list-style: none; }
 .lang-btn { background: none; border: none; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: var(--text-2); cursor: pointer; padding: 2px 4px; border-radius: 4px; transition: color 0.2s; }
 .lang-btn:hover, .lang-btn.lang-active { color: var(--blue); }
 .lang-sep { font-size: 0.72rem; color: var(--text-2); opacity: 0.5; }
+#mobileMenu .lang-toggle { margin: 8px 16px 4px; font-size: 1rem; gap: 8px; }
+#mobileMenu .lang-btn { font-size: 0.9rem; padding: 4px 8px; }
+#mobileMenu .lang-sep { font-size: 0.85rem; }
