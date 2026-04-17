@@ -1,0 +1,293 @@
+{
+  "name": "Checkout Recovery Email Sequence",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes",
+              "minutesInterval": 15
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Every 15 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{$env.SUPABASE_URL}}/rest/v1/signup_leads",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "select", "value": "*" },
+            { "name": "email_verified", "value": "eq.true" },
+            { "name": "converted", "value": "eq.false" },
+            { "name": "unsubscribed_at", "value": "is.null" },
+            { "name": "user_id", "value": "not.is.null" }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "={{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Authorization", "value": "Bearer {{$env.SUPABASE_SERVICE_ROLE_KEY}}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fetch-leads",
+      "name": "Fetch Unconverted Leads",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "" },
+          "conditions": [
+            {
+              "id": "check-has-leads",
+              "leftValue": "={{ $json.length }}",
+              "rightValue": 0,
+              "operator": { "type": "number", "operation": "gt" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-has-leads",
+      "name": "Has Leads?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{$env.SUPABASE_URL}}/rest/v1/recovery_emails_log",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "select", "value": "email,template,sent_at" }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "={{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Authorization", "value": "Bearer {{$env.SUPABASE_SERVICE_ROLE_KEY}}" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "fetch-sent-logs",
+      "name": "Fetch Sent Email Logs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [660, -100]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Leads from node 'Fetch Unconverted Leads'\nconst leads = $('Fetch Unconverted Leads').first().json;\n// Sent logs from node 'Fetch Sent Email Logs'\nconst sentLogs = $('Fetch Sent Email Logs').first().json;\n\nconst leadsArr = Array.isArray(leads) ? leads : [leads];\nconst logsArr = Array.isArray(sentLogs) ? sentLogs : (sentLogs ? [sentLogs] : []);\n\nconst now = Date.now();\nconst MINUTE = 60000;\nconst HOUR = 3600000;\nconst DAY = 86400000;\n\nconst templates = [\n  { id: '15min', after: 15 * MINUTE },\n  { id: '1hr',   after: 1 * HOUR },\n  { id: '24hr',  after: 24 * HOUR },\n  { id: '3day',  after: 3 * DAY },\n  { id: '7day',  after: 7 * DAY },\n  { id: '10day', after: 10 * DAY },\n  { id: '15day', after: 15 * DAY },\n];\n\nconst emailsToSend = [];\n\nfor (const lead of leadsArr) {\n  if (!lead.email || !lead.verified_at) continue;\n\n  const verifiedAt = new Date(lead.verified_at).getTime();\n  const elapsed = now - verifiedAt;\n\n  // Get already-sent templates for this lead\n  const sentTemplates = logsArr\n    .filter(l => l.email === lead.email)\n    .map(l => l.template);\n\n  // Find the next template that should be sent\n  // Go through templates in order, find the first one whose time has come but hasn't been sent\n  for (const t of templates) {\n    if (elapsed >= t.after && !sentTemplates.includes(t.id)) {\n      emailsToSend.push({\n        email: lead.email,\n        first_name: lead.first_name || '',\n        last_name: lead.last_name || '',\n        company: lead.company || '',\n        plan: lead.plan || 'professional',\n        billing: lead.billing || 'monthly',\n        user_id: lead.user_id,\n        template_id: t.id,\n        verified_at: lead.verified_at\n      });\n      // Only send one email per lead per run\n      break;\n    }\n  }\n}\n\nif (emailsToSend.length === 0) {\n  return [{ json: { _skip: true } }];\n}\n\nreturn emailsToSend.map(item => ({ json: item }));"
+      },
+      "id": "determine-emails",
+      "name": "Determine Emails to Send",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [880, -100]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true, "leftValue": "" },
+          "conditions": [
+            {
+              "id": "check-skip",
+              "leftValue": "={{ $json._skip }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "notEquals" }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-has-emails",
+      "name": "Has Emails to Send?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1100, -100]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.SUPABASE_URL}}/auth/v1/admin/generate_link",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "={{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Authorization", "value": "Bearer {{$env.SUPABASE_SERVICE_ROLE_KEY}}" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"type\": \"magiclink\",\n  \"email\": \"{{ $json.email }}\",\n  \"options\": {\n    \"redirect_to\": \"https://stoaix.com/auth/callback?next=/checkout.html?from=recovery&plan={{ $json.plan }}&billing={{ $json.billing }}\"\n  }\n}",
+        "options": {}
+      },
+      "id": "generate-magic-link",
+      "name": "Generate Magic Link",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1320, -200]
+    },
+    {
+      "parameters": {
+        "jsCode": "const item = $('Has Emails to Send?').first().json;\nconst linkResponse = $input.first().json;\n\nconst magicLink = linkResponse.properties?.action_link || linkResponse.action_link || '';\nconst email = item.email;\nconst firstName = item.first_name || '';\nconst company = item.company || '';\nconst plan = item.plan || 'professional';\nconst billing = item.billing || 'monthly';\nconst templateId = item.template_id;\n\n// Unsubscribe token: HMAC-SHA256\nconst crypto = require('crypto');\nconst secret = $env.UNSUBSCRIBE_SECRET || $env.SUPABASE_SERVICE_ROLE_KEY;\nconst unsubToken = crypto.createHmac('sha256', secret).update(email.toLowerCase()).digest('hex');\nconst unsubLink = `https://stoaix.com/api/email/unsubscribe?email=${encodeURIComponent(email)}&token=${unsubToken}`;\n\n// Plan display names\nconst planNames = {\n  essential: 'Essential',\n  professional: 'Professional',\n  business: 'Business'\n};\nconst planName = planNames[plan] || 'Professional';\n\nconst billingLabel = billing === 'annual' ? 'Yıllık' : 'Aylık';\n\n// CTA link — magic link goes through auth callback → checkout\nconst ctaLink = magicLink;\nconst loginLink = 'https://stoaix.com/login';\n\n// ---------- EMAIL TEMPLATES ----------\n\nconst baseStyle = `\n  <div style=\"font-family: Arial, Helvetica, -apple-system, BlinkMacSystemFont, sans-serif; max-width: 600px; margin: 0 auto; background: #f5f8ff;\">\n    <div style=\"background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%); padding: 32px 24px; text-align: center; border-radius: 12px 12px 0 0;\">\n      <img src=\\\"https://stoaix.com/assets/logo-iconwithname-white.svg\\\" alt=\\\"STOAIX\\\" height=\\\"32\\\" style=\\\"height: 32px;\\\" />\n    </div>\n    <div style=\"background: #ffffff; padding: 40px 32px; border-radius: 0 0 12px 12px;\">\n`;\n\nconst ctaButton = `\n      <div style=\"text-align: center; margin: 32px 0;\">\n        <a href=\\\"${ctaLink}\\\" style=\\\"display: inline-block; padding: 14px 36px; background: #2563eb; color: #ffffff; font-size: 16px; font-weight: 600; text-decoration: none; border-radius: 8px;\\\">Hesabımı Aktifleştir</a>\n      </div>\n      <p style=\\\"font-size: 13px; color: #4a5a78; text-align: center;\\\">veya <a href=\\\"${loginLink}\\\" style=\\\"color: #2563eb; text-decoration: underline;\\\">giriş yapın</a></p>\n`;\n\nconst footer = `\n    </div>\n    <div style=\"padding: 24px 32px; text-align: center;\">\n      <p style=\"font-size: 12px; color: #94a3b8; margin: 0;\">© 2026 STOAIX — <a href=\\\"${unsubLink}\\\" style=\\\"color: #94a3b8; text-decoration: underline;\\\">Abonelikten çık</a></p>\n    </div>\n  </div>\n`;\n\nconst templates = {\n  '15min': {\n    subject: `Bir adım kaldı, ${firstName || 'merhaba'}`,\n    html: `${baseStyle}\n      <h1 style=\"font-size: 22px; font-weight: 700; color: #0c1427; margin: 0 0 16px;\">Bir adım kaldı!</h1>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Merhaba${firstName ? ' ' + firstName : ''},</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">E-posta adresinizi doğruladınız — harika! Şimdi tek yapmanız gereken hesabınızı aktifleştirmek.</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\"><strong>${planName} (${billingLabel})</strong> planınız sizi bekliyor. 7 günlük ücretsiz deneme ile hemen başlayın — kredi kartı bilgilerinizden herhangi bir ücret alınmaz.</p>\n      ${ctaButton}\n    ${footer}`\n  },\n  '1hr': {\n    subject: 'Hesabınız hazır — sadece aktivasyon kaldı',\n    html: `${baseStyle}\n      <h1 style=\"font-size: 22px; font-weight: 700; color: #0c1427; margin: 0 0 16px;\">Hesabınız hazır</h1>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Merhaba${firstName ? ' ' + firstName : ''},</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">STOAIX hesabınız oluşturuldu ve ${planName} planınız aktifleştirilmeyi bekliyor.</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 16px;\"><strong>${planName} planı ile neler elde edeceksiniz:</strong></p>\n      <ul style=\"font-size: 15px; color: #4a5a78; line-height: 2; padding-left: 20px; margin: 0 0 8px;\">\n        <li>Yapay zeka destekli hasta iletişim yönetimi</li>\n        <li>Otomatik randevu hatırlatmaları</li>\n        <li>Gelir kaçağı analizi ve raporlama</li>\n        <li>7 gün ücretsiz deneme — risk yok</li>\n      </ul>\n      ${ctaButton}\n    ${footer}`\n  },\n  '24hr': {\n    subject: 'Kliniğiniz için neler değişecek?',\n    html: `${baseStyle}\n      <h1 style=\"font-size: 22px; font-weight: 700; color: #0c1427; margin: 0 0 16px;\">Kliniğiniz için neler değişecek?</h1>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Merhaba${firstName ? ' ' + firstName : ''},</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">STOAIX kullanan klinikler ortalama olarak:</p>\n      <div style=\"background: #f5f8ff; border-radius: 12px; padding: 24px; margin: 16px 0;\">\n        <p style=\"font-size: 15px; color: #0c1427; margin: 0 0 8px;\"><strong>+35%</strong> — Hasta geri dönüş oranında artış</p>\n        <p style=\"font-size: 15px; color: #0c1427; margin: 0 0 8px;\"><strong>8+ saat/hafta</strong> — İdari işlerden tasarruf</p>\n        <p style=\"font-size: 15px; color: #0c1427; margin: 0;\"><strong>-60%</strong> — Randevu iptali oranında düşüş</p>\n      </div>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">${company ? company + ' için' : 'Kliniğiniz için'} bu rakamların ne anlama geldiğini düşünün. 7 günlük ücretsiz deneme ile riski sıfırla test edin.</p>\n      ${ctaButton}\n    ${footer}`\n  },\n  '3day': {\n    subject: 'Bir sorunuz mu var?',\n    html: `${baseStyle}\n      <h1 style=\"font-size: 22px; font-weight: 700; color: #0c1427; margin: 0 0 16px;\">Size yardımcı olabilir miyiz?</h1>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Merhaba${firstName ? ' ' + firstName : ''},</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Hesabınızı henüz aktifleştirmediğinizi fark ettik. Bir sorunuz veya tereddüdünüz varsa, size yardımcı olmaktan mutluluk duyarız.</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Sık sorulan sorular:</p>\n      <ul style=\"font-size: 15px; color: #4a5a78; line-height: 2; padding-left: 20px; margin: 0 0 8px;\">\n        <li><strong>Deneme süresi gerçekten ücretsiz mi?</strong> — Evet, 7 gün boyunca herhangi bir ücret alınmaz. İstediğiniz zaman iptal edebilirsiniz.</li>\n        <li><strong>Kurulum zor mu?</strong> — Hayır, 10 dakikada başlayabilirsiniz. Kurulum desteği sunuyoruz.</li>\n        <li><strong>Verilerim güvende mi?</strong> — Tüm veriler şifreli ve KVKK uyumlu altyapıda saklanır.</li>\n      </ul>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Bize doğrudan <a href=\\\"mailto:destek@stoaix.com\\\" style=\\\"color: #2563eb;\\\">destek@stoaix.com</a> adresinden ulaşabilirsiniz.</p>\n      ${ctaButton}\n    ${footer}`\n  },\n  '7day': {\n    subject: 'Hesabınızın süresi dolmak üzere',\n    html: `${baseStyle}\n      <h1 style=\"font-size: 22px; font-weight: 700; color: #0c1427; margin: 0 0 16px;\">Hesabınızın süresi dolmak üzere</h1>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Merhaba${firstName ? ' ' + firstName : ''},</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">STOAIX hesabınız <strong>9 gün sonra</strong> otomatik olarak kaldırılacak. Hesabınızı kaybetmemek için şimdi aktifleştirin.</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Aktifleştirme sonrası 7 gün ücretsiz deneme hakkınız başlar — herhangi bir ücret alınmaz.</p>\n      <div style=\"background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 16px; margin: 16px 0;\">\n        <p style=\"font-size: 14px; color: #92400e; margin: 0;\">Hesap kaldırıldıktan sonra aynı bilgilerle tekrar kayıt olmanız gerekecektir.</p>\n      </div>\n      ${ctaButton}\n    ${footer}`\n  },\n  '10day': {\n    subject: \"STOAIX'i kliniğinize nasıl entegre edebilirsiniz\",\n    html: `${baseStyle}\n      <h1 style=\"font-size: 22px; font-weight: 700; color: #0c1427; margin: 0 0 16px;\">STOAIX'i kliniğinize entegre edin</h1>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Merhaba${firstName ? ' ' + firstName : ''},</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">STOAIX, mevcut klinik süreçlerinize kolayca entegre olur:</p>\n      <div style=\"margin: 16px 0;\">\n        <div style=\"background: #f5f8ff; border-radius: 8px; padding: 16px; margin-bottom: 8px;\">\n          <p style=\"font-size: 15px; color: #0c1427; margin: 0;\"><strong>1. Hasta Kayıtları</strong> — Mevcut hasta verilerinizi kolayca aktarın</p>\n        </div>\n        <div style=\"background: #f5f8ff; border-radius: 8px; padding: 16px; margin-bottom: 8px;\">\n          <p style=\"font-size: 15px; color: #0c1427; margin: 0;\"><strong>2. Randevu Sistemi</strong> — Otomatik hatırlatma ve takip</p>\n        </div>\n        <div style=\"background: #f5f8ff; border-radius: 8px; padding: 16px; margin-bottom: 8px;\">\n          <p style=\"font-size: 15px; color: #0c1427; margin: 0;\"><strong>3. Gelir Takibi</strong> — Kaçan gelirleri görün ve aksiyona geçin</p>\n        </div>\n      </div>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Hesabınız <strong>6 gün sonra</strong> kaldırılacak. Hemen aktifleştirin ve 7 günlük ücretsiz denemeye başlayın.</p>\n      ${ctaButton}\n      <div style=\"background: #f0f9ff; border: 1px solid #bae6fd; border-radius: 8px; padding: 16px; margin-top: 24px;\">\n        <p style=\"font-size: 14px; color: #0c4a6e; margin: 0 0 4px;\"><strong>Birden fazla klinik mi yönetiyorsunuz?</strong></p>\n        <p style=\"font-size: 13px; color: #0369a1; margin: 0;\">Partner programımız ile tüm kliniklerinizi tek panelden yönetin ve özel fiyatlandırmadan yararlanın. <a href=\\\"https://stoaix.com/partners\\\" style=\\\"color: #2563eb; text-decoration: underline;\\\">Detaylı bilgi</a></p>\n      </div>\n    ${footer}`\n  },\n  '15day': {\n    subject: 'Son hatırlatma — hesabınız yarın kaldırılıyor',\n    html: `${baseStyle}\n      <h1 style=\"font-size: 22px; font-weight: 700; color: #0c1427; margin: 0 0 16px;\">Son hatırlatma</h1>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Merhaba${firstName ? ' ' + firstName : ''},</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">STOAIX hesabınız <strong>yarın kaldırılacak</strong>.</p>\n      <p style=\"font-size: 15px; color: #4a5a78; line-height: 1.7; margin: 0 0 8px;\">Bu son hatırlatmamız. Hesabınızı korumak için bugün aktifleştirmeniz gerekiyor.</p>\n      <div style=\"background: #fef2f2; border: 1px solid #fca5a5; border-radius: 8px; padding: 16px; margin: 16px 0;\">\n        <p style=\"font-size: 14px; color: #991b1b; margin: 0;\">Yarın itibarıyla hesabınız ve tüm verileriniz kalıcı olarak silinecektir.</p>\n      </div>\n      ${ctaButton}\n    ${footer}`\n  }\n};\n\nconst tpl = templates[templateId];\nif (!tpl) {\n  return [{ json: { _skip: true } }];\n}\n\nreturn [{\n  json: {\n    email: item.email,\n    template_id: templateId,\n    subject: tpl.subject,\n    html: tpl.html,\n    unsub_link: unsubLink,\n    magic_link: magicLink\n  }\n}];"
+      },
+      "id": "build-email",
+      "name": "Build Email Template",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1540, -200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.resend.com/emails",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "Bearer {{$env.RESEND_API_KEY}}" },
+            { "name": "List-Unsubscribe", "value": "<{{ $json.unsub_link }}>" },
+            { "name": "List-Unsubscribe-Post", "value": "List-Unsubscribe=One-Click" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"from\": \"STOAIX <noreply@stoaix.com>\",\n  \"to\": [\"{{ $json.email }}\"],\n  \"subject\": \"{{ $json.subject }}\",\n  \"html\": {{ JSON.stringify($json.html) }},\n  \"headers\": {\n    \"List-Unsubscribe\": \"<{{ $json.unsub_link }}>\",\n    \"List-Unsubscribe-Post\": \"List-Unsubscribe=One-Click\"\n  }\n}",
+        "options": {}
+      },
+      "id": "send-email",
+      "name": "Send via Resend",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1760, -200]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.SUPABASE_URL}}/rest/v1/recovery_emails_log",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "={{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Authorization", "value": "Bearer {{$env.SUPABASE_SERVICE_ROLE_KEY}}" },
+            { "name": "Content-Type", "value": "application/json" },
+            { "name": "Prefer", "value": "return=minimal" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"email\": \"{{ $('Build Email Template').item.json.email }}\",\n  \"template\": \"{{ $('Build Email Template').item.json.template_id }}\"\n}",
+        "options": {}
+      },
+      "id": "log-sent-email",
+      "name": "Log Sent Email",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1980, -200]
+    },
+    {
+      "parameters": {},
+      "id": "no-op-end",
+      "name": "No Leads — Stop",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [660, 100]
+    },
+    {
+      "parameters": {},
+      "id": "no-op-skip",
+      "name": "No Emails — Stop",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1320, 0]
+    }
+  ],
+  "connections": {
+    "Every 15 Minutes": {
+      "main": [
+        [{ "node": "Fetch Unconverted Leads", "type": "main", "index": 0 }]
+      ]
+    },
+    "Fetch Unconverted Leads": {
+      "main": [
+        [{ "node": "Has Leads?", "type": "main", "index": 0 }]
+      ]
+    },
+    "Has Leads?": {
+      "main": [
+        [{ "node": "Fetch Sent Email Logs", "type": "main", "index": 0 }],
+        [{ "node": "No Leads — Stop", "type": "main", "index": 0 }]
+      ]
+    },
+    "Fetch Sent Email Logs": {
+      "main": [
+        [{ "node": "Determine Emails to Send", "type": "main", "index": 0 }]
+      ]
+    },
+    "Determine Emails to Send": {
+      "main": [
+        [{ "node": "Has Emails to Send?", "type": "main", "index": 0 }]
+      ]
+    },
+    "Has Emails to Send?": {
+      "main": [
+        [{ "node": "Generate Magic Link", "type": "main", "index": 0 }],
+        [{ "node": "No Emails — Stop", "type": "main", "index": 0 }]
+      ]
+    },
+    "Generate Magic Link": {
+      "main": [
+        [{ "node": "Build Email Template", "type": "main", "index": 0 }]
+      ]
+    },
+    "Build Email Template": {
+      "main": [
+        [{ "node": "Send via Resend", "type": "main", "index": 0 }]
+      ]
+    },
+    "Send via Resend": {
+      "main": [
+        [{ "node": "Log Sent Email", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    { "name": "Marketing" }
+  ],
+  "triggerCount": 1,
+  "active": false
+}
