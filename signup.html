@@ -613,6 +613,16 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
   let countdownInterval = null
   let currentEmail = ''
 
+  // Read Facebook cookies for CAPI matching
+  function getFbCookies() {
+    const cookies = document.cookie.split(';').reduce((acc, c) => {
+      const [k, v] = c.trim().split('=')
+      if (k) acc[k] = v
+      return acc
+    }, {})
+    return { fbc: cookies._fbc || '', fbp: cookies._fbp || '' }
+  }
+
   function updatePrices() {
     const billing = toggle.checked ? 'annual' : 'monthly'
     const suffix = billing === 'annual' ? '/ mo, billed annually' : '/ month'
@@ -672,6 +682,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           company: document.getElementById('company').value,
           plan: document.querySelector('input[name="plan"]:checked')?.value,
           billing: toggle.checked ? 'annual' : 'monthly',
+          ...getFbCookies(),
         }),
       })
 
@@ -763,7 +774,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       const res = await fetch('/api/auth/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: currentEmail, code }),
+        body: JSON.stringify({ email: currentEmail, code, ...getFbCookies() }),
       })
       const data = await res.json()
 
@@ -800,6 +811,9 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         billing,
       }))
       sessionStorage.setItem('email_verified', 'true')
+      const fbCookies = getFbCookies()
+      sessionStorage.setItem('fb_fbc', fbCookies.fbc)
+      sessionStorage.setItem('fb_fbp', fbCookies.fbp)
       window.location.href = 'checkout.html?' + params.toString()
 
     } catch (err) {

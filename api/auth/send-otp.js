@@ -22,7 +22,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
-  const { email, recaptchaToken, firstName, lastName, company, plan, billing } = req.body
+  const { email, recaptchaToken, firstName, lastName, company, plan, billing, fbc, fbp } = req.body
 
   if (!email || !recaptchaToken) {
     return res.status(400).json({ error: 'Missing email or reCAPTCHA token' })

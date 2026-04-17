@@ -523,6 +523,8 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             billing,
             password,
             paymentMethodId: paymentMethod.id,
+            fbc: sessionStorage.getItem('fb_fbc') || '',
+            fbp: sessionStorage.getItem('fb_fbp') || '',
           }),
         })
 
@@ -540,6 +542,8 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         sessionStorage.removeItem('signup_data')
         sessionStorage.removeItem('signup_password')
         sessionStorage.removeItem('email_verified')
+        sessionStorage.removeItem('fb_fbc')
+        sessionStorage.removeItem('fb_fbp')
 
         // Show success, then redirect
         document.getElementById('successOverlay').classList.add('visible')

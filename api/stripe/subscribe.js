@@ -1,6 +1,6 @@
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
-import { sendEvent } from '../_lib/fb-capi.js'
+import { sendEvent, getClientIp, getUserAgent } from '../_lib/fb-capi.js'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
 
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
-  const { email, firstName, lastName, company, plan, billing, paymentMethodId } = req.body
+  const { email, firstName, lastName, company, plan, billing, paymentMethodId, fbc, fbp } = req.body
 
   if (!email || !plan || !billing || !paymentMethodId) {
     return res.status(400).json({ error: 'Missing required fields' })
@@ -178,6 +178,13 @@ export default async function handler(req, res) {
       lastName,
       value: price,
       sourceUrl: 'https://stoaix.com/checkout',
+      clientIp: getClientIp(req),
+      clientUserAgent: getUserAgent(req),
+      fbc,
+      fbp,
+      contentName: `${p.name} Plan`,
+      contentCategory: 'subscription',
+      contentIds: planKey,
     }).catch(() => {})
 
     // 7. Generate magic link → platform.stoaix.com/auth/callback → onboarding

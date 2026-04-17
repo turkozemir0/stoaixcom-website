@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js'
-import { sendEvent } from '../_lib/fb-capi.js'
+import { sendEvent, getClientIp, getUserAgent } from '../_lib/fb-capi.js'
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -20,7 +20,7 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
-  const { email, code } = req.body
+  const { email, code, fbc, fbp } = req.body
 
   if (!email || !code) {
     return res.status(400).json({ error: 'Missing email or code' })
@@ -65,7 +65,7 @@ export default async function handler(req, res) {
       .from('signup_leads')
       .update({ email_verified: true, verified_at: new Date().toISOString() })
       .eq('email', email.toLowerCase())
-      .select('first_name, last_name')
+      .select('first_name, last_name, plan')
       .single()
 
     // Send FB CAPI Lead event
@@ -76,6 +76,12 @@ export default async function handler(req, res) {
       lastName: leadData?.last_name,
       value: 10,
       sourceUrl: 'https://stoaix.com/signup',
+      clientIp: getClientIp(req),
+      clientUserAgent: getUserAgent(req),
+      fbc,
+      fbp,
+      contentName: leadData?.plan ? `${leadData.plan} Plan` : undefined,
+      contentCategory: 'subscription',
     }).catch(() => {})
 
     return res.status(200).json({ success: true })
