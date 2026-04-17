@@ -181,7 +181,7 @@
 
 /* ─── Scroll reveal (IntersectionObserver) ───────────────── */
 (function initScrollReveal() {
-  const elements = document.querySelectorAll('.reveal');
+  const elements = document.querySelectorAll('.reveal, .stagger');
   if (!elements.length) return;
 
   const observer = new IntersectionObserver(
@@ -193,7 +193,7 @@
         }
       });
     },
-    { threshold: 0.12, rootMargin: '0px 0px -48px 0px' }
+    { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
   );
 
   elements.forEach(el => observer.observe(el));
