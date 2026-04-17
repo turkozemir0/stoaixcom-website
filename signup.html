@@ -274,6 +274,83 @@
       .form-row-2 { grid-template-columns: 1fr; }
       .plan-cards { grid-template-columns: 1fr 1fr; }
     }
+    /* ── OTP Step ── */
+    .otp-step { display: none; }
+    .otp-step.active { display: block; }
+    .signup-form-step { display: block; }
+    .signup-form-step.hidden { display: none; }
+
+    .otp-header { text-align: center; margin-bottom: 28px; }
+    .otp-header .auth-title { font-size: 1.35rem; }
+    .otp-email-display {
+      font-size: 0.9rem; color: var(--blue); font-weight: 600;
+      word-break: break-all;
+    }
+
+    .otp-inputs {
+      display: flex; gap: 8px; justify-content: center; margin-bottom: 24px;
+    }
+    .otp-input {
+      width: 48px; height: 56px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 1.5rem; font-weight: 700;
+      text-align: center;
+      color: var(--text-1);
+      background: var(--bg-2);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+      caret-color: var(--blue);
+    }
+    .otp-input:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.10);
+      background: #fff;
+    }
+    .otp-input.error {
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220,38,38,0.08);
+    }
+
+    .otp-error {
+      text-align: center; font-size: 0.83rem; color: #dc2626;
+      min-height: 20px; margin-bottom: 12px;
+    }
+
+    .otp-actions { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .otp-resend-wrap {
+      font-size: 0.85rem; color: var(--text-2); text-align: center;
+    }
+    .otp-resend-btn {
+      background: none; border: none; color: var(--blue);
+      font-weight: 600; font-size: 0.85rem; cursor: pointer;
+      font-family: inherit; padding: 0;
+    }
+    .otp-resend-btn:disabled {
+      color: var(--text-2); cursor: not-allowed; opacity: 0.6;
+    }
+    .otp-back-btn {
+      background: none; border: none;
+      color: var(--text-2); font-size: 0.85rem;
+      cursor: pointer; font-family: inherit;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .otp-back-btn:hover { color: var(--text-1); }
+
+    .otp-verifying {
+      display: none; align-items: center; justify-content: center;
+      gap: 8px; font-size: 0.9rem; color: var(--text-2); margin-top: 8px;
+    }
+    .otp-verifying.active { display: flex; }
+    .otp-spinner {
+      width: 16px; height: 16px;
+      border: 2px solid var(--border);
+      border-top-color: var(--blue);
+      border-radius: 50%;
+      animation: otp-spin 0.6s linear infinite;
+    }
+    @keyframes otp-spin { to { transform: rotate(360deg); } }
   </style>
 <!-- Meta Pixel Code -->
 <script>
@@ -292,6 +369,7 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+<script src="https://www.google.com/recaptcha/api.js?render=6Ld3QbwsAAAAAJOdmYVUTV3C7T5eUyeuS-CCKX1M"></script>
 </head>
 <body class="auth-page">
 
@@ -355,6 +433,9 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
     <!-- Right: form -->
     <div class="signup-right">
+
+      <!-- Step 1: Signup form -->
+      <div id="formStep" class="signup-form-step">
       <div class="auth-header">
         <div class="auth-title">Create your account</div>
         <div class="auth-subtitle">Start your 7-day free trial today</div>
@@ -444,7 +525,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         </div>
 
         <button type="submit" class="btn-auth" id="submitBtn">
-          Continue to payment
+          Continue
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14M12 5l7 7-7 7"/>
           </svg>
@@ -458,10 +539,51 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       <div class="auth-footer-note">
         Already have an account? <a href="login.html">Log in</a>
       </div>
+      </div><!-- /formStep -->
+
+      <!-- Step 2: OTP verification -->
+      <div id="otpStep" class="otp-step">
+        <div class="otp-header">
+          <div class="auth-title">Check your email</div>
+          <div class="auth-subtitle" style="margin-top: 6px;">
+            We sent a 6-digit code to<br />
+            <span class="otp-email-display" id="otpEmailDisplay"></span>
+          </div>
+        </div>
+
+        <div class="otp-inputs" id="otpInputs">
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-idx="0" autocomplete="one-time-code" />
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-idx="1" />
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-idx="2" />
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-idx="3" />
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-idx="4" />
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-input" data-idx="5" />
+        </div>
+
+        <div class="otp-error" id="otpError"></div>
+
+        <div class="otp-verifying" id="otpVerifying">
+          <div class="otp-spinner"></div>
+          Verifying…
+        </div>
+
+        <div class="otp-actions">
+          <div class="otp-resend-wrap">
+            <span id="otpCountdown">Resend code in <strong>60s</strong></span>
+            <button type="button" class="otp-resend-btn" id="otpResendBtn" style="display:none;">Resend code</button>
+          </div>
+          <button type="button" class="otp-back-btn" id="otpBackBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Back
+          </button>
+        </div>
+      </div><!-- /otpStep -->
+
     </div>
   </div>
 
 <script>
+  const RECAPTCHA_SITE_KEY = '6Ld3QbwsAAAAAJOdmYVUTV3C7T5eUyeuS-CCKX1M'
   const ENTERPRISE_URL = 'https://calendly.com/stoaix/enterprise'
 
   const prices = {
@@ -474,6 +596,22 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
   const labelAnnual = document.getElementById('labelAnnual')
   const submitBtn = document.getElementById('submitBtn')
   const trialNote = document.getElementById('trialNote')
+
+  // Steps
+  const formStep = document.getElementById('formStep')
+  const otpStep = document.getElementById('otpStep')
+
+  // OTP elements
+  const otpInputs = document.querySelectorAll('.otp-input')
+  const otpError = document.getElementById('otpError')
+  const otpCountdown = document.getElementById('otpCountdown')
+  const otpResendBtn = document.getElementById('otpResendBtn')
+  const otpBackBtn = document.getElementById('otpBackBtn')
+  const otpVerifying = document.getElementById('otpVerifying')
+  const otpEmailDisplay = document.getElementById('otpEmailDisplay')
+
+  let countdownInterval = null
+  let currentEmail = ''
 
   function updatePrices() {
     const billing = toggle.checked ? 'annual' : 'monthly'
@@ -497,40 +635,224 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         submitBtn.classList.add('enterprise-btn')
         trialNote.innerHTML = 'Our team will contact you to set up a custom plan.'
       } else {
-        submitBtn.innerHTML = 'Continue to payment <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+        submitBtn.innerHTML = 'Continue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
         submitBtn.classList.remove('enterprise-btn')
         trialNote.innerHTML = '<strong>7-day free trial.</strong> No charge until your trial ends. Cancel anytime.'
       }
     })
   })
 
-  document.getElementById('signupForm').addEventListener('submit', function(e) {
+  // ─── Form submit → reCAPTCHA → send OTP ──────────────────────────────────────
+  document.getElementById('signupForm').addEventListener('submit', async function(e) {
     e.preventDefault()
+
     const plan = document.querySelector('input[name="plan"]:checked')?.value
     if (plan === 'custom') {
       window.open(ENTERPRISE_URL, '_blank')
       return
     }
-    const billing = toggle.checked ? 'annual' : 'monthly'
-    const params = new URLSearchParams({
-      plan,
-      billing,
-      first_name: document.getElementById('first_name').value,
-      last_name: document.getElementById('last_name').value,
-      email: document.getElementById('email').value,
-      company: document.getElementById('company').value,
+
+    currentEmail = document.getElementById('email').value
+    submitBtn.disabled = true
+    submitBtn.innerHTML = 'Sending code…'
+
+    try {
+      // Get reCAPTCHA v3 token
+      const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'signup' })
+
+      // Send OTP
+      const res = await fetch('/api/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: currentEmail, recaptchaToken }),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok || !data.success) {
+        alert(data.error || 'Failed to send verification code. Please try again.')
+        submitBtn.disabled = false
+        submitBtn.innerHTML = 'Continue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+        return
+      }
+
+      // Show OTP step
+      showOtpStep()
+    } catch (err) {
+      alert('Network error. Please try again.')
+      submitBtn.disabled = false
+      submitBtn.innerHTML = 'Continue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+    }
+  })
+
+  // ─── OTP Step ─────────────────────────────────────────────────────────────────
+  function showOtpStep() {
+    formStep.classList.add('hidden')
+    otpStep.classList.add('active')
+    otpEmailDisplay.textContent = currentEmail
+    otpError.textContent = ''
+    otpInputs.forEach(inp => { inp.value = ''; inp.classList.remove('error') })
+    otpInputs[0].focus()
+    startCountdown(60)
+  }
+
+  function hideOtpStep() {
+    otpStep.classList.remove('active')
+    formStep.classList.remove('hidden')
+    clearInterval(countdownInterval)
+    submitBtn.disabled = false
+    submitBtn.innerHTML = 'Continue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+  }
+
+  otpBackBtn.addEventListener('click', hideOtpStep)
+
+  // Auto-focus & auto-advance OTP inputs
+  otpInputs.forEach((input, idx) => {
+    input.addEventListener('input', (e) => {
+      const val = e.target.value.replace(/\D/g, '')
+      e.target.value = val.slice(0, 1)
+      e.target.classList.remove('error')
+      otpError.textContent = ''
+
+      if (val && idx < 5) {
+        otpInputs[idx + 1].focus()
+      }
+
+      // Auto-submit when all 6 filled
+      const code = Array.from(otpInputs).map(i => i.value).join('')
+      if (code.length === 6) {
+        verifyOtp(code)
+      }
     })
-    // Password is NOT passed via URL — it will be re-entered or handled differently
-    sessionStorage.setItem('signup_password', document.getElementById('password').value)
-    sessionStorage.setItem('signup_data', JSON.stringify({
-      firstName: document.getElementById('first_name').value,
-      lastName: document.getElementById('last_name').value,
-      email: document.getElementById('email').value,
-      company: document.getElementById('company').value,
-      plan,
-      billing,
-    }))
-    window.location.href = 'checkout.html?' + params.toString()
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && !input.value && idx > 0) {
+        otpInputs[idx - 1].focus()
+      }
+    })
+
+    // Handle paste
+    input.addEventListener('paste', (e) => {
+      e.preventDefault()
+      const pasted = (e.clipboardData.getData('text') || '').replace(/\D/g, '').slice(0, 6)
+      pasted.split('').forEach((ch, i) => {
+        if (otpInputs[i]) otpInputs[i].value = ch
+      })
+      if (pasted.length === 6) {
+        verifyOtp(pasted)
+      } else if (pasted.length > 0) {
+        otpInputs[Math.min(pasted.length, 5)].focus()
+      }
+    })
+  })
+
+  async function verifyOtp(code) {
+    otpVerifying.classList.add('active')
+    otpError.textContent = ''
+    otpInputs.forEach(i => i.disabled = true)
+
+    try {
+      const res = await fetch('/api/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: currentEmail, code }),
+      })
+      const data = await res.json()
+
+      if (!res.ok || !data.success) {
+        otpError.textContent = data.error || 'Invalid code. Please try again.'
+        otpInputs.forEach(i => { i.disabled = false; i.classList.add('error') })
+        otpInputs[0].focus()
+        otpInputs[0].select()
+        otpVerifying.classList.remove('active')
+        return
+      }
+
+      // Success — proceed to checkout
+      otpVerifying.classList.remove('active')
+      clearInterval(countdownInterval)
+
+      const plan = document.querySelector('input[name="plan"]:checked')?.value
+      const billing = toggle.checked ? 'annual' : 'monthly'
+      const params = new URLSearchParams({
+        plan,
+        billing,
+        first_name: document.getElementById('first_name').value,
+        last_name: document.getElementById('last_name').value,
+        email: currentEmail,
+        company: document.getElementById('company').value,
+      })
+      sessionStorage.setItem('signup_password', document.getElementById('password').value)
+      sessionStorage.setItem('signup_data', JSON.stringify({
+        firstName: document.getElementById('first_name').value,
+        lastName: document.getElementById('last_name').value,
+        email: currentEmail,
+        company: document.getElementById('company').value,
+        plan,
+        billing,
+      }))
+      sessionStorage.setItem('email_verified', 'true')
+      window.location.href = 'checkout.html?' + params.toString()
+
+    } catch (err) {
+      otpError.textContent = 'Network error. Please try again.'
+      otpInputs.forEach(i => i.disabled = false)
+      otpVerifying.classList.remove('active')
+    }
+  }
+
+  // Countdown timer
+  function startCountdown(seconds) {
+    clearInterval(countdownInterval)
+    otpCountdown.style.display = ''
+    otpResendBtn.style.display = 'none'
+    let remaining = seconds
+
+    otpCountdown.innerHTML = `Resend code in <strong>${remaining}s</strong>`
+    countdownInterval = setInterval(() => {
+      remaining--
+      if (remaining <= 0) {
+        clearInterval(countdownInterval)
+        otpCountdown.style.display = 'none'
+        otpResendBtn.style.display = ''
+      } else {
+        otpCountdown.innerHTML = `Resend code in <strong>${remaining}s</strong>`
+      }
+    }, 1000)
+  }
+
+  // Resend button
+  otpResendBtn.addEventListener('click', async () => {
+    otpResendBtn.disabled = true
+    otpResendBtn.textContent = 'Sending…'
+    otpError.textContent = ''
+
+    try {
+      const recaptchaToken = await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'resend_otp' })
+      const res = await fetch('/api/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: currentEmail, recaptchaToken }),
+      })
+      const data = await res.json()
+
+      if (!res.ok || !data.success) {
+        otpError.textContent = data.error || 'Failed to resend code.'
+        otpResendBtn.disabled = false
+        otpResendBtn.textContent = 'Resend code'
+        return
+      }
+
+      otpInputs.forEach(i => { i.value = ''; i.classList.remove('error') })
+      otpInputs[0].focus()
+      otpResendBtn.disabled = false
+      otpResendBtn.textContent = 'Resend code'
+      startCountdown(60)
+    } catch (err) {
+      otpError.textContent = 'Network error. Please try again.'
+      otpResendBtn.disabled = false
+      otpResendBtn.textContent = 'Resend code'
+    }
   })
 </script>
 <script defer src="js/i18n.js"></script>

@@ -384,6 +384,11 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
   </main>
 
   <script>
+    // ─── Email verification guard ────────────────────────────────────────────────
+    if (sessionStorage.getItem('email_verified') !== 'true') {
+      window.location.href = 'signup.html'
+    }
+
     // ─── Read URL params & sessionStorage ───────────────────────────────────────
     const params  = new URLSearchParams(window.location.search)
     const plan    = params.get('plan') || 'business'
@@ -534,6 +539,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         // Clear session storage
         sessionStorage.removeItem('signup_data')
         sessionStorage.removeItem('signup_password')
+        sessionStorage.removeItem('email_verified')
 
         // Show success, then redirect
         document.getElementById('successOverlay').classList.add('visible')
