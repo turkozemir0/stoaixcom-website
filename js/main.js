@@ -126,29 +126,57 @@
 })();
 
 
-/* ─── Hero rotating words ────────────────────────────────── */
+/* ─── Hero typewriter effect ─────────────────────────────── */
 (function initHeroWords() {
-  const words = document.querySelectorAll('.hero-word');
-  if (!words.length) return;
+  const wordEls    = document.querySelectorAll('.hero-word');
+  const typewriter = document.querySelector('.hero-typewriter');
+  if (!wordEls.length || !typewriter) return;
 
-  let current = 0;
-  const INTERVAL = 2000;
+  const TYPING_SPEED  = 80;
+  const ERASING_SPEED = 45;
+  const PAUSE_AFTER   = 1800;
+  const PAUSE_BEFORE  = 300;
 
-  function next() {
-    const prev = current;
-    current = (current + 1) % words.length;
+  let wordIndex = 0;
 
-    words[prev].classList.add('exit');
-    words[prev].classList.remove('active');
-
-    setTimeout(() => {
-      words[prev].classList.remove('exit');
-    }, 450);
-
-    words[current].classList.add('active');
+  function getWords() {
+    return Array.from(wordEls).map(el => el.textContent.trim());
   }
 
-  setInterval(next, INTERVAL);
+  function typeWord(word, done) {
+    let i = 0;
+    function tick() {
+      typewriter.textContent = word.slice(0, ++i);
+      if (i < word.length) setTimeout(tick, TYPING_SPEED);
+      else done();
+    }
+    tick();
+  }
+
+  function eraseWord(done) {
+    const text = typewriter.textContent;
+    let i = text.length;
+    function tick() {
+      typewriter.textContent = text.slice(0, --i);
+      if (i > 0) setTimeout(tick, ERASING_SPEED);
+      else done();
+    }
+    tick();
+  }
+
+  function cycle() {
+    const words = getWords();
+    const word = words[wordIndex];
+    wordIndex = (wordIndex + 1) % words.length;
+
+    typeWord(word, () => {
+      setTimeout(() => {
+        eraseWord(() => setTimeout(cycle, PAUSE_BEFORE));
+      }, PAUSE_AFTER);
+    });
+  }
+
+  cycle();
 })();
 
 

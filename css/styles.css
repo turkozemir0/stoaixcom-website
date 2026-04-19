@@ -518,33 +518,48 @@ ul { list-style: none; }
   justify-content: center;
 }
 
-/* Hero rotating word */
+/* Hero typewriter */
 .hero-word-wrap {
   position: relative;
   display: inline-block;
   vertical-align: bottom;
+  margin-left: 0.25em;
 }
+
+/* Hidden word source — kept in DOM for i18n translation only */
 .hero-word {
-  display: inline-block;
   position: absolute;
-  left: 0;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
-  white-space: nowrap;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Typewriter display text */
+.hero-typewriter {
+  display: inline;
   background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  white-space: nowrap;
 }
-.hero-word.active {
-  position: relative;
-  opacity: 1;
-  transform: translateY(0);
+
+/* Blinking cursor */
+.hero-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 0.85em;
+  background: linear-gradient(180deg, #2563eb, #7c3aed);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  border-radius: 1px;
+  animation: cursorBlink 1s step-end infinite;
 }
-.hero-word.exit {
-  opacity: 0;
-  transform: translateY(-20px);
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
 }
 
 .hero-badge {
