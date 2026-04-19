@@ -207,6 +207,38 @@
 })();
 
 
+/* ─── Count-up on scroll ─────────────────────────────────── */
+(function initCountUp() {
+  const els = document.querySelectorAll('[data-countup]');
+  if (!els.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+      const el = entry.target;
+      const target = parseFloat(el.dataset.countup);
+      const suffix = el.dataset.suffix || '';
+      const isFloat = String(el.dataset.countup).includes('.');
+      const duration = 1600;
+      const startTime = performance.now();
+
+      function step(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const val = target * ease;
+        el.textContent = (isFloat ? val.toFixed(1) : Math.round(val).toLocaleString()) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = (isFloat ? target.toFixed(1) : target.toLocaleString()) + suffix;
+      }
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.4 });
+
+  els.forEach(el => observer.observe(el));
+})();
+
+
 /* ─── Scroll reveal (IntersectionObserver) ───────────────── */
 (function initScrollReveal() {
   const elements = document.querySelectorAll('.reveal, .stagger');

@@ -572,6 +572,114 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   'See full FAQ': 'Tüm SSS\'lere bakın',
 });
 
+/* ─── Case Studies listing page ─────────────────────────── */
+const TR_CASE_STUDIES = Object.assign({}, TR_COMMON, {
+  'Case Studies — Real Results with STOAIX AI': 'Vaka Çalışmaları — STOAIX AI ile Gerçek Sonuçlar',
+  'Case Studies': 'Vaka Çalışmaları',
+  'Real clinics.': 'Gerçek klinikler.',
+  'Real results.': 'Gerçek sonuçlar.',
+  'See how healthcare businesses across 12+ countries use STOAIX to cut response times, fill calendars, and reactivate thousands of cold leads.': '12\'den fazla ülkedeki sağlık işletmelerinin yanıt sürelerini nasıl kısalttığını, takvimleri nasıl doldurduğunu ve binlerce soğuk lead\'i nasıl yeniden aktive ettiğini görün.',
+  'Avg. first response': 'Ort. ilk yanıt',
+  'Admin time saved': 'Tasarruf edilen yönetim süresi',
+  'Show-up rate lift': 'Gösterme oranı artışı',
+  'All': 'Tümü',
+  'Hair Transplant': 'Saç Ekimi',
+  'Dental': 'Diş',
+  'Aesthetic': 'Estetik',
+  'Physiotherapy': 'Fizyoterapi',
+  '4 case studies · Healthcare clinics': '4 vaka çalışması · Sağlık klinikleri',
+  'From 8-hour delays to instant AI replies — without adding a single team member.': '8 saatlik gecikmelerden anında AI yanıtlarına — tek bir ekip üyesi eklemeden.',
+  'An Istanbul health-tourism clinic was losing international leads while they slept. STOAIX deployed a multilingual AI agent that responded in 4 minutes, qualified every lead, and booked video consultations automatically.': 'İstanbul\'daki bir sağlık turizmi kliniği, uyurken uluslararası lead\'lerini kaybediyordu. STOAIX, 4 dakikada yanıt veren, her lead\'i niteleyen ve otomatik olarak görüntülü konsültasyonlar rezerve eden çok dilli bir AI ajanı devreye aldı.',
+  'Sales conversion': 'Satış dönüşümü',
+  'Cold leads reactivated': 'Yeniden aktive edilen soğuk lead\'ler',
+  'Read case study': 'Vaka çalışmasını oku',
+  'Systematised a 3-month implant sales cycle without adding headcount.': 'Personel artırmadan 3 aylık implant satış döngüsünü sistematize etti.',
+  'A South London dental practice specialising in high-ticket implants automated a 90-day follow-up sequence. Leads that used to go cold now convert — and patients who confirmed actually showed up.': 'Yüksek biletli implantlarda uzmanlaşmış bir Güney Londra diş kliniği, 90 günlük takip dizisini otomatikleştirdi. Eskiden soğuyan lead\'ler artık dönüşüyor — ve onaylayan hastalar gerçekten geliyor.',
+  'Show-up rate': 'Geliş oranı',
+  'Cold inquiries reactivated': 'Yeniden aktive edilen soğuk sorgular',
+  '12,000 forgotten leads. 240 new bookings. 6 weeks.': '12.000 unutulan lead. 240 yeni rezervasyon. 6 hafta.',
+  'A medical aesthetic clinic had three years of cold inquiries sitting untouched in their CRM. STOAIX launched a segmented re-activation campaign — and turned archived data into a revenue pipeline.': 'Bir medikal estetik kliniğinin CRM\'inde üç yıllık dokunulmamış soğuk sorgular birikiyordu. STOAIX segmentli bir yeniden aktivasyon kampanyası başlattı — ve arşivlenmiş verileri gelir boru hattına dönüştürdü.',
+  'Re-activation conversion': 'Yeniden aktivasyon dönüşümü',
+  'Avg. first response': 'Ort. ilk yanıt',
+  '3 clinics, zero admin. 80% time saved.': '3 klinik, sıfır yönetim yükü. %80 zaman tasarrufu.',
+  'A 3-location physiotherapy chain eliminated repetitive admin, re-engaged 6,200 lapsed patients, and freed their staff to focus on what matters most: patient care.': '3 lokasyonlu bir fizyoterapi zinciri, tekrarlayan yönetim işlerini ortadan kaldırdı, 6.200 hareketsiz hastayı yeniden devreye aldı ve personelini en önemli şeye odaklanmaya serbest bıraktı: hasta bakımı.',
+  'Admin time saved': 'Tasarruf edilen yönetim süresi',
+  'Lapsed patients re-engaged': 'Yeniden devreye alınan hasta',
+  'Your clinic could be next.': 'Sıradaki klinik sizin olabilir.',
+  'Join healthcare businesses across 12+ countries using STOAIX to turn enquiries into appointments — automatically.': '12\'den fazla ülkedeki sağlık işletmelerine katılın ve sorguları randevulara dönüştürün — otomatik olarak.',
+  'See all case studies': 'Tüm vaka çalışmalarını gör',
+});
+
+/* ─── Case study detail pages (shared) ──────────────────── */
+const TR_CASE_STUDY_BASE = Object.assign({}, TR_COMMON, {
+  'Home': 'Ana Sayfa',
+  'Case Studies': 'Vaka Çalışmaları',
+  'At a glance': 'Özet',
+  'Sector': 'Sektör',
+  'Location': 'Lokasyon',
+  'Channels': 'Kanallar',
+  'Languages': 'Diller',
+  'Timeline': 'Süreç',
+  'Other case studies': 'Diğer vaka çalışmaları',
+  'Start your free trial': 'Ücretsiz deneyin',
+  'Your clinic could be next.': 'Sıradaki klinik sizin olabilir.',
+  'Join healthcare businesses across 12+ countries using STOAIX to turn enquiries into appointments — automatically.': '12\'den fazla ülkedeki sağlık işletmelerine katılın ve sorguları randevulara dönüştürün — otomatik olarak.',
+  'Start free trial': 'Ücretsiz deneyin',
+  'See all case studies': 'Tüm vaka çalışmalarını gör',
+  'Results in 6 weeks': '6 haftada sonuç',
+  'Results in 8 weeks': '8 haftada sonuç',
+  'Results in 10 weeks': '10 haftada sonuç',
+  'Health-tourism clinic': 'Sağlık turizmi kliniği',
+  'Implant practice': 'İmplant kliniği',
+  'Medical aesthetics': 'Medikal estetik',
+  '3-location chain': '3 lokasyonlu zincir',
+});
+
+const TR_CASE_HAIR = Object.assign({}, TR_CASE_STUDY_BASE, {
+  'Hair Transplant Clinic Case Study — STOAIX': 'Saç Ekimi Kliniği Vaka Çalışması — STOAIX',
+  'Hair Transplant': 'Saç Ekimi',
+  'From 8-hour delays to': '8 saatlik gecikmelerden',
+  '4-minute AI responses': '4 dakikalık AI yanıtlarına',
+  'Istanbul, Turkey': 'İstanbul, Türkiye',
+  '8h → 4 min': '8 saat → 4 dakika',
+  '240 bookings in 6 weeks': '6 haftada 240 rezervasyon',
+  '80% admin time saved': '%80 yönetim süresi tasarrufu',
+  '+40% show-up rate lift': '+%40 geliş oranı artışı',
+});
+
+const TR_CASE_DENTAL = Object.assign({}, TR_CASE_STUDY_BASE, {
+  'Dental Clinic Case Study — STOAIX': 'Diş Kliniği Vaka Çalışması — STOAIX',
+  'Dental Clinic': 'Diş Kliniği',
+  'A 90-day sales cycle,': '90 günlük satış döngüsü,',
+  'automated end-to-end': 'uçtan uca otomatikleştirildi',
+  'South London, UK': 'Güney Londra, İngiltere',
+  '8h → 4 min response': '8 saat → 4 dk yanıt',
+  '240 bookings in 6 weeks': '6 haftada 240 rezervasyon',
+  '80% admin time saved': '%80 yönetim süresi tasarrufu',
+});
+
+const TR_CASE_AESTHETIC = Object.assign({}, TR_CASE_STUDY_BASE, {
+  'Aesthetic Clinic Case Study — STOAIX': 'Estetik Kliniği Vaka Çalışması — STOAIX',
+  'Aesthetic Clinic': 'Estetik Klinik',
+  '12,000 forgotten leads.': '12.000 unutulan lead.',
+  '240 new bookings.': '240 yeni rezervasyon.',
+  'London, UK': 'Londra, İngiltere',
+  '8h → 4 min response': '8 saat → 4 dk yanıt',
+  '+40% show-up rate lift': '+%40 geliş oranı artışı',
+  '80% admin time saved': '%80 yönetim süresi tasarrufu',
+});
+
+const TR_CASE_PHYSIO = Object.assign({}, TR_CASE_STUDY_BASE, {
+  'Physiotherapy Chain Case Study — STOAIX': 'Fizyoterapi Zinciri Vaka Çalışması — STOAIX',
+  'Physiotherapy': 'Fizyoterapi',
+  '3 clinics, zero admin burden,': '3 klinik, sıfır yönetim yükü,',
+  '6,200 patients re-engaged': '6.200 yeniden aktive edilen hasta',
+  'United Kingdom': 'Birleşik Krallık',
+  '8h → 4 min response': '8 saat → 4 dk yanıt',
+  '+40% show-up rate lift': '+%40 geliş oranı artışı',
+  '240 bookings in 6 weeks': '6 haftada 240 rezervasyon',
+});
+
 /* ─── Login page ─────────────────────────────────────────── */
 const TR_LOGIN = Object.assign({}, TR_COMMON, {
   'Log In — STOAIX': 'Giriş Yap — STOAIX',
@@ -671,6 +779,11 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
     '/login': TR_LOGIN,
     '/signup': TR_SIGNUP,
     '/checkout': TR_CHECKOUT,
+    '/case-studies': TR_CASE_STUDIES,
+    '/case-study-hair-transplant': TR_CASE_HAIR,
+    '/case-study-dental': TR_CASE_DENTAL,
+    '/case-study-aesthetic': TR_CASE_AESTHETIC,
+    '/case-study-physiotherapy': TR_CASE_PHYSIO,
   };
 
   const dict = DICT_MAP[path] || null;

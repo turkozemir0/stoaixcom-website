@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dental Clinic Case Study — STOAIX</title>
+  <meta name="description" content="How a South London implant practice lifted show-up rates by 40%, saved 80% of admin time, and reactivated 9,500 cold leads with STOAIX AI." />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <style>
+    .csd-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+      background:
+        radial-gradient(ellipse 65% 55% at 5% 15%,  rgba(37,99,235,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 45% at 92% 8%,  rgba(124,58,237,0.16) 0%, transparent 52%),
+        radial-gradient(ellipse 42% 38% at 50% 95%, rgba(59,130,246,0.12) 0%, transparent 50%),
+        #f5f7ff;
+    }
+    .csd-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(37,99,235,0.15) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .csd-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 55%, rgba(245,247,255,0.97) 100%);
+      pointer-events: none;
+    }
+    .csd-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .csd-breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      color: var(--text-3);
+      margin-bottom: 32px;
+    }
+    .csd-breadcrumb a { color: var(--text-3); transition: color 0.2s; }
+    .csd-breadcrumb a:hover { color: var(--blue); }
+    .csd-breadcrumb svg { flex-shrink: 0; opacity: 0.5; }
+    .csd-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-tint);
+      border: 1px solid var(--blue-mid);
+      color: var(--blue);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: var(--r-full);
+      margin-bottom: 20px;
+    }
+    .csd-hero-h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+    .csd-hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 0.85rem;
+      color: var(--text-3);
+    }
+    .csd-hero-meta span { display: flex; align-items: center; gap: 6px; }
+    .csd-metrics { padding: 64px 0 0; background: var(--bg); }
+    .csd-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .csd-metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .csd-metric::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+    }
+    .csd-metric-num {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .csd-metric-label { font-size: 0.82rem; color: var(--text-3); font-weight: 500; line-height: 1.4; }
+    .csd-body { padding: 64px 0 80px; background: var(--bg); }
+    .csd-layout {
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 56px;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .csd-prose h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin: 48px 0 14px;
+    }
+    .csd-prose h2:first-child { margin-top: 0; }
+    .csd-prose p { font-size: 1rem; color: var(--text-2); line-height: 1.75; margin-bottom: 18px; }
+    .csd-step-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+    .csd-step-label span {
+      width: 20px; height: 20px;
+      background: var(--blue-tint);
+      border: 1px solid var(--blue-mid);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+    .csd-quote {
+      background:
+        radial-gradient(ellipse 80% 70% at 50% 0%, rgba(37,99,235,0.08) 0%, transparent 65%),
+        var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--r-xl);
+      padding: 36px;
+      margin: 40px 0;
+    }
+    .csd-quote-text { font-size: 1.08rem; font-style: italic; color: var(--text); line-height: 1.7; margin-bottom: 18px; }
+    .csd-quote-author { font-size: 0.85rem; font-weight: 600; color: var(--text-2); }
+    .csd-quote-role { font-size: 0.8rem; color: var(--text-3); }
+    .csd-sidebar { position: sticky; top: calc(var(--nav-h) + 24px); height: fit-content; }
+    .csd-sidebar-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+    }
+    .csd-sidebar-card h3 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+    }
+    .csd-sidebar-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 0.85rem; }
+    .csd-sidebar-item:last-child { margin-bottom: 0; }
+    .csd-sidebar-key { color: var(--text-3); flex-shrink: 0; min-width: 90px; }
+    .csd-sidebar-val { color: var(--text); font-weight: 500; }
+    .csd-related-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--text);
+      transition: color 0.2s;
+    }
+    .csd-related-link:last-child { border-bottom: none; padding-bottom: 0; }
+    .csd-related-link:hover { color: var(--blue); }
+    .csd-related-label { font-size: 0.72rem; color: var(--text-3); display: block; margin-bottom: 2px; }
+    .csd-cta {
+      background:
+        radial-gradient(ellipse 80% 70% at 50% 110%, rgba(37,99,235,0.18) 0%, transparent 60%),
+        var(--bg-2);
+      border-top: 1px solid var(--border);
+      padding: 80px 24px;
+      text-align: center;
+    }
+    .csd-cta-h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; color: var(--text); margin-bottom: 14px; }
+    .csd-cta-sub { font-size: 1rem; color: var(--text-2); margin-bottom: 36px; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .csd-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 900px) {
+      .csd-layout { grid-template-columns: 1fr; gap: 40px; }
+      .csd-sidebar { position: static; }
+      .csd-metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .csd-hero { padding: 100px 0 60px; }
+      .csd-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .csd-metric { padding: 22px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <script defer src="/js/components.js"></script>
+
+  <section class="csd-hero">
+    <div class="csd-hero-inner">
+      <nav class="csd-breadcrumb reveal">
+        <a href="/">Home</a>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="/case-studies.html">Case Studies</a>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Dental Clinic</span>
+      </nav>
+      <div class="csd-badge reveal">Dental Clinic</div>
+      <h1 class="csd-hero-h1 reveal">
+        A 90-day sales cycle,<br /><span class="gradient-text">automated end-to-end</span>
+      </h1>
+      <div class="csd-hero-meta reveal">
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          South London, UK
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Results in 8 weeks
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-2.8 0-5 2.2-5 5 0 1.5.5 2.8 1.3 3.8L9 20h6l.7-9.2C16.5 9.8 17 8.5 17 7c0-2.8-2.2-5-5-5z"/></svg>
+          Implant practice
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="csd-metrics">
+    <div class="container">
+      <div class="csd-metrics-grid">
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num">+<span data-countup="40" data-suffix="%"></span></span>
+          <span class="csd-metric-label">Lift in booked consultations</span>
+        </div>
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num"><span data-countup="70" data-suffix="%"></span></span>
+          <span class="csd-metric-label">Show-up rate (up from 50%)</span>
+        </div>
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num"><span data-countup="80" data-suffix="%"></span></span>
+          <span class="csd-metric-label">Admin time saved per week</span>
+        </div>
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num"><span data-countup="9500"></span></span>
+          <span class="csd-metric-label">Cold inquiries reactivated</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="csd-body">
+    <div class="csd-layout">
+
+      <article class="csd-prose">
+
+        <div class="csd-step-label"><span>1</span>Problem</div>
+        <h2>A high-ticket product with a leaky pipeline</h2>
+        <p>
+          Dental implants are not impulse purchases. A patient who enquires today might book a consultation in two weeks, accept a treatment plan in six, and schedule surgery three months later. This 90-day cycle demands consistent, personalised follow-up — and most practices simply don't have the systems to deliver it.
+        </p>
+        <p>
+          The South London practice had a strong reputation and genuine clinical expertise, but their back-office hadn't caught up. Receptionist time was consumed answering the same questions repeatedly: pricing, payment plans, recovery time, how implants compare to dentures. By the time a lead received their second or third outreach, it was often weeks later — via a generic email — and they'd already booked elsewhere.
+        </p>
+        <p>
+          The practice's CRM held 9,500 enquiries from the previous two years. With no automated system to work them, leads aged silently. Show-up rates hovered at 50% — one in two booked patients simply didn't appear — and no one had time to find out why or to re-engage them.
+        </p>
+
+        <div class="csd-step-label" style="margin-top: 48px;"><span>2</span>Solution</div>
+        <h2>90-day nurture sequence, fully automated</h2>
+        <p>
+          STOAIX mapped the practice's actual sales cycle into a structured nurture workflow: initial enquiry → educational content → consultation offer → pre-appointment confirmation → post-consultation follow-up. Each step was personalised using data from the CRM — treatment interest, budget bracket, and how far they'd progressed previously.
+        </p>
+        <p>
+          The AI agent handled inbound enquiries via WhatsApp and the practice's website chat in real time, answered FAQ questions with clinical accuracy, and moved qualified leads directly into the booking flow. For leads who'd reached consultation stage but not committed, the AI sent a tailored re-engagement message at the optimal time in the cycle.
+        </p>
+        <p>
+          Pre-appointment confirmation was automated entirely. Two days before each consultation, the AI messaged patients with a personalised reminder, answered any last-minute questions, and confirmed attendance. No-shows who didn't respond were flagged for a human call within the hour.
+        </p>
+
+        <div class="csd-quote">
+          <p class="csd-quote-text">"Our implant coordinator used to spend half her day on admin — sending reminders, answering the same questions, chasing no-shows. STOAIX handles all of that now. She spends her time with patients who are actually ready to commit."</p>
+          <div class="csd-quote-author">Practice Manager</div>
+          <div class="csd-quote-role">South London Dental Practice</div>
+        </div>
+
+        <div class="csd-step-label"><span>3</span>Result</div>
+        <h2>+40% consultations. 80% of admin eliminated.</h2>
+        <p>
+          Within eight weeks of go-live, booked consultations increased by 40%. Show-up rates climbed from 50% to 70% — a 20-point improvement that directly translates to treatment revenue. The practice's implant coordinator reclaimed over 80% of her administrative time, redirecting it to patient-facing conversion conversations.
+        </p>
+        <p>
+          The re-activation campaign across 9,500 archived leads generated a measurable pipeline of reactivated enquiries — patients who had previously gone cold but re-engaged when contacted with a relevant, timely message. Several booked consultations within 48 hours of the first AI outreach.
+        </p>
+        <p>
+          The practice now operates a repeatable, data-driven acquisition and retention system — without additional headcount. Every new enquiry enters the same structured workflow, ensuring no lead goes uncontacted and no patient slips through a gap.
+        </p>
+
+      </article>
+
+      <aside class="csd-sidebar">
+        <div class="csd-sidebar-card reveal">
+          <h3>At a glance</h3>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Sector</span>
+            <span class="csd-sidebar-val">Dental / Implants</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Location</span>
+            <span class="csd-sidebar-val">South London, UK</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Channels</span>
+            <span class="csd-sidebar-val">WhatsApp, Web Chat</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Languages</span>
+            <span class="csd-sidebar-val">EN</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Timeline</span>
+            <span class="csd-sidebar-val">8 weeks to results</span>
+          </div>
+        </div>
+
+        <div class="csd-sidebar-card reveal">
+          <h3>Other case studies</h3>
+          <a href="/case-study-hair-transplant.html" class="csd-related-link">
+            <div>
+              <span class="csd-related-label">Hair Transplant</span>
+              8h → 4 min response
+            </div>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/case-study-aesthetic.html" class="csd-related-link">
+            <div>
+              <span class="csd-related-label">Aesthetic Clinic</span>
+              240 bookings in 6 weeks
+            </div>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/case-study-physiotherapy.html" class="csd-related-link">
+            <div>
+              <span class="csd-related-label">Physiotherapy Chain</span>
+              80% admin time saved
+            </div>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <a href="/healthcare-clinics.html#cta" class="btn btn-primary" style="width: 100%; justify-content: center;">
+          Start your free trial
+        </a>
+      </aside>
+
+    </div>
+  </section>
+
+  <section class="csd-cta">
+    <h2 class="csd-cta-h2 reveal">Your clinic could be next.</h2>
+    <p class="csd-cta-sub reveal">Join healthcare businesses across 12+ countries using STOAIX to turn enquiries into appointments — automatically.</p>
+    <div class="csd-cta-btns reveal">
+      <a href="/healthcare-clinics.html#cta" class="btn btn-primary">Start free trial</a>
+      <a href="/case-studies.html" class="btn btn-outline">See all case studies</a>
+    </div>
+  </section>
+
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aesthetic Clinic Case Study — STOAIX</title>
+  <meta name="description" content="How a medical aesthetic clinic turned 12,000 archived leads into 240 new bookings in 6 weeks using STOAIX AI — a 2% reactivation rate with 3-minute response times." />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <style>
+    .csd-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+      background:
+        radial-gradient(ellipse 65% 55% at 5% 15%,  rgba(37,99,235,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 45% at 92% 8%,  rgba(124,58,237,0.16) 0%, transparent 52%),
+        radial-gradient(ellipse 42% 38% at 50% 95%, rgba(59,130,246,0.12) 0%, transparent 50%),
+        #f5f7ff;
+    }
+    .csd-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(37,99,235,0.15) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .csd-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 55%, rgba(245,247,255,0.97) 100%);
+      pointer-events: none;
+    }
+    .csd-hero-inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; padding: 0 24px; }
+    .csd-breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text-3); margin-bottom: 32px; }
+    .csd-breadcrumb a { color: var(--text-3); transition: color 0.2s; }
+    .csd-breadcrumb a:hover { color: var(--blue); }
+    .csd-breadcrumb svg { flex-shrink: 0; opacity: 0.5; }
+    .csd-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-tint);
+      border: 1px solid var(--blue-mid);
+      color: var(--blue);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: var(--r-full);
+      margin-bottom: 20px;
+    }
+    .csd-hero-h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--text); margin-bottom: 18px; }
+    .csd-hero-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-3); }
+    .csd-hero-meta span { display: flex; align-items: center; gap: 6px; }
+    .csd-metrics { padding: 64px 0 0; background: var(--bg); }
+    .csd-metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .csd-metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .csd-metric::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #2563eb, #7c3aed); }
+    .csd-metric-num {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .csd-metric-label { font-size: 0.82rem; color: var(--text-3); font-weight: 500; line-height: 1.4; }
+    .csd-body { padding: 64px 0 80px; background: var(--bg); }
+    .csd-layout { display: grid; grid-template-columns: 1fr 300px; gap: 56px; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    .csd-prose h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em; color: var(--text); margin: 48px 0 14px; }
+    .csd-prose h2:first-child { margin-top: 0; }
+    .csd-prose p { font-size: 1rem; color: var(--text-2); line-height: 1.75; margin-bottom: 18px; }
+    .csd-step-label { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+    .csd-step-label span { width: 20px; height: 20px; background: var(--blue-tint); border: 1px solid var(--blue-mid); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+    .csd-quote { background: radial-gradient(ellipse 80% 70% at 50% 0%, rgba(37,99,235,0.08) 0%, transparent 65%), var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--blue); border-radius: var(--r-xl); padding: 36px; margin: 40px 0; }
+    .csd-quote-text { font-size: 1.08rem; font-style: italic; color: var(--text); line-height: 1.7; margin-bottom: 18px; }
+    .csd-quote-author { font-size: 0.85rem; font-weight: 600; color: var(--text-2); }
+    .csd-quote-role { font-size: 0.8rem; color: var(--text-3); }
+    .csd-sidebar { position: sticky; top: calc(var(--nav-h) + 24px); height: fit-content; }
+    .csd-sidebar-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px; box-shadow: var(--shadow-sm); margin-bottom: 20px; }
+    .csd-sidebar-card h3 { font-size: 0.72rem; font-weight: 700; color: var(--text); letter-spacing: 0.08em; margin-bottom: 16px; text-transform: uppercase; }
+    .csd-sidebar-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 0.85rem; }
+    .csd-sidebar-item:last-child { margin-bottom: 0; }
+    .csd-sidebar-key { color: var(--text-3); flex-shrink: 0; min-width: 90px; }
+    .csd-sidebar-val { color: var(--text); font-weight: 500; }
+    .csd-related-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; color: var(--text); transition: color 0.2s; }
+    .csd-related-link:last-child { border-bottom: none; padding-bottom: 0; }
+    .csd-related-link:hover { color: var(--blue); }
+    .csd-related-label { font-size: 0.72rem; color: var(--text-3); display: block; margin-bottom: 2px; }
+    .csd-cta { background: radial-gradient(ellipse 80% 70% at 50% 110%, rgba(37,99,235,0.18) 0%, transparent 60%), var(--bg-2); border-top: 1px solid var(--border); padding: 80px 24px; text-align: center; }
+    .csd-cta-h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; color: var(--text); margin-bottom: 14px; }
+    .csd-cta-sub { font-size: 1rem; color: var(--text-2); margin-bottom: 36px; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .csd-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 900px) { .csd-layout { grid-template-columns: 1fr; gap: 40px; } .csd-sidebar { position: static; } .csd-metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .csd-hero { padding: 100px 0 60px; } .csd-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } .csd-metric { padding: 22px 16px; } }
+  </style>
+</head>
+<body>
+
+  <script defer src="/js/components.js"></script>
+
+  <section class="csd-hero">
+    <div class="csd-hero-inner">
+      <nav class="csd-breadcrumb reveal">
+        <a href="/">Home</a>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="/case-studies.html">Case Studies</a>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Aesthetic Clinic</span>
+      </nav>
+      <div class="csd-badge reveal">Aesthetic Clinic</div>
+      <h1 class="csd-hero-h1 reveal">
+        12,000 forgotten leads.<br /><span class="gradient-text">240 new bookings.</span>
+      </h1>
+      <div class="csd-hero-meta reveal">
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          London, UK
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Results in 6 weeks
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          Medical aesthetics
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="csd-metrics">
+    <div class="container">
+      <div class="csd-metrics-grid">
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num"><span data-countup="240"></span></span>
+          <span class="csd-metric-label">New bookings from cold leads in 6 weeks</span>
+        </div>
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num"><span data-countup="12000"></span></span>
+          <span class="csd-metric-label">Dormant leads reactivated</span>
+        </div>
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num"><span data-countup="2" data-suffix="%"></span></span>
+          <span class="csd-metric-label">Reactivation conversion rate</span>
+        </div>
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num">3 min</span>
+          <span class="csd-metric-label">Average first response time</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="csd-body">
+    <div class="csd-layout">
+
+      <article class="csd-prose">
+
+        <div class="csd-step-label"><span>1</span>Problem</div>
+        <h2>Three years of data. Zero revenue.</h2>
+        <p>
+          The clinic had been collecting enquiries for three years — Instagram DMs, website forms, WhatsApp messages, walk-in cards. By the time they called STOAIX, their CRM held 12,000 contacts. Not one had been systematically followed up. Not because the team didn't want to; because no one had the time, system, or tools to do it properly.
+        </p>
+        <p>
+          Every month, the owner watched money sit in a spreadsheet. Each of those 12,000 names represented someone who had expressed genuine interest in a treatment — Botox, fillers, skin resurfacing, body contouring. Some were price-sensitive and needed education. Some had been ready to book but hit a delay and never came back. Some were post-procedure patients overdue for a follow-up.
+        </p>
+        <p>
+          New enquiries arrived daily — and the same pattern repeated. The receptionist would respond when she could (usually hours later), answer a few questions, and if the patient didn't immediately confirm, the conversation would trail off. There was no follow-up system, no reminder workflow, no second chance.
+        </p>
+
+        <div class="csd-step-label" style="margin-top: 48px;"><span>2</span>Solution</div>
+        <h2>Segmented reactivation at scale</h2>
+        <p>
+          The 12,000 archived contacts were imported into STOAIX and segmented into five groups: recent cold leads (enquired 1–3 months ago), older cold leads (4–12 months), post-procedure patients (had a treatment, no follow-up), price enquiries (asked for pricing, never booked), and consultation no-shows.
+        </p>
+        <p>
+          A bespoke outreach message was written for each segment. The AI agent sent personalised WhatsApp messages in a phased rollout — not a mass blast, but a drip that felt individual. Responses were handled in real time: if a patient replied, the AI continued the conversation, answered questions about specific treatments, and guided them into a booking.
+        </p>
+        <p>
+          In parallel, inbound enquiries were now answered within minutes by the AI — across WhatsApp, Instagram, and the website contact form — regardless of whether the receptionist was available. The AI handled pricing questions, booking requests, and pre-treatment guidance, escalating only when a query required clinical judgement.
+        </p>
+
+        <div class="csd-quote">
+          <p class="csd-quote-text">"I had 12,000 leads sitting doing nothing. Within six weeks STOAIX had turned some of those into 240 real bookings. That's revenue I would have left on the table forever if I'd kept relying on manual follow-up."</p>
+          <div class="csd-quote-author">Clinic Director</div>
+          <div class="csd-quote-role">Medical Aesthetic Clinic, London</div>
+        </div>
+
+        <div class="csd-step-label"><span>3</span>Result</div>
+        <h2>240 bookings from dormant data.</h2>
+        <p>
+          In the first six weeks, the reactivation campaign generated 240 confirmed bookings — a 2% conversion rate across 12,000 archived contacts. For a medical aesthetic clinic where the average treatment value runs between £250 and £1,500, the return on the STOAIX investment was clear within the first month.
+        </p>
+        <p>
+          Inbound response times dropped from hours to under 3 minutes on average. The AI handled the majority of all incoming enquiries without human involvement — answering questions, qualifying interest, and booking appointments directly into the clinic's calendar.
+        </p>
+        <p>
+          The clinic's receptionist, previously stretched across calls, DMs, and the front desk simultaneously, now focuses exclusively on in-clinic patient experience. The reactivation campaign continues to run on a rolling basis — every month, new cohorts of aged leads receive an AI-driven outreach sequence, creating a perpetual revenue pipeline from data the clinic already owns.
+        </p>
+
+      </article>
+
+      <aside class="csd-sidebar">
+        <div class="csd-sidebar-card reveal">
+          <h3>At a glance</h3>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Sector</span>
+            <span class="csd-sidebar-val">Medical Aesthetics</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Location</span>
+            <span class="csd-sidebar-val">London, UK</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Channels</span>
+            <span class="csd-sidebar-val">WhatsApp, Instagram, Web</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Languages</span>
+            <span class="csd-sidebar-val">EN</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Timeline</span>
+            <span class="csd-sidebar-val">6 weeks to results</span>
+          </div>
+        </div>
+
+        <div class="csd-sidebar-card reveal">
+          <h3>Other case studies</h3>
+          <a href="/case-study-hair-transplant.html" class="csd-related-link">
+            <div>
+              <span class="csd-related-label">Hair Transplant</span>
+              8h → 4 min response
+            </div>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/case-study-dental.html" class="csd-related-link">
+            <div>
+              <span class="csd-related-label">Dental Clinic</span>
+              +40% show-up rate lift
+            </div>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/case-study-physiotherapy.html" class="csd-related-link">
+            <div>
+              <span class="csd-related-label">Physiotherapy Chain</span>
+              80% admin time saved
+            </div>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <a href="/healthcare-clinics.html#cta" class="btn btn-primary" style="width: 100%; justify-content: center;">
+          Start your free trial
+        </a>
+      </aside>
+
+    </div>
+  </section>
+
+  <section class="csd-cta">
+    <h2 class="csd-cta-h2 reveal">Your clinic could be next.</h2>
+    <p class="csd-cta-sub reveal">Join healthcare businesses across 12+ countries using STOAIX to turn enquiries into appointments — automatically.</p>
+    <div class="csd-cta-btns reveal">
+      <a href="/healthcare-clinics.html#cta" class="btn btn-primary">Start free trial</a>
+      <a href="/case-studies.html" class="btn btn-outline">See all case studies</a>
+    </div>
+  </section>
+
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/i18n.js"></script>
+</body>
+</html>
