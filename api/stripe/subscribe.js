@@ -46,7 +46,7 @@ export default async function handler(req, res) {
 
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
-  const { email, firstName, lastName, company, plan, billing, paymentMethodId, fbc, fbp } = req.body
+  const { email, firstName, lastName, company, plan, billing, paymentMethodId, partnerRef, fbc, fbp } = req.body
 
   if (!email || !plan || !billing || !paymentMethodId) {
     return res.status(400).json({ error: 'Missing required fields' })
@@ -198,7 +198,29 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: `Org user link failed: ${orgUserError.message}` })
     }
 
-    // 6. Mark lead as converted + FB CAPI Purchase event
+    // 6. Notify partner panel if referred
+    if (partnerRef) {
+      try {
+        await fetch('https://partner.stoaix.com/api/webhook/conversion', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.PARTNER_WEBHOOK_SECRET}`,
+          },
+          body: JSON.stringify({
+            organization_id: org.id,
+            org_name: company || `${firstName}'s Clinic`,
+            plan_type: planKey,
+            monthly_price: price,
+            referral_code: partnerRef,
+          }),
+        })
+      } catch (err) {
+        console.error('Partner webhook error:', err)
+      }
+    }
+
+    // 7. Mark lead as converted + FB CAPI Purchase event
     await supabase
       .from('signup_leads')
       .update({ converted: true, converted_at: new Date().toISOString() })

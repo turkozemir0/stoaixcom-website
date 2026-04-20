@@ -519,6 +519,10 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           return
         }
 
+        // Read partner referral cookie
+        const partnerRefMatch = document.cookie.match(/(?:^|;\s*)partner_ref=([^;]+)/)
+        const partnerRef = partnerRefMatch ? partnerRefMatch[1] : ''
+
         // Call our API
         const res = await fetch('/api/stripe/subscribe', {
           method: 'POST',
@@ -531,6 +535,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             plan,
             billing,
             paymentMethodId: paymentMethod.id,
+            partnerRef,
             fbc: sessionStorage.getItem('fb_fbc') || '',
             fbp: sessionStorage.getItem('fb_fbp') || '',
           }),
