@@ -722,6 +722,45 @@ const TR_CASE_PHYSIO = Object.assign({}, TR_CASE_STUDY_BASE, {
   '240 bookings in 6 weeks': '6 haftada 240 rezervasyon',
 });
 
+/* ─── About Us page ──────────────────────────────────────── */
+const TR_ABOUT = Object.assign({}, TR_COMMON, {
+  'About Us — STOAIX | The Story Behind the AI': 'Hakkımızda — STOAIX | AI\'ın Arkasındaki Hikaye',
+  'Our Story': 'Hikayemiz',
+  'We built the AI': 'İstediğimiz AI\'ı',
+  'wished existed.': 'biz inşa ettik.',
+  'Every clinic, every agency, every business deserves to respond instantly — in any language, at any hour. We built STOAIX to make that the default, not the exception.': 'Her klinik, her ajans, her işletme anında yanıt verebilmeyi hak ediyor — her dilde, her saatte. STOAIX\'i bunu istisna değil, standart haline getirmek için inşa ettik.',
+  'The Origin': 'Başlangıç',
+  'A missed call is': 'Kaçırılan bir arama,',
+  'a missed patient.': 'kaçırılan bir hastadır.',
+  'In 2023, Ata and Emir were working closely with healthcare clinics across Turkey and the UK. The same problem kept surfacing: leads were coming in at midnight, on weekends, from patients in Dubai, London, or Istanbul — and nobody was there to respond.': '2023 yılında Ata ve Emir, Türkiye ve İngiltere genelindeki sağlık klinikleriyle yakın çalışıyordu. Hep aynı sorunla karşılaştılar: gece yarısı, hafta sonları, Dubai\'den, Londra\'dan, İstanbul\'dan hastalar ulaşıyor — ama yanıtlayan kimse yoktu.',
+  'By the time someone called back the next morning, the patient had already booked elsewhere. Not because the clinic was worse — just slower. A 6-hour delay felt like a rejection.': 'Ertesi sabah biri geri aradığında, hasta çoktan başka bir yere randevu almıştı. Klinik daha kötü olduğu için değil — sadece daha yavaştı. 6 saatlik bir gecikme, ret gibi hissettiriyordu.',
+  'The tools that existed were either too complex to set up, too expensive to justify, or simply not built for the real-world chaos of running a clinic. So we built our own. STOAIX was born from a real problem, for real businesses — not from a whiteboard in a conference room.': 'Mevcut araçlar ya kurması çok karmaşıktı, ya haklı çıkaramayacak kadar pahalıydı, ya da bir kliniği yönetmenin gerçek dünya kaosuna göre inşa edilmemişti. Bu yüzden kendimizinkini inşa ettik. STOAIX, bir konferans odasındaki beyaz tahtadan değil, gerçek bir sorundan, gerçek işletmeler için doğdu.',
+  'Today, STOAIX serves businesses across 12+ countries. We\'re still a small team, still obsessively close to our customers, and still building the product we wished had existed from day one.': 'Bugün STOAIX, 12\'den fazla ülkedeki işletmelere hizmet veriyor. Hâlâ küçük bir ekibiz, hâlâ müşterilerimize saplantılı derecede yakınız ve hâlâ ilk günden beri var olmasını dilediğimiz ürünü inşa ediyoruz.',
+  'Ata Ulufer': 'Ata Ulufer',
+  'Co-founder & CEO': 'Kurucu Ortak & CEO',
+  'Co-founder & CTO': 'Kurucu Ortak & CTO',
+  'What drives us': 'Bizi harekete geçiren ne',
+  'Our Mission': 'Misyonumuz',
+  'Make every clinic, agency, and business respond instantly — in any language, at any hour. Speed shouldn\'t be a luxury reserved for companies with large support teams. With STOAIX, it\'s the starting point.': 'Her kliniğin, ajansın ve işletmenin anında yanıt vermesini sağlamak — her dilde, her saatte. Hız, büyük destek ekiplerine sahip şirketler için bir lüks olmamalı. STOAIX ile bu, başlangıç noktasıdır.',
+  'Our Vision': 'Vizyonumuz',
+  'A world where no business loses a customer simply because they couldn\'t respond fast enough. AI shouldn\'t replace human connection — it should protect the moments that matter most.': 'Hiçbir işletmenin yalnızca yeterince hızlı yanıt veremediği için müşteri kaybetmediği bir dünya. AI insan bağlantısının yerini almamalı — en önemli anları korumalı.',
+  'How we work': 'Nasıl çalışırız',
+  'Speed over perfection': 'Mükemmellik yerine hız',
+  'Every hour a business goes without a response is a lead that\'s cooling. We ship fast, iterate faster, and never let the perfect be the enemy of the live.': 'Bir işletmenin yanıtsız geçirdiği her saat, soğuyan bir lead demektir. Hızlı ship eder, daha hızlı iterasyon yapar, mükemmelin canlıya düşman olmasına asla izin vermeyiz.',
+  'Radical simplicity': 'Radikal sadelik',
+  'If a clinic owner can\'t set it up in 5 minutes, it\'s too complicated. We remove every unnecessary step, every configuration screen, every excuse not to start.': 'Bir klinik sahibi 5 dakikada kuramazsa, çok karmaşıktır. Her gereksiz adımı, her yapılandırma ekranını, başlamamak için her bahaneyi kaldırırız.',
+  'Global from day one': 'İlk günden global',
+  'Our customers operate in Istanbul, London, Dubai, and Toronto. We build for multilingual, multicultural, multi-timezone — by default.': 'Müşterilerimiz İstanbul\'da, Londra\'da, Dubai\'de ve Toronto\'da faaliyet gösteriyor. Çok dilli, çok kültürlü, çok zaman dilimli için — varsayılan olarak inşa ediyoruz.',
+  'Countries served': 'Hizmet verilen ülke',
+  'Languages supported': 'Desteklenen dil',
+  'Average first response': 'Ortalama ilk yanıt',
+  'Always on, never off': 'Her zaman açık, hiç kapalı değil',
+  'Ready to stop missing leads?': 'Lead kaçırmayı durdurmaya hazır mısınız?',
+  'Set up your AI receptionist in under 5 minutes. No contracts, no credit card, no meetings.': '5 dakikadan kısa sürede AI resepsiyonistinizi kurun. Sözleşme yok, kredi kartı yok, toplantı yok.',
+  'Talk to us': 'Bize Ulaşın',
+  'About Us': 'Hakkımızda',
+});
+
 /* ─── Login page ─────────────────────────────────────────── */
 const TR_LOGIN = Object.assign({}, TR_COMMON, {
   'Log In — STOAIX': 'Giriş Yap — STOAIX',
@@ -826,6 +865,7 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
     '/case-study-dental': TR_CASE_DENTAL,
     '/case-study-aesthetic': TR_CASE_AESTHETIC,
     '/case-study-physiotherapy': TR_CASE_PHYSIO,
+    '/about': TR_ABOUT,
   };
 
   const dict = DICT_MAP[path] || null;

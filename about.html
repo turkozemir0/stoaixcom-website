@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us — STOAIX | The Story Behind the AI</title>
+  <meta name="description" content="Meet the founders of STOAIX. We built the AI receptionist we wished existed — so no business ever loses a customer because they couldn't respond fast enough." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+  <style>
+
+    /* ── Hero ─────────────────────────────────────────────── */
+    .about-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 148px 0 120px;
+      background:
+        radial-gradient(ellipse 70% 60% at 8% 20%,  rgba(37,99,235,0.28)  0%, transparent 55%),
+        radial-gradient(ellipse 55% 50% at 90% 12%,  rgba(124,58,237,0.20) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 42% at 50% 95%,  rgba(59,130,246,0.15) 0%, transparent 50%),
+        #f5f7ff;
+    }
+    .about-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(37,99,235,0.18) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity: 0.30;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, transparent 55%, rgba(245,247,255,0.97) 100%),
+        linear-gradient(to right, rgba(245,247,255,0.3) 0%, transparent 25%),
+        linear-gradient(to left,  rgba(245,247,255,0.3) 0%, transparent 25%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .about-hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 780px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 24px;
+    }
+    .about-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(37,99,235,0.08);
+      border: 1px solid rgba(37,99,235,0.18);
+      border-radius: 999px;
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .about-hero-headline {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.10;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .about-hero-headline em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--blue) 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .about-hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* ── Story ────────────────────────────────────────────── */
+    .about-story {
+      padding: 100px 0 80px;
+      background: var(--bg);
+    }
+    .about-story-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .about-story-text {}
+    .about-section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 16px;
+    }
+    .about-story-headline {
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 28px;
+    }
+    .about-story-body p {
+      font-size: 1.05rem;
+      color: var(--text-2);
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+    .about-story-body p:last-child { margin-bottom: 0; }
+    .about-story-body strong { color: var(--text); font-weight: 600; }
+
+    .about-photo-wrap {
+      position: relative;
+      border-radius: var(--r-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .about-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: var(--r-xl);
+    }
+    .about-photo-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px 24px;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+      display: flex;
+      gap: 20px;
+    }
+    .about-founder-tag {
+      display: flex;
+      flex-direction: column;
+    }
+    .about-founder-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #fff;
+    }
+    .about-founder-title {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.70);
+    }
+
+    /* ── Mission / Vision ─────────────────────────────────── */
+    .about-mv {
+      padding: 80px 0;
+      background: var(--bg-2);
+    }
+    .about-mv-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .about-mv-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .about-mv-header h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+    .about-mv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .about-mv-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 40px 36px;
+    }
+    .about-mv-card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--r-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .about-mv-card-icon.blue { background: var(--blue-tint); color: var(--blue); }
+    .about-mv-card-icon.purple { background: rgba(124,58,237,0.08); color: #7c3aed; }
+    .about-mv-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.015em;
+    }
+    .about-mv-card p {
+      font-size: 1rem;
+      color: var(--text-2);
+      line-height: 1.7;
+    }
+
+    /* ── Values ───────────────────────────────────────────── */
+    .about-values {
+      padding: 80px 0;
+      background: var(--bg);
+    }
+    .about-values-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .about-values-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .about-values-header h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      color: var(--text);
+    }
+    .about-values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .about-value-card {
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 32px 28px;
+      background: var(--bg);
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+    .about-value-card:hover {
+      border-color: var(--blue-mid);
+      box-shadow: var(--shadow-md);
+    }
+    .about-value-num {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--blue-mid);
+      line-height: 1;
+      margin-bottom: 14px;
+      letter-spacing: -0.04em;
+    }
+    .about-value-card h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .about-value-card p {
+      font-size: 0.92rem;
+      color: var(--text-2);
+      line-height: 1.65;
+    }
+
+    /* ── Stats strip ──────────────────────────────────────── */
+    .about-stats {
+      padding: 72px 0;
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .about-stats-inner {
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .about-stat {
+      text-align: center;
+      padding: 0 24px;
+      position: relative;
+    }
+    .about-stat + .about-stat::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 10%; bottom: 10%;
+      width: 1px;
+      background: var(--border);
+    }
+    .about-stat-val {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 900;
+      color: var(--text);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .about-stat-val span { color: var(--blue); }
+    .about-stat-label {
+      font-size: 0.88rem;
+      color: var(--text-2);
+      font-weight: 500;
+    }
+
+    /* ── CTA ──────────────────────────────────────────────── */
+    .about-cta {
+      padding: 100px 0;
+      text-align: center;
+      background: var(--bg);
+    }
+    .about-cta-inner {
+      max-width: 620px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .about-cta h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+    .about-cta p {
+      font-size: 1.05rem;
+      color: var(--text-2);
+      margin-bottom: 36px;
+      line-height: 1.6;
+    }
+    .about-cta-btns {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── Responsive ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .about-story-inner {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .about-story-text { order: 2; }
+      .about-photo-wrap { order: 1; max-height: 480px; }
+      .about-mv-grid { grid-template-columns: 1fr; }
+      .about-values-grid { grid-template-columns: 1fr 1fr; }
+      .about-stats-inner { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .about-stat + .about-stat::before { display: none; }
+    }
+    @media (max-width: 600px) {
+      .about-values-grid { grid-template-columns: 1fr; }
+      .about-stats-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .about-photo-wrap { max-height: 360px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav id="navbar"></nav>
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="about-hero">
+    <div class="about-hero-inner reveal">
+      <div class="about-eyebrow">Our Story</div>
+      <h1 class="about-hero-headline">
+        We built the AI<br>we <em>wished existed.</em>
+      </h1>
+      <p class="about-hero-sub">
+        Every clinic, every agency, every business deserves to respond instantly —
+        in any language, at any hour. We built STOAIX to make that the default, not the exception.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       STORY
+  ═══════════════════════════════════════════════ -->
+  <section class="about-story">
+    <div class="about-story-inner">
+
+      <div class="about-story-text reveal">
+        <div class="about-section-label">The Origin</div>
+        <h2 class="about-story-headline">
+          A missed call is<br>a missed patient.
+        </h2>
+        <div class="about-story-body">
+          <p>
+            In 2023, Ata and Emir were working closely with healthcare clinics across
+            Turkey and the UK. The same problem kept surfacing: <strong>leads were
+            coming in at midnight, on weekends, from patients in Dubai, London, or
+            Istanbul — and nobody was there to respond.</strong>
+          </p>
+          <p>
+            By the time someone called back the next morning, the patient had already
+            booked elsewhere. Not because the clinic was worse — just slower.
+            A 6-hour delay felt like a rejection.
+          </p>
+          <p>
+            The tools that existed were either too complex to set up, too expensive to
+            justify, or simply not built for the real-world chaos of running a clinic.
+            So we built our own. <strong>STOAIX was born from a real problem, for
+            real businesses — not from a whiteboard in a conference room.</strong>
+          </p>
+          <p>
+            Today, STOAIX serves businesses across 12+ countries. We're still
+            a small team, still obsessively close to our customers, and still
+            building the product we wished had existed from day one.
+          </p>
+        </div>
+      </div>
+
+      <div class="about-photo-wrap reveal">
+        <img
+          src="assets/images/founders.jpg"
+          alt="Ata Ulufer and Emir — Co-founders of STOAIX"
+          loading="lazy"
+        />
+        <div class="about-photo-caption">
+          <div class="about-founder-tag">
+            <span class="about-founder-name">Ata Ulufer</span>
+            <span class="about-founder-title">Co-founder & CEO</span>
+          </div>
+          <div class="about-founder-tag">
+            <span class="about-founder-name">Emir</span>
+            <span class="about-founder-title">Co-founder & CTO</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       MISSION & VISION
+  ═══════════════════════════════════════════════ -->
+  <section class="about-mv">
+    <div class="about-mv-inner">
+      <div class="about-mv-header reveal">
+        <h2>What drives us</h2>
+      </div>
+      <div class="about-mv-grid">
+
+        <div class="about-mv-card reveal">
+          <div class="about-mv-card-icon blue">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Our Mission</h3>
+          <p>
+            Make every clinic, agency, and business respond instantly — in any language,
+            at any hour. Speed shouldn't be a luxury reserved for companies with large
+            support teams. With STOAIX, it's the starting point.
+          </p>
+        </div>
+
+        <div class="about-mv-card reveal">
+          <div class="about-mv-card-icon purple">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <h3>Our Vision</h3>
+          <p>
+            A world where no business loses a customer simply because they couldn't
+            respond fast enough. AI shouldn't replace human connection — it should
+            protect the moments that matter most.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       VALUES
+  ═══════════════════════════════════════════════ -->
+  <section class="about-values">
+    <div class="about-values-inner">
+      <div class="about-values-header reveal">
+        <h2>How we work</h2>
+      </div>
+      <div class="about-values-grid">
+
+        <div class="about-value-card reveal">
+          <div class="about-value-num">01</div>
+          <h4>Speed over perfection</h4>
+          <p>
+            Every hour a business goes without a response is a lead that's cooling.
+            We ship fast, iterate faster, and never let the perfect be the enemy of the live.
+          </p>
+        </div>
+
+        <div class="about-value-card reveal">
+          <div class="about-value-num">02</div>
+          <h4>Radical simplicity</h4>
+          <p>
+            If a clinic owner can't set it up in 5 minutes, it's too complicated.
+            We remove every unnecessary step, every configuration screen, every excuse not to start.
+          </p>
+        </div>
+
+        <div class="about-value-card reveal">
+          <div class="about-value-num">03</div>
+          <h4>Global from day one</h4>
+          <p>
+            Our customers operate in Istanbul, London, Dubai, and Toronto.
+            We build for multilingual, multicultural, multi-timezone — by default.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       STATS
+  ═══════════════════════════════════════════════ -->
+  <section class="about-stats">
+    <div class="about-stats-inner">
+      <div class="about-stat reveal">
+        <div class="about-stat-val">12<span>+</span></div>
+        <div class="about-stat-label">Countries served</div>
+      </div>
+      <div class="about-stat reveal">
+        <div class="about-stat-val">15<span>+</span></div>
+        <div class="about-stat-label">Languages supported</div>
+      </div>
+      <div class="about-stat reveal">
+        <div class="about-stat-val"><span>&lt;</span>2s</div>
+        <div class="about-stat-label">Average first response</div>
+      </div>
+      <div class="about-stat reveal">
+        <div class="about-stat-val">24<span>/7</span></div>
+        <div class="about-stat-label">Always on, never off</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       CTA
+  ═══════════════════════════════════════════════ -->
+  <section class="about-cta">
+    <div class="about-cta-inner reveal">
+      <h2>Ready to stop missing leads?</h2>
+      <p>
+        Set up your AI receptionist in under 5 minutes.
+        No contracts, no credit card, no meetings.
+      </p>
+      <div class="about-cta-btns">
+        <a href="signup.html" class="btn-primary">Start free trial</a>
+        <a href="/#contact" class="btn-outline">Talk to us</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"></footer>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/i18n.js"></script>
+
+</body>
+</html>

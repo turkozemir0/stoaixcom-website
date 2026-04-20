@@ -260,7 +260,7 @@
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Company</div>
-          <a href="#">About</a>
+          <a href="/about.html">About Us</a>
           <a href="#">Blog</a>
           <a href="/case-studies.html">Case Studies</a>
           <a href="/partners.html">Partners</a>
