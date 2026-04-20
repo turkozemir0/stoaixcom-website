@@ -1348,6 +1348,14 @@ ul { list-style: none; }
   box-shadow: 0 24px 64px rgba(0,0,0,.35);
 }
 
+@media (max-width: 768px) {
+  /* Override Arcade's inline padding-bottom so the embed is tall enough to tap */
+  .demo-embed-wrap > div {
+    padding-bottom: 75% !important;
+    min-height: 340px;
+  }
+}
+
 .demo-placeholder {
   margin-top: 56px;
   border: 2px dashed var(--blue-mid);
