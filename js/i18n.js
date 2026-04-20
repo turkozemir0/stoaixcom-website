@@ -504,7 +504,7 @@ const TR_PARTNERS = Object.assign({}, TR_COMMON, {
   'Why STOAIX is different to sell': 'STOAIX\'i satmak neden farklı',
   'No N8N. No VAPI. No Make. One platform — already built.': 'N8N yok. VAPI yok. Make yok. Tek platform — hazır.',
   'While others juggle 5 tools and months of setup, you sell a single platform that\'s already live. You focus on sales — we handle the rest.': 'Diğerleri 5 araçla aylarca uğraşırken, siz zaten canlıda olan tek bir platformu satıyorsunuz. Siz satışa odaklanın — geri kalanını biz halledelim.',
-  '20+ pre-built AI workflows, ready to deploy': '20'den fazla hazır AI iş akışı, hemen devreye alınabilir',
+  '20+ pre-built AI workflows, ready to deploy': '20\'den fazla hazır AI iş akışı, hemen devreye alınabilir',
   'Missed call recovery, lead follow-up, appointment reminders, re-engagement — all built, all tested. You don\'t configure anything.': 'Cevapsız arama kurtarma, lead takibi, randevu hatırlatmaları, yeniden etkileşim — hepsi hazır, hepsi test edildi. Hiçbir şeyi ayarlamanız gerekmez.',
   'No VAPI, no GHL, no Make — one platform': 'VAPI yok, GHL yok, Make yok — tek platform',
   'Voice AI, WhatsApp, Web Chat, CRM — all in one. Your clients get more, pay less. That\'s your pitch.': 'Sesli AI, WhatsApp, Web Chat, CRM — hepsi tek platformda. Müşterileriniz daha fazlasını alır, daha az öder. Bu sizin satış argümanınız.',
