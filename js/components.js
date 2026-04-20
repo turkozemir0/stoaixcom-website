@@ -305,85 +305,82 @@
       <div class="pricing-grid reveal">
 
         <div class="price-card">
-          <div class="price-tier">Lite</div>
+          <div class="price-tier">Essential</div>
           <div class="price-amount">
             <span class="price-currency">$</span>
-            <span class="price-num" data-monthly="79" data-annual="63">63</span>
+            <span class="price-num" data-monthly="79" data-annual="63">79</span>
             <span class="price-period">/mo</span>
           </div>
-          <div class="price-sub">WhatsApp &amp; web chat to get started</div>
-          <a href="signup.html" class="btn-outline btn-full">Start free trial</a>
+          <div class="price-sub">Chat, CRM &amp; automation to get started</div>
+          <a href="signup.html?plan=essential" class="btn-outline btn-full">Get started</a>
           <ul class="price-features">
-            <li>WhatsApp messages — 500/mo</li>
+            <li>Full CRM</li>
+            <li>WhatsApp &amp; Instagram — Unlimited</li>
+            <li>Knowledge base — Unlimited</li>
+            <li>Chat AI &amp; Workflow</li>
             <li class="inactive">Voice agent</li>
-            <li>Kanban board</li>
-            <li>CSV import</li>
-            <li class="inactive">Instagram DM</li>
             <li class="inactive">Advanced analytics</li>
-            <li class="inactive">Outbound webhook</li>
-            <li>Team members — 1</li>
+            <li>Team members — 5</li>
           </ul>
         </div>
 
         <div class="price-card">
-          <div class="price-tier">Plus</div>
+          <div class="price-tier">Professional</div>
           <div class="price-amount">
             <span class="price-currency">$</span>
-            <span class="price-num" data-monthly="149" data-annual="119">119</span>
+            <span class="price-num" data-monthly="149" data-annual="119">149</span>
             <span class="price-period">/mo</span>
           </div>
-          <div class="price-sub">Add Voice AI to your channels</div>
-          <a href="signup.html" class="btn-outline btn-full">Start free trial</a>
+          <div class="price-sub">Add Voice AI to your stack</div>
+          <a href="signup.html?plan=professional" class="btn-outline btn-full">Get started</a>
           <ul class="price-features">
-            <li>WhatsApp messages — 2,000/mo</li>
-            <li>Voice agent — 60 min/mo</li>
-            <li>Kanban board</li>
-            <li>CSV import</li>
-            <li>Instagram DM</li>
-            <li class="inactive">Advanced analytics</li>
-            <li class="inactive">Outbound webhook</li>
-            <li>Team members — 3</li>
-          </ul>
-        </div>
-
-        <div class="price-card price-card-featured">
-          <div class="featured-badge">Most popular</div>
-          <div class="price-tier">Advanced</div>
-          <div class="price-amount">
-            <span class="price-currency">$</span>
-            <span class="price-num" data-monthly="299" data-annual="239">239</span>
-            <span class="price-period">/mo</span>
-          </div>
-          <div class="price-sub">Full system. Outbound included.</div>
-          <a href="signup.html" class="btn-primary btn-full">Start free trial</a>
-          <ul class="price-features">
-            <li>WhatsApp messages — 5,000/mo</li>
-            <li>Voice agent — 200 min/mo</li>
-            <li>Kanban board</li>
-            <li>CSV import</li>
-            <li>Instagram DM</li>
+            <li>Everything in Essential</li>
+            <li>Voice inbound — 150 min/mo</li>
             <li>Advanced analytics</li>
-            <li>Outbound webhook</li>
+            <li>Multi-pipeline — 3</li>
+            <li class="inactive">Voice outbound</li>
+            <li class="inactive">Multi-language voice</li>
             <li>Team members — 10</li>
           </ul>
         </div>
 
+        <div class="price-card price-card-featured">
+          <div class="featured-badge">Best Value</div>
+          <div class="price-tier">Business</div>
+          <div class="price-amount">
+            <span class="price-currency">$</span>
+            <span class="price-num" data-monthly="299" data-annual="239">299</span>
+            <span class="price-period">/mo</span>
+          </div>
+          <div class="price-sub">The full system — voice, chat &amp; pipeline</div>
+          <a href="signup.html?plan=business" class="btn-primary btn-full">Get started</a>
+          <ul class="price-features">
+            <li>Everything in Professional</li>
+            <li>Voice in+outbound — 300 min/mo</li>
+            <li>All voice workflows</li>
+            <li>Multi-language voice (8 languages)</li>
+            <li>Analytics export</li>
+            <li>Multi-pipeline — Unlimited</li>
+            <li>Team members — 20</li>
+          </ul>
+        </div>
+
         <div class="price-card price-card-enterprise">
-          <div class="featured-badge enterprise-badge">Most Exclusive</div>
-          <div class="price-tier">Enterprise</div>
+          <div class="featured-badge enterprise-badge">Limited Spots</div>
+          <div class="price-tier">Custom</div>
           <div class="price-amount">
             <span class="price-custom">Custom Pricing</span>
           </div>
-          <div class="price-sub">Done-with-you. Fully managed. Built around your business.</div>
-          <a href="#contact" class="btn-primary btn-full btn-enterprise">Book a Meeting</a>
+          <div class="price-sub">Done-with-you. Built around your business.</div>
+          <a href="#contact" class="btn-primary btn-full btn-enterprise">Contact us</a>
           <ul class="price-features">
-            <li>Everything in the lower-tier plans</li>
-            <li>Direct 1-on-1 business development partnership</li>
-            <li>AI operations consulting &amp; full implementation</li>
-            <li>Custom AI workflows tailored to your business</li>
-            <li>Multi-location / multi-branch support</li>
-            <li>Dedicated account management &amp; ongoing support</li>
-            <li>No SaaS self-service — fully managed, done-with-you model</li>
+            <li>Everything in Business</li>
+            <li>Custom minute packages</li>
+            <li>Unlimited users</li>
+            <li>Dedicated support</li>
+            <li>Custom integrations</li>
+            <li>SLA guarantee</li>
+            <li>Price — Custom</li>
           </ul>
         </div>
 
