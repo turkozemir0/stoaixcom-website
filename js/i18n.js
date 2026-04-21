@@ -92,6 +92,7 @@ const TR_COMMON = {
   'Start free trial': 'Ücretsiz deneyin',
   'Get started': 'Yükselt',
   'Contact us': 'İletişime Geç',
+  'Book a call': 'Görüşme Planla',
   'Features': 'Özellikler',
   'Healthcare': 'Sağlık',
   'Partners': 'Partnerler',

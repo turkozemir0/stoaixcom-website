@@ -372,7 +372,7 @@
             <span class="price-custom">Custom Pricing</span>
           </div>
           <div class="price-sub">Done-with-you. Built around your business.</div>
-          <a href="#contact" class="btn-primary btn-full btn-enterprise">Contact us</a>
+          <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-primary btn-full btn-enterprise">Book a call</a>
           <ul class="price-features">
             <li>Everything in Business</li>
             <li>Custom minute packages</li>
