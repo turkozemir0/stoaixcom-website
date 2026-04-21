@@ -1050,7 +1050,9 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
   };
 
   const dict = DICT_MAP[path] || null;
-  const storedLang = localStorage.getItem('stoaix-lang') || 'en';
+  const stored = localStorage.getItem('stoaix-lang');
+  const browserLang = (navigator.language || '').toLowerCase().startsWith('tr') ? 'tr' : 'en';
+  const storedLang = stored || browserLang;
 
   function handleToggle(targetLang) {
     localStorage.setItem('stoaix-lang', targetLang);
