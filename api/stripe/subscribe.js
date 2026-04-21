@@ -198,6 +198,23 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: `Org user link failed: ${orgUserError.message}` })
     }
 
+    // 5b. Add metadata to Stripe subscription + create org_subscriptions record
+    await stripe.subscriptions.update(subscription.id, {
+      metadata: { organization_id: org.id, plan_id: planKey },
+    })
+
+    await supabase.from('org_subscriptions').insert({
+      organization_id: org.id,
+      plan_id: planKey,
+      status: 'trialing',
+      stripe_customer_id: customer.id,
+      stripe_subscription_id: subscription.id,
+      billing_interval: billingKey,
+      trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+      current_period_start: new Date().toISOString(),
+      current_period_end: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+    })
+
     // 6. Notify partner panel if referred
     if (partnerRef) {
       try {

@@ -613,12 +613,12 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
   let countdownInterval = null
   let currentEmail = ''
 
-  // ─── Partner Referral Cookie (15 days) ───────────────────────────────────────
+  // ─── Partner Referral Cookie (45 days) ───────────────────────────────────────
   ;(function capturePartnerRef() {
     const params = new URLSearchParams(window.location.search)
     const ref = params.get('ref')
     if (ref) {
-      const maxAge = 60 * 60 * 24 * 15 // 15 days
+      const maxAge = 60 * 60 * 24 * 45 // 45 days
       document.cookie = `partner_ref=${ref}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`
     }
   })()
