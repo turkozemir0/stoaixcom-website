@@ -474,13 +474,13 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
           <!-- Billing toggle -->
           <div class="billing-toggle-wrap" style="margin-bottom: 10px;">
-            <span class="billing-toggle-label active" id="labelMonthly">Monthly</span>
+            <span class="billing-toggle-label" id="labelMonthly">Monthly</span>
             <label class="toggle-switch">
-              <input type="checkbox" id="billingToggle" />
+              <input type="checkbox" id="billingToggle" checked />
               <div class="toggle-track"></div>
               <div class="toggle-thumb"></div>
             </label>
-            <span class="billing-toggle-label" id="labelAnnual">
+            <span class="billing-toggle-label active" id="labelAnnual">
               Annual <span class="billing-save-badge">Save 20%</span>
             </span>
           </div>
@@ -650,22 +650,43 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
   }
 
   toggle.addEventListener('change', updatePrices)
+  updatePrices() // Init with annual prices
 
-  // Custom plan selection → change button
+  // Plan selection → update button + trial note
+  const subtitleEl = document.querySelector('.auth-subtitle')
+  const badgeEl = document.querySelector('.signup-left-badge')
+
+  function updatePlanUI(planValue) {
+    const isCustom = planValue === 'custom'
+    const isBiz = planValue === 'business'
+    if (isCustom) {
+      submitBtn.textContent = 'Book a call →'
+      submitBtn.classList.add('enterprise-btn')
+      trialNote.innerHTML = 'Our team will contact you to set up a custom plan.'
+      if (subtitleEl) subtitleEl.textContent = 'Get a custom plan for your business'
+      if (badgeEl) badgeEl.innerHTML = badgeEl.querySelector('svg').outerHTML + ' Custom plan — tailored to you'
+    } else if (isBiz) {
+      submitBtn.innerHTML = 'Continue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+      submitBtn.classList.remove('enterprise-btn')
+      trialNote.innerHTML = 'Subscribe to Business and get started immediately. Cancel anytime.'
+      if (subtitleEl) subtitleEl.textContent = 'Subscribe to get started today'
+      if (badgeEl) badgeEl.innerHTML = badgeEl.querySelector('svg').outerHTML + ' No setup fee — live in 5 minutes'
+    } else {
+      submitBtn.innerHTML = 'Continue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+      submitBtn.classList.remove('enterprise-btn')
+      trialNote.innerHTML = '<strong>7-day free trial.</strong> No charge until your trial ends. Cancel anytime.'
+      if (subtitleEl) subtitleEl.textContent = 'Start your 7-day free trial today'
+      if (badgeEl) badgeEl.innerHTML = badgeEl.querySelector('svg').outerHTML + ' 7-day free trial — no charge today'
+    }
+  }
+
   document.querySelectorAll('input[name="plan"]').forEach(radio => {
-    radio.addEventListener('change', () => {
-      const isCustom = radio.value === 'custom'
-      if (isCustom) {
-        submitBtn.textContent = 'Book a call →'
-        submitBtn.classList.add('enterprise-btn')
-        trialNote.innerHTML = 'Our team will contact you to set up a custom plan.'
-      } else {
-        submitBtn.innerHTML = 'Continue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
-        submitBtn.classList.remove('enterprise-btn')
-        trialNote.innerHTML = '<strong>7-day free trial.</strong> No charge until your trial ends. Cancel anytime.'
-      }
-    })
+    radio.addEventListener('change', () => updatePlanUI(radio.value))
   })
+
+  // Set initial state based on pre-selected plan
+  const initialPlan = document.querySelector('input[name="plan"]:checked')?.value || 'business'
+  updatePlanUI(initialPlan)
 
   // ─── Form submit → reCAPTCHA → send OTP ──────────────────────────────────────
   document.getElementById('signupForm').addEventListener('submit', async function(e) {
