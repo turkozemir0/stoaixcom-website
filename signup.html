@@ -211,6 +211,12 @@
       border-radius: 4px; padding: 1px 5px;
       align-self: flex-start; margin-top: 2px;
     }
+    .plan-trial-note {
+      font-size: 0.62rem; color: var(--text-3);
+      margin-top: 2px; line-height: 1.2;
+    }
+    .plan-trial-note.has-trial { color: #16a34a; }
+    .plan-trial-note.no-trial { color: var(--text-3); opacity: 0.7; }
     /* Custom plan special style */
     .plan-option.custom-plan .plan-option-label {
       border-style: dashed;
@@ -491,6 +497,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
               <label class="plan-option-label" for="plan_essential">
                 <span class="plan-option-name">Essential</span>
                 <span class="plan-option-price" id="price_essential">$79 / month</span>
+                <span class="plan-trial-note has-trial">7-day free trial</span>
               </label>
             </div>
             <div class="plan-option">
@@ -498,6 +505,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
               <label class="plan-option-label" for="plan_professional">
                 <span class="plan-option-name">Professional</span>
                 <span class="plan-option-price" id="price_professional">$149 / month</span>
+                <span class="plan-trial-note has-trial">7-day free trial</span>
               </label>
             </div>
             <div class="plan-option">
@@ -506,6 +514,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
                 <span class="plan-option-name">Business</span>
                 <span class="plan-option-price" id="price_business">$299 / month</span>
                 <span class="plan-option-badge">Most popular</span>
+                <span class="plan-trial-note no-trial">No free trial</span>
               </label>
             </div>
             <div class="plan-option custom-plan">

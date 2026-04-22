@@ -313,6 +313,7 @@
           </div>
           <div class="price-sub">Chat, CRM &amp; automation to get started</div>
           <a href="signup.html?plan=essential" class="btn-outline btn-full">Get started</a>
+          <div class="price-trial-note has-trial">7-day free trial</div>
           <ul class="price-features">
             <li>Full CRM</li>
             <li>WhatsApp &amp; Instagram — Unlimited</li>
@@ -333,6 +334,7 @@
           </div>
           <div class="price-sub">Add Voice AI to your stack</div>
           <a href="signup.html?plan=professional" class="btn-outline btn-full">Get started</a>
+          <div class="price-trial-note has-trial">7-day free trial</div>
           <ul class="price-features">
             <li>Everything in Essential</li>
             <li>Voice inbound — 150 min/mo</li>
@@ -354,6 +356,7 @@
           </div>
           <div class="price-sub">The full system — voice, chat &amp; pipeline</div>
           <a href="signup.html?plan=business" class="btn-primary btn-full">Get started</a>
+          <div class="price-trial-note no-trial">No free trial</div>
           <ul class="price-features">
             <li>Everything in Professional</li>
             <li>Voice in+outbound — 300 min/mo</li>

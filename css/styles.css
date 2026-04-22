@@ -1790,6 +1790,15 @@ ul { list-style: none; }
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none'%3E%3Ccircle cx='7' cy='7' r='7' fill='%23cbd5e1' fill-opacity='.4'/%3E%3Cpath d='M4.5 7h5' stroke='%2394a3b8' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
 }
 
+.price-trial-note {
+  font-size: 0.72rem;
+  text-align: center;
+  margin-top: 6px;
+  font-weight: 600;
+}
+.price-trial-note.has-trial { color: #16a34a; }
+.price-trial-note.no-trial { color: var(--text-3); opacity: 0.6; }
+
 .pricing-note {
   text-align: center;
   margin-top: 28px;
