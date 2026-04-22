@@ -388,7 +388,7 @@
 
       <div class="pricing-note reveal">
         <span>Voice AI usage: $0.15/min after plan limit · </span>
-        <span>All plans: 7-day free trial, no credit card · </span>
+        <span>Essential & Professional: 7-day free trial · </span>
         <span>Annual billing saves 20%</span>
       </div>
     </div>

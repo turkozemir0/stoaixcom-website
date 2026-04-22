@@ -81,17 +81,33 @@ export default async function handler(req, res) {
       invoice_settings: { default_payment_method: paymentMethodId },
     })
 
-    // 3. Create subscription with 7-day trial
-    const subscription = await stripe.subscriptions.create({
+    // 3. Create subscription (Business = no trial, others = 7-day trial)
+    const isBusiness = planKey === 'business'
+    const subscriptionParams = {
       customer: customer.id,
       items: [{ price: priceId }],
-      trial_period_days: 7,
       payment_settings: {
         payment_method_types: ['card'],
         save_default_payment_method: 'on_subscription',
       },
       expand: ['latest_invoice.payment_intent'],
-    })
+    }
+    if (!isBusiness) {
+      subscriptionParams.trial_period_days = 7
+    }
+    const subscription = await stripe.subscriptions.create(subscriptionParams)
+
+    // 3b. Business plan: handle immediate payment + 3DS
+    if (isBusiness) {
+      const paymentIntent = subscription.latest_invoice?.payment_intent
+      if (paymentIntent && paymentIntent.status === 'requires_action') {
+        // 3DS required — create user/org first, then return client_secret
+        // so frontend can complete 3DS and user record already exists
+      }
+      if (paymentIntent && paymentIntent.status === 'requires_payment_method') {
+        return res.status(400).json({ error: 'Payment failed. Please try a different card.' })
+      }
+    }
 
     // 4. Get existing user from signup_leads (created during OTP verification)
     const { data: leadRow } = await supabase
@@ -113,7 +129,7 @@ export default async function handler(req, res) {
           billing: billingKey,
           stripe_customer_id: customer.id,
           stripe_subscription_id: subscription.id,
-          trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+          trial_ends_at: isBusiness ? null : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
         },
       })
     } else {
@@ -130,7 +146,7 @@ export default async function handler(req, res) {
           billing: billingKey,
           stripe_customer_id: customer.id,
           stripe_subscription_id: subscription.id,
-          trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+          trial_ends_at: isBusiness ? null : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
         },
       })
 
@@ -203,16 +219,19 @@ export default async function handler(req, res) {
       metadata: { organization_id: org.id, plan_id: planKey },
     })
 
+    const trialEndsAt = isBusiness ? null : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
     await supabase.from('org_subscriptions').insert({
       organization_id: org.id,
       plan_id: planKey,
-      status: 'trialing',
+      status: isBusiness ? 'active' : 'trialing',
       stripe_customer_id: customer.id,
       stripe_subscription_id: subscription.id,
       billing_interval: billingKey,
-      trial_ends_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+      trial_ends_at: trialEndsAt,
       current_period_start: new Date().toISOString(),
-      current_period_end: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+      current_period_end: isBusiness
+        ? new Date(subscription.current_period_end * 1000).toISOString()
+        : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
     })
 
     // 6. Notify partner panel if referred
@@ -269,16 +288,27 @@ export default async function handler(req, res) {
       },
     })
 
-    if (linkError || !linkData?.properties?.action_link) {
-      return res.status(200).json({
-        success: true,
-        redirect_url: 'https://platform.stoaix.com/login',
-      })
+    const redirectUrl = linkError || !linkData?.properties?.action_link
+      ? 'https://platform.stoaix.com/login'
+      : linkData.properties.action_link
+
+    // Business plan with 3DS: return client_secret so frontend can confirm payment
+    if (isBusiness) {
+      const paymentIntent = subscription.latest_invoice?.payment_intent
+      if (paymentIntent && paymentIntent.status === 'requires_action') {
+        return res.status(200).json({
+          success: true,
+          requires_action: true,
+          client_secret: paymentIntent.client_secret,
+          subscription_id: subscription.id,
+          redirect_url: redirectUrl,
+        })
+      }
     }
 
     return res.status(200).json({
       success: true,
-      redirect_url: linkData.properties.action_link,
+      redirect_url: redirectUrl,
     })
   } catch (err) {
     console.error('Subscribe error:', err)
