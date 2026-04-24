@@ -361,13 +361,19 @@ ul { list-style: none; }
 }
 .nav-login:hover { color: var(--text); }
 
+.nav-mobile-cta {
+  display: none;
+  font-size: 0.82rem;
+  padding: 7px 14px;
+  white-space: nowrap;
+}
+
 .nav-hamburger {
   display: none;
   flex-direction: column;
   gap: 5px;
   padding: 8px;
   border-radius: var(--r-sm);
-  margin-left: auto;
 }
 .nav-hamburger span {
   display: block;
@@ -2221,6 +2227,7 @@ ul { list-style: none; }
 
 @media (max-width: 768px) {
   .nav-links, .nav-actions { display: none; }
+  .nav-mobile-cta { display: inline-flex; }
   .nav-hamburger { display: flex; }
   .mobile-menu { display: flex; }
 
