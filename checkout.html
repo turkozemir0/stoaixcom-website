@@ -440,6 +440,11 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       signupData.firstName = params.get('first_name') || ''
       signupData.lastName = params.get('last_name') || ''
       signupData.company = params.get('company') || ''
+      signupData.phone = params.get('phone') || ''
+    }
+    // Ensure phone is available from URL params if not in signupData
+    if (!signupData.phone) {
+      signupData.phone = params.get('phone') || ''
     }
 
     // ─── Plan metadata ───────────────────────────────────────────────────────────
@@ -645,6 +650,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             firstName:       signupData.firstName,
             lastName:        signupData.lastName,
             company:         signupData.company,
+            phone:           signupData.phone,
             plan,
             billing,
             paymentMethodId: paymentMethod.id,

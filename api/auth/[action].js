@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 
 // ── send-otp ──────────────────────────────────────────────
 async function handleSendOtp(req, res) {
-  const { email, recaptchaToken, firstName, lastName, company, plan, billing } = req.body
+  const { email, recaptchaToken, firstName, lastName, company, plan, billing, phone } = req.body
 
   if (!email || !recaptchaToken) {
     return res.status(400).json({ error: 'Missing email or reCAPTCHA token' })
@@ -93,6 +93,7 @@ async function handleSendOtp(req, res) {
         first_name: firstName || null,
         last_name: lastName || null,
         company: company || null,
+        phone: phone || null,
         plan: plan || null,
         billing: billing || null,
       }, { onConflict: 'email' })
@@ -181,7 +182,7 @@ async function handleVerifyOtp(req, res) {
       .from('signup_leads')
       .update({ email_verified: true, verified_at: new Date().toISOString() })
       .eq('email', email.toLowerCase())
-      .select('first_name, last_name, plan, company')
+      .select('first_name, last_name, plan, company, phone')
       .single()
 
     const { data: authData, error: authError } = await supabase.auth.admin.createUser({
@@ -192,6 +193,7 @@ async function handleVerifyOtp(req, res) {
         first_name: leadData?.first_name,
         last_name: leadData?.last_name,
         company: leadData?.company,
+        phone: leadData?.phone,
         plan: leadData?.plan,
       },
     })

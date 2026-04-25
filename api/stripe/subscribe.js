@@ -46,7 +46,7 @@ export default async function handler(req, res) {
 
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
-  const { email, firstName, lastName, company, plan, billing, paymentMethodId, partnerRef, fbc, fbp } = req.body
+  const { email, firstName, lastName, company, phone, plan, billing, paymentMethodId, partnerRef, fbc, fbp } = req.body
 
   if (!email || !plan || !billing || !paymentMethodId) {
     return res.status(400).json({ error: 'Missing required fields' })
@@ -72,6 +72,7 @@ export default async function handler(req, res) {
     const customer = await stripe.customers.create({
       email,
       name: `${firstName} ${lastName}`.trim(),
+      phone: phone || undefined,
       metadata: { company: company || '', plan: planKey, billing: billingKey },
     })
 
@@ -125,6 +126,7 @@ export default async function handler(req, res) {
           first_name: firstName,
           last_name: lastName,
           company,
+          phone: phone || null,
           plan: planKey,
           billing: billingKey,
           stripe_customer_id: customer.id,
@@ -142,6 +144,7 @@ export default async function handler(req, res) {
           first_name: firstName,
           last_name: lastName,
           company,
+          phone: phone || null,
           plan: planKey,
           billing: billingKey,
           stripe_customer_id: customer.id,
@@ -193,6 +196,7 @@ export default async function handler(req, res) {
         status: 'onboarding',
         onboarding_status: 'in_progress',
         email,
+        phone: phone || null,
         country: 'GB',
       })
       .select('id')
