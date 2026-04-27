@@ -685,8 +685,10 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   // Multilingual section
   'Multilingual': 'Çok Dilli',
   'Healthcare tourism patients come from Turkey, the UK, Europe, and the Middle East. STOAIX switches languages mid-conversation based on what the patient speaks — no configuration needed, no human translator required.': 'Sağlık turizmi hastaları Türkiye, İngiltere, Avrupa ve Orta Doğu\'dan geliyor. STOAIX, hastanın konuştuğu dile göre konuşma ortasında dil değiştirir — yapılandırma gerekmez, insan tercüman gerekmez.',
-  'Turkish, English, and Arabic are included in the Business plan. Additional languages are available as add-ons: Russian, German, French, Spanish, and more.': 'Türkçe, İngilizce ve Arapça Business planına dahildir. Ek diller eklenti olarak mevcuttur: Rusça, Almanca, Fransızca, İspanyolca ve daha fazlası.',
+  'Turkish, English, and Arabic are included in the Business plan. Additional languages are available as add-ons: Russian, German, French, Spanish, and more.': 'Türkçe, İngilizce ve Arapça tüm ücretli planlara dahildir. 15\'ten fazla dil toplam — Rusça, Almanca, Fransızca, İspanyolca ve daha fazlası eklenti olarak mevcuttur.',
+  'Turkish, English, and Arabic are included in all paid plans. 15+ languages total — Russian, German, French, Spanish, and more available as add-ons.': 'Türkçe, İngilizce ve Arapça tüm ücretli planlara dahildir. 15\'ten fazla dil toplam — Rusça, Almanca, Fransızca, İspanyolca ve daha fazlası eklenti olarak mevcuttur.',
   'Start with all three languages': 'Üç dille hemen başlayın',
+  'Get started with 15+ languages': '15+ dille hemen başlayın',
   'Your patients speak many languages. STOAIX speaks them all.': 'Hastalarınız birçok dil konuşuyor. STOAIX hepsini konuşuyor.',
   // Getting Started section
   'Getting started': 'Başlarken',
@@ -695,7 +697,8 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   'Go live': 'Yayına alın',
   'Setup fee': 'Kurulum ücreti',
   // Feature card body texts
-  'Turkish, English, and Arabic included. The AI detects the patient\'s language and continues natively — no configuration, no translator required.': 'Türkçe, İngilizce ve Arapça dahildir. AI, hastanın dilini otomatik olarak algılar ve doğal şekilde konuşmayı sürdürür — yapılandırma gerekmez, tercüman gerekmez.',
+  '15+ languages supported. The AI detects the patient\'s language and continues natively — no configuration, no translator required.': '15\'ten fazla dil destekleniyor. AI, hastanın dilini otomatik olarak algılar ve doğal şekilde konuşmayı sürdürür — yapılandırma gerekmez, tercüman gerekmez.',
+  'Turkish, English, and Arabic included. The AI detects the patient\'s language and continues natively — no configuration, no translator required.': '15\'ten fazla dil destekleniyor. AI, hastanın dilini otomatik olarak algılar ve doğal şekilde konuşmayı sürdürür — yapılandırma gerekmez, tercüman gerekmez.',
   'Connect to your existing calendar, booking system, or CRM. Triggers on new lead, booking confirmed, or handoff ready — no developer needed.': 'Mevcut takviminize, rezervasyon sisteminize veya CRM\'inize bağlanın. Yeni lead, rezervasyon onayı veya devir hazır tetikleyicileri — geliştirici gerekmez.',
   // FAQ section
   'Common questions': 'Sık Sorulan Sorular',
@@ -723,7 +726,7 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   'See pricing': 'Fiyatları İnceleyin',
   'No credit card required · Cancel anytime · Setup in minutes': 'Kredi kartı gerekmez · İstediğiniz zaman iptal edin · Dakikalar içinde kurulum',
   'Always answers': 'Her zaman yanıtlar',
-  'Languages (TR / EN / AR)': 'Diller (TR / EN / AR)',
+  'Languages (TR / EN / AR)': 'Diller',
   'Time to set up': 'Kurulum süresi',
   'The real cost': 'Gerçek maliyet',
   'Four ways your clinic leaks revenue every day': 'Kliniğinizin her gün gelir kaybetmesinin dört yolu',
@@ -759,8 +762,9 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   'WhatsApp AI Chatbot (Essential+)': 'WhatsApp AI Chatbot (Essential+)',
   'WhatsApp AI Chatbot (Lite+)': 'WhatsApp AI Chatbot (Essential+)',
   'Answers patient questions on WhatsApp 24/7 using your clinic\'s knowledge base. Price enquiries, procedure info, availability — handled automatically.': 'Kliniğinizin bilgi tabanını kullanarak WhatsApp\'ta 7/24 hasta sorularını yanıtlar. Fiyat sorgulamaları, prosedür bilgisi, müsaitlik — otomatik olarak yönetilir.',
-  '3 Languages Built-in (Business)': '3 Dil Dahili (Business)',
-  '3 Languages Built-in (Advanced)': '3 Dil Dahili (Business)',
+  '15+ Languages Built-in (Business)': '15+ Dil Dahili (Business)',
+  '3 Languages Built-in (Business)': '15+ Dil Dahili (Business)',
+  '3 Languages Built-in (Advanced)': '15+ Dil Dahili (Business)',
   'Zapier, Make & Webhook (Business)': 'Zapier, Make & Webhook (Business)',
   'Zapier, Make & Webhook (Advanced)': 'Zapier, Make & Webhook (Business)',
   'Hair Transplant Clinics': 'Saç Ekimi Klinikleri',
@@ -800,21 +804,23 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   'AI receptionist for health tourism clinics': 'Sağlık turizmi klinikleri için AI resepsiyonist',
   'Leads arrive.': 'Lead geliyor.',
   "Patients don't.": 'Hasta gelmiyor.',
-  'Your clinic gets leads from Instagram. Most never hear back fast enough — so they book at a competitor.': 'Kliniğiniz Instagram\'dan lead alıyor. Çoğuna yeterince hızlı geri dönülmüyor — bu yüzden rakibinizde randevu alıyorlar.',
+  'Your clinic runs ads. Most leads never hear back fast enough — so they book at a competitor.': 'Kliniğiniz reklam yayınlıyor. Çoğu leade yeterince hızlı geri dönülmüyor — bu yüzden rakibinizde randevu alıyorlar.',
   'STOAIX calls every new lead within': 'STOAIX her yeni leadi',
-  ', 24/7, in Turkish, English & Arabic.': 'içinde geri arıyor, 7/24, Türkçe, İngilizce ve Arapça.',
+  ', 24/7, in 15+ languages.': 'içinde geri arıyor, 7/24, 15\'ten fazla dilde.',
+  '60 seconds': '60 saniye',
   'First callback': 'İlk geri arama',
   'Always on': 'Her zaman aktif',
+  'Languages': 'Diller',
 
   // Social proof bar
   'Trusted by clinics across Turkey & the UK': 'Türkiye ve İngiltere genelinde kliniklerin tercihi',
   '40+ active clinics': '40+ aktif klinik',
 
   // Pain section — updated headline
-  'Your Instagram ads work. Your follow-up doesn\'t.': 'Instagram reklamlarınız çalışıyor. Follow-up\'ınız çalışmıyor.',
+  'Your ads work. Your follow-up doesn\'t.': 'Reklamlarınız çalışıyor. Follow-up\'ınız çalışmıyor.',
   'A patient fills your lead form at 11pm. They\'re ready. Then nobody calls until Monday morning — and they\'ve already booked elsewhere.': 'Hasta gece 23:00\'te lead formunuzu dolduruyor. Hazır. Sonra Pazartesi sabahına kadar kimse aramıyor — ve artık başka yerde randevu almışlar.',
   'No instant callback on form leads': 'Form leadlerine anında geri arama yok',
-  '71% of leads that don\'t get a same-day response never convert. A patient fills your Instagram form at 11pm — intent at its peak. By the time someone calls Monday morning, they\'ve already booked your competitor who called them back in 60 seconds.': 'Aynı gün yanıt verilmeyen leadlerin %71\'i hiç dönüşmüyor. Hasta gece 23:00\'te Instagram formunuzu dolduruyor — niyet zirvede. Pazartesi sabahı birileri aradığında, 60 saniyede geri arayan rakibinizde çoktan randevu almışlar.',
+  '71% of leads that don\'t get a same-day response never convert. A patient fills your lead form at 11pm — intent at its peak. By the time someone calls Monday morning, they\'ve already booked your competitor who called them back in 60 seconds.': 'Aynı gün yanıt verilmeyen leadlerin %71\'i hiç dönüşmüyor. Hasta gece 23:00\'te lead formunuzu dolduruyor — niyet zirvede. Pazartesi sabahı birileri aradığında, 60 saniyede geri arayan rakibinizde çoktan randevu almışlar.',
 
   // Features — CRM card (new)
   'CRM & Lead Pipeline (Business)': 'CRM ve Lead Pipeline (Business)',
