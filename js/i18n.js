@@ -708,17 +708,18 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   'We already use GHL or another CRM. Does STOAIX integrate?': 'Zaten GHL veya başka bir CRM kullanıyoruz. STOAIX entegre olur mu?',
   'Yes. The Business plan includes Zapier, Make, and direct webhook support, which covers GoHighLevel, HubSpot, Calendly, Google Calendar, and hundreds of other tools. You don\'t need to change your existing workflow — STOAIX triggers events into it. For custom CRM integrations, contact us for a one-time setup.': 'Evet. Business plan, GoHighLevel, HubSpot, Calendly, Google Calendar ve yüzlerce diğer aracı kapsayan Zapier, Make ve doğrudan webhook desteğini içerir. Mevcut iş akışınızı değiştirmenize gerek yoktur — STOAIX olayları içine tetikler. Özel CRM entegrasyonları için tek seferlik kurulum için bize ulaşın.',
   'Is there a minimum commitment or long-term contract?': 'Minimum taahhüt veya uzun vadeli sözleşme var mı?',
-  'No. STOAIX is month-to-month — cancel anytime from your dashboard, no questions asked. Annual billing saves 20% if you\'d like to lock that in. The 10-day free trial lets you test the full product before you pay anything. No credit card is required to start.': 'Hayır. STOAIX aylık bazlıdır — dashboard\'unuzdan istediğiniz zaman iptal edin, soru sorulmaz. Yıllık faturalama, bunu kilitlemek istiyorsanız %20 tasarruf sağlar. 10 günlük ücretsiz deneme, herhangi bir şey ödemeden önce tam ürünü test etmenize olanak tanır. Başlamak için kredi kartı gerekmez.',
+  'No. STOAIX is month-to-month — cancel anytime from your dashboard, no questions asked. Annual billing saves 20% if you\'d like to lock that in. The 7-day free trial lets you test the full product before you pay anything. No credit card is required to start.': 'Hayır. STOAIX aylık bazlıdır — dashboard\'unuzdan istediğiniz zaman iptal edin, soru sorulmaz. Yıllık faturalama, bunu kilitlemek istiyorsanız %20 tasarruf sağlar. 7 günlük ücretsiz deneme, herhangi bir şey ödemeden önce tam ürünü test etmenize olanak tanır. Başlamak için kredi kartı gerekmez.',
   'My clinic group has multiple locations. Which plan do I need?': 'Klinik grubumun birden fazla lokasyonu var. Hangi plana ihtiyacım var?',
   'The Agency plan ($499/mo) supports multi-location management from a single dashboard. Each location gets its own configured AI agent, phone number, and knowledge base, while you manage everything from one place. This plan also includes white-label customisation if you want to remove STOAIX branding.': 'Agency planı (ayda $499), tek bir dashboard\'dan çok lokasyon yönetimini destekler. Her lokasyon, siz her şeyi tek bir yerden yönetirken kendi yapılandırılmış AI ajanını, telefon numarasını ve bilgi tabanını alır. Bu plan ayrıca STOAIX markasını kaldırmak istiyorsanız beyaz etiket özelleştirmesini de içerir.',
   // CTA section
-  '10-day free trial · No credit card required': '10 günlük ücretsiz deneme · Kredi kartı gerekmez',
-  'Stop losing patients': 'Cevapsız aramalara',
-  'to missed calls.': 'hasta kaybetmeyi bırakın.',
-  'Set up your AI receptionist in minutes. See it answer calls, qualify patients, and book consultations — before you pay a single dollar.': 'AI resepsiyonistinizi dakikalar içinde kurun. Tek bir dolar ödemeden önce aramaları yanıtlarken, hastaları nitelerken ve konsültasyonları rezerve ederken izleyin.',
+  '7-day free trial · No credit card required': '7 günlük ücretsiz deneme · Kredi kartı gerekmez',
+  'Your next lead is filling': 'Bir sonraki leadiniz şu an',
+  'a form right now.': 'form dolduruyor.',
+  'Will your clinic call them back in 60 seconds — or will your competitor?': 'Kliniğiniz onları 60 saniyede geri arayacak mı — yoksa rakibiniz mi?',
+  'Set up STOAIX in minutes and never lose another lead to slow follow-up.': 'STOAIX\'i dakikalar içinde kurun ve yavaş takip yüzünden bir daha lead kaybetmeyin.',
   'Compare all plans': 'Tüm Planları Karşılaştır',
-  '10 days free · No credit card · Cancel anytime': '10 gün ücretsiz · Kredi kartı yok · İstediğiniz zaman iptal edin',
-  'Start 10-day free trial': '10 günlük ücretsiz denemeye başlayın',
+  '7 days free · No credit card · Cancel anytime': '7 gün ücretsiz · Kredi kartı yok · İstediğiniz zaman iptal edin',
+  'Start 7-day free trial': '7 günlük ücretsiz denemeye başlayın',
   'See pricing': 'Fiyatları İnceleyin',
   'No credit card required · Cancel anytime · Setup in minutes': 'Kredi kartı gerekmez · İstediğiniz zaman iptal edin · Dakikalar içinde kurulum',
   'Always answers': 'Her zaman yanıtlar',
@@ -744,7 +745,7 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   'Books consultations directly into your calendar': 'Konsültasyonları doğrudan takviminize ekler',
   'Follows up automatically when a patient goes cold': 'Bir hasta soğuduğunda otomatik olarak takip eder',
   'Transfers to your team the moment a patient is ready to commit': 'Hasta taahhüt etmeye hazır olduğu anda ekibinize devreder',
-  'Try it free for 10 days': '10 gün ücretsiz deneyin',
+  'Try it free for 7 days': '7 gün ücretsiz deneyin',
   'Patient qualified — consultation booked for Tuesday 14:00': 'Hasta nitelendi — Salı 14:00\'de konsültasyon rezervasyonu yapıldı',
   'Features': 'Özellikler',
   'Everything a clinic needs. Nothing it doesn\'t.': 'Bir kliniğin ihtiyacı olan her şey. İhtiyacı olmayan hiçbir şey.',
@@ -775,7 +776,7 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   'More available': 'Daha fazlası mevcut',
   'Russian, German, French, Spanish, Italian, Dutch, and more': 'Rusça, Almanca, Fransızca, İspanyolca, İtalyanca, Hollandaca ve daha fazlası',
   'Sign up': 'Kaydolun',
-  'Start your 10-day free trial. No credit card required.': '10 günlük ücretsiz denemenizi başlatın. Kredi kartı gerekmez.',
+  'Start your 7-day free trial. No credit card required.': '7 günlük ücretsiz denemenizi başlatın. Kredi kartı gerekmez.',
   'Configure your agent': 'Ajanınızı yapılandırın',
   'Add your procedures, FAQs, and intake questions using the no-code builder.': 'Kod gerektirmeyen oluşturucuyu kullanarak prosedürlerinizi, SSS\'lerinizi ve kabul sorularınızı ekleyin.',
   'Connect your number': 'Numaranızı bağlayın',
@@ -794,6 +795,55 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   '© 2026 STOAIX. All rights reserved.': '© 2026 STOAIX. Tüm hakları saklıdır.',
   'AI Receptionist — Voice, Chat & CRM for Any Business': 'AI Resepsiyonist — Her İşletme için Ses, Chat ve CRM',
   'See full FAQ': 'Tüm SSS\'lere bakın',
+
+  // Hero — new static version
+  'AI receptionist for health tourism clinics': 'Sağlık turizmi klinikleri için AI resepsiyonist',
+  'Leads arrive.': 'Lead geliyor.',
+  "Patients don't.": 'Hasta gelmiyor.',
+  'Your clinic gets leads from Instagram. Most never hear back fast enough — so they book at a competitor.': 'Kliniğiniz Instagram\'dan lead alıyor. Çoğuna yeterince hızlı geri dönülmüyor — bu yüzden rakibinizde randevu alıyorlar.',
+  'STOAIX calls every new lead within': 'STOAIX her yeni leadi',
+  ', 24/7, in Turkish, English & Arabic.': 'içinde geri arıyor, 7/24, Türkçe, İngilizce ve Arapça.',
+  'First callback': 'İlk geri arama',
+  'Always on': 'Her zaman aktif',
+
+  // Social proof bar
+  'Trusted by clinics across Turkey & the UK': 'Türkiye ve İngiltere genelinde kliniklerin tercihi',
+  '40+ active clinics': '40+ aktif klinik',
+
+  // Pain section — updated headline
+  'Your Instagram ads work. Your follow-up doesn\'t.': 'Instagram reklamlarınız çalışıyor. Follow-up\'ınız çalışmıyor.',
+  'A patient fills your lead form at 11pm. They\'re ready. Then nobody calls until Monday morning — and they\'ve already booked elsewhere.': 'Hasta gece 23:00\'te lead formunuzu dolduruyor. Hazır. Sonra Pazartesi sabahına kadar kimse aramıyor — ve artık başka yerde randevu almışlar.',
+  'No instant callback on form leads': 'Form leadlerine anında geri arama yok',
+  '71% of leads that don\'t get a same-day response never convert. A patient fills your Instagram form at 11pm — intent at its peak. By the time someone calls Monday morning, they\'ve already booked your competitor who called them back in 60 seconds.': 'Aynı gün yanıt verilmeyen leadlerin %71\'i hiç dönüşmüyor. Hasta gece 23:00\'te Instagram formunuzu dolduruyor — niyet zirvede. Pazartesi sabahı birileri aradığında, 60 saniyede geri arayan rakibinizde çoktan randevu almışlar.',
+
+  // Features — CRM card (new)
+  'CRM & Lead Pipeline (Business)': 'CRM ve Lead Pipeline (Business)',
+  'Every lead tracked in a clean pipeline with lead scoring, status stages, and activity logs. Your team sees exactly where each patient stands.': 'Her lead, puanlama, durum aşamaları ve aktivite kayıtları ile temiz bir pipeline\'da takip edilir. Ekibiniz her hastanın tam olarak nerede durduğunu görür.',
+
+  // Testimonials section
+  'Real results': 'Gerçek Sonuçlar',
+  'What clinics say after 30 days': '30 günün ardından klinikler ne diyor',
+  'Real quotes from clinics that switched from manual follow-up to STOAIX.': 'Manuel takipten STOAIX\'e geçen kliniklerin gerçek yorumları.',
+  'Lead response time': 'Lead yanıt süresi',
+  '"We had 18,000 leads sitting in our CRM that nobody had touched in months. STOAIX reactivated them all. Response time dropped from 8 hours to 4 minutes and our consultation bookings doubled within the first week."': '"CRM\'imizde aylardır kimsenin dokunmadığı 18.000 lead vardı. STOAIX hepsini yeniden harekete geçirdi. Yanıt süresi 8 saatten 4 dakikaya indi ve konsültasyon rezervasyonlarımız ilk haftada ikiye katlandı."',
+  'Operations Director': 'Operasyon Direktörü',
+  'Istanbul Hair Transplant Clinic': 'İstanbul Saç Ekimi Kliniği',
+  'Admin time saved': 'İdari zaman tasarrufu',
+  '"STOAIX saved us 80% of admin time overnight. We had 9,500 leads that had gone quiet — the AI re-engaged all of them automatically. Our team now focuses on consultations, not chasing enquiries."': '"STOAIX bir gecede idari zamanımızın %80\'ini tasarruf ettirdi. Sessizleşen 9.500 leadimiz vardı — AI hepsini otomatik olarak yeniden devreye soktu. Ekibimiz artık sorgu peşinde koşmak yerine konsültasyonlara odaklanıyor."',
+  'Practice Manager': 'Klinik Yöneticisi',
+  'South London Dental Practice': 'Güney Londra Diş Kliniği',
+  '240 bookings': '240 rezervasyon',
+  'In 6 weeks': '6 Haftada',
+  '"12,000 leads in our system. Most had never been properly followed up. In 6 weeks with STOAIX, we generated 240 consultation bookings. The ROI was immediate — we made back the annual cost in the first month."': '"Sistemimizde 12.000 lead vardı. Çoğu hiçbir zaman düzgün takip edilmemişti. STOAIX ile 6 haftada 240 konsültasyon rezervasyonu oluşturduk. ROI anlık gerçekleşti — yıllık maliyeti ilk ayda çıkardık."',
+  'Clinic Director': 'Klinik Direktörü',
+  'Medical Aesthetic Clinic, London': 'Medikal Estetik Kliniği, Londra',
+
+  // Guarantee section
+  '7-day free trial. Zero risk.': '7 günlük ücretsiz deneme. Sıfır risk.',
+  'Sign up, configure your AI agent in under 5 minutes, and watch it handle real patient enquiries. No credit card required. If it\'s not right for your clinic after 7 days, you\'ve lost nothing — and you\'ll know exactly why your competitors are pulling ahead.': 'Kayıt olun, AI ajanınızı 5 dakikadan kısa sürede yapılandırın ve gerçek hasta sorgularını nasıl yönettiğini izleyin. Kredi kartı gerekmez. 7 günün sonunda kliniğiniz için doğru değilse, hiçbir şey kaybetmemiş olursunuz — ve rakiplerinizin neden öne geçtiğini tam olarak anlarsınız.',
+
+  // Mobile sticky CTA
+  'No credit card required · Cancel anytime': 'Kredi kartı gerekmez · İstediğiniz zaman iptal edin',
 });
 
 /* ─── Case Studies listing page ─────────────────────────── */

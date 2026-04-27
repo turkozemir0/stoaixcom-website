@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AI Receptionist for Healthcare Clinics — STOAIX</title>
-  <meta name="description" content="Set up your AI voice receptionist in minutes. Answers calls 24/7 in Turkish, English & Arabic. Built for hair transplant, dental, and aesthetic clinics. 10-day free trial." />
+  <meta name="description" content="Turn Instagram leads into booked patients. STOAIX calls back within 60 seconds, 24/7, in Turkish, English & Arabic. Built for hair transplant, dental and aesthetic clinics. 7-day free trial." />
   <link rel="stylesheet" href="css/styles.css" />
 
   <!-- Performance: preconnect to external origins -->
@@ -16,7 +16,7 @@
     .hc-hero {
       position: relative;
       overflow: hidden;
-      padding: 140px 0 120px;
+      padding: 80px 0 80px;
       background:
         radial-gradient(ellipse 75% 65% at 6% 18%,  rgba(37,99,235,0.30)  0%, transparent 55%),
         radial-gradient(ellipse 58% 52% at 92% 10%,  rgba(124,58,237,0.22) 0%, transparent 50%),
@@ -842,6 +842,217 @@
       .hc-steps     { grid-template-columns: 1fr; }
     }
 
+    /* ── Social Proof Bar ──────────────────────────────── */
+    .hc-social-proof {
+      background: var(--bg-2);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+    .hc-social-proof-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .hc-sp-label {
+      font-size: 0.82rem;
+      color: var(--text-3);
+      font-weight: 500;
+    }
+    .hc-sp-divider {
+      width: 1px; height: 16px;
+      background: var(--border);
+    }
+    .hc-sp-clinics {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .hc-sp-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-2);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-full);
+      padding: 4px 12px;
+    }
+    .hc-sp-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #4ade80;
+      flex-shrink: 0;
+    }
+
+    /* ── Testimonials ──────────────────────────────────── */
+    .hc-testimonials {
+      background: var(--bg);
+      padding: 96px 0;
+    }
+    .hc-tcard {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.22s var(--ease), transform 0.22s var(--ease);
+    }
+    .hc-tcard:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+    .hc-tcard-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 14px;
+    }
+    .hc-tcard-stars svg { width: 14px; height: 14px; fill: #f59e0b; }
+    .hc-tcard-metric {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .hc-tcard-metric-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+    }
+    .hc-tcard-quote {
+      font-size: 0.88rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .hc-tcard-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .hc-tcard-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+    .hc-tcard-name {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .hc-tcard-role {
+      font-size: 0.75rem;
+      color: var(--text-3);
+    }
+
+    /* ── Guarantee ─────────────────────────────────────── */
+    .hc-guarantee {
+      background: var(--bg-2);
+      padding: 60px 0;
+    }
+    .hc-guarantee-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .hc-guarantee-icon {
+      width: 64px; height: 64px;
+      border-radius: 50%;
+      background: var(--blue-tint);
+      border: 2px solid var(--blue-mid);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .hc-guarantee-icon svg {
+      width: 28px; height: 28px;
+      stroke: var(--blue);
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .hc-guarantee h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .hc-guarantee p {
+      font-size: 0.97rem;
+      color: var(--text-2);
+      line-height: 1.65;
+      max-width: 560px;
+    }
+
+    /* ── Mobile Sticky CTA ─────────────────────────────── */
+    .sticky-trial-bar {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 999;
+      background: #fff;
+      border-top: 1px solid var(--border);
+      padding: 12px 20px;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.10);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 4px;
+      transform: translateY(100%);
+      transition: transform 0.3s var(--ease);
+    }
+    .sticky-trial-bar.visible { transform: translateY(0); }
+    .sticky-trial-bar .sticky-cta-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 0.97rem;
+      font-weight: 700;
+      padding: 14px 20px;
+      border-radius: var(--r-full);
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .sticky-trial-bar .sticky-cta-btn:hover { background: var(--blue-h); }
+    .sticky-trial-bar .sticky-note {
+      font-size: 0.7rem;
+      color: var(--text-3);
+      text-align: center;
+    }
+    @media (max-width: 768px) {
+      .sticky-trial-bar { display: flex; }
+      body { padding-bottom: 88px; }
+    }
+
     /* ── Hero rotating words (reuses hero-word / hero-word-wrap from styles.css) ── */
     .hc-hero-h1 .hero-word-wrap { vertical-align: bottom; }
 
@@ -903,92 +1114,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       </a>
 
       <div class="nav-links">
-        <div class="nav-dropdown-item">
-          <button class="nav-link-btn">Product <span class="nav-chevron">↓</span></button>
-          <div class="nav-dropdown">
-            <div class="dropdown-inner">
-              <a href="index.html#features" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 18.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z"/>
-                    <path d="M19.14 19.14 22 22M2 22l2.86-2.86"/>
-                    <path d="M12 12v-2M12 8v-.5"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">Voice AI</div>
-                  <div class="dropdown-desc">Answer every call, 24/7</div>
-                </div>
-              </a>
-              <a href="index.html#channels" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">WhatsApp & Chat</div>
-                  <div class="dropdown-desc">Automate message channels</div>
-                </div>
-              </a>
-              <a href="index.html#features" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-                    <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">CRM & Pipeline</div>
-                  <div class="dropdown-desc">Track and score every lead</div>
-                </div>
-              </a>
-              <a href="index.html#features" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">Integrations</div>
-                  <div class="dropdown-desc">Connect your existing tools</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <a href="index.html#pricing" class="nav-link">Pricing</a>
-        <div class="nav-dropdown-item">
-          <button class="nav-link-btn">Solutions <span class="nav-chevron">↓</span></button>
-          <div class="nav-dropdown">
-            <div class="dropdown-inner">
-              <a href="healthcare-clinics.html" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">Healthcare Clinics</div>
-                  <div class="dropdown-desc">Hair transplant, dental, aesthetics</div>
-                </div>
-              </a>
-              <a href="partners.html" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">Partner Program</div>
-                  <div class="dropdown-desc">Earn up to 50% recurring commission</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
+        <a href="#pricing" class="nav-link">Pricing</a>
       </div>
 
       <div class="nav-actions">
@@ -1004,12 +1130,9 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html#features">Product</a>
-    <a href="index.html#pricing">Pricing</a>
-    <a href="healthcare-clinics.html">Healthcare Clinics</a>
-    <a href="partners.html">Partner Program</a>
+    <a href="#pricing">Pricing</a>
     <a href="login.html" class="nav-login">Log in</a>
-    <a href="signup.html" class="btn-primary">Start free trial</a>
+    <a href="signup.html" class="btn-primary">Start 7-day free trial</a>
   </div>
 
   <!-- ── Hero ── -->
@@ -1017,19 +1140,19 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     <div class="hc-hero-inner">
       <div class="hc-hero-badge reveal">
         <span class="badge-dot"></span>
-        Built for healthcare clinics
+        AI receptionist for health tourism clinics
       </div>
       <h1 class="hc-hero-h1 reveal">
-        Your AI<span class="hero-word-wrap"><span class="hero-word" aria-hidden="true">receptionist</span><span class="hero-word" aria-hidden="true">call center</span><span class="hero-word" aria-hidden="true">sales agent</span><span class="hero-word" aria-hidden="true">chatbot</span><span class="hero-word" aria-hidden="true">voice agent</span><span class="hero-word" aria-hidden="true">CRM</span><span class="hero-typewriter" aria-live="polite"></span><span class="hero-cursor" aria-hidden="true"></span></span>,<br>
-        <span class="gradient-text">live in minutes.</span>
+        Leads arrive.<br>
+        <span class="gradient-text">Patients don't.</span>
       </h1>
       <p class="hc-hero-sub reveal">
-        Answers every call 24/7. Qualifies patients, books consultations, and follows up on cold leads — all without a single meeting with us.<br>
-        Available in <span class="hc-lang-rotate"><span class="hc-lang-word active">Turkish</span><span class="hc-lang-word">English</span><span class="hc-lang-word">Arabic</span><span class="hc-lang-word">Russian</span><span class="hc-lang-word">German</span><span class="hc-lang-word">French</span><span class="hc-lang-word">Spanish</span><span class="hc-lang-word">Italian</span><span class="hc-lang-word">Dutch</span><span class="hc-lang-word">Portuguese</span><span class="hc-lang-word">Japanese</span><span class="hc-lang-word">Korean</span><span class="hc-lang-word">Chinese</span><span class="hc-lang-word">Hindi</span><span class="hc-lang-word">Polish</span></span> and more.
+        Your clinic gets leads from Instagram. Most never hear back fast enough — so they book at a competitor.<br>
+        STOAIX calls every new lead within <strong>60 seconds</strong>, 24/7, in Turkish, English &amp; Arabic.
       </p>
       <div class="hc-hero-cta reveal">
-        <a href="#trial" class="btn-primary btn-lg">
-          Start 10-day free trial
+        <a href="signup.html" class="btn-primary btn-lg">
+          Start 7-day free trial
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="#pricing" class="btn-ghost btn-lg">See pricing</a>
@@ -1037,21 +1160,39 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       <p class="hc-hero-note reveal">No credit card required &nbsp;·&nbsp; Cancel anytime &nbsp;·&nbsp; Setup in minutes</p>
       <div class="hc-hero-stats reveal">
         <div class="hc-stat">
+          <div class="hc-stat-num">60 sec</div>
+          <div class="hc-stat-label">First callback</div>
+        </div>
+        <div class="hc-stat">
           <div class="hc-stat-num">24/7</div>
-          <div class="hc-stat-label">Always answers</div>
+          <div class="hc-stat-label">Always on</div>
         </div>
         <div class="hc-stat">
-          <div class="hc-stat-num">3+</div>
+          <div class="hc-stat-num">3</div>
           <div class="hc-stat-label">Languages (TR / EN / AR)</div>
-        </div>
-        <div class="hc-stat">
-          <div class="hc-stat-num">&lt; 5 min</div>
-          <div class="hc-stat-label">Time to set up</div>
         </div>
         <div class="hc-stat">
           <div class="hc-stat-num">$0</div>
           <div class="hc-stat-label">Setup fee</div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Social Proof Bar ── -->
+  <section class="hc-social-proof">
+    <div class="container">
+      <div class="hc-social-proof-inner">
+        <span class="hc-sp-label">Trusted by clinics across Turkey &amp; the UK</span>
+        <div class="hc-sp-divider"></div>
+        <div class="hc-sp-clinics">
+          <span class="hc-sp-tag">Hair Transplant</span>
+          <span class="hc-sp-tag">Dental</span>
+          <span class="hc-sp-tag">Aesthetic Surgery</span>
+          <span class="hc-sp-tag">Medical Aesthetics</span>
+        </div>
+        <div class="hc-sp-divider"></div>
+        <span class="hc-sp-label">40+ active clinics</span>
       </div>
     </div>
   </section>
@@ -1141,8 +1282,8 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     <div class="container">
       <div class="hc-section-center reveal">
         <div class="section-badge">The real cost</div>
-        <h2 class="section-headline">Four ways your clinic leaks revenue every day</h2>
-        <p class="section-sub centered">Every clinic we talk to — hair transplant, dental, aesthetic — faces the same four problems.</p>
+        <h2 class="section-headline">Your Instagram ads work. Your follow-up doesn't.</h2>
+        <p class="section-sub centered">A patient fills your lead form at 11pm. They're ready. Then nobody calls until Monday morning — and they've already booked elsewhere.</p>
       </div>
       <div class="hc-4col stagger">
         <div class="hc-card">
@@ -1150,8 +1291,8 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           <div class="hc-card-icon red-bg">
             <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6"/><line x1="2" y1="2" x2="22" y2="22"/></svg>
           </div>
-          <h3>Slow first response</h3>
-          <p>The first clinic to respond wins the patient. When a lead calls after hours, waits in a WhatsApp queue, or spends 10 minutes getting FAQ answers — intent cools fast. Most clinics respond in hours. Your competitor responds in seconds.</p>
+          <h3>No instant callback on form leads</h3>
+          <p>71% of leads that don't get a same-day response never convert. A patient fills your Instagram form at 11pm — intent at its peak. By the time someone calls Monday morning, they've already booked your competitor who called them back in 60 seconds.</p>
         </div>
         <div class="hc-card">
           <div class="hc-card-number">02</div>
@@ -1197,8 +1338,8 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             <div class="hc-check-item">Follows up automatically when a patient goes cold</div>
             <div class="hc-check-item">Transfers to your team the moment a patient is ready to commit</div>
           </div>
-          <a href="#trial" class="btn-primary">
-            Try it free for 10 days
+          <a href="signup.html" class="btn-primary">
+            Try it free for 7 days
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
         </div>
@@ -1291,6 +1432,76 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     </div>
   </section>
 
+  <!-- ── Testimonials ── -->
+  <section class="hc-testimonials">
+    <div class="container">
+      <div class="hc-section-center reveal">
+        <div class="section-badge">Real results</div>
+        <h2 class="section-headline">What clinics say after 30 days</h2>
+        <p class="section-sub centered">Real quotes from clinics that switched from manual follow-up to STOAIX.</p>
+      </div>
+      <div class="hc-3col stagger">
+        <div class="hc-tcard">
+          <div class="hc-tcard-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="hc-tcard-metric">8h → 4min</div>
+          <div class="hc-tcard-metric-label">Lead response time</div>
+          <p class="hc-tcard-quote">"We had 18,000 leads sitting in our CRM that nobody had touched in months. STOAIX reactivated them all. Response time dropped from 8 hours to 4 minutes and our consultation bookings doubled within the first week."</p>
+          <div class="hc-tcard-author">
+            <div class="hc-tcard-avatar">IH</div>
+            <div>
+              <div class="hc-tcard-name">Operations Director</div>
+              <div class="hc-tcard-role">Istanbul Hair Transplant Clinic</div>
+            </div>
+          </div>
+        </div>
+        <div class="hc-tcard">
+          <div class="hc-tcard-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="hc-tcard-metric">80%</div>
+          <div class="hc-tcard-metric-label">Admin time saved</div>
+          <p class="hc-tcard-quote">"STOAIX saved us 80% of admin time overnight. We had 9,500 leads that had gone quiet — the AI re-engaged all of them automatically. Our team now focuses on consultations, not chasing enquiries."</p>
+          <div class="hc-tcard-author">
+            <div class="hc-tcard-avatar">SD</div>
+            <div>
+              <div class="hc-tcard-name">Practice Manager</div>
+              <div class="hc-tcard-role">South London Dental Practice</div>
+            </div>
+          </div>
+        </div>
+        <div class="hc-tcard">
+          <div class="hc-tcard-stars">
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="hc-tcard-metric">240 bookings</div>
+          <div class="hc-tcard-metric-label">In 6 weeks</div>
+          <p class="hc-tcard-quote">"12,000 leads in our system. Most had never been properly followed up. In 6 weeks with STOAIX, we generated 240 consultation bookings. The ROI was immediate — we made back the annual cost in the first month."</p>
+          <div class="hc-tcard-author">
+            <div class="hc-tcard-avatar">MA</div>
+            <div>
+              <div class="hc-tcard-name">Clinic Director</div>
+              <div class="hc-tcard-role">Medical Aesthetic Clinic, London</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Clinic types ── -->
   <section class="hc-clinics">
     <div class="container">
@@ -1348,7 +1559,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             Turkish, English, and Arabic are included in the Business plan.
             Additional languages are available as add-ons: Russian, German, French, Spanish, and more.
           </p>
-          <a href="#trial" class="btn-primary">
+          <a href="signup.html" class="btn-primary">
             Start with all three languages
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
@@ -1403,7 +1614,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         <div class="hc-step reveal">
           <div class="hc-step-num">1</div>
           <h3>Sign up</h3>
-          <p>Start your 10-day free trial. No credit card required.</p>
+          <p>Start your 7-day free trial. No credit card required.</p>
         </div>
         <div class="hc-step reveal">
           <div class="hc-step-num">2</div>
@@ -1428,6 +1639,17 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           includes a 60-minute setup session for $297 — available at checkout.
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- ── Guarantee ── -->
+  <section class="hc-guarantee">
+    <div class="hc-guarantee-inner reveal">
+      <div class="hc-guarantee-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <h2>7-day free trial. Zero risk.</h2>
+      <p>Sign up, configure your AI agent in under 5 minutes, and watch it handle real patient enquiries. No credit card required. If it's not right for your clinic after 7 days, you've lost nothing — and you'll know exactly why your competitors are pulling ahead.</p>
     </div>
   </section>
 
@@ -1489,7 +1711,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             <span class="hc-faq-icon"><svg viewBox="0 0 12 12"><path d="M6 2v8M2 6h8"/></svg></span>
           </button>
           <div class="hc-faq-a">
-            <p>No. STOAIX is month-to-month — cancel anytime from your dashboard, no questions asked. Annual billing saves 20% if you'd like to lock that in. The 10-day free trial lets you test the full product before you pay anything. No credit card is required to start.</p>
+            <p>No. STOAIX is month-to-month — cancel anytime from your dashboard, no questions asked. Annual billing saves 20% if you'd like to lock that in. The 7-day free trial lets you test the full product before you pay anything. No credit card is required to start.</p>
           </div>
         </div>
 
@@ -1510,24 +1732,33 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
   <!-- ── CTA ── -->
   <section class="hc-cta" id="trial">
     <div class="hc-cta-inner">
-      <div class="hc-cta-badge reveal">10-day free trial · No credit card required</div>
+      <div class="hc-cta-badge reveal">7-day free trial · No credit card required</div>
       <h2 class="reveal">
-        Stop losing patients<br>to missed calls.
+        Your next lead is filling<br>a form right now.
       </h2>
       <p class="reveal">
-        Set up your AI receptionist in minutes. See it answer calls, qualify patients,
-        and book consultations — before you pay a single dollar.
+        Will your clinic call them back in 60 seconds — or will your competitor?<br>
+        Set up STOAIX in minutes and never lose another lead to slow follow-up.
       </p>
       <div class="hc-cta-btns reveal">
-        <a href="#" class="btn-white">
-          Start free trial
+        <a href="signup.html" class="btn-white">
+          Start 7-day free trial
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="index.html#pricing" class="btn-ghost-white">Compare all plans</a>
+        <a href="#pricing" class="btn-ghost-white">Compare all plans</a>
       </div>
-      <p class="hc-cta-fine reveal">10 days free · No credit card · Cancel anytime</p>
+      <p class="hc-cta-fine reveal">7 days free · No credit card · Cancel anytime</p>
     </div>
   </section>
+
+  <!-- ── Mobile Sticky CTA ── -->
+  <div class="sticky-trial-bar" id="stickyTrialBar">
+    <a href="signup.html" class="sticky-cta-btn">
+      Start 7-day free trial
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+    <span class="sticky-note">No credit card required · Cancel anytime</span>
+  </div>
 
   <!-- ── Footer ── -->
   <footer class="footer">
@@ -1628,6 +1859,19 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         if (!isOpen) item.classList.add('open');
       });
     });
+  </script>
+  <script>
+    (function() {
+      var bar = document.getElementById('stickyTrialBar');
+      if (!bar) return;
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 400) {
+          bar.classList.add('visible');
+        } else {
+          bar.classList.remove('visible');
+        }
+      }, { passive: true });
+    })();
   </script>
 <script defer src="js/i18n.js"></script>
 </body>
