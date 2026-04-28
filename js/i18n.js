@@ -848,8 +848,23 @@ const TR_HEALTHCARE = Object.assign({}, TR_COMMON, {
   '7-day free trial. Zero risk.': '7 günlük ücretsiz deneme. Sıfır risk.',
   'Sign up, configure your AI agent in under 5 minutes, and watch it handle real patient enquiries. No credit card required. If it\'s not right for your clinic after 7 days, you\'ve lost nothing — and you\'ll know exactly why your competitors are pulling ahead.': 'Kayıt olun, AI ajanınızı 5 dakikadan kısa sürede yapılandırın ve gerçek hasta sorgularını nasıl yönettiğini izleyin. Kredi kartı gerekmez. 7 günün sonunda kliniğiniz için doğru değilse, hiçbir şey kaybetmemiş olursunuz — ve rakiplerinizin neden öne geçtiğini tam olarak anlarsınız.',
 
-  // Mobile sticky CTA
+  // Setup — Onboarding Add-on inline note (split text nodes around <strong>)
+  'Prefer us to set it up for you? The': 'Kurulumu sizin yerinize yapalım mı?',
+  'Onboarding Add-on': 'Onboarding Eklentisi',
+  'includes a 60-minute setup session for $297 — available at checkout.': '$297 karşılığında kasada mevcut olan 60 dakikalık kurulum oturumunu içerir.',
+
+  // How it works visual header
+  'AI Agent — Live': 'AI Ajan — Canlı',
+
+  // Sticky trial bar note
   'No credit card required · Cancel anytime': 'Kredi kartı gerekmez · İstediğiniz zaman iptal edin',
+
+  // Marquee section label
+  'Powered by the best. Connects with everything.': 'En iyi teknolojilerle güçlendirildi. Her şeyle entegre olur.',
+
+  // Social proof bar — short clinic type tags
+  'Hair Transplant': 'Saç Ekimi',
+  'Dental': 'Diş',
 });
 
 /* ─── Case Studies listing page ─────────────────────────── */
@@ -1108,7 +1123,7 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
 
   const dict = DICT_MAP[path] || null;
   const stored = localStorage.getItem('stoaix-lang');
-  const storedLang = stored || 'en';
+  const storedLang = stored || 'tr';
 
   function handleToggle(targetLang) {
     localStorage.setItem('stoaix-lang', targetLang);
