@@ -76,6 +76,7 @@
         </div>
         <a href="/#pricing" class="nav-link">Pricing</a>
         <a href="/case-studies.html" class="nav-link">Case Studies</a>
+        <a href="/documentation" class="nav-link">Docs</a>
         <div class="nav-dropdown-item">
           <button class="nav-link-btn">Solutions <span class="nav-chevron">↓</span></button>
           <div class="nav-dropdown">
@@ -123,6 +124,7 @@
     <a href="/#features">Product</a>
     <a href="/#pricing">Pricing</a>
     <a href="/case-studies.html">Case Studies</a>
+    <a href="/documentation">Docs</a>
     <a href="/healthcare-clinics.html">Healthcare Clinics</a>
     <a href="/partners.html">Partner Program</a>
     <a href="/login.html" class="nav-login">Log in</a>
@@ -263,6 +265,7 @@
           <a href="/about.html">About Us</a>
           <a href="#">Blog</a>
           <a href="/case-studies.html">Case Studies</a>
+          <a href="/documentation">Documentation</a>
           <a href="/partners.html">Partners</a>
           <a href="#">Careers</a>
           <a href="mailto:hello@stoaix.com">hello@stoaix.com</a>

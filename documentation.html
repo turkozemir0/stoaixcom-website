@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentation — STOAIX | Platform Guide & Help</title>
+  <meta name="description" content="Complete guide to using the stoaix AI assistant platform. Learn about CRM, WhatsApp, Voice Agent, knowledge base, workflows, billing and more." />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="documentation/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1426016022664547');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body>
+
+  <nav class="navbar" id="navbar"></nav>
+  <div class="mobile-menu" id="mobileMenu"></div>
+
+  <div class="docs-page">
+
+    <!-- Sidebar -->
+    <aside class="docs-sidebar" id="docsSidebar"></aside>
+
+    <!-- Main content -->
+    <div class="docs-main">
+
+      <!-- Hero / Search -->
+      <div class="docs-hero">
+        <h1>Documentation</h1>
+        <p>Platform rehberi ve yardım makaleleri</p>
+        <div class="docs-search-wrap">
+          <span class="docs-search-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+            </svg>
+          </span>
+          <input type="text" class="docs-search" id="docsSearch" placeholder="Makale ara... (ör: lead, whatsapp, randevu)" autocomplete="off" />
+          <div class="docs-search-results" id="docsSearchResults"></div>
+        </div>
+      </div>
+
+      <!-- Article content -->
+      <div class="docs-content" id="docsContent">
+        <div class="docs-content-empty">
+          <div class="docs-content-empty-icon">📖</div>
+          <p>Sol menüden bir makale seçin veya yukarıdaki arama kutusunu kullanın.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile sidebar toggle -->
+  <button class="docs-mobile-toggle" id="docsMobileToggle" aria-label="Toggle sidebar">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <div class="docs-sidebar-overlay" id="docsSidebarOverlay"></div>
+
+  <footer class="footer"></footer>
+
+  <script src="js/components.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="documentation/docs-data.js"></script>
+  <script src="documentation/docs.js"></script>
+
+</body>
+</html>
