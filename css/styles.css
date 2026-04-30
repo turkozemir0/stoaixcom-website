@@ -1622,6 +1622,7 @@ ul { list-style: none; }
     linear-gradient(160deg, #eef3ff 0%, #f5f8ff 45%, #eff6ff 100%);
 }
 
+/* ─── Billing toggle ─────────────────────────────────────── */
 .billing-toggle {
   display: flex;
   align-items: center;
@@ -1645,7 +1646,6 @@ ul { list-style: none; }
   font-size: 0.68rem;
   font-weight: 700;
 }
-
 .toggle-switch {
   width: 48px; height: 26px;
   background: var(--border-2);
@@ -1666,152 +1666,314 @@ ul { list-style: none; }
 }
 .toggle-switch.annual .toggle-knob { transform: translateX(22px); }
 
-.pricing-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+/* ─── Annual / monthly content toggle ───────────────────── */
+.annual-show { display: block; }
+.monthly-show { display: none; }
+#pricing.is-monthly .annual-show { display: none; }
+#pricing.is-monthly .monthly-show { display: block; }
+
+/* ─── Comparison table wrapper ───────────────────────────── */
+.ptable-wrap {
   margin-top: 48px;
-  padding-top: 18px;
-}
-
-.price-card {
-  background: var(--surface);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: var(--r-xl);
   border: 1px solid var(--border);
-  border-radius: var(--r-xl);
-  padding: 28px 24px;
-  position: relative;
-  overflow: visible;
-  cursor: default;
-  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
-}
-.price-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--r-xl);
-  overflow: hidden;
-  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(37,99,235,0.07) 0%, transparent 65%);
-  opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
-}
-.price-card:hover::before { opacity: 1; }
-.price-card:hover {
-  border-color: var(--blue-mid);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
 
-.price-card-featured {
-  border-color: var(--blue);
-  background: var(--bg);
-  box-shadow: 0 0 0 1px var(--blue), var(--shadow-lg);
+.ptable {
+  width: 100%;
+  min-width: 680px;
+  border-collapse: collapse;
 }
 
-.featured-badge {
-  position: absolute;
-  top: 0; right: 24px;
-  transform: translateY(-50%);
-  padding: 4px 14px;
+/* ─── Plan header cells ─────────────────────────────────── */
+.pt-feat-col {
+  width: 200px;
+  min-width: 150px;
+}
+
+.pt-th-plan {
+  width: 155px;
+  text-align: center;
+  padding: 28px 14px 20px;
+  vertical-align: top;
+  border-left: 1px solid var(--border);
+}
+
+.pt-th-biz {
+  background: rgba(37, 99, 235, 0.06);
+  border-top: 3px solid var(--blue);
+}
+
+.pt-pop-badge {
+  display: inline-block;
+  padding: 3px 10px;
   background: var(--blue);
   color: #fff;
   border-radius: var(--r-full);
-  font-size: 0.72rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
+  margin-bottom: 8px;
 }
 
-.price-card-enterprise {
-  border-color: #7c3aed;
-  background: var(--bg);
-  box-shadow: 0 0 0 1px #7c3aed, var(--shadow-lg);
+.pt-plan-name {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text);
+  margin-bottom: 10px;
 }
 
-.enterprise-badge {
-  background: #7c3aed;
+.pt-plan-price {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1px;
+  margin-bottom: 4px;
 }
 
-.price-custom {
-  font-size: 1.35rem;
+.pt-currency {
+  font-size: 1.05rem;
   font-weight: 700;
-  color: #7c3aed;
-  letter-spacing: -0.01em;
+  color: var(--text-2);
   line-height: 1;
 }
 
-.btn-enterprise {
-  background: #7c3aed;
-}
-
-.btn-enterprise:hover {
-  background: #6d28d9;
-}
-
-.price-tier {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.price-amount {
-  display: flex;
-  align-items: baseline;
-  gap: 2px;
-  margin-bottom: 6px;
-}
-.price-currency { font-size: 1.2rem; font-weight: 700; color: var(--text-2); }
 .price-num {
-  font-size: 2.8rem;
+  font-size: 2.4rem;
   font-weight: 800;
   color: var(--text);
   letter-spacing: -0.04em;
   font-variant-numeric: tabular-nums;
-}
-.price-period { font-size: 0.85rem; color: var(--text-3); margin-left: 2px; }
-.price-sub { font-size: 0.8rem; color: var(--text-2); margin-bottom: 20px; min-height: 36px; }
-
-.price-features { display: flex; flex-direction: column; gap: 7px; margin-top: 20px; }
-.price-features li {
-  font-size: 0.82rem;
-  color: var(--text-2);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.price-features li::before {
-  content: '';
-  width: 14px; height: 14px;
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none'%3E%3Ccircle cx='7' cy='7' r='7' fill='%232563eb' fill-opacity='.12'/%3E%3Cpath d='M4.5 7l2 2L9.5 5' stroke='%232563eb' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat;
-  flex-shrink: 0;
-}
-.price-features li.inactive {
-  opacity: 0.35;
-  text-decoration: line-through;
-  text-decoration-color: var(--text-3);
-}
-.price-features li.inactive::before {
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none'%3E%3Ccircle cx='7' cy='7' r='7' fill='%23cbd5e1' fill-opacity='.4'/%3E%3Cpath d='M4.5 7h5' stroke='%2394a3b8' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat;
+  line-height: 1;
 }
 
-.price-trial-note {
-  font-size: 0.72rem;
+.pt-period {
+  font-size: 0.8rem;
+  color: var(--text-3);
+  margin-left: 1px;
+}
+
+.pt-ent-price {
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.pt-billing-note {
+  font-size: 0.69rem;
+  color: var(--text-3);
+  margin-bottom: 14px;
+  min-height: 14px;
+  line-height: 1.3;
+}
+
+.pt-btn {
+  display: block;
+  width: 100%;
   text-align: center;
-  margin-top: 6px;
+  padding: 9px 10px;
+  border-radius: var(--r-lg);
+  font-size: 0.78rem;
   font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  white-space: nowrap;
+  box-sizing: border-box;
 }
-.price-trial-note.has-trial { color: #16a34a; }
-.price-trial-note.no-trial { color: var(--text-3); opacity: 0.6; }
+.pt-btn:hover { transform: translateY(-1px); }
 
+.pt-trial {
+  font-size: 0.67rem;
+  color: #16a34a;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 7px;
+  min-height: 14px;
+}
+.pt-trial-muted {
+  color: var(--text-3);
+  opacity: 0.6;
+}
+
+/* ─── Feature group header rows ─────────────────────────── */
+.pt-group-row td {
+  padding: 14px 16px 5px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+}
+
+/* ─── Feature name cells ────────────────────────────────── */
+.pt-feat {
+  padding: 13px 16px;
+  font-size: 0.83rem;
+  color: var(--text-2);
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─── Value cells ───────────────────────────────────────── */
+.pt-c {
+  text-align: center;
+  padding: 13px 8px;
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.pt-biz {
+  background: rgba(37, 99, 235, 0.05);
+}
+
+/* Row hover highlight */
+.ptable tbody tr:not(.pt-group-row):hover .pt-feat,
+.ptable tbody tr:not(.pt-group-row):hover .pt-c {
+  background: rgba(37, 99, 235, 0.03);
+}
+.ptable tbody tr:not(.pt-group-row):hover .pt-biz {
+  background: rgba(37, 99, 235, 0.09);
+}
+
+/* Green checkmark */
+.ptc-y::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Ccircle cx='10' cy='10' r='10' fill='%2316a34a' fill-opacity='.13'/%3E%3Cpath d='M6 10l3 3 5-5' stroke='%2316a34a' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / contain no-repeat;
+  vertical-align: middle;
+}
+
+/* Gray dash */
+.ptc-n {
+  color: #cbd5e1;
+  font-size: 1.1rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* Text value */
+.ptc-v {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.pt-sub-note {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 400;
+  color: var(--text-3);
+  margin-top: 3px;
+}
+
+/* ─── Add-ons section ───────────────────────────────────── */
+.pt-addons {
+  margin-top: 28px;
+  padding: 26px 30px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+}
+
+.pt-addons-title {
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  margin-bottom: 16px;
+}
+
+.pt-addons-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.pt-addon-card {
+  padding: 18px 22px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+
+.pt-addon-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.pt-addon-name {
+  font-size: 0.87rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.pt-addon-price {
+  font-size: 1.28rem;
+  font-weight: 800;
+  color: var(--blue);
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.pt-addon-period {
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--text-3);
+  margin-left: 1px;
+}
+
+.pt-addon-desc {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.pt-addon-note {
+  font-size: 0.73rem;
+  color: #16a34a;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* ─── Pricing footnote ──────────────────────────────────── */
 .pricing-note {
   text-align: center;
-  margin-top: 28px;
+  margin-top: 24px;
   font-size: 0.78rem;
   color: var(--text-3);
 }
 .pricing-note span { margin: 0 4px; }
+
+/* ─── Responsive ────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .pt-feat-col { min-width: 130px; }
+  .pt-th-plan { width: 130px; }
+}
+@media (max-width: 640px) {
+  .pt-addons { padding: 18px 16px; }
+  .price-num { font-size: 2rem; }
+}
 
 
 /* ═══════════════════════════════════════════════════════════

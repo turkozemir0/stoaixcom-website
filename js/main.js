@@ -87,6 +87,7 @@
   if (!toggle) return;
 
   let isAnnual = true;
+  const pricingSection = document.getElementById('pricing');
 
   function updatePrices() {
     priceNums.forEach(el => {
@@ -97,6 +98,7 @@
     toggle.classList.toggle('annual', isAnnual);
     labelMonthly.classList.toggle('active-label', !isAnnual);
     labelAnnual.classList.toggle('active-label', isAnnual);
+    if (pricingSection) pricingSection.classList.toggle('is-monthly', !isAnnual);
   }
 
   function animatePrice(el, target) {

@@ -295,10 +295,9 @@
       <div class="section-header reveal">
         <div class="section-badge">Pricing</div>
         <h2 class="section-headline centered">Simple, transparent pricing.</h2>
-        <p class="section-sub centered">Start free. Scale when you're ready. No contracts, cancel anytime.</p>
-
+        <p class="section-sub centered">Start free. Scale when you&#39;re ready. No contracts, cancel anytime.</p>
         <div class="billing-toggle">
-          <span class="toggle-label toggle-monthly" id="label-monthly">Monthly</span>
+          <span class="toggle-label" id="label-monthly">Monthly</span>
           <button class="toggle-switch annual" id="billingToggle" aria-label="Toggle billing period">
             <span class="toggle-knob"></span>
           </button>
@@ -306,96 +305,201 @@
         </div>
       </div>
 
-      <div class="pricing-grid reveal">
+      <div class="ptable-wrap reveal">
+        <table class="ptable" role="table">
+          <thead>
+            <tr>
+              <th class="pt-feat-col" aria-label="Feature"></th>
+              <th class="pt-th-plan">
+                <div class="pt-plan-name">Essential</div>
+                <div class="pt-plan-price">
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="99" data-annual="79">99</span><span class="pt-period">/mo</span>
+                </div>
+                <div class="pt-billing-note annual-show">Billed $948/yr</div>
+                <div class="pt-billing-note monthly-show">Billed monthly</div>
+                <a href="signup.html?plan=essential" class="btn-outline pt-btn">Get started</a>
+                <div class="pt-trial">7-day free trial</div>
+              </th>
+              <th class="pt-th-plan">
+                <div class="pt-plan-name">Professional</div>
+                <div class="pt-plan-price">
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="199" data-annual="159">199</span><span class="pt-period">/mo</span>
+                </div>
+                <div class="pt-billing-note annual-show">Billed $1,908/yr</div>
+                <div class="pt-billing-note monthly-show">Billed monthly</div>
+                <a href="signup.html?plan=professional" class="btn-outline pt-btn">Get started</a>
+                <div class="pt-trial">7-day free trial</div>
+              </th>
+              <th class="pt-th-plan pt-th-biz">
+                <div class="pt-pop-badge">Most Popular</div>
+                <div class="pt-plan-name">Business</div>
+                <div class="pt-plan-price">
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="399" data-annual="319">399</span><span class="pt-period">/mo</span>
+                </div>
+                <div class="pt-billing-note annual-show">Billed $3,828/yr</div>
+                <div class="pt-billing-note monthly-show">Billed monthly</div>
+                <a href="signup.html?plan=business" class="btn-primary pt-btn">Get started</a>
+                <div class="pt-trial pt-trial-muted">No free trial</div>
+              </th>
+              <th class="pt-th-plan pt-th-ent">
+                <div class="pt-plan-name">Enterprise</div>
+                <div class="pt-ent-price">From $999<span class="pt-period">/mo</span></div>
+                <div class="pt-billing-note">Custom billing</div>
+                <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-outline pt-btn">Book a call</a>
+                <div class="pt-trial">&nbsp;</div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="pt-group-row"><td colspan="5">Core</td></tr>
+            <tr>
+              <td class="pt-feat">Full CRM</td>
+              <td class="pt-c ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+            <tr>
+              <td class="pt-feat">WhatsApp &amp; Instagram</td>
+              <td class="pt-c ptc-v">Unlimited</td>
+              <td class="pt-c ptc-v">Unlimited</td>
+              <td class="pt-c pt-biz ptc-v">Unlimited</td>
+              <td class="pt-c ptc-v">Unlimited</td>
+            </tr>
+            <tr>
+              <td class="pt-feat">Knowledge Base</td>
+              <td class="pt-c ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+            <tr>
+              <td class="pt-feat">Chat AI &amp; Workflow</td>
+              <td class="pt-c ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+            <tr>
+              <td class="pt-feat">Team Members</td>
+              <td class="pt-c ptc-v">5</td>
+              <td class="pt-c ptc-v">10</td>
+              <td class="pt-c pt-biz ptc-v">20</td>
+              <td class="pt-c ptc-v">Unlimited</td>
+            </tr>
 
-        <div class="price-card">
-          <div class="price-tier">Essential</div>
-          <div class="price-amount">
-            <span class="price-currency">$</span>
-            <span class="price-num" data-monthly="79" data-annual="63">79</span>
-            <span class="price-period">/mo</span>
+            <tr class="pt-group-row"><td colspan="5">Voice AI</td></tr>
+            <tr>
+              <td class="pt-feat">Voice AI — Inbound</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-v">150 min/mo</td>
+              <td class="pt-c pt-biz ptc-v">300 min/mo<span class="pt-sub-note">shared pool with outbound</span></td>
+              <td class="pt-c ptc-v">Unlimited</td>
+            </tr>
+            <tr>
+              <td class="pt-feat">Voice AI — Outbound</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+            <tr>
+              <td class="pt-feat">All Voice Workflows</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+            <tr>
+              <td class="pt-feat">Multi-language Voice</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c pt-biz ptc-v">8 languages</td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+
+            <tr class="pt-group-row"><td colspan="5">Analytics &amp; Pipeline</td></tr>
+            <tr>
+              <td class="pt-feat">Advanced Analytics</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-y"></td>
+              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+            <tr>
+              <td class="pt-feat">Analytics Export</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+            <tr>
+              <td class="pt-feat">Multi-pipeline</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-v">3 pipelines</td>
+              <td class="pt-c pt-biz ptc-v">Unlimited</td>
+              <td class="pt-c ptc-v">Unlimited</td>
+            </tr>
+
+            <tr class="pt-group-row"><td colspan="5">Support</td></tr>
+            <tr>
+              <td class="pt-feat">AI Support</td>
+              <td class="pt-c ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+            <tr>
+              <td class="pt-feat">Dedicated Support</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+            <tr>
+              <td class="pt-feat">SLA Guarantee</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+
+            <tr class="pt-group-row"><td colspan="5">Enterprise</td></tr>
+            <tr>
+              <td class="pt-feat">Custom Integrations</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+            <tr>
+              <td class="pt-feat">Custom Minute Packages</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
+              <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-y"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pt-addons reveal">
+        <div class="pt-addons-title">Add-ons</div>
+        <div class="pt-addons-grid">
+          <div class="pt-addon-card">
+            <div class="pt-addon-header">
+              <span class="pt-addon-name">Dedicated Support</span>
+              <span class="pt-addon-price">$99<span class="pt-addon-period">/mo</span></span>
+            </div>
+            <p class="pt-addon-desc">Weekly 30-min 1:1 session · 4 sessions/month · Priority response</p>
+            <p class="pt-addon-note annual-show">Annual subscribers get the first 14 days of onboarding free.</p>
           </div>
-          <div class="price-sub">Chat, CRM &amp; automation to get started</div>
-          <a href="signup.html?plan=essential" class="btn-outline btn-full">Get started</a>
-          <div class="price-trial-note has-trial">7-day free trial</div>
-          <ul class="price-features">
-            <li>Full CRM</li>
-            <li>WhatsApp &amp; Instagram — Unlimited</li>
-            <li>Knowledge base — Unlimited</li>
-            <li>Chat AI &amp; Workflow</li>
-            <li class="inactive">Voice agent</li>
-            <li class="inactive">Advanced analytics</li>
-            <li>Team members — 5</li>
-          </ul>
         </div>
-
-        <div class="price-card">
-          <div class="price-tier">Professional</div>
-          <div class="price-amount">
-            <span class="price-currency">$</span>
-            <span class="price-num" data-monthly="149" data-annual="119">149</span>
-            <span class="price-period">/mo</span>
-          </div>
-          <div class="price-sub">Add Voice AI to your stack</div>
-          <a href="signup.html?plan=professional" class="btn-outline btn-full">Get started</a>
-          <div class="price-trial-note has-trial">7-day free trial</div>
-          <ul class="price-features">
-            <li>Everything in Essential</li>
-            <li>Voice inbound — 150 min/mo</li>
-            <li>Advanced analytics</li>
-            <li>Multi-pipeline — 3</li>
-            <li class="inactive">Voice outbound</li>
-            <li class="inactive">Multi-language voice</li>
-            <li>Team members — 10</li>
-          </ul>
-        </div>
-
-        <div class="price-card price-card-featured">
-          <div class="featured-badge">Best Value</div>
-          <div class="price-tier">Business</div>
-          <div class="price-amount">
-            <span class="price-currency">$</span>
-            <span class="price-num" data-monthly="299" data-annual="239">299</span>
-            <span class="price-period">/mo</span>
-          </div>
-          <div class="price-sub">The full system — voice, chat &amp; pipeline</div>
-          <a href="signup.html?plan=business" class="btn-primary btn-full">Get started</a>
-          <div class="price-trial-note no-trial">No free trial</div>
-          <ul class="price-features">
-            <li>Everything in Professional</li>
-            <li>Voice in+outbound — 300 min/mo</li>
-            <li>All voice workflows</li>
-            <li>Multi-language voice (8 languages)</li>
-            <li>Analytics export</li>
-            <li>Multi-pipeline — Unlimited</li>
-            <li>Team members — 20</li>
-          </ul>
-        </div>
-
-        <div class="price-card price-card-enterprise">
-          <div class="featured-badge enterprise-badge">Limited Spots</div>
-          <div class="price-tier">Custom</div>
-          <div class="price-amount">
-            <span class="price-custom">Custom Pricing</span>
-          </div>
-          <div class="price-sub">Done-with-you. Built around your business.</div>
-          <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-primary btn-full btn-enterprise">Book a call</a>
-          <ul class="price-features">
-            <li>Everything in Business</li>
-            <li>Custom minute packages</li>
-            <li>Unlimited users</li>
-            <li>Dedicated support</li>
-            <li>Custom integrations</li>
-            <li>SLA guarantee</li>
-            <li>Price — Custom</li>
-          </ul>
-        </div>
-
       </div>
 
       <div class="pricing-note reveal">
-        <span>Voice AI usage: $0.15/min after plan limit · </span>
-        <span>Essential & Professional: 7-day free trial · </span>
+        <span>Voice AI overage: $0.15/min after plan limit · </span>
+        <span>Essential &amp; Professional: 7-day free trial · </span>
         <span>Annual billing saves 20%</span>
       </div>
     </div>
