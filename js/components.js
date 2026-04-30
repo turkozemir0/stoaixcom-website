@@ -269,6 +269,7 @@
           <a href="/partners.html">Partners</a>
           <a href="#">Careers</a>
           <a href="mailto:hello@stoaix.com">hello@stoaix.com</a>
+          <a href="tel:+447348940452">+44 734 894 0452</a>
         </div>
         <div class="footer-col">
           <div class="footer-col-title">Legal</div>
