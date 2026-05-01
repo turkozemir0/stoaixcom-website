@@ -351,7 +351,7 @@
               <th class="pt-th-plan pt-th-ent">
                 <div class="pt-plan-name">Enterprise</div>
                 <div class="pt-plan-tagline">For large organisations</div>
-                <div class="pt-ent-price">From $999<span class="pt-period">/mo</span></div>
+                <div class="pt-ent-price">Custom Pricing</div>
                 <div class="pt-billing-note">Custom billing</div>
                 <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-outline pt-btn">Book a call</a>
                 <div class="pt-trial">&nbsp;</div>
