@@ -110,7 +110,7 @@
       </div>
 
       <div class="nav-actions">
-        <a href="/login.html" class="nav-login">Log in</a>
+        <a href="https://platform.stoaix.com/login" class="nav-login" target="_blank" rel="noopener noreferrer">Log in</a>
         <a href="/signup.html" class="btn-primary btn-sm">Start free trial</a>
       </div>
 
@@ -127,7 +127,7 @@
     <a href="/documentation">Docs</a>
     <a href="/healthcare-clinics.html">Healthcare Clinics</a>
     <a href="/partners.html">Partner Program</a>
-    <a href="/login.html" class="nav-login">Log in</a>
+    <a href="https://platform.stoaix.com/login" class="nav-login" target="_blank" rel="noopener noreferrer">Log in</a>
     <a href="/signup.html" class="btn-primary">Start free trial</a>
   </div>`;
 
