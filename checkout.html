@@ -212,6 +212,56 @@
     }
     .change-plan:hover { text-decoration: underline; }
 
+    /* ─── Dedicated Support upsell card ──────────────────── */
+    .ds-upsell {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: rgba(37, 99, 235, 0.04);
+      border: 1px solid rgba(37, 99, 235, 0.18);
+      border-radius: 12px;
+    }
+    .ds-upsell-label {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 12px;
+    }
+    .ds-upsell-title {
+      font-size: 0.85rem; font-weight: 700; color: var(--text-1);
+      display: flex; align-items: center; gap: 7px;
+    }
+    .ds-upsell-badge {
+      font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.06em; color: var(--blue);
+      background: rgba(37,99,235,0.1); border: 1px solid rgba(37,99,235,0.2);
+      border-radius: 999px; padding: 2px 7px;
+    }
+    .ds-upsell-desc {
+      font-size: 0.75rem; color: var(--text-2); margin-top: 3px;
+    }
+    .ds-upsell-action {
+      display: flex; align-items: center; gap: 10px; flex-shrink: 0;
+    }
+    .ds-upsell-price {
+      font-size: 0.9rem; font-weight: 700; color: var(--blue); white-space: nowrap;
+    }
+    .ds-upsell-period { font-size: 0.72rem; font-weight: 500; color: var(--text-2); }
+    .ds-toggle {
+      width: 38px; height: 21px;
+      background: var(--border-2);
+      border-radius: 999px; position: relative;
+      transition: background 0.22s;
+      flex-shrink: 0;
+    }
+    .ds-toggle::after {
+      content: ''; position: absolute;
+      top: 2.5px; left: 2.5px;
+      width: 16px; height: 16px;
+      background: #fff; border-radius: 50%;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.22);
+      transition: transform 0.22s;
+    }
+    .ds-toggle.on { background: var(--blue); }
+    .ds-toggle.on::after { transform: translateX(17px); }
+
     /* Billing toggle */
     .billing-toggle-checkout {
       display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -386,6 +436,11 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           <strong style="color: #16a34a;">FREE</strong>
         </div>
 
+        <div class="order-line" id="dsOrderLine" style="display:none">
+          <span>Dedicated Support add-on</span>
+          <strong>+$99/mo</strong>
+        </div>
+
         <div class="order-total">
           <div>
             <div>Due today</div>
@@ -410,6 +465,19 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           <div class="order-feature">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             15+ languages · CRM · Lead scoring
+          </div>
+        </div>
+
+        <div class="ds-upsell" id="dsUpsellCard" style="display:none">
+          <div class="ds-upsell-label" id="dsToggleWrap" role="switch" aria-checked="false" tabindex="0" style="cursor:pointer">
+            <div>
+              <div class="ds-upsell-title">Dedicated Support <span class="ds-upsell-badge">Add-on</span></div>
+              <div class="ds-upsell-desc">Weekly 1:1 · 4 sessions/mo · Priority response</div>
+            </div>
+            <div class="ds-upsell-action">
+              <span class="ds-upsell-price">+$99<span class="ds-upsell-period">/mo</span></span>
+              <span class="ds-toggle" id="dsToggle"></span>
+            </div>
           </div>
         </div>
 
@@ -504,6 +572,15 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       </div>`
     featureList.innerHTML = featureItems + cancelFeature
 
+    // ─── Dedicated Support add-on state ───────────────────────────────────────
+    let dsAddon = false
+    const DS_PRICE = 99
+
+    // Show upsell card only for non-enterprise plans
+    if (!['enterprise'].includes(plan)) {
+      document.getElementById('dsUpsellCard').style.display = 'block'
+    }
+
     // ─── Update summary (called on init + billing toggle) ──────────────────────
     function updateSummary() {
       const isAnnual    = billing === 'annual'
@@ -533,7 +610,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
       // Due today
       if (isBusiness) {
-        dueTodayAmount.textContent = `$${price}.00`
+        dueTodayAmount.textContent = `$${price + (dsAddon ? DS_PRICE : 0)}.00`
       }
     }
 
@@ -550,6 +627,25 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     labelAnnual.addEventListener('click', () => {
       if (billing !== 'annual') { billing = 'annual'; updateSummary() }
     })
+
+    // ─── Dedicated Support toggle ──────────────────────────────────────────────
+    const dsToggleWrap = document.getElementById('dsToggleWrap')
+    const dsToggleEl   = document.getElementById('dsToggle')
+    const dsOrderLine  = document.getElementById('dsOrderLine')
+
+    if (dsToggleWrap) {
+      function toggleDS() {
+        dsAddon = !dsAddon
+        dsToggleEl.classList.toggle('on', dsAddon)
+        dsToggleWrap.setAttribute('aria-checked', dsAddon)
+        dsOrderLine.style.display = dsAddon ? 'flex' : 'none'
+        updateSummary()
+      }
+      dsToggleWrap.addEventListener('click', toggleDS)
+      dsToggleWrap.addEventListener('keydown', e => {
+        if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggleDS() }
+      })
+    }
 
     // ─── Stripe Elements ─────────────────────────────────────────────────────────
     const PUBLISHABLE_KEY = 'pk_live_51THkMNGamFwpUE2V1F3g6gUF5N5aULhTLD69SFW4TutTjgHE0vdl08jxdlfE6uPvHxzSd5zB9MT6DnzeBERFH18B00NtQDRQ85'
@@ -655,6 +751,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             billing,
             paymentMethodId: paymentMethod.id,
             partnerRef,
+            addDedicatedSupport: dsAddon,
             fbc: sessionStorage.getItem('fb_fbc') || '',
             fbp: sessionStorage.getItem('fb_fbp') || '',
           }),

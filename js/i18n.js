@@ -295,6 +295,16 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'Add-ons': 'Eklentiler',
   'Weekly 30-min 1:1 session · 4 sessions/month · Priority response': 'Haftada 1 kez 30 dk birebir seans · Ayda 4 seans · Öncelikli yanıt',
   'Annual subscribers get the first 14 days of onboarding free.': 'Yıllık aboneler ilk 14 gün onboarding desteğini ücretsiz alır.',
+  /* --- Annual onboarding pill & plan taglines --- */
+  'Annual plan includes 14 days free onboarding': 'Yıllık plan 14 gün ücretsiz onboarding içerir',
+  'For solo & small teams': 'Bireysel ve küçük ekipler için',
+  'For growing businesses': 'Büyüyen işletmeler için',
+  'For scaling operations': 'Büyüyen operasyonlar için',
+  'For large organisations': 'Büyük organizasyonlar için',
+  /* --- Dedicated Support add-on tag & checkout --- */
+  'Add-on: $99/mo': 'Eklenti: $99/ay',
+  'Dedicated Support add-on': 'Özel Destek eklentisi',
+  'Weekly 1:1 · 4 sessions/mo · Priority response': 'Haftada 1 birebir · Ayda 4 seans · Öncelikli yanıt',
   /* --- Trial / CTA notes --- */
   '7-day free trial': '7 günlük ücretsiz deneme',
   'No free trial': 'Ücretsiz deneme yok',

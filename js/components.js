@@ -303,6 +303,10 @@
           </button>
           <span class="toggle-label active-label" id="label-annual">Annual <span class="save-badge">Save 20%</span></span>
         </div>
+        <div class="annual-onboarding-pill">
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#16a34a" fill-opacity=".15"/><path d="M6 10l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Annual plan includes 14 days free onboarding
+        </div>
       </div>
 
       <div class="ptable-wrap reveal">
@@ -312,6 +316,7 @@
               <th class="pt-feat-col" aria-label="Feature"></th>
               <th class="pt-th-plan">
                 <div class="pt-plan-name">Essential</div>
+                <div class="pt-plan-tagline">For solo &amp; small teams</div>
                 <div class="pt-plan-price">
                   <span class="pt-currency">$</span><span class="price-num" data-monthly="99" data-annual="79">99</span><span class="pt-period">/mo</span>
                 </div>
@@ -322,6 +327,7 @@
               </th>
               <th class="pt-th-plan">
                 <div class="pt-plan-name">Professional</div>
+                <div class="pt-plan-tagline">For growing businesses</div>
                 <div class="pt-plan-price">
                   <span class="pt-currency">$</span><span class="price-num" data-monthly="199" data-annual="159">199</span><span class="pt-period">/mo</span>
                 </div>
@@ -333,6 +339,7 @@
               <th class="pt-th-plan pt-th-biz">
                 <div class="pt-pop-badge">Most Popular</div>
                 <div class="pt-plan-name">Business</div>
+                <div class="pt-plan-tagline">For scaling operations</div>
                 <div class="pt-plan-price">
                   <span class="pt-currency">$</span><span class="price-num" data-monthly="399" data-annual="319">399</span><span class="pt-period">/mo</span>
                 </div>
@@ -343,6 +350,7 @@
               </th>
               <th class="pt-th-plan pt-th-ent">
                 <div class="pt-plan-name">Enterprise</div>
+                <div class="pt-plan-tagline">For large organisations</div>
                 <div class="pt-ent-price">From $999<span class="pt-period">/mo</span></div>
                 <div class="pt-billing-note">Custom billing</div>
                 <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-outline pt-btn">Book a call</a>
@@ -451,9 +459,9 @@
             </tr>
             <tr>
               <td class="pt-feat">Dedicated Support</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c"><span class="ptc-addon-tag">Add-on: $99/mo</span></td>
+              <td class="pt-c"><span class="ptc-addon-tag">Add-on: $99/mo</span></td>
+              <td class="pt-c pt-biz"><span class="ptc-addon-tag">Add-on: $99/mo</span></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
@@ -481,20 +489,6 @@
             </tr>
           </tbody>
         </table>
-      </div>
-
-      <div class="pt-addons reveal">
-        <div class="pt-addons-title">Add-ons</div>
-        <div class="pt-addons-grid">
-          <div class="pt-addon-card">
-            <div class="pt-addon-header">
-              <span class="pt-addon-name">Dedicated Support</span>
-              <span class="pt-addon-price">$99<span class="pt-addon-period">/mo</span></span>
-            </div>
-            <p class="pt-addon-desc">Weekly 30-min 1:1 session · 4 sessions/month · Priority response</p>
-            <p class="pt-addon-note annual-show">Annual subscribers get the first 14 days of onboarding free.</p>
-          </div>
-        </div>
       </div>
 
       <div class="pricing-note reveal">
