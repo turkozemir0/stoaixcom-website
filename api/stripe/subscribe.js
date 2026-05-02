@@ -46,7 +46,7 @@ export default async function handler(req, res) {
 
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
-  const { email, firstName, lastName, company, phone, plan, billing, paymentMethodId, partnerRef, fbc, fbp } = req.body
+  const { email, firstName, lastName, company, phone, plan, billing, paymentMethodId, partnerRef, fbc, fbp, addDedicatedSupport, addReactivation, addSetup } = req.body
 
   if (!email || !plan || !billing || !paymentMethodId) {
     return res.status(400).json({ error: 'Missing required fields' })
@@ -84,9 +84,24 @@ export default async function handler(req, res) {
 
     // 3. Create subscription (Business = no trial, others = 7-day trial)
     const isBusiness = planKey === 'business'
+
+    const items = [{ price: priceId }]
+    if (addDedicatedSupport && process.env.STRIPE_PRICE_SUPPORT_MONTHLY) {
+      items.push({ price: process.env.STRIPE_PRICE_SUPPORT_MONTHLY })
+    }
+
+    const addInvoiceItems = []
+    if (addReactivation && process.env.STRIPE_PRICE_REACTIVATION_ONETIME) {
+      addInvoiceItems.push({ price: process.env.STRIPE_PRICE_REACTIVATION_ONETIME })
+    }
+    if (addSetup && process.env.STRIPE_PRICE_SETUP_ONETIME) {
+      addInvoiceItems.push({ price: process.env.STRIPE_PRICE_SETUP_ONETIME })
+    }
+
     const subscriptionParams = {
       customer: customer.id,
-      items: [{ price: priceId }],
+      items,
+      ...(addInvoiceItems.length > 0 && { add_invoice_items: addInvoiceItems }),
       payment_settings: {
         payment_method_types: ['card'],
         save_default_payment_method: 'on_subscription',
@@ -220,7 +235,15 @@ export default async function handler(req, res) {
 
     // 5b. Add metadata to Stripe subscription + create org_subscriptions record
     await stripe.subscriptions.update(subscription.id, {
-      metadata: { organization_id: org.id, plan_id: planKey },
+      metadata: {
+        organization_id: org.id,
+        plan_id: planKey,
+        add_ons: JSON.stringify({
+          support: !!addDedicatedSupport,
+          reactivation: !!addReactivation,
+          setup: !!addSetup,
+        }),
+      },
     })
 
     const trialEndsAt = isBusiness ? null : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
@@ -267,12 +290,16 @@ export default async function handler(req, res) {
       .eq('email', email.toLowerCase())
 
     const planName = PLAN_PRICES[planKey] ? planKey.charAt(0).toUpperCase() + planKey.slice(1) : planKey
+    let eventValue = price
+    if (addDedicatedSupport) eventValue += 99
+    if (addReactivation)     eventValue += 29.99
+    if (addSetup)            eventValue += 99
     sendEvent({
       eventName: 'Purchase',
       email,
       firstName,
       lastName,
-      value: price,
+      value: eventValue,
       sourceUrl: 'https://stoaix.com/checkout',
       clientIp: getClientIp(req),
       clientUserAgent: getUserAgent(req),

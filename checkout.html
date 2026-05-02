@@ -441,6 +441,15 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           <strong>+$99/mo</strong>
         </div>
 
+        <div class="order-line" id="reactivationOrderLine" style="display:none">
+          <span>Old Lead Reactivation</span>
+          <strong>+$29.99 one-time</strong>
+        </div>
+        <div class="order-line" id="setupOrderLine" style="display:none">
+          <span>Setup &amp; Onboarding</span>
+          <strong id="setupOrderPrice">+$99 one-time</strong>
+        </div>
+
         <div class="order-total">
           <div>
             <div>Due today</div>
@@ -477,6 +486,32 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             <div class="ds-upsell-action">
               <span class="ds-upsell-price">+$99<span class="ds-upsell-period">/mo</span></span>
               <span class="ds-toggle" id="dsToggle"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-upsell" id="reactivationUpsellCard" style="display:none">
+          <div class="ds-upsell-label" id="reactivationToggleRow" role="switch" style="cursor:pointer">
+            <div>
+              <div class="ds-upsell-title">Old Lead Reactivation <span class="ds-upsell-badge">Add-on</span></div>
+              <div class="ds-upsell-desc">5,000 contacts · WhatsApp template campaign · One-time</div>
+            </div>
+            <div class="ds-upsell-action">
+              <span class="ds-upsell-price">+$29.99<span class="ds-upsell-period"> one-time</span></span>
+              <span class="ds-toggle" id="reactivationToggle"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ds-upsell" id="setupUpsellCard" style="display:none">
+          <div class="ds-upsell-label" id="setupToggleRow" role="switch" style="cursor:pointer">
+            <div>
+              <div class="ds-upsell-title">Setup &amp; Onboarding <span class="ds-upsell-badge" id="setupBadge">Add-on</span></div>
+              <div class="ds-upsell-desc">Guided 1:1 platform setup · One-time</div>
+            </div>
+            <div class="ds-upsell-action">
+              <span class="ds-upsell-price" id="setupPrice">+$99<span class="ds-upsell-period"> one-time</span></span>
+              <span class="ds-toggle" id="setupToggle"></span>
             </div>
           </div>
         </div>
@@ -572,16 +607,21 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       </div>`
     featureList.innerHTML = featureItems + cancelFeature
 
-    // ─── Dedicated Support add-on state ───────────────────────────────────────
+    // ─── Add-on state ─────────────────────────────────────────────────────────
     let dsAddon = false
     const DS_PRICE = 99
+    let reactivationAddon = false
+    let setupAddon = false
+    let setupIsFree = false
 
-    // Show upsell card only for non-enterprise plans
+    // Show upsell cards for non-enterprise plans
     if (!['enterprise'].includes(plan)) {
       document.getElementById('dsUpsellCard').style.display = 'block'
+      document.getElementById('reactivationUpsellCard').style.display = 'block'
+      document.getElementById('setupUpsellCard').style.display = 'block'
     }
 
-    // ─── Update summary (called on init + billing toggle) ──────────────────────
+    // ─── Update summary (called on init + billing toggle + addon toggle) ────────
     function updateSummary() {
       const isAnnual    = billing === 'annual'
       const price       = isAnnual ? p.annual : p.monthly
@@ -608,9 +648,41 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         document.getElementById('trialDiscount').textContent = `-$${discount}`
       }
 
+      // Setup free logic (annual = free)
+      setupIsFree = isAnnual
+      const setupToggleEl     = document.getElementById('setupToggle')
+      const setupBadgeEl      = document.getElementById('setupBadge')
+      const setupPriceEl      = document.getElementById('setupPrice')
+      const setupOrderPriceEl = document.getElementById('setupOrderPrice')
+      const setupOrderLineEl  = document.getElementById('setupOrderLine')
+
+      if (setupToggleEl) {
+        if (setupIsFree) {
+          setupToggleEl.classList.add('on')
+          setupToggleEl.style.pointerEvents = 'none'
+          if (setupBadgeEl) setupBadgeEl.textContent = 'FREE with annual'
+          if (setupPriceEl) setupPriceEl.innerHTML = 'FREE'
+          if (setupOrderPriceEl) setupOrderPriceEl.textContent = 'FREE'
+          if (setupOrderLineEl) setupOrderLineEl.style.display = 'flex'
+        } else {
+          if (!setupAddon) setupToggleEl.classList.remove('on')
+          setupToggleEl.style.pointerEvents = ''
+          if (setupBadgeEl) setupBadgeEl.textContent = 'Add-on'
+          if (setupPriceEl) setupPriceEl.innerHTML = '+$99<span class="ds-upsell-period"> one-time</span>'
+          if (setupOrderPriceEl) setupOrderPriceEl.textContent = '+$99 one-time'
+          if (setupOrderLineEl) setupOrderLineEl.style.display = setupAddon ? 'flex' : 'none'
+        }
+      }
+
       // Due today
+      let addOnsTotal = 0
+      if (isBusiness && dsAddon) addOnsTotal += DS_PRICE
+      if (reactivationAddon) addOnsTotal += 29.99
+      if (setupAddon && !setupIsFree) addOnsTotal += 99
       if (isBusiness) {
-        dueTodayAmount.textContent = `$${price + (dsAddon ? DS_PRICE : 0)}.00`
+        dueTodayAmount.textContent = `$${(price + addOnsTotal).toFixed(2)}`
+      } else {
+        dueTodayAmount.textContent = `$${addOnsTotal.toFixed(2)}`
       }
     }
 
@@ -644,6 +716,34 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       dsToggleWrap.addEventListener('click', toggleDS)
       dsToggleWrap.addEventListener('keydown', e => {
         if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); toggleDS() }
+      })
+    }
+
+    // ─── Old Lead Reactivation toggle ─────────────────────────────────────────
+    const reactivationToggleRow = document.getElementById('reactivationToggleRow')
+    const reactivationToggleEl  = document.getElementById('reactivationToggle')
+    const reactivationOrderLine = document.getElementById('reactivationOrderLine')
+
+    if (reactivationToggleRow) {
+      reactivationToggleRow.addEventListener('click', () => {
+        reactivationAddon = !reactivationAddon
+        reactivationToggleEl.classList.toggle('on', reactivationAddon)
+        reactivationOrderLine.style.display = reactivationAddon ? 'flex' : 'none'
+        updateSummary()
+      })
+    }
+
+    // ─── Setup & Onboarding toggle ─────────────────────────────────────────────
+    const setupToggleRowEl = document.getElementById('setupToggleRow')
+    const setupToggleBtn   = document.getElementById('setupToggle')
+
+    if (setupToggleRowEl) {
+      setupToggleRowEl.addEventListener('click', () => {
+        if (setupIsFree) return
+        setupAddon = !setupAddon
+        setupToggleBtn.classList.toggle('on', setupAddon)
+        document.getElementById('setupOrderLine').style.display = setupAddon ? 'flex' : 'none'
+        updateSummary()
       })
     }
 
@@ -752,6 +852,8 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             paymentMethodId: paymentMethod.id,
             partnerRef,
             addDedicatedSupport: dsAddon,
+            addReactivation: reactivationAddon,
+            addSetup: setupAddon && !setupIsFree,
             fbc: sessionStorage.getItem('fb_fbc') || '',
             fbp: sessionStorage.getItem('fb_fbp') || '',
           }),
