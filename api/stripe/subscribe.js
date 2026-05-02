@@ -57,9 +57,9 @@ export default async function handler(req, res) {
   const priceId = PRICE_MAP[planKey]?.[billingKey]
 
   const PLAN_PRICES = {
-    essential:    { monthly: 79, annual: 63 },
-    professional: { monthly: 149, annual: 119 },
-    business:     { monthly: 299, annual: 239 },
+    essential:    { monthly: 99,  annual: 79  },
+    professional: { monthly: 199, annual: 159 },
+    business:     { monthly: 399, annual: 319 },
   }
   const price = PLAN_PRICES[planKey]?.[billingKey] || 0
 
