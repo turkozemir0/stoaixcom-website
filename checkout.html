@@ -294,10 +294,15 @@
       transform: translateX(18px);
     }
 
+    #reactivationUpsellCard, #setupUpsellCard { margin-top: 8px; }
+
     @media (max-width: 768px) {
       .checkout-layout { grid-template-columns: 1fr; }
       .order-summary { position: static; }
       .checkout-card { padding: 28px 20px; }
+      .ds-upsell { padding: 12px 14px; }
+      .ds-upsell-title { font-size: 0.8rem; }
+      .ds-upsell-price { font-size: 0.82rem; }
     }
   </style>
 <!-- Meta Pixel Code -->
@@ -356,7 +361,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           </div>
           <div>
             <div class="trial-callout-title">You won't be charged today</div>
-            <div class="trial-callout-desc">Your 7-day free trial starts now. We'll only charge you after your trial ends. Cancel any time before then — no questions asked.</div>
+            <div class="trial-callout-desc" id="trialCalloutDesc">Your 7-day free trial starts now. We'll only charge you after your trial ends. Cancel any time before then — no questions asked.</div>
           </div>
         </div>
 
@@ -406,7 +411,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       <div class="order-summary">
         <div class="order-title">Order summary</div>
 
-        <div class="billing-toggle-checkout">
+        <div class="billing-toggle-checkout" style="display:none">
           <span class="toggle-label" id="checkoutLabelMonthly">Monthly</span>
           <button class="toggle-switch annual" id="billingToggle" type="button" aria-label="Toggle billing period">
             <span class="toggle-knob"></span>
@@ -421,6 +426,11 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           </div>
           <div class="plan-display-price" id="summaryPrice">$299<span> / month</span></div>
           <div class="plan-display-sub" id="summarySub">Billed monthly after 7-day trial</div>
+        </div>
+
+        <div id="billingBadge" style="text-align:center;margin-bottom:16px;font-size:0.78rem;color:var(--text-2);">
+          Billed <strong id="billingBadgeText">annually</strong>
+          · <a href="signup.html" style="color:var(--blue);text-decoration:none;">Change</a>
         </div>
 
         <div class="order-line">
@@ -458,25 +468,6 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           <div id="dueTodayAmount">$0.00</div>
         </div>
 
-        <div class="order-features" id="featureList">
-          <div class="order-feature">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            Voice AI — inbound + outbound
-          </div>
-          <div class="order-feature">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            WhatsApp &amp; web chat
-          </div>
-          <div class="order-feature">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            750 minutes / month included
-          </div>
-          <div class="order-feature">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            15+ languages · CRM · Lead scoring
-          </div>
-        </div>
-
         <div class="ds-upsell" id="dsUpsellCard" style="display:none">
           <div class="ds-upsell-label" id="dsToggleWrap" role="switch" aria-checked="false" tabindex="0" style="cursor:pointer">
             <div>
@@ -509,14 +500,37 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
               <div class="ds-upsell-title">Setup &amp; Onboarding <span class="ds-upsell-badge" id="setupBadge">Add-on</span></div>
               <div class="ds-upsell-desc">Guided 1:1 platform setup · One-time</div>
             </div>
-            <div class="ds-upsell-action">
+            <div class="ds-upsell-action" id="setupAction">
               <span class="ds-upsell-price" id="setupPrice">+$99<span class="ds-upsell-period"> one-time</span></span>
               <span class="ds-toggle" id="setupToggle"></span>
+              <span id="setupIncludedBadge" style="display:none;font-size:0.82rem;font-weight:700;color:#16a34a;align-items:center;gap:5px;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Included FREE
+              </span>
             </div>
           </div>
         </div>
 
-        <a href="signup.html" class="change-plan">← Change plan</a>
+        <div class="order-features" id="featureList">
+          <div class="order-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Voice AI — inbound + outbound
+          </div>
+          <div class="order-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            WhatsApp &amp; web chat
+          </div>
+          <div class="order-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            750 minutes / month included
+          </div>
+          <div class="order-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            15+ languages · CRM · Lead scoring
+          </div>
+        </div>
+
+        <a href="signup.html" class="change-plan" id="changePlanLink">← Change plan</a>
       </div>
 
     </div>
@@ -650,28 +664,31 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
       // Setup free logic (annual = free)
       setupIsFree = isAnnual
-      const setupToggleEl     = document.getElementById('setupToggle')
-      const setupBadgeEl      = document.getElementById('setupBadge')
-      const setupPriceEl      = document.getElementById('setupPrice')
-      const setupOrderPriceEl = document.getElementById('setupOrderPrice')
-      const setupOrderLineEl  = document.getElementById('setupOrderLine')
+      const setupToggleEl      = document.getElementById('setupToggle')
+      const setupBadgeEl       = document.getElementById('setupBadge')
+      const setupPriceEl       = document.getElementById('setupPrice')
+      const setupIncludedBadge = document.getElementById('setupIncludedBadge')
+      const setupOrderPriceEl  = document.getElementById('setupOrderPrice')
+      const setupOrderLineEl   = document.getElementById('setupOrderLine')
 
-      if (setupToggleEl) {
-        if (setupIsFree) {
-          setupToggleEl.classList.add('on')
-          setupToggleEl.style.pointerEvents = 'none'
-          if (setupBadgeEl) setupBadgeEl.textContent = 'FREE with annual'
-          if (setupPriceEl) setupPriceEl.innerHTML = 'FREE'
-          if (setupOrderPriceEl) setupOrderPriceEl.textContent = 'FREE'
-          if (setupOrderLineEl) setupOrderLineEl.style.display = 'flex'
-        } else {
-          if (!setupAddon) setupToggleEl.classList.remove('on')
+      if (setupIsFree) {
+        if (setupPriceEl) setupPriceEl.style.display = 'none'
+        if (setupToggleEl) { setupToggleEl.style.display = 'none'; setupToggleEl.style.pointerEvents = 'none' }
+        if (setupIncludedBadge) setupIncludedBadge.style.display = 'flex'
+        if (setupBadgeEl) setupBadgeEl.textContent = 'Annual bonus'
+        if (setupOrderPriceEl) setupOrderPriceEl.textContent = 'FREE'
+        if (setupOrderLineEl) setupOrderLineEl.style.display = 'flex'
+      } else {
+        if (setupPriceEl) setupPriceEl.style.display = ''
+        if (setupToggleEl) {
+          setupToggleEl.style.display = ''
           setupToggleEl.style.pointerEvents = ''
-          if (setupBadgeEl) setupBadgeEl.textContent = 'Add-on'
-          if (setupPriceEl) setupPriceEl.innerHTML = '+$99<span class="ds-upsell-period"> one-time</span>'
-          if (setupOrderPriceEl) setupOrderPriceEl.textContent = '+$99 one-time'
-          if (setupOrderLineEl) setupOrderLineEl.style.display = setupAddon ? 'flex' : 'none'
+          if (!setupAddon) setupToggleEl.classList.remove('on')
         }
+        if (setupIncludedBadge) setupIncludedBadge.style.display = 'none'
+        if (setupBadgeEl) setupBadgeEl.textContent = 'Add-on'
+        if (setupOrderPriceEl) setupOrderPriceEl.textContent = '+$99 one-time'
+        if (setupOrderLineEl) setupOrderLineEl.style.display = setupAddon ? 'flex' : 'none'
       }
 
       // Due today
@@ -684,9 +701,40 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       } else {
         dueTodayAmount.textContent = `$${addOnsTotal.toFixed(2)}`
       }
+
+      // Due today note + trial callout (trial plans only)
+      if (!isBusiness) {
+        const hasOneTimeAddon = reactivationAddon || (setupAddon && !setupIsFree)
+        dueTodayNote.textContent = hasOneTimeAddon
+          ? 'Add-ons charged now · Plan after trial'
+          : 'Charged after trial ends'
+        const trialCalloutDescEl = document.getElementById('trialCalloutDesc')
+        if (trialCalloutDescEl) {
+          trialCalloutDescEl.textContent = hasOneTimeAddon
+            ? 'One-time add-ons are charged immediately. Your plan subscription is free for 7 days — cancel before then and pay nothing extra.'
+            : "Your 7-day free trial starts now. We'll only charge you after your trial ends. Cancel any time before then — no questions asked."
+        }
+      }
+
+      // Billing badge text
+      const billingBadgeTextEl = document.getElementById('billingBadgeText')
+      if (billingBadgeTextEl) billingBadgeTextEl.textContent = isAnnual ? 'annually' : 'monthly'
     }
 
     updateSummary()
+
+    // ─── Change plan link pre-fill ──────────────────────────────────────────────
+    const changePlanLink = document.getElementById('changePlanLink')
+    if (changePlanLink) {
+      const sp = new URLSearchParams()
+      if (signupData.email)     sp.set('email', signupData.email)
+      if (signupData.firstName) sp.set('first_name', signupData.firstName)
+      if (signupData.lastName)  sp.set('last_name', signupData.lastName)
+      if (signupData.company)   sp.set('company', signupData.company)
+      if (signupData.phone)     sp.set('phone', signupData.phone)
+      const qs = sp.toString()
+      if (qs) changePlanLink.href = `signup.html?${qs}`
+    }
 
     // ─── Billing toggle ────────────────────────────────────────────────────────
     billingToggle.addEventListener('click', () => {
