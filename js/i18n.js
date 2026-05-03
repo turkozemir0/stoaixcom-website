@@ -407,6 +407,21 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'Multi-location / multi-branch support': 'Çok lokasyon / çok şube desteği',
   'Dedicated account management & ongoing support': 'Özel hesap yönetimi ve süregelen destek',
   'No SaaS self-service — fully managed, done-with-you model': 'Self-servis SaaS yok — tamamen yönetilen, birlikte yapılan model',
+  /* --- Mobile nav CTA --- */
+  'Start Free Trial': 'Ücretsiz Deneyin',
+  /* --- Revenue calculator section --- */
+  'Revenue Calculator': 'Gelir Hesaplayıcı',
+  'How much are missed enquiries costing you?': 'Kaçırılan başvurular size ne kadar mal oluyor?',
+  'See the real revenue impact of every unanswered call and message.': 'Her yanıtsız arama ve mesajın gerçek gelir etkisini görün.',
+  'Average appointment value (£)': 'Ortalama randevu değeri (£)',
+  'Missed enquiries per week': 'Haftada kaçırılan başvuru sayısı',
+  'Conversion rate (%)': 'Dönüşüm oranı (%)',
+  'Lost per month': 'Aylık kayıp',
+  'in missed bookings': 'kaçırılan randevularda',
+  'Lost per year': 'Yıllık kayıp',
+  'walking out the door': 'kapıdan çıkıp gidiyor',
+  'Recover this revenue — free for 7 days': 'Bu geliri geri kazanın — 7 gün ücretsiz',
+  'No credit card required to start your trial.': 'Denemenizi başlatmak için kredi kartı gerekmez.',
 });
 
 /* ─── Partners page ──────────────────────────────────────── */
@@ -1121,36 +1136,44 @@ const TR_SIGNUP = Object.assign({}, TR_COMMON, {
 
 /* ─── Checkout page ──────────────────────────────────────── */
 const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
+  /* page title */
   'Start Your Trial — STOAIX': 'Denemenizi Başlatın — STOAIX',
+  /* nav */
   'Secure checkout · SSL encrypted': 'Güvenli ödeme · SSL şifreli',
+  /* payment form */
   'Payment details': 'Ödeme bilgileri',
-  'You won\'t be charged today': 'Bugün ücret alınmayacak',
-  'Your 10-day free trial starts now. We\'ll only charge you after your trial ends. Cancel any time before then — no questions asked.': '10 günlük ücretsiz denemeniz şimdi başlıyor. Yalnızca deneme süreniz bittikten sonra ücret alacağız. O zamana kadar istediğiniz zaman iptal edin — soru sorulmaz.',
-  'Name on card': 'Kart üzerindeki isim',
+  'No payment today': 'Bugün ödeme alınmaz',
+  'Your 7-day free trial starts now. We won\'t charge you until your trial ends. Cancel anytime — no questions asked.': '7 günlük ücretsiz denemeniz şimdi başlıyor. Deneme süreniz dolmadan ödeme almıyoruz. İstediğiniz zaman iptal edin — soru sorulmaz.',
   'Card number': 'Kart numarası',
   'Expiry date': 'Son kullanma tarihi',
-  'Billing address': 'Fatura adresi',
-  'Country': 'Ülke',
-  'Select country': 'Ülke seçin',
-  'Postal / ZIP code': 'Posta kodu',
-  'Start my free trial': 'Ücretsiz denemememi başlat',
-  'By starting your trial you agree to our': 'Denemenizi başlatarak kabul etmiş olursunuz:',
-  'Subscription auto-renews after trial. Cancel anytime.': 'Abonelik deneme sonrası otomatik yenilenir. İstediğiniz zaman iptal edin.',
+  'Start my free trial': 'Ücretsiz denemeyi başlat',
+  /* order summary */
   'Order summary': 'Sipariş özeti',
   'Most popular': 'En Popüler',
-  'Billed monthly after 10-day trial': '10 günlük deneme sonrası aylık faturalandırılır',
-  'Trial discount (10 days)': 'Deneme indirimi (10 gün)',
+  'Most Popular': 'En Popüler',
+  'Most Valuable': 'En Değerlisi',
+  'Billed monthly after 7-day trial': '7 günlük deneme sonrası aylık faturalandırılır',
+  '7-day trial discount': '7 günlük deneme indirimi',
   'Setup fee': 'Kurulum ücreti',
   'FREE': 'ÜCRETSİZ',
   'Due today': 'Bugün ödenecek',
   'Charged after trial ends': 'Deneme bitiminde tahsil edilir',
   'Cancel before trial ends — no charge': 'Deneme bitmeden iptal et — ücret yok',
-  'Change plan': 'Planı değiştir',
+  '← Change plan': '← Planı değiştir',
+  'Change': 'Değiştir',
+  /* reactivation add-on */
+  '+$29.99 one-time': '+$29.99 tek seferlik',
+  /* upsell cards */
+  'Add-on': 'Eklenti',
+  'Weekly 1:1 · 4 sessions/month · Priority support': 'Haftalık 1:1 · Ayda 4 seans · Öncelikli destek',
+  '5,000 contacts · WhatsApp campaign · One-time': '5.000 kişi · WhatsApp kampanyası · Tek seferlik',
+  'Guided 1:1 platform setup · One-time': 'Rehberli 1:1 platform kurulumu · Tek seferlik',
+  'Included — FREE': 'Dahil — ÜCRETSİZ',
+  /* static feature list (fallback for non-JS render) */
   'Voice AI — inbound + outbound': 'Sesli AI — gelen + giden',
   'WhatsApp & web chat': 'WhatsApp ve web chat',
   '750 minutes / month included': 'Ayda 750 dakika dahil',
   '15+ languages · CRM · Lead scoring': '15+ dil · CRM · Lead puanlama',
-  'Zapier / Make / Webhook': 'Zapier / Make / Webhook',
 });
 
 /* ═══════════════════════════════════════════════════════════
