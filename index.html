@@ -216,7 +216,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         <a href="signup.html" class="btn-primary btn-sm">Start free trial</a>
       </div>
 
-      <a href="signup.html" class="btn-primary btn-sm nav-mobile-cta">Ücretsiz Deneyin</a>
+      <a href="signup.html" class="btn-primary btn-sm nav-mobile-cta">Start Free Trial</a>
 
       <button class="nav-hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -822,6 +822,167 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         </div>
       </div>
     </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       REVENUE CALCULATOR
+  ═══════════════════════════════════════════════ -->
+  <section class="calc-section" id="calculator">
+    <style>
+      .calc-section {
+        padding: 96px 0;
+        background: var(--surface, #f8fafc);
+      }
+      .calc-section .section-header { margin-bottom: 48px; }
+      .calc-card {
+        background: #fff;
+        border: 1px solid var(--border, #e2e8f0);
+        border-radius: 20px;
+        padding: 48px;
+        max-width: 760px;
+        margin: 0 auto;
+        box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      }
+      .calc-inputs {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 24px;
+        margin-bottom: 32px;
+      }
+      .calc-field label {
+        display: block;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--text-2, #64748b);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 8px;
+      }
+      .calc-field input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1.5px solid var(--border, #e2e8f0);
+        border-radius: 10px;
+        font-size: 1rem;
+        color: var(--text-1, #1e293b);
+        background: var(--surface, #f8fafc);
+        outline: none;
+        box-sizing: border-box;
+        transition: border-color 0.15s;
+        -moz-appearance: textfield;
+      }
+      .calc-field input::-webkit-outer-spin-button,
+      .calc-field input::-webkit-inner-spin-button { -webkit-appearance: none; }
+      .calc-field input:focus { border-color: var(--blue, #2563eb); background: #fff; }
+      .calc-results {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 32px;
+      }
+      .calc-result-card {
+        border-radius: 14px;
+        padding: 24px;
+        text-align: center;
+      }
+      .calc-result-card.monthly {
+        background: rgba(37,99,235,0.06);
+        border: 1.5px solid rgba(37,99,235,0.15);
+      }
+      .calc-result-card.annual {
+        background: rgba(220,38,38,0.06);
+        border: 1.5px solid rgba(220,38,38,0.15);
+      }
+      .calc-result-label {
+        font-size: 0.78rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-2, #64748b);
+        margin-bottom: 8px;
+      }
+      .calc-result-value {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--text-1, #1e293b);
+        line-height: 1;
+      }
+      .calc-result-card.annual .calc-result-value { color: #dc2626; }
+      .calc-result-sublabel {
+        font-size: 0.75rem;
+        color: var(--text-2, #64748b);
+        margin-top: 6px;
+      }
+      .calc-cta-wrap { text-align: center; }
+      .calc-note {
+        font-size: 0.78rem;
+        color: var(--text-2, #64748b);
+        margin-top: 10px;
+      }
+      @media (max-width: 520px) {
+        .calc-card { padding: 28px 20px; }
+        .calc-results { grid-template-columns: 1fr; }
+      }
+    </style>
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Revenue Calculator</div>
+        <h2 class="section-title">How much are missed enquiries costing you?</h2>
+        <p class="section-subtitle">See the real revenue impact of every unanswered call and message.</p>
+      </div>
+      <div class="calc-card reveal">
+        <div class="calc-inputs">
+          <div class="calc-field">
+            <label>Average appointment value (£)</label>
+            <input type="number" id="calcApptValue" value="80" min="0" placeholder="e.g. 80">
+          </div>
+          <div class="calc-field">
+            <label>Missed enquiries per week</label>
+            <input type="number" id="calcMissed" value="10" min="0" placeholder="e.g. 10">
+          </div>
+          <div class="calc-field">
+            <label>Conversion rate (%)</label>
+            <input type="number" id="calcConversion" value="40" min="0" max="100" placeholder="e.g. 40">
+          </div>
+        </div>
+        <div class="calc-results">
+          <div class="calc-result-card monthly">
+            <div class="calc-result-label">Lost per month</div>
+            <div class="calc-result-value" id="calcMonthly">£1,386</div>
+            <div class="calc-result-sublabel">in missed bookings</div>
+          </div>
+          <div class="calc-result-card annual">
+            <div class="calc-result-label">Lost per year</div>
+            <div class="calc-result-value" id="calcAnnual">£16,632</div>
+            <div class="calc-result-sublabel">walking out the door</div>
+          </div>
+        </div>
+        <div class="calc-cta-wrap">
+          <a href="signup.html" class="btn-primary">Recover this revenue — free for 7 days</a>
+          <p class="calc-note">No credit card required to start your trial.</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function() {
+        function calcUpdate() {
+          const appt = parseFloat(document.getElementById('calcApptValue').value) || 0
+          const missed = parseFloat(document.getElementById('calcMissed').value) || 0
+          const conv = parseFloat(document.getElementById('calcConversion').value) || 0
+          const monthly = missed * 4.33 * (conv / 100) * appt
+          const annual = monthly * 12
+          const fmt = v => '£' + Math.round(v).toLocaleString('en-GB')
+          document.getElementById('calcMonthly').textContent = fmt(monthly)
+          document.getElementById('calcAnnual').textContent = fmt(annual)
+        }
+        ['calcApptValue', 'calcMissed', 'calcConversion'].forEach(id => {
+          document.getElementById(id).addEventListener('input', calcUpdate)
+        })
+        calcUpdate()
+      })()
+    </script>
   </section>
 
 
