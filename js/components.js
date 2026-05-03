@@ -320,32 +320,33 @@
                 <div class="pt-plan-name">Essential</div>
                 <div class="pt-plan-tagline">For solo &amp; small teams</div>
                 <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="99" data-annual="79">99</span><span class="pt-period">/mo</span>
-                </div>
-                <div class="pt-billing-note annual-show">Billed $948/yr</div>
-                <div class="pt-billing-note monthly-show">Billed monthly</div>
-                <a href="signup.html?plan=essential" class="btn-outline pt-btn">Get started</a>
-                <div class="pt-trial">7-day free trial</div>
-              </th>
-              <th class="pt-th-plan">
-                <div class="pt-plan-name">Professional</div>
-                <div class="pt-plan-tagline">For growing businesses</div>
-                <div class="pt-plan-price">
                   <span class="pt-currency">$</span><span class="price-num" data-monthly="199" data-annual="159">199</span><span class="pt-period">/mo</span>
                 </div>
                 <div class="pt-billing-note annual-show">Billed $1,908/yr</div>
                 <div class="pt-billing-note monthly-show">Billed monthly</div>
-                <a href="signup.html?plan=professional" class="btn-outline pt-btn">Get started</a>
+                <a href="signup.html?plan=essential" class="btn-outline pt-btn">Get started</a>
                 <div class="pt-trial">7-day free trial</div>
               </th>
               <th class="pt-th-plan pt-th-biz">
                 <div class="pt-pop-badge">Most Popular</div>
+                <div class="pt-plan-name">Professional</div>
+                <div class="pt-plan-tagline">For growing businesses</div>
+                <div class="pt-plan-price">
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="299" data-annual="239">299</span><span class="pt-period">/mo</span>
+                </div>
+                <div class="pt-billing-note annual-show">Billed $2,868/yr</div>
+                <div class="pt-billing-note monthly-show">Billed monthly</div>
+                <a href="signup.html?plan=professional" class="btn-primary pt-btn">Get started</a>
+                <div class="pt-trial">7-day free trial</div>
+              </th>
+              <th class="pt-th-plan">
+                <div class="pt-pop-badge" style="background:rgba(245,158,11,0.15);color:#b45309;border-color:rgba(245,158,11,0.3);">Most Valuable</div>
                 <div class="pt-plan-name">Business</div>
                 <div class="pt-plan-tagline">For scaling operations</div>
                 <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="399" data-annual="319">399</span><span class="pt-period">/mo</span>
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="599" data-annual="479">599</span><span class="pt-period">/mo</span>
                 </div>
-                <div class="pt-billing-note annual-show">Billed $3,828/yr</div>
+                <div class="pt-billing-note annual-show">Billed $5,748/yr</div>
                 <div class="pt-billing-note monthly-show">Billed monthly</div>
                 <a href="signup.html?plan=business" class="btn-primary pt-btn">Get started</a>
                 <div class="pt-trial pt-trial-muted">No free trial</div>
@@ -365,36 +366,43 @@
             <tr>
               <td class="pt-feat">Full CRM</td>
               <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
               <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
               <td class="pt-feat">WhatsApp &amp; Instagram</td>
               <td class="pt-c ptc-v">Unlimited</td>
-              <td class="pt-c ptc-v">Unlimited</td>
               <td class="pt-c pt-biz ptc-v">Unlimited</td>
+              <td class="pt-c ptc-v">Unlimited</td>
               <td class="pt-c ptc-v">Unlimited</td>
             </tr>
             <tr>
               <td class="pt-feat">Knowledge Base</td>
               <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
               <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
               <td class="pt-feat">Chat AI &amp; Workflow</td>
               <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
               <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
               <td class="pt-feat">Team Members</td>
               <td class="pt-c ptc-v">5</td>
-              <td class="pt-c ptc-v">10</td>
-              <td class="pt-c pt-biz ptc-v">20</td>
+              <td class="pt-c pt-biz ptc-v">10</td>
+              <td class="pt-c ptc-v">20</td>
+              <td class="pt-c ptc-v">Unlimited</td>
+            </tr>
+            <tr>
+              <td class="pt-feat">Conversations / mo</td>
+              <td class="pt-c ptc-v">1,000</td>
+              <td class="pt-c pt-biz ptc-v">2,000</td>
+              <td class="pt-c ptc-v">5,000</td>
               <td class="pt-c ptc-v">Unlimited</td>
             </tr>
 
@@ -402,29 +410,29 @@
             <tr>
               <td class="pt-feat">Voice AI — Inbound</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-v">150 min/mo</td>
-              <td class="pt-c pt-biz ptc-v">300 min/mo<span class="pt-sub-note">shared pool with outbound</span></td>
+              <td class="pt-c pt-biz ptc-v">200 min/mo</td>
+              <td class="pt-c ptc-v">500 min/mo<span class="pt-sub-note">shared pool with outbound</span></td>
               <td class="pt-c ptc-v">Unlimited</td>
             </tr>
             <tr>
               <td class="pt-feat">Voice AI — Outbound</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-y"></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
               <td class="pt-feat">All Voice Workflows</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-y"></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
               <td class="pt-feat">Multi-language Voice</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-v">8 languages</td>
+              <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-v">8 languages</td>
               <td class="pt-c ptc-y"></td>
             </tr>
 
@@ -432,22 +440,22 @@
             <tr>
               <td class="pt-feat">Advanced Analytics</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-y"></td>
               <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
               <td class="pt-feat">Analytics Export</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-y"></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
               <td class="pt-feat">Multi-pipeline</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-v">3 pipelines</td>
-              <td class="pt-c pt-biz ptc-v">Unlimited</td>
+              <td class="pt-c pt-biz ptc-v">3 pipelines</td>
+              <td class="pt-c ptc-v">Unlimited</td>
               <td class="pt-c ptc-v">Unlimited</td>
             </tr>
 
@@ -455,22 +463,22 @@
             <tr>
               <td class="pt-feat">AI Support</td>
               <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
               <td class="pt-c pt-biz ptc-y"></td>
+              <td class="pt-c ptc-y"></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
               <td class="pt-feat">Dedicated Support</td>
               <td class="pt-c"><span class="ptc-addon-tag">Add-on: $99/mo</span></td>
-              <td class="pt-c"><span class="ptc-addon-tag">Add-on: $99/mo</span></td>
               <td class="pt-c pt-biz"><span class="ptc-addon-tag">Add-on: $99/mo</span></td>
+              <td class="pt-c"><span class="ptc-addon-tag">Add-on: $99/mo</span></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
               <td class="pt-feat">SLA Guarantee</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
               <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
               <td class="pt-c ptc-y"></td>
             </tr>
 
@@ -478,15 +486,15 @@
             <tr>
               <td class="pt-feat">Custom Integrations</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
               <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>
               <td class="pt-feat">Custom Minute Packages</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
               <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c ptc-n">—</td>
               <td class="pt-c ptc-y"></td>
             </tr>
           </tbody>
