@@ -422,6 +422,19 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'walking out the door': 'kapıdan çıkıp gidiyor',
   'Recover this revenue — free for 7 days': 'Bu geliri geri kazanın — 7 gün ücretsiz',
   'No credit card required to start your trial.': 'Denemenizi başlatmak için kredi kartı gerekmez.',
+  /* --- Hero trust badge --- */
+  'Built on insights from': 'Temelinde yatan:',
+  '500+ clinic audits': '500+ klinik denetimi',
+  /* --- Channels grid --- */
+  'Answers every call, 24/7, in 15+ languages': 'Her aramayı 24/7, 15+ dilde yanıtlar',
+  'Price queries, bookings & FAQs — automated': 'Fiyat sorguları, randevular ve SSS — otomatik',
+  'Qualify visitors and book them on the spot': 'Ziyaretçileri nitelendirin, anında randevu alın',
+  'Calls new leads within 60 seconds of enquiry': 'Yeni başvurulara 60 saniye içinde arar',
+  'Turns DMs and story replies into bookings': 'DM\'leri ve hikaye yanıtlarını randevuya dönüştürür',
+  /* --- Setup steps (compact) --- */
+  'Tell us about your business': 'İşletmenizi tanıtın',
+  'Configure your AI agent': 'AI ajanınızı yapılandırın',
+  'Go live': 'Yayına alın',
 });
 
 /* ─── Partners page ──────────────────────────────────────── */
