@@ -2,6 +2,10 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "rewrites": [
+    { "source": "/en", "destination": "/" },
+    { "source": "/en/:path*", "destination": "/:path*" },
+    { "source": "/tr", "destination": "/" },
+    { "source": "/tr/:path*", "destination": "/:path*" },
     { "source": "/ref/:slug", "destination": "/api/ref" },
     { "source": "/api/stripe/subscribe", "destination": "/api/stripe/subscribe" },
     { "source": "/api/stripe/webhook", "destination": "/api/stripe/webhook" }

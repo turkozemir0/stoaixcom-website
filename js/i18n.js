@@ -35,8 +35,11 @@ function translateTree(root, dict) {
 }
 
 function getPath() {
-  return window.location.pathname
-    .replace(/\.html$/, '').replace(/\/+$/, '') || '/';
+  const parts = window.location.pathname
+    .replace(/\.html$/, '').replace(/\/+$/, '')
+    .split('/').filter(Boolean);
+  if (parts[0] === 'en' || parts[0] === 'tr') parts.shift();
+  return '/' + parts.join('/') || '/';
 }
 
 /* ─── Language toggle button ─────────────────────────────── */
@@ -1212,16 +1215,20 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
   };
 
   const dict = DICT_MAP[path] || null;
-  const stored = localStorage.getItem('stoaix-lang');
-  const storedLang = stored || 'tr';
+
+  const urlLocale = (function () {
+    const seg = window.location.pathname.split('/').filter(Boolean)[0];
+    return (seg === 'en' || seg === 'tr') ? seg : null;
+  })();
+  const activeLang = urlLocale || localStorage.getItem('stoaix-lang') || 'tr';
 
   function handleToggle(targetLang) {
-    localStorage.setItem('stoaix-lang', targetLang);
-    window.location.reload();
+    const dest = '/' + targetLang + (path === '/' ? '' : path);
+    window.location.href = dest;
   }
 
   function applyTranslation() {
-    if (storedLang !== 'tr') return;
+    if (activeLang !== 'tr') return;
     /* Use page-specific dict if available, fall back to TR_COMMON for shared nav/footer */
     const activeDict = dict || TR_COMMON;
     translateTree(document.body, activeDict);
@@ -1233,11 +1240,11 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
   /* Run as early as possible to avoid flash */
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-      injectToggle(storedLang, handleToggle);
+      injectToggle(activeLang, handleToggle);
       applyTranslation();
     });
   } else {
-    injectToggle(storedLang, handleToggle);
+    injectToggle(activeLang, handleToggle);
     applyTranslation();
   }
 })();
