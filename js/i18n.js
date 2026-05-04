@@ -129,6 +129,7 @@ const TR_COMMON = {
 const TR_INDEX = Object.assign({}, TR_COMMON, {
   'STOAIX — AI Voice & Chat Platform for Any Business': 'STOAIX — Her İşletme İçin AI Ses ve Chat Platformu',
   '7-day free trial · No credit card required': '7 günlük ücretsiz deneme · Kredi kartı gerekmez',
+  'Free trial available': 'Ücretsiz deneme mevcut',
   'receptionist': 'resepsiyonist',
   'call center': 'çağrı merkezi',
   'sales agent': 'satış temsilcisi',
