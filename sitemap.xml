@@ -198,6 +198,55 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/sac-ekimi-klinigi-icin-ai"/>
   </url>
 
+  <!-- Programmatic SEO: Sektör × Özellik (TR) -->
+  <url>
+    <loc>https://stoaix.com/sac-ekimi-eski-lead-canlandirma</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/sac-ekimi-eski-lead-canlandirma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/dis-klinigi-eski-lead-canlandirma</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/dis-klinigi-eski-lead-canlandirma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/estetik-klinik-eski-lead-canlandirma</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/estetik-klinik-eski-lead-canlandirma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/sac-ekimi-hizli-yanit</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/sac-ekimi-hizli-yanit"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/dis-klinigi-hizli-yanit</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/dis-klinigi-hizli-yanit"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/estetik-klinik-hizli-yanit</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/estetik-klinik-hizli-yanit"/>
+  </url>
+
   <!-- Vertical Landing Pages (TR) -->
   <url>
     <loc>https://stoaix.com/dis-klinigi-icin-ai</loc>
