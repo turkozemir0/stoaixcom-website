@@ -322,7 +322,7 @@
                   <span class="pt-currency">$</span><span class="price-num" data-monthly="199" data-quarterly="179" data-semi_annual="159" data-annual="139">139</span><span class="pt-period">/mo</span>
                 </div>
                 <div class="pt-billing-note" data-plan="essential"></div>
-                <a href="signup.html?plan=essential&billing=annual" class="btn-outline pt-btn pt-signup-link">Get started</a>
+                <a href="signup.html?plan=essential&billing=annual" class="btn-outline pt-btn pt-signup-link">Start free trial</a>
                 <div class="pt-trial">7-day free trial</div>
               </th>
               <th class="pt-th-plan pt-th-biz">
@@ -333,7 +333,7 @@
                   <span class="pt-currency">$</span><span class="price-num" data-monthly="299" data-quarterly="269" data-semi_annual="239" data-annual="209">209</span><span class="pt-period">/mo</span>
                 </div>
                 <div class="pt-billing-note" data-plan="professional"></div>
-                <a href="signup.html?plan=professional&billing=annual" class="btn-primary pt-btn pt-signup-link">Get started</a>
+                <a href="signup.html?plan=professional&billing=annual" class="btn-primary pt-btn pt-signup-link">Start free trial</a>
                 <div class="pt-trial">7-day free trial</div>
               </th>
               <th class="pt-th-plan">
@@ -344,7 +344,7 @@
                   <span class="pt-currency">$</span><span class="price-num" data-monthly="599" data-quarterly="539" data-semi_annual="479" data-annual="419">419</span><span class="pt-period">/mo</span>
                 </div>
                 <div class="pt-billing-note" data-plan="business"></div>
-                <a href="signup.html?plan=business&billing=annual" class="btn-primary pt-btn pt-signup-link">Get started</a>
+                <a href="signup.html?plan=business&billing=annual" class="btn-primary pt-btn pt-signup-link">Subscribe now</a>
                 <div class="pt-trial pt-trial-muted">No free trial</div>
               </th>
               <th class="pt-th-plan pt-th-ent">
