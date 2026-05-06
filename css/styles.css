@@ -1622,21 +1622,39 @@ ul { list-style: none; }
     linear-gradient(160deg, #eef3ff 0%, #f5f8ff 45%, #eff6ff 100%);
 }
 
-/* ─── Billing toggle ─────────────────────────────────────── */
-.billing-toggle {
+/* ─── Billing tabs (segmented tab bar) ───────────────────── */
+.billing-tabs {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 4px;
   margin-top: 28px;
+  padding: 4px;
+  background: var(--bg-3);
+  border-radius: var(--r-full);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
-.toggle-label {
-  font-size: 0.85rem;
+.billing-tab {
+  padding: 8px 18px;
+  border-radius: var(--r-full);
+  font-size: 0.82rem;
   font-weight: 500;
-  color: var(--text-3);
-  transition: color 0.2s;
+  color: var(--text-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  white-space: nowrap;
 }
-.toggle-label.active-label { color: var(--text); }
+.billing-tab:hover { color: var(--text); }
+.billing-tab.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  font-weight: 600;
+}
 .save-badge {
   display: inline-block;
   padding: 2px 8px;
@@ -1646,31 +1664,6 @@ ul { list-style: none; }
   font-size: 0.68rem;
   font-weight: 700;
 }
-.toggle-switch {
-  width: 48px; height: 26px;
-  background: var(--border-2);
-  border-radius: var(--r-full);
-  position: relative;
-  transition: background 0.25s;
-  flex-shrink: 0;
-}
-.toggle-switch.annual { background: var(--blue); }
-.toggle-knob {
-  position: absolute;
-  top: 3px; left: 3px;
-  width: 20px; height: 20px;
-  background: #fff;
-  border-radius: 50%;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
-  transition: transform 0.25s var(--ease);
-}
-.toggle-switch.annual .toggle-knob { transform: translateX(22px); }
-
-/* ─── Annual / monthly content toggle ───────────────────── */
-.annual-show { display: block; }
-.monthly-show { display: none; }
-#pricing.is-monthly .annual-show { display: none; }
-#pricing.is-monthly .monthly-show { display: block; }
 
 /* ─── Annual onboarding pill ─────────────────────────────── */
 .annual-onboarding-pill {
@@ -1688,11 +1681,6 @@ ul { list-style: none; }
   color: #16a34a;
   width: fit-content;
   transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
-}
-#pricing.is-monthly .annual-onboarding-pill {
-  opacity: 0;
-  transform: translateY(-4px);
-  pointer-events: none;
 }
 
 /* ─── Comparison table wrapper ───────────────────────────── */
@@ -2387,6 +2375,8 @@ ul { list-style: none; }
   .pricing-grid { grid-template-columns: 1fr; }
   .footer-cols { grid-template-columns: 1fr; }
   .channels-tab-nav { flex-wrap: wrap; }
+  .billing-tabs { flex-wrap: wrap; border-radius: var(--r-lg); }
+  .billing-tab { font-size: 0.75rem; padding: 6px 12px; }
 }
 
 /* ─── Language toggle ────────────────────────────────────── */

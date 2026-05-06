@@ -21,16 +21,22 @@ function generateSlug(name) {
 
 const PRICE_MAP = {
   essential: {
-    monthly: process.env.STRIPE_PRICE_ESSENTIAL_MONTHLY,
-    annual:  process.env.STRIPE_PRICE_ESSENTIAL_ANNUAL,
+    monthly:     process.env.STRIPE_PRICE_ESSENTIAL_MONTHLY,
+    quarterly:   process.env.STRIPE_PRICE_ESSENTIAL_QUARTERLY,
+    semi_annual: process.env.STRIPE_PRICE_ESSENTIAL_SEMI_ANNUAL,
+    annual:      process.env.STRIPE_PRICE_ESSENTIAL_ANNUAL,
   },
   professional: {
-    monthly: process.env.STRIPE_PRICE_PRO_MONTHLY,
-    annual:  process.env.STRIPE_PRICE_PRO_ANNUAL,
+    monthly:     process.env.STRIPE_PRICE_PRO_MONTHLY,
+    quarterly:   process.env.STRIPE_PRICE_PRO_QUARTERLY,
+    semi_annual: process.env.STRIPE_PRICE_PRO_SEMI_ANNUAL,
+    annual:      process.env.STRIPE_PRICE_PRO_ANNUAL,
   },
   business: {
-    monthly: process.env.STRIPE_PRICE_BUSINESS_MONTHLY,
-    annual:  process.env.STRIPE_PRICE_BUSINESS_ANNUAL,
+    monthly:     process.env.STRIPE_PRICE_BUSINESS_MONTHLY,
+    quarterly:   process.env.STRIPE_PRICE_BUSINESS_QUARTERLY,
+    semi_annual: process.env.STRIPE_PRICE_BUSINESS_SEMI_ANNUAL,
+    annual:      process.env.STRIPE_PRICE_BUSINESS_ANNUAL,
   },
 }
 
@@ -53,13 +59,14 @@ export default async function handler(req, res) {
   }
 
   const planKey = plan.toLowerCase()
-  const billingKey = billing === 'annual' ? 'annual' : 'monthly'
+  const VALID_INTERVALS = ['monthly', 'quarterly', 'semi_annual', 'annual']
+  const billingKey = VALID_INTERVALS.includes(billing) ? billing : 'monthly'
   const priceId = PRICE_MAP[planKey]?.[billingKey]
 
   const PLAN_PRICES = {
-    essential:    { monthly: 99,  annual: 79  },
-    professional: { monthly: 199, annual: 159 },
-    business:     { monthly: 399, annual: 319 },
+    essential:    { monthly: 199, quarterly: 179, semi_annual: 159, annual: 139 },
+    professional: { monthly: 299, quarterly: 269, semi_annual: 239, annual: 209 },
+    business:     { monthly: 599, quarterly: 539, semi_annual: 479, annual: 419 },
   }
   const price = PLAN_PRICES[planKey]?.[billingKey] || 0
 

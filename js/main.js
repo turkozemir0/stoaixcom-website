@@ -78,37 +78,70 @@
 })();
 
 
-/* ─── Billing toggle (monthly / annual) ─────────────────── */
-(function initBillingToggle() {
-  const toggle = document.getElementById('billingToggle');
-  const labelMonthly = document.getElementById('label-monthly');
-  const labelAnnual  = document.getElementById('label-annual');
+/* ─── Billing tabs (monthly / quarterly / semi_annual / annual) */
+(function initBillingTabs() {
+  const tabsContainer = document.getElementById('billingTabs');
+  if (!tabsContainer) return;
+
+  const tabs = tabsContainer.querySelectorAll('.billing-tab');
   const priceNums = document.querySelectorAll('.price-num[data-monthly]');
-  if (!toggle) return;
-
-  let isAnnual = true;
   const pricingSection = document.getElementById('pricing');
+  const onboardingPill = document.querySelector('.annual-onboarding-pill');
+  const signupLinks = document.querySelectorAll('.pt-signup-link');
 
-  function updatePrices() {
+  let activeInterval = 'annual';
+
+  // Billing totals lookup: plan → interval → label
+  const billingTotals = {
+    essential:    { monthly: 'Billed monthly', quarterly: 'Billed $537 every 3 months', semi_annual: 'Billed $954 every 6 months', annual: 'Billed $1,668/yr' },
+    professional: { monthly: 'Billed monthly', quarterly: 'Billed $807 every 3 months', semi_annual: 'Billed $1,434 every 6 months', annual: 'Billed $2,508/yr' },
+    business:     { monthly: 'Billed monthly', quarterly: 'Billed $1,617 every 3 months', semi_annual: 'Billed $2,874 every 6 months', annual: 'Billed $5,028/yr' },
+  };
+
+  function update() {
+    // Animate prices
     priceNums.forEach(el => {
-      const target = isAnnual ? +el.dataset.annual : +el.dataset.monthly;
+      const target = +el.dataset[activeInterval] || +el.dataset.monthly;
       animatePrice(el, target);
     });
 
-    toggle.classList.toggle('annual', isAnnual);
-    labelMonthly.classList.toggle('active-label', !isAnnual);
-    labelAnnual.classList.toggle('active-label', isAnnual);
-    if (pricingSection) pricingSection.classList.toggle('is-monthly', !isAnnual);
+    // Tab active state
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.interval === activeInterval));
+
+    // Pricing section data attribute
+    if (pricingSection) pricingSection.setAttribute('data-interval', activeInterval);
+
+    // Onboarding pill visibility
+    if (onboardingPill) {
+      const show = activeInterval === 'annual';
+      onboardingPill.style.opacity = show ? '1' : '0';
+      onboardingPill.style.transform = show ? 'none' : 'translateY(-4px)';
+      onboardingPill.style.pointerEvents = show ? '' : 'none';
+    }
+
+    // Billing notes
+    document.querySelectorAll('.pt-billing-note[data-plan]').forEach(el => {
+      const plan = el.dataset.plan;
+      if (billingTotals[plan]) el.textContent = billingTotals[plan][activeInterval] || '';
+    });
+
+    // Signup links — add billing param
+    signupLinks.forEach(link => {
+      const url = new URL(link.href, window.location.origin);
+      url.searchParams.set('billing', activeInterval);
+      link.href = url.pathname + url.search;
+    });
   }
 
   function animatePrice(el, target) {
     const start = +el.textContent;
+    if (start === target) return;
     const duration = 280;
     const startTime = performance.now();
 
     function step(now) {
       const progress = Math.min((now - startTime) / duration, 1);
-      const ease = 1 - Math.pow(1 - progress, 3); // ease-out-cubic
+      const ease = 1 - Math.pow(1 - progress, 3);
       const current = Math.round(start + (target - start) * ease);
       el.textContent = current;
       if (progress < 1) requestAnimationFrame(step);
@@ -118,13 +151,15 @@
     requestAnimationFrame(step);
   }
 
-  toggle.addEventListener('click', () => {
-    isAnnual = !isAnnual;
-    updatePrices();
+  tabsContainer.addEventListener('click', (e) => {
+    const tab = e.target.closest('.billing-tab');
+    if (!tab || tab.dataset.interval === activeInterval) return;
+    activeInterval = tab.dataset.interval;
+    update();
   });
 
-  // Initialize with annual prices already shown
-  updatePrices();
+  // Initialize
+  update();
 })();
 
 

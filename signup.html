@@ -134,55 +134,46 @@
     }
     .form-input::placeholder { color: #9aabcc; }
 
-    /* Billing toggle */
-    .billing-toggle-wrap {
+    /* Billing tabs */
+    .billing-tabs-signup {
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 12px;
+      gap: 4px;
+      padding: 3px;
+      background: var(--bg-2);
+      border-radius: 20px;
       margin-bottom: 4px;
     }
-    .billing-toggle-label {
-      font-size: 0.85rem;
-      font-weight: 600;
+    .billing-tab-s {
+      flex: 1;
+      padding: 6px 8px;
+      border-radius: 18px;
+      font-size: 0.75rem;
+      font-weight: 500;
       color: var(--text-2);
+      background: transparent;
+      border: none;
       cursor: pointer;
-      transition: color 0.15s;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      text-align: center;
+      white-space: nowrap;
     }
-    .billing-toggle-label.active { color: var(--text-1); }
-    .billing-save-badge {
-      font-size: 0.7rem;
+    .billing-tab-s:hover { color: var(--text-1); }
+    .billing-tab-s.active {
+      background: #fff;
+      color: var(--text-1);
+      box-shadow: 0 1px 3px rgba(37,99,235,0.08);
+      font-weight: 600;
+    }
+    .billing-tab-s .save-badge-s {
+      font-size: 0.62rem;
       font-weight: 700;
       color: #16a34a;
       background: rgba(22,163,74,0.1);
       border-radius: 20px;
-      padding: 2px 8px;
-      margin-left: 4px;
+      padding: 1px 6px;
+      margin-left: 2px;
     }
-    .toggle-switch {
-      position: relative;
-      width: 40px; height: 22px;
-      cursor: pointer;
-    }
-    .toggle-switch input { opacity: 0; width: 0; height: 0; }
-    .toggle-track {
-      position: absolute;
-      inset: 0;
-      background: #cbd5e1;
-      border-radius: 20px;
-      transition: background 0.2s;
-    }
-    .toggle-switch input:checked + .toggle-track { background: var(--blue); }
-    .toggle-thumb {
-      position: absolute;
-      top: 3px; left: 3px;
-      width: 16px; height: 16px;
-      background: #fff;
-      border-radius: 50%;
-      transition: transform 0.2s;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    }
-    .toggle-switch input:checked ~ .toggle-thumb { transform: translateX(18px); }
 
     /* Plan cards */
     .plan-selector-label { font-size: 0.85rem; font-weight: 600; color: var(--text-1); margin-bottom: 8px; }
@@ -538,17 +529,12 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         <div class="form-group">
           <div class="plan-selector-label">Choose your plan</div>
 
-          <!-- Billing toggle -->
-          <div class="billing-toggle-wrap" style="margin-bottom: 10px;">
-            <span class="billing-toggle-label" id="labelMonthly">Monthly</span>
-            <label class="toggle-switch">
-              <input type="checkbox" id="billingToggle" checked />
-              <div class="toggle-track"></div>
-              <div class="toggle-thumb"></div>
-            </label>
-            <span class="billing-toggle-label active" id="labelAnnual">
-              Annual <span class="billing-save-badge">Save 20%</span>
-            </span>
+          <!-- Billing tabs -->
+          <div class="billing-tabs-signup" id="billingTabs" style="margin-bottom: 10px;">
+            <button type="button" class="billing-tab-s" data-interval="monthly">Monthly</button>
+            <button type="button" class="billing-tab-s" data-interval="quarterly">3 Mo <span class="save-badge-s">-10%</span></button>
+            <button type="button" class="billing-tab-s" data-interval="semi_annual">6 Mo <span class="save-badge-s">-20%</span></button>
+            <button type="button" class="billing-tab-s active" data-interval="annual">Annual <span class="save-badge-s">-30%</span></button>
           </div>
 
           <div class="plan-cards">
@@ -768,13 +754,14 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
   const ENTERPRISE_URL = 'https://calendly.com/ataulufer1/30min'
 
   const prices = {
-    monthly: { essential: '$199', professional: '$299', business: '$599' },
-    annual:  { essential: '$159', professional: '$239', business: '$479' },
+    monthly:     { essential: '$199', professional: '$299', business: '$599' },
+    quarterly:   { essential: '$179', professional: '$269', business: '$539' },
+    semi_annual: { essential: '$159', professional: '$239', business: '$479' },
+    annual:      { essential: '$139', professional: '$209', business: '$419' },
   }
 
-  const toggle = document.getElementById('billingToggle')
-  const labelMonthly = document.getElementById('labelMonthly')
-  const labelAnnual = document.getElementById('labelAnnual')
+  const billingTabs = document.getElementById('billingTabs')
+  let selectedInterval = 'annual'
   const submitBtn = document.getElementById('submitBtn')
   const trialNote = document.getElementById('trialNote')
 
@@ -819,19 +806,35 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     return { fbc: cookies._fbc || '', fbp: cookies._fbp || '' }
   }
 
-  function updatePrices() {
-    const billing = toggle.checked ? 'annual' : 'monthly'
-    const suffix = billing === 'annual' ? '/ mo, billed annually' : '/ month'
-    ;['essential', 'professional', 'business'].forEach(p => {
-      const el = document.getElementById('price_' + p)
-      if (el) el.textContent = prices[billing][p] + ' ' + suffix
-    })
-    labelMonthly.classList.toggle('active', !toggle.checked)
-    labelAnnual.classList.toggle('active', toggle.checked)
+  const billingSuffixes = {
+    monthly: '/ month',
+    quarterly: '/ mo, billed every 3 months',
+    semi_annual: '/ mo, billed every 6 months',
+    annual: '/ mo, billed annually',
   }
 
-  toggle.addEventListener('change', updatePrices)
-  updatePrices() // Init with annual prices
+  function updatePrices() {
+    const suffix = billingSuffixes[selectedInterval]
+    ;['essential', 'professional', 'business'].forEach(p => {
+      const el = document.getElementById('price_' + p)
+      if (el) el.textContent = prices[selectedInterval][p] + ' ' + suffix
+    })
+    billingTabs.querySelectorAll('.billing-tab-s').forEach(t => {
+      t.classList.toggle('active', t.dataset.interval === selectedInterval)
+    })
+  }
+
+  // Read billing from URL if present
+  const urlBilling = new URLSearchParams(window.location.search).get('billing')
+  if (urlBilling && prices[urlBilling]) selectedInterval = urlBilling
+
+  billingTabs.addEventListener('click', (e) => {
+    const tab = e.target.closest('.billing-tab-s')
+    if (!tab || tab.dataset.interval === selectedInterval) return
+    selectedInterval = tab.dataset.interval
+    updatePrices()
+  })
+  updatePrices() // Init
 
   // Plan selection → update button + trial note
   const subtitleEl = document.querySelector('.auth-subtitle')
@@ -906,7 +909,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           company: document.getElementById('company').value,
           phone: document.getElementById('phone').value,
           plan: document.querySelector('input[name="plan"]:checked')?.value,
-          billing: toggle.checked ? 'annual' : 'monthly',
+          billing: selectedInterval,
           ...getFbCookies(),
         }),
       })
@@ -1017,7 +1020,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       clearInterval(countdownInterval)
 
       const plan = document.querySelector('input[name="plan"]:checked')?.value
-      const billing = toggle.checked ? 'annual' : 'monthly'
+      const billing = selectedInterval
       const params = new URLSearchParams({
         plan,
         billing,

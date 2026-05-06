@@ -266,35 +266,27 @@
     .ds-toggle.on::after { transform: translateX(17px); }
 
     /* Billing toggle */
-    .billing-toggle-checkout {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
+    .billing-tabs-checkout {
+      display: flex; align-items: center; gap: 3px;
+      padding: 3px; background: var(--bg-2); border-radius: 16px;
       margin-bottom: 20px;
     }
-    .billing-toggle-checkout .toggle-label {
-      font-size: 0.8rem; font-weight: 600; color: var(--text-2);
-      cursor: pointer; transition: color 0.2s;
+    .billing-tab-c {
+      flex: 1; padding: 5px 6px; border-radius: 14px;
+      font-size: 0.72rem; font-weight: 500; color: var(--text-2);
+      background: transparent; border: none; cursor: pointer;
+      transition: background 0.2s, color 0.2s; text-align: center;
+      white-space: nowrap;
     }
-    .billing-toggle-checkout .toggle-label.active { color: var(--text-1); }
-    .billing-toggle-checkout .save-badge {
-      font-size: 0.65rem; font-weight: 700;
+    .billing-tab-c:hover { color: var(--text-1); }
+    .billing-tab-c.active {
+      background: #fff; color: var(--text-1);
+      box-shadow: 0 1px 3px rgba(37,99,235,0.08); font-weight: 600;
+    }
+    .billing-tab-c .save-badge-c {
+      font-size: 0.58rem; font-weight: 700;
       color: #16a34a; background: rgba(22,163,74,0.08);
-      border-radius: 4px; padding: 2px 6px; margin-left: 4px;
-    }
-    .billing-toggle-checkout .toggle-switch {
-      width: 40px; height: 22px;
-      background: var(--blue);
-      border: none; border-radius: 11px;
-      position: relative; cursor: pointer;
-      transition: background 0.2s;
-    }
-    .billing-toggle-checkout .toggle-switch .toggle-knob {
-      position: absolute; top: 3px; left: 3px;
-      width: 16px; height: 16px;
-      background: #fff; border-radius: 50%;
-      transition: transform 0.2s;
-    }
-    .billing-toggle-checkout .toggle-switch.annual .toggle-knob {
-      transform: translateX(18px);
+      border-radius: 4px; padding: 1px 4px; margin-left: 2px;
     }
 
     #reactivationUpsellCard, #setupUpsellCard { margin-top: 8px; }
@@ -422,12 +414,11 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       <div class="order-summary">
         <div class="order-title">Order summary</div>
 
-        <div class="billing-toggle-checkout" style="display:none">
-          <span class="toggle-label" id="checkoutLabelMonthly">Monthly</span>
-          <button class="toggle-switch annual" id="billingToggle" type="button" aria-label="Toggle billing period">
-            <span class="toggle-knob"></span>
-          </button>
-          <span class="toggle-label active" id="checkoutLabelAnnual">Annual <span class="save-badge">Save 20%</span></span>
+        <div class="billing-tabs-checkout" id="billingTabsCheckout" style="display:none">
+          <button type="button" class="billing-tab-c" data-interval="monthly">Monthly</button>
+          <button type="button" class="billing-tab-c" data-interval="quarterly">3 Mo <span class="save-badge-c">-10%</span></button>
+          <button type="button" class="billing-tab-c" data-interval="semi_annual">6 Mo <span class="save-badge-c">-20%</span></button>
+          <button type="button" class="billing-tab-c active" data-interval="annual">Annual <span class="save-badge-c">-30%</span></button>
         </div>
 
         <div class="plan-display" id="planDisplay">
@@ -581,11 +572,11 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
     // ─── Plan metadata ───────────────────────────────────────────────────────────
     const PLANS = {
-      essential:    { name: t('Essential','Essential'),       monthly: 199, annual: 159, badge: '',
+      essential:    { name: t('Essential','Essential'),       monthly: 199, quarterly: 179, semi_annual: 159, annual: 139, badge: '',
                       features: [t('Full CRM','Tam CRM'), t('WhatsApp & Instagram — Unlimited','WhatsApp ve Instagram — Sınırsız'), t('Knowledge base — Unlimited','Bilgi tabanı — Sınırsız'), t('Chat AI & Automation','Chat AI ve Otomasyon'), t('5 team members','5 ekip üyesi')] },
-      professional: { name: t('Professional','Professional'), monthly: 299, annual: 239, badge: t('Most Popular','En Popüler'),
+      professional: { name: t('Professional','Professional'), monthly: 299, quarterly: 269, semi_annual: 239, annual: 209, badge: t('Most Popular','En Popüler'),
                       features: [t('Everything in Essential','Essential\'daki her şey'), t('Inbound voice calls — 200 min/mo','Sesli gelen aramalar — 200 dk/ay'), t('Advanced analytics','Gelişmiş analitik'), t('Multi-pipeline — 3','Çoklu pipeline — 3'), t('10 team members','10 ekip üyesi')] },
-      business:     { name: t('Business','Business'),         monthly: 599, annual: 479, badge: t('Most Valuable','En Değerlisi'),
+      business:     { name: t('Business','Business'),         monthly: 599, quarterly: 539, semi_annual: 479, annual: 419, badge: t('Most Valuable','En Değerlisi'),
                       features: [t('Everything in Professional','Professional\'daki her şey'), t('Inbound + outbound voice — 500 min/mo','Sesli gelen+giden — 500 dk/ay'), t('All voice workflows','Tüm ses iş akışları'), t('Multi-language voice (8 languages)','Çok dilli ses (8 dil)'), t('Multi-pipeline — Unlimited','Çoklu pipeline — Sınırsız'), t('20 team members','20 ekip üyesi')] },
     }
 
@@ -600,9 +591,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     const dueTodayNote    = document.getElementById('dueTodayNote')
     const featureList     = document.getElementById('featureList')
     const legalEl         = document.getElementById('legalText')
-    const billingToggle   = document.getElementById('billingToggle')
-    const labelMonthly    = document.getElementById('checkoutLabelMonthly')
-    const labelAnnual     = document.getElementById('checkoutLabelAnnual')
+    const billingTabsEl   = document.getElementById('billingTabsCheckout')
 
     // ─── One-time setup (plan-dependent, not billing-dependent) ────────────────
     if (isBusiness) {
@@ -659,25 +648,44 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       document.getElementById('setupUpsellCard').style.display = 'block'
     }
 
-    // ─── Update summary (called on init + billing toggle + addon toggle) ────────
+    // ─── Update summary (called on init + billing tab change + addon toggle) ────
+    const BILLING_LABELS = {
+      monthly:     { en: 'monthly',   tr: 'aylık' },
+      quarterly:   { en: 'quarterly', tr: '3 aylık' },
+      semi_annual: { en: '6 months',  tr: '6 aylık' },
+      annual:      { en: 'annual',    tr: 'yıllık' },
+    }
+    const BILLING_TOTALS = {
+      essential:    { quarterly: 537, semi_annual: 954, annual: 1668 },
+      professional: { quarterly: 807, semi_annual: 1434, annual: 2508 },
+      business:     { quarterly: 1617, semi_annual: 2874, annual: 5028 },
+    }
+
+    function billedSubText(price) {
+      const totals = BILLING_TOTALS[plan] || {}
+      const afterTrial = !isBusiness ? ` — ${t(`after ${trialDays}-day trial`, `${trialDays} günlük denemeden sonra`)}` : ''
+      if (billing === 'monthly') return isBusiness ? t('Billed monthly', 'Aylık faturalandırılır') : t(`Billed monthly — after ${trialDays}-day trial`, `Aylık faturalandırılır — ${trialDays} günlük denemeden sonra`)
+      if (billing === 'quarterly') return t(`Billed $${totals.quarterly} every 3 months`, `3 ayda bir $${totals.quarterly} fatura edilir`) + afterTrial
+      if (billing === 'semi_annual') return t(`Billed $${totals.semi_annual} every 6 months`, `6 ayda bir $${totals.semi_annual} fatura edilir`) + afterTrial
+      return t(`Billed annually: $${totals.annual}`, `Yıllık fatura: $${totals.annual}`) + afterTrial
+    }
+
     function updateSummary() {
-      const isAnnual    = billing === 'annual'
-      const price       = isAnnual ? p.annual : p.monthly
-      const billingLabel = isAnnual ? t('annual', 'yıllık') : t('monthly', 'aylık')
+      const price       = p[billing] || p.monthly
+      const label       = BILLING_LABELS[billing] || BILLING_LABELS.monthly
+      const billingLabel = t(label.en, label.tr)
       const discount    = (price / 30 * trialDays).toFixed(2)
 
-      // Toggle UI
-      billingToggle.classList.toggle('annual', isAnnual)
-      labelAnnual.classList.toggle('active', isAnnual)
-      labelMonthly.classList.toggle('active', !isAnnual)
+      // Tab active state
+      if (billingTabsEl) {
+        billingTabsEl.querySelectorAll('.billing-tab-c').forEach(tab => {
+          tab.classList.toggle('active', tab.dataset.interval === billing)
+        })
+      }
 
       // Price display
       document.getElementById('summaryPrice').innerHTML = `$${price}<span> ${t('/ month', '/ay')}</span>`
-      document.getElementById('summarySub').textContent = isBusiness
-        ? (isAnnual ? t(`Billed annually: $${price * 12}`, `Yıllık fatura: $${price * 12}`) : t('Billed monthly', 'Aylık faturalandırılır'))
-        : (isAnnual
-            ? t(`Billed annually: $${price * 12} — after ${trialDays}-day trial`, `Yıllık fatura: $${price * 12} — ${trialDays} günlük denemeden sonra`)
-            : t(`Billed monthly — after ${trialDays}-day trial`, `Aylık faturalandırılır — ${trialDays} günlük denemeden sonra`))
+      document.getElementById('summarySub').textContent = billedSubText(price)
       document.getElementById('lineItemLabel').textContent = `${p.name} (${billingLabel})`
       document.getElementById('lineItemPrice').textContent = `$${price}.00`
 
@@ -687,6 +695,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       }
 
       // Setup free logic (annual = free)
+      const isAnnual = billing === 'annual'
       setupIsFree = isAnnual
       const setupToggleEl      = document.getElementById('setupToggle')
       const setupBadgeEl       = document.getElementById('setupBadge')
@@ -744,7 +753,13 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
       // Billing badge text
       const billingBadgeTextEl = document.getElementById('billingBadgeText')
-      if (billingBadgeTextEl) billingBadgeTextEl.textContent = isAnnual ? t('Annual billing', 'Yıllık faturalandırma') : t('Monthly billing', 'Aylık faturalandırma')
+      const badgeLabels = {
+        monthly: t('Monthly billing', 'Aylık faturalandırma'),
+        quarterly: t('Quarterly billing', '3 aylık faturalandırma'),
+        semi_annual: t('6-month billing', '6 aylık faturalandırma'),
+        annual: t('Annual billing', 'Yıllık faturalandırma'),
+      }
+      if (billingBadgeTextEl) billingBadgeTextEl.textContent = badgeLabels[billing] || badgeLabels.monthly
     }
 
     updateSummary()
@@ -762,17 +777,15 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       if (qs) changePlanLink.href = `signup.html?${qs}`
     }
 
-    // ─── Billing toggle ────────────────────────────────────────────────────────
-    billingToggle.addEventListener('click', () => {
-      billing = billing === 'annual' ? 'monthly' : 'annual'
-      updateSummary()
-    })
-    labelMonthly.addEventListener('click', () => {
-      if (billing !== 'monthly') { billing = 'monthly'; updateSummary() }
-    })
-    labelAnnual.addEventListener('click', () => {
-      if (billing !== 'annual') { billing = 'annual'; updateSummary() }
-    })
+    // ─── Billing tabs ──────────────────────────────────────────────────────────
+    if (billingTabsEl) {
+      billingTabsEl.addEventListener('click', (e) => {
+        const tab = e.target.closest('.billing-tab-c')
+        if (!tab || tab.dataset.interval === billing) return
+        billing = tab.dataset.interval
+        updateSummary()
+      })
+    }
 
     // ─── Dedicated Support toggle ──────────────────────────────────────────────
     const dsToggleWrap = document.getElementById('dsToggleWrap')

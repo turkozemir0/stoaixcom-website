@@ -298,14 +298,13 @@
         <div class="section-badge">Pricing</div>
         <h2 class="section-headline centered">Simple, transparent pricing.</h2>
         <p class="section-sub centered">Start free. Scale when you&#39;re ready. No contracts, cancel anytime.</p>
-        <div class="billing-toggle">
-          <span class="toggle-label" id="label-monthly">Monthly</span>
-          <button class="toggle-switch annual" id="billingToggle" aria-label="Toggle billing period">
-            <span class="toggle-knob"></span>
-          </button>
-          <span class="toggle-label active-label" id="label-annual">Annual <span class="save-badge">Save 20%</span></span>
+        <div class="billing-tabs" id="billingTabs">
+          <button class="billing-tab" data-interval="monthly">Monthly</button>
+          <button class="billing-tab" data-interval="quarterly">3 Months <span class="save-badge">Save 10%</span></button>
+          <button class="billing-tab" data-interval="semi_annual">6 Months <span class="save-badge">Save 20%</span></button>
+          <button class="billing-tab active" data-interval="annual">Annual <span class="save-badge">Save 30%</span></button>
         </div>
-        <div class="annual-onboarding-pill">
+        <div class="annual-onboarding-pill" data-interval="annual">
           <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#16a34a" fill-opacity=".15"/><path d="M6 10l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Annual plan includes 14 days free onboarding
         </div>
@@ -320,11 +319,10 @@
                 <div class="pt-plan-name">Essential</div>
                 <div class="pt-plan-tagline">For solo &amp; small teams</div>
                 <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="199" data-annual="159">199</span><span class="pt-period">/mo</span>
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="199" data-quarterly="179" data-semi_annual="159" data-annual="139">139</span><span class="pt-period">/mo</span>
                 </div>
-                <div class="pt-billing-note annual-show">Billed $1,908/yr</div>
-                <div class="pt-billing-note monthly-show">Billed monthly</div>
-                <a href="signup.html?plan=essential" class="btn-outline pt-btn">Get started</a>
+                <div class="pt-billing-note" data-plan="essential"></div>
+                <a href="signup.html?plan=essential&billing=annual" class="btn-outline pt-btn pt-signup-link">Get started</a>
                 <div class="pt-trial">7-day free trial</div>
               </th>
               <th class="pt-th-plan pt-th-biz">
@@ -332,11 +330,10 @@
                 <div class="pt-plan-name">Professional</div>
                 <div class="pt-plan-tagline">For growing businesses</div>
                 <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="299" data-annual="239">299</span><span class="pt-period">/mo</span>
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="299" data-quarterly="269" data-semi_annual="239" data-annual="209">209</span><span class="pt-period">/mo</span>
                 </div>
-                <div class="pt-billing-note annual-show">Billed $2,868/yr</div>
-                <div class="pt-billing-note monthly-show">Billed monthly</div>
-                <a href="signup.html?plan=professional" class="btn-primary pt-btn">Get started</a>
+                <div class="pt-billing-note" data-plan="professional"></div>
+                <a href="signup.html?plan=professional&billing=annual" class="btn-primary pt-btn pt-signup-link">Get started</a>
                 <div class="pt-trial">7-day free trial</div>
               </th>
               <th class="pt-th-plan">
@@ -344,11 +341,10 @@
                 <div class="pt-plan-name">Business</div>
                 <div class="pt-plan-tagline">For scaling operations</div>
                 <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="599" data-annual="479">599</span><span class="pt-period">/mo</span>
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="599" data-quarterly="539" data-semi_annual="479" data-annual="419">419</span><span class="pt-period">/mo</span>
                 </div>
-                <div class="pt-billing-note annual-show">Billed $5,748/yr</div>
-                <div class="pt-billing-note monthly-show">Billed monthly</div>
-                <a href="signup.html?plan=business" class="btn-primary pt-btn">Get started</a>
+                <div class="pt-billing-note" data-plan="business"></div>
+                <a href="signup.html?plan=business&billing=annual" class="btn-primary pt-btn pt-signup-link">Get started</a>
                 <div class="pt-trial pt-trial-muted">No free trial</div>
               </th>
               <th class="pt-th-plan pt-th-ent">
@@ -504,7 +500,7 @@
       <div class="pricing-note reveal">
         <span>Voice AI overage: $0.15/min after plan limit · </span>
         <span>Essential &amp; Professional: 7-day free trial · </span>
-        <span>Annual billing saves 20%</span>
+        <span>Save up to 30% with annual billing</span>
       </div>
     </div>
   </section>`;
