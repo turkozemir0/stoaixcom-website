@@ -404,16 +404,16 @@
 
             <tr class="pt-group-row"><td colspan="5">Voice AI</td></tr>
             <tr>
-              <td class="pt-feat">Voice AI — Inbound</td>
+              <td class="pt-feat">Voice AI</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-v">200 min/mo</td>
+              <td class="pt-c pt-biz ptc-v">200 min/mo<span class="pt-sub-note">gelen veya giden*</span></td>
               <td class="pt-c ptc-v">500 min/mo<span class="pt-sub-note">shared pool with outbound</span></td>
               <td class="pt-c ptc-v">Unlimited</td>
             </tr>
             <tr>
               <td class="pt-feat">Voice AI — Outbound</td>
               <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-n">—</td>
+              <td class="pt-c pt-biz ptc-n"><span class="pt-sub-note">seçimle</span></td>
               <td class="pt-c ptc-y"></td>
               <td class="pt-c ptc-y"></td>
             </tr>
@@ -498,7 +498,8 @@
       </div>
 
       <div class="pricing-note reveal">
-        <span>Voice AI overage: $0.15/min after plan limit · </span>
+        <span>* Professional: kurulum sırasında gelen veya giden seçilir · </span>
+        <span>Voice AI overage: $0.19/min after plan limit · </span>
         <span>Essential &amp; Professional: 7-day free trial · </span>
         <span>Save up to 30% with annual billing</span>
       </div>

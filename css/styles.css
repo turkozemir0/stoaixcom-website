@@ -1925,6 +1925,21 @@ ul { list-style: none; }
 }
 .pricing-note span { margin: 0 4px; }
 
+/* ─── Sticky feature column ─────────────────────────────── */
+.pt-feat-col,
+.ptable tbody td.pt-feat {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: var(--surface);
+}
+.pt-group-row td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: #f8fafc;
+}
+
 /* ─── Responsive ────────────────────────────────────────── */
 @media (max-width: 900px) {
   .pt-feat-col { min-width: 130px; }
@@ -1932,6 +1947,19 @@ ul { list-style: none; }
 }
 @media (max-width: 640px) {
   .price-num { font-size: 2rem; }
+  .ptable { min-width: 520px; }
+  .pt-feat-col { min-width: 100px; }
+  .pt-th-plan { width: 105px; }
+  .pt-c { padding: 10px 6px; font-size: 0.8rem; }
+  .pt-feat { padding: 10px 8px; font-size: 0.8rem; }
+  .pt-th-plan .plan-name { font-size: 0.75rem; }
+}
+@media (max-width: 420px) {
+  .ptable { min-width: 460px; }
+  .pt-feat-col { min-width: 88px; }
+  .pt-th-plan { width: 93px; }
+  .pt-c { font-size: 0.73rem; padding: 8px 4px; }
+  .pt-sub-note { font-size: 0.62rem; }
 }
 
 
