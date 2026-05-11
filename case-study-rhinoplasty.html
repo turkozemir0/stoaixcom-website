@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rhinoplasty Clinic Case Study — STOAIX</title>
+  <meta name="description" content="How an Istanbul rhinoplasty clinic doubled consultation bookings and saved 70% of sales team time using STOAIX AI — responding to high-ticket leads in under 5 minutes." />
+  <link rel="canonical" href="https://stoaix.com/case-study-rhinoplasty">
+  <meta name="author" content="Emir TÜRKÖZ, Ata Ulufer">
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <style>
+    .csd-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 80px;
+      background:
+        radial-gradient(ellipse 65% 55% at 5% 15%,  rgba(37,99,235,0.22) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 45% at 92% 8%,  rgba(124,58,237,0.16) 0%, transparent 52%),
+        radial-gradient(ellipse 42% 38% at 50% 95%, rgba(59,130,246,0.12) 0%, transparent 50%),
+        #f5f7ff;
+    }
+    .csd-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(37,99,235,0.15) 1px, transparent 1px);
+      background-size: 36px 36px;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .csd-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 55%, rgba(245,247,255,0.97) 100%);
+      pointer-events: none;
+    }
+    .csd-hero-inner { position: relative; z-index: 2; max-width: 780px; margin: 0 auto; padding: 0 24px; }
+    .csd-breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 0.82rem; color: var(--text-3); margin-bottom: 32px; }
+    .csd-breadcrumb a { color: var(--text-3); transition: color 0.2s; }
+    .csd-breadcrumb a:hover { color: var(--blue); }
+    .csd-breadcrumb svg { flex-shrink: 0; opacity: 0.5; }
+    .csd-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--blue-tint);
+      border: 1px solid var(--blue-mid);
+      color: var(--blue);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: var(--r-full);
+      margin-bottom: 20px;
+    }
+    .csd-hero-h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; color: var(--text); margin-bottom: 18px; }
+    .csd-hero-meta { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; font-size: 0.85rem; color: var(--text-3); }
+    .csd-hero-meta span { display: flex; align-items: center; gap: 6px; }
+    .csd-metrics { padding: 64px 0 0; background: var(--bg); }
+    .csd-metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .csd-metric {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      padding: 28px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .csd-metric::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #2563eb, #7c3aed); }
+    .csd-metric-num {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .csd-metric-label { font-size: 0.82rem; color: var(--text-3); font-weight: 500; line-height: 1.4; }
+    .csd-body { padding: 64px 0 80px; background: var(--bg); }
+    .csd-layout { display: grid; grid-template-columns: 1fr 300px; gap: 56px; max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    .csd-prose h2 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.025em; color: var(--text); margin: 48px 0 14px; }
+    .csd-prose h2:first-child { margin-top: 0; }
+    .csd-prose p { font-size: 1rem; color: var(--text-2); line-height: 1.75; margin-bottom: 18px; }
+    .csd-step-label { display: inline-flex; align-items: center; gap: 8px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; }
+    .csd-step-label span { width: 20px; height: 20px; background: var(--blue-tint); border: 1px solid var(--blue-mid); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7rem; }
+    .csd-quote { background: radial-gradient(ellipse 80% 70% at 50% 0%, rgba(37,99,235,0.08) 0%, transparent 65%), var(--surface); border: 1px solid var(--border); border-left: 4px solid var(--blue); border-radius: var(--r-xl); padding: 36px; margin: 40px 0; }
+    .csd-quote-text { font-size: 1.08rem; font-style: italic; color: var(--text); line-height: 1.7; margin-bottom: 18px; }
+    .csd-quote-author { font-size: 0.85rem; font-weight: 600; color: var(--text-2); }
+    .csd-quote-role { font-size: 0.8rem; color: var(--text-3); }
+    .csd-sidebar { position: sticky; top: calc(var(--nav-h) + 24px); height: fit-content; }
+    .csd-sidebar-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 28px; box-shadow: var(--shadow-sm); margin-bottom: 20px; }
+    .csd-sidebar-card h3 { font-size: 0.72rem; font-weight: 700; color: var(--text); letter-spacing: 0.08em; margin-bottom: 16px; text-transform: uppercase; }
+    .csd-sidebar-item { display: flex; gap: 10px; margin-bottom: 12px; font-size: 0.85rem; }
+    .csd-sidebar-item:last-child { margin-bottom: 0; }
+    .csd-sidebar-key { color: var(--text-3); flex-shrink: 0; min-width: 90px; }
+    .csd-sidebar-val { color: var(--text); font-weight: 500; }
+    .csd-related-link { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 0.88rem; color: var(--text); transition: color 0.2s; }
+    .csd-related-link:last-child { border-bottom: none; padding-bottom: 0; }
+    .csd-related-link:hover { color: var(--blue); }
+    .csd-related-label { font-size: 0.72rem; color: var(--text-3); display: block; margin-bottom: 2px; }
+    .csd-cta { background: radial-gradient(ellipse 80% 70% at 50% 110%, rgba(37,99,235,0.18) 0%, transparent 60%), var(--bg-2); border-top: 1px solid var(--border); padding: 80px 24px; text-align: center; }
+    .csd-cta-h2 { font-size: clamp(1.8rem, 3vw, 2.4rem); font-weight: 700; letter-spacing: -0.025em; color: var(--text); margin-bottom: 14px; }
+    .csd-cta-sub { font-size: 1rem; color: var(--text-2); margin-bottom: 36px; max-width: 460px; margin-left: auto; margin-right: auto; }
+    .csd-cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 900px) { .csd-layout { grid-template-columns: 1fr; gap: 40px; } .csd-sidebar { position: static; } .csd-metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .csd-hero { padding: 100px 0 60px; } .csd-metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } .csd-metric { padding: 22px 16px; } }
+  </style>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wnyyri0jrz");
+</script>
+</head>
+<body>
+
+  <nav id="navbar"></nav>
+
+  <script defer src="/js/components.js"></script>
+
+  <section class="csd-hero">
+    <div class="csd-hero-inner">
+      <nav class="csd-breadcrumb reveal">
+        <a href="/">Home</a>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <a href="/case-studies.html">Case Studies</a>
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Rhinoplasty</span>
+      </nav>
+      <div class="csd-badge reveal">Rhinoplasty</div>
+      <h1 class="csd-hero-h1 reveal">
+        High-ticket surgical leads were disappearing.<br /><span class="gradient-text">68 consultations booked in 8 weeks.</span>
+      </h1>
+      <div class="csd-hero-meta reveal">
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Istanbul, Turkey
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Results in 8 weeks
+        </span>
+        <span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/><path d="M12 8v4l3 3"/></svg>
+          Surgical Aesthetics · Rhinoplasty
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section class="csd-metrics">
+    <div class="container">
+      <div class="csd-metrics-grid">
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num">+<span data-countup="120"></span>%</span>
+          <span class="csd-metric-label">Increase in consultation bookings</span>
+        </div>
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num"><span data-countup="8400"></span></span>
+          <span class="csd-metric-label">Old leads re-engaged via reactivation</span>
+        </div>
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num">5 min</span>
+          <span class="csd-metric-label">Average first response (was 7+ hours)</span>
+        </div>
+        <div class="csd-metric reveal">
+          <span class="csd-metric-num"><span data-countup="70"></span>%</span>
+          <span class="csd-metric-label">Sales team time saved</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="csd-body">
+    <div class="csd-layout">
+
+      <article class="csd-prose">
+
+        <div class="csd-step-label"><span>1</span>Problem</div>
+        <h2>A £4,000 opportunity. Lost to a 7-hour delay.</h2>
+        <p>
+          Rhinoplasty is one of the highest-consideration surgical decisions a patient makes. Research cycles last weeks or months. Patients study before-and-after portfolios, read reviews, compare surgeons, and ultimately request consultations from two or three finalists. The decision often comes down to one thing: trust — and trust is built in the first interaction.
+        </p>
+        <p>
+          This Istanbul clinic had a renowned surgical team, competitive pricing relative to Western Europe, and strong results photography. Their marketing was generating consistent inbound interest — primarily from the UK, Germany, and the Gulf. The problem was what happened after a lead made contact.
+        </p>
+        <p>
+          Average response time: 7 hours and 20 minutes. The patient coordinator was managing WhatsApp, Instagram, and email simultaneously, alongside post-operative patient care. By the time she replied to a morning enquiry, the patient had often already received a faster, more detailed response from a competitor. The opportunity was lost — not because of surgery quality, but because of admin lag.
+        </p>
+        <p>
+          The clinic also held 8,400 archived leads — past enquiries spanning 18 months — that had never been systematically followed up. These were real people who had expressed genuine surgical intent. Some had requested quotes, asked about recovery timelines, or started a consultation process and then gone quiet. None had been contacted again.
+        </p>
+
+        <div class="csd-step-label" style="margin-top: 48px;"><span>2</span>Solution</div>
+        <h2>AI-first lead management. Human involvement when it matters.</h2>
+        <p>
+          STOAIX deployed an AI agent across WhatsApp, Instagram, and the website — trained on the clinic's surgical portfolio, surgeon credentials, pricing structure, post-operative protocols, and the logistics of travelling to Istanbul for surgery. The agent responded to every new inbound enquiry within 5 minutes, regardless of time zone or day of week.
+        </p>
+        <p>
+          The qualification flow was designed to match how rhinoplasty patients actually think. The AI asked about their aesthetic goals, whether they had seen any results from the clinic's portfolio they connected with, any previous consultations or concerns, and their preferred timeline. By the time a lead was handed to the patient coordinator, they had already spent several exchanges building confidence in the clinic — and the coordinator arrived in a warm conversation, not a cold one.
+        </p>
+        <p>
+          Leads who didn't convert in the first exchange entered a structured follow-up sequence: a follow-up at 48 hours with relevant surgeon results, a patient testimonial at 5 days, and a consultation availability prompt at 10 days. The AI ran this sequence autonomously, adapting based on how each lead responded.
+        </p>
+        <p>
+          The 8,400 archived contacts were segmented by enquiry type and recency, then reactivated in phases. Recent contacts (under 6 months) received a personalised re-engagement message. Older contacts received a reintroduction showcasing recent results. Every response was handled by the AI in real time — escalating to the coordinator only when a contact expressed readiness to book.
+        </p>
+
+        <div class="csd-quote">
+          <p class="csd-quote-text">"Before STOAIX, I was spending my entire morning just catching up on messages from the night before. By the time I replied, half of them had already heard back from somewhere else. Now the AI handles the first hour of every conversation — and the patients who reach me are already interested, already informed, already warm."</p>
+          <div class="csd-quote-author">Patient Coordinator</div>
+          <div class="csd-quote-role">Rhinoplasty Clinic, Istanbul</div>
+        </div>
+
+        <div class="csd-step-label"><span>3</span>Result</div>
+        <h2>+120% consultations. 70% of sales time reclaimed.</h2>
+        <p>
+          Consultation bookings increased by 120% over the 8 weeks following deployment. The combination of sub-5-minute first response and a structured multi-touch follow-up sequence meant the clinic was engaging leads at the moment of highest intent — and staying in front of them until they were ready to commit.
+        </p>
+        <p>
+          The reactivation campaign against 8,400 archived leads produced 168 confirmed consultations — a 2% conversion rate from contacts that had previously been abandoned entirely. For rhinoplasty procedures averaging £3,800, this represented a significant revenue recovery from data the clinic already owned.
+        </p>
+        <p>
+          The patient coordinator's workload was transformed. Previously spending roughly 70% of her day on initial enquiry management — chasing non-replies, answering the same questions repeatedly, translating between languages — she now spends that time on confirmed consultation calls, surgical planning coordination, and post-operative patient care. The AI handles the volume. She handles the relationship.
+        </p>
+        <p>
+          Lead loss — the number of inbound enquiries that resulted in no follow-up contact within 24 hours — dropped from 64% to under 8%. Every lead now enters a defined pipeline with a clear follow-up sequence and a measurable conversion stage. Nothing falls through the gaps.
+        </p>
+
+      </article>
+
+      <aside class="csd-sidebar">
+        <div class="csd-sidebar-card reveal">
+          <h3>At a glance</h3>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Sector</span>
+            <span class="csd-sidebar-val">Rhinoplasty</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Location</span>
+            <span class="csd-sidebar-val">Istanbul, Turkey</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Channels</span>
+            <span class="csd-sidebar-val">WhatsApp, Instagram, Web</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Languages</span>
+            <span class="csd-sidebar-val">EN, TR, AR</span>
+          </div>
+          <div class="csd-sidebar-item">
+            <span class="csd-sidebar-key">Timeline</span>
+            <span class="csd-sidebar-val">8 weeks to results</span>
+          </div>
+        </div>
+
+        <div class="csd-sidebar-card reveal">
+          <h3>Other case studies</h3>
+          <a href="/case-study-body-surgery.html" class="csd-related-link">
+            <div>
+              <span class="csd-related-label">Body Surgery</span>
+              £680K dormant pipeline
+            </div>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/case-study-hair-transplant.html" class="csd-related-link">
+            <div>
+              <span class="csd-related-label">Hair Transplant</span>
+              8h → 4 min response
+            </div>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="/case-study-aesthetic.html" class="csd-related-link">
+            <div>
+              <span class="csd-related-label">Aesthetic Clinic</span>
+              12,000 leads reactivated
+            </div>
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <a href="/healthcare-clinics.html#cta" class="btn btn-primary" style="width: 100%; justify-content: center;">
+          Start your free trial
+        </a>
+      </aside>
+
+    </div>
+  </section>
+
+  <section class="csd-cta">
+    <h2 class="csd-cta-h2 reveal">Your clinic could be next.</h2>
+    <p class="csd-cta-sub reveal">Join healthcare businesses across 12+ countries using STOAIX to turn enquiries into appointments — automatically.</p>
+    <div class="csd-cta-btns reveal">
+      <a href="/healthcare-clinics.html#cta" class="btn btn-primary">Start free trial</a>
+      <a href="/case-studies.html" class="btn btn-outline">See all case studies</a>
+    </div>
+  </section>
+
+  <footer class="footer"></footer>
+
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/i18n.js"></script>
+</body>
+</html>
