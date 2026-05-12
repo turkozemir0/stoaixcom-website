@@ -52,7 +52,7 @@ export default async function handler(req, res) {
 
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
-  const { email, firstName, lastName, company, phone, plan, billing, paymentMethodId, partnerRef, fbc, fbp, addDedicatedSupport, addReactivation, addSetup } = req.body
+  const { email, firstName, lastName, company, phone, plan, billing, paymentMethodId, partnerRef, fbc, fbp, addDedicatedSupport, addReactivation, addSetup, promoCode } = req.body
 
   if (!email || !plan || !billing || !paymentMethodId) {
     return res.status(400).json({ error: 'Missing required fields' })
@@ -89,6 +89,20 @@ export default async function handler(req, res) {
       invoice_settings: { default_payment_method: paymentMethodId },
     })
 
+    // 2b. Validate promo code if provided
+    let stripePromoId = null
+    if (promoCode) {
+      const { data: promo } = await supabase
+        .from('promo_codes')
+        .select('stripe_promo_id, expires_at, used')
+        .eq('code', promoCode.toUpperCase())
+        .single()
+
+      if (promo && !promo.used && new Date(promo.expires_at) > new Date() && promo.stripe_promo_id) {
+        stripePromoId = promo.stripe_promo_id
+      }
+    }
+
     // 3. Create subscription (Business = no trial, others = 7-day trial)
     const isBusiness = planKey === 'business'
 
@@ -117,6 +131,9 @@ export default async function handler(req, res) {
     }
     if (!isBusiness) {
       subscriptionParams.trial_period_days = 7
+    }
+    if (stripePromoId) {
+      subscriptionParams.promotion_code = stripePromoId
     }
     const subscription = await stripe.subscriptions.create(subscriptionParams)
 
@@ -302,6 +319,14 @@ export default async function handler(req, res) {
       } catch (err) {
         console.error('Partner webhook error:', err)
       }
+    }
+
+    // 6b. Mark promo code as used
+    if (promoCode && stripePromoId) {
+      await supabase
+        .from('promo_codes')
+        .update({ used: true, used_at: new Date().toISOString() })
+        .eq('code', promoCode.toUpperCase())
     }
 
     // 7. Mark lead as converted + FB CAPI Purchase event

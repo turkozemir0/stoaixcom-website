@@ -127,6 +127,20 @@ const TR_COMMON = {
   'Most popular': 'En Popüler',
   'Company': 'Şirket',
   'Legal': 'Yasal',
+  /* promo popup */
+  'Limited Offer': 'Sınırlı Teklif',
+  'You have a 10% discount!': '%10 indiriminiz var!',
+  'Get my discount code': 'İndirim kodumu al',
+  '10% discount — last chance!': '%10 indirim — son fırsat!',
+  'This is our final offer.': 'Bu son teklifimiz.',
+  'Your discount code': 'İndirim kodunuz',
+  'Copy': 'Kopyala',
+  'Copied!': 'Kopyalandı!',
+  'Valid for 60 minutes': '60 dakika geçerli',
+  'Valid for 12 hours': '12 saat geçerli',
+  'First name': 'Ad',
+  'Last name': 'Soyad',
+  'Phone': 'Telefon',
 };
 
 /* ─── Index page ─────────────────────────────────────────── */
@@ -1201,6 +1215,13 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
   'WhatsApp & web chat': 'WhatsApp ve web chat',
   '750 minutes / month included': 'Ayda 750 dakika dahil',
   '15+ languages · CRM · Lead scoring': '15+ dil · CRM · Lead puanlama',
+  /* promo code */
+  'Promo code': 'Promo kodu',
+  'Enter promo code': 'Promo kodunu girin',
+  'Apply': 'Uygula',
+  'Promo discount (10%)': 'Promo indirimi (%10)',
+  'Promo code applied!': 'Promo kodu uygulandı!',
+  '(optional)': '(isteğe bağlı)',
 });
 
 /* ═══════════════════════════════════════════════════════════

@@ -316,6 +316,7 @@
             <tr>
               <th class="pt-feat-col" aria-label="Feature"></th>
               <th class="pt-th-plan">
+                <div class="pt-savings-badge" data-plan="essential"></div>
                 <div class="pt-plan-name">Essential</div>
                 <div class="pt-plan-tagline">For solo &amp; small teams</div>
                 <div class="pt-plan-price">
@@ -326,6 +327,7 @@
                 <div class="pt-trial">7-day free trial</div>
               </th>
               <th class="pt-th-plan pt-th-biz">
+                <div class="pt-savings-badge" data-plan="professional"></div>
                 <div class="pt-pop-badge">Most Popular</div>
                 <div class="pt-plan-name">Professional</div>
                 <div class="pt-plan-tagline">For growing businesses</div>
@@ -337,6 +339,7 @@
                 <div class="pt-trial">7-day free trial</div>
               </th>
               <th class="pt-th-plan">
+                <div class="pt-savings-badge" data-plan="business"></div>
                 <div class="pt-pop-badge" style="background:rgba(245,158,11,0.15);color:#b45309;border-color:rgba(245,158,11,0.3);">Most Valuable</div>
                 <div class="pt-plan-name">Business</div>
                 <div class="pt-plan-tagline">For scaling operations</div>
@@ -548,6 +551,12 @@
       pricingEl.insertAdjacentHTML('afterend', PRICING_HTML);
       pricingEl.remove();
     }
+
+    // ── Promo pop-up script (all marketing pages) ─────────
+    const promoScript = document.createElement('script');
+    promoScript.src = '/js/promo-popup.js';
+    promoScript.defer = true;
+    document.head.appendChild(promoScript);
   }
 
   // With defer, readyState is already 'interactive' — run immediately.

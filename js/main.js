@@ -131,6 +131,26 @@
       url.searchParams.set('billing', activeInterval);
       link.href = url.pathname + url.search;
     });
+
+    // Savings badges — read prices from DOM, no hardcoded values
+    const multipliers = { monthly: 1, quarterly: 3, semi_annual: 6, annual: 12 };
+    const planMap = { essential: 0, professional: 1, business: 2 };
+    document.querySelectorAll('.pt-savings-badge').forEach(el => {
+      const plan = el.dataset.plan;
+      const idx = planMap[plan];
+      if (idx === undefined) return;
+      const priceEl = priceNums[idx];
+      if (!priceEl) return;
+      const monthly = +priceEl.dataset.monthly;
+      const current = +priceEl.dataset[activeInterval] || monthly;
+      const savings = (monthly - current) * multipliers[activeInterval];
+      if (savings > 0) {
+        el.textContent = 'Save $' + savings.toLocaleString();
+        el.style.display = 'inline-block';
+      } else {
+        el.style.display = 'none';
+      }
+    });
   }
 
   function animatePrice(el, target) {
