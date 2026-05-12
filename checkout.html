@@ -406,8 +406,10 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             </div>
           </div>
 
-          <div class="form-group" id="promoCodeGroup">
-            <label class="form-label">Promo code <span style="color:var(--text-3);font-weight:400">(optional)</span></label>
+          <div id="promoCodeToggle" style="text-align:right;margin-bottom:4px">
+            <button type="button" id="promoToggleBtn" style="background:none;border:none;color:var(--blue);font-size:0.8rem;font-weight:500;cursor:pointer;font-family:inherit;padding:0;text-decoration:underline">Have a promo code?</button>
+          </div>
+          <div class="form-group" id="promoCodeGroup" style="display:none">
             <div style="display:flex;gap:8px">
               <input type="text" id="promoCodeInput" placeholder="Enter promo code" style="flex:1;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg-2);font-size:0.9rem;font-family:inherit;color:var(--text)">
               <button type="button" id="applyPromoBtn" style="padding:11px 16px;background:var(--bg-3);border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-weight:600;font-size:0.85rem;font-family:inherit;transition:background 0.2s">Apply</button>
@@ -808,14 +810,18 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     updateSummary()
 
     // ─── Promo code input handler ──────────────────────────────────────────────
+    const promoToggleBtn = document.getElementById('promoToggleBtn')
+    const promoCodeGroup = document.getElementById('promoCodeGroup')
+    const promoCodeToggle = document.getElementById('promoCodeToggle')
     const promoInput = document.getElementById('promoCodeInput')
     const promoApplyBtn = document.getElementById('applyPromoBtn')
     const promoErrorEl = document.getElementById('promoError')
     const promoAppliedEl = document.getElementById('promoApplied')
 
-    // Auto-fill & show applied state if promo from localStorage
-    if (appliedPromoCode) {
-      promoInput.value = appliedPromoCode
+    // Toggle link label
+    promoToggleBtn.textContent = t('Have a promo code?', 'Promo kodunuz var mı?')
+
+    function showPromoApplied() {
       promoInput.disabled = true
       promoInput.style.borderColor = '#16a34a'
       promoInput.style.background = 'rgba(22,163,74,0.04)'
@@ -824,36 +830,36 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       promoApplyBtn.style.background = 'rgba(22,163,74,0.1)'
       promoApplyBtn.style.color = '#16a34a'
       promoApplyBtn.style.borderColor = '#16a34a'
-      promoAppliedEl.textContent = t('10% discount applied automatically!', '%10 indirim otomatik uygulandı!')
+      promoAppliedEl.textContent = t('10% discount applied!', '%10 indirim uygulandı!')
       promoAppliedEl.style.display = 'block'
     }
 
-    if (promoApplyBtn) {
-      promoApplyBtn.addEventListener('click', async () => {
-        const code = promoInput.value.trim().toUpperCase()
-        if (!code) return
-        promoErrorEl.style.display = 'none'
-        promoAppliedEl.style.display = 'none'
-        promoApplyBtn.textContent = '...'
-        promoApplyBtn.disabled = true
-
-        try {
-          // Validate promo code via Supabase (lightweight check via status-like endpoint not needed — we validate server-side at subscribe)
-          // For now, just accept the code client-side; server will validate at subscribe time
-          appliedPromoCode = code
-          promoInput.disabled = true
-          promoApplyBtn.textContent = '✓'
-          promoAppliedEl.textContent = t('Promo code applied! Discount will be verified at checkout.', 'Promo kodu uygulandı! İndirim ödeme sırasında doğrulanacak.')
-          promoAppliedEl.style.display = 'block'
-          updateSummary()
-        } catch {
-          promoErrorEl.textContent = t('Failed to apply promo code', 'Promo kodu uygulanamadı')
-          promoErrorEl.style.display = 'block'
-          promoApplyBtn.textContent = t('Apply', 'Uygula')
-          promoApplyBtn.disabled = false
-        }
-      })
+    // Auto-fill & show if promo from localStorage
+    if (appliedPromoCode) {
+      promoCodeGroup.style.display = ''
+      promoCodeToggle.style.display = 'none'
+      promoInput.value = appliedPromoCode
+      showPromoApplied()
     }
+
+    // Toggle: show promo input on click
+    promoToggleBtn.addEventListener('click', () => {
+      promoCodeGroup.style.display = ''
+      promoCodeToggle.style.display = 'none'
+      promoInput.focus()
+    })
+
+    // Apply button
+    promoApplyBtn.addEventListener('click', () => {
+      const code = promoInput.value.trim().toUpperCase()
+      if (!code) return
+      promoErrorEl.style.display = 'none'
+      promoAppliedEl.style.display = 'none'
+
+      appliedPromoCode = code
+      showPromoApplied()
+      updateSummary()
+    })
 
     // ─── Change plan link pre-fill ──────────────────────────────────────────────
     const changePlanLink = document.getElementById('changePlanLink')
