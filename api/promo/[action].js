@@ -170,7 +170,7 @@ async function handleGenerate(req, res) {
     resend.emails.send({
       from: 'STOAIX <noreply@stoaix.com>',
       to: 'ataulufer1@gmail.com',
-      subject: `🎫 Yeni Promo Lead: ${firstName} ${lastName}`,
+      subject: `Yeni Promo Lead: ${firstName} ${lastName}`,
       html: `
         <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:520px;margin:0 auto;padding:32px 24px;">
           <div style="text-align:center;margin-bottom:24px;">
