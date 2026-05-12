@@ -1,7 +1,9 @@
 import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
+import { Resend } from 'resend'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
+const resend = new Resend(process.env.RESEND_API_KEY)
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -162,6 +164,35 @@ async function handleGenerate(req, res) {
         // Non-fatal: code exists in DB, Stripe promo just failed
       }
     }
+
+    // Notify CEO — fire-and-forget
+    const now = new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' })
+    resend.emails.send({
+      from: 'STOAIX <noreply@stoaix.com>',
+      to: 'ataulufer1@gmail.com',
+      subject: `🎫 Yeni Promo Lead: ${firstName} ${lastName}`,
+      html: `
+        <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;max-width:520px;margin:0 auto;padding:32px 24px;">
+          <div style="text-align:center;margin-bottom:24px;">
+            <img src="https://stoaix.com/assets/logo-iconwithname.svg" alt="STOAIX" height="28" />
+          </div>
+          <h2 style="font-size:18px;font-weight:700;color:#1e293b;margin:0 0 20px;text-align:center;">
+            Yeni Promo Kod Talebi
+          </h2>
+          <table style="width:100%;border-collapse:collapse;font-size:14px;color:#334155;">
+            <tr><td style="padding:8px 0;color:#64748b;width:120px;">Ad Soyad</td><td style="padding:8px 0;font-weight:600;">${firstName} ${lastName}</td></tr>
+            <tr><td style="padding:8px 0;color:#64748b;">Telefon</td><td style="padding:8px 0;font-weight:600;">${phone}</td></tr>
+            <tr><td style="padding:8px 0;color:#64748b;">Kod</td><td style="padding:8px 0;font-weight:700;color:#2563eb;font-size:16px;">${code}</td></tr>
+            <tr><td style="padding:8px 0;color:#64748b;">Tür</td><td style="padding:8px 0;">${popupType === 'timed' ? '⏱ Zamanlı (30sn)' : '🚪 Exit Intent'}</td></tr>
+            <tr><td style="padding:8px 0;color:#64748b;">Geçerlilik</td><td style="padding:8px 0;">${popupType === 'timed' ? '60 dakika' : '12 saat'}</td></tr>
+            <tr><td style="padding:8px 0;color:#64748b;">Tarih</td><td style="padding:8px 0;">${now}</td></tr>
+          </table>
+          <div style="margin-top:24px;padding:12px 16px;background:#f0fdf4;border-radius:8px;font-size:13px;color:#166534;">
+            💡 Bu kişiyi hemen arayarak dönüşüm şansını artırabilirsiniz.
+          </div>
+        </div>
+      `,
+    }).catch(err => console.error('Promo notification email error:', err))
 
     return res.status(200).json({
       success: true,
