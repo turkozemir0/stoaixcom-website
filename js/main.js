@@ -133,6 +133,7 @@
     });
 
     // Savings badges — read prices from DOM, no hardcoded values
+    const _lang = localStorage.getItem('stoaix-lang') || 'tr';
     const multipliers = { monthly: 1, quarterly: 3, semi_annual: 6, annual: 12 };
     const planMap = { essential: 0, professional: 1, business: 2 };
     document.querySelectorAll('.pt-savings-badge').forEach(el => {
@@ -145,7 +146,9 @@
       const current = +priceEl.dataset[activeInterval] || monthly;
       const savings = (monthly - current) * multipliers[activeInterval];
       if (savings > 0) {
-        el.textContent = 'Save $' + savings.toLocaleString();
+        el.textContent = _lang === 'en'
+          ? 'Save $' + savings.toLocaleString()
+          : '$' + savings.toLocaleString() + ' Tasarruf';
         el.style.display = 'inline-block';
       } else {
         el.style.display = 'none';
