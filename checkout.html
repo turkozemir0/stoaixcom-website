@@ -849,16 +849,46 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       promoInput.focus()
     })
 
-    // Apply button
-    promoApplyBtn.addEventListener('click', () => {
+    // Apply button — validates against server
+    promoApplyBtn.addEventListener('click', async () => {
       const code = promoInput.value.trim().toUpperCase()
       if (!code) return
       promoErrorEl.style.display = 'none'
       promoAppliedEl.style.display = 'none'
+      promoApplyBtn.textContent = '...'
+      promoApplyBtn.disabled = true
 
-      appliedPromoCode = code
-      showPromoApplied()
-      updateSummary()
+      try {
+        const vRes = await fetch('/api/promo/validate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ code }),
+        })
+        const vData = await vRes.json()
+
+        if (vData.valid) {
+          appliedPromoCode = vData.code
+          promoInput.value = vData.code
+          showPromoApplied()
+          updateSummary()
+        } else {
+          const reasons = {
+            not_found:    t('Invalid promo code', 'Geçersiz promo kodu'),
+            already_used: t('This code has already been used', 'Bu kod zaten kullanılmış'),
+            expired:      t('This code has expired', 'Bu kodun süresi dolmuş'),
+            not_ready:    t('This code is not ready yet, try again', 'Kod henüz hazır değil, tekrar deneyin'),
+          }
+          promoErrorEl.textContent = reasons[vData.reason] || t('Invalid promo code', 'Geçersiz promo kodu')
+          promoErrorEl.style.display = 'block'
+          promoApplyBtn.textContent = t('Apply', 'Uygula')
+          promoApplyBtn.disabled = false
+        }
+      } catch {
+        promoErrorEl.textContent = t('Network error, please try again', 'Ağ hatası, tekrar deneyin')
+        promoErrorEl.style.display = 'block'
+        promoApplyBtn.textContent = t('Apply', 'Uygula')
+        promoApplyBtn.disabled = false
+      }
     })
 
     // ─── Change plan link pre-fill ──────────────────────────────────────────────

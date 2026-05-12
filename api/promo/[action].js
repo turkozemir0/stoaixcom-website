@@ -29,6 +29,7 @@ export default async function handler(req, res) {
 
   switch (action) {
     case 'generate': return handleGenerate(req, res)
+    case 'validate': return handleValidate(req, res)
     case 'status':   return handleStatus(req, res)
     case 'event':    return handleEvent(req, res)
     default:         return res.status(404).json({ error: 'Not found' })
@@ -170,6 +171,45 @@ async function handleGenerate(req, res) {
   } catch (err) {
     console.error('Promo generate error:', err)
     return res.status(500).json({ error: err.message || 'Failed to generate promo code' })
+  }
+}
+
+// ── validate ────────────────────────────────────────────────
+async function handleValidate(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
+
+  const { code } = req.body
+  if (!code) return res.status(400).json({ error: 'Missing code' })
+
+  try {
+    const { data: promo } = await supabase
+      .from('promo_codes')
+      .select('code, percent_off, expires_at, used, stripe_promo_id')
+      .eq('code', code.toUpperCase())
+      .single()
+
+    if (!promo) {
+      return res.status(200).json({ valid: false, reason: 'not_found' })
+    }
+    if (promo.used) {
+      return res.status(200).json({ valid: false, reason: 'already_used' })
+    }
+    if (new Date(promo.expires_at) <= new Date()) {
+      return res.status(200).json({ valid: false, reason: 'expired' })
+    }
+    if (!promo.stripe_promo_id) {
+      return res.status(200).json({ valid: false, reason: 'not_ready' })
+    }
+
+    return res.status(200).json({
+      valid: true,
+      code: promo.code,
+      percentOff: promo.percent_off,
+      expiresAt: promo.expires_at,
+    })
+  } catch (err) {
+    console.error('Promo validate error:', err)
+    return res.status(500).json({ valid: false, reason: 'server_error' })
   }
 }
 
