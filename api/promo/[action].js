@@ -10,10 +10,32 @@ const supabase = createClient(
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 }
 
+function setCors(res) {
+  Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
+}
+
+export default async function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    setCors(res)
+    return res.status(204).end()
+  }
+  setCors(res)
+
+  const { action } = req.query
+
+  switch (action) {
+    case 'generate': return handleGenerate(req, res)
+    case 'status':   return handleStatus(req, res)
+    case 'event':    return handleEvent(req, res)
+    default:         return res.status(404).json({ error: 'Not found' })
+  }
+}
+
+// ── generate ────────────────────────────────────────────────
 function generateCode(firstName) {
   const name = (firstName || 'STOAIX')
     .toUpperCase()
@@ -23,10 +45,8 @@ function generateCode(firstName) {
   return name + digits
 }
 
-export default async function handler(req, res) {
-  if (req.method === 'OPTIONS') return res.status(200).setHeaders(CORS).end()
+async function handleGenerate(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
-  Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
   const { firstName, lastName, phone, popupType, visitorId, recaptchaToken } = req.body
 
@@ -150,5 +170,55 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error('Promo generate error:', err)
     return res.status(500).json({ error: err.message || 'Failed to generate promo code' })
+  }
+}
+
+// ── status (kill switch) ────────────────────────────────────
+async function handleStatus(req, res) {
+  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' })
+
+  try {
+    const { data } = await supabase
+      .from('site_config')
+      .select('value')
+      .eq('key', 'promo_popup_enabled')
+      .single()
+
+    return res.status(200).json({ enabled: data?.value === true })
+  } catch (err) {
+    console.error('Promo status error:', err)
+    return res.status(200).json({ enabled: false })
+  }
+}
+
+// ── event (analytics) ───────────────────────────────────────
+const VALID_EVENTS = ['popup_shown', 'popup_dismissed', 'form_submitted', 'code_copied']
+const VALID_TYPES = ['timed', 'exit_intent']
+
+async function handleEvent(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
+
+  const { event, popupType, visitorId, code } = req.body
+
+  if (!event || !VALID_EVENTS.includes(event)) {
+    return res.status(400).json({ error: 'Invalid event' })
+  }
+
+  if (popupType && !VALID_TYPES.includes(popupType)) {
+    return res.status(400).json({ error: 'Invalid popup type' })
+  }
+
+  try {
+    await supabase.from('promo_events').insert({
+      event,
+      popup_type: popupType || null,
+      visitor_id: visitorId || null,
+      code: code || null,
+    })
+
+    return res.status(200).json({ ok: true })
+  } catch (err) {
+    console.error('Promo event error:', err)
+    return res.status(200).json({ ok: true })
   }
 }
