@@ -80,9 +80,6 @@
     const subtitle = isTimed
       ? t('Limited Offer', 'Sınırlı Teklif')
       : t('This is our final offer.', 'Bu son teklifimiz.')
-    const validity = isTimed
-      ? t('Valid for 60 minutes', '60 dakika geçerli')
-      : t('Valid for 12 hours', '12 saat geçerli')
 
     return `
       <div class="promo-modal" role="dialog" aria-modal="true">
@@ -90,7 +87,7 @@
         <div class="promo-badge-label">${subtitle}</div>
         <h2 class="promo-title">${title}</h2>
         <div class="promo-countdown" id="promoCountdown"></div>
-        <div class="promo-validity">${validity}</div>
+        <div class="promo-urgency">${t('One-time offer · Valid for 60 minutes · This won\'t appear again', 'Tek seferlik teklif · 60 dakika geçerli · Bu teklif tekrar gelmeyecek')}</div>
 
         <form class="promo-form" id="promoForm">
           <div class="promo-form-row">
@@ -209,11 +206,9 @@
         successEl.style.display = 'block'
         document.getElementById('promoCodeDisplay').textContent = data.code
 
-        const validityNote = type === 'timed'
-          ? t('Valid for 60 minutes', '60 dakika geçerli')
-          : t('Valid for 12 hours', '12 saat geçerli')
-        document.getElementById('promoSuccessNote').textContent =
-          t('Automatically applied at checkout. ', 'Ödeme sayfasında otomatik uygulanır. ') + validityNote
+        document.getElementById('promoSuccessNote').innerHTML = type === 'timed'
+          ? t('Enter this code on the checkout/payment page. <strong>Valid for 60 minutes.</strong>', 'Bu kodu ödeme ekranında girebilirsiniz. <strong>60 dakika geçerlidir.</strong>')
+          : t('Enter this code on the checkout/payment page. <strong>Valid for 12 hours.</strong>', 'Bu kodu ödeme ekranında girebilirsiniz. <strong>12 saat geçerlidir.</strong>')
 
         // Copy button
         document.getElementById('promoCopyBtn').addEventListener('click', () => {
@@ -270,7 +265,7 @@
   }
 
   const elapsed = Date.now() - Number(firstVisit || Date.now())
-  const remaining = Math.max(0, 60000 - elapsed)
+  const remaining = Math.max(0, 30000 - elapsed)
 
   if (remaining === 0) {
     // Already past 60s — show immediately
