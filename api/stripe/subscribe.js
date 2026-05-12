@@ -144,7 +144,7 @@ export default async function handler(req, res) {
 
     if (userId) {
       // User already exists — update metadata with Stripe info
-      await supabase.auth.admin.updateUserById(userId, {
+      const { error: updateErr } = await supabase.auth.admin.updateUserById(userId, {
         user_metadata: {
           first_name: firstName,
           last_name: lastName,
@@ -157,7 +157,14 @@ export default async function handler(req, res) {
           trial_ends_at: isBusiness ? null : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
         },
       })
-    } else {
+      // If user was deleted from Auth, fall through to create a new one
+      if (updateErr) {
+        console.warn('updateUserById failed (user may have been deleted), creating new user:', updateErr.message)
+        userId = null
+      }
+    }
+
+    if (!userId) {
       // No auth user yet — create now (atomic with Stripe + org)
       const { data: authData, error: authError } = await supabase.auth.admin.createUser({
         email,
