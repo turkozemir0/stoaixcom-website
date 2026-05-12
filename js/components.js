@@ -285,6 +285,7 @@
     <div class="footer-bottom">
       <div class="container footer-bottom-inner">
         <span>© 2026 STOAIX Ltd. — London, UK</span>
+        <span style="font-size:0.7rem;color:var(--text-3);opacity:0.7;">Protected by reCAPTCHA — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Privacy</a> · <a href="https://policies.google.com/terms" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Terms</a></span>
         <span>Made for businesses that refuse to miss a lead.</span>
       </div>
     </div>
