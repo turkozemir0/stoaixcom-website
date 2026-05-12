@@ -185,40 +185,8 @@ async function handleVerifyOtp(req, res) {
       .select('first_name, last_name, plan, company, phone')
       .single()
 
-    const { data: authData, error: authError } = await supabase.auth.admin.createUser({
-      email: email.toLowerCase(),
-      password,
-      email_confirm: true,
-      user_metadata: {
-        first_name: leadData?.first_name,
-        last_name: leadData?.last_name,
-        company: leadData?.company,
-        phone: leadData?.phone,
-        plan: leadData?.plan,
-      },
-    })
-
-    let userId = authData?.user?.id
-
-    if (authError) {
-      if (authError.message?.includes('already')) {
-        const { data: linkData } = await supabase.auth.admin.generateLink({
-          type: 'magiclink',
-          email: email.toLowerCase(),
-        })
-        userId = linkData?.user?.id
-      } else {
-        console.error('User creation error:', authError)
-        return res.status(500).json({ error: 'Failed to create account' })
-      }
-    }
-
-    if (userId) {
-      await supabase
-        .from('signup_leads')
-        .update({ user_id: userId })
-        .eq('email', email.toLowerCase())
-    }
+    // Auth user is NOT created here — it's created in /api/stripe/subscribe
+    // alongside Stripe + org + org_user to keep them atomic.
 
     sendEvent({
       eventName: 'Lead',

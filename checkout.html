@@ -942,6 +942,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             lastName:        signupData.lastName,
             company:         signupData.company,
             phone:           signupData.phone,
+            password:        sessionStorage.getItem('signup_password') || '',
             plan,
             billing,
             paymentMethodId: paymentMethod.id,

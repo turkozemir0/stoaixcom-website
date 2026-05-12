@@ -132,7 +132,8 @@ export default async function handler(req, res) {
       }
     }
 
-    // 4. Get existing user from signup_leads (created during OTP verification)
+    // 4. Get or create auth user
+    // Auth user may already exist (e.g. retry, or legacy OTP flow)
     const { data: leadRow } = await supabase
       .from('signup_leads')
       .select('user_id')
@@ -142,7 +143,7 @@ export default async function handler(req, res) {
     let userId = leadRow?.user_id
 
     if (userId) {
-      // User exists (hybrid flow) — update metadata with Stripe info
+      // User already exists — update metadata with Stripe info
       await supabase.auth.admin.updateUserById(userId, {
         user_metadata: {
           first_name: firstName,
@@ -157,7 +158,7 @@ export default async function handler(req, res) {
         },
       })
     } else {
-      // Legacy fallback: user_id not set (old leads before hybrid flow)
+      // No auth user yet — create now (atomic with Stripe + org)
       const { data: authData, error: authError } = await supabase.auth.admin.createUser({
         email,
         password: req.body.password || Math.random().toString(36).slice(2) + 'A1!',
@@ -193,6 +194,12 @@ export default async function handler(req, res) {
       if (!userId) {
         return res.status(500).json({ error: 'User creation failed' })
       }
+
+      // Save user_id to signup_leads for retry resilience
+      await supabase
+        .from('signup_leads')
+        .update({ user_id: userId })
+        .eq('email', email.toLowerCase())
     }
 
     // 5. Create organization + org_users record
