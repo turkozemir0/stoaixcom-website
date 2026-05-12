@@ -106,6 +106,7 @@
           <div class="promo-code-display" id="promoCodeDisplay"></div>
           <button class="promo-copy-btn" id="promoCopyBtn">${t('Copy', 'Kopyala')}</button>
           <div class="promo-success-note" id="promoSuccessNote"></div>
+          <a href="/signup.html" class="promo-submit" id="promoCta" style="display:inline-block;text-decoration:none;text-align:center;margin-top:12px">${t('Start free trial with 10% off', '%10 indirimle ücretsiz denemeyi başlat')}</a>
         </div>
 
         <div class="promo-error" id="promoError" style="display:none"></div>

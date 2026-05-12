@@ -817,9 +817,14 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     if (appliedPromoCode) {
       promoInput.value = appliedPromoCode
       promoInput.disabled = true
+      promoInput.style.borderColor = '#16a34a'
+      promoInput.style.background = 'rgba(22,163,74,0.04)'
       promoApplyBtn.textContent = '✓'
       promoApplyBtn.disabled = true
-      promoAppliedEl.textContent = t('Promo code applied!', 'Promo kodu uygulandı!')
+      promoApplyBtn.style.background = 'rgba(22,163,74,0.1)'
+      promoApplyBtn.style.color = '#16a34a'
+      promoApplyBtn.style.borderColor = '#16a34a'
+      promoAppliedEl.textContent = t('10% discount applied automatically!', '%10 indirim otomatik uygulandı!')
       promoAppliedEl.style.display = 'block'
     }
 
