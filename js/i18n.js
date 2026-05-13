@@ -248,7 +248,7 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'Lead captured to CRM automatically': 'Lead otomatik olarak CRM\'e kaydedilir',
   'Live Demo': 'Canlı Demo',
   'See it in action.': 'Canlı görün.',
-  'Try STOAIX live — ask it anything, book an appointment, hear the voice. No signup required.': 'STOAIX\'i canlı deneyin — her şeyi sorun, randevu alın, sesi dinleyin. Kayıt gerekmez.',
+  'From WhatsApp to voice calls, in 15+ languages — explore how AI handles your entire patient journey.': 'WhatsApp\'tan sesli aramalara, 15+ dilde — AI\'ın tüm hasta yolculuğunuzu nasıl yönettiğini keşfedin.',
   'Coming Soon': 'Yakında',
   'Interactive Voice Demo': 'Sesli Canlı Demo',
   'Speak with STOAIX\'s AI agent live — no signup required. Ask questions, hear the voice, book an appointment in real time.': 'STOAIX AI ajanıyla canlı konuşun — kayıt gerekmez. Sorular sorun, sesi dinleyin, gerçek zamanlı randevu alın.',
