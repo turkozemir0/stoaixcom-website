@@ -1080,6 +1080,135 @@
       border-bottom-color: var(--brand-500);
     }
 
+    /* ===== Settings View ===== */
+    .settings-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--slate-100);
+      padding: 0 24px;
+    }
+    .settings-tab {
+      padding: 10px 16px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--slate-500);
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      font-family: var(--font);
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+    .settings-tab.active { color: var(--brand-500); border-bottom-color: var(--brand-500); font-weight: 600; }
+    .settings-tab:hover:not(.active) { color: #0f172a; }
+    .settings-content { padding: 20px 24px; }
+    .settings-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--slate-50);
+    }
+    .settings-row:last-child { border-bottom: none; }
+    .settings-label { font-size: 0.82rem; font-weight: 500; color: #0f172a; }
+    .settings-sublabel { font-size: 0.68rem; color: var(--slate-500); margin-top: 2px; }
+    .settings-val { font-size: 0.82rem; color: var(--slate-500); text-align: right; }
+    .toggle-pill {
+      width: 36px; height: 20px; border-radius: 10px; background: var(--slate-200);
+      position: relative; cursor: pointer; transition: background 0.2s; flex-shrink: 0;
+    }
+    .toggle-pill.on { background: var(--brand-500); }
+    .toggle-pill::after {
+      content: ''; position: absolute; top: 2px; left: 2px;
+      width: 16px; height: 16px; border-radius: 50%; background: #fff;
+      transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    .toggle-pill.on::after { transform: translateX(16px); }
+
+    /* ===== Call Summary Panel ===== */
+    .call-summary-panel {
+      margin-top: 16px;
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .call-summary-header {
+      background: linear-gradient(to right, rgba(14,165,233,0.06), rgba(45,212,191,0.04));
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--slate-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .call-summary-header h4 {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #0f172a;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .call-summary-body { padding: 16px; }
+    .call-summary-section { margin-bottom: 14px; }
+    .call-summary-section:last-child { margin-bottom: 0; }
+    .call-summary-section h5 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--slate-500);
+      margin-bottom: 6px;
+    }
+    .call-summary-section p, .call-summary-section ul {
+      font-size: 0.8rem;
+      color: var(--slate-700);
+      line-height: 1.5;
+    }
+    .call-summary-section ul { padding-left: 16px; }
+    .call-summary-section li { margin-bottom: 3px; }
+    .sales-tip {
+      background: linear-gradient(to right, #fef3c7, #fffbeb);
+      border: 1px solid #fde68a;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      color: #92400e;
+      line-height: 1.5;
+    }
+    .sales-tip strong { color: #78350f; }
+
+    /* ===== Voice Playground ===== */
+    .playground-modes { display: flex; gap: 8px; margin-bottom: 16px; }
+    .playground-mode-btn {
+      flex: 1; padding: 10px; border: 1px solid var(--slate-200); border-radius: 10px;
+      background: #fff; cursor: pointer; text-align: center; font-family: var(--font);
+      transition: all 0.15s;
+    }
+    .playground-mode-btn.active { border-color: var(--brand-500); background: rgba(14,165,233,0.04); }
+    .playground-mode-btn .pm-icon { font-size: 1.5rem; margin-bottom: 4px; }
+    .playground-mode-btn .pm-label { font-size: 0.78rem; font-weight: 600; color: #0f172a; }
+    .playground-mode-btn .pm-desc { font-size: 0.65rem; color: var(--slate-500); margin-top: 2px; }
+    .voice-playground {
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      max-width: 600px;
+    }
+    .voice-orb {
+      width: 80px; height: 80px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-500), var(--accent-400));
+      margin: 0 auto 16px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 30px rgba(14,165,233,0.25);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .voice-orb:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(14,165,233,0.35); }
+    .voice-orb svg { width: 32px; height: 32px; color: #fff; }
+    .voice-status { font-size: 0.85rem; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
+    .voice-sub { font-size: 0.72rem; color: var(--slate-500); }
+
     /* ===== Responsive ===== */
     @media (max-width: 1100px) {
       .demo-stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1116,7 +1245,7 @@
           Interactive Demo
         </div>
         <h1>Experience STOAIX — No Signup Required</h1>
-        <p>Click around, explore features, and see how AI handles real patient conversations for an aesthetic clinic — in 8+ languages.</p>
+        <p>Click around, explore features, and see how AI handles real patient conversations for an aesthetic clinic — in 15+ languages.</p>
       </div>
     </section>
 
@@ -1141,6 +1270,7 @@
           <button data-view="pipeline">Pipeline</button>
           <button data-view="assistant">AI Asistan</button>
           <button data-view="workflows">İş Akışları</button>
+          <button data-view="settings">Ayarlar</button>
         </div>
 
         <!-- Body -->
@@ -1190,11 +1320,17 @@
                 İş Akışları
                 <span class="nav-dot"></span>
               </button>
+              <!-- Hesap Ayarları -->
+              <button data-view="settings" style="margin-top:auto">
+                <span class="nav-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span>
+                Hesap Ayarları
+                <span class="nav-dot"></span>
+              </button>
             </nav>
             <div class="demo-sidebar-footer">
               <div class="mini-stats">
                 <div class="mini-stat"><span class="ms-val">82%</span><span class="ms-lbl">AI Çözüm</span></div>
-                <div class="mini-stat"><span class="ms-val">8</span><span class="ms-lbl">Dil</span></div>
+                <div class="mini-stat"><span class="ms-val">15</span><span class="ms-lbl">Dil</span></div>
               </div>
             </div>
           </div>
@@ -1233,7 +1369,7 @@
                 </div>
                 <div class="demo-stat-card">
                   <div class="stat-icon-wrap teal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-                  <div><div class="stat-label">Dil Çeşitliliği</div><div class="stat-value">8 dil</div><div class="stat-change up">TR, EN, DE, RU, AR, FR, ES, NL</div></div>
+                  <div><div class="stat-label">Dil Çeşitliliği</div><div class="stat-value">15 dil</div><div class="stat-change up">TR, EN, DE, RU, AR, FR, ES, NL, IT, FA, PT, ZH, JA, KO, PL</div></div>
                 </div>
               </div>
               <div class="overview-grid">
@@ -1247,6 +1383,13 @@
                     <div class="activity-item"><div class="activity-dot" style="background:#8b5cf6"></div><div><div class="activity-text">Анна К. ile sesli görüşme tamamlandı (3:47 dk)</div><div class="activity-time">1 saat önce</div></div></div>
                     <div class="activity-item"><div class="activity-dot" style="background:#ef4444"></div><div><div class="activity-text">فاطمة س. yeni lead olarak eklendi</div><div class="activity-time">2 saat önce</div></div></div>
                     <div class="activity-item"><div class="activity-dot" style="background:#0ea5e9"></div><div><div class="activity-text">Marie D. PRP tedavisi hakkında bilgi aldı</div><div class="activity-time">3 saat önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#059669"></div><div><div class="activity-text">Carlos R. lazer epilasyon paketi seçti</div><div class="activity-time">3 saat önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#7c3aed"></div><div><div class="activity-text">Sofia L. cilt bakımı işlemi tamamlandı → Dönüştü</div><div class="activity-time">4 saat önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#0284c7"></div><div><div class="activity-text">Mehmet K. rinoplasti randevusu onaylandı</div><div class="activity-time">5 saat önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#ec4899"></div><div><div class="activity-text">Yuki T. 🇯🇵 yeni lead — botox bilgi talebi</div><div class="activity-time">5 saat önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#10b981"></div><div><div class="activity-text">Ali R. 🇮🇷 WhatsApp'tan saç ekimi sorgusu</div><div class="activity-time">6 saat önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#f59e0b"></div><div><div class="activity-text">Elena P. 🇵🇹 Nurturing aşamasına taşındı</div><div class="activity-time">6 saat önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#2563eb"></div><div><div class="activity-text">Kim S. 🇰🇷 cilt bakımı paketi hakkında bilgi aldı</div><div class="activity-time">7 saat önce</div></div></div>
                   </div>
                 </div>
                 <!-- Chart -->
@@ -1297,7 +1440,7 @@
                   <h2>Çağrılar</h2>
                   <div class="topbar-sub">Sesli AI görüşme kayıtları</div>
                 </div>
-                <button class="cta-btn-primary" style="font-size:0.78rem;padding:8px 16px;border-radius:10px" onclick="showCTA('🎙️','Sesli AI\'ımızı duymak ister misiniz?','Gerçek zamanlı sesli AI asistan ile hastalarınızla 8 farklı dilde konuşun.')">
+                <button class="cta-btn-primary" style="font-size:0.78rem;padding:8px 16px;border-radius:10px" onclick="showCTA('🎙️','Sesli AI\'ımızı duymak ister misiniz?','Gerçek zamanlı sesli AI asistan ile hastalarınızla 15+ farklı dilde konuşun.')">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                   Demo Dinle
                 </button>
@@ -1309,14 +1452,48 @@
                       <tr><th>Kişi</th><th>Yön</th><th>Süre</th><th>İşleyen</th><th>Durum</th></tr>
                     </thead>
                     <tbody>
+                      <tr style="background:rgba(14,165,233,0.03)"><td style="font-weight:600">Ayşe G. 🇹🇷</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>5:38</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
                       <tr><td style="font-weight:600">Carlos R. 🇪🇸</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>4:12</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
                       <tr><td style="font-weight:600">Mehmet K. 🇹🇷</td><td><span class="call-dir outbound">↗ Giden</span></td><td>3:28</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
                       <tr><td style="font-weight:600">Анна К. 🇷🇺</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>3:47</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
                       <tr><td style="font-weight:600">James W. 🇬🇧</td><td><span class="call-dir outbound">↗ Giden</span></td><td>2:55</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
-                      <tr><td style="font-weight:600">Sofia L. 🇮🇹</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>—</td><td>—</td><td><span class="call-status missed">✗ Cevapsız</span></td></tr>
+                      <tr><td style="font-weight:600">Daan V. 🇳🇱</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>4:45</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
                       <tr><td style="font-weight:600">Hans M. 🇩🇪</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>5:03</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
+                      <tr><td style="font-weight:600">Marta K. 🇵🇱</td><td><span class="call-dir outbound">↗ Giden</span></td><td>2:18</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
+                      <tr><td style="font-weight:600">Sofia L. 🇮🇹</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>—</td><td>—</td><td><span class="call-status missed">✗ Cevapsız</span></td></tr>
+                      <tr><td style="font-weight:600">Wei L. 🇨🇳</td><td><span class="call-dir outbound">↗ Giden</span></td><td>3:12</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
                     </tbody>
                   </table>
+                </div>
+                <!-- Call Summary Preview (Ayşe G.) -->
+                <div class="call-summary-panel">
+                  <div class="call-summary-header">
+                    <h4>📞 Ayşe G. — Arama Özeti & Satış Önerisi</h4>
+                    <span style="font-size:0.68rem;color:var(--slate-400)">5:38 dk · Bugün 14:32</span>
+                  </div>
+                  <div class="call-summary-body">
+                    <div class="call-summary-section">
+                      <h5>Konuşma Özeti</h5>
+                      <p>Ayşe Hanım eşi için saç ekimi araştırıyor. FUE ve DHI yöntemleri arasındaki farkları sordu. DHI tekniğine ilgi gösterdi. Eşinin ön bölgede seyrelme yaşadığını belirtti. Fotoğraf analizi için yönlendirildi. Bütçe aralığı sorulduğunda 3.000-4.000€ arası düşündüklerini ifade etti. İstanbul'a ulaşım ve konaklama dahil paket fiyatı talep etti.</p>
+                    </div>
+                    <div class="call-summary-section">
+                      <h5>Toplanan Bilgiler</h5>
+                      <ul>
+                        <li><strong>Hasta:</strong> Eşi (erkek, 35-40 yaş arası tahmini)</li>
+                        <li><strong>Sorun:</strong> Ön bölge + tepe seyrelme</li>
+                        <li><strong>Tercih:</strong> DHI yöntemi</li>
+                        <li><strong>Bütçe:</strong> 3.000 - 4.000€</li>
+                        <li><strong>Konum:</strong> Ankara'dan gelecekler</li>
+                        <li><strong>Zaman:</strong> Haziran ayı içinde düşünüyorlar</li>
+                      </ul>
+                    </div>
+                    <div class="call-summary-section">
+                      <h5>Satış Kapatma Önerisi</h5>
+                      <div class="sales-tip">
+                        <strong>🎯 Öneri:</strong> Hasta yüksek niyetli (skor: 88). DHI All-Inclusive paket teklif edin (3.500€): otel + transfer + 1 yıl takip dahil. Eşinin fotoğraflarını bugün göndermesini isteyin — <strong>24 saat içinde kişisel analiz raporu</strong> ile geri dönün. Haziran'da erken tarih teklif ederek aciliyet yaratın: "Haziran takvimimiz dolmak üzere, haftaya fotoğrafları alabilirsek size özel slot ayıralım."
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1332,32 +1509,45 @@
               <div class="pipeline-board">
                 <!-- Yeni -->
                 <div class="pipeline-col pcol-slate">
-                  <div class="pipeline-col-header">Yeni <span class="col-count">2</span></div>
+                  <div class="pipeline-col-header">Yeni <span class="col-count">4</span></div>
                   <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇸🇦 فاطمة س.</div><div class="lead-card-service">Dolgu (Filler)</div><div class="lead-card-footer"><span class="score-badge cool">25</span><span class="lead-card-channel">WhatsApp</span></div></div>
                   <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇫🇷 Marie D.</div><div class="lead-card-service">PRP Tedavisi</div><div class="lead-card-footer"><span class="score-badge cool">30</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇯🇵 Yuki T.</div><div class="lead-card-service">Botox</div><div class="lead-card-footer"><span class="score-badge cool">15</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇰🇷 Kim S.</div><div class="lead-card-service">Cilt Bakımı</div><div class="lead-card-footer"><span class="score-badge cool">20</span><span class="lead-card-channel">WhatsApp</span></div></div>
                 </div>
                 <!-- AI Qualifying -->
                 <div class="pipeline-col pcol-blue">
-                  <div class="pipeline-col-header">AI Qualifying <span class="col-count">3</span></div>
+                  <div class="pipeline-col-header">AI Qualifying <span class="col-count">4</span></div>
                   <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇬🇧 James W.</div><div class="lead-card-service">Botox & Dolgu</div><div class="lead-card-footer"><span class="score-badge warm">55</span><span class="lead-card-channel">WhatsApp</span></div></div>
                   <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇩🇪 Hans M.</div><div class="lead-card-service">Rinoplasti</div><div class="lead-card-footer"><span class="score-badge warm">62</span><span class="lead-card-channel">WhatsApp</span></div></div>
                   <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇷🇺 Анна К.</div><div class="lead-card-service">Lazer Epilasyon</div><div class="lead-card-footer"><span class="score-badge warm">48</span><span class="lead-card-channel">Sesli</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇮🇷 Ali R.</div><div class="lead-card-service">Saç Ekimi (DHI)</div><div class="lead-card-footer"><span class="score-badge warm">52</span><span class="lead-card-channel">WhatsApp</span></div></div>
                 </div>
                 <!-- Hot Lead -->
                 <div class="pipeline-col pcol-red">
-                  <div class="pipeline-col-header">🔥 Hot Lead <span class="col-count">1</span></div>
+                  <div class="pipeline-col-header">🔥 Hot Lead <span class="col-count">2</span></div>
                   <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇹🇷 Ayşe G.</div><div class="lead-card-service">Saç Ekimi (FUE)</div><div class="lead-card-footer"><span class="score-badge hot">88</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇳🇱 Daan V.</div><div class="lead-card-service">Saç Ekimi (Safir)</div><div class="lead-card-footer"><span class="score-badge hot">83</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                </div>
+                <!-- Nurturing -->
+                <div class="pipeline-col pcol-amber">
+                  <div class="pipeline-col-header">⏳ Nurturing <span class="col-count">2</span></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇵🇹 Elena P.</div><div class="lead-card-service">Lazer Epilasyon</div><div class="lead-card-footer"><span class="score-badge warm">45</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇵🇱 Marta K.</div><div class="lead-card-service">Botox & PRP</div><div class="lead-card-footer"><span class="score-badge warm">40</span><span class="lead-card-channel">Sesli</span></div></div>
                 </div>
                 <!-- Randevu -->
                 <div class="pipeline-col pcol-purple">
-                  <div class="pipeline-col-header">📅 Randevu <span class="col-count">2</span></div>
+                  <div class="pipeline-col-header">📅 Randevu <span class="col-count">3</span></div>
                   <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇹🇷 Mehmet K.</div><div class="lead-card-service">Rinoplasti</div><div class="lead-card-footer"><span class="score-badge hot">82</span><span class="lead-card-channel">Sesli</span></div></div>
                   <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇪🇸 Carlos R.</div><div class="lead-card-service">Lazer Epilasyon</div><div class="lead-card-footer"><span class="score-badge warm">75</span><span class="lead-card-channel">Sesli</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇨🇳 Wei L.</div><div class="lead-card-service">Rinoplasti</div><div class="lead-card-footer"><span class="score-badge hot">80</span><span class="lead-card-channel">WhatsApp</span></div></div>
                 </div>
                 <!-- Dönüştü -->
                 <div class="pipeline-col pcol-green">
-                  <div class="pipeline-col-header">✅ Dönüştü <span class="col-count">1</span></div>
+                  <div class="pipeline-col-header">✅ Dönüştü <span class="col-count">3</span></div>
                   <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇮🇹 Sofia L.</div><div class="lead-card-service">Cilt Bakımı & Peeling</div><div class="lead-card-footer"><span class="score-badge hot">95</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇹🇷 Emre D.</div><div class="lead-card-service">Saç Ekimi (FUE)</div><div class="lead-card-footer"><span class="score-badge hot">92</span><span class="lead-card-channel">Sesli</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇬🇧 Sarah T.</div><div class="lead-card-service">Botox Full Face</div><div class="lead-card-footer"><span class="score-badge hot">90</span><span class="lead-card-channel">WhatsApp</span></div></div>
                 </div>
               </div>
             </div>
@@ -1387,27 +1577,59 @@
                 <div class="kb-item"><div class="kb-icon service">🧴</div><div class="kb-info"><div class="kb-name">Cilt Bakımı & Peeling</div><div class="kb-type">Hizmet</div></div><div class="kb-count">7 öğe</div></div>
                 <div class="kb-item"><div class="kb-icon service">🩸</div><div class="kb-info"><div class="kb-name">PRP & Mezoterapi</div><div class="kb-type">Hizmet</div></div><div class="kb-count">4 öğe</div></div>
                 <div class="kb-item"><div class="kb-icon faq">❓</div><div class="kb-info"><div class="kb-name">SSS: İyileşme Süreci & Uygunluk</div><div class="kb-type">SSS</div></div><div class="kb-count">15 öğe</div></div>
-                <div class="kb-item"><div class="kb-icon pricing">💰</div><div class="kb-info"><div class="kb-name">Fiyat Listesi 2024</div><div class="kb-type">Fiyatlandırma</div></div><div class="kb-count">20 öğe</div></div>
+                <div class="kb-item"><div class="kb-icon pricing">💰</div><div class="kb-info"><div class="kb-name">Fiyat Listesi 2026</div><div class="kb-type">Fiyatlandırma</div></div><div class="kb-count">20 öğe</div></div>
               </div>
               <!-- Playground Tab -->
               <div class="ai-tab-content" id="aitab-playground">
-                <div class="playground-wrap" id="playgroundTrigger">
-                  <div class="playground-header">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    Asistan Playground
+                <div class="playground-modes">
+                  <div class="playground-mode-btn active" id="pmChat" onclick="document.getElementById('pgChat').style.display='block';document.getElementById('pgVoice').style.display='none';this.classList.add('active');document.getElementById('pmVoice').classList.remove('active')">
+                    <div class="pm-icon">💬</div>
+                    <div class="pm-label">Chat Test</div>
+                    <div class="pm-desc">Yazılı konuşma simülasyonu</div>
                   </div>
-                  <div class="playground-messages">
-                    <div class="msg-row ai">
-                      <div class="msg-bubble" style="max-width:90%">
-                        <div class="msg-sender">✨ stoaix · AI</div>
-                        Merhaba! Ben Stoaix Clinic'in AI asistanıyım. Size saç ekimi, botox, lazer epilasyon, rinoplasti ve diğer estetik hizmetlerimiz hakkında bilgi verebilirim. Nasıl yardımcı olabilirim?
+                  <div class="playground-mode-btn" id="pmVoice" onclick="document.getElementById('pgVoice').style.display='block';document.getElementById('pgChat').style.display='none';this.classList.add('active');document.getElementById('pmChat').classList.remove('active')">
+                    <div class="pm-icon">🎙️</div>
+                    <div class="pm-label">Sesli Test</div>
+                    <div class="pm-desc">Sesli AI arama simülasyonu</div>
+                  </div>
+                </div>
+                <!-- Chat playground -->
+                <div id="pgChat">
+                  <div class="playground-wrap">
+                    <div class="playground-header">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                      Chat Playground
+                    </div>
+                    <div class="playground-messages">
+                      <div class="msg-row ai">
+                        <div class="msg-bubble" style="max-width:90%">
+                          <div class="msg-sender">✨ stoaix · AI</div>
+                          Merhaba! Ben Stoaix Clinic'in AI asistanıyım. Saç ekimi, botox, lazer, rinoplasti ve diğer estetik hizmetlerimiz hakkında bilgi verebilirim. Nasıl yardımcı olabilirim?
+                        </div>
+                      </div>
+                    </div>
+                    <div class="playground-input" onclick="showCTA('🤖','AI asistanınızı gerçek zamanlı test edin','Bilgi bankanızı yükleyin ve AI\'ın hastalarınıza nasıl yanıt verdiğini görün.')">
+                      <span>Bir mesaj yazın...</span>
+                      <div class="chat-input-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
                       </div>
                     </div>
                   </div>
-                  <div class="playground-input" onclick="showCTA('🤖','AI asistanınızı gerçek zamanlı test edin','Bilgi bankanızı yükleyin ve AI\'ın hastalarınıza nasıl yanıt verdiğini görün.')">
-                    <span>Bir mesaj yazın...</span>
-                    <div class="chat-input-btn">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </div>
+                <!-- Voice playground -->
+                <div id="pgVoice" style="display:none">
+                  <div class="voice-playground" onclick="showCTA('🎙️','Sesli AI asistanınızı test edin','Gerçek zamanlı sesli AI ile hastalarınızla 15+ dilde konuşun. Randevu alma, bilgilendirme ve lead nitelendirme — hepsi sesle.')">
+                    <div class="voice-orb">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 00-3 3v8a3 3 0 006 0V4a3 3 0 00-3-3z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    </div>
+                    <div class="voice-status">Sesli Asistan Hazır</div>
+                    <div class="voice-sub">Tıklayarak AI ile sesli konuşma başlatın</div>
+                    <div style="margin-top:16px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+                      <span style="font-size:0.65rem;padding:3px 8px;background:var(--slate-50);border:1px solid var(--slate-200);border-radius:6px;color:var(--slate-500)">Türkçe</span>
+                      <span style="font-size:0.65rem;padding:3px 8px;background:var(--slate-50);border:1px solid var(--slate-200);border-radius:6px;color:var(--slate-500)">English</span>
+                      <span style="font-size:0.65rem;padding:3px 8px;background:var(--slate-50);border:1px solid var(--slate-200);border-radius:6px;color:var(--slate-500)">Deutsch</span>
+                      <span style="font-size:0.65rem;padding:3px 8px;background:var(--slate-50);border:1px solid var(--slate-200);border-radius:6px;color:var(--slate-500)">Русский</span>
+                      <span style="font-size:0.65rem;padding:3px 8px;background:var(--slate-50);border:1px solid var(--slate-200);border-radius:6px;color:var(--slate-500)">+11 dil</span>
                     </div>
                   </div>
                 </div>
@@ -1456,6 +1678,74 @@
               </div>
             </div>
 
+            <!-- ========== SETTINGS ========== -->
+            <div class="demo-view" id="view-settings">
+              <div class="demo-topbar">
+                <div>
+                  <h2>Hesap Ayarları</h2>
+                  <div class="topbar-sub">Klinik bilgileri ve yapılandırma</div>
+                </div>
+              </div>
+              <div class="settings-tabs">
+                <button class="settings-tab active" onclick="showSettingsTab(this,'stab-genel')">Genel</button>
+                <button class="settings-tab" onclick="showSettingsTab(this,'stab-moduller')">Modüller</button>
+                <button class="settings-tab" onclick="showSettingsTab(this,'stab-billing')">Plan & Fatura</button>
+                <button class="settings-tab" onclick="showSettingsTab(this,'stab-pipeline')">Pipelinelar</button>
+                <button class="settings-tab" onclick="showSettingsTab(this,'stab-destek')">Destek</button>
+              </div>
+              <!-- Genel tab -->
+              <div class="settings-content" id="stab-genel">
+                <div class="settings-row"><div><div class="settings-label">Klinik Adı</div><div class="settings-sublabel">Dashboard ve mesajlarda görünen isim</div></div><div class="settings-val">Stoaix Clinic</div></div>
+                <div class="settings-row"><div><div class="settings-label">E-posta</div><div class="settings-sublabel">Bildirimler ve iletişim</div></div><div class="settings-val">info@stoaixclinic.com</div></div>
+                <div class="settings-row"><div><div class="settings-label">Telefon</div><div class="settings-sublabel">Birincil iletişim hattı</div></div><div class="settings-val">+90 212 555 0199</div></div>
+                <div class="settings-row"><div><div class="settings-label">Şehir / Ülke</div></div><div class="settings-val">İstanbul, Türkiye</div></div>
+                <div class="settings-row"><div><div class="settings-label">Sektör</div></div><div class="settings-val">Estetik Klinik</div></div>
+                <div class="settings-row"><div><div class="settings-label">AI Dili</div><div class="settings-sublabel">Asistanın varsayılan dili</div></div><div class="settings-val">Türkçe (Otomatik algılama açık)</div></div>
+                <div class="settings-row"><div><div class="settings-label">Zaman Dilimi</div></div><div class="settings-val">Europe/Istanbul (UTC+3)</div></div>
+              </div>
+              <!-- Modüller tab -->
+              <div class="settings-content" id="stab-moduller" style="display:none">
+                <div style="font-size:0.78rem;color:var(--slate-500);margin-bottom:14px">Planınıza dahil modülleri aktif/pasif yapabilirsiniz.</div>
+                <div class="settings-row"><div><div class="settings-label">WhatsApp Chatbot</div><div class="settings-sublabel">Gelen WhatsApp mesajlarına AI yanıt</div></div><div class="toggle-pill on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="settings-row"><div><div class="settings-label">Sesli AI (Gelen Arama)</div><div class="settings-sublabel">Gelen telefon aramalarını AI karşılasın</div></div><div class="toggle-pill on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="settings-row"><div><div class="settings-label">Sesli AI (Giden Arama)</div><div class="settings-sublabel">AI otomatik arama yapsın</div></div><div class="toggle-pill on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="settings-row"><div><div class="settings-label">Instagram DM</div><div class="settings-sublabel">Instagram mesajlarına AI yanıt</div></div><div class="toggle-pill" onclick="this.classList.toggle('on')"></div></div>
+                <div class="settings-row"><div><div class="settings-label">Lead Skorlama</div><div class="settings-sublabel">AI otomatik lead puanlama</div></div><div class="toggle-pill on" onclick="this.classList.toggle('on')"></div></div>
+                <div class="settings-row"><div><div class="settings-label">CSV Import</div><div class="settings-sublabel">Toplu lead yükleme</div></div><div class="toggle-pill on" onclick="this.classList.toggle('on')"></div></div>
+              </div>
+              <!-- Billing tab -->
+              <div class="settings-content" id="stab-billing" style="display:none" onclick="showCTA('💳','Plan & Fatura yönetimi','Planınızı yükseltin, fatura geçmişinizi görün ve ödeme yönteminizi güncelleyin.')">
+                <div style="background:linear-gradient(to right,rgba(14,165,233,0.06),rgba(45,212,191,0.04));border:1px solid var(--slate-200);border-radius:12px;padding:20px;margin-bottom:16px;cursor:pointer">
+                  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                    <div><span style="font-size:0.72rem;font-weight:600;color:var(--brand-500);background:rgba(14,165,233,0.08);padding:3px 10px;border-radius:6px">Professional Plan</span></div>
+                    <span style="font-size:0.78rem;color:var(--slate-500)">$299/ay</span>
+                  </div>
+                  <div style="display:flex;gap:20px;font-size:0.78rem;color:var(--slate-600)">
+                    <span>AI Konuşma: <strong>847 / 2.000</strong></span>
+                    <span>Voice: <strong>67dk / 200dk</strong></span>
+                    <span>Kullanıcı: <strong>3 / 10</strong></span>
+                  </div>
+                </div>
+                <div class="settings-row"><div><div class="settings-label">Fatura Dönemi</div></div><div class="settings-val">Aylık · Sonraki: 1 Haziran 2026</div></div>
+                <div class="settings-row"><div><div class="settings-label">Ödeme Yöntemi</div></div><div class="settings-val">•••• 4242 (Visa)</div></div>
+              </div>
+              <!-- Pipeline tab -->
+              <div class="settings-content" id="stab-pipeline" style="display:none" onclick="showCTA('📊','Pipeline yapılandırması','Pipeline aşamalarını özelleştirin ve CRM entegrasyonunuzu yönetin.')">
+                <div class="settings-row"><div><div class="settings-label">Varsayılan Pipeline</div><div class="settings-sublabel">Yeni → AI Qualifying → Hot Lead → Nurturing → Randevu → Dönüştü → Kayıp</div></div><div class="settings-val" style="color:var(--brand-500);cursor:pointer">Düzenle →</div></div>
+                <div class="settings-row"><div><div class="settings-label">CRM Entegrasyonu</div><div class="settings-sublabel">GoHighLevel bağlantısı</div></div><div><span style="font-size:0.72rem;font-weight:600;color:#16a34a;background:#f0fdf4;padding:3px 10px;border-radius:6px">Bağlı ✓</span></div></div>
+                <div class="settings-row"><div><div class="settings-label">Otomatik Aşama Geçişi</div><div class="settings-sublabel">AI skoru eşiklerine göre otomatik taşıma</div></div><div class="toggle-pill on" onclick="this.classList.toggle('on')"></div></div>
+              </div>
+              <!-- Destek tab -->
+              <div class="settings-content" id="stab-destek" style="display:none" onclick="showCTA('🎧','Destek ekibimize ulaşın','7/24 teknik destek ile sorularınızı yanıtlıyoruz.')">
+                <div style="text-align:center;padding:30px 20px;color:var(--slate-500)">
+                  <div style="font-size:2rem;margin-bottom:8px">🎧</div>
+                  <div style="font-size:0.88rem;font-weight:600;color:#0f172a;margin-bottom:4px">Yardıma mı ihtiyacınız var?</div>
+                  <div style="font-size:0.78rem;margin-bottom:16px">Teknik destek ekibimiz 7/24 yanınızda.</div>
+                  <button class="cta-btn-primary" style="font-size:0.82rem;padding:10px 24px">Destek Talebi Oluştur</button>
+                </div>
+              </div>
+            </div>
+
           </div><!-- /demo-main -->
         </div><!-- /demo-body -->
       </div><!-- /demo-window -->
@@ -1463,7 +1753,7 @@
       <!-- Bottom CTA -->
       <div class="demo-bottom-cta">
         <h2>Kliniğinizi dönüştürmeye hazır mısınız?</h2>
-        <p>8+ dilde AI asistan, otomatik iş akışları ve akıllı lead yönetimi ile kliniğinizi geleceğe taşıyın.</p>
+        <p>15+ dilde AI asistan, otomatik iş akışları ve akıllı lead yönetimi ile kliniğinizi geleceğe taşıyın.</p>
         <a href="/get-started" class="cta-btn-primary">Ücretsiz Deneyin →</a>
       </div>
     </section>
@@ -1492,9 +1782,9 @@
         preview: 'Saç ekimi fiyatları hakkında...',
         messages: [
           { role: 'user', sender: 'Ayşe G.', text: 'Merhaba, saç ekimi fiyatları hakkında bilgi alabilir miyim? FUE ve DHI arasındaki fark nedir?', time: '14:32' },
-          { role: 'ai', text: 'Merhaba Ayşe Hanım! Stoaix Clinic\'e hoş geldiniz. 😊\n\nSaç ekimi yöntemlerimiz ve fiyatları:\n\n• FUE (Follicular Unit Extraction): 2.500 - 3.500 €\n• DHI (Direct Hair Implantation): 3.000 - 4.000 €\n• Safir FUE: 3.000 - 4.000 €\n\nTemel farklar:\n→ FUE: Klasik yöntem, daha geniş alan için ideal\n→ DHI: Daha yoğun ekim, kalem tekniği ile doğal sonuç\n→ Safir: Safir bıçak ile daha hızlı iyileşme\n\nGreft sayısı ve yönteme göre kesin fiyat belirlenir. Ücretsiz online konsültasyon ister misiniz?', time: '14:32' },
+          { role: 'ai', text: 'Merhaba Ayşe Hanım! Hoş geldiniz 😊\n\nSaç ekimi fiyatlarımız:\n• FUE: 2.500 - 3.500 €\n• DHI: 3.000 - 4.000 €\n• Safir FUE: 3.000 - 4.000 €\n\nFUE geniş alan, DHI yoğun ekim, Safir hızlı iyileşme için ideal. Ücretsiz online konsültasyon ister misiniz?', time: '14:32' },
           { role: 'user', sender: 'Ayşe G.', text: 'DHI ile ilgileniyorum. Kaç greft gerekir yaklaşık? Eşim için bakıyorum, ön bölgede seyrelme var.', time: '14:35' },
-          { role: 'ai', text: 'DHI harika bir tercih! Ön bölge seyrelmeleri için genellikle 2.500-3.500 greft arası planlanır.\n\nKesin greft sayısı için fotoğraf analizi yapabiliriz. Eşinizin saç durumunun fotoğraflarını gönderir misiniz? (Ön, üst ve arka açıdan 3 fotoğraf yeterli)\n\nDoktorumuz 24 saat içinde kişisel değerlendirme raporu hazırlar. ✨', time: '14:35' }
+          { role: 'ai', text: 'DHI harika bir tercih! Ön bölge için genelde 2.500-3.500 greft planlanır.\n\nEşinizin 3 fotoğrafını gönderirseniz (ön, üst, arka) 24 saat içinde kişisel değerlendirme raporu hazırlarız ✨', time: '14:35' }
         ]
       },
       james: {
@@ -1502,9 +1792,9 @@
         preview: 'I\'d like to know about Botox...',
         messages: [
           { role: 'user', sender: 'James W.', text: 'Hi, I\'m interested in Botox treatment. What areas do you cover and what are the prices?', time: '14:18' },
-          { role: 'ai', text: 'Hello James! Welcome to Stoaix Clinic. 😊\n\nOur Botox treatments cover:\n\n• Forehead lines: €200 - €350\n• Crow\'s feet (eye area): €180 - €300\n• Frown lines (between brows): €180 - €300\n• Full face package: €450 - €700\n\nWe use premium Allergan Botox, administered by board-certified dermatologists. Results last 4-6 months.\n\nWould you like to schedule a free consultation? We also offer combined Botox + Dermal Filler packages at special rates. 💎', time: '14:18' },
+          { role: 'ai', text: 'Hello James! Welcome to Stoaix Clinic 😊\n\nOur Botox prices:\n• Forehead: €200-350\n• Crow\'s feet: €180-300\n• Frown lines: €180-300\n• Full face package: €450-700\n\nAllergan Botox, board-certified doctors. Results last 4-6 months. Want a free consultation? 💎', time: '14:18' },
           { role: 'user', sender: 'James W.', text: 'The full face package sounds good. Do you offer any accommodation packages for international patients?', time: '14:22' },
-          { role: 'ai', text: 'Great choice! Yes, we have VIP international patient packages:\n\n🏨 All-inclusive package includes:\n→ Free airport transfer (VIP)\n→ 2 nights luxury hotel accommodation\n→ Full face Botox treatment\n→ 1 year follow-up support\n→ Personal patient coordinator\n\nPackage price: €850 - €1,100\n\nWe can also combine with other treatments during your stay. Shall I check available dates for you?', time: '14:22' }
+          { role: 'ai', text: 'Great choice! Our VIP package (€850-1,100):\n→ Airport transfer + 2 nights hotel\n→ Full face Botox\n→ 1 year follow-up\n→ Personal coordinator\n\nWe can add other treatments too. Shall I check dates?', time: '14:22' }
         ]
       },
       hans: {
@@ -1512,9 +1802,9 @@
         preview: 'Ich möchte mich über Rhinoplastik...',
         messages: [
           { role: 'user', sender: 'Hans M.', text: 'Guten Tag, ich möchte mich über Rhinoplastik informieren. Können Sie mir bitte die Details und Preise nennen?', time: '14:01' },
-          { role: 'ai', text: 'Guten Tag, Hans! Willkommen bei Stoaix Clinic. 😊\n\nUnsere Rhinoplastik-Leistungen:\n\n• Offene Rhinoplastik: 3.500 - 5.000 €\n• Geschlossene Rhinoplastik: 3.000 - 4.500 €\n• Revisions-Rhinoplastik: 4.000 - 6.000 €\n• Septumplastik (funktionell): 2.500 - 3.500 €\n\nUnsere Chirurgen sind auf Gesichtsästhetik spezialisiert und haben über 2.000 erfolgreiche Eingriffe durchgeführt.\n\nDer Aufenthalt dauert ca. 7 Tage. Möchten Sie unsere Vorher-Nachher-Galerie sehen?', time: '14:01' },
+          { role: 'ai', text: 'Guten Tag Hans! Willkommen 😊\n\nUnsere Rhinoplastik-Preise:\n• Offen: 3.500-5.000 €\n• Geschlossen: 3.000-4.500 €\n• Revision: 4.000-6.000 €\n\nÜber 2.000 erfolgreiche Eingriffe. Aufenthalt ca. 7 Tage. Möchten Sie die Vorher-Nachher-Galerie sehen?', time: '14:01' },
           { role: 'user', sender: 'Hans M.', text: 'Ja, das wäre toll. Wie sieht der Heilungsprozess aus? Wann kann ich wieder arbeiten?', time: '14:05' },
-          { role: 'ai', text: 'Natürlich! Der Heilungsprozess:\n\n📅 Tag 1-3: Ruhe im Hotel, Schwellung normal\n📅 Tag 5-7: Nasenschiene wird entfernt\n📅 Woche 2: Rückkehr zur Büroarbeit möglich\n📅 Monat 1-3: Schwellung geht zurück\n📅 Monat 6-12: Endergebnis sichtbar\n\nWichtige Hinweise:\n→ 4 Wochen kein Sport\n→ 3 Monate keine Brille direkt auf der Nase\n→ Regelmäßige Nachkontrollen (online möglich)\n\nIch kann Ihnen einen Beratungstermin mit unserem Chirurgen vereinbaren. Passt Ihnen ein Videoanruf? 🎥', time: '14:06' }
+          { role: 'ai', text: 'Heilungsprozess:\n📅 Tag 1-7: Ruhe, Schiene entfernt\n📅 Woche 2: Büroarbeit möglich\n📅 Monat 6-12: Endergebnis\n\n4 Wochen kein Sport, 3 Monate keine Brille. Soll ich einen Videoanruf mit dem Chirurgen vereinbaren? 🎥', time: '14:06' }
         ]
       },
       anna: {
@@ -1522,9 +1812,9 @@
         preview: 'Здравствуйте, хочу узнать о лазерной...',
         messages: [
           { role: 'user', sender: 'Анна К.', text: 'Здравствуйте! Хочу узнать о лазерной эпиляции. Какие зоны вы обрабатываете и какие цены?', time: '13:15' },
-          { role: 'ai', text: 'Здравствуйте, Анна! Добро пожаловать в Stoaix Clinic. 😊\n\nНаши пакеты лазерной эпиляции:\n\n• Ноги полностью: 150 - 250 €\n• Зона бикини: 80 - 120 €\n• Подмышки: 50 - 80 €\n• Лицо: 60 - 100 €\n• Полное тело: 400 - 600 €\n\nМы используем аппарат Soprano Ice (безболезненная технология). Обычно требуется 6-8 сеансов.\n\nДля международных пациентов у нас есть пакеты «Красота + Отдых» 🌴. Хотите узнать подробнее?', time: '13:15' },
+          { role: 'ai', text: 'Здравствуйте Анна! 😊\n\nЛазерная эпиляция:\n• Ноги: 150-250 €\n• Бикини: 80-120 €\n• Подмышки: 50-80 €\n• Всё тело: 400-600 €\n\nSoprano Ice — безболезненно. 6-8 сеансов. Есть пакеты «Красота + Отдых» 🌴 Подробнее?', time: '13:15' },
           { role: 'user', sender: 'Анна К.', text: 'Да, расскажите о пакете полного тела. Я планирую приехать в июне.', time: '13:20' },
-          { role: 'ai', text: 'Отлично! Пакет «Полное тело» в июне:\n\n✨ Включено:\n→ 1 сеанс лазерной эпиляции всего тела\n→ Трансфер из аэропорта\n→ 3 ночи в отеле 4*\n→ Консультация дерматолога\n→ План последующих сеансов\n\nЦена пакета: 550 - 750 €\n\nВ июне у нас есть свободные даты: 5-7, 12-14, 19-21 июня. Какие даты вам подходят? 📅', time: '13:21' }
+          { role: 'ai', text: 'Пакет «Полное тело» (550-750 €):\n→ Лазер всего тела + трансфер + 3 ночи отель 4*\n→ Консультация дерматолога\n\nВ июне свободно: 5-7, 12-14, 19-21. Какие даты? 📅', time: '13:21' }
         ]
       },
       fatima: {
@@ -1532,9 +1822,9 @@
         preview: 'السلام عليكم، أريد الاستفسار عن...',
         messages: [
           { role: 'user', sender: 'فاطمة س.', text: 'السلام عليكم، أريد الاستفسار عن حقن الفيلر للوجه. ما هي الخيارات المتاحة؟', time: '12:30' },
-          { role: 'ai', text: 'وعليكم السلام فاطمة! أهلاً بك في Stoaix Clinic. 😊\n\nخيارات حقن الفيلر لدينا:\n\n• فيلر الشفاه: ٢٠٠ - ٣٥٠ €\n• فيلر الخدود: ٣٠٠ - ٤٥٠ €\n• فيلر خط الفك (Jawline): ٣٥٠ - ٥٠٠ €\n• فيلر الهالات السوداء: ٢٥٠ - ٤٠٠ €\n• باكج الوجه الكامل: ٨٠٠ - ١٢٠٠ €\n\nنستخدم منتجات Juvederm و Restylane الأصلية. النتائج تدوم ١٢-١٨ شهراً.\n\nهل تودين حجز استشارة مجانية عبر الفيديو؟ لدينا طبيبات متخصصات. 💎', time: '12:30' },
+          { role: 'ai', text: 'وعليكم السلام فاطمة! أهلاً بك 😊\n\nحقن الفيلر:\n• الشفاه: ٢٠٠-٣٥٠ €\n• الخدود: ٣٠٠-٤٥٠ €\n• خط الفك: ٣٥٠-٥٠٠ €\n• الوجه الكامل: ٨٠٠-١٢٠٠ €\n\nمنتجات Juvederm أصلية. النتائج ١٢-١٨ شهراً. هل تودين استشارة فيديو مجانية؟ 💎', time: '12:30' },
           { role: 'user', sender: 'فاطمة س.', text: 'نعم أريد استشارة. هل يمكنني الحصول على فيلر الشفاه والخدود معاً؟', time: '12:35' },
-          { role: 'ai', text: 'بالتأكيد! باكج الشفاه + الخدود:\n\n💎 العرض الخاص:\n→ فيلر الشفاه (1ml Juvederm)\n→ فيلر الخدود (2ml Juvederm Voluma)\n→ استشارة مجانية\n→ متابعة لمدة ٣ أشهر\n\nالسعر: ٤٥٠ - ٦٥٠ € (بدلاً من ٧٠٠ €)\n\nالإجراء يستغرق ٣٠-٤٥ دقيقة، بدون توقف عن الأنشطة اليومية.\n\nسأحجز لك موعد استشارة فيديو. ما هو الوقت المناسب لك؟ 📱', time: '12:36' }
+          { role: 'ai', text: '💎 باكج الشفاه + الخدود: ٤٥٠-٦٥٠ € (بدلاً من ٧٠٠)\n→ شفاه 1ml + خدود 2ml Juvederm\n→ استشارة + متابعة ٣ أشهر\n\n٣٠-٤٥ دقيقة فقط. ما الوقت المناسب للاستشارة؟ 📱', time: '12:36' }
         ]
       },
       marie: {
@@ -1542,9 +1832,9 @@
         preview: 'Bonjour, je suis intéressée par le PRP...',
         messages: [
           { role: 'user', sender: 'Marie D.', text: 'Bonjour, je suis intéressée par le traitement PRP pour les cheveux. Pouvez-vous me donner plus d\'informations ?', time: '11:45' },
-          { role: 'ai', text: 'Bonjour Marie ! Bienvenue chez Stoaix Clinic. 😊\n\nNotre traitement PRP (Plasma Riche en Plaquettes) :\n\n• PRP capillaire (1 séance) : 150 - 250 €\n• Pack 4 séances : 500 - 800 €\n• PRP + Mésothérapie combo : 300 - 450 € / séance\n\nLe PRP stimule la repousse naturelle des cheveux en utilisant votre propre plasma sanguin.\n\n📋 Protocole recommandé :\n→ 4 séances initiales (1 par mois)\n→ Séance d\'entretien tous les 6 mois\n→ Résultats visibles après 3 mois\n\nSouhaitez-vous réserver une consultation gratuite ?', time: '11:45' },
+          { role: 'ai', text: 'Bonjour Marie ! 😊\n\nTraitement PRP capillaire :\n• 1 séance : 150-250 €\n• Pack 4 séances : 500-800 €\n• PRP + Méso combo : 300-450 €/séance\n\n4 séances initiales, résultats après 3 mois. Consultation gratuite ?', time: '11:45' },
           { role: 'user', sender: 'Marie D.', text: 'Le combo PRP + Mésothérapie m\'intéresse. Est-ce que ça fait mal ?', time: '11:50' },
-          { role: 'ai', text: 'Excellente question ! Le combo est très efficace. 💪\n\nConcernant la douleur :\n→ Nous appliquons une crème anesthésiante locale\n→ Les micro-injections sont très fines\n→ La plupart des patients décrivent une sensation de léger picotement\n→ La séance dure environ 45 minutes\n\nAprès le traitement :\n→ Pas de temps d\'arrêt\n→ Rougeur légère pendant 24h\n→ Reprise des activités normales immédiate\n\nJe peux vous proposer un rendez-vous cette semaine. Préférez-vous un créneau le matin ou l\'après-midi ? 🗓️', time: '11:51' }
+          { role: 'ai', text: 'Le combo est très efficace ! 💪\n\nCrème anesthésiante → micro-injections fines → léger picotement. 45 min, pas d\'arrêt. Rougeur 24h seulement.\n\nRDV cette semaine ? Matin ou après-midi ? 🗓️', time: '11:51' }
         ]
       },
       carlos: {
@@ -1552,9 +1842,9 @@
         preview: 'Depilación láser consulta...',
         messages: [
           { role: 'user', sender: 'Carlos R.', text: 'Hola, me gustaría información sobre depilación láser para hombres. ¿Tienen paquetes especiales?', time: '10:20' },
-          { role: 'ai', text: 'Hola Carlos! Bienvenido a Stoaix Clinic. 😊\n\nNuestros paquetes de depilación láser para hombres:\n\n• Espalda completa: 180 - 280 €\n• Pecho + abdomen: 200 - 300 €\n• Piernas completas: 250 - 350 €\n• Brazos completos: 120 - 180 €\n• Paquete cuerpo completo: 500 - 750 €\n\nUsamos tecnología Soprano Ice — prácticamente indolora, ideal para piel masculina.\n\nSe necesitan 8-10 sesiones para resultados permanentes. ¿Te interesa algún paquete en particular?', time: '10:20' },
+          { role: 'ai', text: '¡Hola Carlos! 😊\n\nDepilación láser hombres:\n• Espalda: 180-280 €\n• Pecho+abdomen: 200-300 €\n• Cuerpo completo: 500-750 €\n\nSoprano Ice — indolora. 8-10 sesiones. ¿Qué paquete te interesa?', time: '10:20' },
           { role: 'user', sender: 'Carlos R.', text: 'El paquete de cuerpo completo me interesa. ¿Puedo combinar con otros tratamientos durante mi estancia?', time: '10:25' },
-          { role: 'ai', text: '¡Por supuesto! Podemos crear un plan personalizado:\n\n🌟 Paquete VIP Hombre:\n→ Depilación láser cuerpo completo\n→ Tratamiento facial (limpieza profunda)\n→ Consulta dermatológica gratuita\n→ Transfer aeropuerto\n→ 3 noches hotel 4*\n\nPrecio especial: 700 - 950 €\n\nTambién ofrecemos:\n→ Botox (frente/entrecejo)\n→ Tratamiento capilar PRP\n\nTodo durante la misma estancia. ¿Cuándo planeas viajar? Te preparo un presupuesto personalizado. ✈️', time: '10:26' }
+          { role: 'ai', text: '🌟 Paquete VIP (700-950 €):\n→ Láser cuerpo + facial + transfer + 3 noches hotel 4*\n\nTambién Botox y PRP en la misma estancia. ¿Cuándo viajas? Te preparo presupuesto ✈️', time: '10:26' }
         ]
       },
       mehmet: {
@@ -1562,9 +1852,9 @@
         preview: 'Rinoplasti randevusu için...',
         messages: [
           { role: 'user', sender: 'Mehmet K.', text: 'Merhaba, rinoplasti için randevu almak istiyorum. Daha önce online konsültasyon yaptırmıştık.', time: '09:15' },
-          { role: 'ai', text: 'Merhaba Mehmet Bey! Tekrar hoş geldiniz. 😊\n\nOnline konsültasyon kaydınızı görüyorum. Dr. Yılmaz ile görüşmüştünüz.\n\nDoktorumuzun müsait randevu tarihleri:\n\n📅 Bu hafta:\n→ Perşembe 16 Mayıs - 10:00\n→ Cuma 17 Mayıs - 14:00\n\n📅 Gelecek hafta:\n→ Pazartesi 20 Mayıs - 11:00\n→ Çarşamba 22 Mayıs - 09:00\n\nAmeliyet öncesi yapılacaklar:\n→ Kan testleri\n→ Anestezi konsültasyonu\n→ 3D simülasyon görüntüleme\n\nHangi tarih size uygun olur?', time: '09:15' },
+          { role: 'ai', text: 'Merhaba Mehmet Bey! Hoş geldiniz 😊 Dr. Yılmaz ile konsültasyon kaydınız mevcut.\n\nMüsait tarihler:\n📅 Perşembe 16 Mayıs 10:00\n📅 Cuma 17 Mayıs 14:00\n📅 Pazartesi 20 Mayıs 11:00\n\nHangi tarih uygun?', time: '09:15' },
           { role: 'user', sender: 'Mehmet K.', text: 'Perşembe 10:00 uygun. Ameliyat ne zaman olabilir?', time: '09:18' },
-          { role: 'ai', text: 'Harika! Perşembe 16 Mayıs saat 10:00\'ı sizin için ayırtıyorum. ✅\n\nPlanlama:\n→ 16 Mayıs: Muayene + 3D simülasyon + testler\n→ Ameliyat: Testler sonrası 1-2 hafta içinde planlanır\n→ Tahmini ameliyat tarihi: 27-31 Mayıs arası\n\n📋 Randevu günü getirmeniz gerekenler:\n→ Kimlik/pasaport\n→ Varsa önceki tıbbi raporlar\n→ Rahat kıyafetler\n\nKonsültasyon adresinize SMS ile gönderilecek. Başka bir sorunuz var mı? 🏥', time: '09:19' }
+          { role: 'ai', text: 'Perşembe 16 Mayıs 10:00 ayırtıldı ✅\n\n→ Muayene + 3D simülasyon + testler\n→ Ameliyat: 27-31 Mayıs arası\n\nKimlik ve varsa tıbbi raporlarınızı getirin. SMS ile adres bilgisi gönderilecek 🏥', time: '09:19' }
         ]
       }
     };
@@ -1665,6 +1955,14 @@
         document.getElementById('aitab-' + tab.dataset.aitab).classList.add('active');
       });
     });
+
+    // ===== Settings tab switching =====
+    window.showSettingsTab = function(btn, tabId) {
+      document.querySelectorAll('.settings-tab').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.settings-content').forEach(function(c) { c.style.display = 'none'; });
+      btn.classList.add('active');
+      document.getElementById(tabId).style.display = 'block';
+    };
 
     // ===== CTA Popup =====
     window.showCTA = function(icon, title, text) {
