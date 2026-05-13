@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Demo — STOAIX</title>
+  <meta name="description" content="Explore the STOAIX AI platform interactively. Click around a live dashboard simulation with real clinic data — no signup required." />
+  <meta name="author" content="Emir TÜRKÖZ, Ata Ulufer">
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preload" href="assets/logo-iconwithname.svg" as="image" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="canonical" href="https://stoaix.com/demo-interactive" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stoaix.com/demo-interactive" />
+  <meta property="og:title" content="Interactive Demo — STOAIX" />
+  <meta property="og:description" content="Explore the STOAIX AI platform interactively. Click around a live dashboard simulation — no signup required." />
+  <meta property="og:image" content="https://stoaix.com/assets/og-image.png" />
+  <meta property="og:site_name" content="STOAIX" />
+
+  <style>
+    /* ===== Demo Hero ===== */
+    .demo-hero {
+      padding: 120px 0 48px;
+      text-align: center;
+    }
+    .demo-hero .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: var(--r-full);
+      background: var(--blue-tint);
+      color: var(--blue);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .demo-hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--text);
+      margin: 0 0 16px;
+      line-height: 1.15;
+    }
+    .demo-hero p {
+      font-size: 1.1rem;
+      color: var(--text-2);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ===== Demo Section ===== */
+    .demo-interactive-section {
+      padding: 0 20px 80px;
+    }
+
+    /* ===== Demo Window (macOS-style) ===== */
+    .demo-window {
+      max-width: 1400px;
+      margin: 0 auto;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      box-shadow: 0 28px 83px rgba(0,0,0,0.10), 0 8px 24px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .demo-titlebar {
+      height: 40px;
+      background: linear-gradient(180deg, #f7f7f7, #e8e8e8);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-2);
+      position: relative;
+      user-select: none;
+    }
+    .demo-dots {
+      position: absolute;
+      left: 14px;
+      display: flex;
+      gap: 7px;
+    }
+    .demo-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .demo-dot.red { background: #ff5f57; }
+    .demo-dot.yellow { background: #febc2e; }
+    .demo-dot.green { background: #28c840; }
+
+    /* ===== Demo Body (3-column grid) ===== */
+    .demo-body {
+      display: grid;
+      grid-template-columns: 230px 1fr 360px;
+      height: 72vh;
+      min-height: 520px;
+      max-height: 820px;
+    }
+
+    /* ===== Sidebar ===== */
+    .demo-sidebar {
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-2);
+    }
+    .demo-org-info {
+      padding: 18px 16px 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .demo-org-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--r-sm);
+      background: var(--blue);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .demo-nav {
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+    }
+    .demo-nav button {
+      width: 100%;
+      text-align: left;
+      padding: 9px 12px;
+      border-radius: var(--r-sm);
+      border: none;
+      background: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.15s ease;
+      font-family: var(--font);
+    }
+    .demo-nav button svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      opacity: 0.6;
+    }
+    .demo-nav button.active svg { opacity: 1; }
+    .demo-nav button.active {
+      background: var(--blue-tint);
+      color: var(--blue);
+      font-weight: 600;
+    }
+    .demo-nav button:hover:not(.active) {
+      background: var(--bg-3);
+      color: var(--text);
+    }
+    .demo-nav .nav-badge {
+      margin-left: auto;
+      background: var(--blue);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: var(--r-full);
+    }
+    .demo-sidebar-stats {
+      padding: 14px 16px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--text-3);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .demo-sidebar-stats span {
+      display: flex;
+      justify-content: space-between;
+    }
+    .demo-sidebar-stats strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ===== Center Panel ===== */
+    .demo-main {
+      overflow-y: auto;
+      background: #fff;
+    }
+    .demo-view {
+      display: none;
+      padding: 24px;
+      animation: fadeIn 0.25s ease;
+    }
+    .demo-view.active { display: block; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* -- Overview Stats -- */
+    .demo-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .demo-stat-card {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 16px;
+    }
+    .demo-stat-card .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-3);
+      font-weight: 500;
+      margin-bottom: 6px;
+    }
+    .demo-stat-card .stat-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .demo-stat-card .stat-change {
+      font-size: 0.72rem;
+      color: var(--green);
+      font-weight: 500;
+      margin-top: 4px;
+    }
+
+    /* -- Overview Chart Placeholder -- */
+    .demo-chart-placeholder {
+      background: var(--bg-2);
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 20px;
+      margin-bottom: 24px;
+    }
+    .demo-chart-placeholder .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .demo-chart-placeholder .chart-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .demo-chart-placeholder .chart-period {
+      font-size: 0.75rem;
+      color: var(--text-3);
+      padding: 4px 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-full);
+    }
+    .demo-chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 120px;
+      padding-top: 10px;
+    }
+    .demo-chart-bar {
+      flex: 1;
+      background: var(--blue-tint);
+      border-radius: 4px 4px 0 0;
+      min-height: 8px;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .demo-chart-bar:hover {
+      background: var(--blue-mid);
+    }
+    .demo-chart-bar .bar-fill {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--blue);
+      border-radius: 4px 4px 0 0;
+      opacity: 0.7;
+    }
+
+    /* -- Recent Activity -- */
+    .demo-activity-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .demo-activity-list h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .demo-activity-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.83rem;
+    }
+    .demo-activity-item:last-child { border-bottom: none; }
+    .demo-activity-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .demo-activity-dot.blue { background: var(--blue); }
+    .demo-activity-dot.green { background: var(--green); }
+    .demo-activity-dot.orange { background: #f59e0b; }
+    .demo-activity-time {
+      margin-left: auto;
+      font-size: 0.72rem;
+      color: var(--text-3);
+      flex-shrink: 0;
+    }
+
+    /* -- Inbox: Conversation List -- */
+    .demo-conv-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .demo-conv-item {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      transition: background 0.15s;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .demo-conv-item:hover { background: var(--bg-2); }
+    .demo-conv-item.active { background: var(--blue-tint); }
+    .demo-conv-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--blue-mid);
+      color: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .demo-conv-info { flex: 1; min-width: 0; }
+    .demo-conv-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text);
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .demo-conv-name .channel-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      padding: 1px 6px;
+      border-radius: var(--r-full);
+      background: #dcfce7;
+      color: #16a34a;
+    }
+    .demo-conv-preview {
+      font-size: 0.78rem;
+      color: var(--text-3);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .demo-conv-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .demo-conv-time {
+      font-size: 0.7rem;
+      color: var(--text-3);
+    }
+    .demo-conv-unread {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+    }
+
+    /* -- Calls View -- */
+    .demo-calls-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .demo-calls-table th {
+      text-align: left;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 8px 12px;
+      border-bottom: 2px solid var(--border);
+    }
+    .demo-calls-table td {
+      padding: 12px;
+      font-size: 0.83rem;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .demo-calls-table tr:hover td { background: var(--bg-2); }
+    .call-type {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+    .call-type.inbound { color: var(--blue); }
+    .call-type.outbound { color: #8b5cf6; }
+    .call-status-badge {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: var(--r-full);
+      font-weight: 500;
+    }
+    .call-status-badge.ai { background: var(--blue-tint); color: var(--blue); }
+    .call-status-badge.human { background: #fef3c7; color: #d97706; }
+
+    /* -- Leads Pipeline (Kanban) -- */
+    .demo-pipeline {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+    .demo-pipeline-col {
+      min-width: 200px;
+      flex: 1;
+      background: var(--bg-2);
+      border-radius: var(--r-md);
+      padding: 12px;
+    }
+    .demo-pipeline-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-2);
+    }
+    .demo-pipeline-count {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 1px 8px;
+      border-radius: var(--r-full);
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .demo-lead-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r-sm);
+      padding: 12px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .demo-lead-card:hover {
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-1px);
+    }
+    .demo-lead-card .lead-name {
+      font-weight: 600;
+      font-size: 0.83rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .demo-lead-card .lead-detail {
+      font-size: 0.72rem;
+      color: var(--text-3);
+      margin-bottom: 6px;
+    }
+    .demo-lead-card .lead-score {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--r-full);
+    }
+    .lead-score.high { background: #dcfce7; color: #16a34a; }
+    .lead-score.mid { background: #fef3c7; color: #d97706; }
+    .lead-score.low { background: var(--bg-3); color: var(--text-3); }
+
+    /* -- Knowledge Base -- */
+    .demo-kb-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .demo-kb-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      background: var(--surface);
+      transition: border-color 0.15s;
+    }
+    .demo-kb-item:hover { border-color: var(--blue-mid); }
+    .demo-kb-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--r-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+    .demo-kb-icon.service { background: var(--blue-tint); }
+    .demo-kb-icon.faq { background: #f0fdf4; }
+    .demo-kb-info { flex: 1; }
+    .demo-kb-info .kb-name {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+    .demo-kb-info .kb-type {
+      font-size: 0.72rem;
+      color: var(--text-3);
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+    .demo-kb-status {
+      font-size: 0.72rem;
+      padding: 3px 10px;
+      border-radius: var(--r-full);
+      background: #dcfce7;
+      color: #16a34a;
+      font-weight: 500;
+    }
+
+    /* -- Workflows -- */
+    .demo-wf-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    .demo-wf-card {
+      border: 1px solid var(--border);
+      border-radius: var(--r-md);
+      padding: 18px;
+      background: var(--surface);
+      cursor: pointer;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .demo-wf-card:hover {
+      border-color: var(--blue-mid);
+      box-shadow: var(--shadow-sm);
+    }
+    .demo-wf-card .wf-icon {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .demo-wf-card .wf-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .demo-wf-card .wf-desc {
+      font-size: 0.78rem;
+      color: var(--text-3);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .demo-wf-card .wf-status {
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: var(--r-full);
+    }
+    .wf-status.active-wf { background: #dcfce7; color: #16a34a; }
+    .wf-status.inactive-wf { background: var(--bg-3); color: var(--text-3); }
+
+    /* ===== Right Panel (Detail / AI Chat) ===== */
+    .demo-detail {
+      border-left: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-2);
+    }
+    .demo-ai-header {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+    }
+    .demo-ai-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), #8b5cf6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .demo-ai-name {
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--text);
+    }
+    .demo-ai-status {
+      font-size: 0.7rem;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .demo-ai-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* -- Messages -- */
+    .demo-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .demo-msg { display: flex; }
+    .demo-msg-contact { justify-content: flex-end; }
+    .demo-msg-ai { justify-content: flex-start; }
+    .demo-msg-bubble {
+      max-width: 85%;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-size: 0.83rem;
+      line-height: 1.5;
+    }
+    .demo-msg-contact .demo-msg-bubble {
+      background: var(--blue);
+      color: #fff;
+      border-bottom-right-radius: 4px;
+    }
+    .demo-msg-ai .demo-msg-bubble {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-bottom-left-radius: 4px;
+    }
+
+    /* -- Default state (no conversation) -- */
+    .demo-detail-default {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      text-align: center;
+      color: var(--text-3);
+    }
+    .demo-detail-default .detail-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+      opacity: 0.4;
+    }
+    .demo-detail-default p {
+      font-size: 0.85rem;
+      line-height: 1.5;
+    }
+
+    /* -- Chat Input (fake) -- */
+    .demo-chat-input {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .demo-chat-input-inner {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-full);
+      padding: 8px 14px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .demo-chat-input-inner:hover { border-color: var(--blue-mid); }
+    .demo-chat-input-inner span {
+      font-size: 0.83rem;
+      color: var(--text-3);
+    }
+
+    /* ===== CTA Overlays ===== */
+    .demo-cta-inline {
+      margin-top: 24px;
+      padding: 20px;
+      background: linear-gradient(135deg, var(--blue-tint), #ede9fe);
+      border-radius: var(--r-md);
+      text-align: center;
+    }
+    .demo-cta-inline p {
+      font-size: 0.9rem;
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .demo-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: var(--r-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .demo-cta-btn:hover { background: var(--blue-h); }
+
+    /* -- CTA Bottom Panel -- */
+    .demo-cta-panel {
+      padding: 16px;
+      background: linear-gradient(to top, var(--blue-tint) 60%, transparent);
+      text-align: center;
+    }
+    .demo-cta-panel p {
+      font-size: 0.85rem;
+      color: var(--text-2);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    /* ===== CTA Popup (on lead drag / chat input click) ===== */
+    .demo-cta-popup-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .demo-cta-popup-overlay.active { display: flex; }
+    .demo-cta-popup {
+      background: var(--surface);
+      border-radius: var(--r-lg);
+      padding: 40px;
+      max-width: 440px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
+      animation: popIn 0.3s var(--ease);
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.92) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .demo-cta-popup .popup-icon { font-size: 2.2rem; margin-bottom: 14px; }
+    .demo-cta-popup h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .demo-cta-popup p {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .demo-cta-popup .popup-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .demo-cta-popup .popup-close {
+      padding: 10px 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--r-full);
+      background: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--text-2);
+      font-family: var(--font);
+    }
+    .demo-cta-popup .popup-close:hover { background: var(--bg-2); }
+
+    /* ===== Bottom CTA Section ===== */
+    .demo-bottom-cta {
+      padding: 80px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--bg-2), var(--surface));
+    }
+    .demo-bottom-cta h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .demo-bottom-cta p {
+      font-size: 1rem;
+      color: var(--text-2);
+      margin-bottom: 28px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .demo-bottom-actions {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .demo-bottom-actions .btn-outline-demo {
+      padding: 12px 28px;
+      border: 1px solid var(--border-2);
+      border-radius: var(--r-full);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      font-family: var(--font);
+    }
+    .demo-bottom-actions .btn-outline-demo:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    /* ===== Mobile Tabs (visible on mobile only) ===== */
+    .demo-mobile-tabs {
+      display: none;
+      overflow-x: auto;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-2);
+      -webkit-overflow-scrolling: touch;
+    }
+    .demo-mobile-tabs button {
+      padding: 10px 16px;
+      border: none;
+      background: none;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-3);
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      font-family: var(--font);
+    }
+    .demo-mobile-tabs button.active {
+      color: var(--blue);
+      border-bottom-color: var(--blue);
+      font-weight: 600;
+    }
+
+    /* ===== Section Header (for views) ===== */
+    .demo-view-header {
+      margin-bottom: 20px;
+    }
+    .demo-view-header h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .demo-view-header p {
+      font-size: 0.8rem;
+      color: var(--text-3);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 1024px) {
+      .demo-body { grid-template-columns: 200px 1fr 300px; }
+    }
+
+    @media (max-width: 768px) {
+      .demo-hero { padding: 100px 20px 32px; }
+      .demo-hero h1 { font-size: 1.8rem; }
+      .demo-body {
+        grid-template-columns: 1fr;
+        height: auto;
+        max-height: none;
+      }
+      .demo-sidebar { display: none; }
+      .demo-mobile-tabs { display: flex; }
+      .demo-main { min-height: 400px; }
+      .demo-detail { min-height: 350px; }
+      .demo-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .demo-wf-grid { grid-template-columns: 1fr; }
+      .demo-pipeline { flex-direction: column; }
+      .demo-pipeline-col { min-width: unset; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar" id="navbar"></nav>
+  <div class="mobile-menu" id="mobileMenu"></div>
+
+  <main>
+    <!-- Hero -->
+    <section class="demo-hero">
+      <div class="container">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Interactive Demo
+        </div>
+        <h1>Experience STOAIX — No Signup Required</h1>
+        <p>Click around, explore features, and see how AI handles real patient conversations for an aesthetic hair clinic.</p>
+      </div>
+    </section>
+
+    <!-- Interactive Demo Window -->
+    <section class="demo-interactive-section">
+      <div class="demo-window">
+        <!-- Title Bar -->
+        <div class="demo-titlebar">
+          <span class="demo-dots">
+            <span class="demo-dot red"></span>
+            <span class="demo-dot yellow"></span>
+            <span class="demo-dot green"></span>
+          </span>
+          STOAIX Dashboard &mdash; Aesthetic Hair Clinic
+        </div>
+
+        <!-- Mobile Tabs -->
+        <div class="demo-mobile-tabs">
+          <button data-view="overview" class="active">Overview</button>
+          <button data-view="inbox">Inbox (5)</button>
+          <button data-view="calls">Voice Calls</button>
+          <button data-view="leads">Leads</button>
+          <button data-view="knowledge">Knowledge</button>
+          <button data-view="workflows">Workflows</button>
+        </div>
+
+        <!-- Body -->
+        <div class="demo-body">
+          <!-- LEFT: Sidebar -->
+          <div class="demo-sidebar">
+            <div class="demo-org-info">
+              <div class="demo-org-avatar">AH</div>
+              <span>Aesthetic Hair Clinic</span>
+            </div>
+            <nav class="demo-nav">
+              <button data-view="overview" class="active">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+                Overview
+              </button>
+              <button data-view="inbox">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                Inbox
+                <span class="nav-badge">5</span>
+              </button>
+              <button data-view="calls">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+                Voice Calls
+              </button>
+              <button data-view="leads">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                Lead Pipeline
+              </button>
+              <button data-view="knowledge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                Knowledge Base
+              </button>
+              <button data-view="workflows">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                Workflows
+              </button>
+            </nav>
+            <div class="demo-sidebar-stats">
+              <span>Today <strong>12 conversations</strong></span>
+              <span>Hot leads <strong>3</strong></span>
+              <span>AI resolved <strong>78%</strong></span>
+            </div>
+          </div>
+
+          <!-- CENTER: Main Content -->
+          <div class="demo-main">
+
+            <!-- VIEW: Overview -->
+            <div class="demo-view active" id="view-overview">
+              <div class="demo-view-header">
+                <h2>Dashboard Overview</h2>
+                <p>Today's performance at a glance</p>
+              </div>
+              <div class="demo-stats-grid">
+                <div class="demo-stat-card">
+                  <div class="stat-label">Conversations</div>
+                  <div class="stat-value">12</div>
+                  <div class="stat-change">+18% vs yesterday</div>
+                </div>
+                <div class="demo-stat-card">
+                  <div class="stat-label">Active Leads</div>
+                  <div class="stat-value">8</div>
+                  <div class="stat-change">+2 new today</div>
+                </div>
+                <div class="demo-stat-card">
+                  <div class="stat-label">Voice Calls</div>
+                  <div class="stat-value">3</div>
+                  <div class="stat-change">All AI-handled</div>
+                </div>
+                <div class="demo-stat-card">
+                  <div class="stat-label">Conversion Rate</div>
+                  <div class="stat-value">34%</div>
+                  <div class="stat-change">+5% this week</div>
+                </div>
+              </div>
+
+              <div class="demo-chart-placeholder">
+                <div class="chart-header">
+                  <span class="chart-title">Conversations &mdash; Last 7 Days</span>
+                  <span class="chart-period">This Week</span>
+                </div>
+                <div class="demo-chart-bars">
+                  <div class="demo-chart-bar" style="height:45%"><div class="bar-fill" style="height:65%"></div></div>
+                  <div class="demo-chart-bar" style="height:62%"><div class="bar-fill" style="height:55%"></div></div>
+                  <div class="demo-chart-bar" style="height:38%"><div class="bar-fill" style="height:70%"></div></div>
+                  <div class="demo-chart-bar" style="height:78%"><div class="bar-fill" style="height:60%"></div></div>
+                  <div class="demo-chart-bar" style="height:55%"><div class="bar-fill" style="height:80%"></div></div>
+                  <div class="demo-chart-bar" style="height:70%"><div class="bar-fill" style="height:50%"></div></div>
+                  <div class="demo-chart-bar" style="height:85%"><div class="bar-fill" style="height:75%"></div></div>
+                </div>
+              </div>
+
+              <div class="demo-activity-list">
+                <h3>Recent Activity</h3>
+                <div class="demo-activity-item">
+                  <span class="demo-activity-dot blue"></span>
+                  <span>Ayse G. started a WhatsApp conversation</span>
+                  <span class="demo-activity-time">2 min ago</span>
+                </div>
+                <div class="demo-activity-item">
+                  <span class="demo-activity-dot green"></span>
+                  <span>Ali T. booked a consultation appointment</span>
+                  <span class="demo-activity-time">15 min ago</span>
+                </div>
+                <div class="demo-activity-item">
+                  <span class="demo-activity-dot orange"></span>
+                  <span>Mehmet K. moved to Hot Lead stage</span>
+                  <span class="demo-activity-time">32 min ago</span>
+                </div>
+                <div class="demo-activity-item">
+                  <span class="demo-activity-dot blue"></span>
+                  <span>Voice call completed &mdash; Burak D. (4:23 min)</span>
+                  <span class="demo-activity-time">1 hr ago</span>
+                </div>
+                <div class="demo-activity-item">
+                  <span class="demo-activity-dot green"></span>
+                  <span>AI resolved inquiry from Zeynep S.</span>
+                  <span class="demo-activity-time">2 hr ago</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW: Inbox -->
+            <div class="demo-view" id="view-inbox">
+              <div class="demo-view-header">
+                <h2>Inbox</h2>
+                <p>5 active conversations</p>
+              </div>
+              <div class="demo-conv-list">
+                <div class="demo-conv-item" data-conv="ayse">
+                  <div class="demo-conv-avatar">AG</div>
+                  <div class="demo-conv-info">
+                    <div class="demo-conv-name">Ayse G. <span class="channel-tag">WhatsApp</span></div>
+                    <div class="demo-conv-preview">How much does a hair transplant cost?</div>
+                  </div>
+                  <div class="demo-conv-meta">
+                    <span class="demo-conv-time">2 min</span>
+                    <span class="demo-conv-unread"></span>
+                  </div>
+                </div>
+                <div class="demo-conv-item" data-conv="mehmet">
+                  <div class="demo-conv-avatar">MK</div>
+                  <div class="demo-conv-info">
+                    <div class="demo-conv-name">Mehmet K. <span class="channel-tag">WhatsApp</span></div>
+                    <div class="demo-conv-preview">What's the difference between FUE and DHI?</div>
+                  </div>
+                  <div class="demo-conv-meta">
+                    <span class="demo-conv-time">18 min</span>
+                  </div>
+                </div>
+                <div class="demo-conv-item" data-conv="ali">
+                  <div class="demo-conv-avatar">AT</div>
+                  <div class="demo-conv-info">
+                    <div class="demo-conv-name">Ali T. <span class="channel-tag">WhatsApp</span></div>
+                    <div class="demo-conv-preview">I'd like to book an appointment</div>
+                  </div>
+                  <div class="demo-conv-meta">
+                    <span class="demo-conv-time">32 min</span>
+                  </div>
+                </div>
+                <div class="demo-conv-item" data-conv="zeynep">
+                  <div class="demo-conv-avatar">ZS</div>
+                  <div class="demo-conv-info">
+                    <div class="demo-conv-name">Zeynep S. <span class="channel-tag">WhatsApp</span></div>
+                    <div class="demo-conv-preview">Can you tell me about hair mesotherapy?</div>
+                  </div>
+                  <div class="demo-conv-meta">
+                    <span class="demo-conv-time">1 hr</span>
+                  </div>
+                </div>
+                <div class="demo-conv-item" data-conv="burak">
+                  <div class="demo-conv-avatar">BD</div>
+                  <div class="demo-conv-info">
+                    <div class="demo-conv-name">Burak D. <span class="channel-tag">Voice</span></div>
+                    <div class="demo-conv-preview">How long does 3000 grafts take?</div>
+                  </div>
+                  <div class="demo-conv-meta">
+                    <span class="demo-conv-time">2 hr</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- VIEW: Calls -->
+            <div class="demo-view" id="view-calls">
+              <div class="demo-view-header">
+                <h2>Voice Calls</h2>
+                <p>AI-powered call handling</p>
+              </div>
+              <table class="demo-calls-table">
+                <thead>
+                  <tr>
+                    <th>Contact</th>
+                    <th>Type</th>
+                    <th>Duration</th>
+                    <th>Handler</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Burak D.</td>
+                    <td><span class="call-type inbound">&#8615; Inbound</span></td>
+                    <td>4:23</td>
+                    <td><span class="call-status-badge ai">AI Handled</span></td>
+                    <td>Qualified &mdash; 3000 grafts</td>
+                  </tr>
+                  <tr>
+                    <td>Mehmet K.</td>
+                    <td><span class="call-type outbound">&#8613; Outbound</span></td>
+                    <td>1:12</td>
+                    <td><span class="call-status-badge ai">AI Reminder</span></td>
+                    <td>Appointment confirmed</td>
+                  </tr>
+                  <tr>
+                    <td>Fatma Y.</td>
+                    <td><span class="call-type inbound">&#8615; Inbound</span></td>
+                    <td>3:47</td>
+                    <td><span class="call-status-badge human">Handed Off</span></td>
+                    <td>Requested human agent</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="demo-cta-inline">
+                <p>Want to hear our Voice AI handle calls for your clinic?</p>
+                <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+              </div>
+            </div>
+
+            <!-- VIEW: Leads -->
+            <div class="demo-view" id="view-leads">
+              <div class="demo-view-header">
+                <h2>Lead Pipeline</h2>
+                <p>Track and qualify leads automatically</p>
+              </div>
+              <div class="demo-pipeline">
+                <div class="demo-pipeline-col">
+                  <div class="demo-pipeline-header">New Lead <span class="demo-pipeline-count">2</span></div>
+                  <div class="demo-lead-card" data-cta="lead">
+                    <div class="lead-name">Zeynep S.</div>
+                    <div class="lead-detail">Mesotherapy inquiry</div>
+                    <span class="lead-score low">Score: 25</span>
+                  </div>
+                  <div class="demo-lead-card" data-cta="lead">
+                    <div class="lead-name">Burak D.</div>
+                    <div class="lead-detail">3000 grafts estimate</div>
+                    <span class="lead-score mid">Score: 45</span>
+                  </div>
+                </div>
+                <div class="demo-pipeline-col">
+                  <div class="demo-pipeline-header">AI Qualifying <span class="demo-pipeline-count">3</span></div>
+                  <div class="demo-lead-card" data-cta="lead">
+                    <div class="lead-name">Ayse G.</div>
+                    <div class="lead-detail">FUE pricing, consultation</div>
+                    <span class="lead-score mid">Score: 58</span>
+                  </div>
+                  <div class="demo-lead-card" data-cta="lead">
+                    <div class="lead-name">Mehmet K.</div>
+                    <div class="lead-detail">FUE vs DHI comparison</div>
+                    <span class="lead-score mid">Score: 62</span>
+                  </div>
+                  <div class="demo-lead-card" data-cta="lead">
+                    <div class="lead-name">Emre A.</div>
+                    <div class="lead-detail">Sapphire FUE interest</div>
+                    <span class="lead-score mid">Score: 50</span>
+                  </div>
+                </div>
+                <div class="demo-pipeline-col">
+                  <div class="demo-pipeline-header">&#128293; Hot Lead <span class="demo-pipeline-count">1</span></div>
+                  <div class="demo-lead-card" data-cta="lead">
+                    <div class="lead-name">Ali T.</div>
+                    <div class="lead-detail">Ready for appointment</div>
+                    <span class="lead-score high">Score: 87</span>
+                  </div>
+                </div>
+                <div class="demo-pipeline-col">
+                  <div class="demo-pipeline-header">Appointment <span class="demo-pipeline-count">2</span></div>
+                  <div class="demo-lead-card" data-cta="lead">
+                    <div class="lead-name">Derya B.</div>
+                    <div class="lead-detail">Video consultation Thu 14:00</div>
+                    <span class="lead-score high">Score: 91</span>
+                  </div>
+                  <div class="demo-lead-card" data-cta="lead">
+                    <div class="lead-name">Can M.</div>
+                    <div class="lead-detail">In-person visit Fri 10:00</div>
+                    <span class="lead-score high">Score: 85</span>
+                  </div>
+                </div>
+                <div class="demo-pipeline-col">
+                  <div class="demo-pipeline-header">&#10003; Won <span class="demo-pipeline-count">1</span></div>
+                  <div class="demo-lead-card" data-cta="lead">
+                    <div class="lead-name">Serkan E.</div>
+                    <div class="lead-detail">FUE 2500 grafts booked</div>
+                    <span class="lead-score high">Score: 95</span>
+                  </div>
+                </div>
+              </div>
+              <div class="demo-cta-inline">
+                <p>Manage your leads with drag &amp; drop and automatic AI scoring</p>
+                <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+              </div>
+            </div>
+
+            <!-- VIEW: Knowledge Base -->
+            <div class="demo-view" id="view-knowledge">
+              <div class="demo-view-header">
+                <h2>Knowledge Base</h2>
+                <p>6 items &mdash; AI uses these to answer questions</p>
+              </div>
+              <div class="demo-kb-list">
+                <div class="demo-kb-item">
+                  <div class="demo-kb-icon service">&#9881;</div>
+                  <div class="demo-kb-info">
+                    <div class="kb-name">Hair Transplant Services (FUE, DHI, Sapphire)</div>
+                    <div class="kb-type">Service</div>
+                  </div>
+                  <span class="demo-kb-status">Embedded</span>
+                </div>
+                <div class="demo-kb-item">
+                  <div class="demo-kb-icon service">&#9881;</div>
+                  <div class="demo-kb-info">
+                    <div class="kb-name">Pricing Guide 2024</div>
+                    <div class="kb-type">Service</div>
+                  </div>
+                  <span class="demo-kb-status">Embedded</span>
+                </div>
+                <div class="demo-kb-item">
+                  <div class="demo-kb-icon faq">&#63;</div>
+                  <div class="demo-kb-info">
+                    <div class="kb-name">Post-Op Care Instructions</div>
+                    <div class="kb-type">FAQ</div>
+                  </div>
+                  <span class="demo-kb-status">Embedded</span>
+                </div>
+                <div class="demo-kb-item">
+                  <div class="demo-kb-icon faq">&#63;</div>
+                  <div class="demo-kb-info">
+                    <div class="kb-name">FAQ: Recovery Timeline</div>
+                    <div class="kb-type">FAQ</div>
+                  </div>
+                  <span class="demo-kb-status">Embedded</span>
+                </div>
+                <div class="demo-kb-item">
+                  <div class="demo-kb-icon faq">&#63;</div>
+                  <div class="demo-kb-info">
+                    <div class="kb-name">FAQ: Who is a Good Candidate?</div>
+                    <div class="kb-type">FAQ</div>
+                  </div>
+                  <span class="demo-kb-status">Embedded</span>
+                </div>
+                <div class="demo-kb-item">
+                  <div class="demo-kb-icon service">&#9881;</div>
+                  <div class="demo-kb-info">
+                    <div class="kb-name">Mesotherapy &amp; PRP Services</div>
+                    <div class="kb-type">Service</div>
+                  </div>
+                  <span class="demo-kb-status">Embedded</span>
+                </div>
+              </div>
+              <div class="demo-cta-inline">
+                <p>Build your own AI Knowledge Base in minutes</p>
+                <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+              </div>
+            </div>
+
+            <!-- VIEW: Workflows -->
+            <div class="demo-view" id="view-workflows">
+              <div class="demo-view-header">
+                <h2>Workflows</h2>
+                <p>Automated AI workflows for your clinic</p>
+              </div>
+              <div class="demo-wf-grid">
+                <div class="demo-wf-card" data-cta="workflow">
+                  <div class="wf-icon">&#128222;</div>
+                  <div class="wf-name">First Contact Call</div>
+                  <div class="wf-desc">AI calls new leads within 60 seconds to qualify and book a consultation.</div>
+                  <span class="wf-status active-wf">Active</span>
+                </div>
+                <div class="demo-wf-card" data-cta="workflow">
+                  <div class="wf-icon">&#128260;</div>
+                  <div class="wf-name">Warm Follow-Up</div>
+                  <div class="wf-desc">Automatically follow up with leads who didn't respond after 24 hours.</div>
+                  <span class="wf-status active-wf">Active</span>
+                </div>
+                <div class="demo-wf-card" data-cta="workflow">
+                  <div class="wf-icon">&#128197;</div>
+                  <div class="wf-name">Appointment Confirmation</div>
+                  <div class="wf-desc">Send voice reminders 24h and 2h before scheduled appointments.</div>
+                  <span class="wf-status active-wf">Active</span>
+                </div>
+                <div class="demo-wf-card" data-cta="workflow">
+                  <div class="wf-icon">&#128683;</div>
+                  <div class="wf-name">No-Show Follow-Up</div>
+                  <div class="wf-desc">Re-engage patients who missed their appointment with a personalized call.</div>
+                  <span class="wf-status inactive-wf">Inactive</span>
+                </div>
+                <div class="demo-wf-card" data-cta="workflow">
+                  <div class="wf-icon">&#11088;</div>
+                  <div class="wf-name">Satisfaction Survey</div>
+                  <div class="wf-desc">Post-treatment satisfaction call to gather feedback and reviews.</div>
+                  <span class="wf-status inactive-wf">Inactive</span>
+                </div>
+                <div class="demo-wf-card" data-cta="workflow">
+                  <div class="wf-icon">&#128138;</div>
+                  <div class="wf-name">Treatment Reminder</div>
+                  <div class="wf-desc">Remind patients about follow-up treatments and PRP sessions.</div>
+                  <span class="wf-status inactive-wf">Inactive</span>
+                </div>
+              </div>
+              <div class="demo-cta-inline">
+                <p>Automate your clinic's entire patient journey</p>
+                <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- RIGHT: Detail / AI Panel -->
+          <div class="demo-detail">
+            <div class="demo-ai-header">
+              <div class="demo-ai-avatar">AI</div>
+              <div>
+                <div class="demo-ai-name">STOAIX Assistant</div>
+                <div class="demo-ai-status">Online</div>
+              </div>
+            </div>
+
+            <div class="demo-messages" id="demoMessages">
+              <!-- Default state -->
+              <div class="demo-detail-default" id="detailDefault">
+                <div class="detail-icon">&#128172;</div>
+                <p>Select a conversation from the inbox to see how AI handles patient inquiries in real-time.</p>
+              </div>
+            </div>
+
+            <div class="demo-chat-input" id="demoChatInput">
+              <div class="demo-chat-input-inner" id="chatInputTrigger">
+                <span>Type a message...</span>
+              </div>
+            </div>
+
+            <div class="demo-cta-panel" id="demoCTAPanel" style="display:none;">
+              <p>Want to see your own conversations here?</p>
+              <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="demo-bottom-cta">
+      <h2>Ready to Transform Your Clinic?</h2>
+      <p>Join clinics using STOAIX to automate patient communication, qualify leads, and fill their appointment books.</p>
+      <div class="demo-bottom-actions">
+        <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+        <a href="/contact" class="btn-outline-demo">Schedule a Call</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer"></footer>
+
+  <!-- CTA Popup Overlay -->
+  <div class="demo-cta-popup-overlay" id="ctaPopup">
+    <div class="demo-cta-popup">
+      <div class="popup-icon" id="popupIcon">&#128640;</div>
+      <h3 id="popupTitle">Unlock This Feature</h3>
+      <p id="popupText">Start your free trial to access the full platform with your own data.</p>
+      <div class="popup-actions">
+        <button class="popup-close" id="popupClose">Continue Exploring</button>
+        <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/i18n.js" defer></script>
+  <script src="js/components.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+
+    // ===== Conversation Data =====
+    var conversations = {
+      ayse: {
+        name: 'Ayse G.',
+        channel: 'WhatsApp',
+        messages: [
+          { role: 'contact', text: 'Hi, how much does a hair transplant cost?' },
+          { role: 'ai', text: 'Hello Ayse! Thanks for reaching out to Aesthetic Hair Clinic. Our hair transplant pricing depends on the technique and number of grafts needed. For FUE, prices start from $2,500 for up to 2,000 grafts. Would you like to schedule a free video consultation so our specialist can assess your needs?' },
+          { role: 'contact', text: 'That sounds good. What about DHI?' },
+          { role: 'ai', text: 'Great question! DHI (Direct Hair Implantation) is our premium technique starting from $3,200. The key advantages are: no canal opening needed, faster recovery time, and higher graft survival rate. Many of our patients prefer it for the natural-looking results. Would you prefer a morning or afternoon slot for your free consultation?' }
+        ]
+      },
+      mehmet: {
+        name: 'Mehmet K.',
+        channel: 'WhatsApp',
+        messages: [
+          { role: 'contact', text: 'What\'s the difference between FUE and DHI methods?' },
+          { role: 'ai', text: 'Hi Mehmet! Great question. Here\'s a quick comparison:\n\n• FUE: Individual follicle extraction, small incisions, faster procedure, from $2,500\n• DHI: Uses a Choi pen for direct implantation, no canal opening, denser results, from $3,200\n\nBoth methods leave no visible scarring and have 95%+ graft survival rates.' },
+          { role: 'contact', text: 'Which one do you recommend for someone with thin hair at the crown?' },
+          { role: 'ai', text: 'For crown area thinning, I\'d recommend DHI. The Choi pen technique allows for more precise angle control and higher density placement, which is especially important for the crown where natural hair growth patterns matter most. Our Dr. Yilmaz specializes in crown restoration. Shall I check his availability for a consultation this week?' }
+        ]
+      },
+      ali: {
+        name: 'Ali T.',
+        channel: 'WhatsApp',
+        messages: [
+          { role: 'contact', text: 'I\'d like to book an appointment for a hair transplant consultation.' },
+          { role: 'ai', text: 'Of course, Ali! I\'d be happy to help you book a consultation. We offer both in-person and video consultations. Which would you prefer?' },
+          { role: 'contact', text: 'In-person would be better. Do you have anything this week?' },
+          { role: 'ai', text: 'Let me check our availability... We have the following slots this week:\n\n• Thursday, 14:00 - Dr. Yilmaz\n• Friday, 10:00 - Dr. Yilmaz\n• Saturday, 11:00 - Dr. Demir\n\nThe consultation is completely free and takes about 30 minutes. Which slot works best for you?' },
+          { role: 'contact', text: 'Friday at 10 works perfect.' },
+          { role: 'ai', text: 'Excellent! I\'ve booked your consultation for Friday at 10:00 with Dr. Yilmaz. You\'ll receive a confirmation SMS shortly. Please bring any previous medical reports if available. See you Friday, Ali! 😊' }
+        ]
+      },
+      zeynep: {
+        name: 'Zeynep S.',
+        channel: 'WhatsApp',
+        messages: [
+          { role: 'contact', text: 'Can you tell me about hair mesotherapy? Does it really work?' },
+          { role: 'ai', text: 'Hi Zeynep! Hair mesotherapy is a non-surgical treatment where we inject a nutrient-rich cocktail (vitamins, minerals, amino acids) directly into the scalp. It\'s excellent for:\n\n• Slowing down hair loss\n• Strengthening existing hair\n• Improving scalp health\n\nMost patients see visible results after 4-6 sessions. Would you like to know about our mesotherapy packages?' },
+          { role: 'contact', text: 'Yes, what are the prices?' },
+          { role: 'ai', text: 'Our mesotherapy packages:\n\n• Single session: $150\n• 4-session package: $500 (save $100)\n• 8-session package: $900 (save $300) — Most popular!\n\nWe also offer a combined Mesotherapy + PRP package for maximum results at $1,200 for 6 sessions. This is our most effective treatment for hair thinning. Would you like to book a consultation to discuss which option is best for your hair type?' }
+        ]
+      },
+      burak: {
+        name: 'Burak D.',
+        channel: 'Voice',
+        messages: [
+          { role: 'contact', text: 'I need about 3000 grafts. How long does the procedure take?' },
+          { role: 'ai', text: 'Hi Burak! A 3,000 graft transplant typically takes 6-8 hours depending on the technique:\n\n• FUE: ~7-8 hours (with breaks)\n• DHI: ~6-7 hours\n• Sapphire FUE: ~7 hours\n\nWe ensure your comfort throughout with local anesthesia and breaks every 2 hours. Many patients watch movies during the procedure!' },
+          { role: 'contact', text: 'And what about the recovery time?' },
+          { role: 'ai', text: 'Great question! Here\'s the typical recovery timeline:\n\n• Day 1-3: Mild swelling, rest recommended\n• Day 5: First gentle wash\n• Day 10: Scabs fall off naturally\n• Week 2: Back to work/normal activities\n• Month 3-4: New hair starts growing\n• Month 8-12: Full results visible\n\nWe provide a detailed post-op care kit and 24/7 support line. Would you like to schedule a free assessment to confirm the graft count and get a personalized timeline?' }
+        ]
+      }
+    };
+
+    // ===== View Switching =====
+    var navBtns = document.querySelectorAll('.demo-nav button, .demo-mobile-tabs button');
+    var views = document.querySelectorAll('.demo-view');
+
+    navBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var viewId = btn.dataset.view;
+        // Update all nav buttons (sidebar + mobile)
+        document.querySelectorAll('[data-view]').forEach(function(b) {
+          b.classList.toggle('active', b.dataset.view === viewId);
+        });
+        views.forEach(function(v) {
+          v.classList.toggle('active', v.id === 'view-' + viewId);
+        });
+
+        // Show/hide right panel content based on view
+        if (viewId === 'inbox') {
+          document.getElementById('demoCTAPanel').style.display = 'none';
+          document.getElementById('demoChatInput').style.display = 'block';
+        } else {
+          document.getElementById('demoChatInput').style.display = 'none';
+          document.getElementById('demoCTAPanel').style.display = 'block';
+          // Reset messages to default
+          showDefaultDetail();
+        }
+      });
+    });
+
+    // ===== Conversation Selection =====
+    var convItems = document.querySelectorAll('.demo-conv-item');
+    convItems.forEach(function(item) {
+      item.addEventListener('click', function() {
+        convItems.forEach(function(c) { c.classList.remove('active'); });
+        item.classList.add('active');
+        showConversation(item.dataset.conv);
+      });
+    });
+
+    function showConversation(id) {
+      var conv = conversations[id];
+      if (!conv) return;
+      var container = document.getElementById('demoMessages');
+      var html = '';
+      conv.messages.forEach(function(m) {
+        var lines = m.text.split('\n').map(function(line) {
+          return line.replace(/•/g, '&bull;');
+        }).join('<br>');
+        html += '<div class="demo-msg demo-msg-' + m.role + '">' +
+                  '<div class="demo-msg-bubble">' + lines + '</div>' +
+                '</div>';
+      });
+      container.innerHTML = html;
+      // Scroll to bottom
+      container.scrollTop = container.scrollHeight;
+      // Show chat input, hide CTA panel
+      document.getElementById('demoChatInput').style.display = 'block';
+      document.getElementById('demoCTAPanel').style.display = 'none';
+    }
+
+    function showDefaultDetail() {
+      document.getElementById('demoMessages').innerHTML =
+        '<div class="demo-detail-default" id="detailDefault">' +
+          '<div class="detail-icon">&#128172;</div>' +
+          '<p>Select a conversation from the inbox to see how AI handles patient inquiries in real-time.</p>' +
+        '</div>';
+    }
+
+    // ===== CTA Popup =====
+    var popup = document.getElementById('ctaPopup');
+    var popupClose = document.getElementById('popupClose');
+
+    function showCTAPopup(icon, title, text) {
+      document.getElementById('popupIcon').textContent = icon;
+      document.getElementById('popupTitle').textContent = title;
+      document.getElementById('popupText').textContent = text;
+      popup.classList.add('active');
+    }
+
+    popupClose.addEventListener('click', function() {
+      popup.classList.remove('active');
+    });
+    popup.addEventListener('click', function(e) {
+      if (e.target === popup) popup.classList.remove('active');
+    });
+
+    // Lead card clicks
+    document.querySelectorAll('[data-cta="lead"]').forEach(function(card) {
+      card.addEventListener('click', function() {
+        showCTAPopup('&#128202;', 'Manage Your Lead Pipeline', 'Drag and drop leads, track scores automatically, and let AI qualify prospects for you.');
+      });
+    });
+
+    // Workflow card clicks
+    document.querySelectorAll('[data-cta="workflow"]').forEach(function(card) {
+      card.addEventListener('click', function() {
+        showCTAPopup('&#9889;', 'Automate Your Workflows', 'Activate pre-built AI workflows to handle follow-ups, reminders, and more — automatically.');
+      });
+    });
+
+    // Chat input click
+    document.getElementById('chatInputTrigger').addEventListener('click', function() {
+      showCTAPopup('&#128172;', 'Talk to Your Own Patients', 'Start your free trial to connect WhatsApp, Voice AI, and manage real conversations.');
+    });
+
+    // Keyboard escape to close popup
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') popup.classList.remove('active');
+    });
+
+  });
+  </script>
+</body>
+</html>
