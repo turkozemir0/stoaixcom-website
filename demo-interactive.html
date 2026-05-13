@@ -1229,6 +1229,127 @@
     @media (max-width: 480px) {
       .demo-stats-grid { grid-template-columns: 1fr; }
     }
+
+    /* ===== STOA Support Agent ===== */
+    .stoa-fab {
+      position: absolute; bottom: 20px; right: 20px; z-index: 45;
+      width: 52px; height: 52px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--brand-500), var(--brand-600));
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(14,165,233,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .stoa-fab:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(14,165,233,0.45); }
+    .stoa-fab svg { width: 26px; height: 26px; color: #fff; }
+    .stoa-fab .fab-close { display: none; }
+    .stoa-fab.open .fab-bot { display: none; }
+    .stoa-fab.open .fab-close { display: block; }
+
+    .stoa-bubble {
+      position: absolute; bottom: 80px; right: 20px; z-index: 44;
+      background: #fff; border-radius: 14px; padding: 12px 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+      font-size: 0.78rem; color: #0f172a; max-width: 240px;
+      opacity: 0; transform: translateY(8px); pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .stoa-bubble.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .stoa-bubble::after {
+      content: ''; position: absolute; bottom: -6px; right: 24px;
+      width: 12px; height: 12px; background: #fff;
+      transform: rotate(45deg); box-shadow: 2px 2px 4px rgba(0,0,0,0.06);
+    }
+    .stoa-bubble-close {
+      position: absolute; top: 4px; right: 8px;
+      background: none; border: none; cursor: pointer;
+      font-size: 0.85rem; color: var(--slate-400); line-height: 1;
+    }
+
+    .stoa-panel {
+      position: absolute; bottom: 80px; right: 20px; z-index: 46;
+      width: 360px; max-height: 480px;
+      background: #fff; border-radius: 16px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.16);
+      display: none; flex-direction: column;
+      overflow: hidden;
+      animation: stoaPanelIn 0.25s ease;
+    }
+    .stoa-panel.open { display: flex; }
+    @keyframes stoaPanelIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .stoa-panel-header {
+      background: linear-gradient(135deg, var(--brand-500), var(--brand-600));
+      padding: 16px 18px;
+      display: flex; align-items: center; gap: 10px;
+      color: #fff; flex-shrink: 0;
+    }
+    .stoa-panel-header-icon {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: rgba(255,255,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .stoa-panel-header-icon svg { width: 20px; height: 20px; color: #fff; }
+    .stoa-panel-header-text h4 { font-size: 0.85rem; font-weight: 600; }
+    .stoa-panel-header-text p { font-size: 0.65rem; opacity: 0.85; margin-top: 1px; }
+    .stoa-panel-body {
+      flex: 1; overflow-y: auto; padding: 16px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .stoa-msg {
+      display: flex; gap: 8px; align-items: flex-start;
+    }
+    .stoa-msg-avatar {
+      width: 28px; height: 28px; border-radius: 8px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--brand-500), var(--accent-400));
+      display: flex; align-items: center; justify-content: center;
+    }
+    .stoa-msg-avatar svg { width: 14px; height: 14px; color: #fff; }
+    .stoa-msg-bubble {
+      background: var(--slate-50);
+      border-radius: 12px; border-top-left-radius: 4px;
+      padding: 10px 14px;
+      font-size: 0.78rem; color: #0f172a; line-height: 1.55;
+      max-width: 85%;
+    }
+    .stoa-chips {
+      display: flex; flex-wrap: wrap; gap: 6px; padding: 0 4px;
+    }
+    .stoa-chip {
+      padding: 7px 14px; border-radius: 20px;
+      border: 1px solid var(--slate-200);
+      background: #fff; font-size: 0.72rem; color: var(--slate-700);
+      cursor: pointer; font-family: var(--font);
+      transition: all 0.15s;
+    }
+    .stoa-chip:hover { border-color: var(--brand-500); color: var(--brand-500); background: rgba(14,165,233,0.04); }
+    .stoa-panel-input {
+      padding: 12px 16px; border-top: 1px solid var(--slate-100);
+      display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+    }
+    .stoa-panel-input input {
+      flex: 1; border: 1px solid var(--slate-200); border-radius: 10px;
+      padding: 9px 14px; font-size: 0.78rem; font-family: var(--font);
+      outline: none; transition: border-color 0.15s;
+    }
+    .stoa-panel-input input:focus { border-color: var(--brand-500); }
+    .stoa-panel-input button {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--brand-500), var(--brand-600));
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.15s;
+    }
+    .stoa-panel-input button:hover { transform: scale(1.05); }
+    .stoa-panel-input button svg { width: 16px; height: 16px; color: #fff; }
+
+    @media (max-width: 768px) {
+      .stoa-panel { width: calc(100vw - 32px); right: 16px; bottom: 76px; max-height: 400px; }
+      .stoa-fab { bottom: 16px; right: 16px; width: 48px; height: 48px; }
+      .stoa-bubble { right: 16px; bottom: 72px; }
+    }
   </style>
 </head>
 <body>
@@ -1747,6 +1868,49 @@
             </div>
 
           </div><!-- /demo-main -->
+          <!-- STOA Support Agent -->
+          <div class="stoa-bubble" id="stoaBubble">
+            <button class="stoa-bubble-close" id="stoaBubbleClose">&times;</button>
+            Merhaba, ben <strong>STOA</strong>! Yardıma ihtiyacınız var mı? 👋
+          </div>
+          <div class="stoa-panel" id="stoaPanel">
+            <div class="stoa-panel-header">
+              <div class="stoa-panel-header-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+              </div>
+              <div class="stoa-panel-header-text">
+                <h4>STOA Destek Asistanı</h4>
+                <p>Genellikle anında yanıt verir</p>
+              </div>
+            </div>
+            <div class="stoa-panel-body">
+              <div class="stoa-msg">
+                <div class="stoa-msg-avatar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                </div>
+                <div class="stoa-msg-bubble">
+                  Merhaba! Ben <strong>STOA</strong>, stoaix platformunun AI destek asistanıyım. 👋<br><br>Size nasıl yardımcı olabilirim?
+                </div>
+              </div>
+              <div class="stoa-chips">
+                <button class="stoa-chip" onclick="showCTA('🤖','STOA Destek Asistanı','Gerçek zamanlı AI destek asistanınız her zaman yanınızda. Platformunuza entegre edin.')">Platformu tanıtır mısın?</button>
+                <button class="stoa-chip" onclick="showCTA('💰','Fiyatlandırma Bilgisi','Kliniğinize özel plan seçeneklerini keşfedin. Esnek ödeme ve ücretsiz deneme.')">Fiyatlar hakkında bilgi</button>
+                <button class="stoa-chip" onclick="showCTA('🔧','Teknik Destek','7/24 teknik destek ekibimiz ve AI asistanımız her zaman yardımınıza hazır.')">Teknik destek istiyorum</button>
+                <button class="stoa-chip" onclick="showCTA('📞','Demo Randevusu','Kişiselleştirilmiş demo ile platformun gücünü keşfedin. Hemen randevu alın.')">Demo randevusu alabilir miyim?</button>
+              </div>
+            </div>
+            <div class="stoa-panel-input">
+              <input type="text" placeholder="Bir mesaj yazın..." onclick="showCTA('💬','STOA Destek Asistanı','Kendi müşterileriniz için AI destek asistanı oluşturun. 7/24 çalışsın, anında yanıt versin.')" readonly />
+              <button onclick="showCTA('💬','STOA Destek Asistanı','Kendi müşterileriniz için AI destek asistanı oluşturun. 7/24 çalışsın, anında yanıt versin.')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+              </button>
+            </div>
+          </div>
+          <button class="stoa-fab" id="stoaFab" title="STOA Destek Asistanı">
+            <svg class="fab-bot" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+            <svg class="fab-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+          </button>
+
         </div><!-- /demo-body -->
       </div><!-- /demo-window -->
 
@@ -2015,6 +2179,44 @@
         showCTA('⚡', 'Kliniğinizin iş akışlarını otomatikleştirin', 'Hazır AI iş akışlarını aktive edin — takip, hatırlatma, anket ve daha fazlası otomatik çalışsın.');
       });
     });
+
+    // ===== STOA Support Agent =====
+    var stoaFab = document.getElementById('stoaFab');
+    var stoaPanel = document.getElementById('stoaPanel');
+    var stoaBubble = document.getElementById('stoaBubble');
+    var stoaBubbleClose = document.getElementById('stoaBubbleClose');
+    var stoaPanelOpen = false;
+
+    // Show proactive bubble after 4s
+    setTimeout(function() {
+      if (!stoaPanelOpen) stoaBubble.classList.add('visible');
+    }, 4000);
+
+    // Auto-hide bubble after 10s
+    setTimeout(function() {
+      if (!stoaPanelOpen) stoaBubble.classList.remove('visible');
+    }, 14000);
+
+    stoaBubbleClose.addEventListener('click', function(e) {
+      e.stopPropagation();
+      stoaBubble.classList.remove('visible');
+    });
+
+    stoaBubble.addEventListener('click', function() {
+      stoaBubble.classList.remove('visible');
+      toggleStoaPanel();
+    });
+
+    stoaFab.addEventListener('click', function() {
+      toggleStoaPanel();
+    });
+
+    function toggleStoaPanel() {
+      stoaPanelOpen = !stoaPanelOpen;
+      stoaPanel.classList.toggle('open');
+      stoaFab.classList.toggle('open');
+      stoaBubble.classList.remove('visible');
+    }
 
   });
   </script>
