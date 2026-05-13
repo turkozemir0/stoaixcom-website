@@ -1360,10 +1360,20 @@ ul { list-style: none; }
 }
 
 @media (max-width: 768px) {
-  /* Override Arcade's inline padding-bottom so the embed is tall enough to tap */
+  .demo-embed-wrap {
+    margin-top: 24px;
+    border-radius: 10px;
+    box-shadow: 0 8px 32px rgba(0,0,0,.20);
+  }
   .demo-embed-wrap > div {
-    padding-bottom: 75% !important;
-    min-height: 340px;
+    padding-bottom: 0 !important;
+    height: auto !important;
+    min-height: 80vh;
+  }
+  .demo-embed-wrap > div > iframe {
+    position: relative !important;
+    height: 80vh !important;
+    min-height: 560px;
   }
 }
 
