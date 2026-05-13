@@ -667,6 +667,26 @@
     .chat-empty svg { width: 40px; height: 40px; color: var(--slate-300); }
     .chat-empty p { font-size: 0.85rem; }
 
+    /* Chat conversation summary */
+    .chat-summary {
+      margin: 0 16px 8px;
+      padding: 10px 14px;
+      background: linear-gradient(to right, rgba(14,165,233,0.05), rgba(45,212,191,0.03));
+      border: 1px solid var(--slate-200);
+      border-radius: 10px;
+    }
+    .chat-summary-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--slate-700);
+      margin-bottom: 6px;
+    }
+    .chat-summary-text {
+      font-size: 0.72rem;
+      color: var(--slate-600);
+      line-height: 1.6;
+    }
+
     /* ===== Calls View ===== */
     .calls-table {
       width: 100%;
@@ -1262,6 +1282,9 @@
       .chat-messages { padding: 10px; min-height: 200px; }
       .msg-bubble { max-width: 88%; font-size: 0.78rem; }
       .chat-input-area { padding: 8px 10px; }
+      .chat-empty { padding: 20px; gap: 6px; }
+      .chat-empty svg { width: 24px; height: 24px; }
+      .chat-empty p { font-size: 0.7rem; }
 
       /* Calls table */
       .calls-table { font-size: 0.7rem; }
@@ -2187,6 +2210,12 @@
       });
     });
 
+    // Auto-open first conversation on mobile
+    if (window.innerWidth <= 768 && inboxItems.length > 0) {
+      inboxItems[0].classList.add('active');
+      showConversation(convKeys[0]);
+    }
+
     function showConversation(id) {
       var conv = conversations[id];
       if (!conv) return;
@@ -2202,6 +2231,18 @@
           '<div class="msg-bubble">' + senderLabel + lines + '<div class="msg-time">' + m.time + '</div></div></div>';
       });
       html += '</div>';
+      // Conversation summary for Ayşe
+      if (id === 'ayse') {
+        html += '<div class="chat-summary">' +
+          '<div class="chat-summary-title">📋 Konuşma Özeti</div>' +
+          '<div class="chat-summary-text">' +
+            '<strong>İlgi:</strong> DHI saç ekimi (eşi için)<br>' +
+            '<strong>Bütçe:</strong> 3.000 - 4.000 €<br>' +
+            '<strong>Durum:</strong> Fotoğraf analizi bekleniyor<br>' +
+            '<strong>Skor:</strong> <span style="color:#ef4444;font-weight:700">85/100 🔥</span>' +
+          '</div>' +
+        '</div>';
+      }
       html += '<div class="chat-input-area"><div class="chat-input-wrap" id="chatInputTrigger">' +
         '<span>Mesaj yazın...</span>' +
         '<div class="chat-input-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>' +
