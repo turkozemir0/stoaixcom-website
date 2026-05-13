@@ -20,6 +20,26 @@
   <meta property="og:site_name" content="STOAIX" />
 
   <style>
+    /* ===== Reset & Base ===== */
+    *,:before,:after{box-sizing:border-box;margin:0;padding:0}
+    :root {
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      --sidebar-w: 200px;
+      --brand-500: #0ea5e9;
+      --brand-600: #0284c7;
+      --accent-400: #2dd4bf;
+      --slate-950: #0f172a;
+      --slate-900: #0f172a;
+      --slate-800: #1e293b;
+      --slate-700: #334155;
+      --slate-500: #64748b;
+      --slate-400: #94a3b8;
+      --slate-300: #cbd5e1;
+      --slate-200: #e2e8f0;
+      --slate-100: #f1f5f9;
+      --slate-50: #f8fafc;
+    }
+
     /* ===== Demo Hero ===== */
     .demo-hero {
       padding: 120px 0 48px;
@@ -30,9 +50,9 @@
       align-items: center;
       gap: 8px;
       padding: 6px 16px;
-      border-radius: var(--r-full);
-      background: var(--blue-tint);
-      color: var(--blue);
+      border-radius: 9999px;
+      background: rgba(14,165,233,0.08);
+      color: var(--brand-500);
       font-size: 0.8rem;
       font-weight: 600;
       margin-bottom: 20px;
@@ -40,14 +60,14 @@
     .demo-hero h1 {
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 700;
-      color: var(--text);
+      color: #0f172a;
       margin: 0 0 16px;
       line-height: 1.15;
     }
     .demo-hero p {
       font-size: 1.1rem;
-      color: var(--text-2);
-      max-width: 560px;
+      color: var(--slate-500);
+      max-width: 600px;
       margin: 0 auto;
       line-height: 1.6;
     }
@@ -57,26 +77,26 @@
       padding: 0 20px 80px;
     }
 
-    /* ===== Demo Window (macOS-style) ===== */
+    /* ===== Demo Window ===== */
     .demo-window {
       max-width: 1400px;
       margin: 0 auto;
       border-radius: 18px;
-      border: 1px solid var(--border);
-      background: var(--surface);
+      border: 1px solid var(--slate-200);
+      background: #fff;
       box-shadow: 0 28px 83px rgba(0,0,0,0.10), 0 8px 24px rgba(0,0,0,0.06);
       overflow: hidden;
     }
     .demo-titlebar {
       height: 40px;
       background: linear-gradient(180deg, #f7f7f7, #e8e8e8);
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--slate-200);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 0.78rem;
       font-weight: 500;
-      color: var(--text-2);
+      color: var(--slate-500);
       position: relative;
       user-select: none;
     }
@@ -95,120 +115,189 @@
     .demo-dot.yellow { background: #febc2e; }
     .demo-dot.green { background: #28c840; }
 
-    /* ===== Demo Body (3-column grid) ===== */
+    /* ===== Demo Body ===== */
     .demo-body {
-      display: grid;
-      grid-template-columns: 230px 1fr 360px;
-      height: 72vh;
-      min-height: 520px;
-      max-height: 820px;
+      display: flex;
+      height: 74vh;
+      min-height: 540px;
+      max-height: 860px;
+      position: relative;
+      background: radial-gradient(circle at top left, rgba(14,165,233,0.10), transparent 26%), radial-gradient(circle at top right, rgba(20,184,166,0.08), transparent 24%);
     }
 
-    /* ===== Sidebar ===== */
+    /* ===== Sidebar (Dark) ===== */
     .demo-sidebar {
-      border-right: 1px solid var(--border);
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      background: var(--slate-950);
       display: flex;
       flex-direction: column;
-      background: var(--bg-2);
+      position: relative;
+      overflow: hidden;
     }
-    .demo-org-info {
-      padding: 18px 16px 12px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--text);
-      border-bottom: 1px solid var(--border);
+    .demo-sidebar .sidebar-glow {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      top: 0;
+      height: 160px;
+      background: radial-gradient(circle at top, rgba(56,189,248,0.24), transparent 70%);
+    }
+    .demo-org-header {
+      padding: 16px 14px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.10);
       display: flex;
       align-items: center;
       gap: 10px;
+      position: relative;
+      z-index: 1;
     }
     .demo-org-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: var(--r-sm);
-      background: var(--blue);
+      width: 32px; height: 32px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--brand-500), var(--accent-400));
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(14,165,233,0.20);
     }
+    .demo-org-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Nav */
     .demo-nav {
-      padding: 12px 10px;
+      padding: 14px 8px;
       display: flex;
       flex-direction: column;
       gap: 2px;
       flex: 1;
+      position: relative;
+      z-index: 1;
     }
     .demo-nav button {
       width: 100%;
       text-align: left;
-      padding: 9px 12px;
-      border-radius: var(--r-sm);
+      padding: 8px 10px;
+      border-radius: 10px;
       border: none;
       background: none;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       font-weight: 500;
-      color: var(--text-2);
+      color: var(--slate-300);
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       transition: all 0.15s ease;
       font-family: var(--font);
+      position: relative;
     }
-    .demo-nav button svg {
-      width: 18px;
-      height: 18px;
+    .demo-nav button .nav-icon-wrap {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
       flex-shrink: 0;
-      opacity: 0.6;
     }
-    .demo-nav button.active svg { opacity: 1; }
-    .demo-nav button.active {
-      background: var(--blue-tint);
-      color: var(--blue);
-      font-weight: 600;
+    .demo-nav button .nav-icon-wrap svg {
+      width: 15px; height: 15px;
+      color: var(--slate-400);
+      transition: color 0.15s ease;
     }
-    .demo-nav button:hover:not(.active) {
-      background: var(--bg-3);
-      color: var(--text);
-    }
-    .demo-nav .nav-badge {
+    .demo-nav button .nav-badge {
       margin-left: auto;
-      background: var(--blue);
+      background: var(--brand-500);
       color: #fff;
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 700;
-      padding: 2px 7px;
-      border-radius: var(--r-full);
+      padding: 1px 6px;
+      border-radius: 9999px;
+      min-width: 18px;
+      text-align: center;
     }
-    .demo-sidebar-stats {
-      padding: 14px 16px;
-      border-top: 1px solid var(--border);
-      font-size: 0.75rem;
-      color: var(--text-3);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+    .demo-nav button .nav-dot {
+      margin-left: auto;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(125,211,252,0.9);
+      box-shadow: 0 0 10px rgba(125,211,252,0.9);
+      display: none;
     }
-    .demo-sidebar-stats span {
-      display: flex;
-      justify-content: space-between;
-    }
-    .demo-sidebar-stats strong {
-      color: var(--text);
+    .demo-nav button.active {
+      background: linear-gradient(to right, rgba(14,165,233,0.22), rgba(45,212,191,0.12));
+      color: #fff;
       font-weight: 600;
+      box-shadow: inset 0 0 0 1px rgba(56,189,248,0.25);
+    }
+    .demo-nav button.active .nav-icon-wrap {
+      border-color: rgba(125,211,252,0.30);
+      background: rgba(56,189,248,0.15);
+    }
+    .demo-nav button.active .nav-icon-wrap svg { color: #bae6fd; }
+    .demo-nav button.active .nav-dot { display: block; }
+    .demo-nav button:hover:not(.active) {
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+    }
+    .demo-nav button:hover:not(.active) .nav-icon-wrap {
+      border-color: rgba(255,255,255,0.15);
     }
 
-    /* ===== Center Panel ===== */
+    /* Sidebar footer */
+    .demo-sidebar-footer {
+      padding: 10px 10px 14px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      position: relative;
+      z-index: 1;
+    }
+    .demo-sidebar-footer .mini-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+    .demo-sidebar-footer .mini-stat {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px;
+      padding: 8px 10px;
+      text-align: center;
+    }
+    .demo-sidebar-footer .mini-stat .ms-val {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      display: block;
+    }
+    .demo-sidebar-footer .mini-stat .ms-lbl {
+      font-size: 0.6rem;
+      color: var(--slate-400);
+      display: block;
+      margin-top: 2px;
+    }
+
+    /* ===== Main Content ===== */
     .demo-main {
+      flex: 1;
       overflow-y: auto;
-      background: #fff;
+      background: transparent;
+      min-width: 0;
     }
     .demo-view {
       display: none;
-      padding: 24px;
       animation: fadeIn 0.25s ease;
     }
     .demo-view.active { display: block; }
@@ -217,723 +306,799 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* -- Overview Stats -- */
+    /* ===== TopBar ===== */
+    .demo-topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,0.80);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--slate-100);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .demo-topbar h2 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .demo-topbar .topbar-sub {
+      font-size: 0.78rem;
+      color: var(--slate-500);
+      margin-top: 1px;
+    }
+
+    /* ===== Cards ===== */
+    .d-card {
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--slate-100);
+      box-shadow: 0 1px 3px rgba(14,165,233,0.03);
+    }
+    .d-card-header {
+      padding: 14px 20px;
+      border-bottom: 1px solid var(--slate-50);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .d-card-header h3 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--slate-700);
+    }
+    .d-card-body { padding: 20px; }
+
+    /* ===== Stat Cards ===== */
     .demo-stats-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 14px;
-      margin-bottom: 24px;
+      padding: 20px 24px 0;
     }
     .demo-stat-card {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--slate-100);
+      box-shadow: 0 1px 3px rgba(14,165,233,0.03);
       padding: 16px;
-    }
-    .demo-stat-card .stat-label {
-      font-size: 0.75rem;
-      color: var(--text-3);
-      font-weight: 500;
-      margin-bottom: 6px;
-    }
-    .demo-stat-card .stat-value {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-    }
-    .demo-stat-card .stat-change {
-      font-size: 0.72rem;
-      color: var(--green);
-      font-weight: 500;
-      margin-top: 4px;
-    }
-
-    /* -- Overview Chart Placeholder -- */
-    .demo-chart-placeholder {
-      background: var(--bg-2);
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 20px;
-      margin-bottom: 24px;
-    }
-    .demo-chart-placeholder .chart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-    .demo-chart-placeholder .chart-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-    .demo-chart-placeholder .chart-period {
-      font-size: 0.75rem;
-      color: var(--text-3);
-      padding: 4px 10px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-full);
-    }
-    .demo-chart-bars {
-      display: flex;
-      align-items: flex-end;
-      gap: 6px;
-      height: 120px;
-      padding-top: 10px;
-    }
-    .demo-chart-bar {
-      flex: 1;
-      background: var(--blue-tint);
-      border-radius: 4px 4px 0 0;
-      min-height: 8px;
-      transition: background 0.2s;
-      position: relative;
-    }
-    .demo-chart-bar:hover {
-      background: var(--blue-mid);
-    }
-    .demo-chart-bar .bar-fill {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--blue);
-      border-radius: 4px 4px 0 0;
-      opacity: 0.7;
-    }
-
-    /* -- Recent Activity -- */
-    .demo-activity-list {
-      display: flex;
-      flex-direction: column;
-    }
-    .demo-activity-list h3 {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 12px;
-    }
-    .demo-activity-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.83rem;
+      gap: 14px;
     }
-    .demo-activity-item:last-child { border-bottom: none; }
-    .demo-activity-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .demo-activity-dot.blue { background: var(--blue); }
-    .demo-activity-dot.green { background: var(--green); }
-    .demo-activity-dot.orange { background: #f59e0b; }
-    .demo-activity-time {
-      margin-left: auto;
-      font-size: 0.72rem;
-      color: var(--text-3);
-      flex-shrink: 0;
-    }
-
-    /* -- Inbox: Conversation List -- */
-    .demo-conv-list {
-      display: flex;
-      flex-direction: column;
-    }
-    .demo-conv-item {
-      padding: 14px 16px;
-      border-bottom: 1px solid var(--border);
-      cursor: pointer;
-      transition: background 0.15s;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-    .demo-conv-item:hover { background: var(--bg-2); }
-    .demo-conv-item.active { background: var(--blue-tint); }
-    .demo-conv-avatar {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: var(--blue-mid);
-      color: var(--blue);
+    .stat-icon-wrap {
+      width: 44px; height: 44px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 700;
       flex-shrink: 0;
     }
-    .demo-conv-info { flex: 1; min-width: 0; }
-    .demo-conv-name {
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: var(--text);
-      margin-bottom: 3px;
+    .stat-icon-wrap svg { width: 20px; height: 20px; }
+    .stat-icon-wrap.blue { background: #eff6ff; color: #2563eb; }
+    .stat-icon-wrap.red { background: #fef2f2; color: #dc2626; }
+    .stat-icon-wrap.amber { background: #fffbeb; color: #d97706; }
+    .stat-icon-wrap.green { background: #f0fdf4; color: #16a34a; }
+    .stat-icon-wrap.purple { background: #faf5ff; color: #9333ea; }
+    .stat-icon-wrap.teal { background: #f0fdfa; color: #0d9488; }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--slate-500);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .stat-value {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .stat-change {
+      font-size: 0.68rem;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .stat-change.up { color: #16a34a; }
+    .stat-change.down { color: #dc2626; }
+
+    /* ===== Overview Content ===== */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding: 14px 24px 24px;
+    }
+    /* Activity feed */
+    .activity-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--slate-50);
+    }
+    .activity-item:last-child { border-bottom: none; }
+    .activity-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+    .activity-text {
+      font-size: 0.8rem;
+      color: var(--slate-700);
+      line-height: 1.4;
+    }
+    .activity-time {
+      font-size: 0.68rem;
+      color: var(--slate-400);
+      margin-top: 2px;
+    }
+    /* Chart placeholder */
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 5px;
+      height: 110px;
+      padding-top: 8px;
+    }
+    .chart-bar {
+      flex: 1;
+      border-radius: 4px 4px 0 0;
+      min-height: 6px;
+      position: relative;
+      transition: opacity 0.2s;
+    }
+    .chart-bar:hover { opacity: 0.8; }
+
+    /* ===== Inbox View ===== */
+    .inbox-layout {
+      display: flex;
+      height: 100%;
+    }
+    .inbox-list {
+      width: 280px;
+      flex-shrink: 0;
+      border-right: 1px solid var(--slate-200);
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .inbox-search {
+      padding: 12px;
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .inbox-search input {
+      width: 100%;
+      padding: 7px 12px 7px 32px;
+      font-size: 0.78rem;
+      border: 1px solid var(--slate-200);
+      border-radius: 8px;
+      background: var(--slate-50) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 10px center;
+      outline: none;
+      font-family: var(--font);
+      color: #0f172a;
+    }
+    .inbox-search input:focus { border-color: var(--brand-500); box-shadow: 0 0 0 2px rgba(14,165,233,0.12); }
+    .inbox-items { flex: 1; overflow-y: auto; }
+    .inbox-item {
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      border: none;
+      border-bottom: 1px solid var(--slate-50);
+      background: none;
+      cursor: pointer;
+      display: flex;
+      gap: 10px;
+      transition: background 0.12s;
+      font-family: var(--font);
+    }
+    .inbox-item:hover { background: var(--slate-50); }
+    .inbox-item.active { background: rgba(14,165,233,0.06); }
+    .inbox-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 8px;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
     }
-    .demo-conv-name .channel-tag {
-      font-size: 0.65rem;
-      font-weight: 500;
-      padding: 1px 6px;
-      border-radius: var(--r-full);
-      background: #dcfce7;
-      color: #16a34a;
+    .inbox-meta { flex: 1; min-width: 0; }
+    .inbox-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    .demo-conv-preview {
-      font-size: 0.78rem;
-      color: var(--text-3);
+    .inbox-name .flag { font-size: 0.85rem; }
+    .inbox-preview {
+      font-size: 0.72rem;
+      color: var(--slate-500);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      margin-top: 2px;
     }
-    .demo-conv-meta {
+    .inbox-time-col {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       gap: 4px;
       flex-shrink: 0;
     }
-    .demo-conv-time {
-      font-size: 0.7rem;
-      color: var(--text-3);
+    .inbox-time {
+      font-size: 0.65rem;
+      color: var(--slate-400);
     }
-    .demo-conv-unread {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--blue);
-    }
-
-    /* -- Calls View -- */
-    .demo-calls-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    .demo-calls-table th {
-      text-align: left;
-      font-size: 0.72rem;
+    .inbox-channel {
+      font-size: 0.58rem;
       font-weight: 600;
-      color: var(--text-3);
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 8px 12px;
-      border-bottom: 2px solid var(--border);
+      padding: 1px 5px;
+      border-radius: 4px;
+      border: 1px solid;
     }
-    .demo-calls-table td {
-      padding: 12px;
-      font-size: 0.83rem;
-      color: var(--text);
-      border-bottom: 1px solid var(--border);
-    }
-    .demo-calls-table tr:hover td { background: var(--bg-2); }
-    .call-type {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.78rem;
-      font-weight: 500;
-    }
-    .call-type.inbound { color: var(--blue); }
-    .call-type.outbound { color: #8b5cf6; }
-    .call-status-badge {
-      font-size: 0.7rem;
-      padding: 2px 8px;
-      border-radius: var(--r-full);
-      font-weight: 500;
-    }
-    .call-status-badge.ai { background: var(--blue-tint); color: var(--blue); }
-    .call-status-badge.human { background: #fef3c7; color: #d97706; }
+    .ch-wa { background: #ecfdf5; color: #059669; border-color: #a7f3d0; }
+    .ch-voice { background: #f5f3ff; color: #7c3aed; border-color: #ddd6fe; }
 
-    /* -- Leads Pipeline (Kanban) -- */
-    .demo-pipeline {
-      display: flex;
-      gap: 14px;
-      overflow-x: auto;
-      padding-bottom: 8px;
-    }
-    .demo-pipeline-col {
-      min-width: 200px;
+    /* Chat panel */
+    .inbox-chat {
       flex: 1;
-      background: var(--bg-2);
-      border-radius: var(--r-md);
-      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      min-width: 0;
     }
-    .demo-pipeline-header {
+    .chat-header {
+      padding: 12px 20px;
+      border-bottom: 1px solid var(--slate-200);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      font-size: 0.78rem;
+      gap: 12px;
+      background: #fff;
+    }
+    .chat-header-name {
+      font-size: 0.88rem;
       font-weight: 600;
-      color: var(--text-2);
+      color: #0f172a;
     }
-    .demo-pipeline-count {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 1px 8px;
-      border-radius: var(--r-full);
-      font-size: 0.7rem;
-      font-weight: 700;
-    }
-    .demo-lead-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--r-sm);
-      padding: 12px;
-      margin-bottom: 8px;
-      cursor: pointer;
-      transition: box-shadow 0.15s, transform 0.15s;
-    }
-    .demo-lead-card:hover {
-      box-shadow: var(--shadow-sm);
-      transform: translateY(-1px);
-    }
-    .demo-lead-card .lead-name {
-      font-weight: 600;
-      font-size: 0.83rem;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    .demo-lead-card .lead-detail {
-      font-size: 0.72rem;
-      color: var(--text-3);
-      margin-bottom: 6px;
-    }
-    .demo-lead-card .lead-score {
-      display: inline-block;
+    .chat-header-status {
       font-size: 0.68rem;
-      font-weight: 700;
-      padding: 2px 8px;
-      border-radius: var(--r-full);
+      color: var(--slate-500);
     }
-    .lead-score.high { background: #dcfce7; color: #16a34a; }
-    .lead-score.mid { background: #fef3c7; color: #d97706; }
-    .lead-score.low { background: var(--bg-3); color: var(--text-3); }
-
-    /* -- Knowledge Base -- */
-    .demo-kb-list {
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 20px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-    }
-    .demo-kb-item {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 14px 16px;
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      background: var(--surface);
-      transition: border-color 0.15s;
-    }
-    .demo-kb-item:hover { border-color: var(--blue-mid); }
-    .demo-kb-icon {
-      width: 36px;
-      height: 36px;
-      border-radius: var(--r-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 1rem;
-    }
-    .demo-kb-icon.service { background: var(--blue-tint); }
-    .demo-kb-icon.faq { background: #f0fdf4; }
-    .demo-kb-info { flex: 1; }
-    .demo-kb-info .kb-name {
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: var(--text);
-    }
-    .demo-kb-info .kb-type {
-      font-size: 0.72rem;
-      color: var(--text-3);
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-    .demo-kb-status {
-      font-size: 0.72rem;
-      padding: 3px 10px;
-      border-radius: var(--r-full);
-      background: #dcfce7;
-      color: #16a34a;
-      font-weight: 500;
-    }
-
-    /* -- Workflows -- */
-    .demo-wf-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-    .demo-wf-card {
-      border: 1px solid var(--border);
-      border-radius: var(--r-md);
-      padding: 18px;
-      background: var(--surface);
-      cursor: pointer;
-      transition: border-color 0.15s, box-shadow 0.15s;
-    }
-    .demo-wf-card:hover {
-      border-color: var(--blue-mid);
-      box-shadow: var(--shadow-sm);
-    }
-    .demo-wf-card .wf-icon {
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-    .demo-wf-card .wf-name {
-      font-weight: 600;
-      font-size: 0.88rem;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    .demo-wf-card .wf-desc {
-      font-size: 0.78rem;
-      color: var(--text-3);
-      line-height: 1.4;
-      margin-bottom: 10px;
-    }
-    .demo-wf-card .wf-status {
-      font-size: 0.72rem;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: var(--r-full);
-    }
-    .wf-status.active-wf { background: #dcfce7; color: #16a34a; }
-    .wf-status.inactive-wf { background: var(--bg-3); color: var(--text-3); }
-
-    /* ===== Right Panel (Detail / AI Chat) ===== */
-    .demo-detail {
-      border-left: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      background: var(--bg-2);
-    }
-    .demo-ai-header {
-      padding: 16px;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      align-items: center;
       gap: 10px;
-      background: var(--surface);
     }
-    .demo-ai-avatar {
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--blue), #8b5cf6);
+    .msg-row { display: flex; }
+    .msg-row.user { justify-content: flex-start; }
+    .msg-row.ai { justify-content: flex-end; }
+    .msg-bubble {
+      max-width: 72%;
+      padding: 10px 14px;
+      font-size: 0.82rem;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .msg-row.user .msg-bubble {
+      background: #fff;
+      border: 1px solid var(--slate-200);
+      border-radius: 16px 16px 16px 4px;
+      color: #0f172a;
+    }
+    .msg-row.ai .msg-bubble {
+      background: linear-gradient(to right, #0ea5e9, #38bdf8);
+      border-radius: 16px 16px 4px 16px;
       color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      font-weight: 700;
     }
-    .demo-ai-name {
+    .msg-sender {
+      font-size: 0.62rem;
       font-weight: 600;
-      font-size: 0.88rem;
-      color: var(--text);
-    }
-    .demo-ai-status {
-      font-size: 0.7rem;
-      color: var(--green);
+      margin-bottom: 3px;
       display: flex;
       align-items: center;
       gap: 4px;
     }
-    .demo-ai-status::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--green);
+    .msg-row.user .msg-sender { color: var(--slate-500); }
+    .msg-row.ai .msg-sender { color: rgba(255,255,255,0.75); }
+    .msg-time {
+      font-size: 0.6rem;
+      margin-top: 4px;
     }
+    .msg-row.user .msg-time { color: var(--slate-400); }
+    .msg-row.ai .msg-time { color: rgba(255,255,255,0.60); }
 
-    /* -- Messages -- */
-    .demo-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .demo-msg { display: flex; }
-    .demo-msg-contact { justify-content: flex-end; }
-    .demo-msg-ai { justify-content: flex-start; }
-    .demo-msg-bubble {
-      max-width: 85%;
-      padding: 10px 14px;
-      border-radius: 14px;
-      font-size: 0.83rem;
-      line-height: 1.5;
-    }
-    .demo-msg-contact .demo-msg-bubble {
-      background: var(--blue);
-      color: #fff;
-      border-bottom-right-radius: 4px;
-    }
-    .demo-msg-ai .demo-msg-bubble {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-      border-bottom-left-radius: 4px;
-    }
-
-    /* -- Default state (no conversation) -- */
-    .demo-detail-default {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 32px;
-      text-align: center;
-      color: var(--text-3);
-    }
-    .demo-detail-default .detail-icon {
-      font-size: 2.5rem;
-      margin-bottom: 12px;
-      opacity: 0.4;
-    }
-    .demo-detail-default p {
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
-    /* -- Chat Input (fake) -- */
-    .demo-chat-input {
+    /* Chat input */
+    .chat-input-area {
+      border-top: 1px solid var(--slate-200);
       padding: 12px 16px;
-      border-top: 1px solid var(--border);
-      background: var(--surface);
+      background: #fff;
     }
-    .demo-chat-input-inner {
+    .chat-input-wrap {
       display: flex;
       align-items: center;
       gap: 8px;
-      border: 1px solid var(--border);
-      border-radius: var(--r-full);
-      padding: 8px 14px;
+      background: var(--slate-50);
+      border-radius: 16px;
+      padding: 6px 8px 6px 14px;
       cursor: pointer;
-      transition: border-color 0.15s;
     }
-    .demo-chat-input-inner:hover { border-color: var(--blue-mid); }
-    .demo-chat-input-inner span {
-      font-size: 0.83rem;
-      color: var(--text-3);
+    .chat-input-wrap span {
+      flex: 1;
+      font-size: 0.8rem;
+      color: var(--slate-400);
+    }
+    .chat-input-btn {
+      width: 34px; height: 34px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(to right, var(--brand-500), #38bdf8);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      flex-shrink: 0;
     }
 
-    /* ===== CTA Overlays ===== */
-    .demo-cta-inline {
-      margin-top: 24px;
-      padding: 20px;
-      background: linear-gradient(135deg, var(--blue-tint), #ede9fe);
-      border-radius: var(--r-md);
+    /* Chat empty state */
+    .chat-empty {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--slate-400);
+      gap: 8px;
+      padding: 40px;
       text-align: center;
     }
-    .demo-cta-inline p {
-      font-size: 0.9rem;
-      color: var(--text);
+    .chat-empty svg { width: 40px; height: 40px; color: var(--slate-300); }
+    .chat-empty p { font-size: 0.85rem; }
+
+    /* ===== Calls View ===== */
+    .calls-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+    }
+    .calls-table th {
+      text-align: left;
+      font-weight: 600;
+      color: var(--slate-500);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .calls-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--slate-50);
+      color: var(--slate-700);
+    }
+    .calls-table tr:hover td { background: var(--slate-50); }
+    .call-dir {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .call-dir.inbound { background: #eff6ff; color: #2563eb; }
+    .call-dir.outbound { background: #f5f3ff; color: #7c3aed; }
+    .call-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.72rem;
       font-weight: 500;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .call-status.completed { background: #f0fdf4; color: #16a34a; }
+    .call-status.missed { background: #fef2f2; color: #dc2626; }
+
+    /* ===== Pipeline View ===== */
+    .pipeline-board {
+      display: flex;
+      gap: 12px;
+      padding: 0 24px 24px;
+      overflow-x: auto;
+    }
+    .pipeline-col {
+      min-width: 180px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .pipeline-col-header {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 8px 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .pipeline-col-header .col-count {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.6);
+    }
+    .pcol-slate .pipeline-col-header { background: var(--slate-100); color: var(--slate-600); }
+    .pcol-blue .pipeline-col-header { background: #dbeafe; color: #1e40af; }
+    .pcol-amber .pipeline-col-header { background: #fef3c7; color: #92400e; }
+    .pcol-red .pipeline-col-header { background: #fee2e2; color: #991b1b; }
+    .pcol-purple .pipeline-col-header { background: #ede9fe; color: #5b21b6; }
+    .pcol-green .pipeline-col-header { background: #dcfce7; color: #166534; }
+    .pcol-emerald .pipeline-col-header { background: #d1fae5; color: #065f46; }
+    .lead-card {
+      background: #fff;
+      border: 1px solid var(--slate-100);
+      border-radius: 10px;
+      padding: 12px;
+      cursor: pointer;
+      transition: box-shadow 0.15s, transform 0.15s;
+    }
+    .lead-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      transform: translateY(-1px);
+    }
+    .lead-card-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .lead-card-service {
+      font-size: 0.68rem;
+      color: var(--slate-500);
+      margin-top: 4px;
+    }
+    .lead-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+    .score-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 9999px;
+      color: #fff;
+    }
+    .score-badge.hot { background: #ef4444; }
+    .score-badge.warm { background: #f59e0b; }
+    .score-badge.cool { background: #94a3b8; }
+    .lead-card-channel {
+      font-size: 0.6rem;
+      color: var(--slate-400);
+    }
+
+    /* ===== AI Assistant View ===== */
+    .ai-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 2px solid var(--slate-100);
+      padding: 0 24px;
+    }
+    .ai-tab {
+      padding: 10px 18px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--slate-500);
+      border: none;
+      background: none;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+      font-family: var(--font);
+      transition: color 0.15s;
+    }
+    .ai-tab.active {
+      color: var(--brand-500);
+      border-bottom-color: var(--brand-500);
+      font-weight: 600;
+    }
+    .ai-tab:hover:not(.active) { color: #0f172a; }
+    .ai-tab-content { display: none; padding: 20px 24px; }
+    .ai-tab-content.active { display: block; }
+
+    /* KB items */
+    .kb-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      border: 1px solid var(--slate-100);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      transition: border-color 0.15s;
+    }
+    .kb-item:hover { border-color: var(--slate-200); }
+    .kb-icon {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    .kb-icon.service { background: #dbeafe; color: #2563eb; }
+    .kb-icon.faq { background: #fef3c7; color: #d97706; }
+    .kb-icon.pricing { background: #dcfce7; color: #16a34a; }
+    .kb-info { flex: 1; min-width: 0; }
+    .kb-name { font-size: 0.82rem; font-weight: 600; color: #0f172a; }
+    .kb-type { font-size: 0.68rem; color: var(--slate-500); margin-top: 1px; }
+    .kb-count {
+      font-size: 0.68rem;
+      color: var(--slate-400);
+      background: var(--slate-50);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Test playground */
+    .playground-wrap {
+      border: 1px solid var(--slate-200);
+      border-radius: 12px;
+      overflow: hidden;
+      max-width: 600px;
+    }
+    .playground-header {
+      background: var(--slate-50);
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--slate-200);
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .playground-messages {
+      padding: 16px;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .playground-input {
+      border-top: 1px solid var(--slate-200);
+      padding: 10px 14px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      cursor: pointer;
+    }
+    .playground-input span {
+      flex: 1;
+      font-size: 0.78rem;
+      color: var(--slate-400);
+      background: var(--slate-50);
+      padding: 8px 12px;
+      border-radius: 8px;
+    }
+
+    /* ===== Workflows View ===== */
+    .wf-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0 24px 24px;
+    }
+    .wf-card {
+      border: 1px solid var(--slate-100);
+      border-radius: 12px;
+      padding: 16px;
+      background: #fff;
+      cursor: pointer;
+      transition: box-shadow 0.15s, border-color 0.15s;
+    }
+    .wf-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      border-color: var(--slate-200);
+    }
+    .wf-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .wf-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .wf-icon svg { width: 18px; height: 18px; }
+    .wf-name { font-size: 0.85rem; font-weight: 600; color: #0f172a; }
+    .wf-desc { font-size: 0.72rem; color: var(--slate-500); line-height: 1.4; }
+    .wf-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+    .wf-status {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .wf-status.active { background: #dcfce7; color: #166534; }
+    .wf-status.draft { background: var(--slate-100); color: var(--slate-500); }
+    .wf-runs {
+      font-size: 0.68rem;
+      color: var(--slate-400);
+    }
+
+    /* ===== CTA Popup ===== */
+    .cta-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+    .cta-overlay.active { display: flex; }
+    .cta-modal {
+      background: #fff;
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+      animation: modalIn 0.25s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95) translateY(10px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .cta-modal-icon {
+      font-size: 2.5rem;
       margin-bottom: 12px;
     }
-    .demo-cta-btn {
+    .cta-modal h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .cta-modal p {
+      font-size: 0.88rem;
+      color: var(--slate-500);
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+    .cta-btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 10px 22px;
-      background: var(--blue);
+      padding: 12px 28px;
+      background: linear-gradient(to right, var(--brand-500), #38bdf8);
       color: #fff;
-      border-radius: var(--r-full);
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 600;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: var(--font);
+      transition: opacity 0.15s;
       text-decoration: none;
-      transition: background 0.2s;
     }
-    .demo-cta-btn:hover { background: var(--blue-h); }
-
-    /* -- CTA Bottom Panel -- */
-    .demo-cta-panel {
-      padding: 16px;
-      background: linear-gradient(to top, var(--blue-tint) 60%, transparent);
-      text-align: center;
-    }
-    .demo-cta-panel p {
-      font-size: 0.85rem;
-      color: var(--text-2);
-      font-weight: 500;
-      margin-bottom: 10px;
-    }
-
-    /* ===== CTA Popup (on lead drag / chat input click) ===== */
-    .demo-cta-popup-overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.4);
-      z-index: 1000;
+    .cta-btn-primary:hover { opacity: 0.9; }
+    .cta-modal-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      border: none;
+      background: var(--slate-100);
+      color: var(--slate-500);
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
       align-items: center;
       justify-content: center;
-      backdrop-filter: blur(4px);
     }
-    .demo-cta-popup-overlay.active { display: flex; }
-    .demo-cta-popup {
-      background: var(--surface);
-      border-radius: var(--r-lg);
-      padding: 40px;
-      max-width: 440px;
-      text-align: center;
-      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
-      animation: popIn 0.3s var(--ease);
-    }
-    @keyframes popIn {
-      from { opacity: 0; transform: scale(0.92) translateY(10px); }
-      to { opacity: 1; transform: scale(1) translateY(0); }
-    }
-    .demo-cta-popup .popup-icon { font-size: 2.2rem; margin-bottom: 14px; }
-    .demo-cta-popup h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-    .demo-cta-popup p {
-      font-size: 0.9rem;
-      color: var(--text-2);
-      margin-bottom: 20px;
-      line-height: 1.5;
-    }
-    .demo-cta-popup .popup-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-    .demo-cta-popup .popup-close {
-      padding: 10px 22px;
-      border: 1px solid var(--border);
-      border-radius: var(--r-full);
-      background: none;
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      color: var(--text-2);
-      font-family: var(--font);
-    }
-    .demo-cta-popup .popup-close:hover { background: var(--bg-2); }
+    .cta-modal { position: relative; }
 
     /* ===== Bottom CTA Section ===== */
     .demo-bottom-cta {
-      padding: 80px 20px;
       text-align: center;
-      background: linear-gradient(180deg, var(--bg-2), var(--surface));
+      padding: 60px 20px 0;
+      max-width: 560px;
+      margin: 0 auto;
     }
     .demo-bottom-cta h2 {
-      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-size: 1.6rem;
       font-weight: 700;
-      color: var(--text);
+      color: #0f172a;
       margin-bottom: 12px;
     }
     .demo-bottom-cta p {
+      color: var(--slate-500);
       font-size: 1rem;
-      color: var(--text-2);
-      margin-bottom: 28px;
-      max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .demo-bottom-actions {
-      display: flex;
-      gap: 14px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-    .demo-bottom-actions .btn-outline-demo {
-      padding: 12px 28px;
-      border: 1px solid var(--border-2);
-      border-radius: var(--r-full);
-      background: var(--surface);
-      color: var(--text);
-      font-size: 0.9rem;
-      font-weight: 600;
-      text-decoration: none;
-      transition: all 0.2s;
-      font-family: var(--font);
-    }
-    .demo-bottom-actions .btn-outline-demo:hover {
-      border-color: var(--blue);
-      color: var(--blue);
+      margin-bottom: 24px;
+      line-height: 1.6;
     }
 
-    /* ===== Mobile Tabs (visible on mobile only) ===== */
-    .demo-mobile-tabs {
+    /* ===== Mobile Tabs ===== */
+    .mobile-tabs {
       display: none;
       overflow-x: auto;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg-2);
-      -webkit-overflow-scrolling: touch;
+      border-bottom: 1px solid var(--slate-200);
+      background: var(--slate-950);
+      padding: 0 4px;
     }
-    .demo-mobile-tabs button {
-      padding: 10px 16px;
+    .mobile-tabs button {
+      flex-shrink: 0;
+      padding: 10px 14px;
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--slate-400);
       border: none;
       background: none;
-      font-size: 0.78rem;
-      font-weight: 500;
-      color: var(--text-3);
       cursor: pointer;
-      white-space: nowrap;
       border-bottom: 2px solid transparent;
       font-family: var(--font);
+      white-space: nowrap;
     }
-    .demo-mobile-tabs button.active {
-      color: var(--blue);
-      border-bottom-color: var(--blue);
-      font-weight: 600;
-    }
-
-    /* ===== Section Header (for views) ===== */
-    .demo-view-header {
-      margin-bottom: 20px;
-    }
-    .demo-view-header h2 {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--text);
-      margin-bottom: 4px;
-    }
-    .demo-view-header p {
-      font-size: 0.8rem;
-      color: var(--text-3);
+    .mobile-tabs button.active {
+      color: #fff;
+      border-bottom-color: var(--brand-500);
     }
 
     /* ===== Responsive ===== */
-    @media (max-width: 1024px) {
-      .demo-body { grid-template-columns: 200px 1fr 300px; }
-    }
-
-    @media (max-width: 768px) {
-      .demo-hero { padding: 100px 20px 32px; }
-      .demo-hero h1 { font-size: 1.8rem; }
-      .demo-body {
-        grid-template-columns: 1fr;
-        height: auto;
-        max-height: none;
-      }
-      .demo-sidebar { display: none; }
-      .demo-mobile-tabs { display: flex; }
-      .demo-main { min-height: 400px; }
-      .demo-detail { min-height: 350px; }
+    @media (max-width: 1100px) {
       .demo-stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .demo-wf-grid { grid-template-columns: 1fr; }
-      .demo-pipeline { flex-direction: column; }
-      .demo-pipeline-col { min-width: unset; }
+      .overview-grid { grid-template-columns: 1fr; }
+      .wf-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .demo-hero { padding: 100px 0 32px; }
+      .demo-body { flex-direction: column; height: auto; max-height: none; min-height: auto; }
+      .demo-sidebar { display: none; }
+      .mobile-tabs { display: flex; }
+      .demo-stats-grid { grid-template-columns: 1fr 1fr; }
+      .inbox-layout { flex-direction: column; height: 500px; }
+      .inbox-list { width: 100%; height: 200px; border-right: none; border-bottom: 1px solid var(--slate-200); }
+      .pipeline-board { flex-direction: column; }
+      .pipeline-col { min-width: unset; }
+    }
+    @media (max-width: 480px) {
+      .demo-stats-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -951,605 +1116,492 @@
           Interactive Demo
         </div>
         <h1>Experience STOAIX — No Signup Required</h1>
-        <p>Click around, explore features, and see how AI handles real patient conversations for an aesthetic hair clinic.</p>
+        <p>Click around, explore features, and see how AI handles real patient conversations for an aesthetic clinic — in 8+ languages.</p>
       </div>
     </section>
 
-    <!-- Interactive Demo Window -->
+    <!-- Demo Window -->
     <section class="demo-interactive-section">
       <div class="demo-window">
-        <!-- Title Bar -->
+        <!-- Title bar -->
         <div class="demo-titlebar">
-          <span class="demo-dots">
-            <span class="demo-dot red"></span>
-            <span class="demo-dot yellow"></span>
-            <span class="demo-dot green"></span>
-          </span>
-          STOAIX Dashboard &mdash; Aesthetic Hair Clinic
+          <div class="demo-dots">
+            <div class="demo-dot red"></div>
+            <div class="demo-dot yellow"></div>
+            <div class="demo-dot green"></div>
+          </div>
+          platform.stoaix.com — Stoaix Clinic
         </div>
 
-        <!-- Mobile Tabs -->
-        <div class="demo-mobile-tabs">
-          <button data-view="overview" class="active">Overview</button>
-          <button data-view="inbox">Inbox (5)</button>
-          <button data-view="calls">Voice Calls</button>
-          <button data-view="leads">Leads</button>
-          <button data-view="knowledge">Knowledge</button>
-          <button data-view="workflows">Workflows</button>
+        <!-- Mobile tabs -->
+        <div class="mobile-tabs" id="mobileTabs">
+          <button class="active" data-view="overview">Genel Bakış</button>
+          <button data-view="inbox">Gelen Kutusu</button>
+          <button data-view="calls">Çağrılar</button>
+          <button data-view="pipeline">Pipeline</button>
+          <button data-view="assistant">AI Asistan</button>
+          <button data-view="workflows">İş Akışları</button>
         </div>
 
         <!-- Body -->
         <div class="demo-body">
-          <!-- LEFT: Sidebar -->
+          <!-- Sidebar -->
           <div class="demo-sidebar">
-            <div class="demo-org-info">
-              <div class="demo-org-avatar">AH</div>
-              <span>Aesthetic Hair Clinic</span>
+            <div class="sidebar-glow"></div>
+            <div class="demo-org-header">
+              <div class="demo-org-avatar">SC</div>
+              <div class="demo-org-name">Stoaix Clinic</div>
             </div>
             <nav class="demo-nav">
-              <button data-view="overview" class="active">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
-                Overview
+              <!-- Genel Bakış -->
+              <button class="active" data-view="overview">
+                <span class="nav-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></span>
+                Genel Bakış
+                <span class="nav-dot"></span>
               </button>
+              <!-- Gelen Kutusu -->
               <button data-view="inbox">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
-                Inbox
-                <span class="nav-badge">5</span>
+                <span class="nav-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11z"/></svg></span>
+                Gelen Kutusu
+                <span class="nav-badge">8</span>
+                <span class="nav-dot"></span>
               </button>
+              <!-- Çağrılar -->
               <button data-view="calls">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-                Voice Calls
+                <span class="nav-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span>
+                Çağrılar
+                <span class="nav-dot"></span>
               </button>
-              <button data-view="leads">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              <!-- Lead Pipeline -->
+              <button data-view="pipeline">
+                <span class="nav-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
                 Lead Pipeline
+                <span class="nav-dot"></span>
               </button>
-              <button data-view="knowledge">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
-                Knowledge Base
+              <!-- AI Asistan -->
+              <button data-view="assistant">
+                <span class="nav-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg></span>
+                AI Asistan
+                <span class="nav-dot"></span>
               </button>
+              <!-- İş Akışları -->
               <button data-view="workflows">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                Workflows
+                <span class="nav-icon-wrap"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+                İş Akışları
+                <span class="nav-dot"></span>
               </button>
             </nav>
-            <div class="demo-sidebar-stats">
-              <span>Today <strong>12 conversations</strong></span>
-              <span>Hot leads <strong>3</strong></span>
-              <span>AI resolved <strong>78%</strong></span>
+            <div class="demo-sidebar-footer">
+              <div class="mini-stats">
+                <div class="mini-stat"><span class="ms-val">82%</span><span class="ms-lbl">AI Çözüm</span></div>
+                <div class="mini-stat"><span class="ms-val">8</span><span class="ms-lbl">Dil</span></div>
+              </div>
             </div>
           </div>
 
-          <!-- CENTER: Main Content -->
+          <!-- Main Content -->
           <div class="demo-main">
 
-            <!-- VIEW: Overview -->
+            <!-- ========== OVERVIEW ========== -->
             <div class="demo-view active" id="view-overview">
-              <div class="demo-view-header">
-                <h2>Dashboard Overview</h2>
-                <p>Today's performance at a glance</p>
+              <div class="demo-topbar">
+                <div>
+                  <h2>Genel Bakış</h2>
+                  <div class="topbar-sub">Stoaix Clinic — Bugünün Özeti</div>
+                </div>
               </div>
               <div class="demo-stats-grid">
                 <div class="demo-stat-card">
-                  <div class="stat-label">Conversations</div>
-                  <div class="stat-value">12</div>
-                  <div class="stat-change">+18% vs yesterday</div>
+                  <div class="stat-icon-wrap blue"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+                  <div><div class="stat-label">Bugünkü Konuşmalar</div><div class="stat-value">24</div><div class="stat-change up">↑ 18% bu hafta</div></div>
                 </div>
                 <div class="demo-stat-card">
-                  <div class="stat-label">Active Leads</div>
-                  <div class="stat-value">8</div>
-                  <div class="stat-change">+2 new today</div>
+                  <div class="stat-icon-wrap amber"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+                  <div><div class="stat-label">Aktif Leadler</div><div class="stat-value">12</div><div class="stat-change up">↑ 3 yeni bugün</div></div>
                 </div>
                 <div class="demo-stat-card">
-                  <div class="stat-label">Voice Calls</div>
-                  <div class="stat-value">3</div>
-                  <div class="stat-change">All AI-handled</div>
+                  <div class="stat-icon-wrap purple"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+                  <div><div class="stat-label">Sesli Aramalar</div><div class="stat-value">6</div><div class="stat-change up">↑ 2 bugün</div></div>
                 </div>
                 <div class="demo-stat-card">
-                  <div class="stat-label">Conversion Rate</div>
-                  <div class="stat-value">34%</div>
-                  <div class="stat-change">+5% this week</div>
+                  <div class="stat-icon-wrap green"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                  <div><div class="stat-label">AI Çözüm Oranı</div><div class="stat-value">82%</div><div class="stat-change up">↑ 5% bu ay</div></div>
+                </div>
+                <div class="demo-stat-card">
+                  <div class="stat-icon-wrap red"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+                  <div><div class="stat-label">Dönüşüm Oranı</div><div class="stat-value">38%</div><div class="stat-change up">↑ 12% bu ay</div></div>
+                </div>
+                <div class="demo-stat-card">
+                  <div class="stat-icon-wrap teal"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+                  <div><div class="stat-label">Dil Çeşitliliği</div><div class="stat-value">8 dil</div><div class="stat-change up">TR, EN, DE, RU, AR, FR, ES, NL</div></div>
                 </div>
               </div>
-
-              <div class="demo-chart-placeholder">
-                <div class="chart-header">
-                  <span class="chart-title">Conversations &mdash; Last 7 Days</span>
-                  <span class="chart-period">This Week</span>
-                </div>
-                <div class="demo-chart-bars">
-                  <div class="demo-chart-bar" style="height:45%"><div class="bar-fill" style="height:65%"></div></div>
-                  <div class="demo-chart-bar" style="height:62%"><div class="bar-fill" style="height:55%"></div></div>
-                  <div class="demo-chart-bar" style="height:38%"><div class="bar-fill" style="height:70%"></div></div>
-                  <div class="demo-chart-bar" style="height:78%"><div class="bar-fill" style="height:60%"></div></div>
-                  <div class="demo-chart-bar" style="height:55%"><div class="bar-fill" style="height:80%"></div></div>
-                  <div class="demo-chart-bar" style="height:70%"><div class="bar-fill" style="height:50%"></div></div>
-                  <div class="demo-chart-bar" style="height:85%"><div class="bar-fill" style="height:75%"></div></div>
-                </div>
-              </div>
-
-              <div class="demo-activity-list">
-                <h3>Recent Activity</h3>
-                <div class="demo-activity-item">
-                  <span class="demo-activity-dot blue"></span>
-                  <span>Ayse G. started a WhatsApp conversation</span>
-                  <span class="demo-activity-time">2 min ago</span>
-                </div>
-                <div class="demo-activity-item">
-                  <span class="demo-activity-dot green"></span>
-                  <span>Ali T. booked a consultation appointment</span>
-                  <span class="demo-activity-time">15 min ago</span>
-                </div>
-                <div class="demo-activity-item">
-                  <span class="demo-activity-dot orange"></span>
-                  <span>Mehmet K. moved to Hot Lead stage</span>
-                  <span class="demo-activity-time">32 min ago</span>
-                </div>
-                <div class="demo-activity-item">
-                  <span class="demo-activity-dot blue"></span>
-                  <span>Voice call completed &mdash; Burak D. (4:23 min)</span>
-                  <span class="demo-activity-time">1 hr ago</span>
-                </div>
-                <div class="demo-activity-item">
-                  <span class="demo-activity-dot green"></span>
-                  <span>AI resolved inquiry from Zeynep S.</span>
-                  <span class="demo-activity-time">2 hr ago</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- VIEW: Inbox -->
-            <div class="demo-view" id="view-inbox">
-              <div class="demo-view-header">
-                <h2>Inbox</h2>
-                <p>5 active conversations</p>
-              </div>
-              <div class="demo-conv-list">
-                <div class="demo-conv-item" data-conv="ayse">
-                  <div class="demo-conv-avatar">AG</div>
-                  <div class="demo-conv-info">
-                    <div class="demo-conv-name">Ayse G. <span class="channel-tag">WhatsApp</span></div>
-                    <div class="demo-conv-preview">How much does a hair transplant cost?</div>
-                  </div>
-                  <div class="demo-conv-meta">
-                    <span class="demo-conv-time">2 min</span>
-                    <span class="demo-conv-unread"></span>
+              <div class="overview-grid">
+                <!-- Activity Feed -->
+                <div class="d-card">
+                  <div class="d-card-header"><h3>Son Aktiviteler</h3><span style="font-size:0.7rem;color:var(--slate-400)">Bugün</span></div>
+                  <div class="d-card-body">
+                    <div class="activity-item"><div class="activity-dot" style="background:#10b981"></div><div><div class="activity-text">Ayşe G. WhatsApp'tan konuşma başlattı</div><div class="activity-time">2 dk önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#0ea5e9"></div><div><div class="activity-text">James W. Botox randevusu oluşturdu</div><div class="activity-time">15 dk önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#f59e0b"></div><div><div class="activity-text">Hans M. Hot Lead aşamasına geçti</div><div class="activity-time">32 dk önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#8b5cf6"></div><div><div class="activity-text">Анна К. ile sesli görüşme tamamlandı (3:47 dk)</div><div class="activity-time">1 saat önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#ef4444"></div><div><div class="activity-text">فاطمة س. yeni lead olarak eklendi</div><div class="activity-time">2 saat önce</div></div></div>
+                    <div class="activity-item"><div class="activity-dot" style="background:#0ea5e9"></div><div><div class="activity-text">Marie D. PRP tedavisi hakkında bilgi aldı</div><div class="activity-time">3 saat önce</div></div></div>
                   </div>
                 </div>
-                <div class="demo-conv-item" data-conv="mehmet">
-                  <div class="demo-conv-avatar">MK</div>
-                  <div class="demo-conv-info">
-                    <div class="demo-conv-name">Mehmet K. <span class="channel-tag">WhatsApp</span></div>
-                    <div class="demo-conv-preview">What's the difference between FUE and DHI?</div>
-                  </div>
-                  <div class="demo-conv-meta">
-                    <span class="demo-conv-time">18 min</span>
-                  </div>
-                </div>
-                <div class="demo-conv-item" data-conv="ali">
-                  <div class="demo-conv-avatar">AT</div>
-                  <div class="demo-conv-info">
-                    <div class="demo-conv-name">Ali T. <span class="channel-tag">WhatsApp</span></div>
-                    <div class="demo-conv-preview">I'd like to book an appointment</div>
-                  </div>
-                  <div class="demo-conv-meta">
-                    <span class="demo-conv-time">32 min</span>
-                  </div>
-                </div>
-                <div class="demo-conv-item" data-conv="zeynep">
-                  <div class="demo-conv-avatar">ZS</div>
-                  <div class="demo-conv-info">
-                    <div class="demo-conv-name">Zeynep S. <span class="channel-tag">WhatsApp</span></div>
-                    <div class="demo-conv-preview">Can you tell me about hair mesotherapy?</div>
-                  </div>
-                  <div class="demo-conv-meta">
-                    <span class="demo-conv-time">1 hr</span>
-                  </div>
-                </div>
-                <div class="demo-conv-item" data-conv="burak">
-                  <div class="demo-conv-avatar">BD</div>
-                  <div class="demo-conv-info">
-                    <div class="demo-conv-name">Burak D. <span class="channel-tag">Voice</span></div>
-                    <div class="demo-conv-preview">How long does 3000 grafts take?</div>
-                  </div>
-                  <div class="demo-conv-meta">
-                    <span class="demo-conv-time">2 hr</span>
+                <!-- Chart -->
+                <div class="d-card">
+                  <div class="d-card-header"><h3>Haftalık Konuşmalar</h3><span style="font-size:0.7rem;color:var(--slate-400)">Son 7 gün</span></div>
+                  <div class="d-card-body">
+                    <div class="chart-bars">
+                      <div class="chart-bar" style="height:45%;background:linear-gradient(to top,#0ea5e9,#38bdf8);border-radius:4px 4px 0 0"></div>
+                      <div class="chart-bar" style="height:62%;background:linear-gradient(to top,#0ea5e9,#38bdf8);border-radius:4px 4px 0 0"></div>
+                      <div class="chart-bar" style="height:38%;background:linear-gradient(to top,#0ea5e9,#38bdf8);border-radius:4px 4px 0 0"></div>
+                      <div class="chart-bar" style="height:78%;background:linear-gradient(to top,#0ea5e9,#38bdf8);border-radius:4px 4px 0 0"></div>
+                      <div class="chart-bar" style="height:55%;background:linear-gradient(to top,#0ea5e9,#38bdf8);border-radius:4px 4px 0 0"></div>
+                      <div class="chart-bar" style="height:90%;background:linear-gradient(to top,#0ea5e9,#38bdf8);border-radius:4px 4px 0 0"></div>
+                      <div class="chart-bar" style="height:72%;background:linear-gradient(to top,#0ea5e9,#38bdf8);border-radius:4px 4px 0 0"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;margin-top:8px;font-size:0.65rem;color:var(--slate-400)">
+                      <span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <!-- VIEW: Calls -->
+            <!-- ========== INBOX ========== -->
+            <div class="demo-view" id="view-inbox" style="padding:0;height:100%">
+              <div class="inbox-layout" style="height:100%">
+                <div class="inbox-list">
+                  <div class="inbox-search"><input type="text" placeholder="Konuşma ara..." readonly></div>
+                  <div class="inbox-items" id="inboxItems">
+                    <!-- JS ile doldurulacak -->
+                  </div>
+                </div>
+                <div class="inbox-chat">
+                  <div id="chatArea">
+                    <div class="chat-empty">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+                      <p>AI'ın hastaları nasıl yönettiğini görmek için bir konuşma seçin.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ========== CALLS ========== -->
             <div class="demo-view" id="view-calls">
-              <div class="demo-view-header">
-                <h2>Voice Calls</h2>
-                <p>AI-powered call handling</p>
+              <div class="demo-topbar">
+                <div>
+                  <h2>Çağrılar</h2>
+                  <div class="topbar-sub">Sesli AI görüşme kayıtları</div>
+                </div>
+                <button class="cta-btn-primary" style="font-size:0.78rem;padding:8px 16px;border-radius:10px" onclick="showCTA('🎙️','Sesli AI\'ımızı duymak ister misiniz?','Gerçek zamanlı sesli AI asistan ile hastalarınızla 8 farklı dilde konuşun.')">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                  Demo Dinle
+                </button>
               </div>
-              <table class="demo-calls-table">
-                <thead>
-                  <tr>
-                    <th>Contact</th>
-                    <th>Type</th>
-                    <th>Duration</th>
-                    <th>Handler</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Burak D.</td>
-                    <td><span class="call-type inbound">&#8615; Inbound</span></td>
-                    <td>4:23</td>
-                    <td><span class="call-status-badge ai">AI Handled</span></td>
-                    <td>Qualified &mdash; 3000 grafts</td>
-                  </tr>
-                  <tr>
-                    <td>Mehmet K.</td>
-                    <td><span class="call-type outbound">&#8613; Outbound</span></td>
-                    <td>1:12</td>
-                    <td><span class="call-status-badge ai">AI Reminder</span></td>
-                    <td>Appointment confirmed</td>
-                  </tr>
-                  <tr>
-                    <td>Fatma Y.</td>
-                    <td><span class="call-type inbound">&#8615; Inbound</span></td>
-                    <td>3:47</td>
-                    <td><span class="call-status-badge human">Handed Off</span></td>
-                    <td>Requested human agent</td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class="demo-cta-inline">
-                <p>Want to hear our Voice AI handle calls for your clinic?</p>
-                <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+              <div style="padding:0 24px 24px">
+                <div class="d-card">
+                  <table class="calls-table">
+                    <thead>
+                      <tr><th>Kişi</th><th>Yön</th><th>Süre</th><th>İşleyen</th><th>Durum</th></tr>
+                    </thead>
+                    <tbody>
+                      <tr><td style="font-weight:600">Carlos R. 🇪🇸</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>4:12</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
+                      <tr><td style="font-weight:600">Mehmet K. 🇹🇷</td><td><span class="call-dir outbound">↗ Giden</span></td><td>3:28</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
+                      <tr><td style="font-weight:600">Анна К. 🇷🇺</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>3:47</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
+                      <tr><td style="font-weight:600">James W. 🇬🇧</td><td><span class="call-dir outbound">↗ Giden</span></td><td>2:55</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
+                      <tr><td style="font-weight:600">Sofia L. 🇮🇹</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>—</td><td>—</td><td><span class="call-status missed">✗ Cevapsız</span></td></tr>
+                      <tr><td style="font-weight:600">Hans M. 🇩🇪</td><td><span class="call-dir inbound">↙ Gelen</span></td><td>5:03</td><td style="color:var(--brand-500);font-weight:500">AI Asistan</td><td><span class="call-status completed">✓ Tamamlandı</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
 
-            <!-- VIEW: Leads -->
-            <div class="demo-view" id="view-leads">
-              <div class="demo-view-header">
-                <h2>Lead Pipeline</h2>
-                <p>Track and qualify leads automatically</p>
-              </div>
-              <div class="demo-pipeline">
-                <div class="demo-pipeline-col">
-                  <div class="demo-pipeline-header">New Lead <span class="demo-pipeline-count">2</span></div>
-                  <div class="demo-lead-card" data-cta="lead">
-                    <div class="lead-name">Zeynep S.</div>
-                    <div class="lead-detail">Mesotherapy inquiry</div>
-                    <span class="lead-score low">Score: 25</span>
-                  </div>
-                  <div class="demo-lead-card" data-cta="lead">
-                    <div class="lead-name">Burak D.</div>
-                    <div class="lead-detail">3000 grafts estimate</div>
-                    <span class="lead-score mid">Score: 45</span>
-                  </div>
-                </div>
-                <div class="demo-pipeline-col">
-                  <div class="demo-pipeline-header">AI Qualifying <span class="demo-pipeline-count">3</span></div>
-                  <div class="demo-lead-card" data-cta="lead">
-                    <div class="lead-name">Ayse G.</div>
-                    <div class="lead-detail">FUE pricing, consultation</div>
-                    <span class="lead-score mid">Score: 58</span>
-                  </div>
-                  <div class="demo-lead-card" data-cta="lead">
-                    <div class="lead-name">Mehmet K.</div>
-                    <div class="lead-detail">FUE vs DHI comparison</div>
-                    <span class="lead-score mid">Score: 62</span>
-                  </div>
-                  <div class="demo-lead-card" data-cta="lead">
-                    <div class="lead-name">Emre A.</div>
-                    <div class="lead-detail">Sapphire FUE interest</div>
-                    <span class="lead-score mid">Score: 50</span>
-                  </div>
-                </div>
-                <div class="demo-pipeline-col">
-                  <div class="demo-pipeline-header">&#128293; Hot Lead <span class="demo-pipeline-count">1</span></div>
-                  <div class="demo-lead-card" data-cta="lead">
-                    <div class="lead-name">Ali T.</div>
-                    <div class="lead-detail">Ready for appointment</div>
-                    <span class="lead-score high">Score: 87</span>
-                  </div>
-                </div>
-                <div class="demo-pipeline-col">
-                  <div class="demo-pipeline-header">Appointment <span class="demo-pipeline-count">2</span></div>
-                  <div class="demo-lead-card" data-cta="lead">
-                    <div class="lead-name">Derya B.</div>
-                    <div class="lead-detail">Video consultation Thu 14:00</div>
-                    <span class="lead-score high">Score: 91</span>
-                  </div>
-                  <div class="demo-lead-card" data-cta="lead">
-                    <div class="lead-name">Can M.</div>
-                    <div class="lead-detail">In-person visit Fri 10:00</div>
-                    <span class="lead-score high">Score: 85</span>
-                  </div>
-                </div>
-                <div class="demo-pipeline-col">
-                  <div class="demo-pipeline-header">&#10003; Won <span class="demo-pipeline-count">1</span></div>
-                  <div class="demo-lead-card" data-cta="lead">
-                    <div class="lead-name">Serkan E.</div>
-                    <div class="lead-detail">FUE 2500 grafts booked</div>
-                    <span class="lead-score high">Score: 95</span>
-                  </div>
+            <!-- ========== PIPELINE ========== -->
+            <div class="demo-view" id="view-pipeline">
+              <div class="demo-topbar">
+                <div>
+                  <h2>Lead Pipeline</h2>
+                  <div class="topbar-sub">Hasta adaylarını takip edin</div>
                 </div>
               </div>
-              <div class="demo-cta-inline">
-                <p>Manage your leads with drag &amp; drop and automatic AI scoring</p>
-                <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+              <div class="pipeline-board">
+                <!-- Yeni -->
+                <div class="pipeline-col pcol-slate">
+                  <div class="pipeline-col-header">Yeni <span class="col-count">2</span></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇸🇦 فاطمة س.</div><div class="lead-card-service">Dolgu (Filler)</div><div class="lead-card-footer"><span class="score-badge cool">25</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇫🇷 Marie D.</div><div class="lead-card-service">PRP Tedavisi</div><div class="lead-card-footer"><span class="score-badge cool">30</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                </div>
+                <!-- AI Qualifying -->
+                <div class="pipeline-col pcol-blue">
+                  <div class="pipeline-col-header">AI Qualifying <span class="col-count">3</span></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇬🇧 James W.</div><div class="lead-card-service">Botox & Dolgu</div><div class="lead-card-footer"><span class="score-badge warm">55</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇩🇪 Hans M.</div><div class="lead-card-service">Rinoplasti</div><div class="lead-card-footer"><span class="score-badge warm">62</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇷🇺 Анна К.</div><div class="lead-card-service">Lazer Epilasyon</div><div class="lead-card-footer"><span class="score-badge warm">48</span><span class="lead-card-channel">Sesli</span></div></div>
+                </div>
+                <!-- Hot Lead -->
+                <div class="pipeline-col pcol-red">
+                  <div class="pipeline-col-header">🔥 Hot Lead <span class="col-count">1</span></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇹🇷 Ayşe G.</div><div class="lead-card-service">Saç Ekimi (FUE)</div><div class="lead-card-footer"><span class="score-badge hot">88</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                </div>
+                <!-- Randevu -->
+                <div class="pipeline-col pcol-purple">
+                  <div class="pipeline-col-header">📅 Randevu <span class="col-count">2</span></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇹🇷 Mehmet K.</div><div class="lead-card-service">Rinoplasti</div><div class="lead-card-footer"><span class="score-badge hot">82</span><span class="lead-card-channel">Sesli</span></div></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇪🇸 Carlos R.</div><div class="lead-card-service">Lazer Epilasyon</div><div class="lead-card-footer"><span class="score-badge warm">75</span><span class="lead-card-channel">Sesli</span></div></div>
+                </div>
+                <!-- Dönüştü -->
+                <div class="pipeline-col pcol-green">
+                  <div class="pipeline-col-header">✅ Dönüştü <span class="col-count">1</span></div>
+                  <div class="lead-card" data-cta="lead"><div class="lead-card-name">🇮🇹 Sofia L.</div><div class="lead-card-service">Cilt Bakımı & Peeling</div><div class="lead-card-footer"><span class="score-badge hot">95</span><span class="lead-card-channel">WhatsApp</span></div></div>
+                </div>
               </div>
             </div>
 
-            <!-- VIEW: Knowledge Base -->
-            <div class="demo-view" id="view-knowledge">
-              <div class="demo-view-header">
-                <h2>Knowledge Base</h2>
-                <p>6 items &mdash; AI uses these to answer questions</p>
-              </div>
-              <div class="demo-kb-list">
-                <div class="demo-kb-item">
-                  <div class="demo-kb-icon service">&#9881;</div>
-                  <div class="demo-kb-info">
-                    <div class="kb-name">Hair Transplant Services (FUE, DHI, Sapphire)</div>
-                    <div class="kb-type">Service</div>
-                  </div>
-                  <span class="demo-kb-status">Embedded</span>
-                </div>
-                <div class="demo-kb-item">
-                  <div class="demo-kb-icon service">&#9881;</div>
-                  <div class="demo-kb-info">
-                    <div class="kb-name">Pricing Guide 2024</div>
-                    <div class="kb-type">Service</div>
-                  </div>
-                  <span class="demo-kb-status">Embedded</span>
-                </div>
-                <div class="demo-kb-item">
-                  <div class="demo-kb-icon faq">&#63;</div>
-                  <div class="demo-kb-info">
-                    <div class="kb-name">Post-Op Care Instructions</div>
-                    <div class="kb-type">FAQ</div>
-                  </div>
-                  <span class="demo-kb-status">Embedded</span>
-                </div>
-                <div class="demo-kb-item">
-                  <div class="demo-kb-icon faq">&#63;</div>
-                  <div class="demo-kb-info">
-                    <div class="kb-name">FAQ: Recovery Timeline</div>
-                    <div class="kb-type">FAQ</div>
-                  </div>
-                  <span class="demo-kb-status">Embedded</span>
-                </div>
-                <div class="demo-kb-item">
-                  <div class="demo-kb-icon faq">&#63;</div>
-                  <div class="demo-kb-info">
-                    <div class="kb-name">FAQ: Who is a Good Candidate?</div>
-                    <div class="kb-type">FAQ</div>
-                  </div>
-                  <span class="demo-kb-status">Embedded</span>
-                </div>
-                <div class="demo-kb-item">
-                  <div class="demo-kb-icon service">&#9881;</div>
-                  <div class="demo-kb-info">
-                    <div class="kb-name">Mesotherapy &amp; PRP Services</div>
-                    <div class="kb-type">Service</div>
-                  </div>
-                  <span class="demo-kb-status">Embedded</span>
+            <!-- ========== AI ASSISTANT ========== -->
+            <div class="demo-view" id="view-assistant">
+              <div class="demo-topbar">
+                <div>
+                  <h2>AI Asistan</h2>
+                  <div class="topbar-sub">Bilgi bankası ve test ekranı</div>
                 </div>
               </div>
-              <div class="demo-cta-inline">
-                <p>Build your own AI Knowledge Base in minutes</p>
-                <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+              <div class="ai-tabs">
+                <button class="ai-tab active" data-aitab="kb">Bilgi Bankası</button>
+                <button class="ai-tab" data-aitab="playground">Test Ekranı</button>
+              </div>
+              <!-- KB Tab -->
+              <div class="ai-tab-content active" id="aitab-kb">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+                  <div style="font-size:0.78rem;color:var(--slate-500)">8 öğe</div>
+                  <button class="cta-btn-primary" style="font-size:0.72rem;padding:6px 14px;border-radius:8px" onclick="showCTA('📚','Kendi bilgi bankanızı oluşturun','Hizmetlerinizi, SSS\'lerinizi ve fiyatlarınızı ekleyin — AI hepsini otomatik öğrenir.')">+ Yeni Ekle</button>
+                </div>
+                <div class="kb-item"><div class="kb-icon service">💇</div><div class="kb-info"><div class="kb-name">Saç Ekimi Hizmetleri (FUE, DHI, Safir)</div><div class="kb-type">Hizmet</div></div><div class="kb-count">12 öğe</div></div>
+                <div class="kb-item"><div class="kb-icon service">💉</div><div class="kb-info"><div class="kb-name">Botox & Dolgu Uygulamaları</div><div class="kb-type">Hizmet</div></div><div class="kb-count">8 öğe</div></div>
+                <div class="kb-item"><div class="kb-icon service">✨</div><div class="kb-info"><div class="kb-name">Lazer Epilasyon Paketleri</div><div class="kb-type">Hizmet</div></div><div class="kb-count">6 öğe</div></div>
+                <div class="kb-item"><div class="kb-icon service">👃</div><div class="kb-info"><div class="kb-name">Rinoplasti Bilgilendirme</div><div class="kb-type">Hizmet</div></div><div class="kb-count">5 öğe</div></div>
+                <div class="kb-item"><div class="kb-icon service">🧴</div><div class="kb-info"><div class="kb-name">Cilt Bakımı & Peeling</div><div class="kb-type">Hizmet</div></div><div class="kb-count">7 öğe</div></div>
+                <div class="kb-item"><div class="kb-icon service">🩸</div><div class="kb-info"><div class="kb-name">PRP & Mezoterapi</div><div class="kb-type">Hizmet</div></div><div class="kb-count">4 öğe</div></div>
+                <div class="kb-item"><div class="kb-icon faq">❓</div><div class="kb-info"><div class="kb-name">SSS: İyileşme Süreci & Uygunluk</div><div class="kb-type">SSS</div></div><div class="kb-count">15 öğe</div></div>
+                <div class="kb-item"><div class="kb-icon pricing">💰</div><div class="kb-info"><div class="kb-name">Fiyat Listesi 2024</div><div class="kb-type">Fiyatlandırma</div></div><div class="kb-count">20 öğe</div></div>
+              </div>
+              <!-- Playground Tab -->
+              <div class="ai-tab-content" id="aitab-playground">
+                <div class="playground-wrap" id="playgroundTrigger">
+                  <div class="playground-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--brand-500)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    Asistan Playground
+                  </div>
+                  <div class="playground-messages">
+                    <div class="msg-row ai">
+                      <div class="msg-bubble" style="max-width:90%">
+                        <div class="msg-sender">✨ stoaix · AI</div>
+                        Merhaba! Ben Stoaix Clinic'in AI asistanıyım. Size saç ekimi, botox, lazer epilasyon, rinoplasti ve diğer estetik hizmetlerimiz hakkında bilgi verebilirim. Nasıl yardımcı olabilirim?
+                      </div>
+                    </div>
+                  </div>
+                  <div class="playground-input" onclick="showCTA('🤖','AI asistanınızı gerçek zamanlı test edin','Bilgi bankanızı yükleyin ve AI\'ın hastalarınıza nasıl yanıt verdiğini görün.')">
+                    <span>Bir mesaj yazın...</span>
+                    <div class="chat-input-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <!-- VIEW: Workflows -->
+            <!-- ========== WORKFLOWS ========== -->
             <div class="demo-view" id="view-workflows">
-              <div class="demo-view-header">
-                <h2>Workflows</h2>
-                <p>Automated AI workflows for your clinic</p>
-              </div>
-              <div class="demo-wf-grid">
-                <div class="demo-wf-card" data-cta="workflow">
-                  <div class="wf-icon">&#128222;</div>
-                  <div class="wf-name">First Contact Call</div>
-                  <div class="wf-desc">AI calls new leads within 60 seconds to qualify and book a consultation.</div>
-                  <span class="wf-status active-wf">Active</span>
-                </div>
-                <div class="demo-wf-card" data-cta="workflow">
-                  <div class="wf-icon">&#128260;</div>
-                  <div class="wf-name">Warm Follow-Up</div>
-                  <div class="wf-desc">Automatically follow up with leads who didn't respond after 24 hours.</div>
-                  <span class="wf-status active-wf">Active</span>
-                </div>
-                <div class="demo-wf-card" data-cta="workflow">
-                  <div class="wf-icon">&#128197;</div>
-                  <div class="wf-name">Appointment Confirmation</div>
-                  <div class="wf-desc">Send voice reminders 24h and 2h before scheduled appointments.</div>
-                  <span class="wf-status active-wf">Active</span>
-                </div>
-                <div class="demo-wf-card" data-cta="workflow">
-                  <div class="wf-icon">&#128683;</div>
-                  <div class="wf-name">No-Show Follow-Up</div>
-                  <div class="wf-desc">Re-engage patients who missed their appointment with a personalized call.</div>
-                  <span class="wf-status inactive-wf">Inactive</span>
-                </div>
-                <div class="demo-wf-card" data-cta="workflow">
-                  <div class="wf-icon">&#11088;</div>
-                  <div class="wf-name">Satisfaction Survey</div>
-                  <div class="wf-desc">Post-treatment satisfaction call to gather feedback and reviews.</div>
-                  <span class="wf-status inactive-wf">Inactive</span>
-                </div>
-                <div class="demo-wf-card" data-cta="workflow">
-                  <div class="wf-icon">&#128138;</div>
-                  <div class="wf-name">Treatment Reminder</div>
-                  <div class="wf-desc">Remind patients about follow-up treatments and PRP sessions.</div>
-                  <span class="wf-status inactive-wf">Inactive</span>
+              <div class="demo-topbar">
+                <div>
+                  <h2>İş Akışları</h2>
+                  <div class="topbar-sub">Otomatik AI süreçleri</div>
                 </div>
               </div>
-              <div class="demo-cta-inline">
-                <p>Automate your clinic's entire patient journey</p>
-                <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
+              <div class="wf-grid">
+                <div class="wf-card" data-cta="workflow">
+                  <div class="wf-card-header"><div class="wf-icon" style="background:#dbeafe;color:#2563eb"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="wf-name">İlk Temas Araması</div></div>
+                  <div class="wf-desc">Yeni leadlere 60 saniye içinde AI arama yaparak nitelendirme ve randevu oluşturma</div>
+                  <div class="wf-card-footer"><span class="wf-status active">Aktif</span><span class="wf-runs">47 çalıştırma</span></div>
+                </div>
+                <div class="wf-card" data-cta="workflow">
+                  <div class="wf-card-header"><div class="wf-icon" style="background:#fef3c7;color:#d97706"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="wf-name">Sıcak Takip</div></div>
+                  <div class="wf-desc">24 saat içinde yanıt vermeyen leadlere otomatik takip mesajı gönderme</div>
+                  <div class="wf-card-footer"><span class="wf-status active">Aktif</span><span class="wf-runs">124 çalıştırma</span></div>
+                </div>
+                <div class="wf-card" data-cta="workflow">
+                  <div class="wf-card-header"><div class="wf-icon" style="background:#dcfce7;color:#16a34a"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div><div class="wf-name">Randevu Hatırlatma</div></div>
+                  <div class="wf-desc">Randevudan 24 saat ve 2 saat önce sesli hatırlatma gönderme</div>
+                  <div class="wf-card-footer"><span class="wf-status active">Aktif</span><span class="wf-runs">89 çalıştırma</span></div>
+                </div>
+                <div class="wf-card" data-cta="workflow">
+                  <div class="wf-card-header"><div class="wf-icon" style="background:#fee2e2;color:#dc2626"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div><div class="wf-name">Randevuya Gelmedi Takibi</div></div>
+                  <div class="wf-desc">Randevusunu kaçıran hastalara kişiselleştirilmiş arama yapma</div>
+                  <div class="wf-card-footer"><span class="wf-status active">Aktif</span><span class="wf-runs">23 çalıştırma</span></div>
+                </div>
+                <div class="wf-card" data-cta="workflow">
+                  <div class="wf-card-header"><div class="wf-icon" style="background:#ede9fe;color:#7c3aed"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 00-3-3l-4 9v11h11.28a2 2 0 002-1.7l1.38-9a2 2 0 00-2-2.3H14z"/><path d="M7 22H4a2 2 0 01-2-2v-7a2 2 0 012-2h3"/></svg></div><div class="wf-name">Memnuniyet Anketi</div></div>
+                  <div class="wf-desc">İşlem sonrası memnuniyet araması ile geri bildirim toplama</div>
+                  <div class="wf-card-footer"><span class="wf-status draft">Taslak</span><span class="wf-runs">12 çalıştırma</span></div>
+                </div>
+                <div class="wf-card" data-cta="workflow">
+                  <div class="wf-card-header"><div class="wf-icon" style="background:#ffedd5;color:#ea580c"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></div><div class="wf-name">Reaktivasyon</div></div>
+                  <div class="wf-desc">90+ gündür iletişim kurulmayan eski hastalara tekrar ulaşma</div>
+                  <div class="wf-card-footer"><span class="wf-status active">Aktif</span><span class="wf-runs">35 çalıştırma</span></div>
+                </div>
               </div>
             </div>
 
-          </div>
+          </div><!-- /demo-main -->
+        </div><!-- /demo-body -->
+      </div><!-- /demo-window -->
 
-          <!-- RIGHT: Detail / AI Panel -->
-          <div class="demo-detail">
-            <div class="demo-ai-header">
-              <div class="demo-ai-avatar">AI</div>
-              <div>
-                <div class="demo-ai-name">STOAIX Assistant</div>
-                <div class="demo-ai-status">Online</div>
-              </div>
-            </div>
-
-            <div class="demo-messages" id="demoMessages">
-              <!-- Default state -->
-              <div class="demo-detail-default" id="detailDefault">
-                <div class="detail-icon">&#128172;</div>
-                <p>Select a conversation from the inbox to see how AI handles patient inquiries in real-time.</p>
-              </div>
-            </div>
-
-            <div class="demo-chat-input" id="demoChatInput">
-              <div class="demo-chat-input-inner" id="chatInputTrigger">
-                <span>Type a message...</span>
-              </div>
-            </div>
-
-            <div class="demo-cta-panel" id="demoCTAPanel" style="display:none;">
-              <p>Want to see your own conversations here?</p>
-              <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bottom CTA -->
-    <section class="demo-bottom-cta">
-      <h2>Ready to Transform Your Clinic?</h2>
-      <p>Join clinics using STOAIX to automate patient communication, qualify leads, and fill their appointment books.</p>
-      <div class="demo-bottom-actions">
-        <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
-        <a href="/contact" class="btn-outline-demo">Schedule a Call</a>
+      <!-- Bottom CTA -->
+      <div class="demo-bottom-cta">
+        <h2>Kliniğinizi dönüştürmeye hazır mısınız?</h2>
+        <p>8+ dilde AI asistan, otomatik iş akışları ve akıllı lead yönetimi ile kliniğinizi geleceğe taşıyın.</p>
+        <a href="/get-started" class="cta-btn-primary">Ücretsiz Deneyin →</a>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer"></footer>
-
-  <!-- CTA Popup Overlay -->
-  <div class="demo-cta-popup-overlay" id="ctaPopup">
-    <div class="demo-cta-popup">
-      <div class="popup-icon" id="popupIcon">&#128640;</div>
-      <h3 id="popupTitle">Unlock This Feature</h3>
-      <p id="popupText">Start your free trial to access the full platform with your own data.</p>
-      <div class="popup-actions">
-        <button class="popup-close" id="popupClose">Continue Exploring</button>
-        <a href="/signup" class="demo-cta-btn">Start Free Trial &rarr;</a>
-      </div>
+  <!-- CTA Popup -->
+  <div class="cta-overlay" id="ctaOverlay">
+    <div class="cta-modal">
+      <button class="cta-modal-close" id="ctaClose">&times;</button>
+      <div class="cta-modal-icon" id="ctaIcon"></div>
+      <h3 id="ctaTitle"></h3>
+      <p id="ctaText"></p>
+      <a href="/get-started" class="cta-btn-primary">Hemen Başlayın →</a>
     </div>
   </div>
 
-  <script src="js/i18n.js" defer></script>
-  <script src="js/components.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <footer class="footer"></footer>
 
   <script>
   document.addEventListener('DOMContentLoaded', function() {
 
-    // ===== Conversation Data =====
+    // ===== Conversations Data =====
     var conversations = {
       ayse: {
-        name: 'Ayse G.',
-        channel: 'WhatsApp',
+        name: 'Ayşe G.', flag: '🇹🇷', color: '#ef4444', channel: 'WhatsApp', time: '2 dk',
+        preview: 'Saç ekimi fiyatları hakkında...',
         messages: [
-          { role: 'contact', text: 'Hi, how much does a hair transplant cost?' },
-          { role: 'ai', text: 'Hello Ayse! Thanks for reaching out to Aesthetic Hair Clinic. Our hair transplant pricing depends on the technique and number of grafts needed. For FUE, prices start from $2,500 for up to 2,000 grafts. Would you like to schedule a free video consultation so our specialist can assess your needs?' },
-          { role: 'contact', text: 'That sounds good. What about DHI?' },
-          { role: 'ai', text: 'Great question! DHI (Direct Hair Implantation) is our premium technique starting from $3,200. The key advantages are: no canal opening needed, faster recovery time, and higher graft survival rate. Many of our patients prefer it for the natural-looking results. Would you prefer a morning or afternoon slot for your free consultation?' }
+          { role: 'user', sender: 'Ayşe G.', text: 'Merhaba, saç ekimi fiyatları hakkında bilgi alabilir miyim? FUE ve DHI arasındaki fark nedir?', time: '14:32' },
+          { role: 'ai', text: 'Merhaba Ayşe Hanım! Stoaix Clinic\'e hoş geldiniz. 😊\n\nSaç ekimi yöntemlerimiz ve fiyatları:\n\n• FUE (Follicular Unit Extraction): 2.500 - 3.500 €\n• DHI (Direct Hair Implantation): 3.000 - 4.000 €\n• Safir FUE: 3.000 - 4.000 €\n\nTemel farklar:\n→ FUE: Klasik yöntem, daha geniş alan için ideal\n→ DHI: Daha yoğun ekim, kalem tekniği ile doğal sonuç\n→ Safir: Safir bıçak ile daha hızlı iyileşme\n\nGreft sayısı ve yönteme göre kesin fiyat belirlenir. Ücretsiz online konsültasyon ister misiniz?', time: '14:32' },
+          { role: 'user', sender: 'Ayşe G.', text: 'DHI ile ilgileniyorum. Kaç greft gerekir yaklaşık? Eşim için bakıyorum, ön bölgede seyrelme var.', time: '14:35' },
+          { role: 'ai', text: 'DHI harika bir tercih! Ön bölge seyrelmeleri için genellikle 2.500-3.500 greft arası planlanır.\n\nKesin greft sayısı için fotoğraf analizi yapabiliriz. Eşinizin saç durumunun fotoğraflarını gönderir misiniz? (Ön, üst ve arka açıdan 3 fotoğraf yeterli)\n\nDoktorumuz 24 saat içinde kişisel değerlendirme raporu hazırlar. ✨', time: '14:35' }
+        ]
+      },
+      james: {
+        name: 'James W.', flag: '🇬🇧', color: '#2563eb', channel: 'WhatsApp', time: '15 dk',
+        preview: 'I\'d like to know about Botox...',
+        messages: [
+          { role: 'user', sender: 'James W.', text: 'Hi, I\'m interested in Botox treatment. What areas do you cover and what are the prices?', time: '14:18' },
+          { role: 'ai', text: 'Hello James! Welcome to Stoaix Clinic. 😊\n\nOur Botox treatments cover:\n\n• Forehead lines: €200 - €350\n• Crow\'s feet (eye area): €180 - €300\n• Frown lines (between brows): €180 - €300\n• Full face package: €450 - €700\n\nWe use premium Allergan Botox, administered by board-certified dermatologists. Results last 4-6 months.\n\nWould you like to schedule a free consultation? We also offer combined Botox + Dermal Filler packages at special rates. 💎', time: '14:18' },
+          { role: 'user', sender: 'James W.', text: 'The full face package sounds good. Do you offer any accommodation packages for international patients?', time: '14:22' },
+          { role: 'ai', text: 'Great choice! Yes, we have VIP international patient packages:\n\n🏨 All-inclusive package includes:\n→ Free airport transfer (VIP)\n→ 2 nights luxury hotel accommodation\n→ Full face Botox treatment\n→ 1 year follow-up support\n→ Personal patient coordinator\n\nPackage price: €850 - €1,100\n\nWe can also combine with other treatments during your stay. Shall I check available dates for you?', time: '14:22' }
+        ]
+      },
+      hans: {
+        name: 'Hans M.', flag: '🇩🇪', color: '#16a34a', channel: 'WhatsApp', time: '32 dk',
+        preview: 'Ich möchte mich über Rhinoplastik...',
+        messages: [
+          { role: 'user', sender: 'Hans M.', text: 'Guten Tag, ich möchte mich über Rhinoplastik informieren. Können Sie mir bitte die Details und Preise nennen?', time: '14:01' },
+          { role: 'ai', text: 'Guten Tag, Hans! Willkommen bei Stoaix Clinic. 😊\n\nUnsere Rhinoplastik-Leistungen:\n\n• Offene Rhinoplastik: 3.500 - 5.000 €\n• Geschlossene Rhinoplastik: 3.000 - 4.500 €\n• Revisions-Rhinoplastik: 4.000 - 6.000 €\n• Septumplastik (funktionell): 2.500 - 3.500 €\n\nUnsere Chirurgen sind auf Gesichtsästhetik spezialisiert und haben über 2.000 erfolgreiche Eingriffe durchgeführt.\n\nDer Aufenthalt dauert ca. 7 Tage. Möchten Sie unsere Vorher-Nachher-Galerie sehen?', time: '14:01' },
+          { role: 'user', sender: 'Hans M.', text: 'Ja, das wäre toll. Wie sieht der Heilungsprozess aus? Wann kann ich wieder arbeiten?', time: '14:05' },
+          { role: 'ai', text: 'Natürlich! Der Heilungsprozess:\n\n📅 Tag 1-3: Ruhe im Hotel, Schwellung normal\n📅 Tag 5-7: Nasenschiene wird entfernt\n📅 Woche 2: Rückkehr zur Büroarbeit möglich\n📅 Monat 1-3: Schwellung geht zurück\n📅 Monat 6-12: Endergebnis sichtbar\n\nWichtige Hinweise:\n→ 4 Wochen kein Sport\n→ 3 Monate keine Brille direkt auf der Nase\n→ Regelmäßige Nachkontrollen (online möglich)\n\nIch kann Ihnen einen Beratungstermin mit unserem Chirurgen vereinbaren. Passt Ihnen ein Videoanruf? 🎥', time: '14:06' }
+        ]
+      },
+      anna: {
+        name: 'Анна К.', flag: '🇷🇺', color: '#8b5cf6', channel: 'WhatsApp', time: '1 sa',
+        preview: 'Здравствуйте, хочу узнать о лазерной...',
+        messages: [
+          { role: 'user', sender: 'Анна К.', text: 'Здравствуйте! Хочу узнать о лазерной эпиляции. Какие зоны вы обрабатываете и какие цены?', time: '13:15' },
+          { role: 'ai', text: 'Здравствуйте, Анна! Добро пожаловать в Stoaix Clinic. 😊\n\nНаши пакеты лазерной эпиляции:\n\n• Ноги полностью: 150 - 250 €\n• Зона бикини: 80 - 120 €\n• Подмышки: 50 - 80 €\n• Лицо: 60 - 100 €\n• Полное тело: 400 - 600 €\n\nМы используем аппарат Soprano Ice (безболезненная технология). Обычно требуется 6-8 сеансов.\n\nДля международных пациентов у нас есть пакеты «Красота + Отдых» 🌴. Хотите узнать подробнее?', time: '13:15' },
+          { role: 'user', sender: 'Анна К.', text: 'Да, расскажите о пакете полного тела. Я планирую приехать в июне.', time: '13:20' },
+          { role: 'ai', text: 'Отлично! Пакет «Полное тело» в июне:\n\n✨ Включено:\n→ 1 сеанс лазерной эпиляции всего тела\n→ Трансфер из аэропорта\n→ 3 ночи в отеле 4*\n→ Консультация дерматолога\n→ План последующих сеансов\n\nЦена пакета: 550 - 750 €\n\nВ июне у нас есть свободные даты: 5-7, 12-14, 19-21 июня. Какие даты вам подходят? 📅', time: '13:21' }
+        ]
+      },
+      fatima: {
+        name: 'فاطمة س.', flag: '🇸🇦', color: '#d97706', channel: 'WhatsApp', time: '2 sa',
+        preview: 'السلام عليكم، أريد الاستفسار عن...',
+        messages: [
+          { role: 'user', sender: 'فاطمة س.', text: 'السلام عليكم، أريد الاستفسار عن حقن الفيلر للوجه. ما هي الخيارات المتاحة؟', time: '12:30' },
+          { role: 'ai', text: 'وعليكم السلام فاطمة! أهلاً بك في Stoaix Clinic. 😊\n\nخيارات حقن الفيلر لدينا:\n\n• فيلر الشفاه: ٢٠٠ - ٣٥٠ €\n• فيلر الخدود: ٣٠٠ - ٤٥٠ €\n• فيلر خط الفك (Jawline): ٣٥٠ - ٥٠٠ €\n• فيلر الهالات السوداء: ٢٥٠ - ٤٠٠ €\n• باكج الوجه الكامل: ٨٠٠ - ١٢٠٠ €\n\nنستخدم منتجات Juvederm و Restylane الأصلية. النتائج تدوم ١٢-١٨ شهراً.\n\nهل تودين حجز استشارة مجانية عبر الفيديو؟ لدينا طبيبات متخصصات. 💎', time: '12:30' },
+          { role: 'user', sender: 'فاطمة س.', text: 'نعم أريد استشارة. هل يمكنني الحصول على فيلر الشفاه والخدود معاً؟', time: '12:35' },
+          { role: 'ai', text: 'بالتأكيد! باكج الشفاه + الخدود:\n\n💎 العرض الخاص:\n→ فيلر الشفاه (1ml Juvederm)\n→ فيلر الخدود (2ml Juvederm Voluma)\n→ استشارة مجانية\n→ متابعة لمدة ٣ أشهر\n\nالسعر: ٤٥٠ - ٦٥٠ € (بدلاً من ٧٠٠ €)\n\nالإجراء يستغرق ٣٠-٤٥ دقيقة، بدون توقف عن الأنشطة اليومية.\n\nسأحجز لك موعد استشارة فيديو. ما هو الوقت المناسب لك؟ 📱', time: '12:36' }
+        ]
+      },
+      marie: {
+        name: 'Marie D.', flag: '🇫🇷', color: '#ec4899', channel: 'WhatsApp', time: '3 sa',
+        preview: 'Bonjour, je suis intéressée par le PRP...',
+        messages: [
+          { role: 'user', sender: 'Marie D.', text: 'Bonjour, je suis intéressée par le traitement PRP pour les cheveux. Pouvez-vous me donner plus d\'informations ?', time: '11:45' },
+          { role: 'ai', text: 'Bonjour Marie ! Bienvenue chez Stoaix Clinic. 😊\n\nNotre traitement PRP (Plasma Riche en Plaquettes) :\n\n• PRP capillaire (1 séance) : 150 - 250 €\n• Pack 4 séances : 500 - 800 €\n• PRP + Mésothérapie combo : 300 - 450 € / séance\n\nLe PRP stimule la repousse naturelle des cheveux en utilisant votre propre plasma sanguin.\n\n📋 Protocole recommandé :\n→ 4 séances initiales (1 par mois)\n→ Séance d\'entretien tous les 6 mois\n→ Résultats visibles après 3 mois\n\nSouhaitez-vous réserver une consultation gratuite ?', time: '11:45' },
+          { role: 'user', sender: 'Marie D.', text: 'Le combo PRP + Mésothérapie m\'intéresse. Est-ce que ça fait mal ?', time: '11:50' },
+          { role: 'ai', text: 'Excellente question ! Le combo est très efficace. 💪\n\nConcernant la douleur :\n→ Nous appliquons une crème anesthésiante locale\n→ Les micro-injections sont très fines\n→ La plupart des patients décrivent une sensation de léger picotement\n→ La séance dure environ 45 minutes\n\nAprès le traitement :\n→ Pas de temps d\'arrêt\n→ Rougeur légère pendant 24h\n→ Reprise des activités normales immédiate\n\nJe peux vous proposer un rendez-vous cette semaine. Préférez-vous un créneau le matin ou l\'après-midi ? 🗓️', time: '11:51' }
+        ]
+      },
+      carlos: {
+        name: 'Carlos R.', flag: '🇪🇸', color: '#059669', channel: 'Voice', time: '4 sa',
+        preview: 'Depilación láser consulta...',
+        messages: [
+          { role: 'user', sender: 'Carlos R.', text: 'Hola, me gustaría información sobre depilación láser para hombres. ¿Tienen paquetes especiales?', time: '10:20' },
+          { role: 'ai', text: 'Hola Carlos! Bienvenido a Stoaix Clinic. 😊\n\nNuestros paquetes de depilación láser para hombres:\n\n• Espalda completa: 180 - 280 €\n• Pecho + abdomen: 200 - 300 €\n• Piernas completas: 250 - 350 €\n• Brazos completos: 120 - 180 €\n• Paquete cuerpo completo: 500 - 750 €\n\nUsamos tecnología Soprano Ice — prácticamente indolora, ideal para piel masculina.\n\nSe necesitan 8-10 sesiones para resultados permanentes. ¿Te interesa algún paquete en particular?', time: '10:20' },
+          { role: 'user', sender: 'Carlos R.', text: 'El paquete de cuerpo completo me interesa. ¿Puedo combinar con otros tratamientos durante mi estancia?', time: '10:25' },
+          { role: 'ai', text: '¡Por supuesto! Podemos crear un plan personalizado:\n\n🌟 Paquete VIP Hombre:\n→ Depilación láser cuerpo completo\n→ Tratamiento facial (limpieza profunda)\n→ Consulta dermatológica gratuita\n→ Transfer aeropuerto\n→ 3 noches hotel 4*\n\nPrecio especial: 700 - 950 €\n\nTambién ofrecemos:\n→ Botox (frente/entrecejo)\n→ Tratamiento capilar PRP\n\nTodo durante la misma estancia. ¿Cuándo planeas viajar? Te preparo un presupuesto personalizado. ✈️', time: '10:26' }
         ]
       },
       mehmet: {
-        name: 'Mehmet K.',
-        channel: 'WhatsApp',
+        name: 'Mehmet K.', flag: '🇹🇷', color: '#0284c7', channel: 'Voice', time: '5 sa',
+        preview: 'Rinoplasti randevusu için...',
         messages: [
-          { role: 'contact', text: 'What\'s the difference between FUE and DHI methods?' },
-          { role: 'ai', text: 'Hi Mehmet! Great question. Here\'s a quick comparison:\n\n• FUE: Individual follicle extraction, small incisions, faster procedure, from $2,500\n• DHI: Uses a Choi pen for direct implantation, no canal opening, denser results, from $3,200\n\nBoth methods leave no visible scarring and have 95%+ graft survival rates.' },
-          { role: 'contact', text: 'Which one do you recommend for someone with thin hair at the crown?' },
-          { role: 'ai', text: 'For crown area thinning, I\'d recommend DHI. The Choi pen technique allows for more precise angle control and higher density placement, which is especially important for the crown where natural hair growth patterns matter most. Our Dr. Yilmaz specializes in crown restoration. Shall I check his availability for a consultation this week?' }
-        ]
-      },
-      ali: {
-        name: 'Ali T.',
-        channel: 'WhatsApp',
-        messages: [
-          { role: 'contact', text: 'I\'d like to book an appointment for a hair transplant consultation.' },
-          { role: 'ai', text: 'Of course, Ali! I\'d be happy to help you book a consultation. We offer both in-person and video consultations. Which would you prefer?' },
-          { role: 'contact', text: 'In-person would be better. Do you have anything this week?' },
-          { role: 'ai', text: 'Let me check our availability... We have the following slots this week:\n\n• Thursday, 14:00 - Dr. Yilmaz\n• Friday, 10:00 - Dr. Yilmaz\n• Saturday, 11:00 - Dr. Demir\n\nThe consultation is completely free and takes about 30 minutes. Which slot works best for you?' },
-          { role: 'contact', text: 'Friday at 10 works perfect.' },
-          { role: 'ai', text: 'Excellent! I\'ve booked your consultation for Friday at 10:00 with Dr. Yilmaz. You\'ll receive a confirmation SMS shortly. Please bring any previous medical reports if available. See you Friday, Ali! 😊' }
-        ]
-      },
-      zeynep: {
-        name: 'Zeynep S.',
-        channel: 'WhatsApp',
-        messages: [
-          { role: 'contact', text: 'Can you tell me about hair mesotherapy? Does it really work?' },
-          { role: 'ai', text: 'Hi Zeynep! Hair mesotherapy is a non-surgical treatment where we inject a nutrient-rich cocktail (vitamins, minerals, amino acids) directly into the scalp. It\'s excellent for:\n\n• Slowing down hair loss\n• Strengthening existing hair\n• Improving scalp health\n\nMost patients see visible results after 4-6 sessions. Would you like to know about our mesotherapy packages?' },
-          { role: 'contact', text: 'Yes, what are the prices?' },
-          { role: 'ai', text: 'Our mesotherapy packages:\n\n• Single session: $150\n• 4-session package: $500 (save $100)\n• 8-session package: $900 (save $300) — Most popular!\n\nWe also offer a combined Mesotherapy + PRP package for maximum results at $1,200 for 6 sessions. This is our most effective treatment for hair thinning. Would you like to book a consultation to discuss which option is best for your hair type?' }
-        ]
-      },
-      burak: {
-        name: 'Burak D.',
-        channel: 'Voice',
-        messages: [
-          { role: 'contact', text: 'I need about 3000 grafts. How long does the procedure take?' },
-          { role: 'ai', text: 'Hi Burak! A 3,000 graft transplant typically takes 6-8 hours depending on the technique:\n\n• FUE: ~7-8 hours (with breaks)\n• DHI: ~6-7 hours\n• Sapphire FUE: ~7 hours\n\nWe ensure your comfort throughout with local anesthesia and breaks every 2 hours. Many patients watch movies during the procedure!' },
-          { role: 'contact', text: 'And what about the recovery time?' },
-          { role: 'ai', text: 'Great question! Here\'s the typical recovery timeline:\n\n• Day 1-3: Mild swelling, rest recommended\n• Day 5: First gentle wash\n• Day 10: Scabs fall off naturally\n• Week 2: Back to work/normal activities\n• Month 3-4: New hair starts growing\n• Month 8-12: Full results visible\n\nWe provide a detailed post-op care kit and 24/7 support line. Would you like to schedule a free assessment to confirm the graft count and get a personalized timeline?' }
+          { role: 'user', sender: 'Mehmet K.', text: 'Merhaba, rinoplasti için randevu almak istiyorum. Daha önce online konsültasyon yaptırmıştık.', time: '09:15' },
+          { role: 'ai', text: 'Merhaba Mehmet Bey! Tekrar hoş geldiniz. 😊\n\nOnline konsültasyon kaydınızı görüyorum. Dr. Yılmaz ile görüşmüştünüz.\n\nDoktorumuzun müsait randevu tarihleri:\n\n📅 Bu hafta:\n→ Perşembe 16 Mayıs - 10:00\n→ Cuma 17 Mayıs - 14:00\n\n📅 Gelecek hafta:\n→ Pazartesi 20 Mayıs - 11:00\n→ Çarşamba 22 Mayıs - 09:00\n\nAmeliyet öncesi yapılacaklar:\n→ Kan testleri\n→ Anestezi konsültasyonu\n→ 3D simülasyon görüntüleme\n\nHangi tarih size uygun olur?', time: '09:15' },
+          { role: 'user', sender: 'Mehmet K.', text: 'Perşembe 10:00 uygun. Ameliyat ne zaman olabilir?', time: '09:18' },
+          { role: 'ai', text: 'Harika! Perşembe 16 Mayıs saat 10:00\'ı sizin için ayırtıyorum. ✅\n\nPlanlama:\n→ 16 Mayıs: Muayene + 3D simülasyon + testler\n→ Ameliyat: Testler sonrası 1-2 hafta içinde planlanır\n→ Tahmini ameliyat tarihi: 27-31 Mayıs arası\n\n📋 Randevu günü getirmeniz gerekenler:\n→ Kimlik/pasaport\n→ Varsa önceki tıbbi raporlar\n→ Rahat kıyafetler\n\nKonsültasyon adresinize SMS ile gönderilecek. Başka bir sorunuz var mı? 🏥', time: '09:19' }
         ]
       }
     };
 
-    // ===== View Switching =====
-    var navBtns = document.querySelectorAll('.demo-nav button, .demo-mobile-tabs button');
-    var views = document.querySelectorAll('.demo-view');
+    // ===== Avatar colors =====
+    var avatarColors = ['#ef4444','#2563eb','#16a34a','#8b5cf6','#d97706','#ec4899','#059669','#0284c7'];
 
-    navBtns.forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        var viewId = btn.dataset.view;
-        // Update all nav buttons (sidebar + mobile)
-        document.querySelectorAll('[data-view]').forEach(function(b) {
-          b.classList.toggle('active', b.dataset.view === viewId);
-        });
-        views.forEach(function(v) {
-          v.classList.toggle('active', v.id === 'view-' + viewId);
-        });
-
-        // Show/hide right panel content based on view
-        if (viewId === 'inbox') {
-          document.getElementById('demoCTAPanel').style.display = 'none';
-          document.getElementById('demoChatInput').style.display = 'block';
-        } else {
-          document.getElementById('demoChatInput').style.display = 'none';
-          document.getElementById('demoCTAPanel').style.display = 'block';
-          // Reset messages to default
-          showDefaultDetail();
-        }
-      });
+    // ===== Render inbox items =====
+    var inboxEl = document.getElementById('inboxItems');
+    var convKeys = Object.keys(conversations);
+    convKeys.forEach(function(key, i) {
+      var c = conversations[key];
+      var initials = c.name.replace(/[^A-Za-zА-Яа-яÇçĞğİıÖöŞşÜüÉéÈèÊêÀàÂâ\u0600-\u06FF]/g,'').substring(0,2).toUpperCase();
+      if (!initials || initials.length < 1) initials = c.name.substring(0,2);
+      var chClass = c.channel === 'Voice' ? 'ch-voice' : 'ch-wa';
+      var chLabel = c.channel === 'Voice' ? 'Sesli' : 'WA';
+      var btn = document.createElement('button');
+      btn.className = 'inbox-item';
+      btn.dataset.conv = key;
+      btn.innerHTML =
+        '<div class="inbox-avatar" style="background:' + c.color + '">' + initials + '</div>' +
+        '<div class="inbox-meta">' +
+          '<div class="inbox-name"><span class="flag">' + c.flag + '</span> ' + c.name + '</div>' +
+          '<div class="inbox-preview">' + c.preview + '</div>' +
+        '</div>' +
+        '<div class="inbox-time-col">' +
+          '<span class="inbox-time">' + c.time + '</span>' +
+          '<span class="inbox-channel ' + chClass + '">' + chLabel + '</span>' +
+        '</div>';
+      inboxEl.appendChild(btn);
     });
 
-    // ===== Conversation Selection =====
-    var convItems = document.querySelectorAll('.demo-conv-item');
-    convItems.forEach(function(item) {
+    // ===== Inbox click → show conversation =====
+    var inboxItems = document.querySelectorAll('.inbox-item');
+    inboxItems.forEach(function(item) {
       item.addEventListener('click', function() {
-        convItems.forEach(function(c) { c.classList.remove('active'); });
+        inboxItems.forEach(function(el) { el.classList.remove('active'); });
         item.classList.add('active');
         showConversation(item.dataset.conv);
       });
@@ -1558,72 +1610,93 @@
     function showConversation(id) {
       var conv = conversations[id];
       if (!conv) return;
-      var container = document.getElementById('demoMessages');
-      var html = '';
+      var html = '<div class="chat-header">' +
+        '<div class="inbox-avatar" style="background:' + conv.color + ';width:32px;height:32px;font-size:0.65rem">' + conv.flag + '</div>' +
+        '<div><div class="chat-header-name">' + conv.name + '</div>' +
+        '<div class="chat-header-status">' + conv.channel + ' · AI modu</div></div></div>';
+      html += '<div class="chat-messages">';
       conv.messages.forEach(function(m) {
-        var lines = m.text.split('\n').map(function(line) {
-          return line.replace(/•/g, '&bull;');
-        }).join('<br>');
-        html += '<div class="demo-msg demo-msg-' + m.role + '">' +
-                  '<div class="demo-msg-bubble">' + lines + '</div>' +
-                '</div>';
+        var lines = m.text.split('\n').map(function(l){ return l.replace(/•/g,'&bull;'); }).join('<br>');
+        var senderLabel = m.role === 'ai' ? '<div class="msg-sender">✨ stoaix · AI</div>' : '<div class="msg-sender">' + m.sender + '</div>';
+        html += '<div class="msg-row ' + m.role + '">' +
+          '<div class="msg-bubble">' + senderLabel + lines + '<div class="msg-time">' + m.time + '</div></div></div>';
       });
-      container.innerHTML = html;
-      // Scroll to bottom
-      container.scrollTop = container.scrollHeight;
-      // Show chat input, hide CTA panel
-      document.getElementById('demoChatInput').style.display = 'block';
-      document.getElementById('demoCTAPanel').style.display = 'none';
+      html += '</div>';
+      html += '<div class="chat-input-area"><div class="chat-input-wrap" id="chatInputTrigger">' +
+        '<span>Mesaj yazın...</span>' +
+        '<div class="chat-input-btn"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>' +
+        '</div></div>';
+      document.getElementById('chatArea').innerHTML = html;
+      // Scroll messages
+      var msgContainer = document.querySelector('.chat-messages');
+      if (msgContainer) msgContainer.scrollTop = msgContainer.scrollHeight;
+      // Rebind chat input CTA
+      var trigger = document.getElementById('chatInputTrigger');
+      if (trigger) {
+        trigger.addEventListener('click', function() {
+          showCTA('💬', 'Kendi hastalarınızla konuşmaya hazır mısınız?', 'WhatsApp, Sesli AI ve daha fazlasını bağlayın — gerçek konuşmaları yönetin.');
+        });
+      }
     }
 
-    function showDefaultDetail() {
-      document.getElementById('demoMessages').innerHTML =
-        '<div class="demo-detail-default" id="detailDefault">' +
-          '<div class="detail-icon">&#128172;</div>' +
-          '<p>Select a conversation from the inbox to see how AI handles patient inquiries in real-time.</p>' +
-        '</div>';
+    // ===== View switching =====
+    function switchView(viewId) {
+      document.querySelectorAll('.demo-view').forEach(function(v) { v.classList.remove('active'); });
+      document.querySelectorAll('.demo-nav button').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('#mobileTabs button').forEach(function(b) { b.classList.remove('active'); });
+      var target = document.getElementById('view-' + viewId);
+      if (target) target.classList.add('active');
+      document.querySelectorAll('.demo-nav button[data-view="' + viewId + '"]').forEach(function(b) { b.classList.add('active'); });
+      document.querySelectorAll('#mobileTabs button[data-view="' + viewId + '"]').forEach(function(b) { b.classList.add('active'); });
     }
+    document.querySelectorAll('.demo-nav button').forEach(function(btn) {
+      btn.addEventListener('click', function() { switchView(btn.dataset.view); });
+    });
+    document.querySelectorAll('#mobileTabs button').forEach(function(btn) {
+      btn.addEventListener('click', function() { switchView(btn.dataset.view); });
+    });
+
+    // ===== AI Assistant tabs =====
+    document.querySelectorAll('.ai-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.ai-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.ai-tab-content').forEach(function(c) { c.classList.remove('active'); });
+        tab.classList.add('active');
+        document.getElementById('aitab-' + tab.dataset.aitab).classList.add('active');
+      });
+    });
 
     // ===== CTA Popup =====
-    var popup = document.getElementById('ctaPopup');
-    var popupClose = document.getElementById('popupClose');
-
-    function showCTAPopup(icon, title, text) {
-      document.getElementById('popupIcon').textContent = icon;
-      document.getElementById('popupTitle').textContent = title;
-      document.getElementById('popupText').textContent = text;
-      popup.classList.add('active');
-    }
-
-    popupClose.addEventListener('click', function() {
-      popup.classList.remove('active');
+    window.showCTA = function(icon, title, text) {
+      document.getElementById('ctaIcon').textContent = icon;
+      document.getElementById('ctaTitle').textContent = title;
+      document.getElementById('ctaText').textContent = text;
+      document.getElementById('ctaOverlay').classList.add('active');
+    };
+    document.getElementById('ctaClose').addEventListener('click', function() {
+      document.getElementById('ctaOverlay').classList.remove('active');
     });
-    popup.addEventListener('click', function(e) {
-      if (e.target === popup) popup.classList.remove('active');
+    document.getElementById('ctaOverlay').addEventListener('click', function(e) {
+      if (e.target === document.getElementById('ctaOverlay')) {
+        document.getElementById('ctaOverlay').classList.remove('active');
+      }
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') document.getElementById('ctaOverlay').classList.remove('active');
     });
 
     // Lead card clicks
     document.querySelectorAll('[data-cta="lead"]').forEach(function(card) {
       card.addEventListener('click', function() {
-        showCTAPopup('&#128202;', 'Manage Your Lead Pipeline', 'Drag and drop leads, track scores automatically, and let AI qualify prospects for you.');
+        showCTA('📊', 'Leadlerinizi sürükle-bırak ile yönetin', 'AI skoru, otomatik aşama geçişi ve akıllı pipeline ile satış sürecinizi optimize edin.');
       });
     });
 
     // Workflow card clicks
     document.querySelectorAll('[data-cta="workflow"]').forEach(function(card) {
       card.addEventListener('click', function() {
-        showCTAPopup('&#9889;', 'Automate Your Workflows', 'Activate pre-built AI workflows to handle follow-ups, reminders, and more — automatically.');
+        showCTA('⚡', 'Kliniğinizin iş akışlarını otomatikleştirin', 'Hazır AI iş akışlarını aktive edin — takip, hatırlatma, anket ve daha fazlası otomatik çalışsın.');
       });
-    });
-
-    // Chat input click
-    document.getElementById('chatInputTrigger').addEventListener('click', function() {
-      showCTAPopup('&#128172;', 'Talk to Your Own Patients', 'Start your free trial to connect WhatsApp, Voice AI, and manage real conversations.');
-    });
-
-    // Keyboard escape to close popup
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') popup.classList.remove('active');
     });
 
   });
