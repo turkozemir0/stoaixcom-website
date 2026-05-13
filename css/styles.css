@@ -1387,9 +1387,9 @@ ul { list-style: none; }
     justify-content: center;
     gap: 6px;
     margin-top: 12px;
-    font-size: 0.72rem;
+    font-size: 0.65rem;
     color: var(--text-3);
-    opacity: 0.7;
+    opacity: 0.6;
   }
 }
 
