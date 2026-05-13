@@ -401,40 +401,16 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       </div>
 
       <div class="demo-embed-wrap reveal">
-        <!--ARCADE EMBED START-->
-        <script>
-          function onArcadeIframeMessage(e) {
-            if (e.origin !== 'https://demo.arcade.software' || !e.isTrusted) return;
-            const arcadeIframe = document.querySelector(`iframe[src*="${e.data.id}"]`);
-            if (!arcadeIframe || !arcadeIframe.contentWindow) return;
-            if (e.data.event === 'arcade-init') {
-              arcadeIframe.contentWindow.postMessage({event: 'register-popout-handler'}, '*');
-            }
-            if (e.data.event === 'arcade-popout-open') {
-              arcadeIframe.style['position'] = 'fixed';
-              arcadeIframe.style['z-index'] = '9999999';
-            }
-            if (e.data.event === 'arcade-popout-close') {
-              arcadeIframe.style['position'] = 'absolute';
-              arcadeIframe.style['z-index'] = 'auto';
-            }
-          }
-          window.addEventListener('message', onArcadeIframeMessage);
-        </script>
-        <div style="position: relative; padding-bottom: calc(45.6944% + 41px); height: 0px; width: 100%;">
+        <div style="position: relative; padding-bottom: 56%; height: 0; width: 100%;">
           <iframe
-            src="https://demo.arcade.software/2Hzwtnb27ud1EIx3FgUh?embed&embed_mobile=modal&embed_desktop=inline&show_copy_link=true"
-            title="Web Sitesinden Bilgi Bankasına İçerik Aktarma"
+            src="/demo-interactive"
+            title="STOAIX Interactive Demo"
             frameborder="0"
             loading="lazy"
-            webkitallowfullscreen
-            mozallowfullscreen
             allowfullscreen
-            allow="clipboard-write"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; color-scheme: light;"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: inherit;"
           ></iframe>
         </div>
-        <!--ARCADE EMBED END-->
       </div>
     </div>
   </section>

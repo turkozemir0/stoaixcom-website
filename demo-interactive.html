@@ -1773,6 +1773,18 @@
   <footer class="footer"></footer>
 
   <script>
+  // Detect iframe embedding → hide navbar, hero, footer, bottom CTA
+  (function() {
+    try {
+      if (window.self !== window.top) {
+        document.documentElement.classList.add('embedded');
+        var style = document.createElement('style');
+        style.textContent = '.embedded .navbar,.embedded #navbar,.embedded .mobile-menu,.embedded .demo-hero,.embedded .footer,.embedded footer,.embedded .demo-bottom-cta{display:none!important}.embedded .demo-interactive-section{padding:0!important}.embedded .demo-window{border-radius:0!important;border:none!important;box-shadow:none!important;max-width:none!important}.embedded .demo-body{height:100vh!important;max-height:none!important}.embedded body{overflow:hidden}';
+        document.head.appendChild(style);
+      }
+    } catch(e) {}
+  })();
+
   document.addEventListener('DOMContentLoaded', function() {
 
     // ===== Conversations Data =====
