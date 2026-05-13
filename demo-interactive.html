@@ -1227,7 +1227,8 @@
       .demo-hero h1 { font-size: 1.5rem; }
       .demo-hero p { font-size: 0.9rem; }
 
-      .demo-body { flex-direction: column; height: auto; max-height: none; min-height: auto; }
+      .demo-body { flex-direction: column; height: auto; max-height: none; min-height: 80vh; }
+      .demo-main { min-height: 70vh; }
       .demo-sidebar { display: none; }
       .mobile-tabs { display: flex; }
 
@@ -1255,10 +1256,10 @@
       .chart-bars { height: 70px; }
 
       /* Inbox */
-      .inbox-layout { flex-direction: column; height: auto; }
+      .inbox-layout { flex-direction: column; height: auto; min-height: 60vh; }
       .inbox-list { width: 100%; height: 180px; border-right: none; border-bottom: 1px solid var(--slate-200); }
       .chat-header { padding: 8px 10px; }
-      .chat-messages { padding: 10px; }
+      .chat-messages { padding: 10px; min-height: 200px; }
       .msg-bubble { max-width: 88%; font-size: 0.78rem; }
       .chat-input-area { padding: 8px 10px; }
 
@@ -1272,7 +1273,7 @@
       .calls-wrap { padding: 0 10px 10px; }
 
       /* Pipeline — horizontal scroll */
-      .pipeline-board { flex-direction: row; overflow-x: auto; padding: 0 10px 10px; -webkit-overflow-scrolling: touch; }
+      .pipeline-board { flex-direction: row; overflow-x: auto; padding: 0 10px 10px; -webkit-overflow-scrolling: touch; min-height: 50vh; }
       .pipeline-col { min-width: 150px; }
       .lead-card { padding: 8px; }
       .lead-card-name { font-size: 0.75rem; }
