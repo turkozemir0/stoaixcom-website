@@ -1209,6 +1209,8 @@
     .voice-status { font-size: 0.85rem; font-weight: 600; color: #0f172a; margin-bottom: 4px; }
     .voice-sub { font-size: 0.72rem; color: var(--slate-500); }
 
+    .calls-wrap { padding: 0 24px 24px; }
+
     /* ===== Responsive ===== */
     @media (max-width: 1100px) {
       .demo-stats-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1216,89 +1218,122 @@
       .wf-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 768px) {
-      .demo-hero { padding: 100px 0 32px; }
+      /* Demo wrapper — full width, no wasted space */
+      .demo-interactive-section { padding: 0 6px 40px; }
+      .demo-window { border-radius: 10px; }
+      .demo-titlebar { height: 32px; font-size: 0.68rem; }
+      .demo-dot { width: 9px; height: 9px; }
+      .demo-hero { padding: 90px 0 24px; }
+      .demo-hero h1 { font-size: 1.5rem; }
+      .demo-hero p { font-size: 0.9rem; }
+
       .demo-body { flex-direction: column; height: auto; max-height: none; min-height: auto; }
       .demo-sidebar { display: none; }
       .mobile-tabs { display: flex; }
 
       /* Topbar */
-      .demo-topbar { padding: 10px 14px; flex-wrap: wrap; }
-      .demo-topbar h2 { font-size: 0.95rem; }
-      .demo-topbar .topbar-sub { font-size: 0.7rem; }
+      .demo-topbar { padding: 8px 10px; flex-wrap: wrap; gap: 8px; }
+      .demo-topbar h2 { font-size: 0.88rem; }
+      .demo-topbar .topbar-sub { font-size: 0.65rem; }
 
       /* Cards */
-      .d-card-header { padding: 12px 14px; }
-      .d-card-body { padding: 14px; }
+      .d-card-header { padding: 10px 12px; }
+      .d-card-body { padding: 12px; }
 
       /* Stat cards */
-      .demo-stats-grid { grid-template-columns: 1fr 1fr; padding: 14px 14px 0; gap: 10px; }
-      .demo-stat-card { padding: 12px; gap: 10px; }
-      .stat-icon-wrap { width: 36px; height: 36px; }
-      .stat-value { font-size: 1.15rem; }
-      .stat-label { font-size: 0.68rem; }
+      .demo-stats-grid { grid-template-columns: 1fr 1fr; padding: 10px 10px 0; gap: 8px; }
+      .demo-stat-card { padding: 10px; gap: 8px; }
+      .stat-icon-wrap { width: 32px; height: 32px; }
+      .stat-icon-wrap svg { width: 16px; height: 16px; }
+      .stat-value { font-size: 1.05rem; }
+      .stat-label { font-size: 0.62rem; }
 
       /* Overview */
-      .overview-grid { padding: 10px 14px 14px; }
+      .overview-grid { padding: 8px 10px 10px; }
 
       /* Chart */
-      .chart-bars { height: 80px; }
+      .chart-bars { height: 70px; }
 
       /* Inbox */
       .inbox-layout { flex-direction: column; height: auto; }
       .inbox-list { width: 100%; height: 180px; border-right: none; border-bottom: 1px solid var(--slate-200); }
-      .chat-header { padding: 10px 14px; }
-      .chat-messages { padding: 12px 14px; }
-      .msg-bubble { max-width: 85%; }
-      .chat-input-area { padding: 10px 12px; }
+      .chat-header { padding: 8px 10px; }
+      .chat-messages { padding: 10px; }
+      .msg-bubble { max-width: 88%; font-size: 0.78rem; }
+      .chat-input-area { padding: 8px 10px; }
 
       /* Calls table */
-      .calls-table { font-size: 0.72rem; }
-      .calls-table th, .calls-table td { padding: 8px 10px; }
+      .calls-table { font-size: 0.7rem; }
+      .calls-table th, .calls-table td { padding: 7px 8px; }
       .calls-table th:nth-child(4), .calls-table td:nth-child(4) { display: none; }
       .d-card { overflow-x: auto; }
 
       /* Calls view inner padding */
-      #view-calls > div:nth-child(2) { padding: 0 14px 14px !important; }
+      .calls-wrap { padding: 0 10px 10px; }
 
-      /* Pipeline — horizontal scroll, not stacked */
-      .pipeline-board { flex-direction: row; overflow-x: auto; padding: 0 14px 14px; -webkit-overflow-scrolling: touch; }
-      .pipeline-col { min-width: 160px; }
-      .lead-card { padding: 10px; }
-      .lead-card-name { font-size: 0.78rem; }
-      .lead-card-service { font-size: 0.65rem; }
+      /* Pipeline — horizontal scroll */
+      .pipeline-board { flex-direction: row; overflow-x: auto; padding: 0 10px 10px; -webkit-overflow-scrolling: touch; }
+      .pipeline-col { min-width: 150px; }
+      .lead-card { padding: 8px; }
+      .lead-card-name { font-size: 0.75rem; }
+      .lead-card-service { font-size: 0.62rem; }
+      .score-badge { font-size: 0.6rem; padding: 1px 5px; }
 
       /* AI Assistant */
-      .ai-tabs { padding: 0 14px; }
-      .ai-tab-content { padding: 16px 14px; }
+      .ai-tabs { padding: 0 10px; }
+      .ai-tab { padding: 8px 12px; font-size: 0.75rem; }
+      .ai-tab-content { padding: 12px 10px; }
 
       /* KB items */
-      .kb-item { padding: 10px; gap: 10px; }
+      .kb-item { padding: 8px; gap: 8px; }
       .kb-count { display: none; }
+      .kb-icon { width: 30px; height: 30px; font-size: 0.78rem; }
+      .kb-name { font-size: 0.78rem; }
 
       /* Playground */
-      .playground-modes { gap: 6px; }
-      .playground-mode-btn { padding: 8px; }
+      .playground-modes { gap: 4px; }
+      .playground-mode-btn { padding: 6px; }
       .playground-mode-btn .pm-desc { display: none; }
+      .playground-mode-btn .pm-icon { font-size: 1.2rem; }
+      .playground-mode-btn .pm-label { font-size: 0.7rem; }
+      .voice-playground { padding: 16px; }
+      .voice-orb { width: 60px; height: 60px; margin-bottom: 12px; }
+      .voice-orb svg { width: 24px; height: 24px; }
 
       /* Workflows */
-      .wf-grid { padding: 0 14px 14px; }
-      .wf-card { padding: 12px; }
-      .wf-desc { font-size: 0.68rem; }
+      .wf-grid { padding: 0 10px 10px; }
+      .wf-card { padding: 10px; }
+      .wf-desc { font-size: 0.65rem; }
+      .wf-icon { width: 30px; height: 30px; }
+      .wf-name { font-size: 0.78rem; }
 
       /* Settings */
-      .settings-tabs { padding: 0 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-      .settings-tab { font-size: 0.72rem; padding: 8px 12px; }
-      .settings-content { padding: 16px 14px; }
+      .settings-tabs { padding: 0 6px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .settings-tab { font-size: 0.68rem; padding: 7px 10px; }
+      .settings-content { padding: 12px 10px; }
+      .settings-label { font-size: 0.78rem; }
+      .settings-sublabel { font-size: 0.62rem; }
+      .settings-row { padding: 10px 0; }
 
       /* Call Summary */
-      .call-summary-header { padding: 10px 14px; }
-      .call-summary-body { padding: 12px; }
-      .sales-tip { font-size: 0.72rem; padding: 8px 12px; }
+      .call-summary-header { padding: 8px 10px; }
+      .call-summary-header h4 { font-size: 0.75rem; }
+      .call-summary-body { padding: 10px; }
+      .call-summary-section p, .call-summary-section ul { font-size: 0.72rem; }
+      .sales-tip { font-size: 0.68rem; padding: 8px 10px; }
+
+      /* CTA buttons in topbar */
+      .demo-topbar .cta-btn-primary { font-size: 0.68rem !important; padding: 6px 10px !important; }
     }
     @media (max-width: 480px) {
+      .demo-interactive-section { padding: 0 2px 30px; }
+      .demo-window { border-radius: 6px; }
       .demo-stats-grid { grid-template-columns: 1fr; }
       .pipeline-col { min-width: 140px; }
-      .inbox-list { height: 160px; }
+      .inbox-list { height: 150px; }
+      .demo-hero h1 { font-size: 1.25rem; }
+      .demo-hero p { font-size: 0.82rem; }
+      .demo-topbar h2 { font-size: 0.82rem; }
     }
 
     /* ===== STOA Support Agent ===== */
@@ -1637,7 +1672,7 @@
                   Demo Dinle
                 </button>
               </div>
-              <div style="padding:0 24px 24px">
+              <div class="calls-wrap">
                 <div class="d-card">
                   <table class="calls-table">
                     <thead>
