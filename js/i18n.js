@@ -449,8 +449,8 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'in missed bookings': 'kaçırılan randevularda',
   'Lost per year': 'Yıllık kayıp',
   'walking out the door': 'kapıdan çıkıp gidiyor',
-  'Recover this revenue — free for 7 days': 'Bu geliri geri kazanın — 7 gün ücretsiz',
-  'No credit card required to start your trial.': 'Denemenizi başlatmak için kredi kartı gerekmez.',
+  'Recover this revenue — free for 7 days': 'Ücretsiz Klinik Analizi',
+  'No credit card required to start your trial.': 'Uzman ekibimizle 30 dakikalık ücretsiz görüşme ayarlayın.',
   /* --- Hero trust badge --- */
   'Built on insights from': 'Temelinde yatan:',
   '500+ clinic audits': '500+ klinik denetimi',
