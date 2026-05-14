@@ -440,7 +440,7 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'Start Free Trial': 'Ücretsiz Deneyin',
   /* --- Revenue calculator section --- */
   'Revenue Calculator': 'Gelir Hesaplayıcı',
-  'How much are missed enquiries costing you?': 'Kaçırılan başvurular size ne kadar mal oluyor?',
+  'How much are missed enquiries costing you?': 'Kaçırılan başvurular size ne kadar kaybettiriyor?',
   'See the real revenue impact of every unanswered call and message.': 'Her yanıtsız arama ve mesajın gerçek gelir etkisini görün.',
   'Average appointment value (£)': 'Ortalama randevu değeri (£)',
   'Missed enquiries per week': 'Haftada kaçırılan başvuru sayısı',
