@@ -103,7 +103,7 @@ export default async function handler(req, res) {
       }
     }
 
-    // 3. Create subscription (Business = no trial, others = 7-day trial)
+    // 3. Create subscription (Business = no trial, others = 3-day trial)
     const isBusiness = planKey === 'business'
 
     const items = [{ price: priceId }]
@@ -130,7 +130,7 @@ export default async function handler(req, res) {
       expand: ['latest_invoice.payment_intent'],
     }
     if (!isBusiness) {
-      subscriptionParams.trial_period_days = 7
+      subscriptionParams.trial_period_days = 3
     }
     if (stripePromoId) {
       subscriptionParams.promotion_code = stripePromoId
@@ -171,7 +171,7 @@ export default async function handler(req, res) {
           billing: billingKey,
           stripe_customer_id: customer.id,
           stripe_subscription_id: subscription.id,
-          trial_ends_at: isBusiness ? null : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+          trial_ends_at: isBusiness ? null : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
         },
       })
       // If user was deleted from Auth, fall through to create a new one
@@ -196,7 +196,7 @@ export default async function handler(req, res) {
           billing: billingKey,
           stripe_customer_id: customer.id,
           stripe_subscription_id: subscription.id,
-          trial_ends_at: isBusiness ? null : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+          trial_ends_at: isBusiness ? null : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
         },
       })
 
@@ -284,7 +284,7 @@ export default async function handler(req, res) {
       },
     })
 
-    const trialEndsAt = isBusiness ? null : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString()
+    const trialEndsAt = isBusiness ? null : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString()
     await supabase.from('org_subscriptions').insert({
       organization_id: org.id,
       plan_id: planKey,
@@ -296,7 +296,7 @@ export default async function handler(req, res) {
       current_period_start: new Date().toISOString(),
       current_period_end: isBusiness
         ? new Date(subscription.current_period_end * 1000).toISOString()
-        : new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString(),
+        : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
     })
 
     // 6. Notify partner panel if referred

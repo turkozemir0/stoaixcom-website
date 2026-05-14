@@ -372,7 +372,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           </div>
           <div>
             <div class="trial-callout-title">No payment today</div>
-            <div class="trial-callout-desc" id="trialCalloutDesc">Your 7-day free trial starts now. We won't charge you until your trial ends. Cancel anytime — no questions asked.</div>
+            <div class="trial-callout-desc" id="trialCalloutDesc">Your 3-day free trial starts now. We won't charge you until your trial ends. Cancel anytime — no questions asked.</div>
           </div>
         </div>
 
@@ -425,7 +425,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
           <div class="checkout-legal" id="legalText">
             By starting your trial you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.<br />
-            Subscription auto-renews after 7-day trial. Cancel anytime.
+            Subscription auto-renews after 3-day trial. Cancel anytime.
           </div>
         </form>
       </div>
@@ -447,7 +447,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             <span class="plan-display-badge" id="summaryBadge">Most popular</span>
           </div>
           <div class="plan-display-price" id="summaryPrice">$299<span> / month</span></div>
-          <div class="plan-display-sub" id="summarySub">Billed monthly after 7-day trial</div>
+          <div class="plan-display-sub" id="summarySub">Billed monthly after 3-day trial</div>
         </div>
 
         <div id="billingBadge" style="text-align:center;margin-bottom:16px;font-size:0.78rem;color:var(--text-2);">
@@ -460,7 +460,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           <strong id="lineItemPrice">$299.00</strong>
         </div>
         <div class="order-line" id="trialDiscountRow">
-          <span>7-day trial discount</span>
+          <span>3-day trial discount</span>
           <strong style="color: #16a34a;" id="trialDiscount">-$69.77</strong>
         </div>
         <div class="order-line" id="promoDiscountRow" style="display:none">
@@ -631,8 +631,8 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     } else {
       document.getElementById('successTitle').textContent = t('Trial started!', 'Deneme başladı!')
       legalEl.innerHTML = t(
-        'By starting your trial you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.<br />Subscription auto-renews after the 7-day trial. Cancel anytime.',
-        'Denemenizi başlatarak <a href="#">Kullanım Koşulları</a>\'nı ve <a href="#">Gizlilik Politikası</a>\'nı kabul etmiş olursunuz.<br />Abonelik 7 günlük deneme sonrası otomatik yenilenir. İstediğiniz zaman iptal edin.'
+        'By starting your trial you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.<br />Subscription auto-renews after the 3-day trial. Cancel anytime.',
+        'Denemenizi başlatarak <a href="#">Kullanım Koşulları</a>\'nı ve <a href="#">Gizlilik Politikası</a>\'nı kabul etmiş olursunuz.<br />Abonelik 3 günlük deneme sonrası otomatik yenilenir. İstediğiniz zaman iptal edin.'
       )
     }
 
@@ -789,10 +789,10 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         const trialCalloutDescEl = document.getElementById('trialCalloutDesc')
         if (trialCalloutDescEl) {
           trialCalloutDescEl.textContent = hasOneTimeAddon
-            ? t('One-time add-ons are charged immediately. Your plan subscription is free for 7 days — cancel within that period and you won\'t be charged anything extra.',
-                'Tek seferlik eklentiler hemen tahsil edilir. Plan aboneliğiniz 7 gün ücretsizdir — bu süre içinde iptal ederseniz fazladan ödeme yapmazsınız.')
-            : t('Your 7-day free trial starts now. We won\'t charge you until your trial ends. Cancel anytime — no questions asked.',
-                '7 günlük ücretsiz denemeniz şimdi başlıyor. Deneme süreniz dolmadan ödeme almıyoruz. İstediğiniz zaman iptal edin — soru sorulmaz.')
+            ? t('One-time add-ons are charged immediately. Your plan subscription is free for 3 days — cancel within that period and you won\'t be charged anything extra.',
+                'Tek seferlik eklentiler hemen tahsil edilir. Plan aboneliğiniz 3 gün ücretsizdir — bu süre içinde iptal ederseniz fazladan ödeme yapmazsınız.')
+            : t('Your 3-day free trial starts now. We won\'t charge you until your trial ends. Cancel anytime — no questions asked.',
+                '3 günlük ücretsiz denemeniz şimdi başlıyor. Deneme süreniz dolmadan ödeme almıyoruz. İstediğiniz zaman iptal edin — soru sorulmaz.')
         }
       }
 

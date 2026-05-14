@@ -325,7 +325,7 @@
                 </div>
                 <div class="pt-billing-note" data-plan="essential"></div>
                 <a href="signup.html?plan=essential&billing=annual" class="btn-outline pt-btn pt-signup-link">Start free trial</a>
-                <div class="pt-trial">7-day free trial</div>
+                <div class="pt-trial">3-day free trial</div>
               </th>
               <th class="pt-th-plan pt-th-biz">
                 <div class="pt-savings-badge" data-plan="professional"></div>
@@ -337,7 +337,7 @@
                 </div>
                 <div class="pt-billing-note" data-plan="professional"></div>
                 <a href="signup.html?plan=professional&billing=annual" class="btn-primary pt-btn pt-signup-link">Start free trial</a>
-                <div class="pt-trial">7-day free trial</div>
+                <div class="pt-trial">3-day free trial</div>
               </th>
               <th class="pt-th-plan">
                 <div class="pt-savings-badge" data-plan="business"></div>
@@ -504,7 +504,7 @@
       <div class="pricing-note reveal">
         <span>* Professional: kurulum sırasında gelen veya giden seçilir · </span>
         <span>Voice AI overage: $0.19/min after plan limit · </span>
-        <span>Essential &amp; Professional: 7-day free trial · </span>
+        <span>Essential &amp; Professional: 3-day free trial · </span>
         <span>Save up to 30% with annual billing</span>
       </div>
     </div>
