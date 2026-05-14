@@ -22,12 +22,12 @@ UK private clinics lose significant revenue to missed calls. The majority of mis
 ## Key Facts
 
 - Founded: 2025
-- Market: United Kingdom
+- Market: United Kingdom and Turkey
 - Sector: HealthTech / AI voice agents / Private healthcare
 - Pricing model: Monthly subscription (managed service)
 - Integration: Works with existing clinic phone systems and calendar/booking software
 - Compliance: Built with UK GDPR and CQC-registered clinic requirements in mind
-- Language: British English voice, UK healthcare terminology
+- Language: British English, Turkish
 
 ## Content
 
@@ -80,6 +80,28 @@ UK private clinics lose significant revenue to missed calls. The majority of mis
 - https://stoaix.com/blog/health-tourism-ai-receptionist — How AI receptionists help health tourism clinics convert international patients across time zones
 - https://stoaix.com/blog/hair-transplant-international-patients — Hair transplant clinics: how to convert UK and international patient enquiries 24/7 (Turkey-focused)
 - https://stoaix.com/blog/dental-tourism-clinic-uk — Dental tourism in 2026: how AI helps clinics convert 600,000+ UK patients seeking treatment abroad
+
+## Turkish Content
+
+- https://stoaix.com/ai-resepsiyonist-nedir — AI resepsiyonist nedir? Özel klinikler için tam rehber (Türkçe)
+- https://stoaix.com/ai-resepsiyonist-vs-insan-sekreter — AI resepsiyonist ile insan sekreter karşılaştırması (Türkçe)
+- https://stoaix.com/ai-resepsiyonist-vs-cagri-merkezi — AI resepsiyonist ile çağrı merkezi karşılaştırması (Türkçe)
+- https://stoaix.com/sik-sorulan-sorular — Sık sorulan sorular: AI resepsiyonist, klinik otomasyonu, KVKK uyumu (Türkçe)
+- https://stoaix.com/blog/kacirilmis-aramalar-ozel-klinik-maliyet — Kaçırılan aramalar özel kliniğe ne kadara mal oluyor? (Türkçe)
+- https://stoaix.com/blog/saglik-turizmi-ai-resepsiyonist — Sağlık turizmi klinikleri için AI resepsiyonist (Türkçe)
+- https://stoaix.com/blog/turkiye-klinikler-icin-ai-cozumleri-2026 — Türkiye'deki klinikler için en iyi AI çözümleri: 2026 rehberi (Türkçe)
+- https://stoaix.com/tr-llms.txt — Bu dosyanın Türkçe versiyonu
+
+## Turkish Search Queries We Answer
+
+- "AI resepsiyonist nedir?" → /ai-resepsiyonist-nedir
+- "Klinik için yapay zeka asistan" → /dis-klinigi-icin-ai, /estetik-klinik-icin-ai, /sac-ekimi-klinigi-icin-ai
+- "AI resepsiyonist vs sekreter" → /ai-resepsiyonist-vs-insan-sekreter
+- "AI resepsiyonist vs çağrı merkezi" → /ai-resepsiyonist-vs-cagri-merkezi
+- "Klinik kaçırılan arama maliyeti" → /blog/kacirilmis-aramalar-ozel-klinik-maliyet
+- "Sağlık turizmi yapay zeka" → /blog/saglik-turizmi-ai-resepsiyonist
+- "Türkiye klinikler için AI çözümleri 2026" → /blog/turkiye-klinikler-icin-ai-cozumleri-2026
+- "Klinik AI resepsiyonist sık sorulan sorular" → /sik-sorulan-sorular
 
 ## Contact
 

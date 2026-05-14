@@ -164,10 +164,48 @@
   <!-- Citation / AEO Pages -->
   <url>
     <loc>https://stoaix.com/what-is-ai-receptionist-clinic</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/what-is-ai-receptionist-clinic"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/ai-resepsiyonist-nedir"/>
+  </url>
+
+  <!-- Citation / AEO Pages (TR) -->
+  <url>
+    <loc>https://stoaix.com/ai-resepsiyonist-nedir</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/ai-resepsiyonist-nedir"/>
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/what-is-ai-receptionist-clinic"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/ai-resepsiyonist-vs-insan-sekreter</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/ai-resepsiyonist-vs-insan-sekreter"/>
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/ai-receptionist-vs-human-receptionist-uk"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/ai-resepsiyonist-vs-cagri-merkezi</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/ai-resepsiyonist-vs-cagri-merkezi"/>
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/ai-receptionist-vs-answering-service-uk"/>
+  </url>
+
+  <!-- Turkish FAQ Hub -->
+  <url>
+    <loc>https://stoaix.com/sik-sorulan-sorular</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/sik-sorulan-sorular"/>
   </url>
 
   <!-- Vertical Landing Pages (EN) -->
@@ -303,18 +341,20 @@
   <!-- Comparison / AEO Pages (EN) -->
   <url>
     <loc>https://stoaix.com/ai-receptionist-vs-human-receptionist-uk</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/ai-receptionist-vs-human-receptionist-uk"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/ai-resepsiyonist-vs-insan-sekreter"/>
   </url>
 
   <url>
     <loc>https://stoaix.com/ai-receptionist-vs-answering-service-uk</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/ai-receptionist-vs-answering-service-uk"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/ai-resepsiyonist-vs-cagri-merkezi"/>
   </url>
 
   <!-- Pain / Intent Pages (EN) -->
@@ -337,10 +377,11 @@
   <!-- Blog Posts (EN) -->
   <url>
     <loc>https://stoaix.com/blog/missed-calls-cost-private-clinic</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/blog/missed-calls-cost-private-clinic"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kacirilmis-aramalar-ozel-klinik-maliyet"/>
   </url>
 
   <url>
@@ -417,10 +458,11 @@
 
   <url>
     <loc>https://stoaix.com/blog/health-tourism-ai-receptionist</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-05-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/blog/health-tourism-ai-receptionist"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/saglik-turizmi-ai-resepsiyonist"/>
   </url>
 
   <url>
@@ -445,6 +487,33 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/blog/private-dentistry-cma-review-2026"/>
+  </url>
+
+  <!-- Blog Posts (TR) -->
+  <url>
+    <loc>https://stoaix.com/blog/kacirilmis-aramalar-ozel-klinik-maliyet</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kacirilmis-aramalar-ozel-klinik-maliyet"/>
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/blog/missed-calls-cost-private-clinic"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/saglik-turizmi-ai-resepsiyonist</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/saglik-turizmi-ai-resepsiyonist"/>
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/blog/health-tourism-ai-receptionist"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/turkiye-klinikler-icin-ai-cozumleri-2026</loc>
+    <lastmod>2026-05-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/turkiye-klinikler-icin-ai-cozumleri-2026"/>
   </url>
 
 </urlset>

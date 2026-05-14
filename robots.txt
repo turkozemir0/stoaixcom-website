@@ -21,4 +21,8 @@ Allow: /
 Disallow: /.git/
 Disallow: /assets/.gitkeep
 
+# AI-readable content summaries
+# English: https://stoaix.com/llms.txt
+# Turkish: https://stoaix.com/tr-llms.txt
+
 Sitemap: https://stoaix.com/sitemap.xml

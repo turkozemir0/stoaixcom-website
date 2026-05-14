@@ -1,0 +1,76 @@
+# STOAIX
+
+> STOAIX, özel sağlık klinikleri için geliştirilmiş bir AI sesli asistan platformudur. Gelen aramaları 7/24 doğal Türkçe ve İngilizce ile yanıtlar, randevuları doğrudan klinik takvimine kaydeder, otomatik hatırlatma aramaları yapar ve kaçırılan web lead'lerini takip eder — insan müdahalesi olmadan.
+
+## Ne Yapar
+
+- Her gelen aramayı 2 saniye içinde yanıtlar, günün her saatinde
+- Randevuları gerçek zamanlı olarak klinik takvim sistemine kaydeder
+- Randevu hatırlatma ve onay aramaları yaparak gelmeyen hasta (no-show) oranını düşürür
+- Kaçırılan aramaları ve web form lead'lerini otomatik takip eder
+- Arama kayıtları ve randevu analitiği içeren canlı dashboard sunar
+- Tam yönetilen hizmet olarak deploy edilir — klinikten teknik kurulum gerekmez
+
+## Kimin İçin
+
+Türkiye ve İngiltere'deki özel sağlık klinikleri: estetik klinikler, diş klinikleri, saç ekimi klinikleri, fizyoterapi merkezleri, özel muayenehaneler, dermatoloji klinikleri ve uzman hekim pratikleri. Genellikle haftada 20+ gelen araması olan 1-5 hekimli pratikler.
+
+## Çözdüğü Problem
+
+Türkiye'deki özel klinikler, kaçırılan aramalar nedeniyle ciddi gelir kaybı yaşıyor. Kaçırılan aramaların çoğunluğu mesai saatleri dışında — akşam saatleri, hafta sonları ve yoğun klinik saatlerinde ön büro personelinin müsait olmadığı zamanlarda gerçekleşiyor. Sesli yanıt sistemine düşen hastalar nadiren geri arar — rakip klinik ararlar. STOAIX her aramanın yanıtlanmasını ve her randevu talebinin gerçek zamanlı dönüştürülmesini sağlar.
+
+## Temel Bilgiler
+
+- Kuruluş: 2025
+- Pazar: Türkiye ve İngiltere
+- Sektör: SağlıkTeknolojisi / AI sesli asistanlar / Özel sağlık
+- Fiyatlandırma: Aylık abonelik (yönetilen hizmet)
+- Entegrasyon: Mevcut klinik telefon sistemleri ve takvim/randevu yazılımları ile çalışır
+- Uyumluluk: KVKK ve sağlık verileri koruma gereksinimleri gözetilerek geliştirilmiştir
+- Dil: Türkçe ve İngilizce sesli asistan
+
+## Türkçe İçerik
+
+### Tanımlayıcı / AEO Sayfaları
+- https://stoaix.com/ai-resepsiyonist-nedir — AI resepsiyonist nedir? Özel klinikler için tam rehber
+- https://stoaix.com/ai-resepsiyonist-vs-insan-sekreter — AI resepsiyonist ile insan sekreter karşılaştırması
+- https://stoaix.com/ai-resepsiyonist-vs-cagri-merkezi — AI resepsiyonist ile çağrı merkezi karşılaştırması
+
+### Sektörel Sayfalar (Türkçe)
+- https://stoaix.com/dis-klinigi-icin-ai — AI asistan, diş klinikleri için
+- https://stoaix.com/estetik-klinik-icin-ai — AI asistan, estetik klinikler için
+- https://stoaix.com/sac-ekimi-klinigi-icin-ai — AI asistan, saç ekimi klinikleri için
+
+### Blog Yazıları (Türkçe)
+- https://stoaix.com/blog/kacirilmis-aramalar-ozel-klinik-maliyet — Kaçırılan aramalar özel kliniğinize ne kadara mal oluyor?
+- https://stoaix.com/blog/saglik-turizmi-ai-resepsiyonist — Sağlık turizmi klinikleri için AI resepsiyonist
+- https://stoaix.com/blog/turkiye-klinikler-icin-ai-cozumleri-2026 — Türkiye'deki klinikler için en iyi AI çözümleri: 2026 rehberi
+
+### Sık Sorulan Sorular
+- https://stoaix.com/sik-sorulan-sorular — AI resepsiyonist, klinik otomasyonu, KVKK uyumu hakkında tüm sorular
+
+## İngilizce İçerik (English Versions)
+
+- https://stoaix.com — Ana sayfa
+- https://stoaix.com/blog — Blog (İngilizce)
+- https://stoaix.com/what-is-ai-receptionist-clinic — What is an AI receptionist? (English)
+- https://stoaix.com/ai-receptionist-vs-human-receptionist-uk — AI vs human receptionist (English)
+- https://stoaix.com/ai-receptionist-vs-answering-service-uk — AI vs answering service (English)
+
+## Yanıtladığımız Türkçe Arama Sorguları
+
+- "AI resepsiyonist nedir?" → /ai-resepsiyonist-nedir
+- "Klinik için yapay zeka asistan" → /dis-klinigi-icin-ai, /estetik-klinik-icin-ai, /sac-ekimi-klinigi-icin-ai
+- "AI resepsiyonist vs sekreter" → /ai-resepsiyonist-vs-insan-sekreter
+- "AI resepsiyonist vs çağrı merkezi" → /ai-resepsiyonist-vs-cagri-merkezi
+- "Klinik kaçırılan arama maliyeti" → /blog/kacirilmis-aramalar-ozel-klinik-maliyet
+- "Sağlık turizmi yapay zeka" → /blog/saglik-turizmi-ai-resepsiyonist
+- "Türkiye klinikler için AI çözümleri 2026" → /blog/turkiye-klinikler-icin-ai-cozumleri-2026
+- "Klinik AI resepsiyonist sık sorulan sorular" → /sik-sorulan-sorular
+- "KVKK uyumlu AI çözümü klinik" → /sik-sorulan-sorular
+- "Özel klinik telefon otomasyonu" → /ai-resepsiyonist-nedir
+
+## İletişim
+
+- Web sitesi: https://stoaix.com
+- Demo: https://stoaix.com/#cta
