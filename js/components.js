@@ -311,6 +311,87 @@
         </div>
       </div>
 
+      <!-- Mobile plan cards (visible < 768px) -->
+      <div class="mobile-plans">
+        <div class="mplan-card mplan-essential">
+          <div class="mplan-name">Essential</div>
+          <div class="mplan-tagline">For solo &amp; small teams</div>
+          <div class="mplan-price">
+            <span class="pt-currency">$</span><span class="price-num" data-monthly="199" data-quarterly="179" data-semi_annual="159" data-annual="139">139</span><span class="pt-period">/mo</span>
+          </div>
+          <div class="pt-billing-note" data-plan="essential"></div>
+          <div class="pt-savings-badge" data-plan="essential"></div>
+          <a href="signup.html?plan=essential&billing=annual" class="btn-outline mplan-btn pt-signup-link">Start free trial</a>
+          <div class="mplan-trial">3-day free trial</div>
+          <ul class="mplan-features">
+            <li>Full CRM</li>
+            <li>WhatsApp &amp; Instagram — Unlimited</li>
+            <li>Chat AI &amp; Workflow</li>
+            <li>5 Team Members</li>
+            <li>1,000 Conversations / mo</li>
+          </ul>
+        </div>
+
+        <div class="mplan-card mplan-pro featured">
+          <div class="mplan-badge">Most Popular</div>
+          <div class="mplan-name">Professional</div>
+          <div class="mplan-tagline">For growing businesses</div>
+          <div class="mplan-price">
+            <span class="pt-currency">$</span><span class="price-num" data-monthly="299" data-quarterly="269" data-semi_annual="239" data-annual="209">209</span><span class="pt-period">/mo</span>
+          </div>
+          <div class="pt-billing-note" data-plan="professional"></div>
+          <div class="pt-savings-badge" data-plan="professional"></div>
+          <a href="signup.html?plan=professional&billing=annual" class="btn-primary mplan-btn pt-signup-link">Start free trial</a>
+          <div class="mplan-trial">3-day free trial</div>
+          <ul class="mplan-features">
+            <li>Everything in Essential, plus:</li>
+            <li>Voice AI — 200 min/mo</li>
+            <li>Advanced Analytics</li>
+            <li>10 Team Members</li>
+            <li>2,000 Conversations / mo</li>
+          </ul>
+        </div>
+
+        <div class="mplan-card mplan-biz">
+          <div class="mplan-badge mplan-badge-gold">Most Valuable</div>
+          <div class="mplan-name">Business</div>
+          <div class="mplan-tagline">For scaling operations</div>
+          <div class="mplan-price">
+            <span class="pt-currency">$</span><span class="price-num" data-monthly="599" data-quarterly="539" data-semi_annual="479" data-annual="419">419</span><span class="pt-period">/mo</span>
+          </div>
+          <div class="pt-billing-note" data-plan="business"></div>
+          <div class="pt-savings-badge" data-plan="business"></div>
+          <a href="signup.html?plan=business&billing=annual" class="btn-primary mplan-btn pt-signup-link">Subscribe now</a>
+          <div class="mplan-trial mplan-trial-muted">No free trial</div>
+          <ul class="mplan-features">
+            <li>Everything in Professional, plus:</li>
+            <li>Voice AI — 500 min/mo + Outbound</li>
+            <li>Multi-language Voice (8 languages)</li>
+            <li>20 Team Members</li>
+            <li>5,000 Conversations / mo</li>
+          </ul>
+        </div>
+
+        <div class="mplan-card mplan-ent">
+          <div class="mplan-name">Enterprise</div>
+          <div class="mplan-tagline">For large organisations</div>
+          <div class="mplan-price-custom">Custom Pricing</div>
+          <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-outline mplan-btn">Book a call</a>
+          <ul class="mplan-features">
+            <li>Everything in Business, plus:</li>
+            <li>Unlimited Voice AI</li>
+            <li>Custom Integrations</li>
+            <li>SLA Guarantee</li>
+            <li>Dedicated Support</li>
+          </ul>
+        </div>
+
+        <button class="mplan-compare-toggle" id="mplanCompareToggle">
+          <span>Compare all features</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
       <div class="ptable-wrap reveal">
         <table class="ptable" role="table">
           <thead>

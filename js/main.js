@@ -186,6 +186,21 @@
 })();
 
 
+/* ─── Mobile pricing: compare-all toggle ─────────────── */
+(function initMobilePricingToggle() {
+  const btn = document.getElementById('mplanCompareToggle');
+  if (!btn) return;
+  const wrap = document.querySelector('.ptable-wrap');
+  if (!wrap) return;
+  btn.addEventListener('click', function() {
+    const expanded = wrap.classList.toggle('expanded');
+    btn.classList.toggle('expanded', expanded);
+    btn.querySelector('span').textContent = expanded ? 'Hide comparison' : 'Compare all features';
+    if (expanded) wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+})();
+
+
 /* ─── Hero typewriter effect ─────────────────────────────── */
 (function initHeroWords() {
   const wordEls    = document.querySelectorAll('.hero-word');
