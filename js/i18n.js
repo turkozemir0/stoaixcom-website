@@ -10,6 +10,34 @@ const SKIP_TAGS = new Set([
   'POLYGON', 'ELLIPSE', 'G', 'DEFS', 'USE', 'CLIPPATH', 'CANVAS'
 ]);
 
+/* ─── Page pairs: TR slug ↔ EN slug for Kategori B pages ─ */
+const PAGE_PAIRS = {
+  '/dis-klinigi-icin-ai': '/ai-receptionist-dental-clinic-uk',
+  '/estetik-klinik-icin-ai': '/ai-receptionist-aesthetic-clinic-uk',
+  '/sac-ekimi-klinigi-icin-ai': '/ai-receptionist-hair-transplant-clinic',
+  '/ai-resepsiyonist-nedir': '/what-is-ai-receptionist-clinic',
+  '/ai-resepsiyonist-vs-cagri-merkezi': '/ai-receptionist-vs-answering-service-uk',
+  '/ai-resepsiyonist-vs-insan-sekreter': '/ai-receptionist-vs-human-receptionist-uk',
+  '/klinik-kaynaklari': '/clinic-resources',
+  '/klinik-lead-kaybi-kontrol-listesi': '/clinic-lead-leak-checklist',
+  '/whatsapp-follow-up-mesajlari-klinik': '/clinic-whatsapp-follow-up-messages',
+  '/eski-lead-reactivation-kit': '/old-lead-reactivation-kit',
+  '/klinik-lead-management-starter-kit': '/clinic-lead-management-starter-kit-en',
+  '/randevu-no-show-azaltma-paketi': '/appointment-no-show-reduction-kit',
+  '/blog/kacirilmis-aramalar-ozel-klinik-maliyet': '/blog/missed-calls-cost-private-clinic',
+  '/blog/saglik-turizmi-ai-resepsiyonist': '/blog/health-tourism-ai-receptionist',
+};
+// Ters eşleştirmeleri otomatik ekle (EN → TR)
+Object.keys(PAGE_PAIRS).forEach(k => { PAGE_PAIRS[PAGE_PAIRS[k]] = k; });
+
+const TR_ONLY_PAGES = new Set([
+  '/sik-sorulan-sorular',
+  '/dis-klinigi-hizli-yanit', '/dis-klinigi-eski-lead-canlandirma',
+  '/estetik-klinik-hizli-yanit', '/estetik-klinik-eski-lead-canlandirma',
+  '/sac-ekimi-hizli-yanit', '/sac-ekimi-eski-lead-canlandirma',
+  '/blog/turkiye-klinikler-icin-ai-cozumleri-2026',
+]);
+
 /* ─── Helpers ────────────────────────────────────────────── */
 function norm(s) { return s.replace(/\s+/g, ' ').trim(); }
 
@@ -67,6 +95,14 @@ function injectToggle(activeLang, onToggle) {
   const mobileMenu = document.querySelector('#mobileMenu');
   if (mobileMenu && !mobileMenu.querySelector('.lang-toggle')) {
     mobileMenu.appendChild(createToggleEl(activeLang, onToggle));
+  }
+
+  /* Fallback: Kategori B sayfalar — minimal <nav> var, .nav-actions yok */
+  if (!nav && !mobileMenu) {
+    const simpleNav = document.querySelector('nav');
+    if (simpleNav && !simpleNav.querySelector('.lang-toggle')) {
+      simpleNav.appendChild(createToggleEl(activeLang, onToggle));
+    }
   }
 }
 
@@ -1253,31 +1289,81 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
     const seg = window.location.pathname.split('/').filter(Boolean)[0];
     return (seg === 'en' || seg === 'tr') ? seg : null;
   })();
-  const activeLang = urlLocale || localStorage.getItem('stoaix-lang') || 'tr';
 
-  function handleToggle(targetLang) {
-    const dest = '/' + targetLang + (path === '/' ? '' : path);
-    window.location.href = dest;
+  /* ── Faz 2.1: İlk ziyarette tarayıcı dil tespiti ────── */
+  if (!localStorage.getItem('stoaix-lang') && !urlLocale) {
+    const browserLang = (navigator.language || '').toLowerCase();
+    localStorage.setItem('stoaix-lang', browserLang.startsWith('tr') ? 'tr' : 'en');
   }
 
+  /* ── Faz 1.2: Sayfa dilini doğru tespit et ───────────── */
+  const htmlLang = document.documentElement.lang;
+  const isNativeTR = htmlLang === 'tr';
+  const isNativeEN = htmlLang === 'en' && (PAGE_PAIRS[path] || !DICT_MAP[path]);
+
+  let activeLang;
+  if (isNativeTR) {
+    activeLang = 'tr';
+  } else if (isNativeEN) {
+    activeLang = 'en';           /* Native EN Kategori B — çeviri yok, EN zorla */
+  } else {
+    activeLang = urlLocale || localStorage.getItem('stoaix-lang') || 'tr';
+  }
+
+  /* ── Faz 2.2: TR sayfaya düşen EN kullanıcıyı yönlendir  */
+  if (!sessionStorage.getItem('stoaix-redirected') && isNativeTR &&
+      localStorage.getItem('stoaix-lang') === 'en' && PAGE_PAIRS[path]) {
+    sessionStorage.setItem('stoaix-redirected', '1');
+    window.location.replace(PAGE_PAIRS[path]);
+    return;
+  }
+
+  /* ── Faz 1.3: handleToggle — sayfa eşleştirmeli ──────── */
+  function handleToggle(targetLang) {
+    localStorage.setItem('stoaix-lang', targetLang);
+    /* Doğrudan karşılık sayfası varsa oraya git */
+    if (PAGE_PAIRS[path]) {
+      window.location.href = PAGE_PAIRS[path];
+      return;
+    }
+    /* TR-only sayfa, EN'e geçilemez */
+    if (TR_ONLY_PAGES.has(path) && targetLang === 'en') return;
+    /* Kategori A (aynı dosya, JS çeviri): prefix ile yönlendir */
+    window.location.href = '/' + targetLang + (path === '/' ? '' : path);
+  }
+
+  /* ── Faz 1.6: Native TR sayfalarda translateTree'yi engelle */
   function applyTranslation() {
+    if (isNativeTR) return;           /* Zaten Türkçe, çevirme */
     if (activeLang !== 'tr') return;
-    /* Use page-specific dict if available, fall back to TR_COMMON for shared nav/footer */
     const activeDict = dict || TR_COMMON;
     translateTree(document.body, activeDict);
-    /* Also translate <title> */
     const t = norm(document.title);
     if (activeDict[t]) document.title = activeDict[t];
   }
 
+  function boot() {
+    injectToggle(activeLang, handleToggle);
+
+    /* ── Faz 1.5: TR-only sayfalarda EN butonunu devre dışı bırak */
+    if (TR_ONLY_PAGES.has(path)) {
+      document.querySelectorAll('.lang-btn[data-lang="en"]').forEach(function(btn) {
+        btn.disabled = true;
+        btn.style.opacity = '0.35';
+        btn.style.cursor = 'default';
+      });
+    }
+
+    applyTranslation();
+
+    /* ── Faz 3.1: <html lang> dinamik güncelleme ────────── */
+    document.documentElement.lang = activeLang === 'tr' ? 'tr' : 'en';
+  }
+
   /* Run as early as possible to avoid flash */
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      injectToggle(activeLang, handleToggle);
-      applyTranslation();
-    });
+    document.addEventListener('DOMContentLoaded', boot);
   } else {
-    injectToggle(activeLang, handleToggle);
-    applyTranslation();
+    boot();
   }
 })();
