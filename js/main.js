@@ -192,10 +192,13 @@
   if (!btn) return;
   const wrap = document.querySelector('.ptable-wrap');
   if (!wrap) return;
+  const _lang = localStorage.getItem('stoaix-lang') || 'tr';
+  const hideText = _lang === 'tr' ? 'Karşılaştırmayı Gizle' : 'Hide comparison';
+  const showText = _lang === 'tr' ? 'Tüm Özellikleri Karşılaştır' : 'Compare all features';
   btn.addEventListener('click', function() {
     const expanded = wrap.classList.toggle('expanded');
     btn.classList.toggle('expanded', expanded);
-    btn.querySelector('span').textContent = expanded ? 'Hide comparison' : 'Compare all features';
+    btn.querySelector('span').textContent = expanded ? hideText : showText;
     if (expanded) wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   });
 })();
