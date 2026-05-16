@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>STOAIX — AI Voice & Chat Platform for Healthcare Clinics</title>
   <meta name="description" content="Deploy an AI receptionist that answers calls, handles WhatsApp, and converts leads — 24/7. No code. No meetings. Built for healthcare clinics. Start free in 5 minutes." />
   <meta name="author" content="Emir TÜRKÖZ, Ata Ulufer">
@@ -736,6 +736,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         max-width: 680px;
         margin: 0 auto;
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         position: relative;
       }
       .calc-inputs {
@@ -987,6 +988,11 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     </div>
   </footer>
 
+
+  <!-- Instagram WebView viewport fix -->
+  <script>
+  (function(){function s(){document.documentElement.style.setProperty('--app-height',window.innerHeight+'px')}s();window.addEventListener('resize',s)})()
+  </script>
 
   <!-- Partner referral cookie capture -->
   <script>
