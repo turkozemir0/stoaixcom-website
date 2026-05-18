@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>stoaix Partner API Documentation</title>
+  <meta name="description" content="stoaix Partner API reference — machine-to-machine integration for CRM, PMS, and external systems." />
+  <link rel="icon" href="https://stoaix.com/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 24px;
+      background: #0a0a0a;
+      border-bottom: 1px solid #1a1a2e;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .topbar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .topbar-logo {
+      height: 28px;
+      width: auto;
+    }
+    .topbar-divider {
+      width: 1px;
+      height: 20px;
+      background: #333;
+    }
+    .topbar-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: #a0a0b0;
+      letter-spacing: -0.01em;
+    }
+    .topbar-links {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .topbar-links a {
+      font-size: 13px;
+      color: #a0a0b0;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .topbar-links a:hover {
+      color: #fff;
+    }
+    .topbar-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #6c5ce7;
+      background: rgba(108, 92, 231, 0.12);
+      border: 1px solid rgba(108, 92, 231, 0.25);
+      border-radius: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    @media (max-width: 640px) {
+      .topbar { padding: 10px 16px; }
+      .topbar-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-left">
+      <svg class="topbar-logo" viewBox="0 0 120 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="22" font-family="Inter, sans-serif" font-weight="700" font-size="22" fill="#fff">stoaix</text>
+      </svg>
+      <div class="topbar-divider"></div>
+      <span class="topbar-title">Partner API</span>
+      <span class="topbar-badge">v2026-05-19</span>
+    </div>
+    <div class="topbar-links">
+      <a href="https://platform.stoaix.com" target="_blank">Dashboard</a>
+      <a href="https://stoaix.com" target="_blank">Website</a>
+    </div>
+  </div>
+
+  <div id="redoc-container"></div>
+
+  <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+  <script>
+    Redoc.init('/apidocs/openapi.json', {
+      theme: {
+        colors: {
+          primary: { main: '#6c5ce7' },
+          success: { main: '#00b894' },
+          warning: { main: '#fdcb6e' },
+          error: { main: '#e17055' },
+          text: { primary: '#1a1a2e', secondary: '#636e72' },
+          border: { dark: '#dfe6e9', light: '#f1f2f6' },
+          http: {
+            get: '#0984e3',
+            post: '#00b894',
+            put: '#fdcb6e',
+            patch: '#6c5ce7',
+            delete: '#e17055'
+          }
+        },
+        typography: {
+          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+          fontSize: '15px',
+          lineHeight: '1.6',
+          headings: { fontFamily: "'Inter', sans-serif", fontWeight: '600' },
+          code: { fontFamily: "'JetBrains Mono', 'Fira Code', monospace", fontSize: '13px' }
+        },
+        sidebar: {
+          width: '260px',
+          backgroundColor: '#fafbfc',
+          textColor: '#1a1a2e',
+          activeTextColor: '#6c5ce7',
+          groupItems: { activeBackgroundColor: 'rgba(108, 92, 231, 0.08)', activeTextColor: '#6c5ce7' }
+        },
+        rightPanel: {
+          backgroundColor: '#1a1a2e',
+          textColor: '#dfe6e9'
+        },
+        codeBlock: {
+          backgroundColor: '#0d1117'
+        }
+      },
+      scrollYOffset: 53,
+      hideDownloadButton: false,
+      expandResponses: '200,201,202',
+      jsonSampleExpandLevel: 2,
+      sortOperationsAlphabetically: false,
+      pathInMiddlePanel: true,
+      requiredPropsFirst: true,
+      showExtensions: false,
+      noAutoAuth: false,
+      nativeScrollbars: true
+    }, document.getElementById('redoc-container'));
+  </script>
+</body>
+</html>
