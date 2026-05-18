@@ -64,9 +64,9 @@
     link.addEventListener('click', closeMenu);
   });
 
-  // Close on outside click
+  // Close on outside click (only when menu is open)
   document.addEventListener('click', (e) => {
-    if (!navbar.contains(e.target) && !mobileMenu.contains(e.target)) {
+    if (mobileMenu.classList.contains('open') && !navbar.contains(e.target) && !mobileMenu.contains(e.target)) {
       closeMenu();
     }
   });
