@@ -2739,6 +2739,7 @@ ul { list-style: none; }
   border-radius: var(--r-xl);
   overflow: hidden;
   padding: 28px;
+  min-width: 0;
 }
 .founder-info { margin-bottom: 20px; }
 .founder-name { font-size: 1.25rem; font-weight: 600; color: var(--text); }
@@ -2750,7 +2751,8 @@ ul { list-style: none; }
 }
 .founder-linkedin:hover { color: var(--blue-h); }
 .founder-linkedin svg { flex-shrink: 0; }
-.founder-embed iframe { width: 100%; border: none; border-radius: var(--r-md); min-height: 400px; }
+.founder-embed { overflow: hidden; }
+.founder-embed iframe { width: 100%; border: none; border-radius: var(--r-md); min-height: 400px; display: block; }
 
 @media (max-width: 768px) {
   .founders-grid { grid-template-columns: 1fr; }
