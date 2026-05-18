@@ -65,7 +65,7 @@ UK private clinics lose significant revenue to missed calls. The majority of mis
 - https://stoaix.com/estetik-klinik-icin-ai — AI asistan, estetik klinikler için
 - https://stoaix.com/sac-ekimi-klinigi-icin-ai — AI asistan, saç ekimi klinikleri için
 
-## Blog Articles
+## Blog Articles (English)
 
 - https://stoaix.com/blog/missed-calls-cost-private-clinic — How missed calls cost UK private clinics thousands per month
 - https://stoaix.com/blog/reduce-no-shows-private-clinic — How to reduce DNA rates at UK private clinics
@@ -81,15 +81,117 @@ UK private clinics lose significant revenue to missed calls. The majority of mis
 - https://stoaix.com/blog/hair-transplant-international-patients — Hair transplant clinics: how to convert UK and international patient enquiries 24/7 (Turkey-focused)
 - https://stoaix.com/blog/dental-tourism-clinic-uk — Dental tourism in 2026: how AI helps clinics convert 600,000+ UK patients seeking treatment abroad
 
+## Blog Articles (Turkish — Dis Klinigi Series)
+
+- https://stoaix.com/blog/dis-klinigi-acil-arama — Diş Kliniğine Acil Arayan Hastayı AI Nasıl Yönetir?
+- https://stoaix.com/blog/dis-klinigi-ai-aksan — AI Diş Kliniği Resepsiyonisti Farklı Türkçe Aksanları Anlıyor mu?
+- https://stoaix.com/blog/dis-klinigi-ai-islev — AI Diş Kliniğimde Gerçekten İşe Yarar mı?
+- https://stoaix.com/blog/dis-klinigi-ai-kurulum-gereksinimleri — Diş Kliniği AI Kurulumu İçin Ne Sağlamam Gerekiyor?
+- https://stoaix.com/blog/dis-klinigi-ai-randevu-alma — AI Resepsiyonist Diş Kliniğinde Randevu Alabilir mi?
+- https://stoaix.com/blog/dis-klinigi-ai-randevu-deneyimi — Hasta Randevularını AI Nasıl Alıyor? Adım Adım Süreç
+- https://stoaix.com/blog/dis-klinigi-ai-resepsiyonist-fiyat — Diş Kliniği İçin AI Resepsiyonist Ne Kadar Tutar?
+- https://stoaix.com/blog/dis-klinigi-ai-resepsiyonist-kurulum — AI Resepsiyonist Diş Kliniğinde Kurmak Zor mu?
+- https://stoaix.com/blog/dis-klinigi-ai-roi — Diş Kliniği AI Resepsiyonist Yatırım Getirisi Nasıl Hesaplanır?
+- https://stoaix.com/blog/dis-klinigi-ai-vs-insan — AI Resepsiyonist mi, İnsan Resepsiyonist mi? Diş Kliniği Karşılaştırması
+- https://stoaix.com/blog/dis-klinigi-ai-yazilim-entegrasyonu — AI Resepsiyonist Dentrix ve Diş Kliniği Yazılımlarıyla Çalışır mı?
+- https://stoaix.com/blog/dis-klinigi-alternatifler — Diş Kliniğinde AI Resepsiyoniste Alternatifler Neler?
+- https://stoaix.com/blog/dis-klinigi-bilmem-gerekenler — Diş Kliniğinde AI Resepsiyonist Hakkında Bilmem Gerekenler Neler?
+- https://stoaix.com/blog/dis-klinigi-cevaplanmayan-aramalar — Diş Kliniğimde Kimse Telefona Çıkmadığı İçin Hasta Kaybetmeyi Nasıl Önlerim?
+- https://stoaix.com/blog/dis-klinigi-ezamanli-aramalar — Diş Kliniğine Aynı Anda Birden Fazla Hasta Aradığında Ne Olur?
+- https://stoaix.com/blog/dis-klinigi-hasta-degerlendirmesi — Hastalarım Diş Kliniği AI Resepsiyonistini Nasıl Değerlendiriyor?
+- https://stoaix.com/blog/dis-klinigi-hasta-gecmisi — AI Diş Kliniği Resepsiyonisti Hasta Geçmişini Biliyor mu?
+- https://stoaix.com/blog/dis-klinigi-hasta-memnuniyeti — AI Resepsiyonist Diş Kliniğinde Hasta Memnuniyetini Nasıl Etkiler?
+- https://stoaix.com/blog/dis-klinigi-hastalar-ai-kabul — Diş Kliniği Hastam AI'ı Fark Ederse Ne Olur?
+- https://stoaix.com/blog/dis-klinigi-kucuk-klinik — Küçük Diş Klinikleri İçin AI Resepsiyonist Uygun mu?
+- https://stoaix.com/blog/dis-klinigi-kvkk-uyum — KVKK ve Hasta Gizliliği: Diş Kliniği AI Resepsiyonisti Uyumlu mu?
+- https://stoaix.com/blog/dis-klinigi-mesai-sonrasi-aramalar — Mesai Dışında Arayan Diş Kliniği Hastalarıma Ne Oluyor?
+- https://stoaix.com/blog/dis-klinigi-ne-iceriyor — STOAIX Diş Kliniğimde Ne İçeriyor? Tüm Özellikler
+- https://stoaix.com/blog/dis-klinigi-no-show-azaltma — Diş Kliniklerinde No-Show Oranını AI Nasıl Düşürür?
+- https://stoaix.com/blog/dis-klinigi-ozel-yapilandirma — Diş Kliniğime Özel AI Yapılandırması Mümkün mü?
+- https://stoaix.com/blog/dis-klinigi-randevu-hatirlatma-ai — AI Resepsiyonist Randevu Hatırlatması Yapabilir mi?
+- https://stoaix.com/blog/dis-klinigi-sistem-guncellemeleri — Diş Kliniği AI Sistemi Güncelleniyor mu? Bakım Nasıl Çalışır?
+- https://stoaix.com/blog/dis-klinigi-ucretsiz-deneme — STOAIX'i Ücretsiz Deneyebilir miyim?
+- https://stoaix.com/blog/dis-klinigi-yanit-hizi — AI Diş Kliniği Resepsiyonisti Sorulara Ne Kadar Hızlı Yanıt Veriyor?
+- https://stoaix.com/blog/dis-klinigi-zaman-tasarrufu — AI Resepsiyonist Diş Kliniğine Ne Kadar Zaman Kazandırır?
+
+## Blog Articles (Turkish — AI Resepsiyonist Series)
+
+- https://stoaix.com/blog/ai-resepsiyonist-724-calisma — AI Resepsiyonist 7/24 Çalışıyor mu?
+- https://stoaix.com/blog/ai-resepsiyonist-cevaplayamadigi-arama — AI Resepsiyonist Cevaplayamazsa Arama Nereye Gidiyor?
+- https://stoaix.com/blog/ai-resepsiyonist-dahili-aktarma — AI Resepsiyonist Doğru Departmana Çevirebilir mi?
+- https://stoaix.com/blog/ai-resepsiyonist-egitim-gerektiriyor-mu — AI Resepsiyonist Eğitim Gerektiriyor mu?
+- https://stoaix.com/blog/ai-resepsiyonist-en-uygun-fiyat — Piyasadaki En Uygun Fiyatlı AI Resepsiyonist Hangisi?
+- https://stoaix.com/blog/ai-resepsiyonist-fatura-sorulari — AI Resepsiyonist Fatura Sorularını Karşılayabilir mi?
+- https://stoaix.com/blog/ai-resepsiyonist-hangi-sektor — Hangi Sektörler AI Resepsiyonist'ten En Çok Faydalanır?
+- https://stoaix.com/blog/ai-resepsiyonist-hata-yonetimi — AI Resepsiyonist Hata Yaparsa Ne Olur?
+- https://stoaix.com/blog/ai-resepsiyonist-insan-devri — Arayanlar AI Resepsiyonistten İnsan Talep Edebilir mi?
+- https://stoaix.com/blog/ai-resepsiyonist-izleme-analitik — AI Resepsiyonistimi Dinleyebilir miyim?
+- https://stoaix.com/blog/ai-resepsiyonist-kapasite — AI Resepsiyonist Bir Günde Kaç Aramayla İlgilenir?
+- https://stoaix.com/blog/ai-resepsiyonist-kurulum-suresi — AI Resepsiyonist Kurmak Ne Kadar Sürer?
+- https://stoaix.com/blog/ai-resepsiyonist-marka-imaji — AI Resepsiyonist Profesyonel İmajıma Zarar Verir mi?
+- https://stoaix.com/blog/ai-resepsiyonist-musteri-memnuniyeti — Müşteriler AI Resepsiyonist Deneyimini Nasıl Değerlendiriyor?
+- https://stoaix.com/blog/ai-resepsiyonist-musteri-tepkisi — Müşteriler AI Resepsiyonisti Duyunca Telefonu Kapatır mı?
+- https://stoaix.com/blog/ai-resepsiyonist-otomatik-randevu — AI Resepsiyonist Randevuyu Otomatik Alıyor mu?
+- https://stoaix.com/blog/ai-resepsiyonist-ozelestirme — İşletmeme Özel AI Resepsiyonist Yapılandırabilir miyim?
+- https://stoaix.com/blog/ai-resepsiyonist-personel-etkisi — AI Varsa Hâlâ Personel Gerekli mi?
+- https://stoaix.com/blog/ai-resepsiyonist-roi-ne-zaman — AI Resepsiyonist'te ROI Ne Zaman Görülür?
+- https://stoaix.com/blog/ai-resepsiyonist-saglayici-degisimi — AI Sağlayıcı Değiştirirsem Telefon Numaram Korunur mu?
+- https://stoaix.com/blog/ai-resepsiyonist-secmeden-once-sorular — AI Resepsiyonist Seçmeden Önce Sormanız Gereken 10 Soru
+- https://stoaix.com/blog/ai-resepsiyonist-sinirli-musteri — Sinirli Müşterilerle AI Resepsiyonist Nasıl Başa Çıkar?
+- https://stoaix.com/blog/ai-resepsiyonist-telefon-sistemi-entegrasyon — AI Resepsiyonist Mevcut Telefon Sistemimle Entegre Olur mu?
+- https://stoaix.com/blog/ai-resepsiyonist-veri-gizliligi-kvkk — AI Resepsiyonist Veri Gizliliği: KVKK'ya Uyum
+- https://stoaix.com/blog/ai-resepsiyonist-vs-cevaplama-hizmeti — AI Resepsiyonist mi Cevaplama Hizmeti mi? Hangisi Daha Uygun?
+- https://stoaix.com/blog/ai-resepsiyonist-vs-sanal — AI Resepsiyonist ve Sanal Resepsiyonist Arasındaki Fark
+- https://stoaix.com/blog/ai-resepsiyonist-vs-yari-zamanli — AI Resepsiyonist Yarı Zamanlı Personelden Ucuz mu?
+- https://stoaix.com/blog/ai-resepsiyonist-yogun-saat-guvenilirlik — AI Resepsiyonist Zirve Saatlerde Çökerse Ne Olur?
+- https://stoaix.com/blog/ai-resepsiyonist-zaman-tasarrufu — AI Resepsiyonist Kaç Saat Tasarruf Ettirir?
+
+## Blog Articles (Turkish — AI Chatbot Series)
+
+- https://stoaix.com/blog/ai-chatbot-3x-lead-nasil — Bazı İşletmeler AI Chatbot ile 3x Fazla Lead Nasıl Alıyor?
+- https://stoaix.com/blog/ai-chatbot-amortisasyon-suresi — AI Chatbot Kendini Ne Kadar Sürede Amorti Ediyor?
+- https://stoaix.com/blog/ai-chatbot-analitik — Chatbot'umdan Hangi Verileri Takip Edebilirim?
+- https://stoaix.com/blog/ai-chatbot-crm-baglantisi — AI Chatbot CRM Sisteminize Nasıl Bağlanır?
+- https://stoaix.com/blog/ai-chatbot-crm-entegrasyon — AI Chatbot Lead'i Yakaladıktan Sonra Ne Oluyor?
+- https://stoaix.com/blog/ai-chatbot-dogal-konusma — AI Chatbot Doğal ve Samimi Nasıl Konuşur?
+- https://stoaix.com/blog/ai-chatbot-donusum-orani — AI Chatbot Dönüşüm Oranlarını Neden Artırıyor?
+- https://stoaix.com/blog/ai-chatbot-egitme-ozellestirme — AI Chatbot'u İşinize Özel Nasıl Eğitirsiniz?
+- https://stoaix.com/blog/ai-chatbot-hangi-sektor-uygun — Sektörünüz AI Chatbot Gerektiriyor mu?
+- https://stoaix.com/blog/ai-chatbot-insan-devri — AI Chatbot Cevap Veremezse Ne Olur?
+- https://stoaix.com/blog/ai-chatbot-karmasik-lead — AI Chatbot Karmaşık Lead Nitelendirmelerini Halleder mi?
+- https://stoaix.com/blog/ai-chatbot-katilim-artirma — Daha Çok Ziyaretçiyi Chatbot'la Nasıl Konuşturabilirim?
+- https://stoaix.com/blog/ai-chatbot-lead-artisi-roi — AI Chatbot ile Lead Sayım Kaç Kat Artar?
+- https://stoaix.com/blog/ai-chatbot-lead-bilgi-toplama — Web Sitesi Ziyaretçilerinden Hangi Bilgileri Toplamalıyım?
+- https://stoaix.com/blog/ai-chatbot-lead-nitelendirme-nasil — AI Chatbot Lead'i Nasıl Nitelendiriyor?
+- https://stoaix.com/blog/ai-chatbot-lead-nitelendirme-sorulari — AI Chatbot Lead'lere Hangi Soruları Sormalı?
+- https://stoaix.com/blog/ai-chatbot-lead-takip — AI Chatbot Lead'lerini Nasıl Takip Ederim?
+- https://stoaix.com/blog/ai-chatbot-lead-yakalama-724 — AI Chatbot Uyurken Lead Yakalıyor mu?
+- https://stoaix.com/blog/ai-chatbot-maliyet-per-lead — AI Chatbot Lead Maliyetimi Nasıl Düşürür?
+- https://stoaix.com/blog/ai-chatbot-marka-sesi — Marka Sesinizle Konuşan AI Chatbot Yapılabilir mi?
+- https://stoaix.com/blog/ai-chatbot-on-nitelendirme — Lead'leri Satışa Dokunmadan AI Nasıl Nitelendirir?
+- https://stoaix.com/blog/ai-chatbot-randevu-alma — AI Chatbot Randevu Alabilir mi?
+- https://stoaix.com/blog/ai-chatbot-satis-ekibi — AI Chatbot Satış Ekibinin Yerini Alır mı?
+- https://stoaix.com/blog/ai-chatbot-satis-verimlilik — AI Chatbot Satış Ekibime Kaç Saat Kazandırır?
+- https://stoaix.com/blog/ai-chatbot-vs-iletisim-formu — AI Chatbot mu İletişim Formu mu?
+- https://stoaix.com/blog/ai-chatbot-web-sitesi-kurulum — Web Siteme AI Chatbot Nasıl 5 Dakikada Kurulur?
+
+## Blog Articles (Turkish — Other)
+
+- https://stoaix.com/blog/ai-lead-gen-nasil-baslanir — Lead Gen AI'a Nasıl Başlayabilirim?
+- https://stoaix.com/blog/ai-web-ziyaretci-anlik-yanit — AI ile Web Sitesi Ziyaretçilerine Anında Yanıt
+- https://stoaix.com/blog/kucuk-isletme-ai-chatbot-lead — Küçük İşletmeler Neden AI Chatbot Kullanıyor?
+- https://stoaix.com/blog/kucuk-isletme-ai-resepsiyonist-butce — Küçük İşletmeler AI Resepsiyonist'e Bütçe Ayırabilir mi?
+- https://stoaix.com/blog/whatsapp-ai-chatbot-lead — WhatsApp'ta Lead Toplamak İçin AI Chatbot Kullanabilir miyim?
+- https://stoaix.com/blog/kacirilmis-aramalar-ozel-klinik-maliyet — Kaçırılan aramalar özel kliniğe ne kadara mal oluyor?
+- https://stoaix.com/blog/saglik-turizmi-ai-resepsiyonist — Sağlık turizmi klinikleri için AI resepsiyonist
+- https://stoaix.com/blog/turkiye-klinikler-icin-ai-cozumleri-2026 — Türkiye'deki klinikler için en iyi AI çözümleri: 2026 rehberi
+
 ## Turkish Content
 
 - https://stoaix.com/ai-resepsiyonist-nedir — AI resepsiyonist nedir? Özel klinikler için tam rehber (Türkçe)
 - https://stoaix.com/ai-resepsiyonist-vs-insan-sekreter — AI resepsiyonist ile insan sekreter karşılaştırması (Türkçe)
 - https://stoaix.com/ai-resepsiyonist-vs-cagri-merkezi — AI resepsiyonist ile çağrı merkezi karşılaştırması (Türkçe)
 - https://stoaix.com/sik-sorulan-sorular — Sık sorulan sorular: AI resepsiyonist, klinik otomasyonu, KVKK uyumu (Türkçe)
-- https://stoaix.com/blog/kacirilmis-aramalar-ozel-klinik-maliyet — Kaçırılan aramalar özel kliniğe ne kadara mal oluyor? (Türkçe)
-- https://stoaix.com/blog/saglik-turizmi-ai-resepsiyonist — Sağlık turizmi klinikleri için AI resepsiyonist (Türkçe)
-- https://stoaix.com/blog/turkiye-klinikler-icin-ai-cozumleri-2026 — Türkiye'deki klinikler için en iyi AI çözümleri: 2026 rehberi (Türkçe)
 - https://stoaix.com/tr-llms.txt — Bu dosyanın Türkçe versiyonu
 
 ## Turkish Search Queries We Answer

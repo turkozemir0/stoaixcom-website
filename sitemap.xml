@@ -481,14 +481,6 @@
     <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/blog/dental-tourism-clinic-uk"/>
   </url>
 
-  <url>
-    <loc>https://stoaix.com/blog/private-dentistry-cma-review-2026</loc>
-    <lastmod>2026-05-03</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/blog/private-dentistry-cma-review-2026"/>
-  </url>
-
   <!-- Blog Posts (TR) -->
   <url>
     <loc>https://stoaix.com/blog/kacirilmis-aramalar-ozel-klinik-maliyet</loc>
@@ -514,6 +506,730 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/turkiye-klinikler-icin-ai-cozumleri-2026"/>
+  </url>
+
+  <!-- Blog Posts (TR) — Diş Kliniği Serisi (30 posts) -->
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-acil-arama</loc>
+    <lastmod>2025-11-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-acil-arama"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ai-aksan</loc>
+    <lastmod>2025-11-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-aksan"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ai-islev</loc>
+    <lastmod>2025-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-islev"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ai-kurulum-gereksinimleri</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-kurulum-gereksinimleri"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ai-randevu-alma</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-randevu-alma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ai-randevu-deneyimi</loc>
+    <lastmod>2025-11-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-randevu-deneyimi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ai-resepsiyonist-fiyat</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-resepsiyonist-fiyat"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ai-resepsiyonist-kurulum</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-resepsiyonist-kurulum"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ai-roi</loc>
+    <lastmod>2025-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-roi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ai-vs-insan</loc>
+    <lastmod>2025-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-vs-insan"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ai-yazilim-entegrasyonu</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-yazilim-entegrasyonu"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-alternatifler</loc>
+    <lastmod>2025-11-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-alternatifler"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-bilmem-gerekenler</loc>
+    <lastmod>2025-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-bilmem-gerekenler"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-cevaplanmayan-aramalar</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-cevaplanmayan-aramalar"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ezamanli-aramalar</loc>
+    <lastmod>2025-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ezamanli-aramalar"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-hasta-degerlendirmesi</loc>
+    <lastmod>2025-11-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-hasta-degerlendirmesi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-hasta-gecmisi</loc>
+    <lastmod>2025-11-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-hasta-gecmisi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-hasta-memnuniyeti</loc>
+    <lastmod>2025-11-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-hasta-memnuniyeti"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-hastalar-ai-kabul</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-hastalar-ai-kabul"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-kucuk-klinik</loc>
+    <lastmod>2025-11-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-kucuk-klinik"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-kvkk-uyum</loc>
+    <lastmod>2025-11-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-kvkk-uyum"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-mesai-sonrasi-aramalar</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-mesai-sonrasi-aramalar"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ne-iceriyor</loc>
+    <lastmod>2025-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ne-iceriyor"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-no-show-azaltma</loc>
+    <lastmod>2025-11-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-no-show-azaltma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ozel-yapilandirma</loc>
+    <lastmod>2025-11-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ozel-yapilandirma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-randevu-hatirlatma-ai</loc>
+    <lastmod>2026-05-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-randevu-hatirlatma-ai"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-sistem-guncellemeleri</loc>
+    <lastmod>2025-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-sistem-guncellemeleri"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-ucretsiz-deneme</loc>
+    <lastmod>2025-11-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ucretsiz-deneme"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-yanit-hizi</loc>
+    <lastmod>2025-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-yanit-hizi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/dis-klinigi-zaman-tasarrufu</loc>
+    <lastmod>2025-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-zaman-tasarrufu"/>
+  </url>
+
+  <!-- Blog Posts (TR) — AI Resepsiyonist Serisi (29 posts) -->
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-724-calisma</loc>
+    <lastmod>2025-12-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-724-calisma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-cevaplayamadigi-arama</loc>
+    <lastmod>2025-12-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-cevaplayamadigi-arama"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-dahili-aktarma</loc>
+    <lastmod>2025-12-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-dahili-aktarma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-egitim-gerektiriyor-mu</loc>
+    <lastmod>2025-12-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-egitim-gerektiriyor-mu"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-en-uygun-fiyat</loc>
+    <lastmod>2025-12-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-en-uygun-fiyat"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-fatura-sorulari</loc>
+    <lastmod>2025-12-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-fatura-sorulari"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-hangi-sektor</loc>
+    <lastmod>2025-12-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-hangi-sektor"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-hata-yonetimi</loc>
+    <lastmod>2025-12-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-hata-yonetimi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-insan-devri</loc>
+    <lastmod>2025-12-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-insan-devri"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-izleme-analitik</loc>
+    <lastmod>2025-12-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-izleme-analitik"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-kapasite</loc>
+    <lastmod>2025-12-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-kapasite"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-kurulum-suresi</loc>
+    <lastmod>2025-12-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-kurulum-suresi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-marka-imaji</loc>
+    <lastmod>2025-12-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-marka-imaji"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-musteri-memnuniyeti</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-musteri-memnuniyeti"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-musteri-tepkisi</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-musteri-tepkisi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-otomatik-randevu</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-otomatik-randevu"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-ozelestirme</loc>
+    <lastmod>2025-12-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-ozelestirme"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-personel-etkisi</loc>
+    <lastmod>2025-12-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-personel-etkisi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-roi-ne-zaman</loc>
+    <lastmod>2025-12-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-roi-ne-zaman"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-saglayici-degisimi</loc>
+    <lastmod>2025-12-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-saglayici-degisimi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-secmeden-once-sorular</loc>
+    <lastmod>2025-12-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-secmeden-once-sorular"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-sinirli-musteri</loc>
+    <lastmod>2025-12-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-sinirli-musteri"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-telefon-sistemi-entegrasyon</loc>
+    <lastmod>2025-12-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-telefon-sistemi-entegrasyon"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-veri-gizliligi-kvkk</loc>
+    <lastmod>2025-12-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-veri-gizliligi-kvkk"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-vs-cevaplama-hizmeti</loc>
+    <lastmod>2025-12-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-vs-cevaplama-hizmeti"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-vs-sanal</loc>
+    <lastmod>2025-12-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-vs-sanal"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-vs-yari-zamanli</loc>
+    <lastmod>2025-12-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-vs-yari-zamanli"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-yogun-saat-guvenilirlik</loc>
+    <lastmod>2025-12-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-yogun-saat-guvenilirlik"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-resepsiyonist-zaman-tasarrufu</loc>
+    <lastmod>2025-12-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-zaman-tasarrufu"/>
+  </url>
+
+  <!-- Blog Posts (TR) — AI Chatbot Serisi (26 posts) -->
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-3x-lead-nasil</loc>
+    <lastmod>2026-01-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-3x-lead-nasil"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-amortisasyon-suresi</loc>
+    <lastmod>2026-01-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-amortisasyon-suresi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-analitik</loc>
+    <lastmod>2026-01-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-analitik"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-crm-baglantisi</loc>
+    <lastmod>2026-01-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-crm-baglantisi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-crm-entegrasyon</loc>
+    <lastmod>2026-01-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-crm-entegrasyon"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-dogal-konusma</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-dogal-konusma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-donusum-orani</loc>
+    <lastmod>2026-01-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-donusum-orani"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-egitme-ozellestirme</loc>
+    <lastmod>2026-01-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-egitme-ozellestirme"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-hangi-sektor-uygun</loc>
+    <lastmod>2026-01-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-hangi-sektor-uygun"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-insan-devri</loc>
+    <lastmod>2026-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-insan-devri"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-karmasik-lead</loc>
+    <lastmod>2026-01-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-karmasik-lead"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-katilim-artirma</loc>
+    <lastmod>2026-01-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-katilim-artirma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-lead-artisi-roi</loc>
+    <lastmod>2026-01-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-lead-artisi-roi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-lead-bilgi-toplama</loc>
+    <lastmod>2026-01-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-lead-bilgi-toplama"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-lead-nitelendirme-nasil</loc>
+    <lastmod>2026-01-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-lead-nitelendirme-nasil"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-lead-nitelendirme-sorulari</loc>
+    <lastmod>2026-01-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-lead-nitelendirme-sorulari"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-lead-takip</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-lead-takip"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-lead-yakalama-724</loc>
+    <lastmod>2026-01-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-lead-yakalama-724"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-maliyet-per-lead</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-maliyet-per-lead"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-marka-sesi</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-marka-sesi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-on-nitelendirme</loc>
+    <lastmod>2026-01-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-on-nitelendirme"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-randevu-alma</loc>
+    <lastmod>2026-01-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-randevu-alma"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-satis-ekibi</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-satis-ekibi"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-satis-verimlilik</loc>
+    <lastmod>2026-01-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-satis-verimlilik"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-vs-iletisim-formu</loc>
+    <lastmod>2026-01-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-vs-iletisim-formu"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-chatbot-web-sitesi-kurulum</loc>
+    <lastmod>2026-01-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-web-sitesi-kurulum"/>
+  </url>
+
+  <!-- Blog Posts (TR) — Diğer (5 posts) -->
+  <url>
+    <loc>https://stoaix.com/blog/ai-lead-gen-nasil-baslanir</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-lead-gen-nasil-baslanir"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/ai-web-ziyaretci-anlik-yanit</loc>
+    <lastmod>2026-01-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-web-ziyaretci-anlik-yanit"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/kucuk-isletme-ai-chatbot-lead</loc>
+    <lastmod>2026-01-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kucuk-isletme-ai-chatbot-lead"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/kucuk-isletme-ai-resepsiyonist-butce</loc>
+    <lastmod>2025-12-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kucuk-isletme-ai-resepsiyonist-butce"/>
+  </url>
+
+  <url>
+    <loc>https://stoaix.com/blog/whatsapp-ai-chatbot-lead</loc>
+    <lastmod>2026-01-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/whatsapp-ai-chatbot-lead"/>
   </url>
 
 </urlset>
