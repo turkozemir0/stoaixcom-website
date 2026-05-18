@@ -146,6 +146,11 @@ const TR_COMMON = {
   'White Label': 'Beyaz Etiket',
   'About': 'Hakkımızda',
   'Blog': 'Blog',
+  'Media': 'Medya',
+  'Founders\' LinkedIn Posts': 'Kurucularımızın LinkedIn Paylaşımları',
+  'Co-founder & CEO': 'Kurucu Ortak & CEO',
+  'Co-founder & CTO': 'Kurucu Ortak & CTO',
+  'Follow on LinkedIn': 'LinkedIn\'de takip et',
   'Careers': 'Kariyer',
   'Privacy Policy': 'Gizlilik Politikası',
   'Terms of Service': 'Kullanım Koşulları',
@@ -1286,6 +1291,12 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
   '(optional)': '(isteğe bağlı)',
 });
 
+/* ─── Media page ─────────────────────────────────────────── */
+const TR_MEDIA = Object.assign({}, TR_COMMON, {
+  'Media — STOAIX | Founders\' LinkedIn Posts': 'Medya — STOAIX | Kurucularımızın LinkedIn Paylaşımları',
+  'Stay up to date with the latest insights, updates, and thought leadership from the STOAIX founding team.': 'STOAIX kurucu ekibinden en son içgörüleri, güncellemeleri ve düşünce liderliğini takip edin.',
+});
+
 /* ═══════════════════════════════════════════════════════════
    INIT
    ═══════════════════════════════════════════════════════════ */
@@ -1306,6 +1317,7 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
     '/case-study-aesthetic': TR_CASE_AESTHETIC,
     '/case-study-physiotherapy': TR_CASE_PHYSIO,
     '/about': TR_ABOUT,
+    '/media': TR_MEDIA,
   };
 
   const dict = DICT_MAP[path] || null;

@@ -107,6 +107,10 @@
             </div>
           </div>
         </div>
+        <a href="/media" class="nav-link" style="display:inline-flex;align-items:center;gap:5px;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          Media
+        </a>
       </div>
 
       <div class="nav-actions">
@@ -127,6 +131,7 @@
     <a href="/documentation">Docs</a>
     <a href="/healthcare-clinics.html">Healthcare Clinics</a>
     <a href="/partners.html">Partner Program</a>
+    <a href="/media">Media</a>
     <a href="https://platform.stoaix.com/login" class="nav-login" target="_blank" rel="noopener noreferrer">Log in</a>
     <a href="/signup.html" class="btn-primary">Start free trial</a>
   </div>`;
@@ -266,6 +271,7 @@
           <div class="footer-col-title">Company</div>
           <a href="/about">About STOAIX</a>
           <a href="/blog">Blog</a>
+          <a href="/media">Media</a>
           <a href="/case-studies">Case Studies</a>
           <a href="/documentation">Documentation</a>
           <a href="/partners">Partners</a>
