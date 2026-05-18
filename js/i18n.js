@@ -147,7 +147,7 @@ const TR_COMMON = {
   'About': 'Hakkımızda',
   'Blog': 'Blog',
   'Media': 'Medya',
-  'Founders\' LinkedIn Posts': 'Kurucularımızın LinkedIn Paylaşımları',
+  'STOAIX on LinkedIn': 'LinkedIn\'de STOAIX',
   'Co-founder & CEO': 'Kurucu Ortak & CEO',
   'Co-founder & CTO': 'Kurucu Ortak & CTO',
   'Follow on LinkedIn': 'LinkedIn\'de takip et',
@@ -1293,7 +1293,7 @@ const TR_CHECKOUT = Object.assign({}, TR_COMMON, {
 
 /* ─── Media page ─────────────────────────────────────────── */
 const TR_MEDIA = Object.assign({}, TR_COMMON, {
-  'Media — STOAIX | Founders\' LinkedIn Posts': 'Medya — STOAIX | Kurucularımızın LinkedIn Paylaşımları',
+  'Media — STOAIX on LinkedIn': 'Medya — LinkedIn\'de STOAIX',
   'Stay up to date with the latest insights, updates, and thought leadership from the STOAIX founding team.': 'STOAIX kurucu ekibinden en son içgörüleri, güncellemeleri ve düşünce liderliğini takip edin.',
 });
 
