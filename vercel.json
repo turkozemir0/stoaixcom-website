@@ -5,7 +5,7 @@
     {
       "source": "/",
       "has": [{ "type": "host", "value": "apidocs.stoaix.com" }],
-      "destination": "/apidocs/index.html"
+      "destination": "/apidocs"
     },
     {
       "source": "/:path+",
