@@ -3,9 +3,14 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/:path*",
+      "source": "/",
       "has": [{ "type": "host", "value": "apidocs.stoaix.com" }],
-      "destination": "/apidocs/:path*"
+      "destination": "/apidocs/index.html"
+    },
+    {
+      "source": "/:path+",
+      "has": [{ "type": "host", "value": "apidocs.stoaix.com" }],
+      "destination": "/apidocs/:path+"
     },
     { "source": "/en", "destination": "/" },
     { "source": "/en/:path*", "destination": "/:path*" },
