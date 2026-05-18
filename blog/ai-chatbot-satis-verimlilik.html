@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chatbot Satış Ekibime Kaç Saat Kazandırır? | STOAIX Blog</title>
+  <meta name="description" content="AI chatbot'un satış ekibinizden hangi görevleri devraldığını ve bu görevlerin haftada kaç saate denk geldiğini hesaplayın." />
+  <link rel="canonical" href="https://stoaix.com/blog/ai-chatbot-satis-verimlilik" />
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-satis-verimlilik" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-53TMTQML2Q');</script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1426016022664547');fbq('track','PageView');</script>
+
+  <style>
+    :root {
+      --navy:#050a30; --blue:#233dff; --cyan:#42c2d5;
+      --light:#f4f6fc; --white:#ffffff; --muted:#6b7a99;
+      --border:rgba(35,61,255,0.1); --text:#0d1545; --text-soft:#4a5480;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.7;}
+
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .nav-logo{font-family:'Anybody',sans-serif;font-weight:900;font-size:1.4rem;color:var(--navy);text-decoration:none;}
+    .nav-logo span{color:var(--blue);}
+    .nav-cta{background:var(--blue);color:var(--white);padding:.5rem 1.25rem;border-radius:8px;font-weight:500;font-size:.9rem;text-decoration:none;transition:opacity .2s;}
+    .nav-cta:hover{opacity:.85;}
+
+    .hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1545 60%,#162060 100%);padding:5rem 2rem 4rem;text-align:center;}
+    .badge{display:inline-block;background:var(--navy);color:var(--cyan);border:1px solid var(--cyan);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;margin-bottom:1.5rem;}
+    .hero h1{font-family:'Anybody',sans-serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--white);line-height:1.2;max-width:780px;margin:0 auto 1.25rem;}
+    .hero-lead{color:rgba(255,255,255,.75);font-size:1.05rem;max-width:620px;margin:0 auto 2rem;}
+    .hero-meta{color:rgba(255,255,255,.45);font-size:.82rem;}
+
+    .content{max-width:820px;margin:0 auto;padding:3.5rem 2rem;}
+    .content h2{font-family:'Anybody',sans-serif;font-weight:800;font-size:1.45rem;color:var(--navy);margin:2.5rem 0 1rem;}
+    .content h3{font-family:'Anybody',sans-serif;font-weight:700;font-size:1.1rem;color:var(--blue);margin:1.8rem 0 .6rem;}
+    .content p{color:var(--text-soft);margin-bottom:1rem;}
+    .content ul{padding-left:1.4rem;color:var(--text-soft);margin-bottom:1rem;}
+    .content li{margin-bottom:.4rem;}
+
+    /* UNIQUE: Time audit rows — horizontal bar chart style */
+    .time-audit {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .ta-header {
+      background: var(--navy); color: var(--cyan);
+      display: grid; grid-template-columns: 2fr 1fr 3fr;
+      gap: .5rem; padding: .75rem 1.25rem;
+      font-size: .78rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .ta-row {
+      display: grid; grid-template-columns: 2fr 1fr 3fr;
+      gap: .5rem; align-items: center;
+      padding: .85rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .ta-row:nth-child(even) { background: rgba(244,246,252,.6); }
+    .ta-task { font-size: .88rem; color: var(--text); font-weight: 500; }
+    .ta-hours { font-size: .88rem; color: var(--blue); font-weight: 700; text-align: center; }
+    .ta-bar-wrap { height: 8px; background: rgba(35,61,255,.1); border-radius: 4px; overflow: hidden; }
+    .ta-bar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--blue), var(--cyan)); }
+    .ta-total {
+      background: rgba(35,61,255,.06);
+      padding: .85rem 1.25rem;
+      border-top: 2px solid var(--blue);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .ta-total span { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .9rem; color: var(--navy); }
+    .ta-total .total-num { color: var(--blue); font-size: 1.1rem; }
+
+    /* UNIQUE: Before/After role split */
+    .role-split {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin: 2rem 0;
+    }
+    .role-panel {
+      border-radius: 14px; padding: 1.5rem;
+    }
+    .role-panel.before {
+      background: rgba(239,68,68,.05);
+      border: 1px solid rgba(239,68,68,.2);
+    }
+    .role-panel.after {
+      background: rgba(35,61,255,.04);
+      border: 1px solid rgba(35,61,255,.2);
+    }
+    .role-panel h4 {
+      font-family: 'Anybody', sans-serif;
+      font-weight: 700; font-size: .88rem;
+      margin-bottom: 1rem;
+    }
+    .role-panel.before h4 { color: #dc2626; }
+    .role-panel.after h4 { color: var(--blue); }
+    .role-item {
+      display: flex; align-items: flex-start; gap: .6rem;
+      margin-bottom: .6rem; font-size: .85rem; color: var(--text-soft);
+    }
+    .role-icon { flex-shrink: 0; margin-top: .1rem; font-size: .9rem; }
+
+    /* Focus time callout */
+    .focus-callout {
+      background: linear-gradient(135deg, var(--navy), #0d1545);
+      border-radius: 14px; padding: 2rem;
+      margin: 2rem 0;
+      display: flex; gap: 1.5rem; align-items: flex-start;
+    }
+    .fc-icon { font-size: 2.5rem; flex-shrink: 0; }
+    .fc-body h4 {
+      font-family: 'Anybody', sans-serif;
+      font-weight: 800; font-size: 1rem;
+      color: var(--cyan); margin-bottom: .5rem;
+    }
+    .fc-body p { font-size: .9rem; color: rgba(255,255,255,.75); margin: 0; }
+
+    .faq{margin:3rem 0;}
+    .faq-item{border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:.75rem;background:var(--light);}
+    .faq-item h3{font-family:'Anybody',sans-serif;font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:.5rem;}
+    .faq-item p{font-size:.88rem;color:var(--text-soft);margin:0;}
+
+    .cta-section{background:linear-gradient(135deg,var(--blue) 0%,#1a2fd0 100%);border-radius:20px;padding:3rem 2rem;text-align:center;margin:3rem 0;}
+    .cta-section h2{font-family:'Anybody',sans-serif;font-weight:900;font-size:1.6rem;color:var(--white);margin-bottom:.75rem;}
+    .cta-section p{color:rgba(255,255,255,.8);margin-bottom:1.5rem;font-size:.95rem;}
+    .cta-btn{display:inline-block;background:var(--white);color:var(--blue);font-family:'Anybody',sans-serif;font-weight:800;font-size:1rem;padding:.9rem 2.2rem;border-radius:10px;text-decoration:none;transition:transform .2s;}
+    .cta-btn:hover{transform:translateY(-2px);}
+
+    footer{background:var(--navy);padding:2rem;text-align:center;}
+    footer p{color:rgba(255,255,255,.4);font-size:.82rem;}
+    footer a{color:var(--cyan);text-decoration:none;}
+
+    @media(max-width:640px){
+      .ta-header,.ta-row{grid-template-columns:1fr 60px;}
+      .ta-header span:last-child,.ta-row .ta-bar-wrap{display:none;}
+      .role-split{grid-template-columns:1fr;}
+      .focus-callout{flex-direction:column;gap:1rem;}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "AI Chatbot Satış Ekibime Kaç Saat Kazandırır?",
+        "description": "AI chatbot'un satış ekibinizden hangi görevleri devraldığını ve bu görevlerin haftada kaç saate denk geldiğini hesaplayın.",
+        "datePublished": "2026-01-20",
+        "dateModified": "2026-01-20",
+        "author": {"@type": "Organization", "name": "STOAIX"},
+        "publisher": {"@type": "Organization", "name": "STOAIX", "logo": {"@type": "ImageObject", "url": "https://stoaix.com/logo.png"}},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://stoaix.com/blog/ai-chatbot-satis-verimlilik"}
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "AI chatbot satış ekibinin hangi görevlerini devralar?", "acceptedAnswer": {"@type": "Answer", "text": "İlk temas, temel bilgi toplama, sıkça sorulan soruları yanıtlama, randevu planlama ve CRM'e kayıt gibi tekrarlayan görevleri otomatikleştirir."}},
+          {"@type": "Question", "name": "AI chatbot satış elemanının yerini alır mı?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır. Chatbot tekrarlayan ve düşük değerli görevleri üstlenir; satış ekibi değer yaratan müşteri ilişkilerine, müzakereye ve kapanışa odaklanır."}},
+          {"@type": "Question", "name": "Chatbot mesai saatleri dışındaki lead'leri nasıl yönetir?", "acceptedAnswer": {"@type": "Answer", "text": "7/24 aktif olan chatbot, gece veya hafta sonu gelen ziyaretçileri nitelendirir ve bilgilerini CRM'e kaydeder. Ekip ertesi gün hazır lead bulur."}},
+          {"@type": "Question", "name": "Satış ekibi chatbot yerine geçiyor mu?", "acceptedAnswer": {"@type": "Answer", "text": "Chatbot satış ekibinin tamamlayıcısıdır. Tekrarlayan ilk temasları üstlenerek satışçıların daha fazla zamanını yüksek değerli fırsatlara ayırmasını sağlar."}},
+          {"@type": "Question", "name": "Küçük ekiplerde AI chatbot daha mı çok fark yaratır?", "acceptedAnswer": {"@type": "Answer", "text": "Genellikle evet. 2–5 kişilik satış ekiplerinde her kişinin haftada kurtardığı saatler toplam kapasiteyi önemli ölçüde artırır."}}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://stoaix.com">STOA<span>IX</span></a>
+    <a class="nav-cta" href="https://stoaix.com/#demo">Ücretsiz Demo</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="badge">L20 · Lead Yakalayan AI Chatbot</div>
+  <h1>AI Chatbot Satış Ekibime Kaç Saat Kazandırır?</h1>
+  <p class="hero-lead">Satış ekibinizin zamanını en çok hangi tekrarlayan görevler tüketiyor? AI chatbot bu görevleri devraldığında gerçekten ne kadar zaman açılır?</p>
+  <p class="hero-meta">20 Ocak 2026 · STOAIX Ekibi</p>
+</header>
+
+<main class="content">
+
+  <p>Satış ekiplerinin büyük çoğunluğu, gerçek satış yapmanın yanı sıra çok sayıda tekrarlayan, düşük değerli görevi de üstlenmek zorunda kalıyor: gelen soruları yanıtlamak, ön bilgileri toplamak, CRM'e kayıt girmek, randevu ayarlamak... Bunların toplamı düşündüğünüzden çok daha fazla saate denk gelir.</p>
+
+  <p>AI chatbot tam da bu noktada devreye girer. Tekrarlayan ilk temas görevlerini üstlenerek satışçıların asıl işlerine — ilişki kurmak, müzakere etmek, kapamak — odaklanmasını sağlar.</p>
+
+  <h2>Satış Ekibinin Hangi Görevlerini Devralar?</h2>
+  <p>Aşağıdaki tablo, tipik bir satış ekibinin haftada bir kişi başına harcadığı zamanı kategorize etmektedir. Sayılar sektöre ve ekip büyüklüğüne göre değişir; bunları kendi durumunuz için birer referans noktası olarak kullanın.</p>
+
+  <div class="time-audit">
+    <div class="ta-header">
+      <span>Görev</span>
+      <span style="text-align:center;">Sa/Hafta</span>
+      <span>Otomasyon Payı</span>
+    </div>
+    <div class="ta-row">
+      <div class="ta-task">Gelen sorulara ilk yanıt</div>
+      <div class="ta-hours">3–5 sa</div>
+      <div class="ta-bar-wrap"><div class="ta-bar" style="width:90%"></div></div>
+    </div>
+    <div class="ta-row">
+      <div class="ta-task">Ön bilgi toplama (ad, sektör, bütçe)</div>
+      <div class="ta-hours">2–4 sa</div>
+      <div class="ta-bar-wrap"><div class="ta-bar" style="width:85%"></div></div>
+    </div>
+    <div class="ta-row">
+      <div class="ta-task">SSS ve temel ürün bilgisi sorularını yanıtlama</div>
+      <div class="ta-hours">2–3 sa</div>
+      <div class="ta-bar-wrap"><div class="ta-bar" style="width:80%"></div></div>
+    </div>
+    <div class="ta-row">
+      <div class="ta-task">CRM'e lead bilgisi girme</div>
+      <div class="ta-hours">1–2 sa</div>
+      <div class="ta-bar-wrap"><div class="ta-bar" style="width:95%"></div></div>
+    </div>
+    <div class="ta-row">
+      <div class="ta-task">Randevu / demo planlama koordinasyonu</div>
+      <div class="ta-hours">1–2 sa</div>
+      <div class="ta-bar-wrap"><div class="ta-bar" style="width:75%"></div></div>
+    </div>
+    <div class="ta-row">
+      <div class="ta-task">Mesai dışı lead yanıtsızlığından oluşan kayıp</div>
+      <div class="ta-hours">Ölçüsüz</div>
+      <div class="ta-bar-wrap"><div class="ta-bar" style="width:100%"></div></div>
+    </div>
+    <div class="ta-total">
+      <span>Otomasyon adayı toplam (kişi başı / hafta)</span>
+      <span class="total-num">~9–16 sa</span>
+    </div>
+  </div>
+  <p style="font-size:.8rem;color:var(--muted);">Not: Bu tahminler sektöre ve ekip yapısına göre önemli ölçüde değişir. Kendi ekibinizin zaman harcamasını ölçmek için bir haftalık basit bir log tutun.</p>
+
+  <h2>Görevler Devraldığında Satışçı Ne Yapar?</h2>
+
+  <div class="role-split">
+    <div class="role-panel before">
+      <h4>Chatbot Olmadan — Satışçının Haftası</h4>
+      <div class="role-item"><span class="role-icon">📧</span> Gelen soruları birer birer yanıtlar</div>
+      <div class="role-item"><span class="role-icon">📋</span> Her lead için aynı ön bilgileri tekrar toplar</div>
+      <div class="role-item"><span class="role-icon">💾</span> Bilgileri manuel CRM'e girer</div>
+      <div class="role-item"><span class="role-icon">😔</span> Mesai dışı gelenlere ertesi gün ulaşır, lead soğumuş olur</div>
+      <div class="role-item"><span class="role-icon">⏱️</span> Az sayıda gerçek satış görüşmesi yapabilir</div>
+    </div>
+    <div class="role-panel after">
+      <h4>Chatbot ile — Satışçının Haftası</h4>
+      <div class="role-item"><span class="role-icon">🎯</span> Yalnızca nitelikli, hazır lead'lerle görüşür</div>
+      <div class="role-item"><span class="role-icon">📊</span> CRM'de lead zaten doldurulmuş, sıcak bilgi hazır</div>
+      <div class="role-item"><span class="role-icon">🌙</span> Mesai dışı lead'ler sabaha kadar nitelenmiş olur</div>
+      <div class="role-item"><span class="role-icon">🤝</span> İlişki kurma, müzakere ve kapanışa odaklanır</div>
+      <div class="role-item"><span class="role-icon">📈</span> Daha fazla görüşmeye vakit bulur</div>
+    </div>
+  </div>
+
+  <div class="focus-callout">
+    <div class="fc-icon">🎯</div>
+    <div class="fc-body">
+      <h4>Satışçı Ne Zaman En Değerlidir?</h4>
+      <p>Satış elemanının gerçek değeri ilk temasda değil, zaten ilgilenen birini kapatmakta ortaya çıkar. Chatbot, bu değerli anın önündeki tekrarlayan engelleri kaldırır.</p>
+    </div>
+  </div>
+
+  <h2>Mesai Dışı Kayıp — Görünmez Verimlilik Sorunu</h2>
+  <p>Pek çok işletme bu hesabı yapmaz: İş saatleri dışında web sitesini ziyaret eden biri soru sorar, yanıt alamaz ve ayrılır. Bu ziyaretçinin bir lead olarak değerlendirilmesi artık mümkün değildir.</p>
+  <p>AI chatbot bu pencereyi kapatır. Gece yarısı gelen ziyaretçi nitelendirilir, bilgileri CRM'e kaydedilir ve ekip sabah işe geldiğinde hazır bir lead bulur. Bu görünmez kayıplar, kazanılan saatler kadar önemlidir.</p>
+
+  <h2>Küçük Ekiplerde Fark Daha Büyük</h2>
+  <p>2–3 kişilik bir satış ekibinde her kişinin haftada 8–10 saat kurtarması, toplam kapasiteyi önemli ölçüde artırabilir. Bu ekiplerde chatbot sadece verimliliği değil, ölçeklenebilirliği de etkiler: aynı ekip daha fazla lead'i yönetebilir hale gelir.</p>
+  <ul>
+    <li>Yeni işe alım yapmadan kapasiteyi artırabilirsiniz.</li>
+    <li>Mevcut ekibinizin motivasyonunu yükseltebilirsiniz — tekrarlayan düşük değerli görevleri azaltmak satışçıların işten duyduğu memnuniyeti artırır.</li>
+    <li>Büyüme dönemlerinde ani talep artışları ekibi bunaltmaz, chatbot ön tarafı yönetir.</li>
+  </ul>
+
+  <h2>Chatbot'un Devralamadığı Görevler</h2>
+  <p>Tüm görevler otomasyon adayı değil. Chatbot şunları devralmaz:</p>
+  <ul>
+    <li>Karmaşık müzakereler ve itiraz yönetimi — bunlar insan muhakemesi gerektiren anlardır.</li>
+    <li>Mevcut müşterilerle uzun vadeli ilişki yönetimi.</li>
+    <li>Sektörel uzmanlık gerektiren danışmanlık — satışçı burada fark yaratır.</li>
+    <li>Duygusal bağ kurma ve güven inşası — insani dokunuş kritiktir.</li>
+  </ul>
+  <p>Bu sınır bilerek böyle tasarlanmıştır: chatbot, satışçının değer yarattığı alanı genişletmek için vardır, değiştirmek için değil.</p>
+
+  <div class="faq">
+    <h2>Sık Sorulan Sorular</h2>
+
+    <div class="faq-item">
+      <h3>AI chatbot satış ekibinin hangi görevlerini devralar?</h3>
+      <p>İlk temas, temel bilgi toplama, sıkça sorulan soruları yanıtlama, randevu planlama ve CRM'e kayıt gibi tekrarlayan görevleri otomatikleştirir.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>AI chatbot satış elemanının yerini alır mı?</h3>
+      <p>Hayır. Chatbot tekrarlayan ve düşük değerli görevleri üstlenir; satış ekibi değer yaratan müşteri ilişkilerine, müzakereye ve kapanışa odaklanır.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Chatbot mesai saatleri dışındaki lead'leri nasıl yönetir?</h3>
+      <p>7/24 aktif olan chatbot, gece veya hafta sonu gelen ziyaretçileri nitelendirir ve bilgilerini CRM'e kaydeder. Ekip ertesi gün hazır lead bulur.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Satış ekibi chatbot yerine geçiyor mu?</h3>
+      <p>Chatbot satış ekibinin tamamlayıcısıdır. Tekrarlayan ilk temasları üstlenerek satışçıların daha fazla zamanını yüksek değerli fırsatlara ayırmasını sağlar.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Küçük ekiplerde AI chatbot daha mı çok fark yaratır?</h3>
+      <p>Genellikle evet. 2–5 kişilik satış ekiplerinde her kişinin kurtardığı saatler toplam kapasiteyi önemli ölçüde artırır.</p>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Ekibinizin Zamanını Geri Kazanın</h2>
+    <p>STOAIX chatbot'u ilk temasları yönetir, CRM'i doldurur ve ekibinizi yalnızca nitelikli lead'lerle buluşturur.</p>
+    <a class="cta-btn" href="https://stoaix.com/#demo">Ücretsiz Demo Talep Et</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 STOAIX · <a href="https://stoaix.com/gizlilik">Gizlilik Politikası</a> · <a href="https://stoaix.com/kvkk">KVKK Aydınlatma Metni</a></p>
+</footer>
+
+</body>
+</html>

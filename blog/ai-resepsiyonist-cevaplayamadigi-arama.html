@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resepsiyonist Cevaplayamazsa Arama Nereye Gidiyor? | STOAIX Blog</title>
+  <meta name="description" content="AI resepsiyonist cevaplayamadığı aramayı kaybetmez. STOAIX'in yönlendirme mantığını ve yedek senaryolarını öğrenin." />
+  <meta name="keywords" content="ai resepsiyonist yönlendirme, cevapsız arama, çağrı yedekleme, overflow yönlendirme" />
+  <link rel="canonical" href="https://stoaix.com/blog/ai-resepsiyonist-cevaplayamadigi-arama" />
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-cevaplayamadigi-arama" />
+  <meta property="og:title" content="AI Resepsiyonist Cevaplayamazsa Arama Nereye Gidiyor?" />
+  <meta property="og:description" content="AI resepsiyonist cevaplayamadığı aramayı kaybetmez. Yönlendirme mantığını öğrenin." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://stoaix.com/blog/ai-resepsiyonist-cevaplayamadigi-arama" />
+  <meta property="og:site_name" content="STOAIX" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI Resepsiyonist Cevaplayamazsa Arama Nereye Gidiyor?",
+    "description": "AI resepsiyonist cevaplayamadığı aramayı kaybetmez. STOAIX yönlendirme mantığı ve yedek senaryoları.",
+    "author": { "@type": "Organization", "name": "STOAIX" },
+    "publisher": { "@type": "Organization", "name": "STOAIX", "url": "https://stoaix.com" },
+    "datePublished": "2025-12-05",
+    "dateModified": "2025-12-05",
+    "mainEntityOfPage": "https://stoaix.com/blog/ai-resepsiyonist-cevaplayamadigi-arama"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "AI resepsiyonist cevap vermezse arama kaybolur mu?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Hayır. STOAIX yapılandırılmış bir yedekleme akışıyla aramayı kaybolmaktan korur: voicemail, yönlendirme veya mesaj alma gibi seçenekler devreye girer." }
+      },
+      {
+        "@type": "Question",
+        "name": "AI sonsuz eşzamanlı aramayı cevaplayabilir mi?",
+        "acceptedAnswer": { "@type": "Answer", "text": "STOAIX sınırsız eşzamanlı görüşme kapasitesiyle çalışır; bu nedenle meşgul tonu ya da cevapsız arama neredeyse sıfıra iner." }
+      },
+      {
+        "@type": "Question",
+        "name": "Gece gelen aramalar ne olur?",
+        "acceptedAnswer": { "@type": "Answer", "text": "STOAIX 7/24 çalıştığı için gece gelen aramaları gerçek zamanlı olarak cevaplayabilir, randevu alabilir veya mesaj bırakılmasını sağlayabilir." }
+      },
+      {
+        "@type": "Question",
+        "name": "AI bir soruya cevap veremezse ne yapar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Bilgi tabanında yanıt bulamadığı durumlarda AI konuyu not alır, arayanı bilgilendirir ve sonraki uygun zamanda geri aranacağını iletebilir." }
+      },
+      {
+        "@type": "Question",
+        "name": "Yedekleme akışını ben mi yapılandırıyorum?",
+        "acceptedAnswer": { "@type": "Answer", "text": "STOAIX tam yönetilen bir hizmet olduğundan yedekleme ve yönlendirme yapılandırmasını ekibimiz sizin için kurar; teknik bilgi gerekmez." }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #050a30;
+      --blue: #233dff;
+      --cyan: #42c2d5;
+      --light: #f4f6fc;
+      --white: #ffffff;
+      --muted: #6b7a99;
+      --border: rgba(35,61,255,0.1);
+      --text: #0d1545;
+      --text-soft: #4a5480;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text); background: var(--white); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--border); padding: 0 24px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1.4rem; color: var(--navy); letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--blue); }
+    .nav-cta { background: var(--blue); color: var(--white); padding: 8px 20px; border-radius: 8px; font-weight: 500; font-size: 0.9rem; transition: opacity .2s; }
+    .nav-cta:hover { opacity: .85; text-decoration: none; }
+
+    /* HERO */
+    .hero-post { background: linear-gradient(135deg, var(--navy) 0%, #0d1a6e 100%); color: var(--white); padding: 64px 24px 56px; text-align: center; }
+    .breadcrumb { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+    .breadcrumb a { color: rgba(255,255,255,0.7); }
+    .post-meta { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+    .post-category { background: var(--cyan); color: var(--navy); padding: 4px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; }
+    .post-date, .post-read { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+    .hero-post h1 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: clamp(1.7rem, 4vw, 2.6rem); line-height: 1.2; max-width: 760px; margin: 0 auto 20px; }
+    .hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 640px; margin: 0 auto; }
+
+    /* BODY */
+    .post-body { max-width: 780px; margin: 0 auto; padding: 56px 24px 80px; }
+    .direct-answer { background: var(--light); border-left: 4px solid var(--cyan); border-radius: 0 12px 12px 0; padding: 20px 24px; margin-bottom: 40px; font-size: 1.05rem; color: var(--text); font-weight: 500; }
+    h2 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.45rem; color: var(--navy); margin: 48px 0 16px; }
+    h3 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--navy); margin: 32px 0 10px; }
+    p { color: var(--text-soft); margin-bottom: 18px; }
+    ul, ol { color: var(--text-soft); padding-left: 22px; margin-bottom: 18px; }
+    li { margin-bottom: 8px; }
+
+    /* FALLBACK GRID */
+    .fallback-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 28px 0; }
+    .fallback-card { border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+    .fallback-icon { font-size: 2rem; margin-bottom: 10px; }
+    .fallback-card h4 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 8px; }
+    .fallback-card p { font-size: 0.88rem; color: var(--text-soft); margin: 0; }
+
+    /* FLOW STEPS */
+    .flow-steps { margin: 28px 0; display: flex; flex-direction: column; gap: 0; }
+    .flow-step { display: flex; align-items: flex-start; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+    .flow-step:last-child { border-bottom: none; }
+    .step-num { width: 36px; height: 36px; background: var(--cyan); color: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 0.9rem; flex-shrink: 0; }
+    .step-content h4 { font-family: 'Anybody', sans-serif; font-weight: 700; color: var(--navy); font-size: 0.97rem; margin-bottom: 4px; }
+    .step-content p { font-size: 0.88rem; color: var(--text-soft); margin: 0; }
+
+    /* SCENARIO TABLE */
+    .scenario-table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 0.88rem; }
+    .scenario-table th { background: var(--navy); color: var(--white); padding: 10px 14px; text-align: left; font-family: 'Anybody', sans-serif; font-weight: 700; }
+    .scenario-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text-soft); }
+    .scenario-table tr:nth-child(even) td { background: var(--light); }
+    .badge-handled { background: #d1fae5; color: #065f46; padding: 2px 10px; border-radius: 12px; font-weight: 600; font-size: 0.78rem; }
+    .badge-partial { background: #fef3c7; color: #92400e; padding: 2px 10px; border-radius: 12px; font-weight: 600; font-size: 0.78rem; }
+
+    /* CTA BOX */
+    .cta-box { background: linear-gradient(135deg, var(--navy), #0d1a6e); border-radius: 16px; padding: 36px 32px; text-align: center; margin: 48px 0; }
+    .cta-box h3 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--white); margin-bottom: 12px; }
+    .cta-box p { color: rgba(255,255,255,0.75); margin-bottom: 24px; font-size: 0.95rem; }
+    .cta-btn { display: inline-block; background: var(--cyan); color: var(--navy); padding: 12px 32px; border-radius: 8px; font-weight: 700; font-size: 1rem; transition: opacity .2s; }
+    .cta-btn:hover { opacity: .85; text-decoration: none; }
+
+    /* FAQ */
+    .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h4 { font-family: 'Anybody', sans-serif; font-weight: 700; color: var(--navy); font-size: 0.97rem; margin-bottom: 8px; }
+    .faq-item p { color: var(--text-soft); font-size: 0.9rem; margin: 0; }
+
+    /* INTERNAL LINKS */
+    .internal-links { background: var(--light); border-radius: 12px; padding: 24px; margin-top: 48px; }
+    .internal-links h4 { font-family: 'Anybody', sans-serif; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+    .internal-links ul { list-style: none; padding: 0; margin: 0; }
+    .internal-links li { margin-bottom: 8px; }
+    .internal-links a { color: var(--blue); font-size: 0.9rem; }
+
+    /* FOOTER */
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 24px; font-size: 0.82rem; }
+    footer a { color: rgba(255,255,255,0.6); margin: 0 8px; }
+
+    @media (max-width: 600px) {
+      .fallback-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-53TMTQML2Q');</script>
+  <!-- Microsoft Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","wnyyri0jrz");</script>
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1426016022664547');fbq('track','PageView');</script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">STOA<span>IX</span></div>
+  <a href="/signup" class="nav-cta">Demo Al</a>
+</nav>
+
+<div class="hero-post">
+  <div class="breadcrumb">
+    <a href="/">Ana Sayfa</a> › <a href="/blog">Blog</a> › AI Resepsiyonist
+  </div>
+  <div class="post-meta">
+    <span class="post-category">AI Resepsiyonist</span>
+    <span class="post-date">5 Aralık 2025</span>
+    <span class="post-read">5 dk okuma</span>
+  </div>
+  <h1>AI Resepsiyonist Cevaplayamazsa Arama Nereye Gidiyor?</h1>
+  <p class="hero-desc">Hiçbir arama kaybolmaz. STOAIX'in yönlendirme mantığını ve yedek senaryolarını öğrenin.</p>
+</div>
+
+<div class="post-body">
+
+  <div class="direct-answer">
+    AI resepsiyonist "cevaplayamadığı" senaryo pratikte çok nadirdir — sınırsız eşzamanlı kapasite sayesinde meşgul tonu yoktur. Yine de yapılandırılmış bir yedek akış her zaman devrededir: voicemail, yönlendirme veya mesaj alma seçenekleriyle hiçbir arama sessizce düşmez.
+  </div>
+
+  <h2>Aslında Kaç Arama "Cevaplanamaz"?</h2>
+  <p>Geleneksel resepsiyonistte cevapsız arama üç nedenden oluşur: hat meşgul, personel yokluğu ve mesai saati dışı. STOAIX bu üçünü de ortadan kaldırır:</p>
+  <ul>
+    <li><strong>Sınırsız eşzamanlı görüşme:</strong> Hat hiç meşgul olmaz; 50 kişi aynı anda arasın, hepsi anında yanıt alır.</li>
+    <li><strong>7/24 çalışma:</strong> Gece 03.00, bayram tatili, öğle arası — fark etmez.</li>
+    <li><strong>Otomatik başlatma:</strong> Personelin başka bir şeyle ilgilenmesi AI'ı durdurmaz.</li>
+  </ul>
+  <p>Dolayısıyla gerçek anlamda "cevaplanamayan" arama senaryosu çok sınırlıdır. Ancak bilgi tabanı dışında kalan çok özel sorular veya teknik bir anlık kesinti gibi nadir durumlar için STOAIX yedekleme akışı devreye girer.</p>
+
+  <h2>Yedek Akış: 4 Seçenek</h2>
+  <div class="fallback-grid">
+    <div class="fallback-card">
+      <div class="fallback-icon">📨</div>
+      <h4>Voicemail & Transkript</h4>
+      <p>Arama sesli mesajla sonlanır; otomatik transkript size iletilir.</p>
+    </div>
+    <div class="fallback-card">
+      <div class="fallback-icon">🔀</div>
+      <h4>Dahili Yönlendirme</h4>
+      <p>Yapılandırılmış dahili hat numarasına veya departmana aktarılır.</p>
+    </div>
+    <div class="fallback-card">
+      <div class="fallback-icon">💬</div>
+      <h4>WhatsApp / Mesaj</h4>
+      <p>Arayana WhatsApp veya SMS ile geri dönüş taahhüdü verilir.</p>
+    </div>
+    <div class="fallback-card">
+      <div class="fallback-icon">📅</div>
+      <h4>Randevu Bırak</h4>
+      <p>Ekibinizden birinin sizi arayacağı zaman aralığı belirlenir.</p>
+    </div>
+  </div>
+
+  <h2>Yedek Akış Nasıl İşliyor?</h2>
+  <div class="flow-steps">
+    <div class="flow-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h4>Arama Karşılanır</h4>
+        <p>AI tüm aramaları anında karşılar; meşgul tonu çalmaz.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h4>Talep Analiz Edilir</h4>
+        <p>AI konuşmanın amacını belirler: randevu, bilgi, şikayet, acil durum vb.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h4>Standart Akış Denenir</h4>
+        <p>Bilgi tabanında yanıt varsa AI soruyu çözer; randevu ise takvime işler.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <h4>Kapsam Dışı Tanımlanır</h4>
+        <p>AI cevap veremeyeceği durumlarda arayanı bilgilendirir ve yedek akışı başlatır.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <h4>Yedek Seçenek Devreye Girer</h4>
+        <p>Önceden tanımladığınız seçeneğe göre: mesaj, yönlendirme veya voicemail.</p>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <h4>Kayıt & Transkript</h4>
+        <p>Tüm arama kaydedilir; transkrip ile birlikte size iletilir.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2>Senaryo Karşılaştırması</h2>
+  <table class="scenario-table">
+    <thead>
+      <tr>
+        <th>Senaryo</th>
+        <th>Geleneksel Resepsiyonist</th>
+        <th>STOAIX AI</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Yoğun saatlerde 5. eşzamanlı arama</td>
+        <td>Meşgul tonu</td>
+        <td><span class="badge-handled">Anında yanıt</span></td>
+      </tr>
+      <tr>
+        <td>Gece 23.00'de randevu talebi</td>
+        <td>Cevapsız</td>
+        <td><span class="badge-handled">Randevu alınır</span></td>
+      </tr>
+      <tr>
+        <td>Bilgi tabanı dışı teknik soru</td>
+        <td>Yanlış yanıt veya bekleme</td>
+        <td><span class="badge-partial">Mesaj + geri arama</span></td>
+      </tr>
+      <tr>
+        <td>Tüm personel meşgul</td>
+        <td>Cevapsız veya bekleme</td>
+        <td><span class="badge-handled">AI devam eder</span></td>
+      </tr>
+      <tr>
+        <td>Resmi tatil</td>
+        <td>Kapalı</td>
+        <td><span class="badge-handled">7/24 aktif</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="cta-box">
+    <h3>Hiçbir Aramayı Kaçırmayın</h3>
+    <p>STOAIX yedekleme akışınızı sizin için yapılandırır. 5 dakikada devreye alın.</p>
+    <a href="/signup" class="cta-btn">Ücretsiz Deneyin</a>
+  </div>
+
+  <h2>Teknik Kesinti Durumunda Ne Olur?</h2>
+  <p>Bulut tabanlı altyapı her zaman %100 uptime garantisi veremez. STOAIX bu nadir durumlara karşı da bir yedekleme akışı yapılandırır; böylece teknik bir kesintide bile aramalar önceden belirlenen bir hatta veya voicemail'e düşer. Ayrıca STOAIX tam yönetilen bir hizmet olduğundan izleme ve müdahale altyapı ekibi tarafından sürekli yapılır.</p>
+
+  <h2>Yedekleme Akışını Kim Yapılandırıyor?</h2>
+  <p>Teknik bilgiye gerek yok. STOAIX tam yönetilen hizmet modeliyle kurulumu üstlenir. Siz yalnızca hangi yedek seçeneği tercih ettiğinizi belirtirsiniz; geri kalanını ekibimiz ayarlar.</p>
+
+  <h2>Sık Sorulan Sorular</h2>
+  <div class="faq-item">
+    <h4>AI resepsiyonist cevap vermezse arama kaybolur mu?</h4>
+    <p>Hayır. STOAIX yapılandırılmış bir yedekleme akışıyla aramayı kaybolmaktan korur: voicemail, yönlendirme veya mesaj alma gibi seçenekler devreye girer.</p>
+  </div>
+  <div class="faq-item">
+    <h4>AI sonsuz eşzamanlı aramayı cevaplayabilir mi?</h4>
+    <p>STOAIX sınırsız eşzamanlı görüşme kapasitesiyle çalışır; bu nedenle meşgul tonu ya da cevapsız arama neredeyse sıfıra iner.</p>
+  </div>
+  <div class="faq-item">
+    <h4>Gece gelen aramalar ne olur?</h4>
+    <p>STOAIX 7/24 çalıştığı için gece gelen aramaları gerçek zamanlı olarak cevaplayabilir, randevu alabilir veya mesaj bırakılmasını sağlayabilir.</p>
+  </div>
+  <div class="faq-item">
+    <h4>AI bir soruya cevap veremezse ne yapar?</h4>
+    <p>Bilgi tabanında yanıt bulamadığı durumlarda AI konuyu not alır, arayanı bilgilendirir ve sonraki uygun zamanda geri aranacağını iletebilir.</p>
+  </div>
+  <div class="faq-item">
+    <h4>Yedekleme akışını ben mi yapılandırıyorum?</h4>
+    <p>STOAIX tam yönetilen bir hizmet olduğundan yedekleme ve yönlendirme yapılandırmasını ekibimiz sizin için kurar; teknik bilgi gerekmez.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>Hiçbir Müşteri Aramasını Kaçırmayın</h3>
+    <p>STOAIX ile yedekleme akışınızı bugün kurun. Ücretsiz deneme mevcut.</p>
+    <a href="/signup" class="cta-btn">Hemen Başlayın</a>
+  </div>
+
+  <div class="internal-links">
+    <h4>İlgili Yazılar</h4>
+    <ul>
+      <li><a href="/blog/ai-resepsiyonist-kapasite">AI Resepsiyonist Bir Günde Kaç Aramayla İlgilenir?</a></li>
+      <li><a href="/blog/ai-resepsiyonist-otomatik-randevu">AI Resepsiyonist Randevuyu Otomatik Alıyor mu?</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 <a href="/">stoaix.com</a> · <a href="/privacy">Gizlilik</a> · <a href="/kvkk">KVKK</a></p>
+</footer>
+
+</body>
+</html>

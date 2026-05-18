@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chatbot Cevap Veremezse Ne Olur? | STOAIX Blog</title>
+  <meta name="description" content="AI chatbot bir soruya yanıt veremediğinde veya kapsam dışına çıktığında ne olur? İnsan devri süreci nasıl işler?" />
+  <link rel="canonical" href="https://stoaix.com/blog/ai-chatbot-insan-devri" />
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-insan-devri" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-53TMTQML2Q');</script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1426016022664547');fbq('track','PageView');</script>
+
+  <style>
+    :root {
+      --navy:#050a30; --blue:#233dff; --cyan:#42c2d5;
+      --light:#f4f6fc; --white:#ffffff; --muted:#6b7a99;
+      --border:rgba(35,61,255,0.1); --text:#0d1545; --text-soft:#4a5480;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.7;}
+
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .nav-logo{font-family:'Anybody',sans-serif;font-weight:900;font-size:1.4rem;color:var(--navy);text-decoration:none;}
+    .nav-logo span{color:var(--blue);}
+    .nav-cta{background:var(--blue);color:var(--white);padding:.5rem 1.25rem;border-radius:8px;font-weight:500;font-size:.9rem;text-decoration:none;transition:opacity .2s;}
+    .nav-cta:hover{opacity:.85;}
+
+    .hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1545 60%,#162060 100%);padding:5rem 2rem 4rem;text-align:center;}
+    .badge{display:inline-block;background:var(--navy);color:var(--cyan);border:1px solid var(--cyan);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;margin-bottom:1.5rem;}
+    .hero h1{font-family:'Anybody',sans-serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--white);line-height:1.2;max-width:780px;margin:0 auto 1.25rem;}
+    .hero-lead{color:rgba(255,255,255,.75);font-size:1.05rem;max-width:620px;margin:0 auto 2rem;}
+    .hero-meta{color:rgba(255,255,255,.45);font-size:.82rem;}
+
+    .content{max-width:820px;margin:0 auto;padding:3.5rem 2rem;}
+    .content h2{font-family:'Anybody',sans-serif;font-weight:800;font-size:1.45rem;color:var(--navy);margin:2.5rem 0 1rem;}
+    .content h3{font-family:'Anybody',sans-serif;font-weight:700;font-size:1.1rem;color:var(--blue);margin:1.8rem 0 .6rem;}
+    .content p{color:var(--text-soft);margin-bottom:1rem;}
+    .content ul{padding-left:1.4rem;color:var(--text-soft);margin-bottom:1rem;}
+    .content li{margin-bottom:.4rem;}
+
+    /* UNIQUE: Handoff flow — horizontal chain */
+    .handoff-chain {
+      display: flex; align-items: stretch;
+      gap: 0; margin: 2rem 0;
+      border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    }
+    .hc-step {
+      flex: 1; padding: 1.25rem 1rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .hc-step:last-child { border-right: none; }
+    .hc-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--navy); color: var(--cyan);
+      font-family: 'Anybody', sans-serif; font-weight: 900; font-size: .9rem;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto .75rem;
+    }
+    .hc-step h4 {
+      font-family: 'Anybody', sans-serif;
+      font-weight: 700; font-size: .82rem;
+      color: var(--navy); margin-bottom: .3rem;
+    }
+    .hc-step p { font-size: .78rem; color: var(--muted); margin: 0; }
+    .hc-step.trigger .hc-num { background: #ef4444; color: var(--white); }
+    .hc-step.bridge .hc-num  { background: var(--blue); }
+    .hc-step.human .hc-num   { background: #22c55e; color: var(--white); }
+
+    /* UNIQUE: Trigger type cards */
+    .trigger-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem; margin: 2rem 0;
+    }
+    .trig-card {
+      border-radius: 12px; padding: 1.25rem;
+      border-left: 4px solid transparent;
+    }
+    .trig-card.auto  { border-color: #ef4444; background: rgba(239,68,68,.04); }
+    .trig-card.user  { border-color: var(--blue); background: rgba(35,61,255,.04); }
+    .trig-card.time  { border-color: var(--cyan); background: rgba(66,194,213,.05); }
+    .trig-card h4 {
+      font-family: 'Anybody', sans-serif;
+      font-weight: 700; font-size: .88rem;
+      margin-bottom: .4rem;
+    }
+    .trig-card.auto h4 { color: #dc2626; }
+    .trig-card.user h4 { color: var(--blue); }
+    .trig-card.time h4 { color: #0e7a8a; }
+    .trig-card p { font-size: .82rem; color: var(--muted); margin: 0; }
+
+    /* Chat mockup */
+    .chat-mock {
+      background: #f0f2f5; border-radius: 16px;
+      padding: 1.5rem; margin: 2rem 0;
+    }
+    .cm-title {
+      font-family: 'Anybody', sans-serif; font-weight: 700;
+      font-size: .8rem; color: var(--muted); text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: 1rem;
+    }
+    .bubble {
+      display: inline-block; padding: .65rem 1rem;
+      border-radius: 12px; font-size: .88rem;
+      max-width: 80%; margin-bottom: .6rem; line-height: 1.5;
+    }
+    .bubble.user { background: var(--blue); color: var(--white); float: right; clear: both; border-radius: 12px 4px 12px 12px; }
+    .bubble.bot  { background: var(--white); color: var(--text); float: left; clear: both; border-radius: 4px 12px 12px 12px; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+    .bubble.system { background: rgba(5,10,48,.08); color: var(--navy); float: none; clear: both; display: block; text-align: center; font-size: .78rem; border-radius: 8px; margin: .5rem auto; }
+    .cm-clear { clear: both; }
+
+    /* Info box */
+    .info-box {
+      background: rgba(35,61,255,.05);
+      border: 1px solid rgba(35,61,255,.15);
+      border-radius: 12px; padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .info-box h4 {
+      font-family: 'Anybody', sans-serif; font-weight: 700;
+      font-size: .95rem; color: var(--blue); margin-bottom: .5rem;
+    }
+    .info-box p { font-size: .88rem; color: var(--text-soft); margin: 0; }
+
+    .faq{margin:3rem 0;}
+    .faq-item{border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:.75rem;background:var(--light);}
+    .faq-item h3{font-family:'Anybody',sans-serif;font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:.5rem;}
+    .faq-item p{font-size:.88rem;color:var(--text-soft);margin:0;}
+
+    .cta-section{background:linear-gradient(135deg,var(--blue) 0%,#1a2fd0 100%);border-radius:20px;padding:3rem 2rem;text-align:center;margin:3rem 0;}
+    .cta-section h2{font-family:'Anybody',sans-serif;font-weight:900;font-size:1.6rem;color:var(--white);margin-bottom:.75rem;}
+    .cta-section p{color:rgba(255,255,255,.8);margin-bottom:1.5rem;font-size:.95rem;}
+    .cta-btn{display:inline-block;background:var(--white);color:var(--blue);font-family:'Anybody',sans-serif;font-weight:800;font-size:1rem;padding:.9rem 2.2rem;border-radius:10px;text-decoration:none;transition:transform .2s;}
+    .cta-btn:hover{transform:translateY(-2px);}
+
+    footer{background:var(--navy);padding:2rem;text-align:center;}
+    footer p{color:rgba(255,255,255,.4);font-size:.82rem;}
+    footer a{color:var(--cyan);text-decoration:none;}
+
+    @media(max-width:640px){
+      .handoff-chain{flex-direction:column;}
+      .hc-step{border-right:none;border-bottom:1px solid var(--border);}
+      .hc-step:last-child{border-bottom:none;}
+      .trigger-grid{grid-template-columns:1fr;}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "AI Chatbot Cevap Veremezse Ne Olur?",
+        "description": "AI chatbot bir soruya yanıt veremediğinde veya kapsam dışına çıktığında ne olur? İnsan devri süreci nasıl işler?",
+        "datePublished": "2026-01-21",
+        "dateModified": "2026-01-21",
+        "author": {"@type": "Organization", "name": "STOAIX"},
+        "publisher": {"@type": "Organization", "name": "STOAIX", "logo": {"@type": "ImageObject", "url": "https://stoaix.com/logo.png"}},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://stoaix.com/blog/ai-chatbot-insan-devri"}
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "AI chatbot bir soruya yanıt veremezse ne olur?", "acceptedAnswer": {"@type": "Answer", "text": "Chatbot kapsam dışı bir soruyla karşılaştığında bunu açıkça belirtir ve görüşmeyi bir insan temsilcisine devreder ya da geri arama ayarlar. Konuşma geçmişi de birlikte aktarılır."}},
+          {"@type": "Question", "name": "İnsan devri otomatik mi yoksa kullanıcı tarafından mı tetiklenir?", "acceptedAnswer": {"@type": "Answer", "text": "Her ikisi de olabilir. Chatbot belirli anahtar kelimeler, ton değişimleri veya kapsam dışı sorularda otomatik devir yapar. Kullanıcı da istediği zaman 'insanla konuşmak istiyorum' diyerek devri tetikleyebilir."}},
+          {"@type": "Question", "name": "Mesai saatleri dışında insan devri mümkün mü?", "acceptedAnswer": {"@type": "Answer", "text": "Mesai dışında chatbot, geri arama veya e-posta yoluyla iletişim sağlar. Konuşma ve lead bilgileri CRM'e kaydedilerek ekip işe geldiğinde bildirilir."}},
+          {"@type": "Question", "name": "İnsan devri sırasında kullanıcı konuşma geçmişini tekrar anlatmak zorunda mı?", "acceptedAnswer": {"@type": "Answer", "text": "Hayır. Doğru yapılandırılmış bir sistemde chatbot konuşma geçmişini ve toplanan bilgileri insan temsilcisine aktarır; kullanıcının her şeyi yeniden anlatması gerekmez."}},
+          {"@type": "Question", "name": "Chatbot yanlış yanıt verirse ne yapılabilir?", "acceptedAnswer": {"@type": "Answer", "text": "Konuşma kayıtları analiz edilerek yanlış yanıtlar tespit edilebilir ve bilgi tabanı güncellenerek hata düzeltilebilir. Bu sürekli iyileştirme döngüsünün bir parçasıdır."}}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://stoaix.com">STOA<span>IX</span></a>
+    <a class="nav-cta" href="https://stoaix.com/#demo">Ücretsiz Demo</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="badge">L21 · Lead Yakalayan AI Chatbot</div>
+  <h1>AI Chatbot Cevap Veremezse Ne Olur?</h1>
+  <p class="hero-lead">Hiçbir chatbot her soruyu yanıtlayamaz. Peki bu anlar kötü bir deneyime mi dönüşür, yoksa doğru tasarımla fırsata mı çevrilir?</p>
+  <p class="hero-meta">21 Ocak 2026 · STOAIX Ekibi</p>
+</header>
+
+<main class="content">
+
+  <p>AI chatbot'lar güçlüdür; ama her soruya yanıt veremezler ve vermemeleri de gerekir. Chatbot'un kendi sınırlarını bilmesi ve bu anlarda doğru davranması, müşteri deneyimi açısından chatbot'un yanıtladığı sorular kadar önemlidir.</p>
+
+  <p>Bu yazıda chatbot'un "bilmediği" bir durumla karşılaştığında ne olduğunu, insan devri sürecinin nasıl işlediğini ve bu sürecin nasıl doğru tasarlanacağını ele alıyoruz.</p>
+
+  <h2>Chatbot Neden Yanıt Veremez?</h2>
+  <p>Bir chatbot'un yanıt veremeyeceği durumlar birkaç kategoriye ayrılır:</p>
+  <ul>
+    <li><strong>Bilgi tabanı dışı soru:</strong> Chatbot'un eğitilmediği bir konuda soru geliyor — sigorta detayları, stok durumu, hukuki tavsiye gibi.</li>
+    <li><strong>Çok spesifik durum:</strong> Kullanıcının sorunu, genel yanıtların yetersiz kaldığı bireysel bir durum.</li>
+    <li><strong>Duygusal yoğunluk:</strong> Öfke, hayal kırıklığı veya kriz belirtisi — insan empati gerektirir.</li>
+    <li><strong>Politika dışı talep:</strong> Chatbot'un kapsam sınırları dışına çıkacak bir istek.</li>
+  </ul>
+
+  <h2>İnsan Devri Nasıl Çalışır?</h2>
+  <p>İyi tasarlanmış bir sistemde insan devri sorunsuz ve hazır bir şekilde gerçekleşir:</p>
+
+  <div class="handoff-chain">
+    <div class="hc-step trigger">
+      <div class="hc-num">1</div>
+      <h4>Tetikleyici Algılanır</h4>
+      <p>Chatbot kapsam dışı soru, öfke sinyali veya kullanıcı talebini fark eder.</p>
+    </div>
+    <div class="hc-step bridge">
+      <div class="hc-num">2</div>
+      <h4>Köprü Kurulur</h4>
+      <p>Chatbot durumu açıklar, beklentiyi yönetir ve konuşmayı aktarmaya hazırlar.</p>
+    </div>
+    <div class="hc-step">
+      <div class="hc-num">3</div>
+      <h4>Geçmiş Aktarılır</h4>
+      <p>Konuşma kaydı ve toplanan lead bilgileri insan temsilcisine iletilir.</p>
+    </div>
+    <div class="hc-step human">
+      <div class="hc-num">4</div>
+      <h4>İnsan Devir Alır</h4>
+      <p>Temsilci konuşmayı hazır bilgiyle devam ettirir; kullanıcı tekrar anlatmak zorunda kalmaz.</p>
+    </div>
+  </div>
+
+  <h2>Devri Tetikleyen Durumlar Nelerdir?</h2>
+
+  <div class="trigger-grid">
+    <div class="trig-card auto">
+      <h4>Otomatik Tetikleyiciler</h4>
+      <p>Kapsam dışı anahtar kelimeler, öfke/şikayet sinyalleri, hukuki/tıbbi soru kalıpları, chatbot'un 2 kez üst üste yanıt veremediği durumlar.</p>
+    </div>
+    <div class="trig-card user">
+      <h4>Kullanıcı İstekli Devir</h4>
+      <p>"İnsan ile konuşmak istiyorum", "müşteri temsilcisi" veya "destek" gibi ifadeler kullanıcının kendi isteğiyle devri tetikler.</p>
+    </div>
+    <div class="trig-card time">
+      <h4>Süre Bazlı Devir</h4>
+      <p>Belirli bir süre çözüme ulaşılamadıysa chatbot proaktif olarak "Sizi bir temsilciye bağlayalım" önerisinde bulunur.</p>
+    </div>
+  </div>
+
+  <h2>Doğru Devir Mesajı Nasıl Görünür?</h2>
+  <p>Aşağıdaki konuşma örneği, iyi tasarlanmış bir devrin nasıl göründüğünü gösteriyor:</p>
+
+  <div class="chat-mock">
+    <div class="cm-title">Örnek Konuşma — Devir Anı</div>
+    <div class="bubble user">Merhaba, muhasebe yazılımımızla entegrasyon mümkün mü? Quickbooks kullanıyoruz.</div>
+    <div class="bubble bot">Merhaba! Bu konuyu size en doğru şekilde açıklayabilmek için bir uzmanımızla konuşmanızı öneririm — entegrasyon detayları işletmenize özel değerlendirme gerektiriyor.</div>
+    <div class="bubble bot">Ekibimizden biri sizinle iletişime geçmesi için bir geri arama ayarlayabilir miyim? Hangi saat size uygun olur?</div>
+    <div class="bubble user">Evet, yarın sabah 10 gibi olur.</div>
+    <div class="bubble bot">Harika! Yarın 10:00 için geri arama kaydettim. Adınız ve telefon numaranızı alabilir miyim?</div>
+    <div class="bubble system">⟳ Konuşma, toplanan bilgilerle birlikte ekibinize iletildi.</div>
+    <div class="cm-clear"></div>
+  </div>
+
+  <div class="info-box">
+    <h4>Kritik Detay: Konuşma Geçmişi Her Zaman Aktarılır</h4>
+    <p>İyi bir devir, kullanıcının her şeyi sıfırdan anlatmak zorunda kalmadığı devir demektir. Temsilci ekrana baktığında kullanıcının adını, sorusunu ve konuşma geçmişini görür ve tam hazırlıklı devam eder.</p>
+  </div>
+
+  <h2>Mesai Dışında Ne Olur?</h2>
+  <p>Mesai saatleri dışında bir devir tetiklendiğinde sistem şu şekilde davranır:</p>
+  <ul>
+    <li>Chatbot bu durumu kullanıcıya açıkça belirtir: "Ekibimiz şu an çevrimdışı, ama sabah ilk iş sizinle iletişime geçeceğiz."</li>
+    <li>Geri arama talebi veya e-posta adresi alınarak lead CRM'e kaydedilir.</li>
+    <li>Ekip işe geldiğinde bildirim alır ve kayıt hazır bulunur.</li>
+  </ul>
+  <p>Bu yapı, mesai dışındaki "kayıp" lead'leri sisteme dahil eder. Yanıt veremeyen chatbot bile değerli bir ilk temas noktası olmayı sürdürür.</p>
+
+  <h2>Chatbot Yanlış Yanıt Verirse?</h2>
+  <p>Yanıt verememekten farklı bir senaryo da chatbot'un yanlış yanıt vermesi. Bu durumun önüne geçmek için:</p>
+  <ul>
+    <li>Bilgi tabanının güncel tutulması gerekir — eski politikalar veya değişen hizmet koşulları yanlış yanıtlara yol açar.</li>
+    <li>Konuşma kayıtlarının düzenli incelenmesi yanlış yanıtları tespit etmeyi sağlar.</li>
+    <li>Chatbot'un kapsam sınırları açıkça tanımlanmalı; "emin değilim, bir uzmanımıza bağlayayım" seçeneği her zaman mevcut olmalıdır.</li>
+  </ul>
+  <p>Yanlış yanıt vermemek için belirsizlik durumlarında devir yapmak, yanıtlamaya çalışmaktan çok daha güvenli bir tercihtir.</p>
+
+  <div class="faq">
+    <h2>Sık Sorulan Sorular</h2>
+
+    <div class="faq-item">
+      <h3>AI chatbot bir soruya yanıt veremezse ne olur?</h3>
+      <p>Chatbot kapsam dışı bir soruyla karşılaştığında bunu açıkça belirtir ve görüşmeyi bir insan temsilcisine devreder ya da geri arama ayarlar. Konuşma geçmişi de birlikte aktarılır.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>İnsan devri otomatik mi yoksa kullanıcı tarafından mı tetiklenir?</h3>
+      <p>Her ikisi de olabilir. Chatbot belirli anahtar kelimeler, ton değişimleri veya kapsam dışı sorularda otomatik devir yapar. Kullanıcı da istediği zaman "insanla konuşmak istiyorum" diyerek devri tetikleyebilir.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Mesai saatleri dışında insan devri mümkün mü?</h3>
+      <p>Mesai dışında chatbot, geri arama veya e-posta yoluyla iletişim sağlar. Konuşma ve lead bilgileri CRM'e kaydedilerek ekip işe geldiğinde bildirilir.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>İnsan devri sırasında kullanıcı konuşma geçmişini tekrar anlatmak zorunda mı?</h3>
+      <p>Hayır. Doğru yapılandırılmış bir sistemde chatbot konuşma geçmişini ve toplanan bilgileri insan temsilcisine aktarır; kullanıcının her şeyi yeniden anlatması gerekmez.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Chatbot yanlış yanıt verirse ne yapılabilir?</h3>
+      <p>Konuşma kayıtları analiz edilerek yanlış yanıtlar tespit edilebilir ve bilgi tabanı güncellenerek hata düzeltilebilir. Bu sürekli iyileştirme döngüsünün bir parçasıdır.</p>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Kusursuz Devir Akışını Birlikte Tasarlayalım</h2>
+    <p>STOAIX, işletmenize özel tetikleyicileri, devir kurallarını ve CRM entegrasyonunu en başından yapılandırır.</p>
+    <a class="cta-btn" href="https://stoaix.com/#demo">Ücretsiz Demo Talep Et</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 STOAIX · <a href="https://stoaix.com/gizlilik">Gizlilik Politikası</a> · <a href="https://stoaix.com/kvkk">KVKK Aydınlatma Metni</a></p>
+</footer>
+
+</body>
+</html>

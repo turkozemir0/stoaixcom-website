@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resepsiyonist Doğru Departmana Çevirebilir mi? | STOAIX Blog</title>
+  <meta name="description" content="AI resepsiyonist aramaları doğru departmana veya kişiye yönlendirebilir mi? Dahili aktarma mantığı, kural tanımı ve senaryo örnekleri." />
+  <meta name="keywords" content="AI resepsiyonist aktarma, dahili yönlendirme, departman, çağrı yönetimi, AI telefon" />
+  <link rel="canonical" href="https://stoaix.com/blog/ai-resepsiyonist-dahili-aktarma" />
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-dahili-aktarma" />
+  <meta property="og:title" content="AI Resepsiyonist Doğru Departmana Çevirebilir mi?" />
+  <meta property="og:description" content="AI resepsiyonist aramaları doğru departmana veya kişiye yönlendirebilir mi? Dahili aktarma mantığı ve örnekler." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://stoaix.com/blog/ai-resepsiyonist-dahili-aktarma" />
+  <meta property="og:site_name" content="STOAIX" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI Resepsiyonist Doğru Departmana Çevirebilir mi?",
+    "description": "AI resepsiyonist dahili aktarma ve departman yönlendirme mantığı.",
+    "datePublished": "2025-12-15",
+    "dateModified": "2025-12-15",
+    "author": {"@type": "Organization", "name": "STOAIX"},
+    "publisher": {"@type": "Organization", "name": "STOAIX", "url": "https://stoaix.com"},
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://stoaix.com/blog/ai-resepsiyonist-dahili-aktarma"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "AI resepsiyonist aramaları doğru departmana yönlendirebilir mi?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Evet. STOAIX, arayanın talebini anlayarak önceden tanımladığınız kurallara göre doğru dahili hatta, departmana veya kişiye yönlendirir."}
+      },
+      {
+        "@type": "Question",
+        "name": "Aktarma kuralları nasıl tanımlanır?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Kurulum sırasında hangi konunun hangi dahili hatta veya kişiye gideceğini belirtirsiniz. STOAIX ekibi bu yapılandırmayı sizin için yapar; teknik bilgi gerekmez."}
+      },
+      {
+        "@type": "Question",
+        "name": "AI doğru departmanı anlayamazsa ne olur?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Belirsiz durumlarda AI, arayana seçenek sunar veya genel bir hatta yönlendirerek çağrının kaybolmasını önler. Tüm aktarmalar kaydedilir."}
+      },
+      {
+        "@type": "Question",
+        "name": "Kaç farklı departmana yönlendirme tanımlanabilir?",
+        "acceptedAnswer": {"@type": "Answer", "text": "İşletme yapınıza göre istediğiniz sayıda yönlendirme kuralı tanımlanabilir: satış, destek, finans, insan kaynakları gibi farklı hat ve kişiler."}
+      },
+      {
+        "@type": "Question",
+        "name": "AI aktarma özelliği mevcut telefon sistemimle çalışır mı?",
+        "acceptedAnswer": {"@type": "Answer", "text": "STOAIX mevcut telefon altyapınızla entegre olacak şekilde yapılandırılır. Ek donanım veya sistem değişikliği gerektirmeden aktarma kuralları devreye alınır."}
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #050a30;
+      --blue: #233dff;
+      --cyan: #42c2d5;
+      --light: #f4f6fc;
+      --white: #ffffff;
+      --muted: #6b7a99;
+      --border: rgba(35,61,255,0.1);
+      --text: #0d1545;
+      --text-soft: #4a5480;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text); background: var(--white); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1.4rem; color: var(--white); letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--cyan); }
+    .nav-cta { background: var(--blue); color: var(--white); padding: 0.5rem 1.25rem; border-radius: 8px; font-weight: 500; font-size: 0.9rem; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; text-decoration: none; }
+
+    .hero-post { background: linear-gradient(135deg, var(--navy) 0%, #0d1a5c 100%); color: var(--white); padding: 3.5rem 2rem 3rem; }
+    .hero-post-inner { max-width: 780px; margin: 0 auto; }
+    .breadcrumb { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.55); }
+    .breadcrumb a:hover { color: var(--cyan); text-decoration: none; }
+    .post-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .post-category { background: var(--cyan); color: var(--navy); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .post-date, .post-read { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+    .hero-post h1 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.2; margin-bottom: 1rem; }
+    .hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.8); font-weight: 300; max-width: 640px; }
+
+    .post-body { max-width: 780px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+    .direct-answer { background: var(--light); border-left: 4px solid var(--cyan); padding: 1.25rem 1.5rem; border-radius: 0 12px 12px 0; margin-bottom: 2.5rem; font-size: 1.05rem; color: var(--text); }
+    .direct-answer strong { color: var(--navy); }
+
+    h2 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.35rem; color: var(--navy); margin: 2.5rem 0 1rem; }
+    h3 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text); margin: 1.5rem 0 0.6rem; }
+    p { margin-bottom: 1rem; color: var(--text-soft); }
+
+    /* Unique: routing flow */
+    .routing-flow { display: flex; flex-direction: column; gap: 0; margin: 1.5rem 0 2rem; }
+    .flow-step { display: flex; align-items: flex-start; gap: 1rem; position: relative; padding-bottom: 1.25rem; }
+    .flow-step:last-child { padding-bottom: 0; }
+    .flow-step:not(:last-child)::after { content: ''; position: absolute; left: 19px; top: 42px; width: 2px; height: calc(100% - 22px); background: var(--border); }
+    .flow-num { width: 40px; height: 40px; background: var(--navy); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+    .flow-content { flex: 1; }
+    .flow-content h4 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.3rem; }
+    .flow-content p { font-size: 0.88rem; margin: 0; }
+
+    /* Dept grid */
+    .dept-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0 2rem; }
+    .dept-card { background: var(--light); border-radius: 12px; padding: 1.25rem; border: 1px solid var(--border); }
+    .dept-icon { font-size: 1.6rem; margin-bottom: 0.6rem; }
+    .dept-card h4 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--navy); margin-bottom: 0.4rem; }
+    .dept-card p { font-size: 0.85rem; margin: 0; }
+    .dept-trigger { display: inline-block; background: rgba(66,194,213,0.15); color: #0a6b76; font-size: 0.75rem; font-weight: 600; padding: 0.15rem 0.55rem; border-radius: 20px; margin-top: 0.5rem; }
+
+    .cta-box { background: linear-gradient(135deg, var(--blue) 0%, #1a2fd4 100%); color: var(--white); border-radius: 16px; padding: 2rem; text-align: center; margin: 2.5rem 0; }
+    .cta-box h3 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--white); margin-bottom: 0.6rem; }
+    .cta-box p { color: rgba(255,255,255,0.85); margin-bottom: 1.25rem; }
+    .cta-btn { display: inline-block; background: var(--white); color: var(--blue); font-weight: 700; padding: 0.75rem 2rem; border-radius: 10px; font-size: 0.95rem; transition: transform 0.2s; }
+    .cta-btn:hover { transform: translateY(-2px); text-decoration: none; }
+
+    .faq-item { border-bottom: 1px solid var(--border); padding: 1.25rem 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { font-size: 1rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .faq-item p { margin: 0; font-size: 0.95rem; }
+
+    .internal-links { background: var(--light); border-radius: 12px; padding: 1.5rem; margin-top: 2.5rem; }
+    .internal-links h3 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1rem; color: var(--navy); margin-bottom: 1rem; }
+    .internal-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .internal-links li::before { content: "→ "; color: var(--cyan); font-weight: 700; }
+
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-size: 0.85rem; }
+    footer a { color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 600px) {
+      .dept-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-53TMTQML2Q');</script>
+  <!-- Microsoft Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");</script>
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1426016022664547');fbq('track','PageView');</script>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">STOA<span>IX</span></a>
+    <a href="/signup" class="nav-cta">Demo Al</a>
+  </nav>
+
+  <div class="hero-post">
+    <div class="hero-post-inner">
+      <div class="breadcrumb">
+        <a href="/">Ana Sayfa</a> › <a href="/blog">Blog</a> › AI Resepsiyonist
+      </div>
+      <div class="post-meta">
+        <span class="post-category">AI Resepsiyonist</span>
+        <span class="post-date">15 Aralık 2025</span>
+        <span class="post-read">5 dk okuma</span>
+      </div>
+      <h1>AI Resepsiyonist Doğru Departmana Çevirebilir mi?</h1>
+      <p class="hero-desc">Arayanın amacını anlayarak doğru kişiye veya departmana yönlendiren AI aktarma mantığı nasıl çalışır? Kural tanımı, örnekler ve sınırlar.</p>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <div class="direct-answer">
+      <strong>Kısa yanıt:</strong> Evet, STOAIX arayanın talebini anlayarak önceden tanımladığınız kurallara göre doğru dahili hatta, departmana veya kişiye yönlendirir. Aktarma kurallarını STOAIX ekibi sizin için yapılandırır — teknik bilgi gerekmez.
+    </div>
+
+    <h2>Dahili Aktarma Nasıl Çalışır?</h2>
+    <p>Geleneksel telefon sistemlerinde aktarma süreci ya bir tuş menüsüne (IVR) ya da insan operatörün yargısına dayanır. AI resepsiyonist bu iki yaklaşımı birleştirir: arayanın doğal dildeki talebini analiz eder ve kurallara göre yönlendirir.</p>
+    <p>Örneğin "faturamla ilgili bir sorum var" diyen biri muhasebe hattına, "teknik destek lazım" diyen biri IT departmanına, "yöneticiyle görüşmek istiyorum" diyen biri ise genel koordinasyon hattına aktarılır.</p>
+
+    <h2>Aktarma Süreci Adım Adım</h2>
+    <div class="routing-flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <h4>Arama Alınır</h4>
+          <p>AI resepsiyonist arayanı selamlar ve amacını sorar; doğal konuşma akışıyla bilgi toplar.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <h4>Niyet Analizi</h4>
+          <p>Konuşmadan amaç tespit edilir: randevu, teknik destek, satış, fatura, şikâyet vb.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <h4>Kural Eşleştirme</h4>
+          <p>Tespit edilen niyet, önceden yapılandırılmış aktarma kurallarıyla eşleştirilir.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <h4>Aktarma veya Randevu</h4>
+          <p>Uygun hat meşgul değilse doğrudan aktarım; meşgulse mesaj alınır veya randevu oluşturulur.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <h4>Kayıt ve Transkript</h4>
+          <p>Tüm arama kaydedilir; aktarma öncesi bilgiler ilgili departmana iletilir.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Hangi Departmanlara Aktarma Tanımlanabilir?</h2>
+    <div class="dept-grid">
+      <div class="dept-card">
+        <div class="dept-icon">📅</div>
+        <h4>Randevu / Rezervasyon</h4>
+        <p>Randevu alma veya değiştirme talepleri doğrudan takvim sistemine veya ilgili personele yönlenir.</p>
+        <span class="dept-trigger">Tetikleyici: randevu, rezervasyon, iptal</span>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">💳</div>
+        <h4>Muhasebe / Fatura</h4>
+        <p>Ödeme, fatura veya borç sorguları muhasebe hattına aktarılır.</p>
+        <span class="dept-trigger">Tetikleyici: fatura, ödeme, borç</span>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">🔧</div>
+        <h4>Teknik Destek</h4>
+        <p>Hizmet sorunları veya teknik yardım talepleri destek ekibine yönlenir.</p>
+        <span class="dept-trigger">Tetikleyici: sorun, arıza, destek</span>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">🤝</div>
+        <h4>Satış / Teklif</h4>
+        <p>Fiyat soran veya yeni müşteri olan arayanlar satış ekibine aktarılır.</p>
+        <span class="dept-trigger">Tetikleyici: fiyat, teklif, bilgi almak</span>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">📢</div>
+        <h4>Şikâyet / Geri Bildirim</h4>
+        <p>Olumsuz deneyim bildiren arayanlar öncelikli olarak müşteri ilişkileri hattına alınır.</p>
+        <span class="dept-trigger">Tetikleyici: şikâyet, memnun değil, sorun</span>
+      </div>
+      <div class="dept-card">
+        <div class="dept-icon">👤</div>
+        <h4>Yönetim / Genel</h4>
+        <p>Hiçbir kuralla eşleşmeyen aramalar genel koordinasyon veya yönetim hattına yönlenir.</p>
+        <span class="dept-trigger">Tetikleyici: eşleşme yok</span>
+      </div>
+    </div>
+
+    <h2>AI Doğru Departmanı Anlayamazsa?</h2>
+    <p>Belirsiz durumlarda iki seçenek devreye girer:</p>
+    <ul style="margin: 0.5rem 0 1rem 1.5rem; color: var(--text-soft);">
+      <li style="margin-bottom: 0.4rem;"><strong>Arayana seçenek sunma:</strong> "Randevu için 1, teknik destek için 2 deyin" gibi bir doğrulama sorusu sorulur.</li>
+      <li><strong>Genel hatta yönlendirme:</strong> Çağrı kaybolmadan güvenli bir varsayılan hatta aktarılır; transkript ilgili ekibe iletilir.</li>
+    </ul>
+    <p>Tüm aktarmalar arama kaydı ve transkriptle belgelenir; yanlış yönlendirme örüntüleri tespit edildiğinde kurallar güncellenir.</p>
+
+    <div class="cta-box">
+      <h3>İşletmeniz İçin Aktarma Kurallarını Birlikte Tanımlayalım</h3>
+      <p>STOAIX ekibi departman yapınıza göre yönlendirme mantığını sizin için kurar.</p>
+      <a href="/signup" class="cta-btn">Demo Al</a>
+    </div>
+
+    <h2>Sık Sorulan Sorular</h2>
+    <div class="faq-item">
+      <h3>AI resepsiyonist aramaları doğru departmana yönlendirebilir mi?</h3>
+      <p>Evet. STOAIX arayanın talebini anlayarak önceden tanımladığınız kurallara göre doğru dahili hatta, departmana veya kişiye yönlendirir.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Aktarma kuralları nasıl tanımlanır?</h3>
+      <p>Kurulum sırasında hangi konunun hangi dahili hatta veya kişiye gideceğini belirtirsiniz. STOAIX ekibi bu yapılandırmayı sizin için gerçekleştirir; teknik bilgi gerekmez.</p>
+    </div>
+    <div class="faq-item">
+      <h3>AI doğru departmanı anlayamazsa ne olur?</h3>
+      <p>Belirsiz durumlarda AI arayana seçenek sunar veya genel bir hatta yönlendirerek çağrının kaybolmasını önler. Tüm aktarmalar kaydedilir.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Kaç farklı departmana yönlendirme tanımlanabilir?</h3>
+      <p>İşletme yapınıza göre istediğiniz sayıda yönlendirme kuralı tanımlanabilir: satış, destek, finans, yönetim gibi farklı hat ve kişiler.</p>
+    </div>
+    <div class="faq-item">
+      <h3>AI aktarma özelliği mevcut telefon sistemimle çalışır mı?</h3>
+      <p>STOAIX mevcut telefon altyapınızla entegre olacak şekilde yapılandırılır. Ek donanım veya sistem değişikliği gerektirmeden aktarma kuralları devreye alınır.</p>
+    </div>
+
+    <div class="cta-box">
+      <h3>Doğru Aktarma, Mutlu Müşteri</h3>
+      <p>5 dakikada devreye alın, her aramayı doğru kişiye iletin.</p>
+      <a href="/signup" class="cta-btn">Hemen Başla</a>
+    </div>
+
+    <div class="internal-links">
+      <h3>İlgili Yazılar</h3>
+      <ul>
+        <li><a href="/blog/ai-resepsiyonist-cevaplayamadigi-arama">AI Resepsiyonist Cevaplayamazsa Arama Nereye Gidiyor?</a></li>
+        <li><a href="/blog/ai-resepsiyonist-secmeden-once-sorular">AI Resepsiyonist Seçmeden Önce Sormanız Gereken 10 Soru</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 <a href="/">stoaix.com</a> — Tüm hakları saklıdır.</p>
+  </footer>
+</body>
+</html>

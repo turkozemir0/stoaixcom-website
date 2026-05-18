@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marka Sesinizle Konuşan AI Chatbot Yapılabilir mi? | STOAIX Blog</title>
+  <meta name="description" content="AI chatbot'un işletmenizin ses tonu, dili ve kişiliğiyle konuşmasını sağlamak için kullanılan yöntemler ve örnekler." />
+  <link rel="canonical" href="https://stoaix.com/blog/ai-chatbot-marka-sesi" />
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-marka-sesi" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-53TMTQML2Q');</script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1426016022664547');fbq('track','PageView');</script>
+
+  <style>
+    :root {
+      --navy:#050a30; --blue:#233dff; --cyan:#42c2d5;
+      --light:#f4f6fc; --white:#ffffff; --muted:#6b7a99;
+      --border:rgba(35,61,255,0.1); --text:#0d1545; --text-soft:#4a5480;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.7;}
+
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .nav-logo{font-family:'Anybody',sans-serif;font-weight:900;font-size:1.4rem;color:var(--navy);text-decoration:none;}
+    .nav-logo span{color:var(--blue);}
+    .nav-cta{background:var(--blue);color:var(--white);padding:.5rem 1.25rem;border-radius:8px;font-weight:500;font-size:.9rem;text-decoration:none;transition:opacity .2s;}
+    .nav-cta:hover{opacity:.85;}
+
+    .hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1545 60%,#162060 100%);padding:5rem 2rem 4rem;text-align:center;}
+    .badge{display:inline-block;background:var(--navy);color:var(--cyan);border:1px solid var(--cyan);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;margin-bottom:1.5rem;}
+    .hero h1{font-family:'Anybody',sans-serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--white);line-height:1.2;max-width:780px;margin:0 auto 1.25rem;}
+    .hero-lead{color:rgba(255,255,255,.75);font-size:1.05rem;max-width:620px;margin:0 auto 2rem;}
+    .hero-meta{color:rgba(255,255,255,.45);font-size:.82rem;}
+
+    .content{max-width:820px;margin:0 auto;padding:3.5rem 2rem;}
+    .content h2{font-family:'Anybody',sans-serif;font-weight:800;font-size:1.45rem;color:var(--navy);margin:2.5rem 0 1rem;}
+    .content h3{font-family:'Anybody',sans-serif;font-weight:700;font-size:1.1rem;color:var(--blue);margin:1.8rem 0 .6rem;}
+    .content p{color:var(--text-soft);margin-bottom:1rem;}
+    .content ul{padding-left:1.4rem;color:var(--text-soft);margin-bottom:1rem;}
+    .content li{margin-bottom:.4rem;}
+
+    /* UNIQUE: Voice spectrum slider visual */
+    .voice-spectrum {
+      margin: 2rem 0;
+      border: 1px solid var(--border); border-radius: 14px; overflow: hidden;
+    }
+    .vs-labels {
+      display: flex; justify-content: space-between;
+      padding: .75rem 1.25rem;
+      background: var(--light);
+      font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .8rem;
+    }
+    .vs-labels .l { color: var(--navy); }
+    .vs-labels .r { color: var(--blue); }
+    .vs-track {
+      height: 8px; margin: 0 1.25rem;
+      background: linear-gradient(90deg, var(--navy) 0%, var(--blue) 50%, var(--cyan) 100%);
+      border-radius: 4px;
+    }
+    .vs-examples {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+    }
+    .vs-ex {
+      padding: 1rem;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .vs-ex:last-child { border-right: none; }
+    .vs-ex .label {
+      font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .06em; margin-bottom: .4rem;
+      color: var(--muted);
+    }
+    .vs-ex .ex-text {
+      font-size: .82rem; color: var(--text); font-style: italic;
+    }
+
+    /* UNIQUE: Brand voice definition blocks */
+    .voice-def {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin: 2rem 0;
+    }
+    .vd-block {
+      border-radius: 12px; padding: 1.5rem;
+    }
+    .vd-block.is {
+      background: rgba(35,61,255,.04);
+      border: 1px solid rgba(35,61,255,.15);
+    }
+    .vd-block.not {
+      background: rgba(239,68,68,.03);
+      border: 1px solid rgba(239,68,68,.15);
+    }
+    .vd-block h4 {
+      font-family: 'Anybody', sans-serif; font-weight: 700;
+      font-size: .9rem; margin-bottom: .75rem;
+    }
+    .vd-block.is h4  { color: var(--blue); }
+    .vd-block.not h4 { color: #dc2626; }
+    .vd-item {
+      display: flex; align-items: flex-start; gap: .5rem;
+      font-size: .84rem; color: var(--text-soft);
+      margin-bottom: .4rem;
+    }
+    .vd-item .vi { flex-shrink: 0; }
+
+    /* Sector tone table */
+    .sector-tone {
+      width: 100%; border-collapse: collapse;
+      margin: 2rem 0; border-radius: 12px; overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    .sector-tone th {
+      background: var(--navy); color: var(--cyan);
+      font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .82rem;
+      text-align: left; padding: .75rem 1.1rem;
+    }
+    .sector-tone td {
+      padding: .75rem 1.1rem; font-size: .86rem; color: var(--text-soft);
+      border-bottom: 1px solid var(--border);
+    }
+    .sector-tone tr:last-child td { border-bottom: none; }
+    .sector-tone tr:nth-child(even) td { background: rgba(244,246,252,.6); }
+    .tone-tag {
+      display: inline-block; padding: .2rem .6rem; border-radius: 6px;
+      font-size: .75rem; font-weight: 700;
+      background: rgba(35,61,255,.1); color: var(--blue);
+    }
+
+    .faq{margin:3rem 0;}
+    .faq-item{border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:.75rem;background:var(--light);}
+    .faq-item h3{font-family:'Anybody',sans-serif;font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:.5rem;}
+    .faq-item p{font-size:.88rem;color:var(--text-soft);margin:0;}
+
+    .cta-section{background:linear-gradient(135deg,var(--blue) 0%,#1a2fd0 100%);border-radius:20px;padding:3rem 2rem;text-align:center;margin:3rem 0;}
+    .cta-section h2{font-family:'Anybody',sans-serif;font-weight:900;font-size:1.6rem;color:var(--white);margin-bottom:.75rem;}
+    .cta-section p{color:rgba(255,255,255,.8);margin-bottom:1.5rem;font-size:.95rem;}
+    .cta-btn{display:inline-block;background:var(--white);color:var(--blue);font-family:'Anybody',sans-serif;font-weight:800;font-size:1rem;padding:.9rem 2.2rem;border-radius:10px;text-decoration:none;transition:transform .2s;}
+    .cta-btn:hover{transform:translateY(-2px);}
+
+    footer{background:var(--navy);padding:2rem;text-align:center;}
+    footer p{color:rgba(255,255,255,.4);font-size:.82rem;}
+    footer a{color:var(--cyan);text-decoration:none;}
+
+    @media(max-width:640px){
+      .vs-examples{grid-template-columns:1fr 1fr;}
+      .vs-ex:nth-child(2){border-right:none;}
+      .voice-def{grid-template-columns:1fr;}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Marka Sesinizle Konuşan AI Chatbot Yapılabilir mi?",
+        "description": "AI chatbot'un işletmenizin ses tonu, dili ve kişiliğiyle konuşmasını sağlamak için kullanılan yöntemler ve örnekler.",
+        "datePublished": "2026-01-23",
+        "dateModified": "2026-01-23",
+        "author": {"@type": "Organization", "name": "STOAIX"},
+        "publisher": {"@type": "Organization", "name": "STOAIX", "logo": {"@type": "ImageObject", "url": "https://stoaix.com/logo.png"}},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://stoaix.com/blog/ai-chatbot-marka-sesi"}
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "AI chatbot markanın ses tonunu öğrenebilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. Chatbot, kurulum aşamasında markanın ses tonu, dil tercihleri ve iletişim kurallarıyla yapılandırılır. Resmi/samimi üslup, hitap şekli ve marka kişiliği tanımlanabilir."}},
+          {"@type": "Question", "name": "Marka sesini chatbot'a nasıl aktarırım?", "acceptedAnswer": {"@type": "Answer", "text": "Web sitesi metinleri, sosyal medya paylaşımları, mevcut müşteri yazışmaları ve marka rehberi gibi materyaller eğitim verisi olarak kullanılır."}},
+          {"@type": "Question", "name": "AI chatbot farklı kanallar için farklı ton kullanabilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. WhatsApp konuşmaları web chat'e kıyasla daha samimi bir ton gerektiriyor olabilir. Kanal bazlı ton farklılıkları yapılandırılabilir."}},
+          {"@type": "Question", "name": "Chatbot belirli bir isim veya karakterle tanımlanabilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. Chatbot'a bir isim (örn. 'Deniz', 'Asistan') ve kişilik özellikleri tanımlanabilir. Bu tutarlı bir marka deneyimi yaratır."}},
+          {"@type": "Question", "name": "Marka sesindeki değişiklikler chatbot'a nasıl yansıtılır?", "acceptedAnswer": {"@type": "Answer", "text": "Marka rehberi veya iletişim kuralları güncellendiğinde chatbot'un yapılandırması da güncellenir. Yönetilen hizmet modelinde bu güncellemeyi sağlayıcı gerçekleştirir."}}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://stoaix.com">STOA<span>IX</span></a>
+    <a class="nav-cta" href="https://stoaix.com/#demo">Ücretsiz Demo</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="badge">L23 · Lead Yakalayan AI Chatbot</div>
+  <h1>Marka Sesinizle Konuşan AI Chatbot Yapılabilir mi?</h1>
+  <p class="hero-lead">Robotik, mekanik bir chatbot mı yoksa markanızın gerçek sesiyle konuşan bir asistan mı? Cevap, doğru yapılandırmanın ne kadar mümkün olduğuna bağlı.</p>
+  <p class="hero-meta">23 Ocak 2026 · STOAIX Ekibi</p>
+</header>
+
+<main class="content">
+
+  <p>Ziyaretçi bir chatbot'la konuşurken aynı zamanda markayla konuşuyor. Robotik ve kişiliksiz bir chatbot, o markanın ilk izlenimini aynı ölçüde robotik bırakır. Öte yandan markanızın gerçek sesiyle konuşan bir chatbot, kullanıcıya tutarlı ve güvenilir bir deneyim yaşatır.</p>
+
+  <p>İyi haber: AI chatbot'lar belirli bir ses tonu ve kişilikle yapılandırılabilir. Ve bu süreç düşündüğünüzden çok daha somut bir süreçtir.</p>
+
+  <h2>Marka Sesi Nedir ve Chatbot'a Nasıl Taşınır?</h2>
+  <p>Marka sesi; kullandığınız kelimeler, cümle uzunluğu, hitap şekli, mizah kullanımı ve genel ton'un bütünüdür. Chatbot'a marka sesini taşımak için şu kaynaklar kullanılır:</p>
+  <ul>
+    <li>Web sitesi metinleri — "Siz" mi "Sen" mi? Resmi mi samimi mi?</li>
+    <li>Sosyal medya paylaşımları — emoji kullanılıyor mu? Kısa mı uzun mu?</li>
+    <li>Mevcut müşteri yazışmaları — satış veya destek ekibi nasıl yazıyor?</li>
+    <li>Marka rehberi varsa — ton ve dil kuralları direkt olarak aktarılabilir.</li>
+  </ul>
+
+  <h2>Ton Spektrumu — Neredesiniz?</h2>
+  <p>Chatbot'un tonu, markanızın hedef kitlesiyle nasıl iletişim kurduğuna göre konumlandırılır:</p>
+
+  <div class="voice-spectrum">
+    <div class="vs-labels">
+      <span class="l">Kurumsal / Resmi</span>
+      <span class="r">Samimi / Arkadaşça</span>
+    </div>
+    <div style="padding:.5rem 1.25rem .75rem;">
+      <div class="vs-track"></div>
+    </div>
+    <div class="vs-examples">
+      <div class="vs-ex">
+        <div class="label">Çok Resmi</div>
+        <div class="ex-text">"Talebiniz alınmıştır. En kısa sürede size dönüş sağlanacaktır."</div>
+      </div>
+      <div class="vs-ex">
+        <div class="label">Resmi</div>
+        <div class="ex-text">"Merhaba, nasıl yardımcı olabilirim? Size uygun seçeneği bulalım."</div>
+      </div>
+      <div class="vs-ex">
+        <div class="label">Samimi</div>
+        <div class="ex-text">"Merhaba! Size en iyi seçeneği bulmak için birkaç soru sormam gerekiyor."</div>
+      </div>
+      <div class="vs-ex">
+        <div class="label">Çok Samimi</div>
+        <div class="ex-text">"Harika soru! Hemen bakalım, size özel bir şey hazırlayabiliriz 😊"</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Marka Sesi Neye Benzememeli?</h2>
+
+  <div class="voice-def">
+    <div class="vd-block is">
+      <h4>Marka Sesinin Yapabileceği</h4>
+      <div class="vd-item"><span class="vi">✓</span> Markanızın kullandığı hitap şekliyle konuşmak</div>
+      <div class="vd-item"><span class="vi">✓</span> Sektöre özgü terminolojiyi doğal kullanmak</div>
+      <div class="vd-item"><span class="vi">✓</span> Markanın belirlediği ton aralığında kalmak</div>
+      <div class="vd-item"><span class="vi">✓</span> Kanal bazında ton ayarı (WhatsApp daha samimi)</div>
+      <div class="vd-item"><span class="vi">✓</span> Bir isim ve tutarlı kişilik tanımlamak</div>
+    </div>
+    <div class="vd-block not">
+      <h4>Chatbot Yapamayacakları</h4>
+      <div class="vd-item"><span class="vi">✗</span> Gerçek bir insan gibi empati kurmak</div>
+      <div class="vd-item"><span class="vi">✗</span> Anlık duygu okumak ve ton değiştirmek</div>
+      <div class="vd-item"><span class="vi">✗</span> Tamamen özgün yaratıcı metin üretmek</div>
+      <div class="vd-item"><span class="vi">✗</span> Markanızın tarihini ve kültürünü sezgisel anlamak</div>
+    </div>
+  </div>
+
+  <h2>Sektöre Göre Ton Farklılaşması</h2>
+  <p>Her sektör farklı bir ton bekler. Doğru ton ziyaretçi güvenini artırır:</p>
+
+  <table class="sector-tone">
+    <thead>
+      <tr>
+        <th>Sektör</th>
+        <th>Önerilen Ton</th>
+        <th>Örnek İfade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sağlık / Klinik</td>
+        <td><span class="tone-tag">Güven Verici</span></td>
+        <td>"Size en uygun randevu zamanını birlikte bulalım."</td>
+      </tr>
+      <tr>
+        <td>Hukuk</td>
+        <td><span class="tone-tag">Profesyonel</span></td>
+        <td>"Talebiniz ilgili uzmanımıza iletilecektir."</td>
+      </tr>
+      <tr>
+        <td>E-ticaret / Retail</td>
+        <td><span class="tone-tag">Samimi</span></td>
+        <td>"Hemen bakalım, size uygun ürünü bulalım!"</td>
+      </tr>
+      <tr>
+        <td>Finans / Sigorta</td>
+        <td><span class="tone-tag">Net & Açık</span></td>
+        <td>"Bu seçenek için gereken bilgileri paylaşabilir misiniz?"</td>
+      </tr>
+      <tr>
+        <td>Eğitim</td>
+        <td><span class="tone-tag">Teşvik Edici</span></td>
+        <td>"Harika! Sizi doğru programa yönlendireyim."</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Chatbot'a Bir Kimlik Vermek</h2>
+  <p>Pek çok işletme chatbot'una bir isim ve kısa bir tanım verir. Bu basit adım tutarlılık ve güven yaratır:</p>
+  <ul>
+    <li><strong>Ad:</strong> "Merhaba, ben Ela — STOAIX'in asistanıyım." gibi bir selamlama, anonim bir "Bot" yerine gerçek bir temas noktası sunar.</li>
+    <li><strong>Kapsam tanımı:</strong> "Randevu almak, hizmetler veya fiyatlandırma konularında size yardımcı olabilirim." — bu cümle beklenti yönetimini de sağlar.</li>
+    <li><strong>Tutarlı kişilik:</strong> Her yanıtta aynı ton, aynı hitap şekli. Kullanıcı ilk mesajda ne hissettiyse son mesajda da aynı deneyimi yaşamalı.</li>
+  </ul>
+
+  <h2>Marka Sesi Güncellendiğinde Ne Olur?</h2>
+  <p>Rebranding, yeni bir kampanya veya ton politikası değişikliği olduğunda chatbot da güncellenir. Yönetilen hizmet modelinde bu güncelleme sağlayıcı tarafından gerçekleştirilir; siz yeni yönergeleri paylaşırsınız, teknik kısım size ait değildir.</p>
+
+  <div class="faq">
+    <h2>Sık Sorulan Sorular</h2>
+
+    <div class="faq-item">
+      <h3>AI chatbot markanın ses tonunu öğrenebilir mi?</h3>
+      <p>Evet. Chatbot, kurulum aşamasında markanın ses tonu, dil tercihleri ve iletişim kurallarıyla yapılandırılır. Resmi/samimi üslup, hitap şekli ve marka kişiliği tanımlanabilir.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Marka sesini chatbot'a nasıl aktarırım?</h3>
+      <p>Web sitesi metinleri, sosyal medya paylaşımları, mevcut müşteri yazışmaları ve marka rehberi gibi materyaller eğitim verisi olarak kullanılır.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>AI chatbot farklı kanallar için farklı ton kullanabilir mi?</h3>
+      <p>Evet. WhatsApp konuşmaları web chat'e kıyasla daha samimi bir ton gerektiriyor olabilir. Kanal bazlı ton farklılıkları yapılandırılabilir.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Chatbot belirli bir isim veya karakterle tanımlanabilir mi?</h3>
+      <p>Evet. Chatbot'a bir isim ve kişilik özellikleri tanımlanabilir. Bu tutarlı bir marka deneyimi yaratır.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Marka sesindeki değişiklikler chatbot'a nasıl yansıtılır?</h3>
+      <p>Marka rehberi veya iletişim kuralları güncellendiğinde chatbot'un yapılandırması da güncellenir. Yönetilen hizmet modelinde bu güncellemeyi sağlayıcı gerçekleştirir.</p>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Markanızın Sesiyle Konuşan Bir Chatbot Kurun</h2>
+    <p>STOAIX, marka ses tonunuzu, hitap şeklinizi ve kanal bazlı iletişim kurallarınızı chatbot'a eksiksiz aktarır.</p>
+    <a class="cta-btn" href="https://stoaix.com/#demo">Ücretsiz Demo Talep Et</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 STOAIX · <a href="https://stoaix.com/gizlilik">Gizlilik Politikası</a> · <a href="https://stoaix.com/kvkk">KVKK Aydınlatma Metni</a></p>
+</footer>
+
+</body>
+</html>

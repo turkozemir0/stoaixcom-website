@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diş Kliniklerinde No-Show Oranını AI Nasıl Düşürür? | STOAIX Blog</title>
+  <meta name="description" content="Gelmeden iptal etmeyen hastalar kliniğinize ciddi gelir kaybı yaratır. AI otomatik hatırlatma aramaları no-show oranını nasıl azaltır? Somut adımlar ve hesaplama formülü." />
+  <meta name="keywords" content="diş kliniği no-show azaltma, randevu hatırlatma AI, hasta gelmeme oranı, otomatik hatırlatma araması, randevu iptal oranı" />
+  <link rel="canonical" href="https://stoaix.com/blog/dis-klinigi-no-show-azaltma" />
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-no-show-azaltma" />
+  <meta property="og:title" content="Diş Kliniklerinde No-Show Oranını AI Nasıl Düşürür?" />
+  <meta property="og:description" content="AI otomatik hatırlatma aramaları ile no-show oranını azaltın. Formül ve adım adım süreç." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://stoaix.com/blog/dis-klinigi-no-show-azaltma" />
+  <meta property="og:locale" content="tr_TR" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Diş Kliniklerinde No-Show Oranını AI Nasıl Düşürür?",
+    "description": "AI otomatik hatırlatma aramaları ile diş kliniklerinde no-show oranını düşürmenin yolları, formüller ve süreç.",
+    "datePublished": "2025-11-11",
+    "dateModified": "2025-11-11",
+    "author": {"@type": "Organization", "name": "STOAIX"},
+    "publisher": {"@type": "Organization", "name": "STOAIX", "url": "https://stoaix.com"},
+    "mainEntityOfPage": "https://stoaix.com/blog/dis-klinigi-no-show-azaltma",
+    "inLanguage": "tr"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "AI kaç gün önceden hatırlatma araması yapıyor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "STOAIX AI tipik olarak randevudan 24–48 saat önce ilk hatırlatmayı yapar, randevu günü sabahı ise kısa bir ikinci hatırlatma gönderir. Zamanlama klinik tercihine göre ayarlanabilir."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hasta iptal ederse boşalan slot başkasına verilebiliyor mu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Evet. Hasta hatırlatma araması sırasında iptal ettiğinde slot gerçek zamanlı olarak takvimde serbest kalır. AI diğer hastaları otomatik olarak bilgilendirebilir ya da yeni gelen aramalarda o sloту sunabilir."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hatırlatma araması yerine SMS de gönderilebilir mi?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "STOAIX hem sesli hatırlatma araması hem de SMS/e-posta onay mesajı gönderebilir. Hangi kanalın kullanılacağı klinik tercihine ve hasta iletişim tercihlerine göre yapılandırılır."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "No-show oranı yüksek bir klinik için AI'ın katkısı ne olur?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No-show nedeniyle kaybedilen her randevu, o seans için tahsis edilen doktor ve asistan süresinin boşa gitmesi demektir. Hatırlatma aramaları ile hastalara önceden ulaşmak iptal veya yeniden zamanlama yapma imkânı tanır; bu da boş kalan slotların doldurulabilmesini sağlar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "AI hatırlatma sistemini kurmak için ne yapmam gerekiyor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "STOAIX tam yönetilen bir hizmettir; teknik kurulum sizden beklenmez. Demo alın, takvim sisteminizin entegrasyonunu paylaşın, STOAIX ekibi hatırlatma akışını sizin için yapılandırır."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #050a30;
+      --blue: #233dff;
+      --cyan: #42c2d5;
+      --light: #f4f6fc;
+      --white: #ffffff;
+      --muted: #6b7a99;
+      --border: rgba(35,61,255,0.1);
+      --text: #0d1545;
+      --text-soft: #4a5480;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text); background: var(--white); line-height: 1.7; }
+    h1,h2,h3,h4 { font-family: 'Anybody', sans-serif; font-weight: 800; color: var(--navy); line-height: 1.2; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    nav { background: var(--navy); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1.4rem; color: var(--white); letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--cyan); }
+    .nav-cta { background: var(--blue); color: var(--white) !important; padding: 8px 20px; border-radius: 6px; font-weight: 500; font-size: 0.9rem; }
+    .nav-cta:hover { background: #1a2ed4; text-decoration: none; }
+    .hero-post { background: linear-gradient(135deg, var(--navy) 0%, #0d1a6e 100%); color: var(--white); padding: 60px 5% 50px; }
+    .breadcrumb { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-bottom: 18px; }
+    .breadcrumb a { color: var(--cyan); }
+    .post-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 22px; flex-wrap: wrap; }
+    .post-category { background: rgba(66,194,213,0.2); color: var(--cyan); padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 500; }
+    .post-date, .post-read { color: rgba(255,255,255,0.55); font-size: 0.82rem; }
+    .hero-post h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); max-width: 800px; margin-bottom: 18px; color: var(--white); }
+    .hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 700px; line-height: 1.65; }
+    .post-body { max-width: 780px; margin: 0 auto; padding: 50px 5% 80px; }
+    .post-body h2 { font-size: 1.5rem; margin: 40px 0 14px; color: var(--navy); }
+    .post-body h3 { font-size: 1.15rem; margin: 28px 0 10px; color: var(--navy); }
+    .post-body p { margin-bottom: 16px; color: var(--text-soft); font-size: 1rem; }
+    .post-body ul, .post-body ol { margin: 0 0 18px 22px; color: var(--text-soft); }
+    .post-body li { margin-bottom: 8px; }
+    .post-body strong { color: var(--text); }
+    .direct-answer { background: var(--light); border-left: 4px solid var(--cyan); padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 32px; }
+    .direct-answer p { margin: 0; font-size: 1.02rem; color: var(--text); }
+    .highlight-box { background: var(--light); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin: 28px 0; }
+    .highlight-box h4 { font-size: 1rem; margin-bottom: 12px; color: var(--navy); }
+    .highlight-box p, .highlight-box li { font-size: 0.95rem; color: var(--text-soft); }
+    .formula-box { background: var(--navy); border-radius: 10px; padding: 24px; margin: 28px 0; color: var(--white); text-align: center; }
+    .formula-box h4 { color: var(--cyan); font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .formula-box p { color: rgba(255,255,255,0.85); font-size: 1rem; margin: 0; }
+    .formula-box .formula { font-family: 'Anybody', sans-serif; font-size: 1.1rem; color: var(--white); margin: 10px 0; }
+    .cta-box { background: linear-gradient(135deg, var(--navy) 0%, #0d1a6e 100%); border-radius: 12px; padding: 32px; text-align: center; margin: 40px 0; color: var(--white); }
+    .cta-box h3 { color: var(--white); margin-bottom: 10px; font-size: 1.25rem; }
+    .cta-box p { color: rgba(255,255,255,0.75); margin-bottom: 20px; font-size: 0.95rem; }
+    .cta-btn { display: inline-block; background: var(--cyan); color: var(--navy) !important; padding: 13px 32px; border-radius: 8px; font-weight: 700; font-family: 'Anybody', sans-serif; font-size: 1rem; }
+    .cta-btn:hover { background: #35b0c2; text-decoration: none; }
+    .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--navy); }
+    .faq-item p { margin: 0; font-size: 0.95rem; color: var(--text-soft); }
+    .internal-links { background: var(--light); border-radius: 10px; padding: 20px 24px; margin-top: 40px; }
+    .internal-links p { margin: 0 0 8px; font-size: 0.9rem; color: var(--text-soft); }
+    .internal-links a { color: var(--blue); font-weight: 500; font-size: 0.9rem; }
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 24px; font-size: 0.85rem; }
+    footer a { color: rgba(255,255,255,0.6); }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-53TMTQML2Q');</script>
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","wnyyri0jrz");</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1426016022664547');fbq('track','PageView');</script>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">STOA<span>IX</span></span>
+  <a href="/signup" class="nav-cta">Demo Al</a>
+</nav>
+
+<div class="hero-post">
+  <p class="breadcrumb"><a href="/">Ana Sayfa</a> › <a href="/blog">Blog</a> › Diş Kliniği AI Resepsiyonist</p>
+  <div class="post-meta">
+    <span class="post-category">Diş Kliniği AI</span>
+    <span class="post-date">11 Kasım 2025</span>
+    <span class="post-read">7 dakika okuma</span>
+  </div>
+  <h1>Diş Kliniklerinde No-Show Oranını AI Nasıl Düşürür?</h1>
+  <p class="hero-desc">Randevusuna gelmeyen hasta, o seans için ayrılan doktor ve ekip süresinin tamamının boşa gitmesi demektir. AI otomatik hatırlatma aramaları bu kaybı nasıl önler? Adım adım süreç ve hesaplama formülü.</p>
+</div>
+
+<div class="post-body">
+
+  <div class="direct-answer">
+    <p><strong>Kısa yanıt:</strong> AI resepsiyonist, randevudan 24–48 saat önce her hastayı otomatik olarak arar, randevuyu hatırlatır ve iptal ya da yeniden zamanlama yapmak isteyenlere anında seçenek sunar. Bu sayede klinik boş kalan slotar için önceden aksiyon alabilir.</p>
+  </div>
+
+  <h2>No-Show Kliniğe Ne Kadar Mal Oluyor?</h2>
+  <p>Randevusuna gelmeyen bir hasta sadece "kaçırılmış bir ziyaret" değildir. O zaman diliminde doktor, asistan ve muayene odası hazırda bekler. Randevu doldurulamamışsa bu sürenin getirisi sıfırdır; sabit giderler ise devam eder.</p>
+
+  <div class="formula-box">
+    <h4>No-Show Maliyet Formülü</h4>
+    <p class="formula">Aylık No-Show Maliyeti =<br>Günlük Randevu Sayısı × No-Show Oranı × Ortalama Seans Geliri × Çalışma Günü</p>
+    <p style="margin-top:12px; font-size:0.88rem; color:rgba(255,255,255,0.6);">Örnek: 20 randevu/gün × %15 no-show × 500 ₺ × 22 gün = <strong style="color:var(--cyan);">33.000 ₺/ay</strong></p>
+  </div>
+
+  <p>Bu hesabı kendi kliniğinize uyarlayın. No-show oranınız yüzde onun üzerindeyse, hatırlatma sistemine yatırım yapmak büyük ihtimalle anlamlı bir geri dönüş sağlar.</p>
+
+  <h2>AI Hatırlatma Aramaları Nasıl Çalışır?</h2>
+  <p>STOAIX AI, kliniğin takvimini sürekli izler. Randevu zamanı yaklaşan her hasta için önceden tanımlanan şablona göre otomatik bir arama yapar. Personelin "kim arasın, ne zaman arasın" diye düşünmesine gerek yoktur.</p>
+
+  <div class="highlight-box">
+    <h4>Tipik Hatırlatma Akışı</h4>
+    <ul>
+      <li><strong>48 saat önce:</strong> İlk sesli hatırlatma araması. Tarih ve saat teyidi istenir.</li>
+      <li><strong>24 saat önce:</strong> İkinci kısa hatırlatma (isteğe bağlı SMS veya sesli).</li>
+      <li><strong>Sabah randevusu için:</strong> Önceki gün akşamı veya gün sabahı ek hatırlatma.</li>
+      <li><strong>İptal durumunda:</strong> Slot anında müsait hale geçer, yeni randevu için açılır.</li>
+    </ul>
+  </div>
+
+  <h2>Hasta "Gelmeyeceğim" Derse Ne Olur?</h2>
+  <p>Hasta hatırlatma aramasında iptal etmek istediğini belirtirse AI iki seçenek sunar: başka bir tarih seçmek ya da randevuyu tamamen iptal etmek. Her iki durumda da takvim gerçek zamanlı olarak güncellenir.</p>
+  <p>Boşalan slot artık yeni bir randevu için müsaittir. Aynı gün başka biri arayıp o saati isterse AI çakışma yaşanmadan randevu verebilir. Klinik bir no-show kaybı yaşamak yerine dolu bir takvimle devam eder.</p>
+
+  <h2>Hatırlatma Sadece Telefon Aramasıyla mı Yapılıyor?</h2>
+  <p>STOAIX hem sesli arama hem de mesajlaşma kanallarını destekler. Randevu onay mesajı görüşme bittiğinde SMS veya e-posta olarak gönderilir. Hatırlatmalar da kliniğin tercihine göre sesli, SMS veya her ikisi birden olacak şekilde yapılandırılabilir.</p>
+  <p>WhatsApp, Instagram ve web chat entegrasyonları da mevcut olduğu için hasta hangi kanalı kullanıyorsa oradan ulaşılabilir.</p>
+
+  <div class="cta-box">
+    <h3>Kliniğinizin No-Show Maliyetini Hesaplayalım</h3>
+    <p>Demo görüşmesinde STOAIX ekibi kliniğinizin no-show verilerini analiz eder ve hatırlatma sistemiyle sağlanabilecek potansiyeli somutlaştırır.</p>
+    <a href="/signup" class="cta-btn">Ücretsiz Demo Al</a>
+  </div>
+
+  <h2>Küçük Klinikler İçin de Fark Yaratıyor mu?</h2>
+  <p>No-show oranı büyük-küçük klinik farkı gözetmez. Günde 10 randevusu olan bir klinik için bile yüzde onbeş no-show, ayda yaklaşık 33 kayıp randevu anlamına gelir. Personelin her hastayı arayarak hatırlatma yapacak zamanı yoksa AI bu görevi tutarlı biçimde devralır.</p>
+
+  <h2>Sık Sorulan Sorular</h2>
+
+  <div class="faq-item">
+    <h3>AI kaç gün önceden hatırlatma araması yapıyor?</h3>
+    <p>STOAIX AI tipik olarak randevudan 24–48 saat önce ilk hatırlatmayı yapar, randevu günü sabahı ise kısa bir ikinci hatırlatma gönderir. Zamanlama klinik tercihine göre ayarlanabilir.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Hasta iptal ederse boşalan slot başkasına verilebiliyor mu?</h3>
+    <p>Evet. Hasta hatırlatma araması sırasında iptal ettiğinde slot gerçek zamanlı olarak takvimde serbest kalır. AI diğer hastaları otomatik bilgilendirebilir ya da yeni gelen aramalarda o slotu sunabilir.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Hatırlatma araması yerine SMS de gönderilebilir mi?</h3>
+    <p>STOAIX hem sesli hatırlatma araması hem de SMS/e-posta onay mesajı gönderebilir. Hangi kanalın kullanılacağı klinik tercihine ve hasta iletişim tercihlerine göre yapılandırılır.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>No-show oranı yüksek bir klinik için AI'ın katkısı ne olur?</h3>
+    <p>Hatırlatma aramaları hastalara önceden ulaşarak iptal veya yeniden zamanlama yapma imkânı tanır; bu da boş kalan slotların doldurulabilmesini sağlar. Her doldurulmuş slot, kaybedilen bir seansın kurtarılması demektir.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>AI hatırlatma sistemini kurmak için ne yapmam gerekiyor?</h3>
+    <p>STOAIX tam yönetilen bir hizmettir; teknik kurulum sizden beklenmez. Demo alın, takvim sisteminizin entegrasyonunu paylaşın, STOAIX ekibi hatırlatma akışını sizin için yapılandırır.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>Boş Kalan Slotları Kapatmaya Başlayın</h3>
+    <p>Otomatik hatırlatma aramaları, personel ek çalışma saati olmadan no-show oranını düşürmenin en pratik yollarından biridir.</p>
+    <a href="/signup" class="cta-btn">Demo Talep Et</a>
+  </div>
+
+  <div class="internal-links">
+    <p><strong>İlgili yazılar:</strong></p>
+    <p><a href="/blog/dis-klinigi-randevu-hatirlatma-ai">AI Resepsiyonist Randevu Hatırlatması Yapabilir mi? →</a></p>
+    <p><a href="/blog/dis-klinigi-ai-randevu-alma">AI Resepsiyonist Diş Kliniğinde Randevu Alabilir mi? →</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 <a href="https://stoaix.com">stoaix.com</a> — Tüm hakları saklıdır.</p>
+</footer>
+
+</body>
+</html>

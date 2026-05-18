@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Chatbot Karmaşık Lead Nitelendirmelerini Halleder mi? | STOAIX Blog</title>
+  <meta name="description" content="AI chatbot'un çok adımlı, koşullu ve sektöre özgü karmaşık lead nitelendirme senaryolarını nasıl yönettiğini öğrenin." />
+  <link rel="canonical" href="https://stoaix.com/blog/ai-chatbot-karmasik-lead" />
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-chatbot-karmasik-lead" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-53TMTQML2Q');</script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1426016022664547');fbq('track','PageView');</script>
+
+  <style>
+    :root {
+      --navy:#050a30; --blue:#233dff; --cyan:#42c2d5;
+      --light:#f4f6fc; --white:#ffffff; --muted:#6b7a99;
+      --border:rgba(35,61,255,0.1); --text:#0d1545; --text-soft:#4a5480;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;font-weight:400;color:var(--text);background:var(--white);line-height:1.7;}
+
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem;}
+    .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+    .nav-logo{font-family:'Anybody',sans-serif;font-weight:900;font-size:1.4rem;color:var(--navy);text-decoration:none;}
+    .nav-logo span{color:var(--blue);}
+    .nav-cta{background:var(--blue);color:var(--white);padding:.5rem 1.25rem;border-radius:8px;font-weight:500;font-size:.9rem;text-decoration:none;transition:opacity .2s;}
+    .nav-cta:hover{opacity:.85;}
+
+    .hero{background:linear-gradient(135deg,var(--navy) 0%,#0d1545 60%,#162060 100%);padding:5rem 2rem 4rem;text-align:center;}
+    .badge{display:inline-block;background:var(--navy);color:var(--cyan);border:1px solid var(--cyan);font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.3rem .9rem;border-radius:20px;margin-bottom:1.5rem;}
+    .hero h1{font-family:'Anybody',sans-serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.8rem);color:var(--white);line-height:1.2;max-width:780px;margin:0 auto 1.25rem;}
+    .hero-lead{color:rgba(255,255,255,.75);font-size:1.05rem;max-width:620px;margin:0 auto 2rem;}
+    .hero-meta{color:rgba(255,255,255,.45);font-size:.82rem;}
+
+    .content{max-width:820px;margin:0 auto;padding:3.5rem 2rem;}
+    .content h2{font-family:'Anybody',sans-serif;font-weight:800;font-size:1.45rem;color:var(--navy);margin:2.5rem 0 1rem;}
+    .content h3{font-family:'Anybody',sans-serif;font-weight:700;font-size:1.1rem;color:var(--blue);margin:1.8rem 0 .6rem;}
+    .content p{color:var(--text-soft);margin-bottom:1rem;}
+    .content ul{padding-left:1.4rem;color:var(--text-soft);margin-bottom:1rem;}
+    .content li{margin-bottom:.4rem;}
+
+    /* UNIQUE: Decision Tree visual */
+    .decision-tree {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
+    .dt-header {
+      background: var(--navy);
+      padding: 1rem 1.5rem;
+      color: var(--cyan);
+      font-family: 'Anybody', sans-serif;
+      font-weight: 700; font-size: .85rem;
+      letter-spacing: .06em; text-transform: uppercase;
+    }
+    .dt-body { padding: 1.5rem; }
+    .dt-node {
+      display: flex; align-items: flex-start; gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .dt-node:last-child { margin-bottom: 0; }
+    .dt-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      flex-shrink: 0; margin-top: .55rem;
+    }
+    .dt-dot.q  { background: var(--blue); }
+    .dt-dot.a1 { background: #22c55e; }
+    .dt-dot.a2 { background: var(--cyan); }
+    .dt-dot.a3 { background: #f59e0b; }
+    .dt-dot.esc { background: #ef4444; }
+    .dt-content { flex: 1; }
+    .dt-content .label {
+      font-size: .72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .08em;
+      margin-bottom: .15rem;
+    }
+    .dt-content.q   .label { color: var(--blue); }
+    .dt-content.a1  .label { color: #16a34a; }
+    .dt-content.a2  .label { color: #0e7a8a; }
+    .dt-content.a3  .label { color: #b45309; }
+    .dt-content.esc .label { color: #dc2626; }
+    .dt-content p { font-size: .88rem; color: var(--text-soft); margin: 0; }
+    .dt-indent { padding-left: 1.5rem; border-left: 2px solid var(--border); margin-left: 1.25rem; margin-bottom: 1rem; }
+    .dt-indent .dt-node:last-child { margin-bottom: 0; }
+
+    /* UNIQUE: Complexity spectrum bar */
+    .complexity-bar {
+      margin: 2rem 0;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .cb-header {
+      background: var(--light);
+      padding: .75rem 1.25rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 1rem;
+      font-size: .8rem; font-weight: 700; color: var(--muted);
+      text-transform: uppercase; letter-spacing: .06em;
+    }
+    .cb-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 1rem;
+      align-items: center;
+      padding: .9rem 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .cb-row:nth-child(even) { background: rgba(244,246,252,.5); }
+    .cb-scenario { font-size: .88rem; color: var(--text); font-weight: 500; }
+    .cb-pill {
+      display: inline-block;
+      padding: .25rem .7rem; border-radius: 20px;
+      font-size: .75rem; font-weight: 700;
+    }
+    .cb-pill.easy  { background: rgba(34,197,94,.15); color: #16a34a; }
+    .cb-pill.med   { background: rgba(35,61,255,.12); color: var(--blue); }
+    .cb-pill.hard  { background: rgba(239,68,68,.12); color: #dc2626; }
+    .cb-pill.human { background: rgba(5,10,48,.1); color: var(--navy); }
+    .cb-check { font-size: 1rem; text-align: center; }
+
+    /* Limit box */
+    .limit-box {
+      background: #fff8ed;
+      border: 1px solid #fbbf24;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+    }
+    .limit-box h4 {
+      font-family: 'Anybody', sans-serif;
+      font-weight: 700; font-size: .95rem;
+      color: #92400e; margin-bottom: .5rem;
+    }
+    .limit-box p { font-size: .88rem; color: #78350f; margin: 0; }
+
+    /* Capability list */
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .cap-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+    .cap-card .cap-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+    .cap-card h4 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: .9rem; color: var(--navy); margin-bottom: .3rem; }
+    .cap-card p { font-size: .82rem; color: var(--muted); margin: 0; }
+
+    .faq{margin:3rem 0;}
+    .faq-item{border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;margin-bottom:.75rem;background:var(--light);}
+    .faq-item h3{font-family:'Anybody',sans-serif;font-weight:700;font-size:.95rem;color:var(--navy);margin-bottom:.5rem;}
+    .faq-item p{font-size:.88rem;color:var(--text-soft);margin:0;}
+
+    .cta-section{background:linear-gradient(135deg,var(--blue) 0%,#1a2fd0 100%);border-radius:20px;padding:3rem 2rem;text-align:center;margin:3rem 0;}
+    .cta-section h2{font-family:'Anybody',sans-serif;font-weight:900;font-size:1.6rem;color:var(--white);margin-bottom:.75rem;}
+    .cta-section p{color:rgba(255,255,255,.8);margin-bottom:1.5rem;font-size:.95rem;}
+    .cta-btn{display:inline-block;background:var(--white);color:var(--blue);font-family:'Anybody',sans-serif;font-weight:800;font-size:1rem;padding:.9rem 2.2rem;border-radius:10px;text-decoration:none;transition:transform .2s;}
+    .cta-btn:hover{transform:translateY(-2px);}
+
+    footer{background:var(--navy);padding:2rem;text-align:center;}
+    footer p{color:rgba(255,255,255,.4);font-size:.82rem;}
+    footer a{color:var(--cyan);text-decoration:none;}
+
+    @media(max-width:640px){
+      .cb-header,.cb-row{grid-template-columns:1fr 1fr;}.cb-header span:first-child,.cb-row .cb-scenario{grid-column:1/-1;}
+      .cap-grid{grid-template-columns:1fr;}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "AI Chatbot Karmaşık Lead Nitelendirmelerini Halleder mi?",
+        "description": "AI chatbot'un çok adımlı, koşullu ve sektöre özgü karmaşık lead nitelendirme senaryolarını nasıl yönettiğini öğrenin.",
+        "datePublished": "2026-01-19",
+        "dateModified": "2026-01-19",
+        "author": {"@type": "Organization", "name": "STOAIX"},
+        "publisher": {"@type": "Organization", "name": "STOAIX", "logo": {"@type": "ImageObject", "url": "https://stoaix.com/logo.png"}},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://stoaix.com/blog/ai-chatbot-karmasik-lead"}
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {"@type": "Question", "name": "AI chatbot çok adımlı lead nitelendirmesi yapabilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. Chatbot koşullu soru akışlarıyla çok adımlı nitelendirme yapabilir: önceki yanıta göre bir sonraki soruyu dinamik olarak belirler."}},
+          {"@type": "Question", "name": "Chatbot yanıt veremediği bir durumda ne yapar?", "acceptedAnswer": {"@type": "Answer", "text": "Önceden tanımlanan eskalasyon kurallarına göre görüşmeyi bir insan temsilcisine devreder. Konuşma geçmişi ve toplanan lead bilgileri de birlikte aktarılır."}},
+          {"@type": "Question", "name": "AI chatbot sektöre özgü nitelendirme kriterleri öğrenebilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. Chatbot, kurulum aşamasında sektörünüze ve işletmenize özgü nitelendirme kriterleriyle yapılandırılır."}},
+          {"@type": "Question", "name": "Çok ürünlü bir işletmede AI chatbot lead'i doğru ürüne yönlendirebilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Evet. İlk birkaç soruda kullanıcının ihtiyacını anlayan chatbot, lead'i uygun ürün veya hizmet akışına yönlendirir."}},
+          {"@type": "Question", "name": "AI chatbot duygusal veya şikayetçi müşterileri yönetebilir mi?", "acceptedAnswer": {"@type": "Answer", "text": "Chatbot, öfkeli veya hayal kırıklığı belirtileri taşıyan mesajlarda insana devir yapacak şekilde yapılandırılabilir. Bu tür senaryolarda insan müdahalesi önerilir."}}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="https://stoaix.com">STOA<span>IX</span></a>
+    <a class="nav-cta" href="https://stoaix.com/#demo">Ücretsiz Demo</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="badge">L19 · Lead Yakalayan AI Chatbot</div>
+  <h1>AI Chatbot Karmaşık Lead Nitelendirmelerini Halleder mi?</h1>
+  <p class="hero-lead">Basit "adınız nedir?" sorusunun ötesinde — çok adımlı, koşullu ve sektöre özgü senaryolarda AI chatbot ne kadar ileri gidebilir?</p>
+  <p class="hero-meta">19 Ocak 2026 · STOAIX Ekibi</p>
+</header>
+
+<main class="content">
+
+  <p>Bir chatbot'un "adınız ne?" veya "bize nasıl ulaşalım?" sorularını sorabildiğini zaten biliyorsunuz. Ama gerçek işletme senaryoları çok daha karmaşık olabilir: Ziyaretçi hangi ürünle ilgileniyor? Bütçesi ne aralıkta? Karar verici mi yoksa araştırıcı mı? Bu bilgileri doğal bir konuşma içinde toplamak — ve topladıkça doğru soruya yönelmek — gerçek anlamda bir <strong>nitelendirme</strong>dir.</p>
+
+  <p>AI chatbot'ların bu senaryolarda başarısı, yapılandırılma biçimine bağlıdır. Doğru kurgulanmış bir chatbot gerçekten karmaşık nitelendirme akışlarını yürütebilir.</p>
+
+  <h2>Karmaşık Nitelendirme Ne Demek?</h2>
+  <p>Karmaşıklık birkaç farklı boyutta tanımlanabilir:</p>
+  <ul>
+    <li><strong>Çok adımlı:</strong> Tek bir soruyla bitmeyen, 4–8 adım gerektiren bilgi toplama akışları.</li>
+    <li><strong>Koşullu:</strong> Önceki yanıta göre farklı bir sonraki soruya yönelen dinamik akışlar.</li>
+    <li><strong>Segmentasyon gerektiren:</strong> "B2B mi B2C mi?", "Kurumsal mu bireysel mi?" gibi erken ayrışma noktaları olan yapılar.</li>
+    <li><strong>Sektöre özgü terminoloji:</strong> Sağlık, hukuk, finans gibi alanlarda teknik soruların doğal bir dille sorulması.</li>
+  </ul>
+
+  <h2>Koşullu Akış Nasıl Çalışır?</h2>
+  <p>Aşağıdaki örnek, bir hizmet işletmesinde chatbot'un nasıl koşullu bir akış yürüttüğünü gösteriyor:</p>
+
+  <div class="decision-tree">
+    <div class="dt-header">Örnek: Hizmet Kategorisi Nitelendirme Akışı</div>
+    <div class="dt-body">
+      <div class="dt-node">
+        <div class="dt-dot q"></div>
+        <div class="dt-content q">
+          <div class="label">Chatbot Soruyor</div>
+          <p>Bugün size nasıl yardımcı olabilirim? Yeni bir hizmet mi arıyorsunuz yoksa mevcut bir konu hakkında mı bilgi almak istiyorsunuz?</p>
+        </div>
+      </div>
+      <div class="dt-indent">
+        <div class="dt-node">
+          <div class="dt-dot a1"></div>
+          <div class="dt-content a1">
+            <div class="label">Yeni hizmet arayışı</div>
+            <p>→ Hangi hizmetle ilgilendiğini sorar, bütçe aralığını anlar, karar vericinin kim olduğunu öğrenir.</p>
+          </div>
+        </div>
+        <div class="dt-node">
+          <div class="dt-dot a2"></div>
+          <div class="dt-content a2">
+            <div class="label">Mevcut müşteri sorusu</div>
+            <p>→ Müşteri referans numarasını alır, konuyu kategorize eder, ilgili departmana yönlendirir.</p>
+          </div>
+        </div>
+        <div class="dt-node">
+          <div class="dt-dot a3"></div>
+          <div class="dt-content a3">
+            <div class="label">Belirsiz yanıt</div>
+            <p>→ Netleştirici soru sorar: "Şirket adına mı yoksa bireysel olarak mı arıyorsunuz?"</p>
+          </div>
+        </div>
+        <div class="dt-node">
+          <div class="dt-dot esc"></div>
+          <div class="dt-content esc">
+            <div class="label">Eskalasyon Tetikleyicisi</div>
+            <p>→ Şikayet, hukuki konu veya acil durum sinyali — insan temsilcisine devir + konuşma geçmişi iletilir.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Hangi Senaryoları Yönetebilir, Hangilerini Yönetemez?</h2>
+
+  <div class="complexity-bar">
+    <div class="cb-header">
+      <span>Senaryo</span>
+      <span>Zorluk</span>
+      <span>Chatbot ✓</span>
+    </div>
+    <div class="cb-row">
+      <div class="cb-scenario">Temel iletişim bilgisi toplama (ad, e-posta, telefon)</div>
+      <span class="cb-pill easy">Basit</span>
+      <div class="cb-check">✅</div>
+    </div>
+    <div class="cb-row">
+      <div class="cb-scenario">Hizmet kategorisi belirleme (4–5 seçenek)</div>
+      <span class="cb-pill easy">Basit</span>
+      <div class="cb-check">✅</div>
+    </div>
+    <div class="cb-row">
+      <div class="cb-scenario">Bütçe aralığı nitelendirme (önceki cevaba göre)</div>
+      <span class="cb-pill med">Orta</span>
+      <div class="cb-check">✅</div>
+    </div>
+    <div class="cb-row">
+      <div class="cb-scenario">B2B/B2C ayrımı ve kurumsal karar süreci anlaşılması</div>
+      <span class="cb-pill med">Orta</span>
+      <div class="cb-check">✅</div>
+    </div>
+    <div class="cb-row">
+      <div class="cb-scenario">Sektöre özgü teknik terminoloji içeren nitelendirme</div>
+      <span class="cb-pill hard">Karmaşık</span>
+      <div class="cb-check">✅*</div>
+    </div>
+    <div class="cb-row">
+      <div class="cb-scenario">Duygusal kriz yönetimi, şikayet çözümü</div>
+      <span class="cb-pill human">İnsan</span>
+      <div class="cb-check">↗ Devir</div>
+    </div>
+    <div class="cb-row">
+      <div class="cb-scenario">Hukuki danışmanlık, tıbbi teşhis, yatırım tavsiyesi</div>
+      <span class="cb-pill human">İnsan</span>
+      <div class="cb-check">↗ Devir</div>
+    </div>
+  </div>
+  <p style="font-size:.8rem;color:var(--muted);margin-top:-.5rem;">* Sektöre özgü nitelendirme, doğru eğitim ve özelleştirme gerektirir.</p>
+
+  <h2>Chatbot'un Güçlü Olduğu Nitelendirme Yetenekleri</h2>
+
+  <div class="cap-grid">
+    <div class="cap-card">
+      <div class="cap-icon">🔀</div>
+      <h4>Dinamik Soru Akışı</h4>
+      <p>Önceki yanıta göre bir sonraki soruyu seçer. "Hayır" diyen ziyaretçiye farklı, "Evet" diyene farklı devam eder.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon">🏷️</div>
+      <h4>Otomatik Segmentasyon</h4>
+      <p>Konuşma boyunca toplanan verilere göre lead'i otomatik olarak "sıcak / ılık / soğuk" olarak etiketler.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon">⏰</div>
+      <h4>7/24 Kesintisiz</h4>
+      <p>Mesai saatleri dışındaki ziyaretçileri de aynı kalitede nitelendirir; sabah ekip geldiğinde lead hazır olur.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon">💬</div>
+      <h4>Paralel Görüşme</h4>
+      <p>Aynı anda sınırsız ziyaretçiyle konuşabilir; yoğun dönemlerde hiçbir lead kaybolmaz.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon">🌐</div>
+      <h4>Çok Dilli Nitelendirme</h4>
+      <p>15+ dil desteğiyle, farklı dillerde gelen ziyaretçileri de aynı akışla nitelendirir.</p>
+    </div>
+    <div class="cap-card">
+      <div class="cap-icon">📤</div>
+      <h4>Anlık CRM Aktarımı</h4>
+      <p>Nitelendirme tamamlanır tamamlanmaz lead verilerini CRM'e gönderir; satış ekibi anında bilgilenir.</p>
+    </div>
+  </div>
+
+  <div class="limit-box">
+    <h4>Sınır Nerede Başlar?</h4>
+    <p>AI chatbot'un gerçek sınırı, mantıksal nitelendirmeden değil duygusal zekadan gelir. Ciddi şikayet, kriz, hukuki sorun veya tıbbi acil gibi senaryolarda bir insan müdahalesi her zaman daha uygundur. İyi tasarlanmış bir chatbot bu tetikleyicileri tanır ve görüşmeyi sorunsuz biçimde insan temsilcisine devreder.</p>
+  </div>
+
+  <h2>Karmaşık Nitelendirmeyi Doğru Yapılandırmak</h2>
+  <p>Karmaşık bir nitelendirme akışı işe yaramak için şu unsurları içermelidir:</p>
+  <ul>
+    <li><strong>Net ayrışma noktaları:</strong> Akışın hangi yanıtta nereye dallandığı önceden belirlenmeli.</li>
+    <li><strong>Makul soru sayısı:</strong> 8–10 soruyu aşmak kullanıcı bıkkınlığına yol açar. En kritik sorulara öncelik verin.</li>
+    <li><strong>Açık eskalasyon kuralları:</strong> Hangi anahtar kelime, ton veya konu insan devri tetiklemeli — önceden tanımlanmalı.</li>
+    <li><strong>Test döngüsü:</strong> İlk kurulumdan sonra gerçek konuşmalar analiz edilerek akış iyileştirilmeli.</li>
+  </ul>
+
+  <div class="faq">
+    <h2>Sık Sorulan Sorular</h2>
+
+    <div class="faq-item">
+      <h3>AI chatbot çok adımlı lead nitelendirmesi yapabilir mi?</h3>
+      <p>Evet. Chatbot koşullu soru akışlarıyla çok adımlı nitelendirme yapabilir: önceki yanıta göre bir sonraki soruyu dinamik olarak belirler.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Chatbot yanıt veremediği bir durumda ne yapar?</h3>
+      <p>Önceden tanımlanan eskalasyon kurallarına göre görüşmeyi bir insan temsilcisine devreder. Konuşma geçmişi ve toplanan lead bilgileri de birlikte aktarılır.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>AI chatbot sektöre özgü nitelendirme kriterleri öğrenebilir mi?</h3>
+      <p>Evet. Chatbot, kurulum aşamasında sektörünüze ve işletmenize özgü nitelendirme kriterleriyle yapılandırılır.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Çok ürünlü bir işletmede AI chatbot lead'i doğru ürüne yönlendirebilir mi?</h3>
+      <p>Evet. İlk birkaç soruda kullanıcının ihtiyacını anlayan chatbot, lead'i uygun ürün veya hizmet akışına yönlendirir.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>AI chatbot duygusal veya şikayetçi müşterileri yönetebilir mi?</h3>
+      <p>Chatbot, öfkeli veya hayal kırıklığı belirtileri taşıyan mesajlarda insana devir yapacak şekilde yapılandırılabilir. Bu tür senaryolarda insan müdahalesi önerilir.</p>
+    </div>
+  </div>
+
+  <div class="cta-section">
+    <h2>Karmaşık Nitelendirmenizi Otomatize Edin</h2>
+    <p>STOAIX, işletmenizin nitelendirme akışını sıfırdan tasarlar ve yönetir. Siz sadece nitelikli lead'leri alırsınız.</p>
+    <a class="cta-btn" href="https://stoaix.com/#demo">Ücretsiz Demo Talep Et</a>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2026 STOAIX · <a href="https://stoaix.com/gizlilik">Gizlilik Politikası</a> · <a href="https://stoaix.com/kvkk">KVKK Aydınlatma Metni</a></p>
+</footer>
+
+</body>
+</html>

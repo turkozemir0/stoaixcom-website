@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Resepsiyonist Veri Gizliliği: KVKK'ya Uyum | STOAIX Blog</title>
+  <meta name="description" content="AI resepsiyonist veri gizliliği ve KVKK uyumu hakkında bilmeniz gerekenler. Arama kayıtları, transkriptler, şifreleme ve KVKK yükümlülükleri." />
+  <meta name="keywords" content="AI resepsiyonist KVKK, veri gizliliği, arama kaydı KVKK, 6698 sayılı kanun, veri güvenliği" />
+  <link rel="canonical" href="https://stoaix.com/blog/ai-resepsiyonist-veri-gizliligi-kvkk" />
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-resepsiyonist-veri-gizliligi-kvkk" />
+  <meta property="og:title" content="AI Resepsiyonist Veri Gizliliği: Nelere Dikkat Etmeli?" />
+  <meta property="og:description" content="AI resepsiyonist veri gizliliği ve KVKK uyumu hakkında bilmeniz gerekenler." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://stoaix.com/blog/ai-resepsiyonist-veri-gizliligi-kvkk" />
+  <meta property="og:site_name" content="STOAIX" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI Resepsiyonist Veri Gizliliği: Nelere Dikkat Etmeli?",
+    "description": "AI resepsiyonist sistemlerinde veri gizliliği ve KVKK uyumu rehberi.",
+    "datePublished": "2025-12-17",
+    "dateModified": "2025-12-17",
+    "author": {"@type": "Organization", "name": "STOAIX"},
+    "publisher": {"@type": "Organization", "name": "STOAIX", "url": "https://stoaix.com"},
+    "mainEntityOfPage": {"@type": "WebPage", "@id": "https://stoaix.com/blog/ai-resepsiyonist-veri-gizliligi-kvkk"}
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "AI resepsiyonist KVKK'ya uyumlu mu?",
+        "acceptedAnswer": {"@type": "Answer", "text": "STOAIX, 6698 Sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında şifreli veri depolama ve uyumlu veri işleme süreçleriyle çalışır."}
+      },
+      {
+        "@type": "Question",
+        "name": "Arama kayıtları ve transkriptler nerede saklanır?",
+        "acceptedAnswer": {"@type": "Answer", "text": "STOAIX arama kayıtları ve transkriptleri şifreli ve güvenli sunucularda saklar. Verilere yalnızca yetkili kullanıcılar erişebilir."}
+      },
+      {
+        "@type": "Question",
+        "name": "Arayan kişilerin KVKK kapsamında hakları neler?",
+        "acceptedAnswer": {"@type": "Answer", "text": "KVKK kapsamında arayanlar verilerinin işlendiğini öğrenme, verilerine erişim, düzeltme ve silinme talep etme haklarına sahiptir. İşletme bu hakları sağlamakla yükümlüdür."}
+      },
+      {
+        "@type": "Question",
+        "name": "AI resepsiyonist üçüncü taraflarla veri paylaşıyor mu?",
+        "acceptedAnswer": {"@type": "Answer", "text": "STOAIX, veri işleme faaliyetleri KVKK çerçevesinde tanımlıdır. Üçüncü taraf entegrasyonları (CRM, takvim) yalnızca işletmenin onayladığı sistemlerle gerçekleşir."}
+      },
+      {
+        "@type": "Question",
+        "name": "Veri saklama süresi ne kadar?",
+        "acceptedAnswer": {"@type": "Answer", "text": "Veri saklama süresi, KVKK gerekliliklerine ve işletmenin belirlediği politikaya göre yapılandırılır. Yasal saklama zorunlulukları aşıldığında veriler güvenli şekilde imha edilir."}
+      }
+    ]
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy: #050a30;
+      --blue: #233dff;
+      --cyan: #42c2d5;
+      --light: #f4f6fc;
+      --white: #ffffff;
+      --muted: #6b7a99;
+      --border: rgba(35,61,255,0.1);
+      --text: #0d1545;
+      --text-soft: #4a5480;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text); background: var(--white); line-height: 1.7; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    nav { background: var(--navy); padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1.4rem; color: var(--white); letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--cyan); }
+    .nav-cta { background: var(--blue); color: var(--white); padding: 0.5rem 1.25rem; border-radius: 8px; font-weight: 500; font-size: 0.9rem; transition: opacity 0.2s; }
+    .nav-cta:hover { opacity: 0.85; text-decoration: none; }
+
+    .hero-post { background: linear-gradient(135deg, var(--navy) 0%, #0d1a5c 100%); color: var(--white); padding: 3.5rem 2rem 3rem; }
+    .hero-post-inner { max-width: 780px; margin: 0 auto; }
+    .breadcrumb { font-size: 0.82rem; color: rgba(255,255,255,0.55); margin-bottom: 1.25rem; }
+    .breadcrumb a { color: rgba(255,255,255,0.55); }
+    .breadcrumb a:hover { color: var(--cyan); text-decoration: none; }
+    .post-meta { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .post-category { background: var(--cyan); color: var(--navy); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .post-date, .post-read { font-size: 0.82rem; color: rgba(255,255,255,0.6); }
+    .hero-post h1 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.4rem); line-height: 1.2; margin-bottom: 1rem; }
+    .hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.8); font-weight: 300; max-width: 640px; }
+
+    .post-body { max-width: 780px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+    .direct-answer { background: var(--light); border-left: 4px solid var(--cyan); padding: 1.25rem 1.5rem; border-radius: 0 12px 12px 0; margin-bottom: 2.5rem; font-size: 1.05rem; color: var(--text); }
+    .direct-answer strong { color: var(--navy); }
+
+    h2 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.35rem; color: var(--navy); margin: 2.5rem 0 1rem; }
+    h3 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1.1rem; color: var(--text); margin: 1.5rem 0 0.6rem; }
+    p { margin-bottom: 1rem; color: var(--text-soft); }
+
+    /* Unique: KVKK checklist */
+    .kvkk-checklist { display: flex; flex-direction: column; gap: 0.75rem; margin: 1.5rem 0 2rem; }
+    .kvkk-item { display: flex; align-items: flex-start; gap: 0.85rem; background: var(--light); border-radius: 10px; padding: 1rem 1.25rem; border: 1px solid var(--border); }
+    .kvkk-item.kvkk-ok { border-color: rgba(66,194,213,0.3); background: rgba(66,194,213,0.05); }
+    .kvkk-item.kvkk-warn { border-color: rgba(255,193,7,0.3); background: rgba(255,193,7,0.05); }
+    .kvkk-check { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.05rem; }
+    .kvkk-text h4 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 0.9rem; color: var(--navy); margin-bottom: 0.2rem; }
+    .kvkk-text p { font-size: 0.86rem; margin: 0; }
+
+    /* Data flow */
+    .data-flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0; margin: 1.5rem 0 2rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .data-node { padding: 1.25rem; text-align: center; border-right: 1px solid var(--border); position: relative; }
+    .data-node:last-child { border-right: none; }
+    .data-node-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .data-node h4 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 0.82rem; color: var(--navy); margin-bottom: 0.3rem; }
+    .data-node p { font-size: 0.78rem; margin: 0; }
+    .node-badge { display: inline-block; background: rgba(66,194,213,0.15); color: #0a6b76; font-size: 0.72rem; font-weight: 600; padding: 0.1rem 0.45rem; border-radius: 20px; margin-top: 0.4rem; }
+
+    /* Rights table */
+    .rights-wrap { overflow-x: auto; margin: 1.5rem 0 2rem; border-radius: 12px; border: 1px solid var(--border); }
+    .rights-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    .rights-table th { background: var(--navy); color: var(--white); padding: 0.85rem 1rem; text-align: left; font-family: 'Anybody', sans-serif; font-weight: 700; }
+    .rights-table td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--border); color: var(--text-soft); }
+    .rights-table tr:last-child td { border-bottom: none; }
+    .rights-table tr:nth-child(even) td { background: rgba(244,246,252,0.5); }
+
+    .cta-box { background: linear-gradient(135deg, var(--blue) 0%, #1a2fd4 100%); color: var(--white); border-radius: 16px; padding: 2rem; text-align: center; margin: 2.5rem 0; }
+    .cta-box h3 { font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--white); margin-bottom: 0.6rem; }
+    .cta-box p { color: rgba(255,255,255,0.85); margin-bottom: 1.25rem; }
+    .cta-btn { display: inline-block; background: var(--white); color: var(--blue); font-weight: 700; padding: 0.75rem 2rem; border-radius: 10px; font-size: 0.95rem; transition: transform 0.2s; }
+    .cta-btn:hover { transform: translateY(-2px); text-decoration: none; }
+
+    .faq-item { border-bottom: 1px solid var(--border); padding: 1.25rem 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { font-size: 1rem; color: var(--navy); margin-bottom: 0.5rem; }
+    .faq-item p { margin: 0; font-size: 0.95rem; }
+
+    .internal-links { background: var(--light); border-radius: 12px; padding: 1.5rem; margin-top: 2.5rem; }
+    .internal-links h3 { font-family: 'Anybody', sans-serif; font-weight: 700; font-size: 1rem; color: var(--navy); margin-bottom: 1rem; }
+    .internal-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .internal-links li::before { content: "→ "; color: var(--cyan); font-weight: 700; }
+
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 2rem; font-size: 0.85rem; }
+    footer a { color: rgba(255,255,255,0.5); }
+
+    @media (max-width: 600px) {
+      .data-flow { grid-template-columns: 1fr 1fr; }
+      .data-node { border-right: 1px solid var(--border); }
+      .data-node:nth-child(2n) { border-right: none; }
+      .data-node:nth-child(n+3) { border-top: 1px solid var(--border); }
+    }
+  </style>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-53TMTQML2Q');</script>
+  <!-- Microsoft Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");</script>
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1426016022664547');fbq('track','PageView');</script>
+</head>
+<body>
+  <nav>
+    <a href="/" class="nav-logo">STOA<span>IX</span></a>
+    <a href="/signup" class="nav-cta">Demo Al</a>
+  </nav>
+
+  <div class="hero-post">
+    <div class="hero-post-inner">
+      <div class="breadcrumb">
+        <a href="/">Ana Sayfa</a> › <a href="/blog">Blog</a> › AI Resepsiyonist
+      </div>
+      <div class="post-meta">
+        <span class="post-category">AI Resepsiyonist</span>
+        <span class="post-date">17 Aralık 2025</span>
+        <span class="post-read">6 dk okuma</span>
+      </div>
+      <h1>AI Resepsiyonist Veri Gizliliği: Nelere Dikkat Etmeli?</h1>
+      <p class="hero-desc">Arama kayıtları, transkriptler, kişisel veriler — AI resepsiyonist kullandığınızda KVKK kapsamında hangi yükümlülükler doğar? Pratik rehber.</p>
+    </div>
+  </div>
+
+  <div class="post-body">
+    <div class="direct-answer">
+      <strong>Kısa yanıt:</strong> STOAIX, 6698 Sayılı KVKK kapsamında şifreli veri depolama ve uyumlu veri işleme süreçleriyle çalışır. Arama kayıtları ve transkriptler şifreli sunucularda tutulur; yalnızca yetkili kullanıcılar erişebilir. İşletme olarak arayanları veri işleme konusunda bilgilendirme yükümlülüğünüz devam eder.
+    </div>
+
+    <h2>AI Resepsiyonist Hangi Verileri İşler?</h2>
+    <p>Bir AI resepsiyonist kullandığınızda sistemin topladığı ve işlediği veriler net bilinmelidir. Bu bilgi hem KVKK uyumu hem de müşteri güveni açısından kritiktir.</p>
+    <div class="data-flow">
+      <div class="data-node">
+        <div class="data-node-icon">📞</div>
+        <h4>Telefon Numarası</h4>
+        <p>Arayan kişi kimliği</p>
+        <span class="node-badge">Kişisel veri</span>
+      </div>
+      <div class="data-node">
+        <div class="data-node-icon">🎙️</div>
+        <h4>Ses Kaydı</h4>
+        <p>Konuşmanın tam kaydı</p>
+        <span class="node-badge">Kişisel veri</span>
+      </div>
+      <div class="data-node">
+        <div class="data-node-icon">📝</div>
+        <h4>Transkript</h4>
+        <p>Metne dönüştürülmüş konuşma</p>
+        <span class="node-badge">Kişisel veri</span>
+      </div>
+      <div class="data-node">
+        <div class="data-node-icon">📅</div>
+        <h4>Randevu Bilgisi</h4>
+        <p>Ad, tarih, saat talebi</p>
+        <span class="node-badge">Kişisel veri</span>
+      </div>
+    </div>
+
+    <h2>KVKK Kapsamında Kontrol Listesi</h2>
+    <div class="kvkk-checklist">
+      <div class="kvkk-item kvkk-ok">
+        <div class="kvkk-check">✅</div>
+        <div class="kvkk-text">
+          <h4>Şifreli Veri Depolama</h4>
+          <p>STOAIX tüm arama kayıtları ve transkriptleri şifreli olarak saklar; yetkisiz erişime karşı korumalıdır.</p>
+        </div>
+      </div>
+      <div class="kvkk-item kvkk-ok">
+        <div class="kvkk-check">✅</div>
+        <div class="kvkk-text">
+          <h4>KVKK Uyumlu Altyapı</h4>
+          <p>STOAIX, 6698 Sayılı Kanun gerekliliklerine uygun veri işleme süreçleriyle çalışır.</p>
+        </div>
+      </div>
+      <div class="kvkk-item kvkk-ok">
+        <div class="kvkk-check">✅</div>
+        <div class="kvkk-text">
+          <h4>Erişim Kontrolü</h4>
+          <p>Verilere yalnızca yetkili kullanıcılar erişebilir; rol tabanlı yetki yönetimi uygulanır.</p>
+        </div>
+      </div>
+      <div class="kvkk-item kvkk-warn">
+        <div class="kvkk-check">⚠️</div>
+        <div class="kvkk-text">
+          <h4>Aydınlatma Yükümlülüğü (İşletme Sorumluluğu)</h4>
+          <p>Arayanları "aramalar kayıt altına alınmaktadır" şeklinde bilgilendirmek işletmenin yükümlülüğüdür; STOAIX bunu otomatik mesajla kolaylaştırır.</p>
+        </div>
+      </div>
+      <div class="kvkk-item kvkk-warn">
+        <div class="kvkk-check">⚠️</div>
+        <div class="kvkk-text">
+          <h4>Veri Saklama Süresi Politikası</h4>
+          <p>KVKK kapsamında işletmenin veri saklama süresini tanımlaması ve belgelemesi gerekir. STOAIX bu yapılandırmayı destekler.</p>
+        </div>
+      </div>
+      <div class="kvkk-item kvkk-ok">
+        <div class="kvkk-check">✅</div>
+        <div class="kvkk-text">
+          <h4>Üçüncü Taraf Entegrasyonu Kontrolü</h4>
+          <p>CRM ve takvim entegrasyonları yalnızca işletmenin onayladığı sistemlerle gerçekleşir; izinsiz veri paylaşımı yapılmaz.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Arayanların KVKK Hakları</h2>
+    <div class="rights-wrap">
+      <table class="rights-table">
+        <thead>
+          <tr>
+            <th>Hak</th>
+            <th>Ne Anlama Gelir?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Bilgi Edinme</strong></td>
+            <td>Arayan kişi, verilerinin işlenip işlenmediğini öğrenme hakkına sahiptir.</td>
+          </tr>
+          <tr>
+            <td><strong>Erişim</strong></td>
+            <td>İşlenen verilerine erişim talep edebilir.</td>
+          </tr>
+          <tr>
+            <td><strong>Düzeltme</strong></td>
+            <td>Hatalı verilerin düzeltilmesini isteyebilir.</td>
+          </tr>
+          <tr>
+            <td><strong>Silme / Unutulma</strong></td>
+            <td>Belirli koşullarda verilerinin silinmesini talep edebilir.</td>
+          </tr>
+          <tr>
+            <td><strong>İtiraz</strong></td>
+            <td>Veri işleme faaliyetine itiraz hakkı mevcuttur.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>İyi Uygulama: Aramaların Başında Bilgilendirme</h2>
+    <p>KVKK uyumu açısından en kolay ve en etkili adım, aramanın başında arayanı kısa bir otomatik mesajla bilgilendirmektir:</p>
+    <blockquote style="background: var(--light); border-left: 4px solid var(--navy); padding: 1rem 1.25rem; border-radius: 0 10px 10px 0; margin: 1rem 0; font-style: italic; color: var(--text-soft);">
+      "Merhaba, bu arama hizmet kalitesini artırmak amacıyla kayıt altına alınmaktadır."
+    </blockquote>
+    <p>STOAIX bu mesajı kurulum sırasında yapılandırmanıza yardımcı olur. Arayanın onay vermeden kapatması da kayıt edilir.</p>
+
+    <div class="cta-box">
+      <h3>KVKK Uyumlu AI Resepsiyonist</h3>
+      <p>Veri güvenliğinden ödün vermeden iş verimliliğinizi artırın.</p>
+      <a href="/signup" class="cta-btn">Demo Al</a>
+    </div>
+
+    <h2>Sık Sorulan Sorular</h2>
+    <div class="faq-item">
+      <h3>AI resepsiyonist KVKK'ya uyumlu mu?</h3>
+      <p>STOAIX, 6698 Sayılı KVKK kapsamında şifreli veri depolama ve uyumlu veri işleme süreçleriyle çalışır.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Arama kayıtları ve transkriptler nerede saklanır?</h3>
+      <p>STOAIX arama kayıtları ve transkriptleri şifreli ve güvenli sunucularda saklar. Verilere yalnızca yetkili kullanıcılar erişebilir.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Arayan kişilerin KVKK kapsamında hakları neler?</h3>
+      <p>KVKK kapsamında arayanlar verilerinin işlendiğini öğrenme, verilerine erişim, düzeltme ve silinme talep etme haklarına sahiptir. İşletme bu hakları sağlamakla yükümlüdür.</p>
+    </div>
+    <div class="faq-item">
+      <h3>AI resepsiyonist üçüncü taraflarla veri paylaşıyor mu?</h3>
+      <p>STOAIX'in veri işleme faaliyetleri KVKK çerçevesinde tanımlıdır. Üçüncü taraf entegrasyonları yalnızca işletmenin onayladığı sistemlerle gerçekleşir.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Veri saklama süresi ne kadar?</h3>
+      <p>Veri saklama süresi KVKK gerekliliklerine ve işletmenin belirlediği politikaya göre yapılandırılır. Yasal saklama zorunlulukları aşıldığında veriler güvenli şekilde imha edilir.</p>
+    </div>
+
+    <div class="cta-box">
+      <h3>Güvenli ve Uyumlu AI Resepsiyonist</h3>
+      <p>5 dakikada devreye alın, veri güvenliğini sistem garantisi altında tutun.</p>
+      <a href="/signup" class="cta-btn">Hemen Başla</a>
+    </div>
+
+    <div class="internal-links">
+      <h3>İlgili Yazılar</h3>
+      <ul>
+        <li><a href="/blog/ai-resepsiyonist-secmeden-once-sorular">AI Resepsiyonist Seçmeden Önce Sormanız Gereken 10 Soru</a></li>
+        <li><a href="/blog/ai-resepsiyonist-izleme-analitik">AI Resepsiyonistimi Dinleyebilir miyim?</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 <a href="/">stoaix.com</a> — Tüm hakları saklıdır.</p>
+  </footer>
+</body>
+</html>

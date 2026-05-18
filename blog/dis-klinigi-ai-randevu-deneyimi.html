@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hasta Randevularını AI Nasıl Alıyor? Adım Adım Süreç | STOAIX Blog</title>
+  <meta name="description" content="Diş kliniğinizde AI resepsiyonist randevuları tam olarak nasıl alıyor? Aramadan onaya kadar adım adım süreci, gerçek zamanlı takvim entegrasyonunu ve hasta deneyimini keşfedin." />
+  <meta name="keywords" content="AI randevu alma süreci, diş kliniği AI resepsiyonist, otomatik randevu sistemi, AI telefon randevusu, randevu entegrasyonu" />
+  <link rel="canonical" href="https://stoaix.com/blog/dis-klinigi-ai-randevu-deneyimi" />
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-ai-randevu-deneyimi" />
+  <meta property="og:title" content="Hasta Randevularını AI Nasıl Alıyor? Adım Adım Süreç" />
+  <meta property="og:description" content="AI resepsiyonist aramadan randevu onayına kadar tüm süreci nasıl yönetiyor? Diş kliniğiniz için adım adım açıklama." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://stoaix.com/blog/dis-klinigi-ai-randevu-deneyimi" />
+  <meta property="og:locale" content="tr_TR" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Hasta Randevularını AI Nasıl Alıyor? Adım Adım Süreç",
+    "description": "Diş kliniğinde AI resepsiyonistin randevu alma süreci: aramadan gerçek zamanlı takvim yazımına kadar tüm adımlar.",
+    "datePublished": "2025-11-09",
+    "dateModified": "2025-11-09",
+    "author": {"@type": "Organization", "name": "STOAIX"},
+    "publisher": {"@type": "Organization", "name": "STOAIX", "url": "https://stoaix.com"},
+    "mainEntityOfPage": "https://stoaix.com/blog/dis-klinigi-ai-randevu-deneyimi",
+    "inLanguage": "tr"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "AI randevu alırken takvim gerçek zamanlı mı güncelleniyor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Evet. STOAIX AI, görüşme sırasında kliniğin mevcut takvimini okur ve randevuyu arama bitmeden doğrudan sisteme yazar. Çift rezervasyon ya da gecikmeli senkronizasyon yaşanmaz."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hasta istediği saati bulamazsa AI ne yapar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AI, hastanın isteğine en yakın müsait alternatifleri sunar. Hiçbir zaman dilimi uygun değilse listeye alır veya hasta onayladıktan sonra başka bir zaman için yeniden arama yapmasını önerir."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "AI randevuyu aldıktan sonra hasta bir onay alıyor mu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Evet. Görüşme biter bitmez hasta SMS veya e-posta ile randevu detaylarını (tarih, saat, doktor, adres) içeren bir onay mesajı alır."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "AI sadece yeni randevu mu alıyor, mevcut randevuları da yönetebiliyor mu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "STOAIX AI hem yeni randevu alır hem de mevcut randevuları değiştirebilir veya iptal edebilir; tüm bu işlemler gerçek zamanlı takvim entegrasyonu üzerinden gerçekleşir."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Türkçe konuşamayan hastalar için AI ne yapıyor?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "STOAIX 15'ten fazla dili destekler. Hasta farklı bir dilde konuşmaya başlarsa AI otomatik olarak o dile geçer ve randevu sürecini aynı kalitede sürdürür."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;800;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --navy: #050a30;
+      --blue: #233dff;
+      --cyan: #42c2d5;
+      --light: #f4f6fc;
+      --white: #ffffff;
+      --muted: #6b7a99;
+      --border: rgba(35,61,255,0.1);
+      --text: #0d1545;
+      --text-soft: #4a5480;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--text); background: var(--white); line-height: 1.7; }
+    h1,h2,h3,h4 { font-family: 'Anybody', sans-serif; font-weight: 800; color: var(--navy); line-height: 1.2; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* NAV */
+    nav { background: var(--navy); padding: 0 5%; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-family: 'Anybody', sans-serif; font-weight: 900; font-size: 1.4rem; color: var(--white); letter-spacing: -0.5px; }
+    .nav-logo span { color: var(--cyan); }
+    .nav-cta { background: var(--blue); color: var(--white) !important; padding: 8px 20px; border-radius: 6px; font-weight: 500; font-size: 0.9rem; }
+    .nav-cta:hover { background: #1a2ed4; text-decoration: none; }
+
+    /* HERO */
+    .hero-post { background: linear-gradient(135deg, var(--navy) 0%, #0d1a6e 100%); color: var(--white); padding: 60px 5% 50px; }
+    .breadcrumb { font-size: 0.82rem; color: rgba(255,255,255,0.6); margin-bottom: 18px; }
+    .breadcrumb a { color: var(--cyan); }
+    .post-meta { display: flex; gap: 16px; align-items: center; margin-bottom: 22px; flex-wrap: wrap; }
+    .post-category { background: rgba(66,194,213,0.2); color: var(--cyan); padding: 4px 12px; border-radius: 20px; font-size: 0.78rem; font-weight: 500; }
+    .post-date, .post-read { color: rgba(255,255,255,0.55); font-size: 0.82rem; }
+    .hero-post h1 { font-size: clamp(1.7rem, 4vw, 2.6rem); max-width: 800px; margin-bottom: 18px; color: var(--white); }
+    .hero-desc { font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 700px; line-height: 1.65; }
+
+    /* BODY */
+    .post-body { max-width: 780px; margin: 0 auto; padding: 50px 5% 80px; }
+    .post-body h2 { font-size: 1.5rem; margin: 40px 0 14px; color: var(--navy); }
+    .post-body h3 { font-size: 1.15rem; margin: 28px 0 10px; color: var(--navy); }
+    .post-body p { margin-bottom: 16px; color: var(--text-soft); font-size: 1rem; }
+    .post-body ul, .post-body ol { margin: 0 0 18px 22px; color: var(--text-soft); }
+    .post-body li { margin-bottom: 8px; }
+    .post-body strong { color: var(--text); }
+
+    .direct-answer { background: var(--light); border-left: 4px solid var(--cyan); padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 32px; }
+    .direct-answer p { margin: 0; font-size: 1.02rem; color: var(--text); }
+
+    .highlight-box { background: var(--light); border: 1px solid var(--border); border-radius: 10px; padding: 24px; margin: 28px 0; }
+    .highlight-box h4 { font-size: 1rem; margin-bottom: 12px; color: var(--navy); }
+    .highlight-box p, .highlight-box li { font-size: 0.95rem; color: var(--text-soft); }
+
+    .step-list { list-style: none; margin: 0 0 18px 0; counter-reset: steps; }
+    .step-list li { counter-increment: steps; display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
+    .step-list li::before { content: counter(steps); min-width: 30px; height: 30px; background: var(--blue); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Anybody', sans-serif; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; margin-top: 2px; }
+
+    .cta-box { background: linear-gradient(135deg, var(--navy) 0%, #0d1a6e 100%); border-radius: 12px; padding: 32px; text-align: center; margin: 40px 0; color: var(--white); }
+    .cta-box h3 { color: var(--white); margin-bottom: 10px; font-size: 1.25rem; }
+    .cta-box p { color: rgba(255,255,255,0.75); margin-bottom: 20px; font-size: 0.95rem; }
+    .cta-btn { display: inline-block; background: var(--cyan); color: var(--navy) !important; padding: 13px 32px; border-radius: 8px; font-weight: 700; font-family: 'Anybody', sans-serif; font-size: 1rem; }
+    .cta-btn:hover { background: #35b0c2; text-decoration: none; }
+
+    .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-item h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--navy); }
+    .faq-item p { margin: 0; font-size: 0.95rem; color: var(--text-soft); }
+
+    .internal-links { background: var(--light); border-radius: 10px; padding: 20px 24px; margin-top: 40px; }
+    .internal-links p { margin: 0 0 8px; font-size: 0.9rem; color: var(--text-soft); }
+    .internal-links a { color: var(--blue); font-weight: 500; font-size: 0.9rem; }
+
+    footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 24px; font-size: 0.85rem; }
+    footer a { color: rgba(255,255,255,0.6); }
+  </style>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-53TMTQML2Q');</script>
+
+  <!-- Microsoft Clarity -->
+  <script>(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","wnyyri0jrz");</script>
+
+  <!-- Meta Pixel -->
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1426016022664547');fbq('track','PageView');</script>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">STOA<span>IX</span></span>
+  <a href="/signup" class="nav-cta">Demo Al</a>
+</nav>
+
+<div class="hero-post">
+  <p class="breadcrumb"><a href="/">Ana Sayfa</a> › <a href="/blog">Blog</a> › Diş Kliniği AI Resepsiyonist</p>
+  <div class="post-meta">
+    <span class="post-category">Diş Kliniği AI</span>
+    <span class="post-date">9 Kasım 2025</span>
+    <span class="post-read">7 dakika okuma</span>
+  </div>
+  <h1>Hasta Randevularını AI Nasıl Alıyor? Adım Adım Süreç</h1>
+  <p class="hero-desc">Hastanın telefon açmasından randevu onayına kadar AI resepsiyonistin arka planda neler yaptığını adım adım açıklıyoruz. Gerçek zamanlı takvim entegrasyonundan çok dilli destek özelliğine kadar tüm süreç.</p>
+</div>
+
+<div class="post-body">
+
+  <div class="direct-answer">
+    <p><strong>Kısa yanıt:</strong> Hasta aradığında AI telefonu saniyeler içinde açar, kendini tanıtır, randevu talebini anlar, o anda kliniğin müsait saatlerini kontrol eder, hasta seçimini yapar ve randevuyu gerçek zamanlı olarak takvime kaydeder — tüm bu süreç ortalama 90 saniyede tamamlanır.</p>
+  </div>
+
+  <h2>Sürecin Başlangıcı: Telefon Çalar, AI Açar</h2>
+  <p>Geleneksel bir klinikte telefon çaldığında resepsiyonist müsait değilse arama yanıtsız kalır. AI resepsiyonistte bu senaryo yoktur: STOAIX sistemi aramayı ilk saniyeler içinde alır, klinik kimliğiyle hastayı karşılar ve konuşmayı başlatır.</p>
+  <p>Hasta "randevu almak istiyorum" dediğinde AI bunu anlar ve süreci başlatır. "Diş ağrım var, ne zaman bakabilirsiniz?" gibi dolaylı ifadeleri de yorumlar.</p>
+
+  <h2>Adım Adım Randevu Alma Süreci</h2>
+
+  <ul class="step-list">
+    <li><div><strong>Karşılama ve niyet tespiti</strong><br>AI hastayı klinik adıyla karşılar. "Randevu almak, randevu değiştirmek, genel bilgi" gibi kategorilerden birini belirler. Hastanın ifadesi belirsizse kısa bir soru sorar.</div></li>
+    <li><div><strong>İşlem türü ve hizmet seçimi</strong><br>Yeni hasta mı, mevcut hasta mı? Muayene, kontrol, temizlik, acil gibi hizmet türünü belirler. Bu bilgi hem doktor müsaitliğini hem de randevu süresini etkiler.</div></li>
+    <li><div><strong>Gerçek zamanlı takvim sorgusu</strong><br>AI, kliniğin takvim sistemine (Dentrix, Acuity, Calendly, Fresha, Pabau gibi entegrasyonlar) anlık olarak bağlanır. Müsait slotları saniyeler içinde çeker — hastayı bekleti olmaz.</div></li>
+    <li><div><strong>Alternatif sunma ve seçim</strong><br>"Bu hafta Salı 14:00 veya Perşembe 10:30 müsait, hangisini tercih edersiniz?" şeklinde 2–3 seçenek sunar. Hasta hiçbirini beğenmezse başka alternatifleri listeler.</div></li>
+    <li><div><strong>Hasta bilgisi doğrulama</strong><br>Ad-soyad ve telefon numarasını alır. Mevcut hasta ise sistemde doğrulama yapabilir, yeni hasta ise kaydını oluşturur.</div></li>
+    <li><div><strong>Randevuyu takvime yazma</strong><br>Görüşme sürerken — kapanmadan önce — randevu takvime işlenir. Çift rezervasyon ihtimali tamamen ortadan kalkar.</div></li>
+    <li><div><strong>Onay mesajı gönderme</strong><br>Görüşme bittiğinde hasta SMS veya e-posta ile tarih, saat, adres ve doktor bilgisini içeren onay mesajı alır.</div></li>
+  </ul>
+
+  <h2>Gerçek Zamanlı Takvim Entegrasyonu Neden Kritik?</h2>
+  <p>Birçok "otomatik randevu" sistemi aslında talebi kaydeder, sonra bir personel randevuyu elle girer. Bu yaklaşımda iki temel sorun vardır: gecikme ve çift rezervasyon riski.</p>
+  <p>STOAIX'in farkı, entegrasyonun <strong>görüşme sırasında canlı çalışmasıdır.</strong> Dentrix, Acuity, Calendly, Fresha ve Pabau gibi platformlarla doğrudan bağlantı kurulduğu için hasta "Perşembe 10:30" dediğinde AI aynı anda o slotu rezerve eder. Görüşme biterken randevu çoktan sistemde mevcuttur.</p>
+
+  <div class="highlight-box">
+    <h4>Hangi Sistemlerle Entegrasyon Var?</h4>
+    <ul>
+      <li><strong>Dentrix</strong> — Diş kliniklerine özel yönetim yazılımı</li>
+      <li><strong>Acuity Scheduling</strong> — Esnek online randevu platformu</li>
+      <li><strong>Calendly</strong> — Takvim tabanlı randevu yönetimi</li>
+      <li><strong>Fresha</strong> — Sağlık ve güzellik klinikleri için</li>
+      <li><strong>Pabau</strong> — Klinik yönetim yazılımı</li>
+    </ul>
+    <p style="margin-top:10px;">Kullandığınız sistem listede yoksa STOAIX ekibine danışın — entegrasyon seçenekleri genişliyor.</p>
+  </div>
+
+  <h2>Hasta Türkçe Dışında Bir Dil Konuşursa Ne Olur?</h2>
+  <p>STOAIX 15'ten fazla dili destekler. Hasta İngilizce, Arapça, Almanca veya başka bir desteklenen dilde konuşmaya başlarsa AI otomatik olarak o dile geçer. Klinikteki personelin tek kelime bile etmesi gerekmez.</p>
+  <p>Bu özellik özellikle turizm bölgelerindeki klinikler, çok uluslu personele sahip merkezler ve yabancı uyruklu hasta havuzuna hizmet veren klinikler için büyük bir avantaj sağlar.</p>
+
+  <div class="cta-box">
+    <h3>Kliniğinizde Nasıl Çalışacağını Görmek İster misiniz?</h3>
+    <p>Canlı demo ile STOAIX AI'ın randevu sürecini başından sonuna kadar izleyin. Kurulum gerektirmez, 30 dakika yeterli.</p>
+    <a href="/signup" class="cta-btn">Ücretsiz Demo Al</a>
+  </div>
+
+  <h2>AI Mevcut Randevuları da Yönetebiliyor mu?</h2>
+  <p>Evet. Hasta randevusunu değiştirmek ya da iptal etmek için aradığında da aynı süreç geçerlidir: AI kimliği doğrular, mevcut randevuyu bulur, yeni müsait slotları gösterir ve değişikliği gerçek zamanlı olarak işler.</p>
+  <p>İptal durumunda boşalan slot anında müsait hale gelir. Başka bir hasta o slotu isterse AI çakışma olmadan randevu verebilir.</p>
+
+  <h2>Sık Sorulan Sorular</h2>
+
+  <div class="faq-item">
+    <h3>AI randevu alırken takvim gerçek zamanlı mı güncelleniyor?</h3>
+    <p>Evet. STOAIX AI, görüşme sırasında kliniğin mevcut takvimini okur ve randevuyu arama bitmeden doğrudan sisteme yazar. Çift rezervasyon ya da gecikmeli senkronizasyon yaşanmaz.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Hasta istediği saati bulamazsa AI ne yapar?</h3>
+    <p>AI, hastanın isteğine en yakın müsait alternatifleri sunar. Hiçbir zaman dilimi uygun değilse listeye alır veya hastanın onayıyla başka bir zaman için seçenekler sunar.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>AI randevuyu aldıktan sonra hasta bir onay alıyor mu?</h3>
+    <p>Evet. Görüşme biter bitmez hasta SMS veya e-posta ile randevu detaylarını (tarih, saat, doktor, adres) içeren bir onay mesajı alır.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>AI sadece yeni randevu mu alıyor, mevcut randevuları da yönetebiliyor mu?</h3>
+    <p>STOAIX AI hem yeni randevu alır hem de mevcut randevuları değiştirebilir veya iptal edebilir; tüm bu işlemler gerçek zamanlı takvim entegrasyonu üzerinden gerçekleşir.</p>
+  </div>
+
+  <div class="faq-item">
+    <h3>Türkçe konuşamayan hastalar için AI ne yapıyor?</h3>
+    <p>STOAIX 15'ten fazla dili destekler. Hasta farklı bir dilde konuşmaya başlarsa AI otomatik olarak o dile geçer ve randevu sürecini aynı kalitede sürdürür.</p>
+  </div>
+
+  <div class="cta-box">
+    <h3>Kliniğinizde 5 Dakikada Devreye Girin</h3>
+    <p>STOAIX kurulum için teknik bilgi gerektirmez. Demo alın, ihtiyaçlarınızı paylaşın, hızlıca başlayın.</p>
+    <a href="/signup" class="cta-btn">Demo Talep Et</a>
+  </div>
+
+  <div class="internal-links">
+    <p><strong>İlgili yazılar:</strong></p>
+    <p><a href="/blog/dis-klinigi-ai-randevu-alma">AI Resepsiyonist Diş Kliniğinde Randevu Alabilir mi? →</a></p>
+    <p><a href="/blog/dis-klinigi-randevu-hatirlatma-ai">AI Resepsiyonist Randevu Hatırlatması Yapabilir mi? →</a></p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2025 <a href="https://stoaix.com">stoaix.com</a> — Tüm hakları saklıdır.</p>
+</footer>
+
+</body>
+</html>
