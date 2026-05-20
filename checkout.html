@@ -1096,7 +1096,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           }
           // 3DS confirmed — now create subscription via confirm-setup endpoint
           submitBtn.textContent = 'Setting up subscription…'
-          const confirmRes = await fetch('/api/stripe/confirm-setup', {
+          const confirmRes = await fetch('/api/stripe/subscribe', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

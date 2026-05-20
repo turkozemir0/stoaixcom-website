@@ -18,7 +18,6 @@
     { "source": "/tr/:path*", "destination": "/:path*" },
     { "source": "/ref/:slug", "destination": "/api/ref" },
     { "source": "/api/stripe/subscribe", "destination": "/api/stripe/subscribe" },
-    { "source": "/api/stripe/confirm-setup", "destination": "/api/stripe/confirm-setup" },
     { "source": "/api/stripe/webhook", "destination": "/api/stripe/webhook" }
   ],
   "headers": [

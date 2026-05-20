@@ -36,6 +36,12 @@ export default async function handler(req, res) {
 
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v))
 
+  // ── Confirm-setup flow (post-3DS for trial plans) ──
+  if (req.body.setupIntentId) {
+    return handleConfirmSetup(req, res)
+  }
+
+  // ── Normal subscribe flow ──
   const { email, firstName, lastName, company, phone, plan, billing, paymentMethodId, partnerRef, fbc, fbp, addDedicatedSupport, addReactivation, addSetup, promoCode } = req.body
 
   if (!email || !plan || !billing || !paymentMethodId) {
@@ -126,5 +132,89 @@ export default async function handler(req, res) {
   } catch (err) {
     console.error('Subscribe error:', err)
     return res.status(500).json({ error: err.message || 'Subscription failed' })
+  }
+}
+
+// ── Post-3DS confirm-setup handler ──
+async function handleConfirmSetup(req, res) {
+  const {
+    setupIntentId, customerId,
+    email, firstName, lastName, company, phone, password,
+    plan, billing,
+    partnerRef, fbc, fbp,
+    addDedicatedSupport, addReactivation, addSetup, promoCode,
+  } = req.body
+
+  if (!setupIntentId || !customerId || !email || !plan || !billing) {
+    return res.status(400).json({ error: 'Missing required fields' })
+  }
+
+  const planKey = plan.toLowerCase()
+  const VALID_INTERVALS = ['monthly', 'quarterly', 'semi_annual', 'annual']
+  const billingKey = VALID_INTERVALS.includes(billing) ? billing : 'monthly'
+  const priceId = PRICE_MAP[planKey]?.[billingKey]
+
+  if (!priceId) {
+    return res.status(400).json({ error: 'Invalid plan or billing period' })
+  }
+
+  try {
+    // 1. Verify SetupIntent succeeded
+    const setupIntent = await stripe.setupIntents.retrieve(setupIntentId)
+
+    if (setupIntent.status !== 'succeeded') {
+      return res.status(400).json({ error: 'Card authentication failed. Please try again.' })
+    }
+
+    if (setupIntent.customer !== customerId) {
+      return res.status(400).json({ error: 'Invalid request.' })
+    }
+
+    // 2. Idempotency: check if customer already has an active subscription
+    const existingSubs = await stripe.subscriptions.list({
+      customer: customerId,
+      status: 'all',
+      limit: 1,
+    })
+    if (existingSubs.data.length > 0) {
+      return res.status(200).json({
+        success: true,
+        redirect_url: 'https://platform.stoaix.com/login',
+      })
+    }
+
+    // 3. Set default payment method on customer
+    const paymentMethodId = setupIntent.payment_method
+    await stripe.customers.update(customerId, {
+      invoice_settings: { default_payment_method: paymentMethodId },
+    })
+
+    // 4. Provision subscription, user, org, etc.
+    const result = await provisionSubscription({
+      customerId,
+      paymentMethodId,
+      email,
+      firstName,
+      lastName,
+      company,
+      phone,
+      password,
+      planKey,
+      billingKey,
+      priceId,
+      promoCode,
+      addDedicatedSupport,
+      addReactivation,
+      addSetup,
+      partnerRef,
+      fbc,
+      fbp,
+      req,
+    })
+
+    return res.status(200).json(result)
+  } catch (err) {
+    console.error('Confirm-setup error:', err)
+    return res.status(500).json({ error: err.message || 'Subscription setup failed' })
   }
 }
