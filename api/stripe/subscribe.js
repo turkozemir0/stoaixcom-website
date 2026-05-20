@@ -1,23 +1,7 @@
 import Stripe from 'stripe'
-import { createClient } from '@supabase/supabase-js'
-import { sendEvent, getClientIp, getUserAgent } from '../_lib/fb-capi.js'
+import { provisionSubscription } from '../_lib/provision.js'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-
-const supabase = createClient(
-  process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-)
-
-function generateSlug(name) {
-  return name
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .substring(0, 48) || 'org'
-}
 
 const PRICE_MAP = {
   essential: {
@@ -59,16 +43,10 @@ export default async function handler(req, res) {
   }
 
   const planKey = plan.toLowerCase()
+  const isBusiness = planKey === 'business'
   const VALID_INTERVALS = ['monthly', 'quarterly', 'semi_annual', 'annual']
   const billingKey = VALID_INTERVALS.includes(billing) ? billing : 'monthly'
   const priceId = PRICE_MAP[planKey]?.[billingKey]
-
-  const PLAN_PRICES = {
-    essential:    { monthly: 199, quarterly: 179, semi_annual: 159, annual: 139 },
-    professional: { monthly: 299, quarterly: 269, semi_annual: 239, annual: 209 },
-    business:     { monthly: 599, quarterly: 539, semi_annual: 479, annual: 419 },
-  }
-  const price = PLAN_PRICES[planKey]?.[billingKey] || 0
 
   if (!priceId) {
     return res.status(400).json({ error: 'Invalid plan or billing period' })
@@ -83,310 +61,68 @@ export default async function handler(req, res) {
       metadata: { company: company || '', plan: planKey, billing: billingKey },
     })
 
-    // 2. Attach payment method
-    await stripe.paymentMethods.attach(paymentMethodId, { customer: customer.id })
-    await stripe.customers.update(customer.id, {
-      invoice_settings: { default_payment_method: paymentMethodId },
-    })
-
-    // 2b. Validate promo code if provided
-    let stripePromoId = null
-    if (promoCode) {
-      const { data: promo } = await supabase
-        .from('promo_codes')
-        .select('stripe_promo_id, expires_at, used')
-        .eq('code', promoCode.toUpperCase())
-        .single()
-
-      if (promo && !promo.used && new Date(promo.expires_at) > new Date() && promo.stripe_promo_id) {
-        stripePromoId = promo.stripe_promo_id
-      }
-    }
-
-    // 3. Create subscription (Business = no trial, others = 3-day trial)
-    const isBusiness = planKey === 'business'
-
-    const items = [{ price: priceId }]
-    if (addDedicatedSupport && process.env.STRIPE_PRICE_SUPPORT_MONTHLY) {
-      items.push({ price: process.env.STRIPE_PRICE_SUPPORT_MONTHLY })
-    }
-
-    const addInvoiceItems = []
-    if (addReactivation && process.env.STRIPE_PRICE_REACTIVATION_ONETIME) {
-      addInvoiceItems.push({ price: process.env.STRIPE_PRICE_REACTIVATION_ONETIME })
-    }
-    if (addSetup && process.env.STRIPE_PRICE_SETUP_ONETIME) {
-      addInvoiceItems.push({ price: process.env.STRIPE_PRICE_SETUP_ONETIME })
-    }
-
-    const subscriptionParams = {
-      customer: customer.id,
-      items,
-      ...(addInvoiceItems.length > 0 && { add_invoice_items: addInvoiceItems }),
-      payment_settings: {
-        payment_method_types: ['card'],
-        save_default_payment_method: 'on_subscription',
-      },
-      expand: ['latest_invoice.payment_intent'],
-    }
-    if (!isBusiness) {
-      subscriptionParams.trial_period_days = 3
-    }
-    if (stripePromoId) {
-      subscriptionParams.promotion_code = stripePromoId
-    }
-    const subscription = await stripe.subscriptions.create(subscriptionParams)
-
-    // 3b. Business plan: handle immediate payment + 3DS
+    // 2. Attach payment method — trial plans use SetupIntent (supports 3DS),
+    //    Business plan uses direct attach (3DS handled via PaymentIntent later)
     if (isBusiness) {
-      const paymentIntent = subscription.latest_invoice?.payment_intent
-      if (paymentIntent && paymentIntent.status === 'requires_action') {
-        // 3DS required — create user/org first, then return client_secret
-        // so frontend can complete 3DS and user record already exists
-      }
-      if (paymentIntent && paymentIntent.status === 'requires_payment_method') {
-        return res.status(400).json({ error: 'Payment failed. Please try a different card.' })
-      }
-    }
-
-    // 4. Get or create auth user
-    // Auth user may already exist (e.g. retry, or legacy OTP flow)
-    const { data: leadRow } = await supabase
-      .from('signup_leads')
-      .select('user_id')
-      .eq('email', email.toLowerCase())
-      .single()
-
-    let userId = leadRow?.user_id
-
-    if (userId) {
-      // User already exists — update metadata with Stripe info
-      const { error: updateErr } = await supabase.auth.admin.updateUserById(userId, {
-        user_metadata: {
-          first_name: firstName,
-          last_name: lastName,
-          company,
-          phone: phone || null,
-          plan: planKey,
-          billing: billingKey,
-          stripe_customer_id: customer.id,
-          stripe_subscription_id: subscription.id,
-          trial_ends_at: isBusiness ? null : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
-        },
+      await stripe.paymentMethods.attach(paymentMethodId, { customer: customer.id })
+      await stripe.customers.update(customer.id, {
+        invoice_settings: { default_payment_method: paymentMethodId },
       })
-      // If user was deleted from Auth, fall through to create a new one
-      if (updateErr) {
-        console.warn('updateUserById failed (user may have been deleted), creating new user:', updateErr.message)
-        userId = null
-      }
-    }
-
-    if (!userId) {
-      // No auth user yet — create now (atomic with Stripe + org)
-      const { data: authData, error: authError } = await supabase.auth.admin.createUser({
-        email,
-        password: req.body.password || Math.random().toString(36).slice(2) + 'A1!',
-        email_confirm: true,
-        user_metadata: {
-          first_name: firstName,
-          last_name: lastName,
-          company,
-          phone: phone || null,
-          plan: planKey,
-          billing: billingKey,
-          stripe_customer_id: customer.id,
-          stripe_subscription_id: subscription.id,
-          trial_ends_at: isBusiness ? null : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
-        },
+    } else {
+      // Trial plans: use SetupIntent so 3DS can be handled client-side
+      const setupIntent = await stripe.setupIntents.create({
+        customer: customer.id,
+        payment_method: paymentMethodId,
+        confirm: true,
+        usage: 'off_session',
+        payment_method_types: ['card'],
       })
 
-      if (authError) {
-        if (authError.message?.includes('already')) {
-          // User exists — look up via generateLink
-          const { data: linkData } = await supabase.auth.admin.generateLink({
-            type: 'magiclink',
-            email: email.toLowerCase(),
-          })
-          userId = linkData?.user?.id
-        } else {
-          return res.status(400).json({ error: authError.message })
-        }
-      } else {
-        userId = authData?.user?.id
-      }
-
-      if (!userId) {
-        return res.status(500).json({ error: 'User creation failed' })
-      }
-
-      // Save user_id to signup_leads for retry resilience
-      await supabase
-        .from('signup_leads')
-        .update({ user_id: userId })
-        .eq('email', email.toLowerCase())
-    }
-
-    // 5. Create organization + org_users record
-    const slug = generateSlug(company || firstName || 'org')
-
-    // Check slug uniqueness, append number if needed
-    let finalSlug = slug
-    const { data: existing } = await supabase
-      .from('organizations')
-      .select('slug')
-      .like('slug', `${slug}%`)
-
-    if (existing && existing.length > 0) {
-      finalSlug = `${slug}-${existing.length + 1}`
-    }
-
-    const { data: org, error: orgError } = await supabase
-      .from('organizations')
-      .insert({
-        name: company || `${firstName}'s Clinic`,
-        slug: finalSlug,
-        sector: 'clinic',
-        status: 'onboarding',
-        onboarding_status: 'in_progress',
-        email,
-        phone: phone || null,
-        country: 'GB',
-      })
-      .select('id')
-      .single()
-
-    if (orgError) {
-      return res.status(500).json({ error: `Organization creation failed: ${orgError.message}` })
-    }
-
-    const { error: orgUserError } = await supabase
-      .from('org_users')
-      .insert({
-        user_id: userId,
-        organization_id: org.id,
-        role: 'admin',
-      })
-
-    if (orgUserError) {
-      return res.status(500).json({ error: `Org user link failed: ${orgUserError.message}` })
-    }
-
-    // 5b. Add metadata to Stripe subscription + create org_subscriptions record
-    await stripe.subscriptions.update(subscription.id, {
-      metadata: {
-        organization_id: org.id,
-        plan_id: planKey,
-        add_ons: JSON.stringify({
-          support: !!addDedicatedSupport,
-          reactivation: !!addReactivation,
-          setup: !!addSetup,
-        }),
-      },
-    })
-
-    const trialEndsAt = isBusiness ? null : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString()
-    await supabase.from('org_subscriptions').insert({
-      organization_id: org.id,
-      plan_id: planKey,
-      status: isBusiness ? 'active' : 'trialing',
-      stripe_customer_id: customer.id,
-      stripe_subscription_id: subscription.id,
-      billing_interval: billingKey,
-      trial_ends_at: trialEndsAt,
-      current_period_start: new Date().toISOString(),
-      current_period_end: isBusiness
-        ? new Date(subscription.current_period_end * 1000).toISOString()
-        : new Date(Date.now() + 3 * 24 * 60 * 60 * 1000).toISOString(),
-    })
-
-    // 6. Notify partner panel if referred
-    if (partnerRef) {
-      try {
-        await fetch('https://partner.stoaix.com/api/webhook/conversion', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${process.env.PARTNER_WEBHOOK_SECRET}`,
-          },
-          body: JSON.stringify({
-            organization_id: org.id,
-            org_name: company || `${firstName}'s Clinic`,
-            plan_type: planKey,
-            monthly_price: price,
-            referral_code: partnerRef,
-          }),
+      if (setupIntent.status === 'requires_action') {
+        // 3DS required — return client_secret so frontend can complete authentication
+        return res.status(200).json({
+          success: true,
+          requires_setup_action: true,
+          setup_client_secret: setupIntent.client_secret,
+          setup_intent_id: setupIntent.id,
+          customer_id: customer.id,
         })
-      } catch (err) {
-        console.error('Partner webhook error:', err)
       }
+
+      if (setupIntent.status !== 'succeeded') {
+        return res.status(400).json({ error: 'Card setup failed. Please try a different card.' })
+      }
+
+      // SetupIntent succeeded without 3DS — set default payment method and continue
+      await stripe.customers.update(customer.id, {
+        invoice_settings: { default_payment_method: paymentMethodId },
+      })
     }
 
-    // 6b. Mark promo code as used
-    if (promoCode && stripePromoId) {
-      await supabase
-        .from('promo_codes')
-        .update({ used: true, used_at: new Date().toISOString() })
-        .eq('code', promoCode.toUpperCase())
-    }
-
-    // 7. Mark lead as converted + FB CAPI Purchase event
-    await supabase
-      .from('signup_leads')
-      .update({ converted: true, converted_at: new Date().toISOString() })
-      .eq('email', email.toLowerCase())
-
-    const planName = PLAN_PRICES[planKey] ? planKey.charAt(0).toUpperCase() + planKey.slice(1) : planKey
-    let eventValue = price
-    if (addDedicatedSupport) eventValue += 99
-    if (addReactivation)     eventValue += 29.99
-    if (addSetup)            eventValue += 99
-    sendEvent({
-      eventName: 'Purchase',
+    // 3. Provision subscription, user, org, etc.
+    const result = await provisionSubscription({
+      customerId: customer.id,
+      paymentMethodId,
       email,
       firstName,
       lastName,
-      value: eventValue,
-      sourceUrl: 'https://stoaix.com/checkout',
-      clientIp: getClientIp(req),
-      clientUserAgent: getUserAgent(req),
+      company,
+      phone,
+      password: req.body.password,
+      planKey,
+      billingKey,
+      priceId,
+      promoCode,
+      addDedicatedSupport,
+      addReactivation,
+      addSetup,
+      partnerRef,
       fbc,
       fbp,
-      contentName: `${planName} Plan`,
-      contentCategory: 'subscription',
-      contentIds: planKey,
-    }).catch(() => {})
-
-    // 7. Generate magic link → platform.stoaix.com/auth/callback → onboarding
-    const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
-      type: 'magiclink',
-      email,
-      options: {
-        redirectTo: 'https://platform.stoaix.com/auth/callback?next=/onboarding',
-      },
+      req,
     })
 
-    const redirectUrl = linkError || !linkData?.properties?.action_link
-      ? 'https://platform.stoaix.com/login'
-      : linkData.properties.action_link
-
-    // Business plan with 3DS: return client_secret so frontend can confirm payment
-    if (isBusiness) {
-      const paymentIntent = subscription.latest_invoice?.payment_intent
-      if (paymentIntent && paymentIntent.status === 'requires_action') {
-        return res.status(200).json({
-          success: true,
-          requires_action: true,
-          client_secret: paymentIntent.client_secret,
-          subscription_id: subscription.id,
-          redirect_url: redirectUrl,
-        })
-      }
-    }
-
-    return res.status(200).json({
-      success: true,
-      redirect_url: redirectUrl,
-    })
+    return res.status(200).json(result)
   } catch (err) {
     console.error('Subscribe error:', err)
     return res.status(500).json({ error: err.message || 'Subscription failed' })

@@ -1075,13 +1075,59 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           }),
         })
 
-        const data = await res.json()
+        let data = await res.json()
 
         if (!res.ok || !data.success) {
           errorBanner.textContent = data.error || 'Something went wrong. Please try again.'
           errorBanner.classList.add('visible')
           resetBtn()
           return
+        }
+
+        // Handle 3DS authentication for trial plans (Essential/Professional)
+        if (data.requires_setup_action && data.setup_client_secret) {
+          submitBtn.textContent = 'Confirming card…'
+          const { error: setupError } = await stripe.confirmCardSetup(data.setup_client_secret)
+          if (setupError) {
+            errorBanner.textContent = setupError.message
+            errorBanner.classList.add('visible')
+            resetBtn()
+            return
+          }
+          // 3DS confirmed — now create subscription via confirm-setup endpoint
+          submitBtn.textContent = 'Setting up subscription…'
+          const confirmRes = await fetch('/api/stripe/confirm-setup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              setupIntentId: data.setup_intent_id,
+              customerId: data.customer_id,
+              email:           signupData.email,
+              firstName:       signupData.firstName,
+              lastName:        signupData.lastName,
+              company:         signupData.company,
+              phone:           signupData.phone,
+              password:        sessionStorage.getItem('signup_password') || '',
+              plan,
+              billing,
+              partnerRef,
+              addDedicatedSupport: dsAddon,
+              addReactivation: reactivationAddon,
+              addSetup: setupAddon && !setupIsFree,
+              promoCode: appliedPromoCode || undefined,
+              fbc: sessionStorage.getItem('fb_fbc') || '',
+              fbp: sessionStorage.getItem('fb_fbp') || '',
+            }),
+          })
+          const confirmData = await confirmRes.json()
+          if (!confirmRes.ok || !confirmData.success) {
+            errorBanner.textContent = confirmData.error || 'Something went wrong. Please try again.'
+            errorBanner.classList.add('visible')
+            resetBtn()
+            return
+          }
+          // Use the redirect_url from confirm-setup
+          data = confirmData
         }
 
         // Handle 3DS authentication (Business plan — immediate payment)
