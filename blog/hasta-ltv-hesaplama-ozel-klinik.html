@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hasta LTV (Yaşam Boyu Değer) Hesaplama: Özel Klinik Rehberi | STOAIX</title>
+<meta name="description" content="Kliniğinizdeki her hastanın gerçek değerini hesaplayın. LTV formülü, segmentasyon ve AI ile LTV artırma stratejileri.">
+<link rel="canonical" href="https://stoaix.com/blog/hasta-ltv-hesaplama-ozel-klinik.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "Hasta LTV (Yaşam Boyu Değer) Hesaplama: Özel Klinik Rehberi",
+      "description": "Kliniğinizdeki her hastanın gerçek değerini hesaplayın. LTV formülü, segmentasyon ve AI ile LTV artırma stratejileri.",
+      "datePublished": "2026-05-25",
+      "dateModified": "2026-05-25",
+      "author": {"@type": "Person", "name": "Emir Türköz", "jobTitle": "CTO", "worksFor": {"@type": "Organization", "name": "STOAIX", "url": "https://stoaix.com"}},
+      "publisher": {
+        "@type": "Organization",
+        "name": "STOAIX",
+        "url": "https://stoaix.com"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://stoaix.com/blog/hasta-ltv-hesaplama-ozel-klinik"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "LTV'yi artırmak için en etkili adım nedir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No-show oranını düşürmek — %5 daha fazla tutma %25-95 LTV artışı sağlar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "LTV hesabı için ne kadar veriye ihtiyaç var?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "6-12 aylık randevu verisi başlangıç için yeterlidir."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "CAC, LTV'den yüksekse ne yapmalıyım?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yüksek LTV getiren kanalları belirleyip düşük kalitelilerde harcamayı kesin."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Farklı uzmanlık alanlarında LTV ne kadar farklı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Psikiyatri en yüksek (5-7 yıl), acil KBB en düşük (1-2 yıl)."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-53TMTQML2Q');</script>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1426016022664547');fbq('track','PageView');</script>
+<script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","wnyyri0jrz");</script>
+<style>
+:root{--navy:#050a30;--blue:#233dff;--cyan:#42c2d5;--light:#f4f6fc}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:#fff;color:#1a1a2e}
+nav{background:var(--navy);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center}
+.brand{font-family:'Anybody',sans-serif;color:#fff;font-size:1.4rem;text-decoration:none}
+.nav-btn{background:var(--cyan);color:var(--navy);padding:.5rem 1.2rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:.9rem}
+.hero-post{background:linear-gradient(135deg,var(--navy) 0%,#0d1557 100%);color:#fff;padding:4rem 2rem 3rem;text-align:center}
+.hero-post h1{font-family:'Anybody',sans-serif;font-size:clamp(1.6rem,4vw,2.6rem);max-width:800px;margin:0 auto 1rem}
+.hero-post .meta{opacity:.7;font-size:.9rem}
+.post-body{max-width:820px;margin:0 auto;padding:3rem 1.5rem}
+.post-body h2{font-family:'Anybody',sans-serif;color:var(--navy);font-size:1.4rem;margin:2.5rem 0 1rem;border-left:4px solid var(--cyan);padding-left:.8rem}
+.post-body h3{color:var(--blue);font-size:1.1rem;margin:1.5rem 0 .5rem}
+.post-body p{line-height:1.8;margin-bottom:1rem;color:#2a2a4a}
+.post-body ul,.post-body ol{padding-left:1.5rem;margin-bottom:1rem}
+.post-body li{line-height:1.7;margin-bottom:.4rem;color:#2a2a4a}
+.stat-box{background:var(--light);border-left:4px solid var(--blue);padding:1.2rem 1.5rem;border-radius:0 8px 8px 0;margin:1.5rem 0}
+.stat-box strong{color:var(--blue);font-size:1.8rem;display:block}
+.faq-item{border-bottom:1px solid #e0e4f0;padding:1.2rem 0}
+.faq-item summary{font-weight:600;cursor:pointer;color:var(--navy);list-style:none}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary::before{content:"+ ";color:var(--cyan)}
+details[open] summary::before{content:"− ";color:var(--cyan)}
+.faq-item p{margin-top:.8rem;color:#444;line-height:1.7}
+.cta-strip{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff;text-align:center;padding:3rem 1.5rem}
+.cta-strip h2{font-family:'Anybody',sans-serif;font-size:1.6rem;margin-bottom:.8rem}
+.cta-strip p{margin-bottom:1.5rem;opacity:.9}
+.cta-btn{background:#fff;color:var(--blue);padding:.9rem 2.5rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:1rem}
+footer{background:var(--navy);color:#aaa;text-align:center;padding:1.5rem;font-size:.85rem}
+@media(max-width:600px){.post-body{padding:2rem 1rem}.hero-post{padding:2.5rem 1rem 2rem}}
+</style>
+</head>
+<body>
+<nav><a class="brand" href="/">STOAIX</a><a class="nav-btn" href="/signup">Demo Al</a></nav>
+<div class="hero-post"><h1>Hasta LTV (Yaşam Boyu Değer) Hesaplama: Özel Klinik Rehberi</h1><p class="meta">LTV formülü · Segmentasyon · Klinik finansal optimizasyon</p></div>
+<div class="post-body">
+<p>Bir hastanın gerçek değeri, yaptığı tek randevu ücreti değildir. Yıllar içinde yaptığı toplam harcama, getirdiği referanslar ve bıraktığı yorum — bunların tamamı yaşam boyu değeri (LTV) oluşturur.</p>
+
+<div class="stat-box"><strong>₺18.400</strong> Türkiye'de özel diş kliniğinde ortalama hasta LTV — tek randevu maliyetinin 7 katı.</div>
+
+<h2>LTV Formülü: Adım Adım Hesaplama</h2>
+
+<h3>Temel LTV Formülü</h3>
+<p><strong>LTV = Ortalama Randevu Değeri × Yıllık Ziyaret Sayısı × Ortalama Müşteri Ömrü (Yıl)</strong></p>
+
+<p>Örnek — Genel Pratisyen Klinik:</p>
+<ul>
+<li>Ortalama randevu ücreti: 350 ₺</li>
+<li>Yıllık ziyaret: 3 kez</li>
+<li>Ortalama sadakat: 5 yıl</li>
+<li><strong>LTV = 350 × 3 × 5 = 5.250 ₺</strong></li>
+</ul>
+
+<p>Örnek — Estetik Cerrahi Klinik:</p>
+<ul>
+<li>Ortalama işlem değeri: 15.000 ₺</li>
+<li>Yıllık işlem: 1.2 (bazı hastalar ek prosedür)</li>
+<li>Ortalama sadakat: 4 yıl</li>
+<li><strong>LTV = 15.000 × 1.2 × 4 = 72.000 ₺</strong></li>
+</ul>
+
+<h3>Gelişmiş LTV: Referans Değeri Dahil</h3>
+<p>Her memnun hasta ortalama 1.4 kişiyi kliniğe yönlendiriyorsa:</p>
+<p><strong>Genişletilmiş LTV = Temel LTV × (1 + Referans Oranı)</strong></p>
+<p>5.250 ₺ × (1 + 1.4 × 0.6) = 5.250 × 1.84 = <strong>9.660 ₺</strong></p>
+
+<div class="stat-box"><strong>3:1</strong> Sağlıklı bir klinik için hedef LTV/CAC oranı. Bu oranın altındaki klinikler ya çok fazla harcıyor ya da çok az kazanıyor.</div>
+
+<h2>Hasta Segmentlerine Göre LTV</h2>
+<p>Tüm hastalar eşit değildir. LTV tabanlı segmentasyon:</p>
+
+<h3>Yüksek LTV Segmenti (%20 hasta, %60 gelir)</h3>
+<ul>
+<li>Yılda 4+ ziyaret yapanlar</li>
+<li>Ek hizmet satın alanlar</li>
+<li>Aktif referans yapanlar</li>
+<li><strong>Strateji:</strong> Öncelikli randevu, özel sadakat programı, yıllık check-up paketi</li>
+</ul>
+
+<h3>Orta LTV Segmenti (%50 hasta, %30 gelir)</h3>
+<ul>
+<li>Yılda 1-3 ziyaret</li>
+<li>Kronik takip hastaları</li>
+<li><strong>Strateji:</strong> Hatırlatma otomasyonu, periyodik check-in, upsell fırsatları</li>
+</ul>
+
+<h3>Düşük LTV Segmenti (%30 hasta, %10 gelir)</h3>
+<ul>
+<li>Tek ziyaret yapıp dönmeyenler</li>
+<li><strong>Strateji:</strong> Geri kazanım kampanyası veya kayıp kabul</li>
+</ul>
+
+<h2>AI ile LTV Artırma</h2>
+<p>STOAIX sistemi, her hastanın LTV tahminini hesaplar ve düşük LTV riski görülen hastalara (3+ ay sessizlik) proaktif iletişim başlatır. Bu, kayıp hasta maliyetini önlemenin en ucuz yoludur.</p>
+
+<h2>Sıkça Sorulan Sorular</h2>
+<details class="faq-item"><summary>LTV'yi artırmak için en etkili tek adım nedir?</summary><p>No-show ve kayıp hasta oranını düşürmek. %5 daha fazla hasta tutma, LTV'yi %25-95 artırabilir (müşteri yaşam eğrisi etkisi).</p></details><details class="faq-item"><summary>LTV hesaplaması için ne kadar veriye ihtiyacım var?</summary><p>6-12 aylık randevu verisi yeterli bir baseline oluşturur. Daha doğru tahmin için 2+ yıl verisi önerilir.</p></details><details class="faq-item"><summary>Farklı uzmanlık alanlarının LTV'si ne kadar farklılık gösterir?</summary><p>Psikiyatri ve bağımlılık tedavisinde LTV en yüksek (5-7 yıl sürekli takip), acil KBB en düşük (1-2 yıl).</p></details><details class="faq-item"><summary>CAC benim LTV'mden yüksekse ne yapmalıyım?</summary><p>Acil müdahale: Hangi kanaldan gelen hastalar daha yüksek LTV üretiyor? Düşük kaliteli kanallarda harcamayı kesin, yüksek kaliteli kanallara yatırım yapın.</p></details></p></div>
+
+<div class="cta-strip">
+<h2>Kliniğinizi 7/24 Aktif Tutun</h2>
+<p>STOAIX AI resepsiyonist, hiçbir aramayı kaçırmamanızı sağlar.</p>
+<a class="cta-btn" href="/signup">Ücretsiz Demo İste</a>
+</div>
+<footer>© 2026 STOAIX · Özel klinikler için AI resepsiyonist</footer>
+<script src="../js/i18n.js"></script>
+</body></html>
