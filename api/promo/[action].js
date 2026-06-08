@@ -1,11 +1,10 @@
-import Stripe from 'stripe'
 import { createClient } from '@supabase/supabase-js'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-
-const CLICKUP_API_KEY = process.env.CLICKUP_API_KEY
-const CLICKUP_LIST_ID = '901416375076'
-const CLICKUP_ASSIGNEE_ID = 288750461
+// NOTE: This endpoint now only serves `validate`, which is used by the
+// checkout page ("Have a promo code?" field) to redeem existing promo
+// codes. The old discount-popup actions (generate / status / event)
+// were removed when that popup was retired. Do not break `validate` —
+// it is part of the live payment/checkout flow.
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
@@ -32,171 +31,12 @@ export default async function handler(req, res) {
   const { action } = req.query
 
   switch (action) {
-    case 'generate': return handleGenerate(req, res)
     case 'validate': return handleValidate(req, res)
-    case 'status':   return handleStatus(req, res)
-    case 'event':    return handleEvent(req, res)
     default:         return res.status(404).json({ error: 'Not found' })
   }
 }
 
-// ── generate ────────────────────────────────────────────────
-function generateCode(firstName) {
-  const name = (firstName || 'STOAIX')
-    .toUpperCase()
-    .replace(/[^A-Z]/g, '')
-    .substring(0, 8) || 'STOAIX'
-  const digits = String(Math.floor(1000 + Math.random() * 9000))
-  return name + digits
-}
-
-async function handleGenerate(req, res) {
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
-
-  const { firstName, lastName, phone, popupType, visitorId, recaptchaToken } = req.body
-
-  if (!firstName || !lastName || !phone || !popupType || !recaptchaToken) {
-    return res.status(400).json({ error: 'Missing required fields' })
-  }
-
-  if (!['timed', 'exit_intent'].includes(popupType)) {
-    return res.status(400).json({ error: 'Invalid popup type' })
-  }
-
-  // Verify reCAPTCHA v3
-  try {
-    const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
-    })
-    const recaptchaData = await recaptchaRes.json()
-
-    if (!recaptchaData.success || recaptchaData.score < 0.5) {
-      return res.status(403).json({ error: 'reCAPTCHA verification failed' })
-    }
-  } catch (err) {
-    console.error('reCAPTCHA error:', err)
-    return res.status(500).json({ error: 'reCAPTCHA verification error' })
-  }
-
-  try {
-    // Abuse prevention: return existing code for same visitorId
-    if (visitorId) {
-      const { data: existing } = await supabase
-        .from('promo_codes')
-        .select('code, expires_at')
-        .eq('visitor_id', visitorId)
-        .eq('used', false)
-        .gt('expires_at', new Date().toISOString())
-        .order('created_at', { ascending: false })
-        .limit(1)
-        .single()
-
-      if (existing) {
-        return res.status(200).json({
-          success: true,
-          code: existing.code,
-          expiresAt: existing.expires_at,
-        })
-      }
-    }
-
-    // IP rate limit: max 3 codes per IP per 24h
-    const ip = (req.headers['x-forwarded-for'] || req.headers['x-real-ip'] || '').split(',')[0].trim()
-    if (ip) {
-      const since = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
-      const { count } = await supabase
-        .from('promo_codes')
-        .select('id', { count: 'exact', head: true })
-        .eq('ip_address', ip)
-        .gte('created_at', since)
-
-      if (count >= 3) {
-        return res.status(429).json({ error: 'Too many requests. Please try again later.' })
-      }
-    }
-
-    // Expiry: timed = 60 min, exit_intent = 12 hours
-    const expiryMs = popupType === 'timed' ? 60 * 60 * 1000 : 12 * 60 * 60 * 1000
-    const expiresAt = new Date(Date.now() + expiryMs).toISOString()
-
-    // Generate unique code with retry (unique constraint protection)
-    let code, inserted = false
-    for (let attempt = 0; attempt < 5; attempt++) {
-      code = generateCode(firstName)
-      const { error } = await supabase
-        .from('promo_codes')
-        .insert({
-          code,
-          first_name: firstName,
-          last_name: lastName,
-          phone,
-          popup_type: popupType,
-          expires_at: expiresAt,
-          visitor_id: visitorId || null,
-          ip_address: ip || null,
-        })
-      if (!error) { inserted = true; break }
-      if (error.code !== '23505') throw error // 23505 = unique_violation
-    }
-
-    if (!inserted) {
-      return res.status(500).json({ error: 'Code generation failed. Please try again.' })
-    }
-
-    // Create Stripe promotion code (single-use)
-    const couponId = process.env.STRIPE_COUPON_10PCT_ID
-    if (couponId) {
-      try {
-        const promoCode = await stripe.promotionCodes.create({
-          coupon: couponId,
-          code,
-          max_redemptions: 1,
-          expires_at: Math.floor((Date.now() + expiryMs) / 1000),
-        })
-
-        // Save Stripe promo ID back
-        await supabase
-          .from('promo_codes')
-          .update({ stripe_promo_id: promoCode.id })
-          .eq('code', code)
-      } catch (stripeErr) {
-        console.error('Stripe promo creation error:', stripeErr)
-        // Non-fatal: code exists in DB, Stripe promo just failed
-      }
-    }
-
-    // Notify CEO via ClickUp task — fire-and-forget
-    if (CLICKUP_API_KEY) {
-      const now = new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' })
-      fetch('https://api.clickup.com/api/v2/list/' + CLICKUP_LIST_ID + '/task', {
-        method: 'POST',
-        headers: {
-          'Authorization': CLICKUP_API_KEY,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: `${firstName} ${lastName} — ${phone}`,
-          description: `Yeni website lead (promo popup)\n\nAd Soyad: ${firstName} ${lastName}\nTelefon: ${phone}\nPromo Kod: ${code}\nPopup: ${popupType === 'timed' ? 'Zamanlı (30sn)' : 'Exit Intent'}\nGeçerlilik: ${popupType === 'timed' ? '60 dakika' : '12 saat'}\nTarih: ${now}`,
-          assignees: [CLICKUP_ASSIGNEE_ID],
-          priority: 1,
-        }),
-      }).catch(err => console.error('ClickUp task creation error:', err))
-    }
-
-    return res.status(200).json({
-      success: true,
-      code,
-      expiresAt,
-    })
-  } catch (err) {
-    console.error('Promo generate error:', err)
-    return res.status(500).json({ error: err.message || 'Failed to generate promo code' })
-  }
-}
-
-// ── validate ────────────────────────────────────────────────
+// ── validate (checkout promo-code redemption) ───────────────
 async function handleValidate(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
@@ -232,55 +72,5 @@ async function handleValidate(req, res) {
   } catch (err) {
     console.error('Promo validate error:', err)
     return res.status(500).json({ valid: false, reason: 'server_error' })
-  }
-}
-
-// ── status (kill switch) ────────────────────────────────────
-async function handleStatus(req, res) {
-  if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' })
-
-  try {
-    const { data } = await supabase
-      .from('site_config')
-      .select('value')
-      .eq('key', 'promo_popup_enabled')
-      .single()
-
-    return res.status(200).json({ enabled: data?.value === true })
-  } catch (err) {
-    console.error('Promo status error:', err)
-    return res.status(200).json({ enabled: false })
-  }
-}
-
-// ── event (analytics) ───────────────────────────────────────
-const VALID_EVENTS = ['popup_shown', 'popup_dismissed', 'form_submitted', 'code_copied']
-const VALID_TYPES = ['timed', 'exit_intent']
-
-async function handleEvent(req, res) {
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
-
-  const { event, popupType, visitorId, code } = req.body
-
-  if (!event || !VALID_EVENTS.includes(event)) {
-    return res.status(400).json({ error: 'Invalid event' })
-  }
-
-  if (popupType && !VALID_TYPES.includes(popupType)) {
-    return res.status(400).json({ error: 'Invalid popup type' })
-  }
-
-  try {
-    await supabase.from('promo_events').insert({
-      event,
-      popup_type: popupType || null,
-      visitor_id: visitorId || null,
-      code: code || null,
-    })
-
-    return res.status(200).json({ ok: true })
-  } catch (err) {
-    console.error('Promo event error:', err)
-    return res.status(200).json({ ok: true })
   }
 }
