@@ -640,11 +640,11 @@
       pricingEl.remove();
     }
 
-    // ── Promo pop-up script (all marketing pages) ─────────
-    const promoScript = document.createElement('script');
-    promoScript.src = '/js/promo-popup.js';
-    promoScript.defer = true;
-    document.head.appendChild(promoScript);
+    // ── Lead-loss calculator pop-up (all marketing pages) ──
+    const popupScript = document.createElement('script');
+    popupScript.src = '/js/lead-calculator-popup.js';
+    popupScript.defer = true;
+    document.head.appendChild(popupScript);
   }
 
   // With defer, readyState is already 'interactive' — run immediately.
