@@ -89,7 +89,7 @@
         </div>
 
         <a href="${CALENDLY_URL}" target="_blank" rel="noopener" class="lc-cta" id="lcCta">
-          ${t('Recover this revenue — book a call', 'Bu geliri geri kazanın — görüşme planlayın')}
+          ${t('Book a meeting now', 'Hemen Toplantı Planlayın')}
         </a>
         <div class="lc-reassure">${t('Free 15-min call · See exactly how · No commitment', 'Ücretsiz 15 dakika · Nasıl olduğunu görün · Taahhüt yok')}</div>
       </div>`;
