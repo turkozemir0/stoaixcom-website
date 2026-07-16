@@ -556,9 +556,9 @@
             </tr>
             <tr>
               <td class="pt-feat">Dedicated Support</td>
-              <td class="pt-c"><span class="ptc-addon-tag">Add-on: $99/mo</span></td>
-              <td class="pt-c pt-biz"><span class="ptc-addon-tag">Add-on: $99/mo</span></td>
-              <td class="pt-c"><span class="ptc-addon-tag">Add-on: $99/mo</span></td>
+              <td class="pt-c"><span class="ptc-addon-tag">Included</span></td>
+              <td class="pt-c pt-biz"><span class="ptc-addon-tag">Included</span></td>
+              <td class="pt-c"><span class="ptc-addon-tag">Included</span></td>
               <td class="pt-c ptc-y"></td>
             </tr>
             <tr>

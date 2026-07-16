@@ -495,14 +495,15 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         </div>
 
         <div class="ds-upsell" id="dsUpsellCard" style="display:none">
-          <div class="ds-upsell-label" id="dsToggleWrap" role="switch" aria-checked="false" tabindex="0" style="cursor:pointer">
+          <div class="ds-upsell-label">
             <div>
-              <div class="ds-upsell-title">Dedicated Support <span class="ds-upsell-badge">Add-on</span></div>
+              <div class="ds-upsell-title">Dedicated Support <span class="ds-upsell-badge" style="background:rgba(22,163,74,0.12);color:#16a34a;">Included</span></div>
               <div class="ds-upsell-desc">Weekly 1:1 · 4 sessions/month · Priority support</div>
             </div>
             <div class="ds-upsell-action">
-              <span class="ds-upsell-price">+$99<span class="ds-upsell-period">/mo</span></span>
-              <span class="ds-toggle" id="dsToggle"></span>
+              <span class="ds-upsell-price" style="text-decoration:line-through;color:var(--text-2);font-weight:500;">$100<span class="ds-upsell-period">/mo</span></span>
+              <span style="display:inline-flex;align-items:center;gap:4px;font-size:0.85rem;font-weight:700;color:#16a34a;white-space:nowrap;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Included</span>
             </div>
           </div>
         </div>
@@ -521,18 +522,15 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         </div>
 
         <div class="ds-upsell" id="setupUpsellCard" style="display:none">
-          <div class="ds-upsell-label" id="setupToggleRow" role="switch" style="cursor:pointer">
+          <div class="ds-upsell-label">
             <div>
-              <div class="ds-upsell-title">Setup &amp; Onboarding <span class="ds-upsell-badge" id="setupBadge">Add-on</span></div>
+              <div class="ds-upsell-title">Setup &amp; Onboarding <span class="ds-upsell-badge" id="setupBadge" style="background:rgba(22,163,74,0.12);color:#16a34a;">Included</span></div>
               <div class="ds-upsell-desc">Guided 1:1 platform setup · One-time</div>
             </div>
             <div class="ds-upsell-action" id="setupAction">
-              <span class="ds-upsell-price" id="setupPrice">+$99<span class="ds-upsell-period"> one-time</span></span>
-              <span class="ds-toggle" id="setupToggle"></span>
-              <span id="setupIncludedBadge" style="display:none;font-size:0.82rem;font-weight:700;color:#16a34a;align-items:center;gap:5px;">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Included — FREE
-              </span>
+              <span class="ds-upsell-price" id="setupPrice" style="text-decoration:line-through;color:var(--text-2);font-weight:500;">$<span id="setupPriceNum">497</span><span class="ds-upsell-period"> one-time</span></span>
+              <span style="display:inline-flex;align-items:center;gap:4px;font-size:0.85rem;font-weight:700;color:#16a34a;white-space:nowrap;">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Included</span>
             </div>
           </div>
         </div>
@@ -669,11 +667,15 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     }
 
     // ─── Add-on state ─────────────────────────────────────────────────────────
+    // Setup & Onboarding + Dedicated Support artık plana DAHİL (ücret alınmaz);
+    // yalnızca algılanan değer (üstü çizili) gösterilir.
     let dsAddon = false
-    const DS_PRICE = 99
+    const DS_PRICE = 100                              // gösterim değeri (üstü çizili), tahsil edilmez
     let reactivationAddon = false
     let setupAddon = false
-    let setupIsFree = false
+    let setupIsFree = true                            // kurulum her zaman dahil
+    const SETUP_VALUES = { essential: 297, professional: 497, business: 997 }
+    const setupValue = SETUP_VALUES[plan] || 497      // plana göre gösterim değeri
 
     // Show upsell cards for non-enterprise plans
     if (!['enterprise'].includes(plan)) {
@@ -739,41 +741,17 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         promoRow.style.display = 'none'
       }
 
-      // Setup free logic (annual = free)
+      // Setup & Onboarding — plana DAHİL (ücret alınmaz); değeri plana göre gösterilir (üstü çizili)
       const isAnnual = billing === 'annual'
-      setupIsFree = isAnnual
-      const setupToggleEl      = document.getElementById('setupToggle')
-      const setupBadgeEl       = document.getElementById('setupBadge')
-      const setupPriceEl       = document.getElementById('setupPrice')
-      const setupIncludedBadge = document.getElementById('setupIncludedBadge')
-      const setupOrderPriceEl  = document.getElementById('setupOrderPrice')
-      const setupOrderLineEl   = document.getElementById('setupOrderLine')
+      setupIsFree = true
+      const setupPriceNumEl  = document.getElementById('setupPriceNum')
+      const setupOrderLineEl = document.getElementById('setupOrderLine')
+      if (setupPriceNumEl) setupPriceNumEl.textContent = String(setupValue)
+      if (setupOrderLineEl) setupOrderLineEl.style.display = 'none'
 
-      if (setupIsFree) {
-        if (setupPriceEl) setupPriceEl.style.display = 'none'
-        if (setupToggleEl) { setupToggleEl.style.display = 'none'; setupToggleEl.style.pointerEvents = 'none' }
-        if (setupIncludedBadge) setupIncludedBadge.style.display = 'flex'
-        if (setupBadgeEl) setupBadgeEl.textContent = t('Annual perk', 'Yıllık avantaj')
-        if (setupOrderPriceEl) setupOrderPriceEl.textContent = 'FREE'
-        if (setupOrderLineEl) setupOrderLineEl.style.display = 'flex'
-      } else {
-        if (setupPriceEl) setupPriceEl.style.display = ''
-        if (setupToggleEl) {
-          setupToggleEl.style.display = ''
-          setupToggleEl.style.pointerEvents = ''
-          if (!setupAddon) setupToggleEl.classList.remove('on')
-        }
-        if (setupIncludedBadge) setupIncludedBadge.style.display = 'none'
-        if (setupBadgeEl) setupBadgeEl.textContent = t('Add-on', 'Eklenti')
-        if (setupOrderPriceEl) setupOrderPriceEl.textContent = t('+$99 one-time', '+$99 tek seferlik')
-        if (setupOrderLineEl) setupOrderLineEl.style.display = setupAddon ? 'flex' : 'none'
-      }
-
-      // Due today
+      // Due today (Setup & Dedicated Support plana DAHİL — ücret eklenmez)
       let addOnsTotal = 0
-      if (isBusiness && dsAddon) addOnsTotal += DS_PRICE
       if (reactivationAddon) addOnsTotal += 29.99
-      if (setupAddon && !setupIsFree) addOnsTotal += 99
       if (isBusiness) {
         dueTodayAmount.textContent = `$${(price + addOnsTotal).toFixed(2)}`
       } else {
@@ -1066,9 +1044,9 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
             billing,
             paymentMethodId: paymentMethod.id,
             partnerRef,
-            addDedicatedSupport: dsAddon,
+            addDedicatedSupport: false,
             addReactivation: reactivationAddon,
-            addSetup: setupAddon && !setupIsFree,
+            addSetup: false,
             promoCode: appliedPromoCode || undefined,
             fbc: sessionStorage.getItem('fb_fbc') || '',
             fbp: sessionStorage.getItem('fb_fbp') || '',
