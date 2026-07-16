@@ -109,9 +109,9 @@
 
   // Billing totals lookup: plan → interval → label
   const billingTotals = {
-    essential:    { monthly: 'Billed monthly', quarterly: 'Billed $537 every 3 months', semi_annual: 'Billed $954 every 6 months', annual: 'Billed $1,668/yr' },
-    professional: { monthly: 'Billed monthly', quarterly: 'Billed $807 every 3 months', semi_annual: 'Billed $1,434 every 6 months', annual: 'Billed $2,508/yr' },
-    business:     { monthly: 'Billed monthly', quarterly: 'Billed $1,617 every 3 months', semi_annual: 'Billed $2,874 every 6 months', annual: 'Billed $5,028/yr' },
+    essential:    { monthly: 'Billed monthly', quarterly: 'Billed $1,341 every 3 months', semi_annual: 'Billed $2,382 every 6 months', annual: 'Billed $4,164/yr' },
+    professional: { monthly: 'Billed monthly', quarterly: 'Billed $2,031 every 3 months', semi_annual: 'Billed $3,642 every 6 months', annual: 'Billed $6,444/yr' },
+    business:     { monthly: 'Billed monthly', quarterly: 'Billed $2,691 every 3 months', semi_annual: 'Billed $4,782 every 6 months', annual: 'Billed $8,364/yr' },
   };
 
   function update() {
