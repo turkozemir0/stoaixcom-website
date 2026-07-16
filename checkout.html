@@ -473,8 +473,8 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         </div>
 
         <div class="order-line" id="dsOrderLine" style="display:none">
-          <span>Dedicated Support add-on</span>
-          <strong>+$99/mo</strong>
+          <span>Dedicated Support</span>
+          <strong>Included</strong>
         </div>
 
         <div class="order-line" id="reactivationOrderLine" style="display:none">
@@ -483,7 +483,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         </div>
         <div class="order-line" id="setupOrderLine" style="display:none">
           <span>Setup &amp; Onboarding</span>
-          <strong id="setupOrderPrice">+$99 one-time</strong>
+          <strong id="setupOrderPrice">Included</strong>
         </div>
 
         <div class="order-total">
@@ -1089,9 +1089,9 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
               plan,
               billing,
               partnerRef,
-              addDedicatedSupport: dsAddon,
+              addDedicatedSupport: false,
               addReactivation: reactivationAddon,
-              addSetup: setupAddon && !setupIsFree,
+              addSetup: false,
               promoCode: appliedPromoCode || undefined,
               fbc: sessionStorage.getItem('fb_fbc') || '',
               fbp: sessionStorage.getItem('fb_fbp') || '',
