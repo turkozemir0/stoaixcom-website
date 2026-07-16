@@ -323,7 +323,7 @@
           <div class="mplan-name">Essential</div>
           <div class="mplan-tagline">For solo &amp; small teams</div>
           <div class="mplan-price">
-            <span class="pt-currency">$</span><span class="price-num" data-monthly="199" data-quarterly="179" data-semi_annual="159" data-annual="139">139</span><span class="pt-period">/mo</span>
+            <span class="pt-currency">$</span><span class="price-num" data-monthly="497" data-quarterly="447" data-semi_annual="397" data-annual="347">347</span><span class="pt-period">/mo</span>
           </div>
           <div class="pt-billing-note" data-plan="essential"></div>
           <div class="pt-savings-badge" data-plan="essential"></div>
@@ -343,7 +343,7 @@
           <div class="mplan-name">Professional</div>
           <div class="mplan-tagline">For growing businesses</div>
           <div class="mplan-price">
-            <span class="pt-currency">$</span><span class="price-num" data-monthly="299" data-quarterly="269" data-semi_annual="239" data-annual="209">209</span><span class="pt-period">/mo</span>
+            <span class="pt-currency">$</span><span class="price-num" data-monthly="747" data-quarterly="677" data-semi_annual="607" data-annual="537">537</span><span class="pt-period">/mo</span>
           </div>
           <div class="pt-billing-note" data-plan="professional"></div>
           <div class="pt-savings-badge" data-plan="professional"></div>
@@ -363,7 +363,7 @@
           <div class="mplan-name">Business</div>
           <div class="mplan-tagline">For scaling operations</div>
           <div class="mplan-price">
-            <span class="pt-currency">$</span><span class="price-num" data-monthly="599" data-quarterly="539" data-semi_annual="479" data-annual="419">419</span><span class="pt-period">/mo</span>
+            <span class="pt-currency">$</span><span class="price-num" data-monthly="997" data-quarterly="897" data-semi_annual="797" data-annual="697">697</span><span class="pt-period">/mo</span>
           </div>
           <div class="pt-billing-note" data-plan="business"></div>
           <div class="pt-savings-badge" data-plan="business"></div>
@@ -408,7 +408,7 @@
                 <div class="pt-plan-name">Essential</div>
                 <div class="pt-plan-tagline">For solo &amp; small teams</div>
                 <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="199" data-quarterly="179" data-semi_annual="159" data-annual="139">139</span><span class="pt-period">/mo</span>
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="497" data-quarterly="447" data-semi_annual="397" data-annual="347">347</span><span class="pt-period">/mo</span>
                 </div>
                 <div class="pt-billing-note" data-plan="essential"></div>
                 <a href="signup.html?plan=essential&billing=annual" class="btn-outline pt-btn pt-signup-link">Start free trial</a>
@@ -420,7 +420,7 @@
                 <div class="pt-plan-name">Professional</div>
                 <div class="pt-plan-tagline">For growing businesses</div>
                 <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="299" data-quarterly="269" data-semi_annual="239" data-annual="209">209</span><span class="pt-period">/mo</span>
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="747" data-quarterly="677" data-semi_annual="607" data-annual="537">537</span><span class="pt-period">/mo</span>
                 </div>
                 <div class="pt-billing-note" data-plan="professional"></div>
                 <a href="signup.html?plan=professional&billing=annual" class="btn-primary pt-btn pt-signup-link">Start free trial</a>
@@ -432,7 +432,7 @@
                 <div class="pt-plan-name">Business</div>
                 <div class="pt-plan-tagline">For scaling operations</div>
                 <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="599" data-quarterly="539" data-semi_annual="479" data-annual="419">419</span><span class="pt-period">/mo</span>
+                  <span class="pt-currency">$</span><span class="price-num" data-monthly="997" data-quarterly="897" data-semi_annual="797" data-annual="697">697</span><span class="pt-period">/mo</span>
                 </div>
                 <div class="pt-billing-note" data-plan="business"></div>
                 <a href="signup.html?plan=business&billing=annual" class="btn-primary pt-btn pt-signup-link">Subscribe now</a>
