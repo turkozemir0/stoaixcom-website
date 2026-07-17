@@ -211,6 +211,10 @@
     }
     .plan-trial-note.has-trial { color: #16a34a; }
     .plan-trial-note.no-trial { color: var(--text-3); opacity: 0.7; }
+    /* Locked plans (sales-led) → whole card links to Calendly */
+    .plan-option.plan-locked .plan-option-label { opacity: 0.72; text-decoration: none; }
+    .plan-option.plan-locked .plan-option-label:hover { opacity: 1; border-color: var(--blue); }
+    .plan-option.plan-locked .plan-option-price { color: var(--blue); font-weight: 600; }
     /* Custom plan special style */
     .plan-option.custom-plan .plan-option-label {
       border-style: dashed;
@@ -537,48 +541,35 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         <div class="form-group">
           <div class="plan-selector-label">Choose your plan</div>
 
-          <!-- Billing tabs -->
-          <div class="billing-tabs-signup" id="billingTabs" style="margin-bottom: 10px;">
-            <button type="button" class="billing-tab-s" data-interval="monthly">Monthly</button>
-            <button type="button" class="billing-tab-s" data-interval="quarterly">3 Mo <span class="save-badge-s">-10%</span></button>
-            <button type="button" class="billing-tab-s" data-interval="semi_annual">6 Mo <span class="save-badge-s">-20%</span></button>
-            <button type="button" class="billing-tab-s active" data-interval="annual">Annual <span class="save-badge-s">-30%</span></button>
-          </div>
-
           <div class="plan-cards">
             <div class="plan-option">
-              <input type="radio" name="plan" id="plan_essential" value="essential" />
+              <input type="radio" name="plan" id="plan_essential" value="essential" checked />
               <label class="plan-option-label" for="plan_essential">
                 <span class="plan-option-name">Essential</span>
                 <span class="plan-option-price" id="price_essential">$497 / month</span>
                 <span class="plan-trial-note has-trial">3-day free trial</span>
               </label>
             </div>
-            <div class="plan-option">
-              <input type="radio" name="plan" id="plan_professional" value="professional" checked />
-              <label class="plan-option-label" for="plan_professional">
+            <div class="plan-option plan-locked">
+              <a class="plan-option-label" href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer">
                 <span class="plan-option-name">Professional</span>
-                <span class="plan-option-price" id="price_professional">$747 / month</span>
+                <span class="plan-option-price">Book a call</span>
                 <span class="plan-option-badge">Most popular</span>
-                <span class="plan-trial-note has-trial">3-day free trial</span>
-              </label>
+              </a>
             </div>
-            <div class="plan-option">
-              <input type="radio" name="plan" id="plan_business" value="business" />
-              <label class="plan-option-label" for="plan_business">
+            <div class="plan-option plan-locked">
+              <a class="plan-option-label" href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer">
                 <span class="plan-option-name">Business</span>
-                <span class="plan-option-price" id="price_business">$997 / month</span>
+                <span class="plan-option-price">Book a call</span>
                 <span class="plan-option-badge" style="color:#b45309;background:rgba(245,158,11,0.1);">Most valuable</span>
-                <span class="plan-trial-note no-trial">No free trial</span>
-              </label>
+              </a>
             </div>
-            <div class="plan-option custom-plan">
-              <input type="radio" name="plan" id="plan_custom" value="custom" />
-              <label class="plan-option-label" for="plan_custom">
+            <div class="plan-option custom-plan plan-locked">
+              <a class="plan-option-label" href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer">
                 <span class="plan-option-name">Custom</span>
-                <span class="plan-option-price">Let's talk</span>
+                <span class="plan-option-price">Book a call</span>
                 <span class="plan-option-custom-tag">Enterprise</span>
-              </label>
+              </a>
             </div>
           </div>
         </div>
@@ -768,8 +759,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     annual:      { essential: '$347', professional: '$537', business: '$697' },
   }
 
-  const billingTabs = document.getElementById('billingTabs')
-  let selectedInterval = 'annual'
+  let selectedInterval = 'monthly'
   const submitBtn = document.getElementById('submitBtn')
   const trialNote = document.getElementById('trialNote')
 
@@ -823,25 +813,10 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
   function updatePrices() {
     const suffix = billingSuffixes[selectedInterval]
-    ;['essential', 'professional', 'business'].forEach(p => {
-      const el = document.getElementById('price_' + p)
-      if (el) el.textContent = prices[selectedInterval][p] + ' ' + suffix
-    })
-    billingTabs.querySelectorAll('.billing-tab-s').forEach(t => {
-      t.classList.toggle('active', t.dataset.interval === selectedInterval)
-    })
+    const el = document.getElementById('price_essential')
+    if (el) el.textContent = prices[selectedInterval].essential + ' ' + suffix
   }
 
-  // Read billing from URL if present
-  const urlBilling = new URLSearchParams(window.location.search).get('billing')
-  if (urlBilling && prices[urlBilling]) selectedInterval = urlBilling
-
-  billingTabs.addEventListener('click', (e) => {
-    const tab = e.target.closest('.billing-tab-s')
-    if (!tab || tab.dataset.interval === selectedInterval) return
-    selectedInterval = tab.dataset.interval
-    updatePrices()
-  })
   updatePrices() // Init
 
   // Plan selection → update button + trial note
@@ -877,7 +852,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
   })
 
   // Set initial state based on pre-selected plan
-  const initialPlan = document.querySelector('input[name="plan"]:checked')?.value || 'professional'
+  const initialPlan = document.querySelector('input[name="plan"]:checked')?.value || 'essential'
   updatePlanUI(initialPlan)
 
   // ─── Form submit → reCAPTCHA → send OTP ──────────────────────────────────────

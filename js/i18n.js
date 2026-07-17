@@ -131,7 +131,7 @@ const TR_COMMON = {
   'Start free trial': 'Denemeyi Başlat',
   'Subscribe now': 'Hemen Abone Ol',
   'Contact us': 'İletişime Geç',
-  'Book a call': 'Görüşme Planla',
+  'Book a call': 'Toplantı Planla',
   'Features': 'Özellikler',
   'Healthcare': 'Sağlık',
   'Partners': 'Partnerler',
@@ -380,7 +380,7 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'No free trial': 'Ücretsiz deneme yok',
   /* --- Pricing note footer --- */
   'Voice AI overage: $0.15/min after plan limit · ': 'Sesli AI fazlası: Plan limitinden sonra $0,15/dk · ',
-  'Essential & Professional: 3-day free trial · ': 'Essential ve Professional: 3 günlük ücretsiz deneme · ',
+  'Essential: 3-day free trial': 'Essential: 3 günlük ücretsiz deneme',
   /* --- Old pricing strings kept for legacy compatibility --- */
   'Chat, CRM & automation to get started': 'Başlamak için chat, CRM ve otomasyon',
   'Add Voice AI to your stack': 'Sesli AI\'ı stack\'inize ekleyin',

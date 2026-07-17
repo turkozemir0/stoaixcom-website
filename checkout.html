@@ -570,8 +570,14 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     }
 
     // ─── Read URL params & sessionStorage ───────────────────────────────────────
-    const plan    = params.get('plan') || 'business'
-    let   billing = params.get('billing') || 'annual'
+    const plan    = params.get('plan') || 'essential'
+    let   billing = params.get('billing') || 'monthly'
+
+    // ─── Guard: only Essential monthly is self-serve; everything else → sales call ─
+    // (login/recovery flows are exempt — existing paying customers may recover any plan)
+    if (!fromLogin && (plan !== 'essential' || billing !== 'monthly')) {
+      window.location.href = 'https://calendly.com/ataulufer1/30min'
+    }
 
     // Language helper — mirrors i18n.js default (null → 'tr')
     const _lang = localStorage.getItem('stoaix-lang') || 'tr'

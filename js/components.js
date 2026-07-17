@@ -305,16 +305,6 @@
         <div class="section-badge">Pricing</div>
         <h2 class="section-headline centered">Simple, transparent pricing.</h2>
         <p class="section-sub centered">Start free. Scale when you&#39;re ready. No contracts, cancel anytime.</p>
-        <div class="billing-tabs" id="billingTabs">
-          <button class="billing-tab" data-interval="monthly">Monthly</button>
-          <button class="billing-tab" data-interval="quarterly">3 Months <span class="save-badge">Save 10%</span></button>
-          <button class="billing-tab" data-interval="semi_annual">6 Months <span class="save-badge">Save 20%</span></button>
-          <button class="billing-tab active" data-interval="annual">Annual <span class="save-badge">Save 30%</span></button>
-        </div>
-        <div class="annual-onboarding-pill" data-interval="annual">
-          <svg width="14" height="14" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="10" cy="10" r="10" fill="#16a34a" fill-opacity=".15"/><path d="M6 10l3 3 5-5" stroke="#16a34a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Annual plan includes 14 days free onboarding
-        </div>
       </div>
 
       <!-- Mobile plan cards (visible < 768px) -->
@@ -323,11 +313,9 @@
           <div class="mplan-name">Essential</div>
           <div class="mplan-tagline">For solo &amp; small teams</div>
           <div class="mplan-price">
-            <span class="pt-currency">$</span><span class="price-num" data-monthly="497" data-quarterly="447" data-semi_annual="397" data-annual="347">347</span><span class="pt-period">/mo</span>
+            <span class="pt-currency">$</span><span class="price-num">497</span><span class="pt-period">/mo</span>
           </div>
-          <div class="pt-billing-note" data-plan="essential"></div>
-          <div class="pt-savings-badge" data-plan="essential"></div>
-          <a href="signup.html?plan=essential&billing=annual" class="btn-outline mplan-btn pt-signup-link">Start free trial</a>
+          <a href="signup.html?plan=essential&billing=monthly" class="btn-outline mplan-btn">Start free trial</a>
           <div class="mplan-trial">3-day free trial</div>
           <ul class="mplan-features">
             <li>Full CRM</li>
@@ -342,13 +330,8 @@
           <div class="mplan-badge">Most Popular</div>
           <div class="mplan-name">Professional</div>
           <div class="mplan-tagline">For growing businesses</div>
-          <div class="mplan-price">
-            <span class="pt-currency">$</span><span class="price-num" data-monthly="747" data-quarterly="677" data-semi_annual="607" data-annual="537">537</span><span class="pt-period">/mo</span>
-          </div>
-          <div class="pt-billing-note" data-plan="professional"></div>
-          <div class="pt-savings-badge" data-plan="professional"></div>
-          <a href="signup.html?plan=professional&billing=annual" class="btn-primary mplan-btn pt-signup-link">Start free trial</a>
-          <div class="mplan-trial">3-day free trial</div>
+          <div class="mplan-price-custom">Custom Pricing</div>
+          <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-primary mplan-btn">Book a call</a>
           <ul class="mplan-features">
             <li>Everything in Essential, plus:</li>
             <li>Voice AI — 200 min/mo</li>
@@ -362,13 +345,8 @@
           <div class="mplan-badge mplan-badge-gold">Most Valuable</div>
           <div class="mplan-name">Business</div>
           <div class="mplan-tagline">For scaling operations</div>
-          <div class="mplan-price">
-            <span class="pt-currency">$</span><span class="price-num" data-monthly="997" data-quarterly="897" data-semi_annual="797" data-annual="697">697</span><span class="pt-period">/mo</span>
-          </div>
-          <div class="pt-billing-note" data-plan="business"></div>
-          <div class="pt-savings-badge" data-plan="business"></div>
-          <a href="signup.html?plan=business&billing=annual" class="btn-primary mplan-btn pt-signup-link">Subscribe now</a>
-          <div class="mplan-trial mplan-trial-muted">No free trial</div>
+          <div class="mplan-price-custom">Custom Pricing</div>
+          <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-primary mplan-btn">Book a call</a>
           <ul class="mplan-features">
             <li>Everything in Professional, plus:</li>
             <li>Voice AI — 500 min/mo + Outbound</li>
@@ -404,39 +382,29 @@
             <tr>
               <th class="pt-feat-col" aria-label="Feature"></th>
               <th class="pt-th-plan">
-                <div class="pt-savings-badge" data-plan="essential"></div>
                 <div class="pt-plan-name">Essential</div>
                 <div class="pt-plan-tagline">For solo &amp; small teams</div>
                 <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="497" data-quarterly="447" data-semi_annual="397" data-annual="347">347</span><span class="pt-period">/mo</span>
+                  <span class="pt-currency">$</span><span class="price-num">497</span><span class="pt-period">/mo</span>
                 </div>
-                <div class="pt-billing-note" data-plan="essential"></div>
-                <a href="signup.html?plan=essential&billing=annual" class="btn-outline pt-btn pt-signup-link">Start free trial</a>
+                <a href="signup.html?plan=essential&billing=monthly" class="btn-outline pt-btn">Start free trial</a>
                 <div class="pt-trial">3-day free trial</div>
               </th>
               <th class="pt-th-plan pt-th-biz">
-                <div class="pt-savings-badge" data-plan="professional"></div>
                 <div class="pt-pop-badge">Most Popular</div>
                 <div class="pt-plan-name">Professional</div>
                 <div class="pt-plan-tagline">For growing businesses</div>
-                <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="747" data-quarterly="677" data-semi_annual="607" data-annual="537">537</span><span class="pt-period">/mo</span>
-                </div>
-                <div class="pt-billing-note" data-plan="professional"></div>
-                <a href="signup.html?plan=professional&billing=annual" class="btn-primary pt-btn pt-signup-link">Start free trial</a>
-                <div class="pt-trial">3-day free trial</div>
+                <div class="pt-ent-price">Custom Pricing</div>
+                <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-primary pt-btn">Book a call</a>
+                <div class="pt-trial">&nbsp;</div>
               </th>
               <th class="pt-th-plan">
-                <div class="pt-savings-badge" data-plan="business"></div>
                 <div class="pt-pop-badge" style="background:rgba(245,158,11,0.15);color:#b45309;border-color:rgba(245,158,11,0.3);">Most Valuable</div>
                 <div class="pt-plan-name">Business</div>
                 <div class="pt-plan-tagline">For scaling operations</div>
-                <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num" data-monthly="997" data-quarterly="897" data-semi_annual="797" data-annual="697">697</span><span class="pt-period">/mo</span>
-                </div>
-                <div class="pt-billing-note" data-plan="business"></div>
-                <a href="signup.html?plan=business&billing=annual" class="btn-primary pt-btn pt-signup-link">Subscribe now</a>
-                <div class="pt-trial pt-trial-muted">No free trial</div>
+                <div class="pt-ent-price">Custom Pricing</div>
+                <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-primary pt-btn">Book a call</a>
+                <div class="pt-trial">&nbsp;</div>
               </th>
               <th class="pt-th-plan pt-th-ent">
                 <div class="pt-plan-name">Enterprise</div>
@@ -591,8 +559,7 @@
       <div class="pricing-note reveal">
         <span>* Professional: kurulum sırasında gelen veya giden seçilir · </span>
         <span>Voice AI overage: $0.19/min after plan limit · </span>
-        <span>Essential &amp; Professional: 3-day free trial · </span>
-        <span>Save up to 30% with annual billing</span>
+        <span>Essential: 3-day free trial</span>
       </div>
     </div>
   </section>`;
