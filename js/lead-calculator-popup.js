@@ -11,7 +11,7 @@
   const ENABLED = true;
 
   // ── Config ───────────────────────────────────────────────
-  const CALENDLY_URL = 'https://calendly.com/ataulufer1/30min';
+  const CALENDLY_URL = 'https://calendly.com/ataulufer1/20';
   const SHOW_DELAY_MS = 17000;        // cumulative time on site before timed trigger
   const DISMISS_COOLDOWN_DAYS = 14;   // don't re-show this long after a dismiss
   const BOOKED_COOLDOWN_DAYS = 30;    // don't re-show this long after CTA click

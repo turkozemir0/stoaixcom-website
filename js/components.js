@@ -331,7 +331,7 @@
           <div class="mplan-name">Professional</div>
           <div class="mplan-tagline">For growing businesses</div>
           <div class="mplan-price-custom">Custom Pricing</div>
-          <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-primary mplan-btn">Book a call</a>
+          <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-primary mplan-btn">Book a call</a>
           <ul class="mplan-features">
             <li>Everything in Essential, plus:</li>
             <li>Voice AI — 200 min/mo</li>
@@ -346,7 +346,7 @@
           <div class="mplan-name">Business</div>
           <div class="mplan-tagline">For scaling operations</div>
           <div class="mplan-price-custom">Custom Pricing</div>
-          <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-primary mplan-btn">Book a call</a>
+          <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-primary mplan-btn">Book a call</a>
           <ul class="mplan-features">
             <li>Everything in Professional, plus:</li>
             <li>Voice AI — 500 min/mo + Outbound</li>
@@ -360,7 +360,7 @@
           <div class="mplan-name">Enterprise</div>
           <div class="mplan-tagline">For large organisations</div>
           <div class="mplan-price-custom">Custom Pricing</div>
-          <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-outline mplan-btn">Book a call</a>
+          <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-outline mplan-btn">Book a call</a>
           <ul class="mplan-features">
             <li>Everything in Business, plus:</li>
             <li>Unlimited Voice AI</li>
@@ -395,7 +395,7 @@
                 <div class="pt-plan-name">Professional</div>
                 <div class="pt-plan-tagline">For growing businesses</div>
                 <div class="pt-ent-price">Custom Pricing</div>
-                <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-primary pt-btn">Book a call</a>
+                <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-primary pt-btn">Book a call</a>
                 <div class="pt-trial">&nbsp;</div>
               </th>
               <th class="pt-th-plan">
@@ -403,7 +403,7 @@
                 <div class="pt-plan-name">Business</div>
                 <div class="pt-plan-tagline">For scaling operations</div>
                 <div class="pt-ent-price">Custom Pricing</div>
-                <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-primary pt-btn">Book a call</a>
+                <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-primary pt-btn">Book a call</a>
                 <div class="pt-trial">&nbsp;</div>
               </th>
               <th class="pt-th-plan pt-th-ent">
@@ -411,7 +411,7 @@
                 <div class="pt-plan-tagline">For large organisations</div>
                 <div class="pt-ent-price">Custom Pricing</div>
                 <div class="pt-billing-note">Custom billing</div>
-                <a href="https://calendly.com/ataulufer1/30min" target="_blank" rel="noopener noreferrer" class="btn-outline pt-btn">Book a call</a>
+                <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-outline pt-btn">Book a call</a>
                 <div class="pt-trial">&nbsp;</div>
               </th>
             </tr>
