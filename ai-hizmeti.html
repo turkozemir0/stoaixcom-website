@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>STOAIX — Yapay Zeka Sesli Asistanınıza Sahip Olun</title>
+<meta name="description" content="Telefonunuza gelen her aramayı 7/24 karşılayan, kendi sesinizde özelleştirilebilen yapay zeka sesli asistan. 444, cep, 0850, 0212 ve uluslararası hatlara kurulum. Dakikalar içinde canlı." />
+<link rel="icon" type="image/png" href="/assets/images/logo.png" />
+<link rel="canonical" href="https://stoaix.com/ai-hizmeti" />
+
+<!-- OG -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="STOAIX — Yapay Zeka Sesli Asistanınıza Sahip Olun" />
+<meta property="og:description" content="Her aramayı 7/24 karşılayan sesli AI asistan. Ayarlarını siz belirleyin, dakikalar içinde sahip olun." />
+<meta property="og:image" content="https://stoaix.com/assets/og-image.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --bg:#05070f; --bg2:#0a1122; --card:#0e1730;
+    --accent:#38bdf8; --accent2:#7c5cff; --cyan:#22d3ee;
+    --green:#22c55e; --text:#eaf2ff; --muted:#8ea0c0; --line:rgba(120,160,255,.14);
+    --head:'Space Grotesk',-apple-system,'Segoe UI',sans-serif;
+    --body:'Inter',-apple-system,'Segoe UI',sans-serif;
+    --wrap:1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;overflow-x:hidden;}
+  body{font-family:var(--body);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  a{text-decoration:none;color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:var(--wrap);margin:0 auto;padding:0 24px;}
+  .grad{background:linear-gradient(100deg,var(--accent),var(--cyan) 45%,var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .neon{text-shadow:0 0 24px rgba(56,189,248,.45),0 0 60px rgba(124,92,255,.25);}
+  section{position:relative;}
+
+  /* bg fx */
+  .fx-grid{position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:linear-gradient(rgba(56,189,248,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,.05) 1px,transparent 1px);
+    background-size:52px 52px;-webkit-mask-image:radial-gradient(90% 60% at 50% 0%,#000,transparent 80%);mask-image:radial-gradient(90% 60% at 50% 0%,#000,transparent 80%);}
+  .fx-glow{position:fixed;width:620px;height:620px;border-radius:50%;filter:blur(90px);z-index:0;pointer-events:none;opacity:.5;}
+  .fx-glow.a{background:radial-gradient(circle,rgba(56,189,248,.5),transparent 65%);top:-160px;left:-120px;}
+  .fx-glow.b{background:radial-gradient(circle,rgba(124,92,255,.42),transparent 65%);top:280px;right:-160px;}
+  .content{position:relative;z-index:2;}
+
+  /* nav */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(5,7,15,.72);border-bottom:1px solid var(--line);}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:66px;}
+  .nav-logo img{height:26px;filter:brightness(0) invert(1);}
+  .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:999px;font-weight:600;font-size:.9rem;color:#04121c;
+    background:linear-gradient(90deg,var(--accent),var(--cyan));box-shadow:0 0 30px rgba(56,189,248,.4);transition:transform .15s,box-shadow .2s;}
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 0 44px rgba(56,189,248,.6);}
+
+  /* hero */
+  .hero{padding:70px 0 60px;}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:46px;align-items:center;}
+  .badge{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:999px;font-size:.82rem;font-weight:600;color:#bfe9ff;
+    background:rgba(56,189,248,.09);border:1px solid rgba(56,189,248,.28);margin-bottom:22px;}
+  .badge .dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:blink 1.6s infinite;}
+  @keyframes blink{50%{opacity:.35;}}
+  h1{font-family:var(--head);font-weight:700;font-size:3.5rem;line-height:1.06;letter-spacing:-1.5px;margin-bottom:20px;}
+  .rot{display:inline-block;min-height:1.1em;}
+  .hero p.sub{font-size:1.18rem;color:var(--muted);max-width:560px;margin-bottom:30px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .btn{display:inline-flex;align-items:center;gap:9px;padding:16px 30px;border-radius:14px;font-weight:700;font-size:1.02rem;transition:transform .15s,box-shadow .2s;font-family:var(--head);}
+  .btn-primary{color:#04121c;background:linear-gradient(90deg,var(--accent),var(--cyan));box-shadow:0 0 44px rgba(56,189,248,.5);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 60px rgba(56,189,248,.7);}
+  .btn-ghost{color:var(--text);border:1.5px solid var(--line);background:rgba(255,255,255,.02);}
+  .btn-ghost:hover{border-color:var(--accent);color:#bfe9ff;}
+  .hero-trust{margin-top:26px;font-size:.9rem;color:var(--muted);}
+  .hero-trust b{color:var(--cyan);}
+
+  /* story frame (motion) */
+  .story-wrap{display:flex;justify-content:center;}
+  .story-frame{position:relative;width:290px;aspect-ratio:9/16;border-radius:34px;overflow:hidden;border:2px solid rgba(56,189,248,.35);
+    box-shadow:0 0 70px rgba(56,189,248,.28),0 30px 80px rgba(0,0,0,.6);background:#05070f;}
+  .story-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .story-tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);z-index:3;font-size:.72rem;font-weight:700;letter-spacing:1px;
+    color:#04121c;background:linear-gradient(90deg,var(--accent),var(--cyan));padding:5px 14px;border-radius:999px;box-shadow:0 0 24px rgba(56,189,248,.5);}
+
+  /* number strip */
+  .numbers{padding:26px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(10,17,34,.5);}
+  .num-in{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;align-items:center;}
+  .num-in .lead{font-weight:600;color:var(--muted);margin-right:6px;}
+  .chip{padding:9px 16px;border-radius:999px;font-size:.9rem;font-weight:700;color:#cdeeff;background:rgba(56,189,248,.09);border:1px solid rgba(56,189,248,.3);}
+  .chip.ok::before{content:"✓ ";color:var(--green);}
+
+  /* section base */
+  .sec{padding:88px 0;}
+  .sec-head{text-align:center;max-width:720px;margin:0 auto 52px;}
+  .kicker{display:inline-block;font-family:var(--head);font-size:.82rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px;}
+  h2{font-family:var(--head);font-weight:700;font-size:2.5rem;line-height:1.12;letter-spacing:-1px;}
+  .sec-head p{color:var(--muted);font-size:1.1rem;margin-top:16px;}
+
+  /* voice test */
+  .voice-card{max-width:760px;margin:0 auto;background:linear-gradient(180deg,rgba(56,189,248,.08),rgba(124,92,255,.05));
+    border:1px solid rgba(56,189,248,.3);border-radius:26px;padding:44px 34px;text-align:center;position:relative;overflow:hidden;}
+  .voice-card::before{content:"";position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:340px;height:340px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.25),transparent 70%);pointer-events:none;}
+  .orb{width:110px;height:110px;border-radius:50%;margin:0 auto 24px;position:relative;
+    background:radial-gradient(circle at 40% 35%,var(--cyan),var(--accent2));box-shadow:0 0 60px rgba(56,189,248,.6);animation:orb 2.4s ease-in-out infinite;}
+  @keyframes orb{0%,100%{transform:scale(1);box-shadow:0 0 60px rgba(56,189,248,.5);}50%{transform:scale(1.06);box-shadow:0 0 90px rgba(56,189,248,.8);}}
+  .voice-card h3{font-family:var(--head);font-size:1.7rem;margin-bottom:10px;}
+  .voice-card p{color:var(--muted);margin-bottom:26px;}
+  /* ====== VOICE AGENT TEST WIDGET — buraya canlı sesli test embed'i gelecek ====== */
+  #voice-embed{min-height:70px;display:flex;align-items:center;justify-content:center;}
+  .placeholder-note{font-size:.8rem;color:var(--muted);opacity:.7;border:1px dashed var(--line);border-radius:12px;padding:14px;}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px 24px;position:relative;transition:border-color .2s,transform .2s;}
+  .step:hover{border-color:rgba(56,189,248,.5);transform:translateY(-4px);}
+  .step .n{font-family:var(--head);font-size:.85rem;font-weight:700;color:var(--cyan);letter-spacing:1px;}
+  .step .ic{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;margin:14px 0 16px;color:var(--accent);
+    background:rgba(56,189,248,.1);border:1px solid rgba(56,189,248,.25);}
+  .step h4{font-family:var(--head);font-size:1.2rem;margin-bottom:8px;}
+  .step p{color:var(--muted);font-size:.95rem;}
+
+  /* sectors */
+  .sectors{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+  .sector{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 14px;text-align:center;transition:border-color .2s,transform .2s;}
+  .sector:hover{border-color:rgba(124,92,255,.5);transform:translateY(-3px);}
+  .sector .em{font-size:1.7rem;margin-bottom:10px;}
+  .sector .nm{font-weight:600;font-size:.9rem;}
+  @media(max-width:900px){.sectors{grid-template-columns:repeat(2,1fr);}}
+
+  /* features */
+  .feats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .feat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;transition:border-color .2s;}
+  .feat:hover{border-color:rgba(56,189,248,.45);}
+  .feat .ic{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px;color:var(--cyan);background:rgba(34,211,238,.1);border:1px solid rgba(34,211,238,.25);font-size:1.3rem;}
+  .feat h4{font-family:var(--head);font-size:1.12rem;margin-bottom:8px;}
+  .feat p{color:var(--muted);font-size:.94rem;}
+
+  /* stats */
+  .stats{display:flex;flex-wrap:wrap;justify-content:center;gap:16px 48px;padding:40px 0;}
+  .stat{text-align:center;}
+  .stat .v{font-family:var(--head);font-size:2.4rem;font-weight:700;letter-spacing:-1px;}
+  .stat .l{color:var(--muted);font-size:.9rem;}
+
+  /* final cta */
+  .final{padding:96px 0;text-align:center;}
+  .final-card{max-width:860px;margin:0 auto;padding:60px 40px;border-radius:30px;position:relative;overflow:hidden;
+    background:linear-gradient(135deg,rgba(56,189,248,.12),rgba(124,92,255,.1));border:1px solid rgba(56,189,248,.3);}
+  .final-card::before{content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(56,189,248,.28),transparent 70%);pointer-events:none;}
+  .final h2{font-size:2.7rem;margin-bottom:16px;}
+  .final p{color:var(--muted);font-size:1.15rem;margin-bottom:30px;max-width:560px;margin-left:auto;margin-right:auto;}
+
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:40px 0;background:var(--bg2);}
+  .foot-in{display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;}
+  .foot-in img{height:22px;filter:brightness(0) invert(1);opacity:.85;}
+  .foot-links{display:flex;gap:20px;flex-wrap:wrap;}
+  .foot-links a{color:var(--muted);font-size:.9rem;}
+  .foot-links a:hover{color:var(--cyan);}
+  .foot-copy{color:var(--muted);font-size:.82rem;width:100%;text-align:center;margin-top:18px;opacity:.7;}
+
+  /* floating mini story */
+  .float-story{position:fixed;right:18px;bottom:18px;z-index:60;width:132px;aspect-ratio:9/16;border-radius:18px;overflow:hidden;
+    border:2px solid rgba(56,189,248,.45);box-shadow:0 0 40px rgba(56,189,248,.35),0 16px 40px rgba(0,0,0,.6);background:#05070f;transition:opacity .3s;}
+  .float-story iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
+  .float-story .close{position:absolute;top:5px;right:5px;z-index:3;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:13px;display:grid;place-items:center;cursor:pointer;border:1px solid rgba(255,255,255,.2);}
+  .float-story .fl-tag{position:absolute;bottom:0;left:0;right:0;z-index:2;font-size:.6rem;font-weight:700;text-align:center;padding:4px;color:#04121c;background:linear-gradient(90deg,var(--accent),var(--cyan));}
+  @media(max-width:640px){.float-story{width:104px;}}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease,ease),transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* responsive */
+  @media(max-width:920px){
+    .hero-grid{grid-template-columns:1fr;gap:40px;}
+    h1{font-size:2.6rem;}
+    .steps,.feats{grid-template-columns:1fr;}
+    .story-frame{width:250px;}
+    h2{font-size:2rem;}
+    .final h2{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+  <div class="fx-grid"></div>
+  <div class="fx-glow a"></div>
+  <div class="fx-glow b"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="wrap nav-in">
+      <a href="/" class="nav-logo"><img src="assets/logo-iconwithname.svg" alt="STOAIX" /></a>
+      <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" class="nav-cta">Ücretsiz Toplantı</a>
+    </div>
+  </nav>
+
+  <div class="content">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <div class="badge"><span class="dot"></span> 7/24 · İnsan gibi konuşan · Dakikalar içinde canlı</div>
+        <h1>Yapay Zeka<br /><span class="grad neon">Sesli Asistanınıza</span><br />Sahip Olun.</h1>
+        <p class="sub">Ayarları <b style="color:#fff">siz</b> belirleyin, kendi markanızın diliyle özelleştirin, dakikalar içinde sahip olun. Telefonunuza gelen her aramayı <b style="color:#fff">7/24</b> yapay zeka karşılasın — randevu alsın, bilgi versin, satışa çevirsin.</p>
+        <div class="cta-row">
+          <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" class="btn btn-primary">Ücretsiz Toplantı Ayarla →</a>
+          <a href="#test" class="btn btn-ghost">🎙️ Canlı Test Et</a>
+        </div>
+        <p class="hero-trust"><b>500+</b> işletme analizinden doğdu · Sağlıktan hukuka, emlaktan e-ticarete — <b>her sektöre</b>.</p>
+      </div>
+
+      <div class="story-wrap">
+        <div class="story-frame">
+          <span class="story-tag">CANLI KURULUM</span>
+          <iframe src="voice-setup-motion.html" title="Sesli AI kurulum animasyonu" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUMBER STRIP -->
+  <section class="numbers">
+    <div class="wrap num-in">
+      <span class="lead">Numaranız ne olursa olsun:</span>
+      <span class="chip ok">444'lü Hat</span>
+      <span class="chip ok">05XX Cep</span>
+      <span class="chip ok">0850</span>
+      <span class="chip ok">0212 Sabit</span>
+      <span class="chip ok">🌍 Uluslararası</span>
+    </div>
+  </section>
+
+  <!-- VOICE TEST -->
+  <section class="sec" id="test">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">Canlı Deneyim</span>
+        <h2>Duymak, inanmaktır.<br /><span class="grad">Asistanı şimdi test edin.</span></h2>
+        <p>Yazmayın, konuşun. Yapay zeka sesli asistanımızla gerçek bir görüşme yapın — tonunu, akıcılığını, doğallığını kendiniz duyun.</p>
+      </div>
+      <div class="voice-card reveal">
+        <div class="orb"></div>
+        <h3>🎙️ AI Asistanı Ara</h3>
+        <p>Aşağıdaki butona basın, asistanımız sizi karşılasın.</p>
+        <!-- ═══ VOICE AGENT TEST WIDGET BURAYA ═══ -->
+        <div id="voice-embed">
+          <div class="placeholder-note">🔧 Sesli test widget'ı buraya yerleştirilecek (LiveKit / arama bağlantısı).</div>
+        </div>
+        <!-- ═══════════════════════════════════════ -->
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="sec" style="background:rgba(10,17,34,.4);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">3 Adım</span>
+        <h2>Kurulum bu kadar <span class="grad">basit.</span></h2>
+        <p>Kod yok, teknik ekip yok, uzun süreç yok. Kendiniz kurun, dakikalar içinde canlıya alın.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="n">01</div>
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+          <h4>Ayarlarını belirleyin</h4>
+          <p>Asistanınızın adını, dilini, sesini ve görevini (karşılama, randevu, satış) seçin. Markanızın diliyle konuşsun.</p>
+        </div>
+        <div class="step reveal">
+          <div class="n">02</div>
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <h4>Numaranızı bağlayın</h4>
+          <p>444'lü, cep, 0850, 0212 ya da uluslararası — hattınız hangisiyse bağlarız. Özel altyapımız hepsini destekler.</p>
+        </div>
+        <div class="step reveal">
+          <div class="n">03</div>
+          <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <h4>AI karşılasın</h4>
+          <p>Asistanınız 7/24 devrede. Her aramayı insan gibi karşılar, hiçbir müşteriyi kaçırmaz, sizi meşgul etmez.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTORS -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">Her Sektöre</span>
+        <h2>Yapay zeka, <span class="grad">sizin işinizi</span> konuşur.</h2>
+        <p>Sağlıkta doğdu, her sektöre uyarlandı. Asistan sizin hizmetlerinizi, fiyatlarınızı ve süreçlerinizi öğrenir — ekibinizin bir üyesi gibi konuşur.</p>
+      </div>
+      <div class="sectors reveal">
+        <div class="sector"><div class="em">🏥</div><div class="nm">Sağlık & Klinik</div></div>
+        <div class="sector"><div class="em">⚖️</div><div class="nm">Hukuk Büroları</div></div>
+        <div class="sector"><div class="em">🏢</div><div class="nm">Emlak & Gayrimenkul</div></div>
+        <div class="sector"><div class="em">🎓</div><div class="nm">Eğitim & Kurs</div></div>
+        <div class="sector"><div class="em">🛒</div><div class="nm">E-ticaret</div></div>
+        <div class="sector"><div class="em">🍽️</div><div class="nm">Restoran & Kafe</div></div>
+        <div class="sector"><div class="em">🚗</div><div class="nm">Otomotiv & Galeri</div></div>
+        <div class="sector"><div class="em">✈️</div><div class="nm">Turizm & Otel</div></div>
+        <div class="sector"><div class="em">📞</div><div class="nm">Çağrı Merkezi</div></div>
+        <div class="sector"><div class="em">💼</div><div class="nm">KOBİ & Hizmet</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="sec" style="background:rgba(10,17,34,.4);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="kicker">Neden STOAIX</span>
+        <h2>İnsan gibi konuşur, <span class="grad">makine gibi çalışır.</span></h2>
+      </div>
+      <div class="feats">
+        <div class="feat reveal"><div class="ic">🎙️</div><h4>İnsan gibi doğal ses</h4><p>Robotik değil. Doğal tonlama, akıcı konuşma, kesintileri anlayan gerçek bir sohbet deneyimi.</p></div>
+        <div class="feat reveal"><div class="ic">🕐</div><h4>7/24 hiç kaçırmaz</h4><p>Gece, hafta sonu, yoğun saat — fark etmez. Her arama karşılanır, hiçbir fırsat kaçmaz.</p></div>
+        <div class="feat reveal"><div class="ic">🌍</div><h4>15+ dil, otomatik</h4><p>Arayan hangi dilde konuşursa asistan o dile geçer. Uluslararası müşteriler için ideal.</p></div>
+        <div class="feat reveal"><div class="ic">📞</div><h4>Her numaraya kurulum</h4><p>444, cep (05XX), 0850, 0212 ve uluslararası hatlar. Özel köprü altyapımızla hepsi mümkün.</p></div>
+        <div class="feat reveal"><div class="ic">📅</div><h4>Randevu & CRM entegre</h4><p>Takvimize randevu yazar, müşteri bilgisini CRM'e işler, ekibinize sıcak fırsatları devreder.</p></div>
+        <div class="feat reveal"><div class="ic">⚡</div><h4>Dakikalar içinde canlı</h4><p>Kod yok, kurulum ücreti yok, teknik ekip yok. Kendiniz ayarlayın, hemen yayına alın.</p></div>
+      </div>
+      <div class="stats reveal">
+        <div class="stat"><div class="v grad">7/24</div><div class="l">Kesintisiz karşılama</div></div>
+        <div class="stat"><div class="v grad">15+</div><div class="l">Dil, otomatik</div></div>
+        <div class="stat"><div class="v grad">&lt;5 dk</div><div class="l">Canlıya alma</div></div>
+        <div class="stat"><div class="v grad">500+</div><div class="l">İşletme analizi</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final">
+    <div class="wrap">
+      <div class="final-card reveal">
+        <span class="kicker">Sıradaki Adım</span>
+        <h2>Asistanınızı birlikte <span class="grad neon">kuralım.</span></h2>
+        <p>Size özel kurulumu, hangi numaraya nasıl bağlanacağını ve asistanın işinizi nasıl konuşacağını 30 dakikalık ücretsiz bir görüşmede anlatalım.</p>
+        <div class="cta-row" style="justify-content:center;">
+          <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" class="btn btn-primary">Ücretsiz Toplantı Ayarla →</a>
+          <a href="#test" class="btn btn-ghost">🎙️ Önce Test Et</a>
+        </div>
+        <p style="margin-top:22px;font-size:.85rem;opacity:.7;">Taahhüt yok · Kurulum ücreti yok · Dakikalar içinde canlı</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap foot-in">
+      <a href="/"><img src="assets/logo-iconwithname.svg" alt="STOAIX" /></a>
+      <div class="foot-links">
+        <a href="/">Ana Sayfa</a>
+        <a href="healthcare-clinics.html">Sektörler</a>
+        <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Toplantı</a>
+        <a href="mailto:hello@stoaix.com">İletişim</a>
+      </div>
+      <div class="foot-copy">© 2026 STOAIX Ltd. — Her aramayı yanıtlayan yapay zeka.</div>
+    </div>
+  </footer>
+
+  </div><!-- /content -->
+
+  <!-- FLOATING MINI STORY -->
+  <div class="float-story" id="floatStory">
+    <div class="close" onclick="document.getElementById('floatStory').style.display='none'">×</div>
+    <iframe src="voice-setup-motion.html" title="Kurulum" loading="lazy"></iframe>
+    <div class="fl-tag">Nasıl kurulur?</div>
+  </div>
+
+<script>
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // rotating word in H1 (opsiyonel vurgu — sub-headline dinamik)
+  // floating story: hero görünürken gizle, aşağı inince göster
+  const hero=document.querySelector('.hero');const fs=document.getElementById('floatStory');
+  const hio=new IntersectionObserver((es)=>{es.forEach(e=>{fs.style.opacity=e.isIntersecting?'0':'1';fs.style.pointerEvents=e.isIntersecting?'none':'auto';})},{threshold:.3});
+  if(hero)hio.observe(hero);
+</script>
+</body>
+</html>
