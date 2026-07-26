@@ -28,6 +28,7 @@
   --font: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
 
   --nav-h:     68px;
+  --ticker-h:  0px;    /* varsayılan 0; yalnız <body class="has-ticker"> (index) 40px yapar */
   --container: 1160px;
 
   --r-sm:   8px;
@@ -214,9 +215,147 @@ ul { list-style: none; }
 /* ═══════════════════════════════════════════════════════════
    NAVBAR
    ═══════════════════════════════════════════════════════════ */
-.navbar {
+/* ═══════════════════════════════════════════════════════════
+   LIVE UPDATES TICKER  (platform güncellemeleri — sağdan sola)
+   ═══════════════════════════════════════════════════════════ */
+.tk-bar {
   position: fixed;
   top: 0; left: 0; right: 0;
+  z-index: 1000;                 /* navbar (900) üstünde */
+  height: var(--ticker-h);
+  display: flex;
+  align-items: stretch;
+  background: linear-gradient(90deg, #0a0f1e 0%, #12245c 48%, #0a0f1e 100%);
+  border-bottom: 1px solid rgba(120,160,255,0.18);
+  box-shadow: 0 2px 18px rgba(12,20,55,0.28);
+  color: #eaf1ff;
+  font-size: 0.82rem;
+  overflow: hidden;
+}
+
+/* Sol — sabit "canlı yayın" etiketi */
+.tk-live {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  padding: 0 15px;
+  background: rgba(255,255,255,0.05);
+  border-right: 1px solid rgba(120,160,255,0.20);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: #ffffff;
+  white-space: nowrap;
+}
+.tk-live-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 0 0 rgba(34,197,94,0.65);
+  animation: tk-pulse 1.8s ease-out infinite;
+}
+@keyframes tk-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+  70%  { box-shadow: 0 0 0 7px rgba(34,197,94,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+}
+
+/* Orta — kayan alan */
+.tk-viewport {
+  position: relative;
+  flex: 1 1 auto;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 36px, #000 calc(100% - 36px), transparent);
+          mask-image: linear-gradient(to right, transparent, #000 36px, #000 calc(100% - 36px), transparent);
+}
+.tk-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 100%;
+  animation: tk-scroll 46s linear infinite;
+  will-change: transform;
+}
+.tk-track:hover { animation-play-state: paused; }
+.tk-group { display: flex; align-items: center; }
+@keyframes tk-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.tk-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 0 4px;
+  white-space: nowrap;
+  text-decoration: none;
+  color: #d3e0fb;
+  transition: color 0.2s var(--ease);
+}
+.tk-item:hover { color: #ffffff; }
+.tk-badge {
+  flex-shrink: 0;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--r-full);
+  white-space: nowrap;
+}
+.tk-badge--new  { background: rgba(59,130,246,0.20); color: #93c5fd; border: 1px solid rgba(59,130,246,0.40); }
+.tk-badge--live { background: rgba(34,197,94,0.18);  color: #86efac; border: 1px solid rgba(34,197,94,0.40); }
+.tk-badge--ship { background: rgba(168,85,247,0.18); color: #d8b4fe; border: 1px solid rgba(168,85,247,0.42); }
+.tk-msg { font-weight: 500; }
+.tk-sep {
+  color: rgba(160,190,255,0.32);
+  padding: 0 15px;
+  font-size: 0.55rem;
+}
+
+/* Sağ — kapat */
+.tk-close {
+  flex-shrink: 0;
+  width: var(--ticker-h);
+  align-self: stretch;
+  background: transparent;
+  border: none;
+  border-left: 1px solid rgba(120,160,255,0.18);
+  color: rgba(214,226,255,0.6);
+  font-size: 1.15rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+.tk-close:hover { color: #ffffff; background: rgba(255,255,255,0.07); }
+
+/* Ticker yüksekliği YALNIZ has-ticker sayfasında (index) devreye girer.
+   Diğer sayfalarda --ticker-h global 0 kalır → navbar/hero etkilenmez.
+   :not(.tk-closed) sayesinde kapatınca da her şey otomatik toparlanır. */
+body.has-ticker:not(.tk-closed) { --ticker-h: 40px; }
+body.tk-closed .tk-bar { display: none; }
+
+@media (max-width: 768px) {
+  body.has-ticker:not(.tk-closed) { --ticker-h: 36px; }
+  .tk-bar { font-size: 0.76rem; }
+  .tk-live-label { display: none; }   /* mobilde yalnız canlı nokta */
+  .tk-live { padding: 0 12px; }
+  .tk-badge { font-size: 0.56rem; padding: 2px 7px; }
+  .tk-sep { padding: 0 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tk-track { animation: none; }
+  .tk-live-dot { animation: none; }
+  .tk-viewport { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+}
+
+.navbar {
+  position: fixed;
+  top: var(--ticker-h); left: 0; right: 0;
   z-index: 900;
   height: var(--nav-h);
   background: rgba(255,255,255,0.97);
@@ -398,7 +537,7 @@ ul { list-style: none; }
 .mobile-menu {
   display: none;
   position: fixed;
-  top: var(--nav-h);
+  top: calc(var(--nav-h) + var(--ticker-h));
   left: 0; right: 0;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
@@ -441,7 +580,7 @@ ul { list-style: none; }
   min-height: 100dvh;
   display: flex;
   align-items: center;
-  padding-top: var(--nav-h);
+  padding-top: calc(var(--nav-h) + var(--ticker-h));
   overflow: hidden;
   /* Ambient colour orbs as the base */
   background:

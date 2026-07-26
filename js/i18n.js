@@ -530,6 +530,23 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'Tell us about your business': 'İşletmenizi tanıtın',
   'Configure your AI agent': 'AI ajanınızı yapılandırın',
   'Go live': 'Yayına alın',
+  /* --- Live updates ticker (üst şerit) --- */
+  'STOAIX Live': 'STOAIX Canlı',
+  'New module': 'Yeni modül',
+  'New feature': 'Yeni özellik',
+  'Now live': 'Yayında',
+  'Just shipped': 'Yeni eklendi',
+  'Your social media content is now created, scheduled & published by STOAIX': 'Sosyal medya içerikleriniz artık STOAIX tarafından üretiliyor, planlanıyor ve yayınlanıyor',
+  'Voice AI now speaks 15+ languages with automatic native voice switching': 'Sesli AI artık 15+ dilde konuşuyor — otomatik yerel ses geçişiyle',
+  'New voice engine delivers natural, near real-time conversations': 'Yeni ses motoru doğal ve gerçek zamana yakın konuşmalar sunuyor',
+  'Online booking now adds a Google Meet link and emails the invite automatically': 'Online randevu artık otomatik Google Meet linki ekliyor ve daveti e-postayla gönderiyor',
+  'New leads flow into your sales pipeline automatically — no manual work': 'Yeni lead\'ler satış pipeline\'ınıza otomatik düşüyor — manuel iş yok',
+  'Automated SEO engine gets your clinic found in Google and AI search': 'Otomatik SEO motoru kliniğinizi Google\'da ve yapay zeka aramalarında bulunur kılıyor',
+  'Connect multiple WhatsApp numbers to a single AI brain': 'Tek bir yapay zekâya birden fazla WhatsApp numarası bağlayın',
+  'Reactivation engine re-engages your old leads and books them again': 'Reaktivasyon motoru eski lead\'lerinizi yeniden devreye alıp tekrar randevuya çeviriyor',
+  'Voice AI connects to 444, mobile, 0850, landline and international numbers': '444, cep, 0850, 0212 ve uluslararası numaralara Sesli Yapay Zeka Asistanı bağlanıyor',
+  'AI support assistant answers every question using your own knowledge base': 'Yapay Zeka Destek Asistanı tüm soruları sizin bilgilerinizle yanıtlıyor',
+  'STOAIX updates every week — your platform stays live': 'STOAIX her hafta güncelleniyor — platformunuz sürekli canlı',
 });
 
 /* ─── Partners page ──────────────────────────────────────── */
