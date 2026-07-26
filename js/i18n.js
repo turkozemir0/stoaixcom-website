@@ -135,7 +135,7 @@ const TR_COMMON = {
   'Features': 'Özellikler',
   'Healthcare': 'Sağlık',
   'Partners': 'Partnerler',
-  'AI receptionist for any business. Answer every call, handle every message, convert every lead.': 'Her işletme için AI resepsiyonist. Her aramayı yanıtla, her mesajı yönet, her lead\'i dönüştür.',
+  'AI receptionist for healthcare clinics. Answer every call, handle every message, convert every lead.': 'Sağlık klinikleri için AI resepsiyonist. Her aramayı yanıtlar, her mesajı karşılar, her fırsatı hastaya dönüştürür.',
   'WhatsApp Chatbot': 'WhatsApp Chatbot',
   'Web Chat Widget': 'Web Chat Widget',
   'Outbound AI': 'Outbound AI',
@@ -157,7 +157,7 @@ const TR_COMMON = {
   'Cookie Policy': 'Çerez Politikası',
   'GDPR': 'KVKK',
   '© 2026 STOAIX Ltd. — London, UK': '© 2026 STOAIX Ltd. — Londra, UK',
-  'Made for businesses that refuse to miss a lead.': 'Lead kaçırmayan işletmeler için tasarlandı.',
+  'Made for clinics that refuse to miss a patient.': 'Tek bir hastayı bile kaçırmak istemeyen klinikler için.',
   'Monthly': 'Aylık',
   '3 Months': '3 Ay',
   '6 Months': '6 Ay',
@@ -547,6 +547,10 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'Voice AI connects to 444, mobile, 0850, landline and international numbers': '444, cep, 0850, 0212 ve uluslararası numaralara Sesli Yapay Zeka Asistanı bağlanıyor',
   'AI support assistant answers every question using your own knowledge base': 'Yapay Zeka Destek Asistanı tüm soruları sizin bilgilerinizle yanıtlıyor',
   'STOAIX updates every week — your platform stays live': 'STOAIX her hafta güncelleniyor — platformunuz sürekli canlı',
+  /* --- v2 tasarım yenileme (sağlık odağı metin değişiklikleri) --- */
+  'No code. No meetings.': 'Kod yok. Toplantı yok.',
+  'Tell us about your clinic': 'Kliniğinizi tanıtın',
+  'Your patients reach you however they want. STOAIX handles all of it — from the same dashboard, with the same AI brain.': 'Hastalarınız size istedikleri kanaldan ulaşır. STOAIX hepsini tek panelden, aynı AI beyniyle karşılar.',
 });
 
 /* ─── Partners page ──────────────────────────────────────── */
