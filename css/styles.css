@@ -347,11 +347,9 @@ body.tk-closed .tk-bar { display: none; }
   .tk-sep { padding: 0 11px; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .tk-track { animation: none; }
-  .tk-live-dot { animation: none; }
-  .tk-viewport { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
-}
+/* Not: ticker akışı bilinçli olarak prefers-reduced-motion'da da sürer
+   (dekoratif "canlı" şerit — kullanıcı sürekli akış istiyor). Yatay scrollbar
+   çıkmaması için .tk-viewport HER ZAMAN overflow:hidden kalır, overflow-x:auto YOK. */
 
 .navbar {
   position: fixed;
