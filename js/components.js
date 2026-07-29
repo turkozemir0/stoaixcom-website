@@ -115,7 +115,7 @@
 
       <div class="nav-actions">
         <a href="https://platform.stoaix.com/login" class="nav-login" target="_blank" rel="noopener noreferrer">Log in</a>
-        <a href="/signup.html" class="btn-primary btn-sm">Start free trial</a>
+        <a href="https://calendly.com/ataulufer1/20" class="btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Book a call</a>
       </div>
 
       <button class="nav-hamburger" id="hamburger" aria-label="Menu">
@@ -133,7 +133,7 @@
     <a href="/partners.html">Partner Program</a>
     <a href="/media">Media</a>
     <a href="https://platform.stoaix.com/login" class="nav-login" target="_blank" rel="noopener noreferrer">Log in</a>
-    <a href="/signup.html" class="btn-primary">Start free trial</a>
+    <a href="https://calendly.com/ataulufer1/20" class="btn-primary" target="_blank" rel="noopener noreferrer">Book a call</a>
   </div>`;
 
   const MARQUEE_HTML = `
