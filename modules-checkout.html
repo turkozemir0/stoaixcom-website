@@ -107,6 +107,17 @@
             <label class="form-label" for="fCompany">Clinic / company name</label>
             <input class="form-input" type="text" id="fCompany" autocomplete="organization" placeholder="Bright Smile Clinic" />
           </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+            <div class="form-group">
+              <label class="form-label" for="fPassword">Password</label>
+              <input class="form-input" type="password" id="fPassword" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters" />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="fPassword2">Confirm password</label>
+              <input class="form-input" type="password" id="fPassword2" autocomplete="new-password" required minlength="8" placeholder="Re-enter password" />
+            </div>
+          </div>
+          <div class="form-error" id="passwordError"></div>
 
           <div class="form-group">
             <label class="form-label">Card number</label>
@@ -228,8 +239,12 @@
       const firstName = document.getElementById('fFirst').value.trim()
       const lastName = document.getElementById('fLast').value.trim()
       const company = document.getElementById('fCompany').value.trim()
+      const password = document.getElementById('fPassword').value
+      const password2 = document.getElementById('fPassword2').value
 
       if (!email || !firstName) { showErr('Please fill in your email and first name.'); return }
+      if (password.length < 8) { showErr('Password must be at least 8 characters.'); return }
+      if (password !== password2) { showErr('Passwords do not match.'); return }
 
       try {
         const { paymentMethod, error: pmError } = await stripe.createPaymentMethod({
@@ -240,7 +255,7 @@
         const res = await fetch('/api/stripe/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, firstName, lastName, company, paymentMethodId: paymentMethod.id, product_keys: validKeys, fbc: getCookie('_fbc'), fbp: getCookie('_fbp') }),
+          body: JSON.stringify({ email, firstName, lastName, company, password, paymentMethodId: paymentMethod.id, product_keys: validKeys, fbc: getCookie('_fbc'), fbp: getCookie('_fbp') }),
         })
         const data = await res.json()
         if (!res.ok || !data.success) { showErr(data.error || 'Something went wrong. Please try again.'); return }
