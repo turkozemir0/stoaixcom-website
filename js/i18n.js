@@ -1595,8 +1595,38 @@ const TR_DEMO = Object.assign({}, TR_COMMON, {
     '/mo': '/ay',
   });
 
+  const TR_MODULES_CHECKOUT = Object.assign({}, TR_COMMON, {
+    'Secure checkout · SSL encrypted': 'Güvenli ödeme · SSL şifreli',
+    'Your details & payment': 'Bilgileriniz ve ödeme',
+    'Monthly subscription — billed today, then every month. Cancel anytime.': 'Aylık abonelik — bugün, sonra her ay tahsil edilir. İstediğiniz zaman iptal edin.',
+    'Email': 'E-posta',
+    'First name': 'Ad',
+    'Last name': 'Soyad',
+    'Clinic / company name': 'Klinik / şirket adı',
+    'Card number': 'Kart numarası',
+    'Expiry date': 'Son kullanma tarihi',
+    'Subscribe': 'Abone Ol',
+    'By subscribing you agree to our': 'Abone olarak şunları kabul edersiniz —',
+    'Terms of Service': 'Hizmet Şartları',
+    'and': 've',
+    'Privacy Policy': 'Gizlilik Politikası',
+    'Monthly subscription, auto-renews. Cancel anytime.': 'Aylık abonelik, otomatik yenilenir. İstediğiniz zaman iptal.',
+    'Order summary': 'Sipariş özeti',
+    'Due today': 'Bugün ödenecek',
+    'Instant access after payment': 'Ödemeden hemen sonra erişim',
+    'Monthly billing · cancel anytime': 'Aylık faturalama · istediğiniz zaman iptal',
+    'Works on any clinic account': 'Her klinik hesabında çalışır',
+    '← Back to modules': '← Modüllere dön',
+    'Subscription active!': 'Abonelik aktif!',
+    'Taking you to your dashboard…': 'Panelinize yönlendiriliyorsunuz…',
+    'AI Smile Design': 'AI Gülüş Tasarımı',
+    'Social Media AI': 'Sosyal Medya AI',
+    'Clinic Bundle': 'Klinik Paketi',
+  });
+
   const DICT_MAP = {
     '/modules': TR_MODULES,
+    '/modules-checkout': TR_MODULES_CHECKOUT,
     '/': TR_INDEX,
     '/index': TR_INDEX,
     '/partners': TR_PARTNERS,
