@@ -1561,7 +1561,42 @@ const TR_DEMO = Object.assign({}, TR_COMMON, {
 (function initI18n() {
   const path = getPath();
 
+  const TR_MODULES = Object.assign({}, TR_COMMON, {
+    'Add-on Modules': 'Ek Modüller',
+    'AI tools that grow your clinic — one at a time.': 'Kliniğinizi büyüten AI araçları — birer birer ekleyin.',
+    'Buy just the tool you need today. Add more whenever you\'re ready. No long-term commitment — monthly subscription, cancel anytime.': 'Bugün sadece ihtiyacınız olan aracı alın. Hazır olduğunuzda yenilerini ekleyin. Uzun vadeli taahhüt yok — aylık abonelik, istediğiniz zaman iptal edin.',
+    'AI Smile Design': 'AI Gülüş Tasarımı',
+    'Upload a patient photo, get an AI before/after smile preview, share on WhatsApp in seconds.': 'Hasta fotoğrafını yükleyin, AI ile öncesi/sonrası gülüş önizlemesi alın, saniyeler içinde WhatsApp\'tan paylaşın.',
+    'Monthly subscription · no free trial': 'Aylık abonelik · ücretsiz deneme yok',
+    'AI smile simulation': 'AI gülüş simülasyonu',
+    'Before/after gallery': 'Öncesi/sonrası galerisi',
+    'One-click WhatsApp share': 'Tek tıkla WhatsApp paylaşımı',
+    'Buy Smile Design': 'Gülüş Tasarımını Al',
+    'Social Media AI': 'Sosyal Medya AI',
+    'AI creates, schedules and publishes your clinic\'s social content — hands-off, on brand.': 'AI, kliniğinizin sosyal medya içeriğini oluşturur, planlar ve yayınlar — elinizi sürmeden, markanıza uygun.',
+    'AI content generation': 'AI içerik üretimi',
+    'Scheduling & auto-publish': 'Planlama ve otomatik yayın',
+    'Brand-kit styling': 'Marka kiti ile tasarım',
+    'Buy Social Media AI': 'Sosyal Medya AI\'yı Al',
+    'Save ~13%': '~%13 tasarruf',
+    'Clinic Bundle': 'Klinik Paketi',
+    'Smile Design + Social Media AI together — the complete patient-attraction toolkit.': 'Gülüş Tasarımı + Sosyal Medya AI birlikte — eksiksiz hasta çekme seti.',
+    'Both modules · normally $228/mo': 'Her iki modül · normalde $228/ay',
+    'Everything in Smile Design': 'Gülüş Tasarımındaki her şey',
+    'Everything in Social Media AI': 'Sosyal Medya AI\'daki her şey',
+    'One simple monthly bill': 'Tek ve sade aylık fatura',
+    'Buy Bundle': 'Paketi Al',
+    'Want more than a tool — a full AI front desk?': 'Bir araçtan fazlasını mı istiyorsunuz — tam bir AI ön büro?',
+    'Starter Plan': 'Başlangıç Planı',
+    '— the AI Chat Assistant plus full CRM, WhatsApp & Instagram inbox and automations (voice not included). Smile Design & Social Media stay available as add-on modules.': '— AI Chat Asistanı ile birlikte tam CRM, WhatsApp & Instagram gelen kutusu ve otomasyonlar (sesli hariç). Gülüş Tasarımı & Sosyal Medya ek modül olarak kullanılabilir kalır.',
+    '$497/mo · 3-day free trial · cancel anytime': '$497/ay · 3 gün ücretsiz deneme · istediğiniz zaman iptal',
+    'Explore Starter Plan': 'Başlangıç Planını İncele',
+    'Modules are standalone AI tools billed monthly. They can be added to any clinic account — you don\'t need the full platform to use them.': 'Modüller, aylık faturalandırılan bağımsız AI araçlarıdır. Herhangi bir klinik hesabına eklenebilir — kullanmak için tam platforma ihtiyacınız yoktur.',
+    '/mo': '/ay',
+  });
+
   const DICT_MAP = {
+    '/modules': TR_MODULES,
     '/': TR_INDEX,
     '/index': TR_INDEX,
     '/partners': TR_PARTNERS,
