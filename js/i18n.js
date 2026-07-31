@@ -122,6 +122,7 @@ const TR_COMMON = {
   'Integrations': 'Entegrasyonlar',
   'Connect your existing tools': 'Mevcut araçlarını bağla',
   'Pricing': 'Fiyatlandırma',
+  'Modules': 'Modüller',
   'Solutions': 'Çözümler',
   'Healthcare Clinics': 'Sağlık Klinikleri',
   'Hair transplant, dental, aesthetics': 'Saç ekimi, diş, estetik',

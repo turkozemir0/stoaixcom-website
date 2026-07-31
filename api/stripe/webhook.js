@@ -108,6 +108,12 @@ export default async function handler(req, res) {
           ? await stripe.subscriptions.retrieve(invoice.subscription)
           : null
 
+        // Modül faturası: PLAN org_subscriptions/partner'a DOKUNMA (yeni clinic_tools org zaten active;
+        // mevcut full-plan org'un plan status'unu modül ödemesi yanlışlıkla 'active' yapmasın = dunning bypass önlenir).
+        if (subscription?.metadata?.self_serve_modules === '1') {
+          return res.json({ received: true, skipped: 'module_invoice' })
+        }
+
         const { orgId, planId } = await resolveOrgId(invoice.customer, subscription)
         if (!orgId) {
           return res.json({ received: true, skipped: 'no_org' })
@@ -144,6 +150,9 @@ export default async function handler(req, res) {
           ? await stripe.subscriptions.retrieve(invoice.subscription)
           : null
 
+        // Modül aboneliği ödeme başarısızı PLAN 'churned' bildirimini tetiklememeli (modül ≠ plan).
+        if (subscription?.metadata?.self_serve_modules === '1') break
+
         const { orgId } = await resolveOrgId(invoice.customer, subscription)
         if (!orgId) break
 
@@ -159,7 +168,30 @@ export default async function handler(req, res) {
         const { orgId } = await resolveOrgId(subscription.customer, subscription)
         if (!orgId) break
 
-        // Update org_subscriptions
+        // À la carte MODÜL aboneliği iptali: yalnız ilgili modül erişimini kapat; PLAN org_subscriptions'a DOKUNMA.
+        // (Aksi halde mevcut full-plan org'a eklenmiş modülün iptali, o müşterinin PLAN sub'ını cancelled yapardı = erişim kaybı.)
+        if (subscription.metadata?.self_serve_modules === '1') {
+          const featureKeys = (subscription.metadata.feature_keys || '').split(',').filter(Boolean)
+          const crmFlags = (subscription.metadata.crm_flags || '').split(',').filter(Boolean)
+          for (const fk of featureKeys) {
+            await supabase
+              .from('org_entitlement_overrides')
+              .update({ enabled: false })
+              .eq('organization_id', orgId)
+              .eq('feature_key', fk)
+          }
+          if (crmFlags.length > 0) {
+            const { data: orgRow } = await supabase.from('organizations').select('crm_config').eq('id', orgId).single()
+            const crm = (orgRow?.crm_config && typeof orgRow.crm_config === 'object') ? { ...orgRow.crm_config } : {}
+            for (const flag of crmFlags) {
+              if (crm[flag]) crm[flag] = { ...crm[flag], enabled: false }
+            }
+            await supabase.from('organizations').update({ crm_config: crm }).eq('id', orgId)
+          }
+          break
+        }
+
+        // Normal PLAN aboneliği iptali (mevcut davranış)
         await supabase
           .from('org_subscriptions')
           .update({ status: 'cancelled' })
@@ -174,6 +206,8 @@ export default async function handler(req, res) {
 
       case 'customer.subscription.updated': {
         const subscription = data.object
+        // À la carte modül aboneliği güncellemesi PLAN org_subscriptions'a DOKUNMAMALI (modül ≠ plan).
+        if (subscription.metadata?.self_serve_modules === '1') break
         const { orgId } = await resolveOrgId(subscription.customer, subscription)
         if (!orgId) break
 

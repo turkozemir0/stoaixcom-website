@@ -75,6 +75,7 @@
           </div>
         </div>
         <a href="/#pricing" class="nav-link">Pricing</a>
+        <a href="/modules.html" class="nav-link">Modules</a>
         <a href="/case-studies.html" class="nav-link">Case Studies</a>
         <a href="/documentation" class="nav-link">Docs</a>
         <div class="nav-dropdown-item">
@@ -127,6 +128,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="/#features">Product</a>
     <a href="/#pricing">Pricing</a>
+    <a href="/modules.html">Modules</a>
     <a href="/case-studies.html">Case Studies</a>
     <a href="/documentation">Docs</a>
     <a href="/healthcare-clinics.html">Healthcare Clinics</a>

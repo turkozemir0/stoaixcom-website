@@ -348,3 +348,164 @@ export async function provisionSubscription(params) {
     redirect_url: redirectUrl,
   }
 }
+
+// ─────────────────────────────────────────────────────────────
+// MODÜL PROVİZYONU (à la carte, plan_id='clinic_tools') — free-trial provisionSubscription'dan
+// TAMAMEN AYRI FONKSİYON (canlı free-trial akışına SIFIR dokunuş — kod-review §7.4).
+// Kod-review 3 BLOCKER:
+//  #1 email→mevcut org lookup: mevcut kullanıcının org'u VARSA modülü ONA ekle (yeni org AÇMA); yoksa yeni clinic_tools org.
+//  #2 organizations.plan_id='clinic_tools' AÇIKÇA (yeni org'da) — middleware guard bunu okur; org_subscriptions YETMEZ.
+//  #3 crm_config.social_media.enabled MERGE (mevcut config'i EZMEDEN) — sosyal medya gate crm_config'de (feature-gate.ts).
+// Modül = deneme YOK (ilk fatura hemen; 3DS PaymentIntent ile — Business deseni).
+// ─────────────────────────────────────────────────────────────
+export async function provisionModules(params) {
+  const {
+    customerId, email, firstName, lastName, company, phone, password,
+    productKeys, priceIds, featureKeys, crmFlags, req, fbc, fbp,
+  } = params
+
+  const lowerEmail = email.toLowerCase()
+
+  // 1. Stripe subscription (deneme YOK → ilk fatura hemen; 3DS olabilir)
+  // Idempotency (A4): aynı müşteri+ürün seti için retry/anlık-race çift abonelik/çift fatura oluşturmasın (Stripe 24s cache).
+  const subscription = await stripe.subscriptions.create({
+    customer: customerId,
+    items: priceIds.map((price) => ({ price })),
+    payment_settings: { payment_method_types: ['card'], save_default_payment_method: 'on_subscription' },
+    expand: ['latest_invoice.payment_intent'],
+  }, {
+    idempotencyKey: `modsub_${lowerEmail}_${priceIds.slice().sort().join('_')}`,
+  })
+  const paymentIntent = subscription.latest_invoice?.payment_intent
+  if (paymentIntent && paymentIntent.status === 'requires_payment_method') {
+    throw new Error('Payment failed. Please try a different card.')
+  }
+
+  // 2. Auth user: oluştur; zaten varsa mevcut kullanıcı (generateLink → userId). getUserByEmail'e güvenme.
+  let userId = null
+  let isExistingUser = false
+  const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+    email: lowerEmail,
+    password: password || Math.random().toString(36).slice(2) + 'A1!',
+    email_confirm: true,
+    user_metadata: { first_name: firstName, last_name: lastName, company, phone: phone || null, stripe_customer_id: customerId },
+  })
+  if (authError) {
+    if (authError.message?.includes('already')) {
+      isExistingUser = true
+      const { data: linkData } = await supabase.auth.admin.generateLink({ type: 'magiclink', email: lowerEmail })
+      userId = linkData?.user?.id
+    } else {
+      throw new Error(authError.message)
+    }
+  } else {
+    userId = authData?.user?.id
+  }
+  if (!userId) throw new Error('User creation failed')
+
+  // 3. [BLOCKER #1] email→org lookup: mevcut kullanıcının org'u var mı?
+  let orgId = null
+  let isNewOrg = false
+  if (isExistingUser) {
+    const { data: existingOrgUser } = await supabase
+      .from('org_users')
+      .select('organization_id')
+      .eq('user_id', userId)
+      .order('created_at', { ascending: true })
+      .limit(1)
+      .maybeSingle()
+    if (existingOrgUser?.organization_id) {
+      orgId = existingOrgUser.organization_id // MEVCUT org'a modül EKLE (yeni org AÇMA — çift-org önlenir)
+    }
+  }
+
+  // 4. Mevcut org yoksa → yeni clinic_tools org [BLOCKER #2: plan_id AÇIKÇA]
+  if (!orgId) {
+    isNewOrg = true
+    const slug = generateSlug(company || firstName || 'clinic')
+    let finalSlug = slug
+    const { data: existing } = await supabase.from('organizations').select('slug').like('slug', `${slug}%`)
+    if (existing && existing.length > 0) finalSlug = `${slug}-${existing.length + 1}`
+
+    const { data: org, error: orgError } = await supabase
+      .from('organizations')
+      .insert({
+        name: company || `${firstName}'s Clinic`,
+        slug: finalSlug,
+        sector: 'clinic',           // clinic_tools invariant (smileDesignEnabled sector kapısı)
+        plan_id: 'clinic_tools',    // [#2] middleware guard organizations.plan_id okur — org_subscriptions YETMEZ
+        status: 'active',           // araç-only: onboarding wizard yok
+        onboarding_status: 'completed',
+        email: lowerEmail,
+        phone: phone || null,
+        country: 'GB',
+      })
+      .select('id')
+      .single()
+    if (orgError) throw new Error(`Organization creation failed: ${orgError.message}`)
+    orgId = org.id
+    await supabase.from('org_users').insert({ user_id: userId, organization_id: orgId, role: 'admin' })
+  }
+
+  // 5. Her feature → org_entitlement_overrides upsert (enabled)
+  for (const fk of featureKeys) {
+    await supabase.from('org_entitlement_overrides').upsert(
+      { organization_id: orgId, feature_key: fk, enabled: true, reason: `self_serve:${subscription.id}` },
+      { onConflict: 'organization_id,feature_key' }
+    )
+  }
+
+  // 6. [BLOCKER #3] crm_config MERGE (sosyal medya için ŞART; mevcut config EZİLMEZ)
+  if (crmFlags && crmFlags.length > 0) {
+    const { data: orgRow } = await supabase.from('organizations').select('crm_config').eq('id', orgId).single()
+    const crm = (orgRow?.crm_config && typeof orgRow.crm_config === 'object') ? { ...orgRow.crm_config } : {}
+    for (const flag of crmFlags) {
+      crm[flag] = { ...(crm[flag] || {}), enabled: true }
+    }
+    await supabase.from('organizations').update({ crm_config: crm }).eq('id', orgId)
+  }
+
+  // 7. org_subscriptions: YALNIZ yeni clinic_tools org için (mevcut org'un plan sub'ını EZME — organization_id UNIQUE)
+  if (isNewOrg) {
+    await supabase.from('org_subscriptions').insert({
+      organization_id: orgId,
+      plan_id: 'clinic_tools',
+      status: 'active',
+      stripe_customer_id: customerId,
+      stripe_subscription_id: subscription.id,
+      billing_interval: 'monthly',
+      trial_ends_at: null,
+      current_period_start: new Date().toISOString(),
+      current_period_end: subscription.current_period_end ? new Date(subscription.current_period_end * 1000).toISOString() : null,
+    })
+  }
+
+  // 8. Stripe subscription metadata (webhook + izlenebilirlik)
+  await stripe.subscriptions.update(subscription.id, {
+    metadata: { organization_id: orgId, plan_id: 'clinic_tools', module_products: productKeys.join(','), feature_keys: featureKeys.join(','), crm_flags: crmFlags.join(','), self_serve_modules: '1' },
+  })
+
+  // 9. signup_leads (varsa) converted + FB CAPI Purchase
+  await supabase.from('signup_leads').update({ converted: true, converted_at: new Date().toISOString() }).eq('email', lowerEmail)
+  sendEvent({
+    eventName: 'Purchase', email, firstName, lastName,
+    value: 0, sourceUrl: 'https://stoaix.com/modules-checkout',
+    clientIp: getClientIp(req), clientUserAgent: getUserAgent(req), fbc, fbp,
+    contentName: productKeys.join('+'), contentCategory: 'module', contentIds: productKeys.join(','),
+  }).catch(() => {})
+
+  // 10. Magic link → platform (araç-only org middleware dinamik landing'e yönlendirir)
+  const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
+    type: 'magiclink', email: lowerEmail,
+    options: { redirectTo: 'https://platform.stoaix.com/auth/callback?next=/dashboard' },
+  })
+  const redirectUrl = linkError || !linkData?.properties?.action_link
+    ? 'https://platform.stoaix.com/login'
+    : linkData.properties.action_link
+
+  // 3DS gerekiyorsa client_secret döndür (Business deseni — client confirmCardPayment)
+  if (paymentIntent && paymentIntent.status === 'requires_action') {
+    return { success: true, requires_action: true, client_secret: paymentIntent.client_secret, subscription_id: subscription.id, redirect_url: redirectUrl }
+  }
+  return { success: true, redirect_url: redirectUrl }
+}
