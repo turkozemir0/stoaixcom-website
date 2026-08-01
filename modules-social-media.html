@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Social Media AI — STOAIX</title>
+  <meta name="description" content="Your clinic posts every day without you lifting a finger. AI writes, styles, schedules and auto-publishes your clinic's social content. $129/mo, cancel anytime." />
+  <link rel="icon" type="image/png" href="/assets/images/logo.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=20260727b" />
+  <link rel="canonical" href="https://stoaix.com/modules-social-media.html" />
+  <style>
+    /* ── Sosyal Medya AI — SAYFA-ÖZEL CSS ── */
+    body { --amber: #E8933A; --amber-h: #D07E28; }
+    .mx-wrap { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    .mx-sec { padding: clamp(48px, 6vw, 88px) 0; }
+    .mx-sec--tint { background: var(--bg-2); border-block: 1px solid var(--hairline); }
+    [id] { scroll-margin-top: 96px; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    .mx-h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 800; color: var(--text-1); line-height: 1.16; letter-spacing: -.01em; margin: 0 0 12px; text-wrap: balance; }
+    .mx-lead { font-size: 1.05rem; color: var(--text-2); line-height: 1.65; max-width: 640px; margin: 0; text-wrap: pretty; }
+    .mx-head { margin-bottom: clamp(28px, 4vw, 44px); }
+    .mx-head--center { text-align: center; }
+    .mx-head--center .mx-lead { margin: 0 auto; }
+
+    .btn-amber { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; background: var(--amber); color: #fff; border: none; border-radius: var(--r-full); font-family: var(--font); font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 0 1px 2px rgba(16,24,39,.06), 0 10px 24px -8px rgba(232,147,58,.55); transition: background .2s, transform .15s; }
+    .btn-amber:hover { background: var(--amber-h); transform: translateY(-1px); }
+    .btn-amber.btn-full { width: 100%; }
+    .btn-altcta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; background: var(--blue); color: #fff; border-radius: var(--r-full); font-size: 1rem; font-weight: 700; box-shadow: var(--shadow-brand); transition: background .2s, transform .15s; }
+    .btn-altcta:hover { background: var(--blue-h); transform: translateY(-1px); }
+    .btn-altcta.btn-full { width: 100%; }
+    .btn-altcta .arw { color: #F5B168; font-size: 1.15em; line-height: 1; }
+    .cta-alt-b { display: none; }
+    body.cta-blue .cta-alt-a { display: none; }
+    body.cta-blue .cta-alt-b, body.cta-compare .cta-alt-b { display: inline-flex; }
+    body.cta-compare .cta-alt-b { margin-top: 10px; }
+
+    /* 1 · HERO */
+    .sm-hero { padding: calc(var(--nav-h) + clamp(32px, 4vw, 52px)) 0 clamp(40px, 5vw, 64px); }
+    .sm-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+    @media (max-width: 940px) { .sm-hero-grid { grid-template-columns: 1fr; } }
+    .sm-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--text-1); line-height: 1.09; letter-spacing: -.02em; margin: 14px 0 16px; text-wrap: balance; }
+    .sm-hero p { font-size: clamp(1rem, 1.3vw, 1.1rem); color: var(--text-2); line-height: 1.65; margin: 0; text-wrap: pretty; }
+    .sm-hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .sm-hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .sd-meta { display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border-radius: var(--r-full); background: var(--surface); border: 1px solid var(--border); font-size: .8125rem; font-weight: 600; color: var(--text-mid); }
+
+    /* Telefon simülasyonu */
+    .sm { display: grid; gap: 14px; }
+    .sm-topics { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .sm-chip { padding: 8px 15px; border-radius: var(--r-full); border: 1.5px solid var(--border); background: var(--surface); font-size: .8125rem; font-weight: 600; color: var(--text-2); cursor: pointer; transition: border-color .2s, color .2s, background .2s; }
+    .sm-chip[aria-pressed="true"] { border-color: var(--blue); color: var(--blue); background: var(--blue-tint); }
+    .phone { position: relative; margin: 0 auto; width: 100%; max-width: 330px; border-radius: 34px; background: #101823; padding: 10px; box-shadow: var(--shadow-lg); }
+    .phone-screen { position: relative; border-radius: 26px; background: var(--bg-2); overflow: hidden; padding: 24px 13px 13px; min-height: 400px; display: flex; flex-direction: column; gap: 10px; }
+    .phone-notch { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); width: 80px; height: 5px; border-radius: 99px; background: rgba(16,24,39,.18); z-index: 4; }
+    .sm-brand { display: flex; align-items: center; gap: 8px; font-size: .6875rem; font-weight: 700; color: var(--text-3); letter-spacing: .05em; text-transform: uppercase; }
+    .sm-sw { display: flex; gap: 4px; margin-left: auto; }
+    .sm-sw i { width: 14px; height: 14px; border-radius: 4px; border: 1px solid rgba(16,24,39,.08); }
+    .sm-post { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 10px 11px; box-shadow: var(--shadow-sm); opacity: 0; transform: translateY(6px); transition: opacity .35s, transform .35s; }
+    .sm-post.on { opacity: 1; transform: none; }
+    .sm-post-bar { height: 4px; border-radius: 99px; margin-bottom: 8px; width: 36px; }
+    .sm-post-txt { font-size: .8125rem; line-height: 1.45; color: var(--text-1); min-height: 2.3em; }
+    .sm-post-txt::after { content: ''; display: inline-block; width: 1.5px; height: .95em; background: var(--blue); margin-left: 2px; vertical-align: -2px; opacity: 0; }
+    .sm-post.typing .sm-post-txt::after { opacity: 1; animation: mxcaret .8s steps(1) infinite; }
+    @keyframes mxcaret { 50% { opacity: 0; } }
+    .sm-cal { margin-top: auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: 10px; }
+    .sm-cal-h { font-size: .6875rem; font-weight: 700; color: var(--text-3); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+    .sm-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+    .sm-day { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: .5625rem; color: var(--text-3); font-weight: 600; }
+    .sm-day s { display: block; width: 100%; height: 19px; border-radius: 5px; background: var(--bg-3); transition: background .3s, transform .3s; }
+    .sm-day.filled s { background: var(--blue); transform: translateY(-1px); }
+    .sm-day.filled:nth-child(even) s { background: var(--teal); }
+    .sm-toast { position: absolute; left: 11px; right: 11px; bottom: 11px; z-index: 5; display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: var(--r-md); background: var(--ink-900); color: #fff; font-size: .75rem; font-weight: 600; line-height: 1.35; opacity: 0; transform: translateY(10px); transition: opacity .3s, transform .3s; }
+    .sm-toast.on { opacity: 1; transform: none; }
+    .sm-toast b { width: 17px; height: 17px; border-radius: 50%; background: var(--green); color: #fff; display: flex; align-items: center; justify-content: center; font-size: .625rem; flex-shrink: 0; }
+
+    /* 2 · NASIL ÇALIŞIR */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 940px) { .steps { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
+    .flow-step { border: 1.5px solid var(--border); border-radius: var(--r-xl); background: var(--surface); padding: 22px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow-sm); opacity: .58; transition: opacity .4s, border-color .4s, transform .4s, box-shadow .4s; }
+    .flow-step.on { opacity: 1; border-color: var(--blue-mid); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .flow-step:nth-child(2).on { border-color: var(--teal-mid); }
+    .flow-step:nth-child(3).on { border-color: var(--green-mid); }
+    .flow-n { width: 30px; height: 30px; border-radius: 50%; background: var(--blue-tint); border: 1px solid var(--blue-mid); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: .8125rem; font-weight: 800; }
+    .flow-step:nth-child(2) .flow-n { background: var(--teal-tint); border-color: var(--teal-mid); color: var(--teal); }
+    .flow-step:nth-child(3) .flow-n { background: var(--green-dim); border-color: var(--green-mid); color: var(--green); }
+    .flow-art { height: 122px; border-radius: var(--r-md); background: var(--bg-2); border: 1px solid var(--hairline); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; }
+    .brief-chip { padding: 6px 11px; border-radius: var(--r-full); background: var(--blue-tint); border: 1px solid var(--blue-mid); color: var(--blue); font-size: .6875rem; font-weight: 700; }
+    .flow-art--ai { background: linear-gradient(90deg, var(--teal-tint) 0%, #ffffff 50%, var(--teal-tint) 100%); background-size: 200% 100%; color: var(--teal-h); font-size: .75rem; font-weight: 700; }
+    .flow-step:nth-child(2).on .flow-art--ai { animation: mxshim 1.4s linear infinite; }
+    @keyframes mxshim { to { background-position: -200% 0; } }
+    .flow-art--cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; align-items: center; }
+    .flow-art--cal s { display: block; height: 30px; border-radius: 5px; background: var(--bg-3); }
+    .flow-step:nth-child(3).on .flow-art--cal s:nth-child(odd) { background: var(--blue); }
+    .flow-step:nth-child(3).on .flow-art--cal s:nth-child(even) { background: var(--teal); }
+    .flow-cap { font-family: var(--font-display); font-size: 1rem; font-weight: 800; color: var(--text-1); }
+    .flow-txt { font-size: .875rem; color: var(--text-2); line-height: 1.6; margin: 0; }
+
+    /* 3 · MARKA KİTİ */
+    .bk-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 4vw, 52px); align-items: center; }
+    @media (max-width: 940px) { .bk-grid { grid-template-columns: 1fr; } }
+    .bk-kit { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 24px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 18px; }
+    .bk-row { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+    .bk-label { font-size: .6875rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--text-3); width: 100%; }
+    .bk-sw { width: 40px; height: 40px; border-radius: var(--r-md); border: 1px solid rgba(16,24,39,.08); }
+    .bk-logo { width: 108px; height: 44px; border-radius: var(--r-md); border: 1px dashed var(--border-2); background: var(--bg-2); display: flex; align-items: center; justify-content: center; font-size: .6875rem; font-weight: 600; color: var(--text-3); }
+    .bk-font { font-family: var(--font-display); font-size: 1.15rem; font-weight: 800; color: var(--text-1); }
+    .bk-posts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    @media (max-width: 560px) { .bk-posts { grid-template-columns: 1fr; } }
+    .bk-post { border-radius: var(--r-lg); overflow: hidden; border: 1px solid var(--border); background: var(--surface); box-shadow: var(--shadow-sm); }
+    .bk-post-img { height: 118px; display: flex; align-items: flex-end; padding: 12px; }
+    .bk-post:nth-child(1) .bk-post-img { background: linear-gradient(150deg, #1e4fd1 0%, #3b6fe0 100%); }
+    .bk-post:nth-child(2) .bk-post-img { background: linear-gradient(150deg, #0e9187 0%, #6fe3d5 100%); }
+    .bk-post:nth-child(3) .bk-post-img { background: linear-gradient(150deg, #f2eee6 0%, #e7e2d8 100%); }
+    .bk-post-img span { font-size: .625rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; border-radius: var(--r-full); background: rgba(255,255,255,.9); color: var(--text-2); }
+    .bk-post-txt { padding: 12px; font-size: .8125rem; color: var(--text-2); line-height: 1.5; }
+
+    /* 4 · HAFTALIK TAKVİM */
+    .cal { border: 1px solid var(--border); border-radius: var(--r-2xl); background: var(--surface); box-shadow: var(--shadow-md); overflow: hidden; }
+    .cal-grid { display: grid; grid-template-columns: repeat(7, minmax(126px, 1fr)); }
+    .cal-scroll { overflow-x: auto; }
+    .cal-col { border-right: 1px solid var(--hairline); display: flex; flex-direction: column; }
+    .cal-col:last-child { border-right: none; }
+    .cal-h { padding: 13px 14px; font-family: var(--font-display); font-size: .8125rem; font-weight: 800; color: var(--text-1); background: var(--bg-2); border-bottom: 1px solid var(--border); text-align: center; }
+    .cal-body { padding: 12px; display: flex; flex-direction: column; gap: 10px; min-height: 190px; }
+    .cal-item { border-radius: var(--r-md); border: 1px solid var(--border); padding: 10px; display: flex; flex-direction: column; gap: 7px; background: var(--bg-2); }
+    .cal-item s { display: block; height: 34px; border-radius: 6px; }
+    .cal-item.blue s { background: linear-gradient(140deg, #1e4fd1, #3b6fe0); }
+    .cal-item.teal s { background: linear-gradient(140deg, #0e9187, #6fe3d5); }
+    .cal-item.sand s { background: linear-gradient(140deg, #f2eee6, #ded5c8); }
+    .cal-item em { font-style: normal; font-size: .6875rem; font-weight: 700; color: var(--text-2); line-height: 1.35; }
+    .cal-time { font-size: .625rem; font-weight: 700; color: var(--text-3); letter-spacing: .04em; }
+    .cal-empty { flex: 1; border: 1px dashed var(--border); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; font-size: .6875rem; color: var(--text-3); font-weight: 600; }
+
+    /* 5 · FİYAT ÖZETİ */
+    .price-recap { max-width: 560px; margin: 0 auto; background: var(--surface); border: 2px solid var(--blue); border-radius: var(--r-2xl); padding: clamp(28px, 4vw, 40px); box-shadow: 0 0 0 4px rgba(30,79,209,.08), var(--shadow-lg); text-align: center; }
+    .price-recap .module-price { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; color: var(--text-1); line-height: 1; display: flex; align-items: baseline; justify-content: center; gap: 2px; margin: 6px 0; }
+    .price-recap .cur { font-size: 1.15rem; font-weight: 700; color: var(--text-2); }
+    .price-recap .per { font-size: .95rem; font-weight: 500; color: var(--text-3); }
+    .price-recap h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--text-1); margin: 0 0 4px; }
+    .price-recap .note { font-size: .84rem; color: var(--text-3); margin: 0 0 20px; }
+    .recap-features { list-style: none; padding: 18px 0; margin: 0 0 22px; border-block: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 10px; text-align: left; }
+    .recap-features li { display: flex; align-items: center; gap: 9px; font-size: .9rem; color: var(--text-2); }
+    .recap-features li::before { content: '✓'; color: var(--blue); font-weight: 700; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-size: .875rem; font-weight: 700; color: var(--blue); }
+    .back-link:hover { color: var(--blue-h); }
+
+    /* 6 · SSS */
+    .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+    .faq-i { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 4px 20px; box-shadow: var(--shadow-sm); }
+    .faq-i[open] { border-color: var(--blue-mid); }
+    .faq-i summary { list-style: none; cursor: pointer; padding: 16px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--font-display); font-size: .9875rem; font-weight: 700; color: var(--text-1); }
+    .faq-i summary::-webkit-details-marker { display: none; }
+    .faq-i summary::after { content: '+'; font-size: 1.35rem; font-weight: 700; color: var(--blue); line-height: 1; flex-shrink: 0; }
+    .faq-i[open] summary::after { content: '−'; }
+    .faq-i p { margin: 0; padding: 0 0 18px; font-size: .9rem; color: var(--text-2); line-height: 1.65; max-width: 62ch; }
+  </style>
+</head>
+
+<body>
+  <nav id="navbar"></nav>
+  <div id="mobileMenu"></div>
+
+  <!-- ── 1 · HERO + telefon simülasyonu ───────────────────── -->
+  <section class="sm-hero">
+    <div class="mx-wrap">
+      <div class="sm-hero-grid">
+        <div>
+          <span class="section-badge">Social Media AI</span>
+          <h1>Your clinic posts every day — without you lifting a finger</h1>
+          <p>Give the AI a topic once. It writes the captions, applies your brand kit, fills the week's calendar and publishes on schedule while your team treats patients.</p>
+          <div class="sm-hero-cta">
+            <a href="/modules-checkout.html?products=social_media" class="btn-amber cta-alt-a">Buy Social Media AI</a>
+            <a href="/modules-checkout.html?products=social_media" class="btn-altcta cta-alt-b">Buy Social Media AI<span class="arw">→</span></a>
+            <a href="#how" class="btn-outline btn-lg">See how it works</a>
+          </div>
+          <div class="sm-hero-meta">
+            <span class="sd-meta">$129/mo · cancel anytime</span>
+            <span class="sd-meta">Instagram &amp; Facebook</span>
+          </div>
+        </div>
+
+        <div class="sm" data-sm>
+          <div class="sm-topics">
+            <button class="sm-chip" type="button" data-topic="0" aria-pressed="true">Teeth whitening promo</button>
+            <button class="sm-chip" type="button" data-topic="1" aria-pressed="false">Implant Q&amp;A</button>
+            <button class="sm-chip" type="button" data-topic="2" aria-pressed="false">Patient story</button>
+          </div>
+
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="sm-brand">
+                Brand kit
+                <span class="sm-sw"><i style="background:#1e4fd1"></i><i style="background:#0e9187"></i><i style="background:#f2eee6"></i></span>
+              </div>
+              <div class="sm-post" data-post="0"><div class="sm-post-bar" style="background:#1e4fd1"></div><div class="sm-post-txt"></div></div>
+              <div class="sm-post" data-post="1"><div class="sm-post-bar" style="background:#0e9187"></div><div class="sm-post-txt"></div></div>
+              <div class="sm-post" data-post="2"><div class="sm-post-bar" style="background:#E8933A"></div><div class="sm-post-txt"></div></div>
+              <div class="sm-cal">
+                <div class="sm-cal-h">This week</div>
+                <div class="sm-cal-grid">
+                  <span class="sm-day">Mon<s></s></span>
+                  <span class="sm-day">Tue<s></s></span>
+                  <span class="sm-day">Wed<s></s></span>
+                  <span class="sm-day">Thu<s></s></span>
+                  <span class="sm-day">Fri<s></s></span>
+                  <span class="sm-day">Sat<s></s></span>
+                  <span class="sm-day">Sun<s></s></span>
+                </div>
+              </div>
+              <div class="sm-toast"><b>✓</b>Auto-published to Instagram &amp; Facebook</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- i18n kaynak metinleri (gizli, i18n.js çevirir; JS buradan okur) -->
+        <div hidden data-sm-src>
+          <span data-topic-src="0" data-variant="0">Whiter smile in one visit — book this week and save 20%.</span>
+          <span data-topic-src="0" data-variant="1">Coffee, tea, time. Professional whitening fixes all three.</span>
+          <span data-topic-src="0" data-variant="2">Before your wedding photos: a whitening session takes 45 minutes.</span>
+          <span data-topic-src="1" data-variant="0">Do implants hurt? Our patients describe it as easier than a filling.</span>
+          <span data-topic-src="1" data-variant="1">One missing tooth changes your bite. Here is how an implant fixes it.</span>
+          <span data-topic-src="1" data-variant="2">Implant or bridge? A two-minute answer from our lead dentist.</span>
+          <span data-topic-src="2" data-variant="0">Six months, one treatment plan, a smile she finally shows off.</span>
+          <span data-topic-src="2" data-variant="1">Real patient, real result — swipe to see the transformation.</span>
+          <span data-topic-src="2" data-variant="2">She stopped hiding her teeth in photos — her full story is on our page.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2 · NASIL ÇALIŞIR ────────────────────────────────── -->
+  <section class="mx-sec mx-sec--tint" id="how">
+    <div class="mx-wrap">
+      <div class="mx-head mx-head--center">
+        <h2 class="mx-h2">How it works</h2>
+        <p class="mx-lead">You brief it once a month. It runs the rest of the week on its own.</p>
+      </div>
+
+      <div class="steps" data-flow>
+        <article class="flow-step">
+          <span class="flow-n">1</span>
+          <div class="flow-art"><span class="brief-chip">Whitening</span><span class="brief-chip">Implants</span></div>
+          <span class="flow-cap">Brief the AI</span>
+          <p class="flow-txt">Pick the treatments you want to promote and the tone your clinic speaks in. That is the whole setup.</p>
+        </article>
+        <article class="flow-step">
+          <span class="flow-n">2</span>
+          <div class="flow-art flow-art--ai">AI creates</div>
+          <span class="flow-cap">AI writes and styles</span>
+          <p class="flow-txt">Captions, hashtags and visuals are generated in your brand colours and typography, ready to review.</p>
+        </article>
+        <article class="flow-step">
+          <span class="flow-n">3</span>
+          <div class="flow-art flow-art--cal"><s></s><s></s><s></s><s></s><s></s><s></s><s></s></div>
+          <span class="flow-cap">Schedules &amp; auto-publishes</span>
+          <p class="flow-txt">Posts are placed at the best times of the week and published to Instagram and Facebook automatically.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3 · MARKA KİTİ ───────────────────────────────────── -->
+  <section class="mx-sec">
+    <div class="mx-wrap">
+      <div class="mx-head">
+        <h2 class="mx-h2">Every post looks like your clinic</h2>
+        <p class="mx-lead">Set your colours, logo and type once. The AI applies them to every post it makes — no template drift, no off-brand designs.</p>
+      </div>
+
+      <div class="bk-grid">
+        <div class="bk-kit">
+          <div class="bk-row">
+            <span class="bk-label">Brand colours</span>
+            <span class="bk-sw" style="background:#1e4fd1"></span>
+            <span class="bk-sw" style="background:#0e9187"></span>
+            <span class="bk-sw" style="background:#E8933A"></span>
+            <span class="bk-sw" style="background:#f2eee6"></span>
+          </div>
+          <div class="bk-row">
+            <span class="bk-label">Logo</span>
+            <span class="bk-logo">[Clinic logo]</span>
+          </div>
+          <div class="bk-row">
+            <span class="bk-label">Typography</span>
+            <span class="bk-font">Manrope · headline</span>
+          </div>
+        </div>
+
+        <div class="bk-posts">
+          <article class="bk-post">
+            <div class="bk-post-img"><span>Post 1</span></div>
+            <div class="bk-post-txt">Brand colour applied to the cover and the caption card.</div>
+          </article>
+          <article class="bk-post">
+            <div class="bk-post-img"><span>Post 2</span></div>
+            <div class="bk-post-txt">Secondary colour keeps the feed varied but consistent.</div>
+          </article>
+          <article class="bk-post">
+            <div class="bk-post-img"><span>Post 3</span></div>
+            <div class="bk-post-txt">Neutral sand background for testimonial and quote posts.</div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4 · HAFTALIK TAKVİM ──────────────────────────────── -->
+  <section class="mx-sec mx-sec--tint">
+    <div class="mx-wrap">
+      <div class="mx-head mx-head--center">
+        <h2 class="mx-h2">A full week, planned before Monday</h2>
+        <p class="mx-lead">You see the whole schedule in advance and can swap or approve anything with one click.</p>
+      </div>
+
+      <div class="cal">
+        <div class="cal-scroll">
+          <div class="cal-grid">
+            <div class="cal-col">
+              <div class="cal-h">Mon</div>
+              <div class="cal-body">
+                <div class="cal-item blue"><s></s><em>Whitening offer</em><span class="cal-time">09:30 · Instagram</span></div>
+              </div>
+            </div>
+            <div class="cal-col">
+              <div class="cal-h">Tue</div>
+              <div class="cal-body">
+                <div class="cal-item teal"><s></s><em>Implant Q&amp;A</em><span class="cal-time">12:00 · Facebook</span></div>
+              </div>
+            </div>
+            <div class="cal-col">
+              <div class="cal-h">Wed</div>
+              <div class="cal-body">
+                <div class="cal-item sand"><s></s><em>Patient story</em><span class="cal-time">18:00 · Instagram</span></div>
+              </div>
+            </div>
+            <div class="cal-col">
+              <div class="cal-h">Thu</div>
+              <div class="cal-body">
+                <div class="cal-item blue"><s></s><em>Team spotlight</em><span class="cal-time">10:00 · Instagram</span></div>
+              </div>
+            </div>
+            <div class="cal-col">
+              <div class="cal-h">Fri</div>
+              <div class="cal-body">
+                <div class="cal-item teal"><s></s><em>Before &amp; after</em><span class="cal-time">17:30 · Facebook</span></div>
+              </div>
+            </div>
+            <div class="cal-col">
+              <div class="cal-h">Sat</div>
+              <div class="cal-body">
+                <div class="cal-item sand"><s></s><em>Aftercare tip</em><span class="cal-time">11:00 · Instagram</span></div>
+              </div>
+            </div>
+            <div class="cal-col">
+              <div class="cal-h">Sun</div>
+              <div class="cal-body">
+                <div class="cal-empty">Rest day</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5 · FİYAT ÖZETİ ──────────────────────────────────── -->
+  <section class="mx-sec">
+    <div class="mx-wrap">
+      <div class="price-recap">
+        <h2>Social Media AI</h2>
+        <div class="module-price"><span class="cur">$</span>129<span class="per">/mo</span></div>
+        <p class="note">Monthly subscription · no free trial · cancel anytime</p>
+        <ul class="recap-features">
+          <li>AI content generation</li>
+          <li>Scheduling &amp; auto-publish</li>
+          <li>Brand-kit styling</li>
+          <li>Instant access on any clinic account</li>
+        </ul>
+        <a href="/modules-checkout.html?products=social_media" class="btn-amber btn-full cta-alt-a">Buy Social Media AI</a>
+        <a href="/modules-checkout.html?products=social_media" class="btn-altcta btn-full cta-alt-b">Buy Social Media AI<span class="arw">→</span></a>
+        <div><a href="/modules.html" class="back-link">← Back to all modules</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6 · SSS ──────────────────────────────────────────── -->
+  <section class="mx-sec mx-sec--tint">
+    <div class="mx-wrap">
+      <div class="mx-head mx-head--center">
+        <h2 class="mx-h2">Questions about Social Media AI</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-i" open>
+          <summary>Do I approve posts before they go out?</summary>
+          <p>Your choice. Run it fully automatic, or keep approval on and review the week's posts in one pass before they publish.</p>
+        </details>
+        <details class="faq-i">
+          <summary>Which channels does it publish to?</summary>
+          <p>Instagram and Facebook, connected directly to your clinic's accounts. You can connect or disconnect a channel anytime.</p>
+        </details>
+        <details class="faq-i">
+          <summary>Do I need the full STOAIX platform?</summary>
+          <p>No. Social Media AI is a standalone module that works on any clinic account, billed monthly and cancellable anytime.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"></footer>
+
+  <script>
+  (function () {
+    'use strict';
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ctaParam = new URLSearchParams(location.search).get('cta');
+    if (ctaParam === 'blue') document.body.classList.add('cta-blue');
+    if (ctaParam === 'compare') document.body.classList.add('cta-compare');
+
+    document.querySelectorAll('[data-sm]').forEach(function (sm) {
+      var srcBox = document.querySelector('[data-sm-src]');
+      var posts = sm.querySelectorAll('.sm-post');
+      var days = sm.querySelectorAll('.sm-day');
+      var toast = sm.querySelector('.sm-toast');
+      var chips = sm.querySelectorAll('.sm-chip');
+      var topic = 0, timers = [];
+
+      function text(t, v) {
+        var el = srcBox.querySelector('[data-topic-src="' + t + '"][data-variant="' + v + '"]');
+        return el ? el.textContent.trim() : '';
+      }
+      function clear() { timers.forEach(clearTimeout); timers = []; }
+      function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+      function reset() {
+        posts.forEach(function (p) { p.classList.remove('on', 'typing'); p.querySelector('.sm-post-txt').textContent = ''; });
+        days.forEach(function (d) { d.classList.remove('filled'); });
+        toast.classList.remove('on');
+      }
+      function type(el, str, done) {
+        var node = el.querySelector('.sm-post-txt');
+        el.classList.add('on', 'typing');
+        if (reduce) { node.textContent = str; el.classList.remove('typing'); done && done(); return; }
+        var i = 0;
+        (function step() {
+          node.textContent = str.slice(0, ++i);
+          if (i < str.length) later(step, 18);
+          else { el.classList.remove('typing'); done && done(); }
+        })();
+      }
+      function run() {
+        clear(); reset();
+        type(posts[0], text(topic, 0), function () {
+          later(function () {
+            type(posts[1], text(topic, 1), function () {
+              later(function () {
+                type(posts[2], text(topic, 2), function () {
+                  days.forEach(function (d, n) { later(function () { d.classList.add('filled'); }, 120 * n); });
+                  later(function () { toast.classList.add('on'); }, 1100);
+                  later(function () { toast.classList.remove('on'); }, 4200);
+                  later(run, 5200);
+                });
+              }, 220);
+            });
+          }, 220);
+        });
+      }
+
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          chips.forEach(function (c) { c.setAttribute('aria-pressed', 'false'); });
+          chip.setAttribute('aria-pressed', 'true');
+          topic = parseInt(chip.dataset.topic, 10);
+          run();
+        });
+      });
+
+      var started = false;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting && !started) { started = true; setTimeout(run, 300); } });
+      }, { threshold: .2 });
+      io.observe(sm);
+    });
+
+    document.querySelectorAll('[data-flow]').forEach(function (flow) {
+      var steps = flow.querySelectorAll('.flow-step');
+      var i = 0;
+      function tick() {
+        steps.forEach(function (s, n) { s.classList.toggle('on', n === i); });
+        i = (i + 1) % steps.length;
+      }
+      if (reduce) { steps.forEach(function (s) { s.classList.add('on'); }); return; }
+      var started = false;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting && !started) { started = true; tick(); setInterval(tick, 2100); } });
+      }, { threshold: .3 });
+      io.observe(flow);
+    });
+  })();
+  </script>
+
+  <script defer src="js/components.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/i18n.js"></script>
+</body>
+</html>

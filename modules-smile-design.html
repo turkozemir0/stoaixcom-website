@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>AI Smile Design — STOAIX</title>
+  <meta name="description" content="Show patients their new smile before they book. Upload a photo, get an AI before/after preview and share it on WhatsApp in seconds. $99/mo, cancel anytime." />
+  <link rel="icon" type="image/png" href="/assets/images/logo.png" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=20260727b" />
+  <link rel="canonical" href="https://stoaix.com/modules-smile-design.html" />
+  <style>
+    /* ── AI Gülüş Tasarımı — SAYFA-ÖZEL CSS ── */
+    body { --amber: #E8933A; --amber-h: #D07E28; }
+    .mx-wrap { max-width: var(--container); margin: 0 auto; padding: 0 24px; }
+    .mx-sec { padding: clamp(48px, 6vw, 88px) 0; }
+    .mx-sec--tint { background: var(--bg-2); border-block: 1px solid var(--hairline); }
+    [id] { scroll-margin-top: 96px; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    .mx-h2 { font-family: var(--font-display); font-size: clamp(1.7rem, 3.2vw, 2.4rem); font-weight: 800; color: var(--text-1); line-height: 1.16; letter-spacing: -.01em; margin: 0 0 12px; text-wrap: balance; }
+    .mx-lead { font-size: 1.05rem; color: var(--text-2); line-height: 1.65; max-width: 640px; margin: 0; text-wrap: pretty; }
+    .mx-head { margin-bottom: clamp(28px, 4vw, 44px); }
+    .mx-head--center { text-align: center; }
+    .mx-head--center .mx-lead { margin: 0 auto; }
+
+    .btn-amber { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; background: var(--amber); color: #fff; border: none; border-radius: var(--r-full); font-family: var(--font); font-size: 1rem; font-weight: 700; cursor: pointer; box-shadow: 0 1px 2px rgba(16,24,39,.06), 0 10px 24px -8px rgba(232,147,58,.55); transition: background .2s, transform .15s; }
+    .btn-amber:hover { background: var(--amber-h); transform: translateY(-1px); }
+    .btn-amber.btn-full { width: 100%; }
+    .btn-altcta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 32px; background: var(--blue); color: #fff; border-radius: var(--r-full); font-size: 1rem; font-weight: 700; box-shadow: var(--shadow-brand); transition: background .2s, transform .15s; }
+    .btn-altcta:hover { background: var(--blue-h); transform: translateY(-1px); }
+    .btn-altcta.btn-full { width: 100%; }
+    .btn-altcta .arw { color: #F5B168; font-size: 1.15em; line-height: 1; }
+    .cta-alt-b { display: none; }
+    body.cta-blue .cta-alt-a { display: none; }
+    body.cta-blue .cta-alt-b, body.cta-compare .cta-alt-b { display: inline-flex; }
+    body.cta-compare .cta-alt-b { margin-top: 10px; }
+
+    /* 1 · HERO */
+    .sd-hero { padding: calc(var(--nav-h) + clamp(32px, 4vw, 52px)) 0 clamp(40px, 5vw, 64px); }
+    .sd-hero-grid { display: grid; grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
+    @media (max-width: 940px) { .sd-hero-grid { grid-template-columns: 1fr; } }
+    .sd-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--text-1); line-height: 1.09; letter-spacing: -.02em; margin: 14px 0 16px; text-wrap: balance; }
+    .sd-hero p { font-size: clamp(1rem, 1.3vw, 1.1rem); color: var(--text-2); line-height: 1.65; margin: 0; text-wrap: pretty; }
+    .sd-hero-cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .sd-hero-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .sd-meta { display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border-radius: var(--r-full); background: var(--surface); border: 1px solid var(--border); font-size: .8125rem; font-weight: 600; color: var(--text-mid); }
+
+    /* Öncesi/sonrası slider */
+    .ba { --pb1:#d9d1c4; --pb2:#b5ab99; --pa1:#fdfbf6; --pa2:#dfeaf7; --img: none; }
+    .ba[data-pair="1"] { --img: url('assets/images/smile-before-after.jpg'); }
+    .ba[data-pair="2"] { --pb1:#d3ccc6; --pb2:#aea69c; --pa1:#fffdf8; --pa2:#e4f1ef; }
+    .ba[data-pair="3"] { --pb1:#ded5c8; --pb2:#bdb2a1; --pa1:#fefcf7; --pa2:#e8e5f6; }
+    .ba-frame { position: relative; aspect-ratio: 1088 / 716; border-radius: var(--r-2xl); overflow: hidden; border: 1px solid var(--border); background: var(--bg-3); box-shadow: var(--shadow-lg); touch-action: none; user-select: none; cursor: ew-resize; }
+    .ba-pane { position: absolute; inset: 0; display: flex; align-items: flex-start; padding: 16px; }
+    .ba-after { background-image: var(--img), linear-gradient(135deg, var(--pa1) 0%, var(--pa2) 100%); background-size: 200% 100%, auto; background-position: right center, center; background-repeat: no-repeat; justify-content: flex-end; }
+    .ba-before { background-image: var(--img), linear-gradient(135deg, var(--pb1) 0%, var(--pb2) 100%); background-size: 200% 100%, auto; background-position: left center, center; background-repeat: no-repeat; clip-path: inset(0 50% 0 0); }
+    /* Gerçek fotoğraf varsa yer tutucu grafikler ve etiketler gizlenir (görselde ÖNCE/SONRA yazıyor) */
+    .ba[data-pair="1"] .ba-pane::after, .ba[data-pair="1"] .ba-mouth, .ba[data-pair="1"] .ba-tag { display: none; }
+    .ba-pane::after { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.16) 0 2px, transparent 2px 9px); opacity: .5; }
+    .ba-mouth { position: absolute; left: 50%; top: 56%; transform: translate(-50%,-50%); width: 44%; height: 21%; border-radius: 0 0 999px 999px / 0 0 140px 140px; background: rgba(255,255,255,.5); box-shadow: inset 0 8px 18px rgba(16,24,39,.16); display: flex; align-items: flex-start; gap: 4px; padding: 5px; overflow: hidden; }
+    .ba-mouth b { flex: 1; border-radius: 3px 3px 6px 6px; }
+    .ba-before .ba-mouth b { background: #ddd2bd; }
+    .ba-before .ba-mouth b:nth-child(2) { transform: translateY(4px) rotate(-5deg); background: #d2c5ae; }
+    .ba-before .ba-mouth b:nth-child(5) { transform: translateY(3px) rotate(4deg); }
+    .ba-after .ba-mouth { background: rgba(255,255,255,.72); }
+    .ba-after .ba-mouth b { background: #ffffff; box-shadow: 0 0 8px rgba(255,255,255,.95); }
+    .ba-tag { position: relative; z-index: 2; display: inline-flex; align-items: center; padding: 6px 13px; border-radius: var(--r-full); font-size: .75rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; background: rgba(255,255,255,.92); border: 1px solid var(--border); color: var(--text-2); }
+    .ba-tag--after { background: var(--teal-tint); border-color: var(--teal-mid); color: var(--teal-h); }
+    .ba-handle { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 0 1px rgba(16,24,39,.12), 0 2px 12px rgba(16,24,39,.28); z-index: 3; }
+    .ba-knob { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 46px; height: 46px; border-radius: 50%; background: #fff; border: 1px solid var(--border); box-shadow: var(--shadow-md); display: flex; align-items: center; justify-content: center; color: var(--blue); cursor: ew-resize; }
+    .ba-knob:focus-visible { outline: 3px solid var(--blue-mid); outline-offset: 2px; }
+    .ba-anim .ba-handle, .ba-anim .ba-before { transition: left .85s var(--ease), clip-path .85s var(--ease); }
+
+    /* 2 · NASIL ÇALIŞIR */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 940px) { .steps { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
+    .flow-step { position: relative; border: 1.5px solid var(--border); border-radius: var(--r-xl); background: var(--surface); padding: 22px; display: flex; flex-direction: column; gap: 14px; box-shadow: var(--shadow-sm); opacity: .58; transition: opacity .4s, border-color .4s, transform .4s, box-shadow .4s; }
+    .flow-step.on { opacity: 1; border-color: var(--blue-mid); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .flow-step:nth-child(2).on { border-color: var(--teal-mid); }
+    .flow-step:nth-child(3).on { border-color: var(--green-mid); }
+    .flow-n { width: 30px; height: 30px; border-radius: 50%; background: var(--blue-tint); border: 1px solid var(--blue-mid); color: var(--blue); display: flex; align-items: center; justify-content: center; font-size: .8125rem; font-weight: 800; }
+    .flow-step:nth-child(2) .flow-n { background: var(--teal-tint); border-color: var(--teal-mid); color: var(--teal); }
+    .flow-step:nth-child(3) .flow-n { background: var(--green-dim); border-color: var(--green-mid); color: var(--green); }
+    .flow-art { height: 122px; border-radius: var(--r-md); background: var(--bg-2); border: 1px solid var(--hairline); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .flow-art--up { color: var(--blue); flex-direction: column; gap: 8px; font-size: .75rem; font-weight: 600; }
+    .flow-art--up s { display: block; width: 62px; height: 42px; border-radius: 8px; border: 1.5px dashed var(--blue-mid); background: var(--blue-tint); }
+    .flow-art--ai { background: linear-gradient(90deg, var(--teal-tint) 0%, #ffffff 50%, var(--teal-tint) 100%); background-size: 200% 100%; color: var(--teal-h); font-size: .75rem; font-weight: 700; }
+    .flow-step:nth-child(2).on .flow-art--ai { animation: mxshim 1.4s linear infinite; }
+    @keyframes mxshim { to { background-position: -200% 0; } }
+    .flow-art--wa { background: var(--green-dim); }
+    .wa-btn { display: inline-flex; align-items: center; gap: 7px; padding: 9px 15px; border-radius: var(--r-full); background: var(--green); color: #fff; font-size: .8125rem; font-weight: 700; }
+    .flow-step:nth-child(3).on .wa-btn { animation: mxbeat 1.5s ease-in-out infinite; }
+    @keyframes mxbeat { 0%,100% { box-shadow: 0 0 0 0 rgba(21,136,79,.5); } 50% { box-shadow: 0 0 0 10px rgba(21,136,79,0); } }
+    .flow-cap { font-family: var(--font-display); font-size: 1rem; font-weight: 800; color: var(--text-1); }
+    .flow-txt { font-size: .875rem; color: var(--text-2); line-height: 1.6; margin: 0; }
+
+    /* 3 · NEDEN DÖNÜŞTÜRÜR */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    @media (max-width: 940px) { .why-grid { grid-template-columns: 1fr; max-width: 460px; margin: 0 auto; } }
+    .why { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-xl); padding: 26px 24px; box-shadow: var(--shadow-sm); }
+    .why-icon { width: 44px; height: 44px; border-radius: var(--r-md); background: var(--blue-tint); border: 1px solid var(--blue-mid); color: var(--blue); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+    .why:nth-child(2) .why-icon { background: var(--teal-tint); border-color: var(--teal-mid); color: var(--teal); }
+    .why:nth-child(3) .why-icon { background: var(--green-dim); border-color: var(--green-mid); color: var(--green); }
+    .why h3 { font-family: var(--font-display); font-size: 1.0625rem; font-weight: 800; color: var(--text-1); margin: 0 0 8px; }
+    .why p { font-size: .9rem; color: var(--text-2); line-height: 1.62; margin: 0; }
+
+    /* 4 · GALERİ */
+    .gal { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    @media (max-width: 940px) { .gal { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .gal { grid-template-columns: 1fr; } }
+    .gal-card { border: 1px solid var(--border); border-radius: var(--r-xl); overflow: hidden; background: var(--surface); box-shadow: var(--shadow-sm); }
+    .gal-pair { display: grid; grid-template-columns: 1fr 1fr; height: 158px; }
+    .gal-half { position: relative; display: flex; align-items: flex-end; justify-content: center; padding: 8px; }
+    .gal-half span { position: relative; z-index: 2; font-size: .625rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; padding: 4px 9px; border-radius: var(--r-full); background: rgba(255,255,255,.9); border: 1px solid var(--border); color: var(--text-2); }
+    .gal-half.after span { background: var(--teal-tint); border-color: var(--teal-mid); color: var(--teal-h); }
+    .gal-b { background: linear-gradient(135deg, #d9d1c4, #b5ab99); }
+    .gal-a { background: linear-gradient(135deg, #fdfbf6, #dfeaf7); }
+    .gal-card:nth-child(2) .gal-b { background: linear-gradient(135deg, #d3ccc6, #aea69c); }
+    .gal-card:nth-child(2) .gal-a { background: linear-gradient(135deg, #fffdf8, #e4f1ef); }
+    .gal-card:nth-child(3) .gal-b { background: linear-gradient(135deg, #ded5c8, #bdb2a1); }
+    .gal-card:nth-child(3) .gal-a { background: linear-gradient(135deg, #fefcf7, #e8e5f6); }
+    .gal-card:nth-child(5) .gal-b { background: linear-gradient(135deg, #d5cdc0, #b2a898); }
+    .gal-card:nth-child(6) .gal-a { background: linear-gradient(135deg, #fdfbf6, #e9eef7); }
+    .gal-foot { padding: 12px 14px; font-size: .8125rem; color: var(--text-3); font-weight: 600; border-top: 1px solid var(--hairline); }
+
+    /* 5 · FİYAT ÖZETİ */
+    .price-recap { max-width: 560px; margin: 0 auto; background: var(--surface); border: 2px solid var(--blue); border-radius: var(--r-2xl); padding: clamp(28px, 4vw, 40px); box-shadow: 0 0 0 4px rgba(30,79,209,.08), var(--shadow-lg); text-align: center; }
+    .price-recap .module-price { font-family: var(--font-display); font-size: 2.6rem; font-weight: 800; color: var(--text-1); line-height: 1; display: flex; align-items: baseline; justify-content: center; gap: 2px; margin: 6px 0; }
+    .price-recap .cur { font-size: 1.15rem; font-weight: 700; color: var(--text-2); }
+    .price-recap .per { font-size: .95rem; font-weight: 500; color: var(--text-3); }
+    .price-recap h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: var(--text-1); margin: 0 0 4px; }
+    .price-recap .note { font-size: .84rem; color: var(--text-3); margin: 0 0 20px; }
+    .recap-features { list-style: none; padding: 18px 0; margin: 0 0 22px; border-block: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 10px; text-align: left; }
+    .recap-features li { display: flex; align-items: center; gap: 9px; font-size: .9rem; color: var(--text-2); }
+    .recap-features li::before { content: '✓'; color: var(--blue); font-weight: 700; }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 18px; font-size: .875rem; font-weight: 700; color: var(--blue); }
+    .back-link:hover { color: var(--blue-h); }
+
+    /* 6 · SSS */
+    .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+    .faq-i { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-lg); padding: 4px 20px; box-shadow: var(--shadow-sm); }
+    .faq-i[open] { border-color: var(--blue-mid); }
+    .faq-i summary { list-style: none; cursor: pointer; padding: 16px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-family: var(--font-display); font-size: .9875rem; font-weight: 700; color: var(--text-1); }
+    .faq-i summary::-webkit-details-marker { display: none; }
+    .faq-i summary::after { content: '+'; font-size: 1.35rem; font-weight: 700; color: var(--blue); line-height: 1; flex-shrink: 0; }
+    .faq-i[open] summary::after { content: '−'; }
+    .faq-i p { margin: 0; padding: 0 0 18px; font-size: .9rem; color: var(--text-2); line-height: 1.65; max-width: 62ch; }
+  </style>
+</head>
+
+<body>
+  <nav id="navbar"></nav>
+  <div id="mobileMenu"></div>
+
+  <!-- ── 1 · HERO + slider ────────────────────────────────── -->
+  <section class="sd-hero">
+    <div class="mx-wrap">
+      <div class="sd-hero-grid">
+        <div>
+          <span class="section-badge">AI Smile Design</span>
+          <h1>Show patients their new smile before they book</h1>
+          <p>Upload a photo at the chair or in the inbox. The AI returns a before/after preview in seconds — and your patient sees the result while they are still deciding.</p>
+          <div class="sd-hero-cta">
+            <a href="/modules-checkout.html?products=smile_design" class="btn-amber cta-alt-a">Buy Smile Design</a>
+            <a href="/modules-checkout.html?products=smile_design" class="btn-altcta cta-alt-b">Buy Smile Design<span class="arw">→</span></a>
+            <a href="#how" class="btn-outline btn-lg">See how it works</a>
+          </div>
+          <div class="sd-hero-meta">
+            <span class="sd-meta">$99/mo · cancel anytime</span>
+            <span class="sd-meta">Works on any clinic account</span>
+          </div>
+        </div>
+
+        <div class="ba" data-ba data-pair="1">
+          <div class="ba-frame">
+            <div class="ba-pane ba-after">
+              <span class="ba-tag ba-tag--after">After — AI preview</span>
+              <div class="ba-mouth"><b></b><b></b><b></b><b></b><b></b><b></b></div>
+            </div>
+            <div class="ba-pane ba-before">
+              <span class="ba-tag">Before — patient photo</span>
+              <div class="ba-mouth"><b></b><b></b><b></b><b></b><b></b><b></b></div>
+            </div>
+            <div class="ba-handle">
+              <span class="ba-knob" tabindex="0" role="slider" aria-label="Before and after comparison" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 7-5 5 5 5"/><path d="m15 7 5 5-5 5"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 2 · NASIL ÇALIŞIR ────────────────────────────────── -->
+  <section class="mx-sec mx-sec--tint" id="how">
+    <div class="mx-wrap">
+      <div class="mx-head mx-head--center">
+        <h2 class="mx-h2">How it works</h2>
+        <p class="mx-lead">Three steps, about fifteen seconds, no design skills needed.</p>
+      </div>
+
+      <div class="steps" data-flow>
+        <article class="flow-step">
+          <span class="flow-n">1</span>
+          <div class="flow-art flow-art--up"><s></s>Patient photo</div>
+          <span class="flow-cap">Upload the photo</span>
+          <p class="flow-txt">Take it on a phone or drop in a photo the patient already sent you on WhatsApp.</p>
+        </article>
+        <article class="flow-step">
+          <span class="flow-n">2</span>
+          <div class="flow-art flow-art--ai">AI processing</div>
+          <span class="flow-cap">AI designs the smile</span>
+          <p class="flow-txt">The model aligns, shapes and brightens the teeth and returns a realistic preview.</p>
+        </article>
+        <article class="flow-step">
+          <span class="flow-n">3</span>
+          <div class="flow-art flow-art--wa"><span class="wa-btn">Share on WhatsApp</span></div>
+          <span class="flow-cap">Send it to the patient</span>
+          <p class="flow-txt">One tap sends the before/after straight into the chat, with your clinic's booking link.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3 · NEDEN DÖNÜŞTÜRÜR ─────────────────────────────── -->
+  <section class="mx-sec">
+    <div class="mx-wrap">
+      <div class="mx-head mx-head--center">
+        <h2 class="mx-h2">Why it converts</h2>
+        <p class="mx-lead">Patients hesitate because they cannot picture the result. This removes that.</p>
+      </div>
+
+      <div class="why-grid">
+        <article class="why">
+          <div class="why-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M12 4v16"/></svg></div>
+          <h3>Before/after visuals drive bookings</h3>
+          <p>A side-by-side preview answers the only question that matters — what will I look like — without a consultation slot.</p>
+        </article>
+        <article class="why">
+          <div class="why-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.9-.9L3 20.5l1.6-4.9A8.4 8.4 0 1 1 21 11.5Z"/></svg></div>
+          <h3>Instant WhatsApp sharing</h3>
+          <p>The preview lands in the conversation you are already having, so the follow-up happens while interest is high.</p>
+        </article>
+        <article class="why">
+          <div class="why-icon"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <h3>A live preview in seconds</h3>
+          <p>No lab, no waiting on a technician. Your team can run a preview mid-conversation and keep the momentum.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4 · GALERİ ───────────────────────────────────────── -->
+  <section class="mx-sec mx-sec--tint">
+    <div class="mx-wrap">
+      <div class="mx-head mx-head--center">
+        <h2 class="mx-h2">Sample previews</h2>
+        <p class="mx-lead">Placeholder pairs — swap in your own approved patient cases before publishing.</p>
+      </div>
+
+      <div class="gal">
+        <figure class="gal-card">
+          <div class="gal-pair">
+            <div class="gal-half gal-b"><span>Before</span></div>
+            <div class="gal-half gal-a after"><span>After</span></div>
+          </div>
+          <figcaption class="gal-foot">[Patient case placeholder]</figcaption>
+        </figure>
+        <figure class="gal-card">
+          <div class="gal-pair">
+            <div class="gal-half gal-b"><span>Before</span></div>
+            <div class="gal-half gal-a after"><span>After</span></div>
+          </div>
+          <figcaption class="gal-foot">[Patient case placeholder]</figcaption>
+        </figure>
+        <figure class="gal-card">
+          <div class="gal-pair">
+            <div class="gal-half gal-b"><span>Before</span></div>
+            <div class="gal-half gal-a after"><span>After</span></div>
+          </div>
+          <figcaption class="gal-foot">[Patient case placeholder]</figcaption>
+        </figure>
+        <figure class="gal-card">
+          <div class="gal-pair">
+            <div class="gal-half gal-b"><span>Before</span></div>
+            <div class="gal-half gal-a after"><span>After</span></div>
+          </div>
+          <figcaption class="gal-foot">[Patient case placeholder]</figcaption>
+        </figure>
+        <figure class="gal-card">
+          <div class="gal-pair">
+            <div class="gal-half gal-b"><span>Before</span></div>
+            <div class="gal-half gal-a after"><span>After</span></div>
+          </div>
+          <figcaption class="gal-foot">[Patient case placeholder]</figcaption>
+        </figure>
+        <figure class="gal-card">
+          <div class="gal-pair">
+            <div class="gal-half gal-b"><span>Before</span></div>
+            <div class="gal-half gal-a after"><span>After</span></div>
+          </div>
+          <figcaption class="gal-foot">[Patient case placeholder]</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5 · FİYAT ÖZETİ ──────────────────────────────────── -->
+  <section class="mx-sec">
+    <div class="mx-wrap">
+      <div class="price-recap">
+        <h2>AI Smile Design</h2>
+        <div class="module-price"><span class="cur">$</span>99<span class="per">/mo</span></div>
+        <p class="note">Monthly subscription · no free trial · cancel anytime</p>
+        <ul class="recap-features">
+          <li>AI smile simulation</li>
+          <li>Before/after gallery</li>
+          <li>One-click WhatsApp share</li>
+          <li>Instant access on any clinic account</li>
+        </ul>
+        <a href="/modules-checkout.html?products=smile_design" class="btn-amber btn-full cta-alt-a">Buy Smile Design</a>
+        <a href="/modules-checkout.html?products=smile_design" class="btn-altcta btn-full cta-alt-b">Buy Smile Design<span class="arw">→</span></a>
+        <div><a href="/modules.html" class="back-link">← Back to all modules</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6 · SSS ──────────────────────────────────────────── -->
+  <section class="mx-sec mx-sec--tint">
+    <div class="mx-wrap">
+      <div class="mx-head mx-head--center">
+        <h2 class="mx-h2">Questions about Smile Design</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-i" open>
+          <summary>What kind of photo does it need?</summary>
+          <p>A clear, front-facing photo of the patient smiling. A phone camera is enough — no special lighting or equipment.</p>
+        </details>
+        <details class="faq-i">
+          <summary>Is the preview a clinical treatment plan?</summary>
+          <p>No. It is a visual preview to help the patient picture the result and decide to book. Your clinical assessment stays with your dentist.</p>
+        </details>
+        <details class="faq-i">
+          <summary>Do I need the full STOAIX platform?</summary>
+          <p>No. Smile Design is a standalone module that works on any clinic account, billed monthly and cancellable anytime.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"></footer>
+
+  <script>
+  (function () {
+    'use strict';
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var ctaParam = new URLSearchParams(location.search).get('cta');
+    if (ctaParam === 'blue') document.body.classList.add('cta-blue');
+    if (ctaParam === 'compare') document.body.classList.add('cta-compare');
+
+    document.querySelectorAll('[data-ba]').forEach(function (ba) {
+      var frame = ba.querySelector('.ba-frame');
+      var before = ba.querySelector('.ba-before');
+      var handle = ba.querySelector('.ba-handle');
+      var knob = ba.querySelector('.ba-knob');
+      var dragging = false, nudged = false;
+
+      function set(pct) {
+        pct = Math.max(2, Math.min(98, pct));
+        handle.style.left = pct + '%';
+        before.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+        knob.setAttribute('aria-valuenow', Math.round(pct));
+      }
+      function fromEvent(e) {
+        var r = frame.getBoundingClientRect();
+        var x = (e.touches ? e.touches[0].clientX : e.clientX) - r.left;
+        set((x / r.width) * 100);
+      }
+      function start(e) { dragging = true; ba.classList.remove('ba-anim'); fromEvent(e); }
+      function move(e) { if (!dragging) return; e.preventDefault(); fromEvent(e); }
+      function end() { dragging = false; }
+
+      frame.addEventListener('mousedown', start);
+      window.addEventListener('mousemove', move);
+      window.addEventListener('mouseup', end);
+      frame.addEventListener('touchstart', start, { passive: true });
+      window.addEventListener('touchmove', move, { passive: false });
+      window.addEventListener('touchend', end);
+      knob.addEventListener('keydown', function (e) {
+        var cur = parseFloat(handle.style.left) || 50;
+        if (e.key === 'ArrowLeft') { set(cur - 4); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { set(cur + 4); e.preventDefault(); }
+      });
+
+
+      if (!reduce) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (en) {
+            if (!en.isIntersecting || nudged) return;
+            nudged = true;
+            ba.classList.add('ba-anim');
+            setTimeout(function () { set(68); }, 500);
+            setTimeout(function () { set(34); }, 1400);
+            setTimeout(function () { set(50); }, 2300);
+          });
+        }, { threshold: .3 });
+        io.observe(ba);
+      }
+    });
+
+    document.querySelectorAll('[data-flow]').forEach(function (flow) {
+      var steps = flow.querySelectorAll('.flow-step');
+      var i = 0;
+      function tick() {
+        steps.forEach(function (s, n) { s.classList.toggle('on', n === i); });
+        i = (i + 1) % steps.length;
+      }
+      if (reduce) { steps.forEach(function (s) { s.classList.add('on'); }); return; }
+      var started = false;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting && !started) { started = true; tick(); setInterval(tick, 2100); } });
+      }, { threshold: .3 });
+      io.observe(flow);
+    });
+  })();
+  </script>
+
+  <script defer src="js/components.js"></script>
+  <script defer src="js/main.js"></script>
+  <script defer src="js/i18n.js"></script>
+</body>
+</html>
