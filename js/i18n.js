@@ -1687,6 +1687,9 @@ const TR_DEMO = Object.assign({}, TR_COMMON, {
     "One tool. One month. No lock-in.": "Tek araç. Tek ay. Bağlayıcılık yok.",
     "Start with a module today": "Bugün bir modülle başlayın",
     "Add it to any clinic account in minutes.": "Dakikalar içinde her klinik hesabına ekleyin.",
+    "Still have questions before you buy?": "Satın almadan önce sorularınız mı var?",
+    "Talk to Ata Ulufer, our CEO — he'll answer anything and help you choose the right module.": "CEO'muz Ata Ulufer ile konuşun — her sorunuzu yanıtlar ve doğru modülü seçmenize yardımcı olur.",
+    "WhatsApp Ata": "Ata'ya WhatsApp",
     '/mo': '/ay',
   });
 
@@ -1784,6 +1787,9 @@ const TR_DEMO = Object.assign({}, TR_COMMON, {
     "No. It is a visual preview to help the patient picture the result and decide to book. Your clinical assessment stays with your dentist.": "Hayır. Bu, hastanın sonucu gözünde canlandırmasına ve randevu almaya karar vermesine yardımcı olan görsel bir önizlemedir. Klinik değerlendirme hekiminize aittir.",
     "Do I need the full STOAIX platform?": "Tam STOAIX platformuna ihtiyacım var mı?",
     "No. Smile Design is a standalone module that works on any clinic account, billed monthly and cancellable anytime.": "Hayır. Gülüş Tasarımı, her klinik hesabında çalışan bağımsız bir modüldür; aylık faturalandırılır ve istediğiniz zaman iptal edilebilir.",
+    "Still have questions before you buy?": "Satın almadan önce sorularınız mı var?",
+    "Talk to Ata Ulufer, our CEO — he'll answer anything and help you choose the right module.": "CEO'muz Ata Ulufer ile konuşun — her sorunuzu yanıtlar ve doğru modülü seçmenize yardımcı olur.",
+    "WhatsApp Ata": "Ata'ya WhatsApp",
   });
 
   /* ─── modules-social-media.html ───────────────────────── */
@@ -1863,6 +1869,9 @@ const TR_DEMO = Object.assign({}, TR_COMMON, {
     "Instagram and Facebook, connected directly to your clinic's accounts. You can connect or disconnect a channel anytime.": "Kliniğinizin hesaplarına doğrudan bağlı olarak Instagram ve Facebook. İstediğiniz zaman kanal bağlayabilir veya kaldırabilirsiniz.",
     "Do I need the full STOAIX platform?": "Tam STOAIX platformuna ihtiyacım var mı?",
     "No. Social Media AI is a standalone module that works on any clinic account, billed monthly and cancellable anytime.": "Hayır. Sosyal Medya AI, her klinik hesabında çalışan bağımsız bir modüldür; aylık faturalandırılır ve istediğiniz zaman iptal edilebilir.",
+    "Still have questions before you buy?": "Satın almadan önce sorularınız mı var?",
+    "Talk to Ata Ulufer, our CEO — he'll answer anything and help you choose the right module.": "CEO'muz Ata Ulufer ile konuşun — her sorunuzu yanıtlar ve doğru modülü seçmenize yardımcı olur.",
+    "WhatsApp Ata": "Ata'ya WhatsApp",
   });
 
   const DICT_MAP = {

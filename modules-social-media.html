@@ -36,6 +36,18 @@
     body.cta-blue .cta-alt-b, body.cta-compare .cta-alt-b { display: inline-flex; }
     body.cta-compare .cta-alt-b { margin-top: 10px; }
 
+    /* TALK TO CEO */
+    .mx-help { display: flex; align-items: center; justify-content: space-between; gap: 28px; flex-wrap: wrap; background: linear-gradient(135deg, var(--teal-tint) 0%, var(--surface) 100%); border: 1px solid var(--teal-mid); border-radius: var(--r-2xl); padding: 30px 32px; }
+    .mx-help-txt { flex: 1; min-width: 260px; }
+    .mx-help-txt .mx-h2 { margin-bottom: 6px; }
+    .mx-help-txt .mx-lead { margin: 0; }
+    .mx-help-act { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .btn-wa { display: inline-flex; align-items: center; gap: 9px; padding: 13px 24px; background: #25D366; color: #fff; border-radius: var(--r-full); font-size: .95rem; font-weight: 700; box-shadow: 0 6px 16px -6px rgba(37,211,102,.6); transition: background .2s, transform .15s; }
+    .btn-wa:hover { background: #1FB855; transform: translateY(-1px); }
+    .mx-help-tel { font-size: 1.0625rem; font-weight: 800; color: var(--text-1); }
+    .mx-help-who { font-size: .8125rem; color: var(--text-3); font-weight: 600; }
+    @media (max-width: 640px) { .mx-help { padding: 24px; } .mx-help-act { width: 100%; } .btn-wa { width: 100%; justify-content: center; } }
+
     /* 1 · HERO */
     .sm-hero { padding: calc(var(--nav-h) + clamp(32px, 4vw, 52px)) 0 clamp(40px, 5vw, 64px); }
     .sm-hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(28px, 4vw, 56px); align-items: center; }
@@ -405,6 +417,26 @@
           <summary>Do I need the full STOAIX platform?</summary>
           <p>No. Social Media AI is a standalone module that works on any clinic account, billed monthly and cancellable anytime.</p>
         </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TALK TO CEO ──────────────────────────────────────── -->
+  <section class="mx-sec">
+    <div class="mx-wrap">
+      <div class="mx-help">
+        <div class="mx-help-txt">
+          <h2 class="mx-h2">Still have questions before you buy?</h2>
+          <p class="mx-lead">Talk to Ata Ulufer, our CEO — he'll answer anything and help you choose the right module.</p>
+        </div>
+        <div class="mx-help-act">
+          <a class="btn-wa" href="https://wa.me/905061185479" target="_blank" rel="noopener">
+            <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.86 9.86 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.12-2.9-6.99A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.16 0 4.19.84 5.72 2.37a8.05 8.05 0 0 1 2.37 5.73c0 4.46-3.63 8.09-8.1 8.09a8.1 8.1 0 0 1-4.12-1.13l-.3-.18-3.05.8.81-2.97-.2-.31a8.02 8.02 0 0 1-1.23-4.3c.01-4.46 3.64-8.09 8.1-8.09Zm4.68 11.44c-.08-.13-.29-.21-.61-.37-.31-.16-1.84-.91-2.13-1.01-.29-.11-.5-.16-.71.16-.21.31-.8 1-.98 1.21-.18.21-.36.24-.67.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.55-1.84-1.73-2.15-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.7-1.69-.96-2.31-.25-.6-.51-.52-.7-.53l-.6-.01c-.21 0-.55.08-.83.39-.29.31-1.09 1.06-1.09 2.6 0 1.53 1.11 3.01 1.27 3.22.16.21 2.19 3.35 5.32 4.7.74.32 1.32.51 1.77.65.74.24 1.42.2 1.96.12.6-.09 1.84-.75 2.1-1.48.26-.72.26-1.34.18-1.47Z"/></svg>
+            WhatsApp Ata
+          </a>
+          <a class="mx-help-tel" href="tel:+905061185479">+90 506 118 54 79</a>
+          <span class="mx-help-who">Ata Ulufer · STOAIX CEO</span>
+        </div>
       </div>
     </div>
   </section>
