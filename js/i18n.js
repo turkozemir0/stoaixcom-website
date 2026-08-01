@@ -1830,7 +1830,7 @@ const TR_DEMO = Object.assign({}, TR_COMMON, {
     "Set your colours, logo and type once. The AI applies them to every post it makes — no template drift, no off-brand designs.": "Renklerinizi, logonuzu ve yazı tipinizi bir kez tanımlayın. AI bunları ürettiği her gönderiye uygular — şablon kayması yok, marka dışı tasarım yok.",
     "Brand colours": "Marka renkleri",
     "Logo": "Logo",
-    "[Clinic logo]": "[Klinik logosu]",
+    "Your logo": "Logonuz",
     "Typography": "Tipografi",
     "Manrope · headline": "Manrope · başlık",
     "Post 1": "Gönderi 1",
