@@ -724,19 +724,26 @@ body.tk-closed .tk-bar { display: none; }
 
 /* Hero typewriter */
 .hero-word-wrap {
-  position: relative;
-  display: inline-block;
+  /* Tüm kaynak kelimeler tek grid hücresinde üst üste istiflenir →
+     kutu EN GENİŞ kelimeye göre sabit genişlik+yükseklik alır.
+     Kelime yazılıp silinirken kutu boyutu DEĞİŞMEZ → layout shift yok
+     (ne yatay ortalanma kayması ne mobil satır zıplaması). */
+  display: inline-grid;
   vertical-align: bottom;
   margin-left: 0.25em;
+  text-align: left;
 }
+.hero-word-wrap > .hero-word,
+.hero-word-wrap > .hero-live { grid-area: 1 / 1; }   /* aynı hücrede istifle */
+.hero-live { justify-self: start; white-space: nowrap; }  /* görünen katman sola yaslı, tek satır */
 
-/* Hidden word source — kept in DOM for i18n translation only */
+/* Gizli kaynak kelimeler — i18n çevirisi + genişlik/yükseklik rezervasyonu için
+   akışta tutulur (artık absolute/height:0 DEĞİL; grid hücresini besler). */
 .hero-word {
-  position: absolute;
   visibility: hidden;
-  height: 0;
-  overflow: hidden;
+  white-space: nowrap;
   pointer-events: none;
+  user-select: none;
 }
 
 /* Typewriter display text */
