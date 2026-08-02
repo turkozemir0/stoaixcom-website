@@ -489,6 +489,39 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
 
   <!-- ═══════════════════════════════════════════════
+       LIVE STATS — platform şu an canlı (sürekli akan sayaçlar)
+       Değerler zamana sabitli: js/live-stats.js → LIVE_STATS_CONFIG
+       Metinler EN kaynak; TR karşılıkları js/i18n-home.js → TR_INDEX
+  ═══════════════════════════════════════════════ -->
+  <section class="livestat-section" id="live-stats" aria-label="Live platform activity">
+    <div class="container">
+      <div class="livestat-head reveal">
+        <div class="livestat-badge">
+          <span class="livestat-dot" aria-hidden="true"></span>
+          LIVE
+        </div>
+        <h2 class="livestat-title">Live right now — working across every channel</h2>
+      </div>
+
+      <div class="livestat-grid reveal">
+        <div class="livestat-card">
+          <div class="livestat-num" data-livestat="messages">118,900</div>
+          <div class="livestat-label">Customer messages answered</div>
+        </div>
+        <div class="livestat-card">
+          <div class="livestat-num" data-livestat="customers">32,300</div>
+          <div class="livestat-label">New customers engaged</div>
+        </div>
+        <div class="livestat-card">
+          <div class="livestat-num" data-livestat="wins">2,890</div>
+          <div class="livestat-label">Conversations won</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
        OVERVIEW — "WHAT IS STOAIX"
   ═══════════════════════════════════════════════ -->
   <section class="overview-section" id="overview">
@@ -960,5 +993,6 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
   <script defer src="/js/components.js"></script>
   <script defer src="/js/main.js"></script>
   <script defer src="/js/i18n-home.js?v=20260727b"></script>
+  <script defer src="/js/live-stats.js"></script>
 </body>
 </html>

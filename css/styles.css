@@ -3582,3 +3582,85 @@ h1, h2, h3, .hero-headline, .section-headline, .rotating-headline, .cta-headline
 /* live-ring: .tk-live-dot::after (keyframe handoff'ta eksikti) */
 @keyframes live-ring { 0% { transform: scale(1); opacity: .55; } 70%, 100% { transform: scale(2.6); opacity: 0; } }
 .trust-sep { width: 1px; height: 14px; background: #e0dace; flex-shrink: 0; }
+
+
+/* ═══════════════════════════════════════════════════════════
+   LIVE STATS — "şu anda canlı" sayaçları  (#live-stats)
+   Değerler ve hızlar: js/live-stats.js → LIVE_STATS_CONFIG
+   ═══════════════════════════════════════════════════════════ */
+.livestat-section {
+  padding: var(--section-y) 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+}
+.livestat-head {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center;
+  margin-bottom: var(--s-10);
+}
+.livestat-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 5px 13px;
+  margin-bottom: var(--s-5);
+  border-radius: var(--r-full);
+  font-size: .75rem; font-weight: 700;
+  letter-spacing: .09em; text-transform: uppercase;
+  background: var(--green-dim); color: var(--green);
+  border: 1px solid var(--green-mid);
+}
+.livestat-dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+.livestat-dot::after {
+  content: ''; position: absolute; inset: -3px; border-radius: 50%;
+  background: rgba(21,136,79,.28);
+  animation: live-ring 1.9s ease-out infinite;
+}
+.livestat-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.6vw, 2.7rem);
+  font-weight: 800; line-height: 1.14; letter-spacing: -.03em;
+  color: var(--text); text-wrap: balance;
+}
+
+.livestat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6); }
+.livestat-card {
+  padding: var(--s-9) var(--s-8);
+  text-align: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-2xl);
+  box-shadow: var(--shadow-lg);
+}
+.livestat-num {
+  --roll-h: 1.12em;
+  display: flex; align-items: flex-start; justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4.4vw, 3.5rem);
+  font-weight: 800; line-height: 1.12; letter-spacing: -.035em;
+  color: var(--blue);
+  font-variant-numeric: tabular-nums;
+  transition: text-shadow .3s var(--ease);
+}
+.livestat-num.is-tick { text-shadow: 0 0 20px rgba(30,79,209,.32); }
+.livestat-digit { display: inline-block; height: var(--roll-h); overflow: hidden; }
+.livestat-roll  { display: block; }
+.livestat-roll > span { display: block; height: var(--roll-h); line-height: var(--roll-h); }
+.livestat-roll.is-rolling {
+  transition: transform .42s var(--ease);
+  transform: translateY(calc(-1 * var(--roll-h)));
+}
+.livestat-sep { display: inline-block; }
+.livestat-label {
+  margin-top: var(--s-4);
+  font-size: .9375rem; font-weight: 500; color: var(--text-2);
+}
+
+@media (max-width: 900px) {
+  .livestat-grid { grid-template-columns: 1fr; gap: var(--s-4); }
+  .livestat-card { padding: var(--s-7) var(--s-6); border-radius: var(--r-xl); }
+  .livestat-num  { font-size: clamp(2.25rem, 11vw, 3rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .livestat-dot::after { animation: none; }
+  .livestat-roll.is-rolling { transition: none; transform: none; }
+  .livestat-num.is-tick { text-shadow: none; }
+}
