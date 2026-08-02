@@ -297,6 +297,7 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'Customer messages answered': 'Yanıtlanan müşteri mesajı',
   'New customers engaged': 'Karşılanan yeni müşteri',
   'Conversations won': 'Satışa dönen görüşme',
+  'Across businesses using stoaix — and counting': 'stoaix kullanan işletmelerde — ve artıyor',
   'Coming Soon': 'Yakında',
   'Interactive Voice Demo': 'Sesli Canlı Demo',
   'Speak with STOAIX\'s AI agent live — no signup required. Ask questions, hear the voice, book an appointment in real time.': 'STOAIX AI ajanıyla canlı konuşun — kayıt gerekmez. Sorular sorun, sesi dinleyin, gerçek zamanlı randevu alın.',

@@ -3623,6 +3623,8 @@ h1, h2, h3, .hero-headline, .section-headline, .rotating-headline, .cta-headline
 
 .livestat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s-6); }
 .livestat-card {
+  position: relative;
+  overflow: hidden;
   padding: var(--s-9) var(--s-8);
   text-align: center;
   background: var(--surface-2);
@@ -3632,6 +3634,7 @@ h1, h2, h3, .hero-headline, .section-headline, .rotating-headline, .cta-headline
 }
 .livestat-num {
   --roll-h: 1.12em;
+  position: relative; z-index: 0;
   display: flex; align-items: flex-start; justify-content: center;
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 4.4vw, 3.5rem);
@@ -3653,6 +3656,25 @@ h1, h2, h3, .hero-headline, .section-headline, .rotating-headline, .cta-headline
   margin-top: var(--s-4);
   font-size: .9375rem; font-weight: 500; color: var(--text-2);
 }
+.livestat-sub {
+  margin-top: var(--s-4);
+  font-size: .9375rem; font-weight: 500; color: var(--text-3);
+  letter-spacing: .01em; text-wrap: balance;
+}
+
+/* ambient "nefes" — rakam arkasında yavaş accent parıltısı */
+.livestat-num::after {
+  content: ''; position: absolute; z-index: -1; pointer-events: none;
+  left: 50%; top: 44%; transform: translate(-50%, -50%) scale(1);
+  width: 150%; height: 210%;
+  background: radial-gradient(closest-side, rgba(30,79,209,.18), rgba(30,79,209,0) 70%);
+  opacity: .5;
+  animation: livestat-breathe 5.5s ease-in-out infinite;
+}
+@keyframes livestat-breathe {
+  0%, 100% { opacity: .3; transform: translate(-50%, -50%) scale(.9); }
+  50%      { opacity: .7; transform: translate(-50%, -50%) scale(1.08); }
+}
 
 @media (max-width: 900px) {
   .livestat-grid { grid-template-columns: 1fr; gap: var(--s-4); }
@@ -3663,4 +3685,5 @@ h1, h2, h3, .hero-headline, .section-headline, .rotating-headline, .cta-headline
   .livestat-dot::after { animation: none; }
   .livestat-roll.is-rolling { transition: none; transform: none; }
   .livestat-num.is-tick { text-shadow: none; }
+  .livestat-num::after { animation: none; opacity: .4; }
 }
