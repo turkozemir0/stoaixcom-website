@@ -211,6 +211,9 @@ export async function provisionSubscription(params) {
       email,
       phone: phone || null,
       country: 'GB',
+      // Ortak atifi: hangi partner linkinden geldigi burada kalir. Harici
+      // partner paneline ulasilamasa da bu kayit kendi DB'mizde durur.
+      referral_code: partnerRef || null,
     })
     .select('id')
     .single()
