@@ -1,7 +1,9 @@
 const { getClient } = require('./_lib/supabase')
 const { setCorsHeaders } = require('./_lib/cors')
 
-const COOKIE_MAX_AGE = 60 * 60 * 24 * 90 // 90 days
+// 45 days — must match cookie-policy.html and the client-side writers
+// in index.html / signup.html, which all write the same partner_ref cookie
+const COOKIE_MAX_AGE = 60 * 60 * 24 * 45
 
 module.exports = async function handler(req, res) {
   setCorsHeaders(res)
@@ -30,9 +32,13 @@ module.exports = async function handler(req, res) {
         visitor_ip: visitorIp.split(',')[0].trim(),
       })
 
+      // partner_ref is read by checkout.html and signup.html, and is also written
+      // from ?ref= by index.html and signup.html. Keep the name, and COOKIE_MAX_AGE
+      // above, in sync across all of them and with cookie-policy.html.
+      // Use the value from the database, not the raw request path.
       res.setHeader(
         'Set-Cookie',
-        `stoaix_ref=${slug}; Path=/; Max-Age=${COOKIE_MAX_AGE}; SameSite=Lax; Secure`
+        `partner_ref=${encodeURIComponent(affiliate.slug)}; Path=/; Max-Age=${COOKIE_MAX_AGE}; SameSite=Lax; Secure`
       )
     }
   } catch (err) {
