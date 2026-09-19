@@ -195,7 +195,7 @@ function page(lang) {
 <meta name="twitter:site" content="@stoaix">
 
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${isTR ? '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>' : ''}
-<link rel="stylesheet" href="/css/v2.css?v=1">
+<link rel="stylesheet" href="/css/v2.css?v=2">
 
 <!-- Tema, ilk boyamadan önce uygulanır: koyu/açık geçişinde flaş olmaz. -->
 <script>
@@ -495,7 +495,7 @@ ${panelCalendar(c)}
   </div>
 </footer>
 
-<script src="/js/v2.js?v=1" defer></script>
+<script src="/js/v2.js?v=2" defer></script>
 </body>
 </html>
 `;
