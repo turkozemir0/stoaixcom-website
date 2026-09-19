@@ -170,3 +170,36 @@ adresine alındı. Değişiklikler:
 
 Değişiklik yeni ana sayfa yayına alındıktan birkaç saat sonra yapıldı, yani
 arama motorları kökü henüz İngilizce olarak oturtmamıştı.
+
+## Bağlantı denetimi
+
+```bash
+npm run build          # üret + denetle
+npm run check-links    # yalnız denetle
+```
+
+`tools/check-links.mjs` üretilen iki ana sayfadaki her bağlantıyı kontrol eder:
+
+1. **Sayfa içi çapa** — `#footprint` gibi hedeflerin id'si sayfada var mı.
+   İlk çalıştırmada bunu yakaladı: nav "Sahada / Footprint" linki `#footprint`
+   diyordu ama bölümün id'si `record` kalmıştı, bağlantı hiçbir yere gitmiyordu.
+2. **İç bağlantı** — hedef dosya diskte var mı. `vercel.json`'daki sabit
+   rewrite ve redirect'leri okur, yani `/en` gibi dosyası olmayan adresleri
+   yanlışlıkla kırık saymaz.
+3. **Dil tutarlılığı** — Türkçe ana sayfadan gidilen hedef Türkçe mi; değilse
+   `i18n-home.js` sözlüğünde karşılığı tanımlı mı.
+4. **Tekrar** — aynı adrese giden farklı etiketler.
+
+Kırık bağlantı bulunursa çıkış kodu 1 döner, `npm run build` durur.
+
+### Bilinçli kabul edilen durumlar
+
+Script içinde iki liste var; buradakiler uyarı üretmez, amaç yeni bir
+tutarsızlığın gürültüye karışmadan görünmesi:
+
+- `ACCEPTED_ENGLISH` — `/modules`, `/blog`, `/contact`. Türkçe ana sayfadan
+  bu üçüne gidildiğinde İngilizce içerik açılır; `i18n-home.js` sözlüğünde
+  karşılıkları yok. Türkçe sözlük yazılırsa listeden silinmeli.
+- `ACCEPTED_DUPLICATE` — `/healthcare-clinics`. "Göz / Ophthalmology" için
+  ayrı sayfa olmadığından "Çok şubeli gruplar" ile aynı hub'a gidiyor.
+  Göz sayfası açılırsa hem footer hem bu liste güncellenmeli.

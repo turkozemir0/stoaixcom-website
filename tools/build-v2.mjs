@@ -431,7 +431,7 @@ ${panelCalendar(c)}
 </section>
 
 <!-- ═══ KAPSAMA (ters zemin) ══════════════════════════════════ -->
-<section class="alt pad" id="record">
+<section class="alt pad" id="footprint">
   <div class="foot-head">
     <h2 class="eyebrow">${esc(c.footTitle)}</h2>
     <div class="meta">${esc(c.footMeta)}</div>

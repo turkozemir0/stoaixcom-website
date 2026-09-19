@@ -8,5 +8,9 @@
     "jsonwebtoken": "^9.0.2",
     "resend": "^4.0.0",
     "stripe": "^17.0.0"
+  },
+  "scripts": {
+    "build": "node tools/build-v2.mjs && node tools/check-links.mjs",
+    "check-links": "node tools/check-links.mjs"
   }
 }
