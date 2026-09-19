@@ -23,12 +23,8 @@
       "destination": "/apidocs/:path+"
     },
     {
-      "source": "/tr",
-      "destination": "/index-tr"
-    },
-    {
       "source": "/en",
-      "destination": "/"
+      "destination": "/index-en"
     },
     {
       "source": "/en/:path*",
@@ -144,13 +140,18 @@
   ],
   "redirects": [
     {
+      "source": "/tr",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/v2",
       "destination": "/",
       "permanent": true
     },
     {
       "source": "/tr/v2",
-      "destination": "/tr",
+      "destination": "/",
       "permanent": true
     }
   ]

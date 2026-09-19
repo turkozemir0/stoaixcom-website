@@ -7,13 +7,18 @@ varyasyon **6a / 6b**) sitedeki karşılığı.
 
 | URL | Dosya | Dil |
 |---|---|---|
-| `/` | `index.html` | EN |
-| `/tr` | `index-tr.html` | TR |
+| `/` | `index.html` | **TR** — ana pazar |
+| `/en` | `index-en.html` | EN |
 | `/product` | `product.html` | eski ana sayfa, **noindex** |
 
-`/tr → /index-tr` yönlendirmesi `vercel.json`da, genel `/tr/:path*` kuralından
-**önce** tanımlıdır; sıra değişirse TR ana sayfası İngilizce açılır. Önizleme
-döneminde paylaşılan `/v2` ve `/tr/v2` adresleri 301 ile ana sayfaya gider.
+`/en → /index-en` yönlendirmesi `vercel.json`da, genel `/en/:path*` kuralından
+**önce** tanımlıdır; sıra değişirse EN ana sayfası Türkçe açılır. Eski `/tr`,
+`/v2` ve `/tr/v2` adresleri 301 ile köke gider.
+
+`hreflang` üçlüsü: `tr → /`, `en → /en`, `x-default → /`. Kök Türkçe olduğu
+için x-default da köke verildi; İngilizce ziyaretçi nav anahtarıyla geçer.
+Tarayıcı diline göre otomatik yönlendirme **yok** — arama motorlarının kökü
+Türkçe indeksleyebilmesi için dil tercihi yalnızca kullanıcının seçimine bağlı.
 
 ## Derleme
 
@@ -22,7 +27,7 @@ node tools/build-v2.mjs
 ```
 
 İçerik **tek kaynaktan** gelir: `tools/v2-content.mjs`. Metin değişikliği orada
-yapılır, ardından build çalıştırılır — `index.html` / `index-tr.html` elle düzenlenmez.
+yapılır, ardından build çalıştırılır — `index.html` / `index-en.html` elle düzenlenmez.
 
 `tools/build-v2.mjs` başında iki anahtar vardır:
 
@@ -149,3 +154,19 @@ Fiyat tablosu `components.js` içindeki `PRICING_HTML` ile yalnızca
 `/product` sayfasına inject ediliyor. Menüde fiyat bağlantısı yok — satış
 görüşmesi üzerinden ilerleniyor. Self-serve yol duruyor: hero'daki hayalet
 buton `/signup`'a gidiyor.
+
+## Kök dili Türkçe oldu (19 Eyl 2026)
+
+Ana müşteri kitlesi Türkçe konuştuğu için kök Türkçeye, İngilizce `/en`
+adresine alındı. Değişiklikler:
+
+- `index.html` artık TR, `index-en.html` EN. Build sırası `[['tr', …], ['en', …]]`.
+- `vercel.json`: `/en → /index-en` rewrite; `/tr` köke 301.
+- `hreflang`: `tr → /`, `en → /en`, `x-default → /`.
+- `sitemap.xml`: `/tr` kaydı `/en` ile değiştirildi.
+- `llms.txt`: ana sayfa iki satır oldu — Türkçe kök, İngilizce `/en`.
+- Head'deki dil yönlendirmesi ters çevrildi: daha önce İngilizce seçmiş
+  ziyaretçi `/en` görür; varsayılan Türkçedir.
+
+Değişiklik yeni ana sayfa yayına alındıktan birkaç saat sonra yapıldı, yani
+arama motorları kökü henüz İngilizce olarak oturtmamıştı.

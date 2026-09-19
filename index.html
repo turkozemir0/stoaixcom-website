@@ -1,35 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" class="pal-ink">
+<html lang="tr" class="pal-ink">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>STOAIX — The AI sales operating system for clinic groups</title>
-<meta name="description" content="Eight AI agents under your governance: every call answered, every lead contacted in under a minute, every follow-up completed. Demand, sales and loyalty on one revenue ledger.">
+<title>STOAIX — Klinik grupları için yapay zeka satış işletim sistemi</title>
+<meta name="description" content="Sizin yönetişiminiz altında sekiz AI asistan: her arama yanıtlanır, her lead bir dakika içinde aranır, her takip tamamlanır. Talep, satış ve sadakat tek gelir tablosunda.">
 <meta name="author" content="Emir TÜRKÖZ, Ata Ulufer">
 <meta name="theme-color" content="#0A0A0B" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#F1EEE8" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" href="/assets/images/logo.png">
 
 <link rel="canonical" href="https://stoaix.com/">
-<link rel="alternate" hreflang="en" href="https://stoaix.com/">
-<link rel="alternate" hreflang="tr" href="https://stoaix.com/tr">
+<link rel="alternate" hreflang="en" href="https://stoaix.com/en">
+<link rel="alternate" hreflang="tr" href="https://stoaix.com/">
 <link rel="alternate" hreflang="x-default" href="https://stoaix.com/">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://stoaix.com/">
-<meta property="og:title" content="STOAIX — The AI sales operating system for clinic groups">
-<meta property="og:description" content="Eight AI agents under your governance: every call answered, every lead contacted in under a minute, every follow-up completed. Demand, sales and loyalty on one revenue ledger.">
+<meta property="og:title" content="STOAIX — Klinik grupları için yapay zeka satış işletim sistemi">
+<meta property="og:description" content="Sizin yönetişiminiz altında sekiz AI asistan: her arama yanıtlanır, her lead bir dakika içinde aranır, her takip tamamlanır. Talep, satış ve sadakat tek gelir tablosunda.">
 <meta property="og:image" content="https://stoaix.com/assets/og-image.png">
 <meta property="og:site_name" content="STOAIX">
-<meta property="og:locale" content="en_GB">
-<meta property="og:locale:alternate" content="tr_TR">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="STOAIX — The AI sales operating system for clinic groups">
-<meta name="twitter:description" content="Eight AI agents under your governance: every call answered, every lead contacted in under a minute, every follow-up completed. Demand, sales and loyalty on one revenue ledger.">
+<meta name="twitter:title" content="STOAIX — Klinik grupları için yapay zeka satış işletim sistemi">
+<meta name="twitter:description" content="Sizin yönetişiminiz altında sekiz AI asistan: her arama yanıtlanır, her lead bir dakika içinde aranır, her takip tamamlanır. Talep, satış ve sadakat tek gelir tablosunda.">
 <meta name="twitter:image" content="https://stoaix.com/assets/og-image.png">
 <meta name="twitter:site" content="@stoaix">
 
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/v2.css?v=2">
 
 <!-- Tema, ilk boyamadan önce uygulanır: koyu/açık geçişinde flaş olmaz. -->
@@ -40,15 +41,17 @@
     if (t !== 'ink' && t !== 'bone') t = 'ink';           /* varsayılan: 6a ink */
     document.documentElement.className = 'pal-' + t;
   } catch (e) {}
-  /* Site genelindeki dil tercihi ile tutarlılık: TR tercihli ziyaretçi /tr/v2 görür. */
+  /* Site genelindeki dil tercihiyle tutarlılık. Kök Türkçe; daha önce İngilizce
+     seçmiş ziyaretçi /en görür. Tarayıcı diline göre yönlendirme yok — arama
+     motorları kökü Türkçe indeksleyebilsin diye tercih yalnızca kullanıcının. */
   try {
     var lang = localStorage.getItem('stoaix-lang');
-    var onTR = false;
+    var onTR = true;
     if (!sessionStorage.getItem('stoaix-home-redirected')) {
-      if (lang === 'tr' && !onTR) {
+      if (lang === 'en' && onTR) {
         sessionStorage.setItem('stoaix-home-redirected', '1');
-        location.replace('/tr' + location.hash);
-      } else if (lang === 'en' && onTR) {
+        location.replace('/en' + location.hash);
+      } else if (lang === 'tr' && !onTR) {
         sessionStorage.setItem('stoaix-home-redirected', '1');
         location.replace('/' + location.hash);
       }
@@ -65,7 +68,7 @@
   "alternateName": "STOAIX Ltd",
   "url": "https://stoaix.com",
   "logo": { "@type": "ImageObject", "url": "https://stoaix.com/assets/logo-iconwithname.svg" },
-  "description": "Eight AI agents under your governance: every call answered, every lead contacted in under a minute, every follow-up completed. Demand, sales and loyalty on one revenue ledger.",
+  "description": "Sizin yönetişiminiz altında sekiz AI asistan: her arama yanıtlanır, her lead bir dakika içinde aranır, her takip tamamlanır. Talep, satış ve sadakat tek gelir tablosunda.",
   "email": "hello@stoaix.com",
   "address": { "@type": "PostalAddress", "addressCountry": "GB", "addressLocality": "London" },
   "founder": [
@@ -88,54 +91,54 @@
 {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "inLanguage": "en",
+  "inLanguage": "tr",
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Is this an AI receptionist?",
+      "name": "Bu bir AI resepsiyonist mi?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Reception is one of the eight agents. An AI receptionist answers the call that comes in; STOAIX also runs what happens before and after it — demand generation, a callback within 60 seconds, multi-channel follow-up, dormant lead reactivation, filling cancelled slots, post-treatment surveys and recall."
+        "text": "Reception, sekiz AI asistandan yalnızca biri. AI resepsiyonist gelen aramayı yanıtlar; STOAIX bunun öncesini ve sonrasını da işletir — talep üretimi, 60 saniye içinde geri arama, çok kanallı takip, eski lead canlandırma, iptal olan slotların doldurulması, tedavi sonrası anket ve geri kazanım."
       }
     },
     {
       "@type": "Question",
-      "name": "How do you work with our clinic?",
+      "name": "Kliniğimizle nasıl çalışıyorsunuz?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "As a business partner, not a software subscription. The agents work alongside your front desk rather than replacing it, and hand over on your escalation rules — anything outside the treatments and pricing bands they are trained on goes to your team. Our strategists review the campaigns and a named account lead runs the monthly review with you."
+        "text": "Bir yazılım aboneliği gibi değil, iş ortağı gibi. AI asistanlar ön büronuzun yerini almaz, onunla birlikte çalışır ve sizin eskalasyon kurallarınıza göre devreder — eğitildikleri tedavi ve fiyat aralıklarının dışındaki her durum ekibinize gider. Kampanyaları stratejistlerimiz denetler, aylık değerlendirmeyi atanmış müşteri lideriniz sizinle birlikte yürütür."
       }
     },
     {
       "@type": "Question",
-      "name": "Does it work with the CRM and clinic software we already run?",
+      "name": "Kullandığımız CRM ve klinik yazılımıyla çalışır mı?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes — two-way sync with 24 systems including HubSpot, Salesforce, Dentally, Pabau, Fresha and Google Calendar, plus a webhook API. Nothing is migrated and nobody enters the same data twice."
+        "text": "Evet — HubSpot, Salesforce, Dentally, Pabau, Fresha ve Google Calendar dahil 24 sistemle iki yönlü senkron, ayrıca webhook API. Veri taşınmaz, kimse aynı kaydı iki kere girmez."
       }
     },
     {
       "@type": "Question",
-      "name": "How does it work across multiple sites?",
+      "name": "Çok şubeli yapıda nasıl çalışıyor?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Permissions and reporting are split by clinic, language and team. Each site sees its own pipeline; the group sees one consolidated record."
+        "text": "Yetki ve raporlama şube, dil ve ekip bazında ayrılır. Her şube kendi hattını görür; grup tek bir birleşik kaydı görür."
       }
     },
     {
       "@type": "Question",
-      "name": "How is KVKK and GDPR compliance handled?",
+      "name": "KVKK ve GDPR uyumu nasıl sağlanıyor?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A data processing agreement, regional hosting and a full audit trail. Role-based access with SSO and audit logs controls who can see what."
+        "text": "Veri işleme sözleşmesi, bölgesel barındırma ve tam kayıt izi. SSO ve denetim kayıtlarıyla rol bazlı erişim, kimin neyi görebileceğini belirler."
       }
     },
     {
       "@type": "Question",
-      "name": "How long does deployment take?",
+      "name": "Devreye alma ne kadar sürüyor?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Four stages: audit, configuration, a supervised launch on one channel at one clinic, then scale. Supervised and reversible at every step — nothing is switched on all at once."
+        "text": "Dört aşama: analiz, kurulum, tek klinikte tek kanalla gözetimli yayın, ardından ölçek. Her adımda denetimli ve geri alınabilir — hiçbir şey tek seferde açılmaz."
       }
     }
   ]
@@ -166,27 +169,27 @@
 </script>
 </head>
 <body>
-<a class="skip" href="#main">Skip to main content</a>
+<a class="skip" href="#main">Ana içeriğe geç</a>
 
 <!-- ═══ NAV ═══════════════════════════════════════════════════ -->
 <header class="nav">
   <a class="brand" href="/"><span class="mark" style="width:24px;height:24px" aria-hidden="true"></span>STOAIX</a>
-  <nav class="nav-links" aria-label="Platform, Specification, Deployment, Governance, Footprint">
+  <nav class="nav-links" aria-label="Platform, AI Asistanlar, Devreye alma, Yönetişim, Sahada">
     <a href="#platform">Platform</a>
-    <a href="#specification">Specification</a>
-    <a href="#deployment">Deployment</a>
-    <a href="#governance">Governance</a>
-    <a href="#footprint">Footprint</a>
+    <a href="#specification">AI Asistanlar</a>
+    <a href="#deployment">Devreye alma</a>
+    <a href="#governance">Yönetişim</a>
+    <a href="#footprint">Sahada</a>
   </nav>
   <div class="nav-right">
-    <span class="switch" role="group" aria-label="Theme">
-      <button type="button" data-theme="ink" class="on" aria-pressed="true">Dark</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Light</button>
+    <span class="switch" role="group" aria-label="Tema">
+      <button type="button" data-theme="ink" class="on" aria-pressed="true">Koyu</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Açık</button>
     </span>
-    <span class="switch" role="group" aria-label="Language">
-      <a href="/" hreflang="en" class="on" aria-current="true">EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr" hreflang="tr" class="off">TR</a>
+    <span class="switch" role="group" aria-label="Dil">
+      <a href="/en" hreflang="en" class="off">EN</a><span class="sep" aria-hidden="true">/</span><a href="/" hreflang="tr" class="on" aria-current="true">TR</a>
     </span>
-    <a class="nav-cta" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Request a briefing</a>
-    <button type="button" class="nav-burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav">
+    <a class="nav-cta" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Tanışma görüşmesi</a>
+    <button type="button" class="nav-burger" aria-label="Menü" aria-expanded="false" aria-controls="mnav">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h18M2 11h18M2 16h18"/></svg>
     </button>
   </div>
@@ -196,27 +199,27 @@
 <div class="mnav" id="mnav" hidden>
   <div class="mnav-top">
     <span class="brand"><span class="mark" style="width:24px;height:24px" aria-hidden="true"></span>STOAIX</span>
-    <button type="button" class="nav-burger" data-close style="display:block" aria-label="Close">
+    <button type="button" class="nav-burger" data-close style="display:block" aria-label="Kapat">
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l14 14M18 4L4 18"/></svg>
     </button>
   </div>
   <a class="mlink" href="#platform">Platform</a>
-  <a class="mlink" href="#specification">Specification</a>
-  <a class="mlink" href="#deployment">Deployment</a>
-  <a class="mlink" href="#governance">Governance</a>
-  <a class="mlink" href="#footprint">Footprint</a>
+  <a class="mlink" href="#specification">AI Asistanlar</a>
+  <a class="mlink" href="#deployment">Devreye alma</a>
+  <a class="mlink" href="#governance">Yönetişim</a>
+  <a class="mlink" href="#footprint">Sahada</a>
   <div class="mnav-switches">
-    <span class="switch" role="group" aria-label="Theme">
-      <button type="button" data-theme="ink" class="on" aria-pressed="true">Dark</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Light</button>
+    <span class="switch" role="group" aria-label="Tema">
+      <button type="button" data-theme="ink" class="on" aria-pressed="true">Koyu</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Açık</button>
     </span>
-    <span class="switch" role="group" aria-label="Language">
-      <a href="/" hreflang="en" class="on">EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr" hreflang="tr" class="off">TR</a>
+    <span class="switch" role="group" aria-label="Dil">
+      <a href="/en" hreflang="en" class="off">EN</a><span class="sep" aria-hidden="true">/</span><a href="/" hreflang="tr" class="on">TR</a>
     </span>
   </div>
   <div class="mnav-foot">
-    <a class="btn" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Request a briefing</a>
-    <a class="btn-ghost" href="/signup">Explore the console →</a>
-    <a href="https://platform.stoaix.com/login" style="font-size:13.5px;color:var(--soft)">Sign in</a>
+    <a class="btn" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Tanışma görüşmesi</a>
+    <a class="btn-ghost" href="/signup">Konsolu keşfedin →</a>
+    <a href="https://platform.stoaix.com/login" style="font-size:13.5px;color:var(--soft)">Giriş yap</a>
   </div>
 </div>
 
@@ -225,63 +228,63 @@
 <!-- ═══ HERO ══════════════════════════════════════════════════ -->
 <section class="hero">
   <div class="hero-head">
-    <h1 class="eyebrow">The AI sales operating system for clinic groups</h1>
-    <div class="proof">Built on 500+ clinic audits</div>
+    <h1 class="eyebrow">Klinik grupları için yapay zeka satış işletim sistemi</h1>
+    <div class="proof">500+ klinik denetimi üzerine kurulu</div>
   </div>
   <!-- Hayalet yığın: tüm daktilo satırları aynı grid hücresinde görünmez durur;
        kutu daima en uzun satırın yüksekliğinde kalır, satır değişiminde sayfa zıplamaz. -->
-  <p class="hero-line" aria-hidden="true" data-tw='["Turn missed leads into booked appointments.","Stop losing leads after the first message.","Follow up with every lead, automatically.","Turn old leads into new opportunities.","Respond faster. Convert more.","Your AI partner for clinic growth.","Never let a valuable lead go cold.","From first contact to booked appointment.","Automate follow-ups. Accelerate growth.","Make every lead count.","More conversations. More appointments. More growth.","Your clinic should never miss an opportunity.","AI-powered communication for modern clinics.","Recover lost opportunities with intelligent follow-up.","Turn your clinic&#39;s data into growth."]'>
-    <span class="tw-stack"><span>Turn missed leads into booked appointments.</span><span>Stop losing leads after the first message.</span><span>Follow up with every lead, automatically.</span><span>Turn old leads into new opportunities.</span><span>Respond faster. Convert more.</span><span>Your AI partner for clinic growth.</span><span>Never let a valuable lead go cold.</span><span>From first contact to booked appointment.</span><span>Automate follow-ups. Accelerate growth.</span><span>Make every lead count.</span><span>More conversations. More appointments. More growth.</span><span>Your clinic should never miss an opportunity.</span><span>AI-powered communication for modern clinics.</span><span>Recover lost opportunities with intelligent follow-up.</span><span>Turn your clinic&#39;s data into growth.</span></span>
-    <span class="tw-live"><span class="tw">Turn missed leads into booked appointments.</span><span class="caret">|</span></span>
+  <p class="hero-line" aria-hidden="true" data-tw='["Kaçan lead&#39;leri randevuya dönüştürün.","İlk mesajdan sonra lead kaybetmeyi durdurun.","Her lead&#39;i otomatik olarak takip edin.","Eski leadleri yeni fırsatlara dönüştürün.","Daha hızlı yanıtlayın. Daha fazla dönüştürün.","Kliniğinizin büyümesi için AI ortağınız.","Değerli hiçbir lead&#39;in soğumasına izin vermeyin.","İlk temastan randevuya kadar.","Takip süreçlerini otomatikleştirin. Büyümeyi hızlandırın.","Her lead&#39;i değerli hale getirin.","Daha fazla görüşme. Daha fazla randevu. Daha fazla büyüme.","Kliniğiniz hiçbir fırsatı kaçırmamalı.","Modern klinikler için AI destekli iletişim.","Akıllı takip ile kaybedilen fırsatları geri kazanın.","Kliniğinizin verisini büyümeye dönüştürün."]'>
+    <span class="tw-stack"><span>Kaçan lead&#39;leri randevuya dönüştürün.</span><span>İlk mesajdan sonra lead kaybetmeyi durdurun.</span><span>Her lead&#39;i otomatik olarak takip edin.</span><span>Eski leadleri yeni fırsatlara dönüştürün.</span><span>Daha hızlı yanıtlayın. Daha fazla dönüştürün.</span><span>Kliniğinizin büyümesi için AI ortağınız.</span><span>Değerli hiçbir lead&#39;in soğumasına izin vermeyin.</span><span>İlk temastan randevuya kadar.</span><span>Takip süreçlerini otomatikleştirin. Büyümeyi hızlandırın.</span><span>Her lead&#39;i değerli hale getirin.</span><span>Daha fazla görüşme. Daha fazla randevu. Daha fazla büyüme.</span><span>Kliniğiniz hiçbir fırsatı kaçırmamalı.</span><span>Modern klinikler için AI destekli iletişim.</span><span>Akıllı takip ile kaybedilen fırsatları geri kazanın.</span><span>Kliniğinizin verisini büyümeye dönüştürün.</span></span>
+    <span class="tw-live"><span class="tw">Kaçan lead&#39;leri randevuya dönüştürün.</span><span class="caret">|</span></span>
   </p>
   <div class="hero-grid">
-    <p>We operate the layer between your marketing spend and your treatment calendar — eight AI agents under your governance, one revenue ledger, and demand generation run by the same team.</p>
+    <p>Pazarlama bütçenizle tedavi takviminiz arasındaki katmanı biz işletiriz — sizin yönetişiminiz altında sekiz AI asistan, tek bir gelir tablosu ve aynı ekip tarafından yürütülen talep üretimi.</p>
     <div class="row hero-actions">
-      <a href="https://calendly.com/ataulufer1/20" class="btn" target="_blank" rel="noopener">Request a briefing</a>
-      <a href="/signup" class="btn-ghost">Explore the console →</a>
+      <a href="https://calendly.com/ataulufer1/20" class="btn" target="_blank" rel="noopener">Tanışma görüşmesi</a>
+      <a href="/signup" class="btn-ghost">Konsolu keşfedin →</a>
     </div>
   </div>
 </section>
 
 <!-- ═══ KONSOL — ürün, üstünde başlık olmadan gösterilir ══════ -->
-<section class="console-wrap" id="platform" aria-label="Live console">
-  <p class="vh">Illustrative view of the STOAIX console with sample data.</p>
+<section class="console-wrap" id="platform" aria-label="Canlı konsol">
+  <p class="vh">STOAIX konsolunun örnek verilerle hazırlanmış temsili görünümü.</p>
   <div class="console">
     <div class="console-bar">
       <div class="meta">
         <div class="dots" aria-hidden="true"><span></span><span></span><span></span></div>
-        <div class="ttl">Agent performance</div>
-        <div class="sub">Last 30 days · All clinics</div>
+        <div class="ttl">AI asistan performansı</div>
+        <div class="sub">Son 30 gün · Tüm klinikler</div>
       </div>
       <div class="pill">30d</div>
     </div>
     <div class="tabs" role="tablist">
-      <button type="button" role="tab" id="tab-ov" data-tab="ov" class="on" aria-selected="true" aria-controls="panel-ov">Overview</button>
-      <button type="button" role="tab" id="tab-cv" data-tab="cv" class="off" aria-selected="false" aria-controls="panel-cv">Conversations</button>
-      <button type="button" role="tab" id="tab-cm" data-tab="cm" class="off" aria-selected="false" aria-controls="panel-cm">Campaigns</button>
-      <button type="button" role="tab" id="tab-cl" data-tab="cl" class="off" aria-selected="false" aria-controls="panel-cl">Calendar</button>
+      <button type="button" role="tab" id="tab-ov" data-tab="ov" class="on" aria-selected="true" aria-controls="panel-ov">Genel bakış</button>
+      <button type="button" role="tab" id="tab-cv" data-tab="cv" class="off" aria-selected="false" aria-controls="panel-cv">Görüşmeler</button>
+      <button type="button" role="tab" id="tab-cm" data-tab="cm" class="off" aria-selected="false" aria-controls="panel-cm">Kampanyalar</button>
+      <button type="button" role="tab" id="tab-cl" data-tab="cl" class="off" aria-selected="false" aria-controls="panel-cl">Takvim</button>
     </div>
 
       <div class="panel panel-ov on" id="panel-ov" role="tabpanel" aria-labelledby="tab-ov">
         <div class="ov-main">
           <div class="metrics">
-            <div><div class="l">Lead-to-appointment lift</div><div class="v">3.1x</div></div>
-            <div><div class="l">No-show rate</div><div class="v">-42%</div></div>
-            <div><div class="l">Conversations / month</div><div class="v">2,400+</div></div>
-            <div><div class="l">Average payback</div><div class="v">18 days</div></div>
+            <div><div class="l">Lead&#39;den randevuya artış</div><div class="v">3,1x</div></div>
+            <div><div class="l">Randevuya gelmeme oranı</div><div class="v">-%42</div></div>
+            <div><div class="l">Aylık görüşme</div><div class="v">2.400+</div></div>
+            <div><div class="l">Yatırımın geri dönüş süresi</div><div class="v">18 gün</div></div>
           </div>
           <div class="ov-table scroll-x">
             <div class="sx">
               <div class="thead g5">
-                <div>Agent</div><div>Conversations</div><div>Booked</div>
-                <div>Rate</div><div>Quality score</div>
+                <div>AI Asistan</div><div>Görüşme</div><div>Randevu</div>
+                <div>Oran</div><div>Kalite puanı</div>
               </div>
               
               <div class="trow g5">
                 <div style="font-weight:600">Reception</div>
-                <div style="color:var(--soft)">1,284</div>
+                <div style="color:var(--soft)">1.284</div>
                 <div style="color:var(--soft)">312</div>
-                <div style="color:var(--soft)">24%</div>
+                <div style="color:var(--soft)">%24</div>
                 <div class="score">
                   <div class="bar"><i style="width:92%"></i></div>
                   <div class="n">92</div>
@@ -291,7 +294,7 @@
                 <div style="font-weight:600">Speed-to-Lead</div>
                 <div style="color:var(--soft)">451</div>
                 <div style="color:var(--soft)">186</div>
-                <div style="color:var(--soft)">41%</div>
+                <div style="color:var(--soft)">%41</div>
                 <div class="score">
                   <div class="bar"><i style="width:96%"></i></div>
                   <div class="n">96</div>
@@ -299,9 +302,9 @@
               </div>
               <div class="trow g5">
                 <div style="font-weight:600">Follow-Up</div>
-                <div style="color:var(--soft)">2,940</div>
+                <div style="color:var(--soft)">2.940</div>
                 <div style="color:var(--soft)">204</div>
-                <div style="color:var(--soft)">7%</div>
+                <div style="color:var(--soft)">%7</div>
                 <div class="score">
                   <div class="bar"><i style="width:78%"></i></div>
                   <div class="n">78</div>
@@ -309,9 +312,9 @@
               </div>
               <div class="trow g5">
                 <div style="font-weight:600">Revive</div>
-                <div style="color:var(--soft)">4,110</div>
+                <div style="color:var(--soft)">4.110</div>
                 <div style="color:var(--soft)">190</div>
-                <div style="color:var(--soft)">5%</div>
+                <div style="color:var(--soft)">%5</div>
                 <div class="score">
                   <div class="bar"><i style="width:64%"></i></div>
                   <div class="n">64</div>
@@ -319,9 +322,9 @@
               </div>
               <div class="trow g5">
                 <div style="font-weight:600">Scheduler</div>
-                <div style="color:var(--soft)">1,860</div>
+                <div style="color:var(--soft)">1.860</div>
                 <div style="color:var(--soft)">148</div>
-                <div style="color:var(--soft)">8%</div>
+                <div style="color:var(--soft)">%8</div>
                 <div class="score">
                   <div class="bar"><i style="width:88%"></i></div>
                   <div class="n">88</div>
@@ -331,38 +334,38 @@
           </div>
         </div>
         <div class="feed" data-rotate>
-          <div class="fhead">Activity</div>
+          <div class="fhead">Aktivite</div>
             <div class="item">
-              <div class="top"><div class="who">Reception</div><div class="ago">12s ago</div></div>
-              <div class="msg">Answered inbound call · booked implant consult</div>
+              <div class="top"><div class="who">Reception</div><div class="ago">12 sn önce</div></div>
+              <div class="msg">Gelen arama yanıtlandı · implant konsültasyonu açıldı</div>
             </div>
             <div class="item">
-              <div class="top"><div class="who">Speed-to-Lead</div><div class="ago">41s ago</div></div>
-              <div class="msg">Called a new Meta lead in 38s · qualified</div>
+              <div class="top"><div class="who">Speed-to-Lead</div><div class="ago">41 sn önce</div></div>
+              <div class="msg">Yeni Meta lead&#39;i 38 saniyede arandı · nitelendi</div>
             </div>
             <div class="item">
-              <div class="top"><div class="who">Scheduler</div><div class="ago">1m ago</div></div>
-              <div class="msg">Filled a cancelled 14:30 slot from the waitlist</div>
+              <div class="top"><div class="who">Scheduler</div><div class="ago">1 dk önce</div></div>
+              <div class="msg">İptal olan 14:30 slotu bekleme listesinden dolduruldu</div>
             </div>
             <div class="item">
-              <div class="top"><div class="who">Revive</div><div class="ago">2m ago</div></div>
-              <div class="msg">Re-engaged a 2023 lead · consultation booked</div>
+              <div class="top"><div class="who">Revive</div><div class="ago">2 dk önce</div></div>
+              <div class="msg">2023 lead&#39;i yeniden kazanıldı · konsültasyon açıldı</div>
             </div>
             <div class="item">
-              <div class="top"><div class="who">Reviews</div><div class="ago">3m ago</div></div>
-              <div class="msg">Patient left a 5★ Google review</div>
+              <div class="top"><div class="who">Reviews</div><div class="ago">3 dk önce</div></div>
+              <div class="msg">Hasta 5★ Google yorumu bıraktı</div>
             </div>
             <div class="item">
-              <div class="top"><div class="who">Follow-Up</div><div class="ago">4m ago</div></div>
-              <div class="msg">7th touch on an open quote · patient replied</div>
+              <div class="top"><div class="who">Follow-Up</div><div class="ago">4 dk önce</div></div>
+              <div class="msg">Açık teklife 7. temas · hasta yanıt verdi</div>
             </div>
             <div class="item">
-              <div class="top"><div class="who">Recall</div><div class="ago">5m ago</div></div>
-              <div class="msg">6-month check-up reminder accepted</div>
+              <div class="top"><div class="who">Recall</div><div class="ago">5 dk önce</div></div>
+              <div class="msg">6 aylık kontrol hatırlatması kabul edildi</div>
             </div>
             <div class="item">
-              <div class="top"><div class="who">Feedback</div><div class="ago">6m ago</div></div>
-              <div class="msg">Post-op survey completed · NPS 9</div>
+              <div class="top"><div class="who">Feedback</div><div class="ago">6 dk önce</div></div>
+              <div class="msg">Operasyon sonrası anket tamamlandı · NPS 9</div>
             </div>
         </div>
       </div>
@@ -371,55 +374,55 @@
         <div class="feed" data-rotate>
           
           <div class="item">
-            <div class="top"><div class="who">Reception</div><div class="ago">12s ago</div></div>
-            <div class="msg">Answered inbound call · booked implant consult</div>
+            <div class="top"><div class="who">Reception</div><div class="ago">12 sn önce</div></div>
+            <div class="msg">Gelen arama yanıtlandı · implant konsültasyonu açıldı</div>
           </div>
           <div class="item">
-            <div class="top"><div class="who">Speed-to-Lead</div><div class="ago">41s ago</div></div>
-            <div class="msg">Called a new Meta lead in 38s · qualified</div>
+            <div class="top"><div class="who">Speed-to-Lead</div><div class="ago">41 sn önce</div></div>
+            <div class="msg">Yeni Meta lead&#39;i 38 saniyede arandı · nitelendi</div>
           </div>
           <div class="item">
-            <div class="top"><div class="who">Scheduler</div><div class="ago">1m ago</div></div>
-            <div class="msg">Filled a cancelled 14:30 slot from the waitlist</div>
+            <div class="top"><div class="who">Scheduler</div><div class="ago">1 dk önce</div></div>
+            <div class="msg">İptal olan 14:30 slotu bekleme listesinden dolduruldu</div>
           </div>
           <div class="item">
-            <div class="top"><div class="who">Revive</div><div class="ago">2m ago</div></div>
-            <div class="msg">Re-engaged a 2023 lead · consultation booked</div>
+            <div class="top"><div class="who">Revive</div><div class="ago">2 dk önce</div></div>
+            <div class="msg">2023 lead&#39;i yeniden kazanıldı · konsültasyon açıldı</div>
           </div>
           <div class="item">
-            <div class="top"><div class="who">Reviews</div><div class="ago">3m ago</div></div>
-            <div class="msg">Patient left a 5★ Google review</div>
+            <div class="top"><div class="who">Reviews</div><div class="ago">3 dk önce</div></div>
+            <div class="msg">Hasta 5★ Google yorumu bıraktı</div>
           </div>
           <div class="item">
-            <div class="top"><div class="who">Follow-Up</div><div class="ago">4m ago</div></div>
-            <div class="msg">7th touch on an open quote · patient replied</div>
+            <div class="top"><div class="who">Follow-Up</div><div class="ago">4 dk önce</div></div>
+            <div class="msg">Açık teklife 7. temas · hasta yanıt verdi</div>
           </div>
           <div class="item">
-            <div class="top"><div class="who">Recall</div><div class="ago">5m ago</div></div>
-            <div class="msg">6-month check-up reminder accepted</div>
+            <div class="top"><div class="who">Recall</div><div class="ago">5 dk önce</div></div>
+            <div class="msg">6 aylık kontrol hatırlatması kabul edildi</div>
           </div>
           <div class="item">
-            <div class="top"><div class="who">Feedback</div><div class="ago">6m ago</div></div>
-            <div class="msg">Post-op survey completed · NPS 9</div>
+            <div class="top"><div class="who">Feedback</div><div class="ago">6 dk önce</div></div>
+            <div class="msg">Operasyon sonrası anket tamamlandı · NPS 9</div>
           </div>
         </div>
         <div class="transcript">
           
           <div class="line">
-            <div class="w">Patient</div>
-            <div class="m">Can I get a price for an implant?</div>
+            <div class="w">Hasta</div>
+            <div class="m">İmplant için fiyat alabilir miyim?</div>
           </div>
           <div class="line">
             <div class="w">STOAIX</div>
-            <div class="m">Of course. A single implant is £950–£1,250, confirmed after the consultation. Tomorrow 14:30 is free — shall I hold it?</div>
+            <div class="m">Elbette. Tek implant 18.500–24.000 TL arasında; muayene sonrası netleşiyor. Yarın 14:30 uygun, ayırayım mı?</div>
           </div>
           <div class="line">
-            <div class="w">Patient</div>
-            <div class="m">Yes, please book it.</div>
+            <div class="w">Hasta</div>
+            <div class="m">Uygun, ayırın.</div>
           </div>
           <div class="line">
             <div class="w">STOAIX</div>
-            <div class="m">Booked. Confirmation sent by SMS, with a reminder the day before.</div>
+            <div class="m">Randevunuz oluşturuldu. Onay SMS&#39;i gönderildi, hatırlatma bir gün önce gelecek.</div>
           </div>
         </div>
       </div>
@@ -427,28 +430,28 @@
       <div class="panel panel-cm" id="panel-cm" role="tabpanel" aria-labelledby="tab-cm" hidden>
         <div class="tbl-pad scroll-x">
           <div class="sx">
-            <div class="thead g-cm"><div>Campaign</div><div>Spend</div><div>Leads</div><div>Booked</div><div>Cost / booking</div></div>
+            <div class="thead g-cm"><div>Kampanya</div><div>Harcama</div><div>Lead</div><div>Randevu</div><div>Randevu başına</div></div>
             
             <div class="trow cm g-cm">
-              <div style="font-weight:600">Google Ads · Implants</div>
-              <div style="color:var(--soft)">£8,400</div>
+              <div style="font-weight:600">Google Ads · İmplant</div>
+              <div style="color:var(--soft)">₺142.000</div>
               <div style="color:var(--soft)">96</div>
               <div style="font-weight:620">31</div>
-              <div style="color:var(--soft)">£271</div>
+              <div style="color:var(--soft)">₺4.580</div>
             </div>
             <div class="trow cm g-cm">
-              <div style="font-weight:600">Meta · Hair transplant</div>
-              <div style="color:var(--soft)">£5,900</div>
+              <div style="font-weight:600">Meta · Saç ekimi</div>
+              <div style="color:var(--soft)">₺98.400</div>
               <div style="color:var(--soft)">184</div>
               <div style="font-weight:620">42</div>
-              <div style="color:var(--soft)">£140</div>
+              <div style="color:var(--soft)">₺2.340</div>
             </div>
             <div class="trow cm g-cm">
-              <div style="font-weight:600">SEO · City pages</div>
-              <div style="color:var(--soft)">£2,100</div>
+              <div style="font-weight:600">SEO · Şehir sayfaları</div>
+              <div style="color:var(--soft)">₺36.000</div>
               <div style="color:var(--soft)">121</div>
               <div style="font-weight:620">27</div>
-              <div style="color:var(--soft)">£78</div>
+              <div style="color:var(--soft)">₺1.330</div>
             </div>
           </div>
         </div>
@@ -457,37 +460,37 @@
       <div class="panel panel-cl" id="panel-cl" role="tabpanel" aria-labelledby="tab-cl" hidden>
         <div class="tbl-pad scroll-x">
           <div class="sx">
-            <div class="thead g-cl"><div>Time</div><div>Patient</div><div>Status</div></div>
+            <div class="thead g-cl"><div>Saat</div><div>Hasta</div><div>Durum</div></div>
             
             <div class="trow cl g-cl">
               <div style="font-weight:620">09:30</div>
-              <div style="color:var(--soft)">Implant consult · A. Yılmaz</div>
-              <div class="status">Confirmed</div>
+              <div style="color:var(--soft)">İmplant konsültasyonu · A. Yılmaz</div>
+              <div class="status">Onaylı</div>
             </div>
             <div class="trow cl g-cl">
               <div style="font-weight:620">10:15</div>
-              <div style="color:var(--soft)">Check-up · M. Demir</div>
-              <div class="status">Confirmed</div>
+              <div style="color:var(--soft)">Kontrol · M. Demir</div>
+              <div class="status">Onaylı</div>
             </div>
             <div class="trow cl g-cl">
               <div style="font-weight:620">11:00</div>
-              <div style="color:var(--soft)">Hair transplant call · R. Khan</div>
-              <div class="status">Reminder sent</div>
+              <div style="color:var(--soft)">Saç ekimi görüşmesi · R. Khan</div>
+              <div class="status">Hatırlatma gönderildi</div>
             </div>
             <div class="trow cl g-cl">
               <div style="font-weight:620">13:45</div>
-              <div style="color:var(--soft)">Open slot — filled from waitlist</div>
-              <div class="status">New</div>
+              <div style="color:var(--soft)">Boş slot — bekleme listesinden dolduruldu</div>
+              <div class="status">Yeni</div>
             </div>
             <div class="trow cl g-cl">
               <div style="font-weight:620">14:30</div>
-              <div style="color:var(--soft)">Implant consult · S. Aydın</div>
-              <div class="status">Confirmed</div>
+              <div style="color:var(--soft)">İmplant konsültasyonu · S. Aydın</div>
+              <div class="status">Onaylı</div>
             </div>
             <div class="trow cl g-cl">
               <div style="font-weight:620">16:00</div>
-              <div style="color:var(--soft)">Aesthetic consult · L. Meier</div>
-              <div class="status">Awaiting confirmation</div>
+              <div style="color:var(--soft)">Estetik konsültasyonu · L. Meier</div>
+              <div class="status">Teyit bekliyor</div>
             </div>
           </div>
         </div>
@@ -504,8 +507,8 @@
       <div class="veil" aria-hidden="true"></div>
       <div class="copy">
         <div class="n">01</div>
-        <h2 class="h">Demand</h2>
-        <p class="t" style="margin:0">Google &amp; Meta campaigns, SEO engine, landing pages — built and optimised by AI, reviewed by our strategists.</p>
+        <h2 class="h">Talep</h2>
+        <p class="t" style="margin:0">Google ve Meta kampanyaları, SEO motoru, açılış sayfaları — yapay zeka ile kurulur, stratejistlerimiz tarafından denetlenir.</p>
       </div>
     </div>
     <div class="pillar p2">
@@ -513,8 +516,8 @@
       <div class="veil" aria-hidden="true"></div>
       <div class="copy">
         <div class="n">02</div>
-        <h2 class="h">Sales</h2>
-        <p class="t" style="margin:0">Every call answered, every lead contacted in under a minute, every follow-up completed. No lead goes cold.</p>
+        <h2 class="h">Satış</h2>
+        <p class="t" style="margin:0">Her arama yanıtlanır, her lead bir dakika içinde aranır, her takip tamamlanır. Hiçbir lead soğumaz.</p>
       </div>
     </div>
     <div class="pillar p3">
@@ -522,8 +525,8 @@
       <div class="veil" aria-hidden="true"></div>
       <div class="copy">
         <div class="n">03</div>
-        <h2 class="h">Loyalty</h2>
-        <p class="t" style="margin:0">Post-treatment surveys, review collection, recall campaigns — the patient base keeps producing revenue.</p>
+        <h2 class="h">Sadakat</h2>
+        <p class="t" style="margin:0">Tedavi sonrası anketler, yorum toplama, geri çağırma kampanyaları — hasta tabanı gelir üretmeye devam eder.</p>
       </div>
     </div>
   </div>
@@ -532,69 +535,69 @@
 <!-- ═══ TEKNİK ŞARTNAME (ters zemin) ══════════════════════════ -->
 <section class="alt pad" id="specification">
   <div class="sec-head">
-    <h2>Specification</h2>
-    <div class="note">Eight agents · one patient record · your escalation rules</div>
+    <h2>AI Asistanlar</h2>
+    <div class="note">Sekiz AI asistan · tek hasta kaydı · sizin eskalasyon kurallarınız</div>
   </div>
   <div class="spec-head">
-    <div>Ref</div><div>Agent</div><div>Function</div>
-    <div class="r">Benchmark</div>
+    <div>Ref</div><div>AI Asistan</div><div>Görev</div>
+    <div class="r">Referans değer</div>
   </div>
   
   <div class="spec-row">
-    <div class="ref">Inbound</div>
+    <div class="ref">Gelen trafik</div>
     <div class="agent">Reception</div>
-    <div class="fn">Answers every call and message, handles questions, books appointments.</div>
-    <div class="bench">24/7</div>
+    <div class="fn">Her aramayı ve mesajı yanıtlar, soruları karşılar, randevu açar.</div>
+    <div class="bench">7/24</div>
   </div>
   <div class="spec-row">
-    <div class="ref">First contact</div>
+    <div class="ref">İlk temas</div>
     <div class="agent">Speed-to-Lead</div>
-    <div class="fn">Calls a new enquiry within 60 seconds, qualifies and books.</div>
-    <div class="bench">&lt; 60s</div>
+    <div class="fn">Yeni talebi 60 saniye içinde arar, niteler ve takvime yazar.</div>
+    <div class="bench">&lt; 60 sn</div>
   </div>
   <div class="spec-row">
-    <div class="ref">Nurture</div>
+    <div class="ref">Takip</div>
     <div class="agent">Follow-Up</div>
-    <div class="fn">Runs multi-channel sequences until the patient replies.</div>
-    <div class="bench">7 touches</div>
+    <div class="fn">Hasta yanıt verene kadar çok kanallı takip yürütür.</div>
+    <div class="bench">7 temas</div>
   </div>
   <div class="spec-row">
-    <div class="ref">Database</div>
+    <div class="ref">Veri tabanı</div>
     <div class="agent">Revive</div>
-    <div class="fn">Segments and reactivates dormant lead data with campaigns.</div>
-    <div class="bench">+18% pipeline</div>
+    <div class="fn">Eski lead datasını segmentler ve kampanyayla yeniden canlandırır.</div>
+    <div class="bench">+%18 pipeline</div>
   </div>
   <div class="spec-row">
-    <div class="ref">Calendar</div>
+    <div class="ref">Takvim</div>
     <div class="agent">Scheduler</div>
-    <div class="fn">Confirms, reminds, reschedules and fills cancelled slots.</div>
-    <div class="bench">-42% no-show</div>
+    <div class="fn">Teyit alır, hatırlatır, erteler ve iptal olan slotu doldurur.</div>
+    <div class="bench">-%42 gelmeme</div>
   </div>
   <div class="spec-row">
-    <div class="ref">Post-care</div>
+    <div class="ref">Tedavi sonrası</div>
     <div class="agent">Feedback</div>
-    <div class="fn">Runs satisfaction surveys and escalates issues to your team.</div>
-    <div class="bench">NPS tracked</div>
+    <div class="fn">Memnuniyet anketi yapar, sorunları ekibinize eskale eder.</div>
+    <div class="bench">NPS takibi</div>
   </div>
   <div class="spec-row">
-    <div class="ref">Reputation</div>
+    <div class="ref">İtibar</div>
     <div class="agent">Reviews</div>
-    <div class="fn">Routes happy patients to Google and Trustpilot reviews.</div>
-    <div class="bench">3.4x reviews</div>
+    <div class="fn">Memnun hastayı Google ve Trustpilot yorumuna yönlendirir.</div>
+    <div class="bench">3,4x yorum</div>
   </div>
   <div class="spec-row">
-    <div class="ref">Retention</div>
+    <div class="ref">Geri kazanım</div>
     <div class="agent">Recall</div>
-    <div class="fn">Brings patients back when their next treatment is due.</div>
-    <div class="bench">+11% repeat</div>
+    <div class="fn">Kontrol veya tekrar tedavi zamanı gelen hastayı geri getirir.</div>
+    <div class="bench">+%11 tekrar</div>
   </div>
 </section>
 
 <!-- ═══ ENTEGRASYONLAR (ters zemin) ═══════════════════════════ -->
 <section class="alt int" id="integrations">
   <div class="int-intro">
-    <h2 class="t">Integrated with the systems your clinics already run</h2>
-    <p class="s" style="margin:0">Two-way sync. No migration, no parallel data entry.</p>
+    <h2 class="t">Kliniklerinizin kullandığı sistemlerle entegre</h2>
+    <p class="s" style="margin:0">İki yönlü senkron. Taşıma yok, çift veri girişi yok.</p>
   </div>
   <div class="marquee" aria-hidden="true">
     <div class="track">
@@ -608,55 +611,55 @@
 <!-- ═══ DEVREYE ALMA + YÖNETİŞİM ══════════════════════════════ -->
 <section class="pad deploy-grid">
   <div id="deployment">
-    <h2 class="eyebrow">Deployment</h2>
+    <h2 class="eyebrow">Devreye alma</h2>
     
     <div class="step">
       <div class="hd">
         <div class="w">01</div>
-        <h3 class="t">Audit</h3>
+        <h3 class="t">Analiz</h3>
       </div>
-      <p class="d" style="margin:0">Call recordings, response times, lead sources and CRM hygiene reviewed against 500+ clinic benchmarks.</p>
+      <p class="d" style="margin:0">Arama kayıtları, yanıt süreleri, lead kaynakları ve CRM hijyeni 500+ klinik referansıyla karşılaştırılır.</p>
     </div>
     <div class="step">
       <div class="hd">
         <div class="w">02</div>
-        <h3 class="t">Configuration</h3>
+        <h3 class="t">Kurulum</h3>
       </div>
-      <p class="d" style="margin:0">Numbers, channels, CRM and PMS connected. Agents trained on treatments, pricing bands and escalation rules.</p>
+      <p class="d" style="margin:0">Numaralar, kanallar, CRM ve PMS bağlanır. AI asistanlar tedavi, fiyat aralığı ve eskalasyon kurallarıyla eğitilir.</p>
     </div>
     <div class="step">
       <div class="hd">
         <div class="w">03</div>
-        <h3 class="t">Controlled launch</h3>
+        <h3 class="t">Kontrollü yayın</h3>
       </div>
-      <p class="d" style="margin:0">One channel, one clinic, supervised. Transcripts reviewed daily with your team.</p>
+      <p class="d" style="margin:0">Tek kanal, tek klinik, gözetim altında. Transkriptler ekibinizle her gün incelenir.</p>
     </div>
     <div class="step">
       <div class="hd">
         <div class="w">04</div>
-        <h3 class="t">Scale &amp; governance</h3>
+        <h3 class="t">Ölçek ve yönetişim</h3>
       </div>
-      <p class="d" style="margin:0">Remaining channels and sites switched on. Monthly performance review with a named account lead.</p>
+      <p class="d" style="margin:0">Kalan kanallar ve şubeler açılır. Atanmış müşteri lideriyle aylık performans toplantısı yapılır.</p>
     </div>
   </div>
   <div id="governance">
-    <h2 class="eyebrow">Governance</h2>
+    <h2 class="eyebrow">Yönetişim</h2>
     
     <div class="gov">
-      <h3 class="t">KVKK &amp; GDPR compliant</h3>
-      <p class="d" style="margin:0">Data processing agreement, regional hosting, full audit trail.</p>
+      <h3 class="t">KVKK ve GDPR uyumlu</h3>
+      <p class="d" style="margin:0">Veri işleme sözleşmesi, bölgesel barındırma, tam kayıt izi.</p>
     </div>
     <div class="gov">
-      <h3 class="t">Multi-site ready</h3>
-      <p class="d" style="margin:0">Permissions and reporting split by clinic, language and team.</p>
+      <h3 class="t">Çok şubeli yapı</h3>
+      <p class="d" style="margin:0">Şube, dil ve ekip bazında yetki ve raporlama ayrımı.</p>
     </div>
     <div class="gov">
-      <h3 class="t">Role-based access</h3>
-      <p class="d" style="margin:0">SSO, audit logs and team-level visibility controls.</p>
+      <h3 class="t">Rol bazlı erişim</h3>
+      <p class="d" style="margin:0">SSO, denetim kayıtları ve ekip bazlı görünürlük kontrolü.</p>
     </div>
     <div class="gov">
-      <h3 class="t">Dedicated onboarding</h3>
-      <p class="d" style="margin:0">A named specialist for setup, training and the first 90 days.</p>
+      <h3 class="t">Devreye alma ekibi</h3>
+      <p class="d" style="margin:0">Kurulum, eğitim ve ilk 90 gün için atanmış uzman.</p>
     </div>
   </div>
 </section>
@@ -664,27 +667,27 @@
 <!-- ═══ KAPSAMA (ters zemin) ══════════════════════════════════ -->
 <section class="alt pad" id="record">
   <div class="foot-head">
-    <h2 class="eyebrow">Footprint</h2>
-    <div class="meta">15 countries · 6 languages in production</div>
+    <h2 class="eyebrow">Sahada</h2>
+    <div class="meta">15 ülke · 6 dil sahada</div>
   </div>
   <div class="map-block">
-    <div id="map" class="map" role="img" aria-label="World map showing STOAIX deployments across Europe, Türkiye, the Gulf and North America."></div>
+    <div id="map" class="map" role="img" aria-label="STOAIX kurulumlarının Avrupa, Türkiye, Körfez ve Kuzey Amerika üzerindeki dağılımını gösteren dünya haritası."></div>
     <div class="chips">
       <div class="chip">Türkiye</div>
-      <div class="chip">United Kingdom</div>
-      <div class="chip">Germany</div>
-      <div class="chip">Poland</div>
-      <div class="chip">Netherlands</div>
-      <div class="chip">Italy</div>
-      <div class="chip">Spain</div>
-      <div class="chip">Romania</div>
-      <div class="chip">Azerbaijan</div>
-      <div class="chip">Georgia</div>
-      <div class="chip">UAE</div>
-      <div class="chip">Saudi Arabia</div>
-      <div class="chip">Qatar</div>
-      <div class="chip">United States</div>
-      <div class="chip">Canada</div>
+      <div class="chip">Birleşik Krallık</div>
+      <div class="chip">Almanya</div>
+      <div class="chip">Polonya</div>
+      <div class="chip">Hollanda</div>
+      <div class="chip">İtalya</div>
+      <div class="chip">İspanya</div>
+      <div class="chip">Romanya</div>
+      <div class="chip">Azerbaycan</div>
+      <div class="chip">Gürcistan</div>
+      <div class="chip">BAE</div>
+      <div class="chip">Suudi Arabistan</div>
+      <div class="chip">Katar</div>
+      <div class="chip">ABD</div>
+      <div class="chip">Kanada</div>
     </div>
   </div>
 </section>
@@ -692,33 +695,33 @@
 <!-- ═══ SSS ═══════════════════════════════════════════════════ -->
 <section class="pad" id="faq">
   <div class="sec-head">
-    <h2>Questions clinic groups ask</h2>
-    <div class="note">Answered in full on a briefing call</div>
+    <h2>Klinik gruplarının sorduğu sorular</h2>
+    <div class="note">Tamamı tanışma görüşmesinde</div>
   </div>
   
   <div class="faq-row">
-    <h3 class="q">Is this an AI receptionist?</h3>
-    <p class="a">Reception is one of the eight agents. An AI receptionist answers the call that comes in; STOAIX also runs what happens before and after it — demand generation, a callback within 60 seconds, multi-channel follow-up, dormant lead reactivation, filling cancelled slots, post-treatment surveys and recall.</p>
+    <h3 class="q">Bu bir AI resepsiyonist mi?</h3>
+    <p class="a">Reception, sekiz AI asistandan yalnızca biri. AI resepsiyonist gelen aramayı yanıtlar; STOAIX bunun öncesini ve sonrasını da işletir — talep üretimi, 60 saniye içinde geri arama, çok kanallı takip, eski lead canlandırma, iptal olan slotların doldurulması, tedavi sonrası anket ve geri kazanım.</p>
   </div>
   <div class="faq-row">
-    <h3 class="q">How do you work with our clinic?</h3>
-    <p class="a">As a business partner, not a software subscription. The agents work alongside your front desk rather than replacing it, and hand over on your escalation rules — anything outside the treatments and pricing bands they are trained on goes to your team. Our strategists review the campaigns and a named account lead runs the monthly review with you.</p>
+    <h3 class="q">Kliniğimizle nasıl çalışıyorsunuz?</h3>
+    <p class="a">Bir yazılım aboneliği gibi değil, iş ortağı gibi. AI asistanlar ön büronuzun yerini almaz, onunla birlikte çalışır ve sizin eskalasyon kurallarınıza göre devreder — eğitildikleri tedavi ve fiyat aralıklarının dışındaki her durum ekibinize gider. Kampanyaları stratejistlerimiz denetler, aylık değerlendirmeyi atanmış müşteri lideriniz sizinle birlikte yürütür.</p>
   </div>
   <div class="faq-row">
-    <h3 class="q">Does it work with the CRM and clinic software we already run?</h3>
-    <p class="a">Yes — two-way sync with 24 systems including HubSpot, Salesforce, Dentally, Pabau, Fresha and Google Calendar, plus a webhook API. Nothing is migrated and nobody enters the same data twice.</p>
+    <h3 class="q">Kullandığımız CRM ve klinik yazılımıyla çalışır mı?</h3>
+    <p class="a">Evet — HubSpot, Salesforce, Dentally, Pabau, Fresha ve Google Calendar dahil 24 sistemle iki yönlü senkron, ayrıca webhook API. Veri taşınmaz, kimse aynı kaydı iki kere girmez.</p>
   </div>
   <div class="faq-row">
-    <h3 class="q">How does it work across multiple sites?</h3>
-    <p class="a">Permissions and reporting are split by clinic, language and team. Each site sees its own pipeline; the group sees one consolidated record.</p>
+    <h3 class="q">Çok şubeli yapıda nasıl çalışıyor?</h3>
+    <p class="a">Yetki ve raporlama şube, dil ve ekip bazında ayrılır. Her şube kendi hattını görür; grup tek bir birleşik kaydı görür.</p>
   </div>
   <div class="faq-row">
-    <h3 class="q">How is KVKK and GDPR compliance handled?</h3>
-    <p class="a">A data processing agreement, regional hosting and a full audit trail. Role-based access with SSO and audit logs controls who can see what.</p>
+    <h3 class="q">KVKK ve GDPR uyumu nasıl sağlanıyor?</h3>
+    <p class="a">Veri işleme sözleşmesi, bölgesel barındırma ve tam kayıt izi. SSO ve denetim kayıtlarıyla rol bazlı erişim, kimin neyi görebileceğini belirler.</p>
   </div>
   <div class="faq-row">
-    <h3 class="q">How long does deployment take?</h3>
-    <p class="a">Four stages: audit, configuration, a supervised launch on one channel at one clinic, then scale. Supervised and reversible at every step — nothing is switched on all at once.</p>
+    <h3 class="q">Devreye alma ne kadar sürüyor?</h3>
+    <p class="a">Dört aşama: analiz, kurulum, tek klinikte tek kanalla gözetimli yayın, ardından ölçek. Her adımda denetimli ve geri alınabilir — hiçbir şey tek seferde açılmaz.</p>
   </div>
 </section>
 
@@ -728,21 +731,21 @@
   <div class="media" aria-hidden="true"></div>
   <div class="veil" aria-hidden="true"></div>
   <div class="inner">
-    <h2>Bring us your numbers. We will tell you what they should be.</h2>
+    <h2>Verilerinizi getirin. Ne olması gerektiğini söyleyelim.</h2>
     <div>
       <div class="row">
-        <a href="https://calendly.com/ataulufer1/20" class="btn" target="_blank" rel="noopener">Request a briefing</a>
-        <a href="https://calendly.com/ataulufer1/20" class="btn-ghost" target="_blank" rel="noopener">Talk to sales</a>
+        <a href="https://calendly.com/ataulufer1/20" class="btn" target="_blank" rel="noopener">Tanışma görüşmesi</a>
+        <a href="https://calendly.com/ataulufer1/20" class="btn-ghost" target="_blank" rel="noopener">Satış ekibiyle görüşün</a>
       </div>
       <div class="leaders">
         
         <div>
           <div class="n">Ata Ulufer</div>
-          <div class="r">Co-founder &amp; CEO</div>
+          <div class="r">Kurucu Ortak &amp; CEO</div>
         </div>
         <div>
           <div class="n">Emir Türköz</div>
-          <div class="r">Co-founder &amp; CTO</div>
+          <div class="r">Kurucu Ortak &amp; CTO</div>
         </div>
       </div>
     </div>
@@ -755,31 +758,31 @@
 <footer class="footer">
   <div>
     <span class="brand"><span class="mark" style="width:20px;height:20px" aria-hidden="true"></span>STOAIX</span>
-    <div class="copy">© 2026 STOAIX Ltd. — London, UK</div>
+    <div class="copy">© 2026 STOAIX Ltd. — Londra, Birleşik Krallık</div>
   </div>
   <div class="footer-cols">
     
     <div>
       <h4>Platform</h4>
-      <a href="#specification">AI agents</a>
-      <a href="/modules">Growth</a>
-      <a href="#integrations">Integrations</a>
-      <a href="#governance">Security</a>
+      <a href="#specification">AI asistanlar</a>
+      <a href="/modules">Büyüme</a>
+      <a href="#integrations">Entegrasyonlar</a>
+      <a href="#governance">Güvenlik</a>
     </div>
     <div>
-      <h4>Solutions</h4>
-      <a href="/ai-receptionist-dental-clinic-uk">Dental</a>
-      <a href="/ai-receptionist-aesthetic-clinic-uk">Aesthetics &amp; hair</a>
-      <a href="/healthcare-clinics">Ophthalmology</a>
-      <a href="/healthcare-clinics">Multi-site groups</a>
+      <h4>Çözümler</h4>
+      <a href="/dis-klinigi-icin-ai">Diş</a>
+      <a href="/estetik-klinik-icin-ai">Estetik ve saç</a>
+      <a href="/healthcare-clinics">Göz</a>
+      <a href="/healthcare-clinics">Çok şubeli gruplar</a>
     </div>
     <div>
-      <h4>Company</h4>
-      <a href="/about">About</a>
-      <a href="/case-studies">Customer stories</a>
-      <a href="/clinic-resources">Resources</a>
+      <h4>Şirket</h4>
+      <a href="/about">Hakkımızda</a>
+      <a href="/case-studies">Müşteri hikâyeleri</a>
+      <a href="/klinik-kaynaklari">Kaynaklar</a>
       <a href="/blog">Blog</a>
-      <a href="/contact">Contact</a>
+      <a href="/contact">İletişim</a>
     </div>
   </div>
 </footer>

@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════
    STOAIX v2 — statik sayfa üreteci
-   Çıktı:  index.html     (EN, /)
-           index-tr.html  (TR, /tr — vercel.json rewrite ile)
+   Çıktı:  index.html     (TR, /)   — ana pazar Türkçe
+           index-en.html  (EN, /en — vercel.json rewrite ile)
 
    Neden build-time: içerik tek kaynaktan (tools/v2-content.mjs) gelsin,
    ama tarayıcıya tam statik HTML insin. Böylece SEO eksiksiz, JS kapalıyken
@@ -133,9 +133,9 @@ function panelCalendar(c) {
 function page(lang) {
   const c = CONTENT[lang];
   const isTR = lang === 'tr';
-  const selfUrl = isTR ? `${ORIGIN}/tr` : `${ORIGIN}/`;
-  const enUrl = `${ORIGIN}/`;
-  const trUrl = `${ORIGIN}/tr`;
+  const selfUrl = isTR ? `${ORIGIN}/` : `${ORIGIN}/en`;
+  const enUrl = `${ORIGIN}/en`;
+  const trUrl = `${ORIGIN}/`;
   const navIds = ['platform', 'specification', 'deployment', 'governance', 'footprint'];
 
   const analytics = ANALYTICS ? `
@@ -178,7 +178,7 @@ function page(lang) {
 <link rel="canonical" href="${selfUrl}">
 <link rel="alternate" hreflang="en" href="${enUrl}">
 <link rel="alternate" hreflang="tr" href="${trUrl}">
-<link rel="alternate" hreflang="x-default" href="${enUrl}">
+<link rel="alternate" hreflang="x-default" href="${trUrl}">
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="${selfUrl}">
@@ -205,15 +205,17 @@ function page(lang) {
     if (t !== 'ink' && t !== 'bone') t = 'ink';           /* varsayılan: 6a ink */
     document.documentElement.className = 'pal-' + t;
   } catch (e) {}
-  /* Site genelindeki dil tercihi ile tutarlılık: TR tercihli ziyaretçi /tr/v2 görür. */
+  /* Site genelindeki dil tercihiyle tutarlılık. Kök Türkçe; daha önce İngilizce
+     seçmiş ziyaretçi /en görür. Tarayıcı diline göre yönlendirme yok — arama
+     motorları kökü Türkçe indeksleyebilsin diye tercih yalnızca kullanıcının. */
   try {
     var lang = localStorage.getItem('stoaix-lang');
     var onTR = ${isTR};
     if (!sessionStorage.getItem('stoaix-home-redirected')) {
-      if (lang === 'tr' && !onTR) {
+      if (lang === 'en' && onTR) {
         sessionStorage.setItem('stoaix-home-redirected', '1');
-        location.replace('/tr' + location.hash);
-      } else if (lang === 'en' && onTR) {
+        location.replace('/en' + location.hash);
+      } else if (lang === 'tr' && !onTR) {
         sessionStorage.setItem('stoaix-home-redirected', '1');
         location.replace('/' + location.hash);
       }
@@ -276,7 +278,7 @@ ${JSON.stringify({
       <button type="button" data-theme="ink" class="on" aria-pressed="true">${esc(c.dark)}</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">${esc(c.light)}</button>
     </span>
     <span class="switch" role="group" aria-label="${esc(c.langLabel)}">
-      <a href="/" hreflang="en" class="${isTR ? 'off' : 'on'}"${isTR ? '' : ' aria-current="true"'}>EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr" hreflang="tr" class="${isTR ? 'on' : 'off'}"${isTR ? ' aria-current="true"' : ''}>TR</a>
+      <a href="/en" hreflang="en" class="${isTR ? 'off' : 'on'}"${isTR ? '' : ' aria-current="true"'}>EN</a><span class="sep" aria-hidden="true">/</span><a href="/" hreflang="tr" class="${isTR ? 'on' : 'off'}"${isTR ? ' aria-current="true"' : ''}>TR</a>
     </span>
     <a class="nav-cta" href="${LINKS.briefing}" target="_blank" rel="noopener">${esc(c.brief)}</a>
     <button type="button" class="nav-burger" aria-label="${esc(c.menu)}" aria-expanded="false" aria-controls="mnav">
@@ -299,7 +301,7 @@ ${JSON.stringify({
       <button type="button" data-theme="ink" class="on" aria-pressed="true">${esc(c.dark)}</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">${esc(c.light)}</button>
     </span>
     <span class="switch" role="group" aria-label="${esc(c.langLabel)}">
-      <a href="/" hreflang="en" class="${isTR ? 'off' : 'on'}">EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr" hreflang="tr" class="${isTR ? 'on' : 'off'}">TR</a>
+      <a href="/en" hreflang="en" class="${isTR ? 'off' : 'on'}">EN</a><span class="sep" aria-hidden="true">/</span><a href="/" hreflang="tr" class="${isTR ? 'on' : 'off'}">TR</a>
     </span>
   </div>
   <div class="mnav-foot">
@@ -501,7 +503,7 @@ ${panelCalendar(c)}
 `;
 }
 
-for (const [lang, file] of [['en', 'index.html'], ['tr', 'index-tr.html']]) {
+for (const [lang, file] of [['tr', 'index.html'], ['en', 'index-en.html']]) {
   const out = page(lang);
   writeFileSync(join(ROOT, file), out, 'utf8');
   console.log(`${file.padEnd(12)} ${(out.length / 1024).toFixed(1)} KB`);

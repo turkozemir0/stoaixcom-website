@@ -36,7 +36,8 @@ Clinics lose revenue at every gap in the chain, not only at the missed call. Enq
 
 ## Content
 
-- Homepage: https://stoaix.com
+- Homepage (Turkish, default): https://stoaix.com
+- Homepage (English): https://stoaix.com/en
 - Blog: https://stoaix.com/blog
 - Demo booking: https://stoaix.com/#cta
 
