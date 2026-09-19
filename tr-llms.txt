@@ -1,33 +1,38 @@
 # STOAIX
 
-> STOAIX, özel sağlık klinikleri için geliştirilmiş bir AI sesli asistan platformudur. Gelen aramaları 7/24 doğal Türkçe ve İngilizce ile yanıtlar, randevuları doğrudan klinik takvimine kaydeder, otomatik hatırlatma aramaları yapar ve kaçırılan web lead'lerini takip eder — insan müdahalesi olmadan.
+> STOAIX, klinik grupları için geliştirilmiş bir yapay zeka satış işletim sistemidir. Sekiz AI asistan, pazarlama bütçesi ile tedavi takvimi arasındaki katmanı işletir — her aramayı ve mesajı yanıtlar, yeni talebi 60 saniye içinde arar, her takibi tamamlar, eski lead datasını yeniden canlandırır, iptal olan slotları doldurur, tedavi sonrası anket ve geri çağırma yürütür. Talep üretimi (Google ve Meta kampanyaları, SEO, açılış sayfaları) aynı ekip tarafından yönetilir. STOAIX, klinik çalışanlarının yerini almaz; onlarla birlikte, iş ortağı gibi çalışır. Tek şubeli klinikler de aynı platformu kullanır ve çoğunlukla AI resepsiyonist ile başlar.
 
 ## Ne Yapar
 
-- Her gelen aramayı 2 saniye içinde yanıtlar, günün her saatinde
-- Randevuları gerçek zamanlı olarak klinik takvim sistemine kaydeder
-- Randevu hatırlatma ve onay aramaları yaparak gelmeyen hasta (no-show) oranını düşürür
-- Kaçırılan aramaları ve web form lead'lerini otomatik takip eder
-- Arama kayıtları ve randevu analitiği içeren canlı dashboard sunar
-- Tam yönetilen hizmet olarak deploy edilir — klinikten teknik kurulum gerekmez
+- Reception — gelen her aramayı ve mesajı 7/24 yanıtlar, soruları karşılar, randevu açar
+- Speed-to-Lead — yeni talebi 60 saniye içinde arar, niteler ve takvime yazar
+- Follow-Up — hasta yanıt verene kadar çok kanallı takip yürütür
+- Revive — eski lead datasını segmentler ve kampanyayla yeniden canlandırır
+- Scheduler — teyit alır, hatırlatır, erteler ve iptal olan slotu doldurur
+- Feedback — memnuniyet anketi yapar, sorunları klinik ekibine eskale eder
+- Reviews — memnun hastayı Google ve Trustpilot yorumuna yönlendirir
+- Recall — kontrol veya tekrar tedavi zamanı gelen hastayı geri getirir
+- Talep üretimi — Google ve Meta kampanyaları, SEO motoru, açılış sayfaları; stratejist denetiminde
+- 24 sistemle iki yönlü senkron (HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar, webhook API) — veri taşıma yok, çift giriş yok
 
 ## Kimin İçin
 
-Türkiye ve İngiltere'deki özel sağlık klinikleri: estetik klinikler, diş klinikleri, saç ekimi klinikleri, fizyoterapi merkezleri, özel muayenehaneler, dermatoloji klinikleri ve uzman hekim pratikleri. Genellikle haftada 20+ gelen araması olan 1-5 hekimli pratikler.
+Klinik grupları ve çok şubeli yapılar: diş, saç ekimi, estetik, göz ve çok branşlı gruplar. Yetki ve raporlama şube, dil ve ekip bazında ayrılır; her şube kendi hattını görür, grup tek bir birleşik kaydı görür. Tek şubeli özel klinikler — estetik, diş, saç ekimi, fizyoterapi, dermatoloji — aynı platformda çalışır ve genellikle AI resepsiyonist ile başlar.
 
 ## Çözdüğü Problem
 
-Türkiye'deki özel klinikler, kaçırılan aramalar nedeniyle ciddi gelir kaybı yaşıyor. Kaçırılan aramaların çoğunluğu mesai saatleri dışında — akşam saatleri, hafta sonları ve yoğun klinik saatlerinde ön büro personelinin müsait olmadığı zamanlarda gerçekleşiyor. Sesli yanıt sistemine düşen hastalar nadiren geri arar — rakip klinik ararlar. STOAIX her aramanın yanıtlanmasını ve her randevu talebinin gerçek zamanlı dönüştürülmesini sağlar.
+Klinikler geliri yalnızca kaçan aramada değil, zincirin her boşluğunda kaybeder. Talepler mesai dışında gelir ve sesli mesaja düşer; gelen lead'e geç dönülür; takip ikinci denemeden sonra durur; eski lead datası bir daha işlenmez; iptal olan slot boş kalır; tedavi olmuş hasta geri getirilmez. STOAIX bu zincirin tamamını kliniğin kendi eskalasyon kuralları altında kapatır — her adımda denetimli ve geri alınabilir şekilde.
 
 ## Temel Bilgiler
 
-- Kuruluş: 2025
-- Pazar: Türkiye ve İngiltere
-- Sektör: SağlıkTeknolojisi / AI sesli asistanlar / Özel sağlık
+- Kuruluş: 2025 — Ata Ulufer (Kurucu Ortak & CEO), Emir Türköz (Kurucu Ortak & CTO), Londra, Birleşik Krallık
+- Dayanak: 500+ klinik denetimi
+- Pazar: 15 ülke, 6 dil sahada — Türkiye, Birleşik Krallık, Almanya, Polonya, Hollanda, İtalya, İspanya, Romanya, Azerbaycan, Gürcistan, BAE, Suudi Arabistan, Katar, ABD, Kanada
+- Sektör: SağlıkTeknolojisi / Yapay zeka satış işletim sistemi / Özel sağlık ve klinik grupları
 - Fiyatlandırma: Aylık abonelik (yönetilen hizmet)
-- Entegrasyon: Mevcut klinik telefon sistemleri ve takvim/randevu yazılımları ile çalışır
-- Uyumluluk: KVKK ve sağlık verileri koruma gereksinimleri gözetilerek geliştirilmiştir
-- Dil: Türkçe ve İngilizce sesli asistan
+- Entegrasyon: HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar dahil 24 sistemle iki yönlü senkron, ayrıca webhook API
+- Uyumluluk: KVKK ve GDPR — veri işleme sözleşmesi, bölgesel barındırma, tam kayıt izi, SSO ve rol bazlı erişim
+- Dil: Türkçe ve İngilizce başta olmak üzere 6 dil sahada
 
 ## Türkçe İçerik
 

@@ -5,13 +5,19 @@
   <!-- Homepage -->
   <url>
     <loc>https://stoaix.com/</loc>
-    <lastmod>2026-05-03</lastmod>
+    <lastmod>2026-09-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/"/>
     <xhtml:link rel="alternate" hreflang="en-gb" href="https://stoaix.com/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://stoaix.com/"/>
+  </url>  <url>
+    <loc>https://stoaix.com/tr</loc>
+    <lastmod>2026-09-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
   </url>
+
 
   <!-- Core Brand Pages -->
   <url>

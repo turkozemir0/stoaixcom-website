@@ -7,11 +7,13 @@ varyasyon **6a / 6b**) sitedeki karşılığı.
 
 | URL | Dosya | Dil |
 |---|---|---|
-| `/v2` | `v2.html` | EN |
-| `/tr/v2` | `v2-tr.html` | TR |
+| `/` | `index.html` | EN |
+| `/tr` | `index-tr.html` | TR |
+| `/product` | `product.html` | eski ana sayfa, **noindex** |
 
-`/tr/v2 → /v2-tr` yönlendirmesi `vercel.json`'da, genel `/tr/:path*` kuralından
-**önce** tanımlıdır; sıra değişirse TR sayfası İngilizce açılır.
+`/tr → /index-tr` yönlendirmesi `vercel.json`da, genel `/tr/:path*` kuralından
+**önce** tanımlıdır; sıra değişirse TR ana sayfası İngilizce açılır. Önizleme
+döneminde paylaşılan `/v2` ve `/tr/v2` adresleri 301 ile ana sayfaya gider.
 
 ## Derleme
 
@@ -20,13 +22,13 @@ node tools/build-v2.mjs
 ```
 
 İçerik **tek kaynaktan** gelir: `tools/v2-content.mjs`. Metin değişikliği orada
-yapılır, ardından build çalıştırılır — `v2.html` / `v2-tr.html` elle düzenlenmez.
+yapılır, ardından build çalıştırılır — `index.html` / `index-tr.html` elle düzenlenmez.
 
 `tools/build-v2.mjs` başında iki anahtar vardır:
 
-- `ANALYTICS` — önizlemede `false`. GA/Clarity/Meta Pixel, `/v2` trafiğiyle
-  metrikleri ve reklam sinyallerini kirletmesin diye kapalı. Yayına alırken `true`.
-- `NOINDEX` — önizlemede `true` (`robots: noindex, nofollow`). Yayına alırken `false`.
+- `ANALYTICS` — yayında `true`. GA + Clarity + Meta Pixel, eski ana sayfadaki
+  ile aynı gecikmeli yükleme mantığıyla.
+- `NOINDEX` — yayında `false`. `true` yapılırsa sayfaya `robots: noindex, nofollow` basar.
 
 ## Neden build-time statik HTML
 
@@ -114,11 +116,36 @@ yerinde duruyor.
 
 - **CTA arka planı** hâlâ düz `#14141A` yer tutucu. Handoff gerçek video/fotoğraf
   bekliyor (`muted`, `loop`, poster kare, `object-fit:cover`).
-- **Konumlandırma kararı** — v2 "klinik grupları" diyor, `llms.txt` ve 222 alt
-  sayfa "1–5 klinisyenli pratikler için AI resepsiyonist" diyor. v2 ana sayfa
-  olacaksa `llms.txt` ve `tr-llms.txt` ikisini birden tarif edecek şekilde
-  yeniden yazılmalı, yoksa AI aramaları çelişkili kaynak görür.
-- **Eski çapa bağlantıları** — `#features`, `#channels`, `#pricing`, `#demo`,
-  `#calculator`, `#trial` v2'de karşılıksız. Ana sayfaya taşınırsa reklam ve
-  e-posta linkleri için yönlendirme gerekir.
-- Yayına alınırken: `ANALYTICS = true`, `NOINDEX = false`, `sitemap.xml` kaydı.
+- **OG görseli** — `assets/og-image.png` dosya olarak yok, canlıda 404. Hem ana
+  sayfa hem `/product` onu referans veriyor; link paylaşımlarında kapak çıkmıyor.
+- **www / non-www** — site `stoaix.com` → `www.stoaix.com` yönlendiriyor ama
+  canonical etiketleri `www` içermiyor. İkisi hizalanmalı.
+- **Reklam ve e-posta linkleri** — eski `/#features`, `/#pricing` gibi çapalara
+  giden dış kampanya linkleri varsa elle güncellenmeli.
+
+## Ana sayfaya taşıma (19 Eyl 2026)
+
+`/v2` önizlemesi ana sayfa oldu. Yapılan değişiklikler:
+
+- **Eski ana sayfa → `/product`**, `noindex, follow` ile. Demo, hesaplayıcı,
+  canlı sayaç, kanal/özellik anlatımı ve fiyat tablosu orada çalışmaya devam
+  ediyor; arama sonuçlarında ana sayfayla rekabet etmiyor. `i18n-home.js`
+  sözlük eşlemesine `/product` eklendi, TR çevirisi korundu.
+- **Menü (`js/components.js`, tüm sayfalara inject ediliyor)** — "Pricing"
+  öğesi kaldırıldı (fiyat vitrinde sunulmuyor), `/#features` ve `/#channels`
+  çapaları `/product#...` adresine çevrildi.
+- **Sayfa içi çapalar** — 5 dosyada 29 link düzeltildi. `/#cta` (60 kullanım)
+  için yeni ana sayfadaki CTA bölümüne `id="cta"` verildi, hepsi çalışıyor.
+- **`llms.txt` + `tr-llms.txt`** — konumlandırma iki katmanlı yazıldı: klinik
+  grupları birincil, tek şubeli klinikler aynı platformda ve çoğunlukla AI
+  resepsiyonist ile başlıyor. Sekiz asistan tek tek listelendi; ülke/dil,
+  entegrasyon, uyumluluk ve kurucu bilgileri güncellendi.
+- **`sitemap.xml`** — ana sayfa `lastmod` güncellendi, `/tr` kaydı eklendi.
+  `/product` bilinçli olarak eklenmedi (noindex).
+
+### Fiyat
+
+Fiyat tablosu `components.js` içindeki `PRICING_HTML` ile yalnızca
+`/product` sayfasına inject ediliyor. Menüde fiyat bağlantısı yok — satış
+görüşmesi üzerinden ilerleniyor. Self-serve yol duruyor: hero'daki hayalet
+buton `/signup`'a gidiyor.

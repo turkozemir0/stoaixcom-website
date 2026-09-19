@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>STOAIX — AI Voice & Chat Platform for Healthcare Clinics</title>
+  <meta name="description" content="Deploy an AI receptionist that answers calls, handles WhatsApp, and converts leads — 24/7. No code. No meetings. Built for healthcare clinics. Start free in 5 minutes." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="author" content="Emir TÜRKÖZ, Ata Ulufer">
+  <link rel="icon" type="image/png" href="/assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;800&display=swap" />
+  <link rel="stylesheet" href="css/styles.css?v=20260727b" />
+
+  <!-- Performance: preload LCP asset -->
+  <link rel="preload" href="assets/logo-iconwithname.svg" as="image" type="image/svg+xml" />
+
+  <!-- Performance: preconnect to external origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+
+  <!-- Canonical + Hreflang -->
+  <link rel="canonical" href="https://stoaix.com/product" />
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/">
+  <link rel="alternate" hreflang="en-gb" href="https://stoaix.com/">
+  <link rel="alternate" hreflang="x-default" href="https://stoaix.com/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://stoaix.com/" />
+  <meta property="og:title" content="STOAIX — AI Voice & Chat Platform for Healthcare Clinics" />
+  <meta property="og:description" content="Deploy an AI receptionist that answers calls, handles WhatsApp, and converts leads — 24/7. No code. No meetings. Built for healthcare clinics." />
+  <meta property="og:image" content="https://stoaix.com/assets/og-image.png" />
+  <meta property="og:site_name" content="STOAIX" />
+  <meta property="og:locale" content="en_GB" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="STOAIX — AI Voice & Chat Platform for Healthcare Clinics" />
+  <meta name="twitter:description" content="Deploy an AI receptionist that answers calls, handles WhatsApp, and converts leads — 24/7." />
+  <meta name="twitter:image" content="https://stoaix.com/assets/og-image.png" />
+  <meta name="twitter:site" content="@stoaix" />
+
+  <!-- Organization Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "STOAIX",
+    "alternateName": "STOAIX Ltd",
+    "url": "https://stoaix.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://stoaix.com/assets/logo-iconwithname.svg"
+    },
+    "description": "AI Voice & Chat Platform for healthcare clinics. Answer every call, handle every message, convert every lead — 24/7.",
+    "email": "hello@stoaix.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "GB",
+      "addressLocality": "London"
+    },
+    "founder": [
+      {"@type": "Person", "name": "Emir TÜRKÖZ", "jobTitle": "CTO"},
+      {"@type": "Person", "name": "Ata Ulufer", "jobTitle": "CEO"}
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "availableLanguage": ["Turkish", "English"]
+    },
+    "sameAs": [
+      "https://www.linkedin.com/company/stoaix-ai",
+      "https://www.youtube.com/@stoaix",
+      "https://www.instagram.com/stoaix.ai"
+    ]
+  }
+  </script>
+
+  <!-- WebSite Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://stoaix.com",
+    "name": "STOAIX",
+    "alternateName": ["Stoaix", "stoaix.com"],
+    "description": "AI receptionist platform for clinics and businesses",
+    "inLanguage": ["tr", "en-GB"],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://stoaix.com/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+<!-- Analytics: ilk kullanıcı etkileşiminde VEYA en geç ~3.5sn (idle) yüklenir.
+     Amaç: ilk render main-thread'i bloke olmasın (TBT). Veri kaybı ihmal edilebilir
+     (yalnız hiç etkileşimsiz <3.5sn hard-bounce). gtag + Clarity + Meta Pixel. -->
+<script>
+(function () {
+  var loaded = false;
+  function loadAnalytics() {
+    if (loaded) return; loaded = true;
+    /* Google Analytics (gtag) */
+    var g = document.createElement('script'); g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q';
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); } window.gtag = gtag;
+    gtag('js', new Date()); gtag('config', 'G-53TMTQML2Q');
+    /* Microsoft Clarity */
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");
+    /* Meta Pixel */
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1426016022664547'); fbq('track', 'PageView');
+  }
+  var evs = ['scroll','mousemove','touchstart','pointerdown','keydown','click'];
+  function onFirst(){ evs.forEach(function(e){ window.removeEventListener(e, onFirst, {passive:true}); }); loadAnalytics(); }
+  evs.forEach(function(e){ window.addEventListener(e, onFirst, {passive:true}); });
+  if ('requestIdleCallback' in window) { requestIdleCallback(loadAnalytics, {timeout: 3500}); }
+  else { setTimeout(loadAnalytics, 3500); }
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+</head>
+<body class="has-ticker">
+
+  <!-- ═══════════════════════════════════════════════
+       LIVE UPDATES TICKER  (platform güncellemeleri — sağdan sola akar)
+       Metinler EN kaynak; TR karşılıkları js/i18n.js → TR_INDEX'te.
+  ═══════════════════════════════════════════════ -->
+  <div class="tk-bar" id="tkBar" role="region" aria-label="STOAIX platform updates">
+    <div class="tk-live">
+      <span class="tk-live-dot" aria-hidden="true"></span>
+      <span class="tk-live-label">STOAIX Live</span>
+    </div>
+    <div class="tk-viewport">
+      <div class="tk-track">
+        <!-- Grup 1 -->
+        <div class="tk-group">
+          <a class="tk-item" href="/modules.html"><span class="tk-badge tk-badge--ship">New module</span><span class="tk-msg">Your social media content is now created, scheduled &amp; published by STOAIX</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features"><span class="tk-badge tk-badge--new">New feature</span><span class="tk-msg">Voice AI now speaks 15+ languages with automatic native voice switching</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features"><span class="tk-badge tk-badge--ship">Just shipped</span><span class="tk-msg">New voice engine delivers natural, near real-time conversations</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features"><span class="tk-badge tk-badge--live">Now live</span><span class="tk-msg">Voice AI connects to 444, mobile, 0850, landline and international numbers</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#pricing"><span class="tk-badge tk-badge--live">Now live</span><span class="tk-msg">Online booking now adds a Google Meet link and emails the invite automatically</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features"><span class="tk-badge tk-badge--live">Now live</span><span class="tk-msg">New leads flow into your sales pipeline automatically — no manual work</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#channels"><span class="tk-badge tk-badge--new">New feature</span><span class="tk-msg">AI support assistant answers every question using your own knowledge base</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="healthcare-clinics.html"><span class="tk-badge tk-badge--live">Now live</span><span class="tk-msg">Automated SEO engine gets your clinic found in Google and AI search</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#channels"><span class="tk-badge tk-badge--new">New feature</span><span class="tk-msg">Connect multiple WhatsApp numbers to a single AI brain</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features"><span class="tk-badge tk-badge--ship">Just shipped</span><span class="tk-msg">Reactivation engine re-engages your old leads and books them again</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features"><span class="tk-badge tk-badge--live">Now live</span><span class="tk-msg">STOAIX updates every week — your platform stays live</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+        </div>
+        <!-- Grup 2 (aynı içerik — kesintisiz döngü) -->
+        <div class="tk-group" aria-hidden="true">
+          <a class="tk-item" href="/modules.html" tabindex="-1"><span class="tk-badge tk-badge--ship">New module</span><span class="tk-msg">Your social media content is now created, scheduled &amp; published by STOAIX</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features" tabindex="-1"><span class="tk-badge tk-badge--new">New feature</span><span class="tk-msg">Voice AI now speaks 15+ languages with automatic native voice switching</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features" tabindex="-1"><span class="tk-badge tk-badge--ship">Just shipped</span><span class="tk-msg">New voice engine delivers natural, near real-time conversations</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features" tabindex="-1"><span class="tk-badge tk-badge--live">Now live</span><span class="tk-msg">Voice AI connects to 444, mobile, 0850, landline and international numbers</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#pricing" tabindex="-1"><span class="tk-badge tk-badge--live">Now live</span><span class="tk-msg">Online booking now adds a Google Meet link and emails the invite automatically</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features" tabindex="-1"><span class="tk-badge tk-badge--live">Now live</span><span class="tk-msg">New leads flow into your sales pipeline automatically — no manual work</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#channels" tabindex="-1"><span class="tk-badge tk-badge--new">New feature</span><span class="tk-msg">AI support assistant answers every question using your own knowledge base</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="healthcare-clinics.html" tabindex="-1"><span class="tk-badge tk-badge--live">Now live</span><span class="tk-msg">Automated SEO engine gets your clinic found in Google and AI search</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#channels" tabindex="-1"><span class="tk-badge tk-badge--new">New feature</span><span class="tk-msg">Connect multiple WhatsApp numbers to a single AI brain</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features" tabindex="-1"><span class="tk-badge tk-badge--ship">Just shipped</span><span class="tk-msg">Reactivation engine re-engages your old leads and books them again</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+          <a class="tk-item" href="#features" tabindex="-1"><span class="tk-badge tk-badge--live">Now live</span><span class="tk-msg">STOAIX updates every week — your platform stays live</span></a>
+          <span class="tk-sep" aria-hidden="true">●</span>
+        </div>
+      </div>
+    </div>
+    <button class="tk-close" id="tkClose" type="button" aria-label="Hide updates bar" title="Hide">×</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">
+        <img fetchpriority="high" src="assets/logo-iconwithname.svg" class="nav-logo-wordmark" alt="STOAIX" />
+      </a>
+
+      <div class="nav-links">
+        <div class="nav-dropdown-item">
+          <button class="nav-link-btn">Product <span class="nav-chevron">↓</span></button>
+          <div class="nav-dropdown">
+            <div class="dropdown-inner">
+              <a href="#features" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 18.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z"/>
+                    <path d="M19.14 19.14 22 22M2 22l2.86-2.86"/>
+                    <path d="M12 12v-2M12 8v-.5"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Voice AI</div>
+                  <div class="dropdown-desc">Answer every call, 24/7</div>
+                </div>
+              </a>
+              <a href="#channels" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">WhatsApp & Chat</div>
+                  <div class="dropdown-desc">Automate message channels</div>
+                </div>
+              </a>
+              <a href="#features" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">CRM & Pipeline</div>
+                  <div class="dropdown-desc">Track and score every lead</div>
+                </div>
+              </a>
+              <a href="#features" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Integrations</div>
+                  <div class="dropdown-desc">Connect your existing tools</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+        <a href="#pricing" class="nav-link">Pricing</a>
+        <div class="nav-dropdown-item">
+          <button class="nav-link-btn">Solutions <span class="nav-chevron">↓</span></button>
+          <div class="nav-dropdown">
+            <div class="dropdown-inner">
+              <a href="healthcare-clinics.html" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Healthcare Clinics</div>
+                  <div class="dropdown-desc">Hair transplant, dental, aesthetics</div>
+                </div>
+              </a>
+              <a href="partners.html" class="dropdown-link">
+                <span class="dropdown-icon-wrap">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </span>
+                <div>
+                  <div class="dropdown-title">Partner Program</div>
+                  <div class="dropdown-desc">Earn up to 50% recurring commission</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <a href="https://platform.stoaix.com/login" class="nav-login" target="_blank" rel="noopener noreferrer">Log in</a>
+        <a href="https://calendly.com/ataulufer1/20" class="btn-primary btn-sm" target="_blank" rel="noopener">Book a call</a>
+      </div>
+
+      <a href="https://calendly.com/ataulufer1/20" class="btn-primary btn-sm nav-mobile-cta" target="_blank" rel="noopener">Book a call</a>
+
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#features">Product</a>
+    <a href="#pricing">Pricing</a>
+    <a href="healthcare-clinics.html">Healthcare Clinics</a>
+    <a href="partners.html">Partner Program</a>
+    <a href="https://platform.stoaix.com/login" class="nav-login" target="_blank" rel="noopener noreferrer">Log in</a>
+    <a href="https://calendly.com/ataulufer1/20" class="btn-primary" target="_blank" rel="noopener">Book a call</a>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════
+       HERO
+  ═══════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-grid"></div>
+
+    <div class="container hero-content hero-content-centered">
+      <div class="hero-text hero-text-centered">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Free trial available
+        </div>
+
+        <h1 class="hero-headline">
+          Your AI<span class="hero-word-wrap"><span class="hero-word" aria-hidden="true">receptionist</span><span class="hero-word" aria-hidden="true">call center</span><span class="hero-word" aria-hidden="true">sales agent</span><span class="hero-word" aria-hidden="true">chatbot</span><span class="hero-word" aria-hidden="true">voice agent</span><span class="hero-word" aria-hidden="true">CRM</span><span class="hero-live"><span class="hero-typewriter" aria-live="polite"></span><span class="hero-comma">,</span><span class="hero-cursor" aria-hidden="true"></span></span></span><br />
+          <span class="gradient-text">live in minutes.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Voice calls, WhatsApp, and web chat — fully automated.<br class="br-desktop" />
+          No code. No meetings. Built for healthcare clinics.
+        </p>
+
+        <div class="hero-cta hero-cta-centered">
+          <a href="signup.html" class="btn-primary btn-lg">
+            Start free trial
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#demo" class="btn-ghost btn-lg">
+            <span class="play-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5,3 19,12 5,21"/>
+              </svg>
+            </span>
+            Watch demo
+          </a>
+        </div>
+
+        <p class="hero-trust">
+          <span>Built on insights from <span class="trust-highlight">500+ clinic audits</span></span>
+          <span class="trust-sep" aria-hidden="true"></span>
+          <span>No code. No meetings.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       MARQUEE — INTEGRATION LOGOS
+  ═══════════════════════════════════════════════ -->
+  <section class="marquee-section">
+    <p class="marquee-label">Powered by the best. Connects with everything.</p>
+    <div class="marquee-track-wrapper">
+      <div class="marquee-fade marquee-fade-left"></div>
+      <div class="marquee-fade marquee-fade-right"></div>
+
+      <div class="marquee-track">
+        <div class="marquee-inner marquee-left">
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/whatsapp.svg" alt="WhatsApp">WhatsApp</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/zapier.svg" alt="Zapier">Zapier</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/make.svg" alt="Make">Make</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/hubspot.svg" alt="HubSpot">HubSpot</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/salesforce.svg" alt="Salesforce">Salesforce</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/twilio.svg" alt="Twilio">Twilio</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/gohighlevel.png" alt="Go High Level">Go High Level</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/calendly.svg" alt="Calendly">Calendly</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/pipedrive.png" alt="Pipedrive">Pipedrive</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/zoho.svg" alt="Zoho CRM">Zoho CRM</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/googleads.svg" alt="Google Ads">Google Ads</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/tiktok.svg" alt="TikTok">TikTok</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/linkedin.svg" alt="LinkedIn">LinkedIn</div>
+          <!-- Duplicate for seamless loop -->
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/whatsapp.svg" alt="WhatsApp">WhatsApp</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/zapier.svg" alt="Zapier">Zapier</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/make.svg" alt="Make">Make</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/hubspot.svg" alt="HubSpot">HubSpot</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/salesforce.svg" alt="Salesforce">Salesforce</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/twilio.svg" alt="Twilio">Twilio</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/gohighlevel.png" alt="Go High Level">Go High Level</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/calendly.svg" alt="Calendly">Calendly</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/pipedrive.png" alt="Pipedrive">Pipedrive</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/zoho.svg" alt="Zoho CRM">Zoho CRM</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/googleads.svg" alt="Google Ads">Google Ads</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/tiktok.svg" alt="TikTok">TikTok</div>
+          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/linkedin.svg" alt="LinkedIn">LinkedIn</div>
+        </div>
+      </div>
+
+      <div class="marquee-track">
+        <div class="marquee-inner marquee-right">
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/instagram.svg" alt="Instagram">Instagram DM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/telegram.svg" alt="Telegram">Telegram</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/facebook.svg" alt="Facebook">Facebook</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/googlecalendar.svg" alt="Google Calendar">Google Calendar</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/slack.svg" alt="Slack">Slack</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/dentsoft.png" alt="Dentsoft">Dentsoft</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/komocrm.png" alt="Komo CRM">Komo CRM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/typeform.svg" alt="Typeform">Typeform</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/notion.svg" alt="Notion">Notion</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/airtable.svg" alt="Airtable">Airtable</div>
+          <div class="logo-pill logo-pill-dim">Webhook API</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/dentally.png" alt="Dentally">Dentally</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/pabau.png" alt="Pabau">Pabau</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/fresha.png" alt="Fresha">Fresha</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/acuity.png" alt="Acuity Scheduling">Acuity Scheduling</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/freshworks.png" alt="Freshworks">Freshworks</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/youtube.svg" alt="YouTube">YouTube</div>
+          <!-- Duplicate -->
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/instagram.svg" alt="Instagram">Instagram DM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/telegram.svg" alt="Telegram">Telegram</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/facebook.svg" alt="Facebook">Facebook</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/googlecalendar.svg" alt="Google Calendar">Google Calendar</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/slack.svg" alt="Slack">Slack</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/dentsoft.png" alt="Dentsoft">Dentsoft</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/komocrm.png" alt="Komo CRM">Komo CRM</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/typeform.svg" alt="Typeform">Typeform</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/notion.svg" alt="Notion">Notion</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/airtable.svg" alt="Airtable">Airtable</div>
+          <div class="logo-pill logo-pill-dim">Webhook API</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/dentally.png" alt="Dentally">Dentally</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/pabau.png" alt="Pabau">Pabau</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/fresha.png" alt="Fresha">Fresha</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/acuity.png" alt="Acuity Scheduling">Acuity Scheduling</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/freshworks.png" alt="Freshworks">Freshworks</div>
+          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="assets/logos/youtube.svg" alt="YouTube">YouTube</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       INTERACTIVE DEMO PLACEHOLDER
+  ═══════════════════════════════════════════════ -->
+  <section class="demo-section" id="demo">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-badge">Live Demo</div>
+        <h2 class="section-headline centered">See it in action.</h2>
+        <p class="section-sub centered">
+          From WhatsApp to voice calls, in 15+ languages —
+          explore how AI handles your entire patient journey.
+        </p>
+        <div class="demo-desktop-hint">
+          <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          En iyi deneyim için masaüstünden görüntüleyin
+        </div>
+      </div>
+
+      <div class="demo-embed-wrap reveal" style="position:relative">
+        <!-- Glow effect -->
+        <div style="position:absolute;top:-40px;left:50%;transform:translateX(-50%);width:80%;height:120%;pointer-events:none;background:radial-gradient(ellipse at center,rgba(14,165,233,0.12) 0%,rgba(45,212,191,0.06) 40%,transparent 70%);filter:blur(40px);z-index:0;border-radius:50%"></div>
+        <div style="position:relative;z-index:1;padding-bottom:56%;height:0;width:100%">
+          <iframe
+            src="/demo-interactive"
+            title="STOAIX Interactive Demo"
+            frameborder="0"
+            loading="lazy"
+            allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;border-radius:inherit"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       LIVE STATS — platform şu an canlı (sürekli akan sayaçlar)
+       Değerler zamana sabitli: js/live-stats.js → LIVE_STATS_CONFIG
+       Metinler EN kaynak; TR karşılıkları js/i18n-home.js → TR_INDEX
+  ═══════════════════════════════════════════════ -->
+  <section class="livestat-section" id="live-stats" aria-label="Live platform activity">
+    <div class="container">
+      <div class="livestat-head reveal">
+        <div class="livestat-badge">
+          <span class="livestat-dot" aria-hidden="true"></span>
+          LIVE
+        </div>
+        <h2 class="livestat-title">Live right now — working across every channel</h2>
+        <p class="livestat-sub">Across businesses using stoaix — and counting</p>
+      </div>
+
+      <div class="livestat-grid reveal">
+        <div class="livestat-card">
+          <div class="livestat-num" data-livestat="messages">118,900</div>
+          <div class="livestat-label">Customer messages answered</div>
+        </div>
+        <div class="livestat-card">
+          <div class="livestat-num" data-livestat="customers">32,300</div>
+          <div class="livestat-label">New customers engaged</div>
+        </div>
+        <div class="livestat-card">
+          <div class="livestat-num" data-livestat="wins">2,890</div>
+          <div class="livestat-label">Conversations won</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       OVERVIEW — "WHAT IS STOAIX"
+  ═══════════════════════════════════════════════ -->
+  <section class="overview-section" id="overview">
+    <div class="container overview-grid">
+      <div class="overview-left reveal">
+        <div class="section-badge">What is STOAIX?</div>
+        <h2 class="section-headline">
+          Stop missing leads.<br />
+          Start converting them.
+        </h2>
+        <p class="section-body">
+          Every unanswered call is a lead handed to your competitor.
+          STOAIX deploys an AI agent that never sleeps — it picks up every call,
+          replies to every message, and books appointments while you focus on
+          what you do best.
+        </p>
+        <a href="signup.html" class="btn-primary btn-md">See how it works</a>
+      </div>
+
+      <div class="overview-right reveal">
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+              </svg>
+            </div>
+            <div class="feature-title">Voice AI Receptionist</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <div class="feature-title">WhatsApp & Chat Automation</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+            <div class="feature-title">Smart CRM & Lead Pipeline</div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+            </div>
+            <div class="feature-title">15+ Languages by Default</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       ROTATING USE CASES — "SPEAKS LIKE PEOPLE"
+  ═══════════════════════════════════════════════ -->
+  <section class="rotating-section">
+    <div class="container">
+      <div class="rotating-inner reveal">
+        <p class="rotating-label">Works for every clinic</p>
+        <h2 class="rotating-headline">
+          AI that <span class="gradient-text">talks like your team.</span><br />
+          Built for
+          <span class="rotating-word-wrapper">
+            <span class="rotating-word active">dental clinics.</span>
+            <span class="rotating-word">hair transplant clinics.</span>
+            <span class="rotating-word">aesthetic clinics.</span>
+            <span class="rotating-word">physiotherapy centers.</span>
+            <span class="rotating-word">medical aesthetic clinics.</span>
+            <span class="rotating-word">private hospitals.</span>
+            <span class="rotating-word">veterinary clinics.</span>
+          </span>
+        </h2>
+      </div>
+
+      <!-- Stats strip -->
+      <div class="stats-strip reveal">
+        <div class="stat-item">
+          <div class="stat-num-lg">24/7</div>
+          <div class="stat-label-lg">Always answering</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num-lg">15+ langs</div>
+          <div class="stat-label-lg">Auto-detected</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num-lg">&lt; 5 min</div>
+          <div class="stat-label-lg">Time to go live</div>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <div class="stat-num-lg">$0</div>
+          <div class="stat-label-lg">Setup fee</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       OMNICHANNEL — EVERY CHANNEL, ONE PLATFORM
+  ═══════════════════════════════════════════════ -->
+  <section class="channels-section" id="channels">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-badge">Omnichannel</div>
+        <h2 class="section-headline centered">Every channel.<br />One platform.</h2>
+        <p class="section-sub centered">
+          Your patients reach you however they want. STOAIX handles all of it —
+          from the same dashboard, with the same AI brain.
+        </p>
+      </div>
+
+      <div class="channels-grid reveal">
+        <div class="ch-item">
+          <div class="ch-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+            </svg>
+          </div>
+          <div class="ch-item-name">Voice AI</div>
+          <div class="ch-item-desc">Answers every call, 24/7, in 15+ languages</div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="ch-item-name">WhatsApp</div>
+          <div class="ch-item-desc">Price queries, bookings &amp; FAQs — automated</div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+            </svg>
+          </div>
+          <div class="ch-item-name">Web Chat</div>
+          <div class="ch-item-desc">Qualify visitors and book them on the spot</div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.7 11.15a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.62 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.18 6.18l.97-.97a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <div class="ch-item-name">Outbound</div>
+          <div class="ch-item-desc">Calls new leads within 60 seconds of enquiry</div>
+        </div>
+        <div class="ch-item">
+          <div class="ch-item-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </div>
+          <div class="ch-item-name">Instagram DM</div>
+          <div class="ch-item-desc">Turns DMs and story replies into bookings</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       SETUP — LIVE IN 5 MINUTES
+  ═══════════════════════════════════════════════ -->
+  <section class="setup-section" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-badge">Effortless setup</div>
+        <h2 class="section-headline centered">Live in 5 minutes.<br />No engineer needed.</h2>
+      </div>
+
+      <div class="setup-steps reveal">
+        <div class="setup-step">
+          <div class="step-num">01</div>
+          <div class="step-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10,9 9,9 8,9"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Tell us about your clinic</h3>
+        </div>
+        <div class="setup-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">02</div>
+          <div class="step-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.07 4.93a10 10 0 0 1 1.41 14.14l-1.41-1.41A8 8 0 0 0 5.34 5.34L3.93 3.93A10 10 0 0 1 19.07 4.93z"/>
+              <path d="M12 2v2M12 20v2M2 12h2M20 12h2"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Configure your AI agent</h3>
+        </div>
+        <div class="setup-arrow">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </div>
+        <div class="setup-step">
+          <div class="step-num">03</div>
+          <div class="step-icon-wrap">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Go live</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       REVENUE CALCULATOR
+  ═══════════════════════════════════════════════ -->
+  <section class="calc-section" id="calculator">
+    <div class="container">
+      <div class="section-header reveal">
+        <div class="section-label">Revenue Calculator</div>
+        <h2 class="section-title">How much are missed enquiries costing you?</h2>
+        <p class="section-subtitle">See the real revenue impact of every unanswered call and message.</p>
+      </div>
+      <div class="calc-card reveal">
+        <div class="calc-inputs">
+          <div class="calc-field">
+            <label>Average appointment value (£)</label>
+            <input type="number" id="calcApptValue" value="80" min="0" placeholder="e.g. 80">
+          </div>
+          <div class="calc-field">
+            <label>Missed enquiries per week</label>
+            <input type="number" id="calcMissed" value="10" min="0" placeholder="e.g. 10">
+          </div>
+          <div class="calc-field">
+            <label>Conversion rate (%)</label>
+            <input type="number" id="calcConversion" value="40" min="0" max="100" placeholder="e.g. 40">
+          </div>
+        </div>
+        <div class="calc-results">
+          <div class="calc-result-card monthly">
+            <div class="calc-result-label">Lost per month</div>
+            <div class="calc-result-value" id="calcMonthly">£1,386</div>
+            <div class="calc-result-sublabel">in missed bookings</div>
+          </div>
+          <div class="calc-result-card annual">
+            <div class="calc-result-label">Lost per year</div>
+            <div class="calc-result-value" id="calcAnnual">£16,632</div>
+            <div class="calc-result-sublabel">walking out the door</div>
+          </div>
+        </div>
+        <div class="calc-cta-wrap">
+          <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" class="btn-primary">Ücretsiz Klinik Analizi</a>
+          <p class="calc-note">Uzman ekibimizle 30 dakikalık ücretsiz görüşme ayarlayın.</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function() {
+        function calcUpdate() {
+          const appt = parseFloat(document.getElementById('calcApptValue').value) || 0
+          const missed = parseFloat(document.getElementById('calcMissed').value) || 0
+          const conv = parseFloat(document.getElementById('calcConversion').value) || 0
+          const monthly = missed * 4.33 * (conv / 100) * appt
+          const annual = monthly * 12
+          const fmt = v => '£' + Math.round(v).toLocaleString('en-GB')
+          document.getElementById('calcMonthly').textContent = fmt(monthly)
+          document.getElementById('calcAnnual').textContent = fmt(annual)
+        }
+        ['calcApptValue', 'calcMissed', 'calcConversion'].forEach(id => {
+          document.getElementById(id).addEventListener('input', calcUpdate)
+        })
+        calcUpdate()
+      })()
+    </script>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       PRICING (injected via components.js)
+  ═══════════════════════════════════════════════ -->
+  <section id="pricing-inject"></section>
+
+
+
+  <!-- ═══════════════════════════════════════════════
+       CTA — FREE TRIAL
+  ═══════════════════════════════════════════════ -->
+  <section class="cta-section" id="trial">
+    <div class="cta-bg-glow"></div>
+    <div class="container cta-inner reveal">
+      <h2 class="cta-headline">
+        Your AI receptionist is<br />
+        <span class="cta-gradient-text">one signup away.</span>
+      </h2>
+      <p class="cta-sub">
+        Free trial on Essential &amp; Professional. No credit card. Set up in minutes.
+      </p>
+      <div class="cta-actions">
+        <a href="signup.html" class="cta-btn-primary">Start your free trial</a>
+        <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="cta-btn-ghost">Talk to sales</a>
+      </div>
+      <p class="cta-note">No contracts · Cancel anytime · Free trial on select plans</p>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FOUNDERS
+  ═══════════════════════════════════════════════ -->
+  <section class="founders-section" id="founders">
+    <div class="container reveal">
+      <h2 class="founders-headline">STOAIX on LinkedIn</h2>
+      <div class="founders-grid">
+        <div class="founder-card">
+          <div class="founder-avatar" aria-hidden="true">AU</div>
+          <div class="founder-info">
+            <h3 class="founder-name">Ata Ulufer</h3>
+            <span class="founder-title">Co-founder & CEO</span>
+            <a href="https://www.linkedin.com/in/ata-ulufer-stoaix/" class="founder-linkedin" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              Follow on LinkedIn
+            </a>
+          </div>
+        </div>
+        <div class="founder-card">
+          <div class="founder-avatar founder-avatar--teal" aria-hidden="true">ET</div>
+          <div class="founder-info">
+            <h3 class="founder-name">Emir TÜRKÖZ</h3>
+            <span class="founder-title">Co-founder & CTO</span>
+            <a href="https://www.linkedin.com/in/emir-turkoz-stoaix/" class="founder-linkedin" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              Follow on LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo">
+          <img fetchpriority="high" src="assets/logo-iconwithname.svg" class="nav-logo-wordmark" alt="STOAIX" />
+        </a>
+        <p class="footer-tagline">AI receptionist for healthcare clinics. Answer every call, handle every message, convert every lead.</p>
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/company/stoaix-ai" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/stoaix.ai" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://www.youtube.com/@stoaix" class="social-link" aria-label="YouTube" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+              <polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">Product</div>
+          <a href="#">Voice AI</a>
+          <a href="#">WhatsApp Chatbot</a>
+          <a href="#">Web Chat Widget</a>
+          <a href="#">Outbound AI</a>
+          <a href="#">CRM & Pipeline</a>
+          <a href="#">Integrations</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Solutions</div>
+          <a href="healthcare-clinics.html">Healthcare Clinics</a>
+          <a href="healthcare-clinics.html">Dental Clinics</a>
+          <a href="healthcare-clinics.html">Hair Transplant Clinics</a>
+          <a href="healthcare-clinics.html">Aesthetic Clinics</a>
+          <a href="healthcare-clinics.html">Physiotherapy Centers</a>
+          <a href="partners.html">Agencies &amp; Resellers</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <a href="/about">About STOAIX</a>
+          <a href="/blog">Blog</a>
+          <a href="partners.html">Partners</a>
+          <a href="/contact">Contact</a>
+          <a href="mailto:hello@stoaix.com">hello@stoaix.com</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Legal</div>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+          <a href="/cookie-policy">Cookie Policy</a>
+          <a href="/privacy-policy#gdpr">GDPR</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 STOAIX Ltd. — London, UK</span>
+        <span>Made for businesses that refuse to miss a lead.</span>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Instagram WebView viewport fix -->
+  <script>
+  (function(){function s(){document.documentElement.style.setProperty('--app-height',window.innerHeight+'px')}s();window.addEventListener('resize',s)})()
+  </script>
+
+  <!-- Partner referral cookie capture -->
+  <script>
+  ;(function(){var p=new URLSearchParams(window.location.search).get('ref');if(p){document.cookie='partner_ref='+p+'; path=/; max-age=3888000; SameSite=Lax; Secure'}})()
+</script>
+
+  <!-- Scripts -->
+  <!-- Live updates ticker — kapat/gizle (oturum boyunca hatırlar) -->
+  <script>
+    (function () {
+      var btn = document.getElementById('tkClose');
+      if (!btn) return;
+      try {
+        if (sessionStorage.getItem('stoaix-ticker-closed') === '1') {
+          document.body.classList.add('tk-closed');
+        }
+      } catch (e) {}
+      btn.addEventListener('click', function () {
+        document.body.classList.add('tk-closed');
+        try { sessionStorage.setItem('stoaix-ticker-closed', '1'); } catch (e) {}
+      });
+    })();
+  </script>
+
+  <script defer src="/js/components.js"></script>
+  <script defer src="/js/main.js"></script>
+  <script defer src="/js/i18n-home.js?v=20260727b"></script>
+  <script defer src="/js/live-stats.js"></script>
+</body>
+</html>

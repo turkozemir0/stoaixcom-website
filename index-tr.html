@@ -6,18 +6,17 @@
 <title>STOAIX — Klinik grupları için yapay zeka satış işletim sistemi</title>
 <meta name="description" content="Sizin yönetişiminiz altında sekiz AI asistan: her arama yanıtlanır, her lead bir dakika içinde aranır, her takip tamamlanır. Talep, satış ve sadakat tek gelir tablosunda.">
 <meta name="author" content="Emir TÜRKÖZ, Ata Ulufer">
-<meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0A0A0B" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#F1EEE8" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" href="/assets/images/logo.png">
 
-<link rel="canonical" href="https://stoaix.com/tr/v2">
-<link rel="alternate" hreflang="en" href="https://stoaix.com/v2">
-<link rel="alternate" hreflang="tr" href="https://stoaix.com/tr/v2">
-<link rel="alternate" hreflang="x-default" href="https://stoaix.com/v2">
+<link rel="canonical" href="https://stoaix.com/tr">
+<link rel="alternate" hreflang="en" href="https://stoaix.com/">
+<link rel="alternate" hreflang="tr" href="https://stoaix.com/tr">
+<link rel="alternate" hreflang="x-default" href="https://stoaix.com/">
 
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://stoaix.com/tr/v2">
+<meta property="og:url" content="https://stoaix.com/tr">
 <meta property="og:title" content="STOAIX — Klinik grupları için yapay zeka satış işletim sistemi">
 <meta property="og:description" content="Sizin yönetişiminiz altında sekiz AI asistan: her arama yanıtlanır, her lead bir dakika içinde aranır, her takip tamamlanır. Talep, satış ve sadakat tek gelir tablosunda.">
 <meta property="og:image" content="https://stoaix.com/assets/og-image.png">
@@ -46,13 +45,13 @@
   try {
     var lang = localStorage.getItem('stoaix-lang');
     var onTR = true;
-    if (!sessionStorage.getItem('stoaix-v2-redirected')) {
+    if (!sessionStorage.getItem('stoaix-home-redirected')) {
       if (lang === 'tr' && !onTR) {
-        sessionStorage.setItem('stoaix-v2-redirected', '1');
-        location.replace('/tr/v2' + location.hash);
+        sessionStorage.setItem('stoaix-home-redirected', '1');
+        location.replace('/tr' + location.hash);
       } else if (lang === 'en' && onTR) {
-        sessionStorage.setItem('stoaix-v2-redirected', '1');
-        location.replace('/v2' + location.hash);
+        sessionStorage.setItem('stoaix-home-redirected', '1');
+        location.replace('/' + location.hash);
       }
     }
   } catch (e) {}
@@ -143,7 +142,29 @@
   ]
 }
 </script>
-<!-- Analytics önizlemede kapalı (tools/build-v2.mjs → ANALYTICS). -->
+<!-- Analytics: ilk kullanıcı etkileşiminde VEYA en geç ~3.5sn (idle) yüklenir. -->
+<script>
+(function () {
+  var loaded = false;
+  function loadAnalytics() {
+    if (loaded) return; loaded = true;
+    var g = document.createElement('script'); g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q';
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); } window.gtag = gtag;
+    gtag('js', new Date()); gtag('config', 'G-53TMTQML2Q');
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1426016022664547'); fbq('track', 'PageView');
+  }
+  var evs = ['scroll','mousemove','touchstart','pointerdown','keydown','click'];
+  function onFirst(){ evs.forEach(function(e){ window.removeEventListener(e, onFirst, {passive:true}); }); loadAnalytics(); }
+  evs.forEach(function(e){ window.addEventListener(e, onFirst, {passive:true}); });
+  if ('requestIdleCallback' in window) requestIdleCallback(loadAnalytics, { timeout: 3500 });
+  else setTimeout(loadAnalytics, 3500);
+})();
+</script>
 </head>
 <body>
 <a class="skip" href="#main">Ana içeriğe geç</a>
@@ -156,14 +177,14 @@
     <a href="#specification">AI Asistanlar</a>
     <a href="#deployment">Devreye alma</a>
     <a href="#governance">Yönetişim</a>
-    <a href="#record">Sahada</a>
+    <a href="#footprint">Sahada</a>
   </nav>
   <div class="nav-right">
     <span class="switch" role="group" aria-label="Tema">
       <button type="button" data-theme="ink" class="on" aria-pressed="true">Koyu</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Açık</button>
     </span>
     <span class="switch" role="group" aria-label="Dil">
-      <a href="/v2" hreflang="en" class="off">EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr/v2" hreflang="tr" class="on" aria-current="true">TR</a>
+      <a href="/" hreflang="en" class="off">EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr" hreflang="tr" class="on" aria-current="true">TR</a>
     </span>
     <a class="nav-cta" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Tanışma görüşmesi</a>
     <button type="button" class="nav-burger" aria-label="Menü" aria-expanded="false" aria-controls="mnav">
@@ -184,13 +205,13 @@
   <a class="mlink" href="#specification">AI Asistanlar</a>
   <a class="mlink" href="#deployment">Devreye alma</a>
   <a class="mlink" href="#governance">Yönetişim</a>
-  <a class="mlink" href="#record">Sahada</a>
+  <a class="mlink" href="#footprint">Sahada</a>
   <div class="mnav-switches">
     <span class="switch" role="group" aria-label="Tema">
       <button type="button" data-theme="ink" class="on" aria-pressed="true">Koyu</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Açık</button>
     </span>
     <span class="switch" role="group" aria-label="Dil">
-      <a href="/v2" hreflang="en" class="off">EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr/v2" hreflang="tr" class="on">TR</a>
+      <a href="/" hreflang="en" class="off">EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr" hreflang="tr" class="on">TR</a>
     </span>
   </div>
   <div class="mnav-foot">
@@ -702,8 +723,9 @@
   </div>
 </section>
 
-<!-- ═══ CTA ═══════════════════════════════════════════════════ -->
-<section class="cta">
+<!-- ═══ CTA ═══════════════════════════════════════════════════
+     id="cta": site genelinde 60'tan fazla sayfa bu çapaya bağlanıyor. -->
+<section class="cta" id="cta">
   <div class="media" aria-hidden="true"></div>
   <div class="veil" aria-hidden="true"></div>
   <div class="inner">

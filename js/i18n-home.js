@@ -700,6 +700,7 @@ const TR_DEMO = {};  /* i18n-home: ana sayfada kullanilmiyor */
   const DICT_MAP = {
     '/': TR_INDEX,
     '/index': TR_INDEX,
+    '/product': TR_INDEX,
     '/partners': TR_PARTNERS,
     '/healthcare-clinics': TR_HEALTHCARE,
     '/login': TR_LOGIN,

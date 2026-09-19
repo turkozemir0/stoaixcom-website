@@ -47,7 +47,7 @@
     a.addEventListener('click', function () {
       try {
         localStorage.setItem('stoaix-lang', a.getAttribute('hreflang'));
-        sessionStorage.setItem('stoaix-v2-redirected', '1');
+        sessionStorage.setItem('stoaix-home-redirected', '1');
       } catch (e) {}
     });
   });

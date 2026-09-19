@@ -23,7 +23,7 @@
           <button class="nav-link-btn">Product <span class="nav-chevron">↓</span></button>
           <div class="nav-dropdown">
             <div class="dropdown-inner">
-              <a href="/#features" class="dropdown-link">
+              <a href="/product#features" class="dropdown-link">
                 <span class="dropdown-icon-wrap">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M12 18.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z"/>
@@ -36,7 +36,7 @@
                   <div class="dropdown-desc">Answer every call, 24/7</div>
                 </div>
               </a>
-              <a href="/#channels" class="dropdown-link">
+              <a href="/product#channels" class="dropdown-link">
                 <span class="dropdown-icon-wrap">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
@@ -47,7 +47,7 @@
                   <div class="dropdown-desc">Automate message channels</div>
                 </div>
               </a>
-              <a href="/#features" class="dropdown-link">
+              <a href="/product#features" class="dropdown-link">
                 <span class="dropdown-icon-wrap">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
@@ -59,7 +59,7 @@
                   <div class="dropdown-desc">Track and score every lead</div>
                 </div>
               </a>
-              <a href="/#features" class="dropdown-link">
+              <a href="/product#features" class="dropdown-link">
                 <span class="dropdown-icon-wrap">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
@@ -74,7 +74,6 @@
             </div>
           </div>
         </div>
-        <a href="/#pricing" class="nav-link">Pricing</a>
         <a href="/modules.html" class="nav-link">Modules</a>
         <a href="/case-studies.html" class="nav-link">Case Studies</a>
         <a href="/documentation" class="nav-link">Docs</a>
@@ -126,8 +125,7 @@
   </nav>
 
   <div class="mobile-menu" id="mobileMenu">
-    <a href="/#features">Product</a>
-    <a href="/#pricing">Pricing</a>
+    <a href="/product#features">Product</a>
     <a href="/modules.html">Modules</a>
     <a href="/case-studies.html">Case Studies</a>
     <a href="/documentation">Docs</a>

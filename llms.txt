@@ -1,33 +1,38 @@
 # STOAIX
 
-> STOAIX is an AI voice agent platform built specifically for UK private clinics. It answers inbound calls 24/7 in natural British English, books appointments directly into clinic calendars, sends automated reminder calls, and follows up missed web leads — without any human involvement.
+> STOAIX is an AI sales operating system for clinic groups. Eight AI agents operate the layer between marketing spend and the treatment calendar — answering every call and message, contacting new enquiries within 60 seconds, completing every follow-up, reactivating dormant leads, filling cancelled slots, and running post-treatment surveys and recall. Demand generation (Google and Meta campaigns, SEO, landing pages) is run by the same team. STOAIX works as a business partner alongside clinic staff rather than replacing them. Single-site private clinics are served by the same platform, most often starting with the AI receptionist.
 
 ## What STOAIX Does
 
-- Answers every inbound call in under 2 seconds, any hour of the day
-- Books appointments directly into clinic calendar systems in real time
-- Makes outbound reminder and confirmation calls to reduce DNA (Did Not Attend) rates
-- Follows up missed calls and web form leads automatically
-- Provides a live dashboard with call recordings and booking analytics
-- Deployed as a fully managed service — no technical setup required from the clinic
+- Reception — answers every inbound call and message 24/7, handles questions, books appointments
+- Speed-to-Lead — calls a new enquiry within 60 seconds, qualifies and books
+- Follow-Up — runs multi-channel sequences until the patient replies
+- Revive — segments and reactivates dormant lead data with campaigns
+- Scheduler — confirms, reminds, reschedules and fills cancelled slots
+- Feedback — runs satisfaction surveys and escalates issues to the clinic team
+- Reviews — routes happy patients to Google and Trustpilot reviews
+- Recall — brings patients back when their next treatment is due
+- Demand generation — Google and Meta campaigns, SEO engine, landing pages, reviewed by strategists
+- Two-way sync with 24 systems (HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar, webhook API) — no migration, no parallel data entry
 
 ## Who It's For
 
-UK and Turkish private clinics: aesthetic practices, dental practices, hair transplant clinics, physiotherapy, private GP services, dermatology, and specialist consultant practices. Typically 1–5 clinician practices that receive 20+ inbound calls per week.
+Clinic groups and multi-site practices: dental, hair transplant, aesthetics, ophthalmology and multi-specialty groups. Permissions and reporting are split by clinic, language and team, so each site sees its own pipeline while the group sees one consolidated record. Single-site private clinics — aesthetic, dental, hair transplant, physiotherapy, private GP, dermatology — run on the same platform and typically start with the AI receptionist.
 
 ## Problem It Solves
 
-UK private clinics lose significant revenue to missed calls. The majority of missed calls occur after 5pm, at weekends, and during peak clinical hours when front-desk staff are unavailable. Patients who reach voicemail rarely call back — they search for a competitor. STOAIX ensures every call is answered and every booking enquiry is converted in real time.
+Clinics lose revenue at every gap in the chain, not only at the missed call. Enquiries arrive out of hours and go to voicemail; leads that do arrive are contacted too late; follow-up stops after the second attempt; old lead data is never worked again; cancelled slots stay empty; treated patients are never brought back. STOAIX closes the whole chain under the clinic's own escalation rules — supervised and reversible at every step.
 
 ## Key Facts
 
-- Founded: 2025
-- Market: United Kingdom and Turkey
-- Sector: HealthTech / AI voice agents / Private healthcare
+- Founded: 2025 — Ata Ulufer (Co-founder & CEO), Emir Türköz (Co-founder & CTO), London, UK
+- Evidence base: 500+ clinic audits
+- Market: 15 countries, 6 languages in production — United Kingdom, Türkiye, Germany, Poland, Netherlands, Italy, Spain, Romania, Azerbaijan, Georgia, UAE, Saudi Arabia, Qatar, United States, Canada
+- Sector: HealthTech / AI sales operating system / Private healthcare and clinic groups
 - Pricing model: Monthly subscription (managed service)
-- Integration: Works with existing clinic phone systems and calendar/booking software
-- Compliance: Built with UK GDPR and CQC-registered clinic requirements in mind
-- Language: British English, Turkish
+- Integration: Two-way sync with 24 systems including HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar and a webhook API
+- Compliance: KVKK and UK GDPR — data processing agreement, regional hosting, full audit trail, SSO and role-based access
+- Language: British English, Turkish and four more in production
 
 ## Content
 

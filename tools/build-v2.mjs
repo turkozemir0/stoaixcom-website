@@ -1,7 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════
    STOAIX v2 — statik sayfa üreteci
-   Çıktı:  v2.html     (EN, /v2)
-           v2-tr.html  (TR, /tr/v2 — vercel.json rewrite ile)
+   Çıktı:  index.html     (EN, /)
+           index-tr.html  (TR, /tr — vercel.json rewrite ile)
 
    Neden build-time: içerik tek kaynaktan (tools/v2-content.mjs) gelsin,
    ama tarayıcıya tam statik HTML insin. Böylece SEO eksiksiz, JS kapalıyken
@@ -18,12 +18,12 @@ import { CONTENT, LINKS } from './v2-content.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://stoaix.com';
 
-/* Önizleme aşamasında analytics kapalı: /v2 trafiği GA/Clarity/Meta Pixel
-   metriklerini ve reklam sinyallerini kirletmesin. Ana sayfaya taşınırken true yap. */
-const ANALYTICS = false;
+/* Ana sayfa yayında: GA + Clarity + Meta Pixel, index.html'deki ile aynı
+   gecikmeli yükleme mantığıyla. */
+const ANALYTICS = true;
 
-/* Önizleme aşamasında arama motorlarına kapalı. Yayına alırken false yap. */
-const NOINDEX = true;
+/* Ana sayfa arama motorlarına açık. */
+const NOINDEX = false;
 
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -137,10 +137,10 @@ function panelCalendar(c) {
 function page(lang) {
   const c = CONTENT[lang];
   const isTR = lang === 'tr';
-  const selfUrl = isTR ? `${ORIGIN}/tr/v2` : `${ORIGIN}/v2`;
-  const enUrl = `${ORIGIN}/v2`;
-  const trUrl = `${ORIGIN}/tr/v2`;
-  const navIds = ['platform', 'specification', 'deployment', 'governance', 'record'];
+  const selfUrl = isTR ? `${ORIGIN}/tr` : `${ORIGIN}/`;
+  const enUrl = `${ORIGIN}/`;
+  const trUrl = `${ORIGIN}/tr`;
+  const navIds = ['platform', 'specification', 'deployment', 'governance', 'footprint'];
 
   const analytics = ANALYTICS ? `
 <!-- Analytics: ilk kullanıcı etkileşiminde VEYA en geç ~3.5sn (idle) yüklenir. -->
@@ -213,13 +213,13 @@ function page(lang) {
   try {
     var lang = localStorage.getItem('stoaix-lang');
     var onTR = ${isTR};
-    if (!sessionStorage.getItem('stoaix-v2-redirected')) {
+    if (!sessionStorage.getItem('stoaix-home-redirected')) {
       if (lang === 'tr' && !onTR) {
-        sessionStorage.setItem('stoaix-v2-redirected', '1');
-        location.replace('/tr/v2' + location.hash);
+        sessionStorage.setItem('stoaix-home-redirected', '1');
+        location.replace('/tr' + location.hash);
       } else if (lang === 'en' && onTR) {
-        sessionStorage.setItem('stoaix-v2-redirected', '1');
-        location.replace('/v2' + location.hash);
+        sessionStorage.setItem('stoaix-home-redirected', '1');
+        location.replace('/' + location.hash);
       }
     }
   } catch (e) {}
@@ -280,7 +280,7 @@ ${JSON.stringify({
       <button type="button" data-theme="ink" class="on" aria-pressed="true">${esc(c.dark)}</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">${esc(c.light)}</button>
     </span>
     <span class="switch" role="group" aria-label="${esc(c.langLabel)}">
-      <a href="/v2" hreflang="en" class="${isTR ? 'off' : 'on'}"${isTR ? '' : ' aria-current="true"'}>EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr/v2" hreflang="tr" class="${isTR ? 'on' : 'off'}"${isTR ? ' aria-current="true"' : ''}>TR</a>
+      <a href="/" hreflang="en" class="${isTR ? 'off' : 'on'}"${isTR ? '' : ' aria-current="true"'}>EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr" hreflang="tr" class="${isTR ? 'on' : 'off'}"${isTR ? ' aria-current="true"' : ''}>TR</a>
     </span>
     <a class="nav-cta" href="${LINKS.briefing}" target="_blank" rel="noopener">${esc(c.brief)}</a>
     <button type="button" class="nav-burger" aria-label="${esc(c.menu)}" aria-expanded="false" aria-controls="mnav">
@@ -303,7 +303,7 @@ ${JSON.stringify({
       <button type="button" data-theme="ink" class="on" aria-pressed="true">${esc(c.dark)}</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">${esc(c.light)}</button>
     </span>
     <span class="switch" role="group" aria-label="${esc(c.langLabel)}">
-      <a href="/v2" hreflang="en" class="${isTR ? 'off' : 'on'}">EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr/v2" hreflang="tr" class="${isTR ? 'on' : 'off'}">TR</a>
+      <a href="/" hreflang="en" class="${isTR ? 'off' : 'on'}">EN</a><span class="sep" aria-hidden="true">/</span><a href="/tr" hreflang="tr" class="${isTR ? 'on' : 'off'}">TR</a>
     </span>
   </div>
   <div class="mnav-foot">
@@ -459,8 +459,9 @@ ${panelCalendar(c)}
   </div>`).join('')}
 </section>
 
-<!-- ═══ CTA ═══════════════════════════════════════════════════ -->
-<section class="cta">
+<!-- ═══ CTA ═══════════════════════════════════════════════════
+     id="cta": site genelinde 60'tan fazla sayfa bu çapaya bağlanıyor. -->
+<section class="cta" id="cta">
   <div class="media" aria-hidden="true"></div>
   <div class="veil" aria-hidden="true"></div>
   <div class="inner">
@@ -504,7 +505,7 @@ ${panelCalendar(c)}
 `;
 }
 
-for (const [lang, file] of [['en', 'v2.html'], ['tr', 'v2-tr.html']]) {
+for (const [lang, file] of [['en', 'index.html'], ['tr', 'index-tr.html']]) {
   const out = page(lang);
   writeFileSync(join(ROOT, file), out, 'utf8');
   console.log(`${file.padEnd(12)} ${(out.length / 1024).toFixed(1)} KB`);
