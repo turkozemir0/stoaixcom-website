@@ -12,6 +12,7 @@
       "has": [{ "type": "host", "value": "apidocs.stoaix.com" }],
       "destination": "/apidocs/:path+"
     },
+    { "source": "/tr/v2", "destination": "/v2-tr" },
     { "source": "/en", "destination": "/" },
     { "source": "/en/:path*", "destination": "/:path*" },
     { "source": "/tr", "destination": "/" },
@@ -47,6 +48,19 @@
     },
     {
       "source": "/assets/(.*)\\.webp",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/assets/fonts/(.*)\\.woff2",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" }
+      ]
+    },
+    {
+      "source": "/assets/v2/(.*)\\.json",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
