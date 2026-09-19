@@ -211,3 +211,20 @@ tutarsızlığın gürültüye karışmadan görünmesi:
 - `ACCEPTED_DUPLICATE` — `/healthcare-clinics`. "Göz / Ophthalmology" için
   ayrı sayfa olmadığından "Çok şubeli gruplar" ile aynı hub'a gidiyor.
   Göz sayfası açılırsa hem footer hem bu liste güncellenmeli.
+
+## Paylaşılan JS ve cache (19 Eyl 2026)
+
+`vercel.json` tüm `/js/*` dosyalarını `max-age=31536000, immutable` ile sunuyor.
+Bu, dosya adı değişmediği sürece tarayıcının **bir yıl boyunca** eski sürümü
+kullanması demek. `js/components.js` (menü/footer, 29 sayfaya inject ediliyor)
+ve `js/i18n-home.js` bu oturumda değişti ama HTML'lerde sürüm parametresi
+yoktu — siteyi daha önce ziyaret edenler eski menüyü görüyordu: kaldırılan
+"Pricing" linki duruyor ve artık var olmayan `/#pricing` çapasına gidiyordu.
+
+Tüm sayfalardaki `components.js`, `i18n-home.js` ve `main.js` referansları
+`?v=20260919` ile sürümlendi.
+
+> **Kural:** `js/` altındaki paylaşılan bir dosyayı değiştirdiğinde, ona
+> referans veren HTML'lerdeki `?v=` değerini de güncelle. Ana sayfanın kendi
+> dosyaları (`css/v2.css`, `js/v2.js`) için bu numara `tools/build-v2.mjs`
+> içinde tutulur; diğer sayfalar elle güncellenir.
