@@ -174,9 +174,17 @@ arama motorları kökü henüz İngilizce olarak oturtmamıştı.
 ## Bağlantı denetimi
 
 ```bash
-npm run build          # üret + denetle
+npm run site           # üret + denetle
 npm run check-links    # yalnız denetle
 ```
+
+> **Uyarı — `package.json`a `build` adında script EKLEME.**
+> Vercel Zero Config, `build` (ve `vercel-build`) script'ini görürse onu
+> otomatik çalıştırır, ardından çıktı dizini olarak `public/` arar. Bu repo
+> statik sunuluyor ve üretilen HTML'ler kökte duruyor — `public/` yok, deploy
+> *"No Output Directory named public found"* hatasıyla düşer. 19 Eyl 2026'da
+> tam olarak bu oldu, iki deploy üst üste başarısız olup canlı sürüm eski
+> kaldı. Komut adı `site` bu yüzden.
 
 `tools/check-links.mjs` üretilen iki ana sayfadaki her bağlantıyı kontrol eder:
 
@@ -190,7 +198,7 @@ npm run check-links    # yalnız denetle
    `i18n-home.js` sözlüğünde karşılığı tanımlı mı.
 4. **Tekrar** — aynı adrese giden farklı etiketler.
 
-Kırık bağlantı bulunursa çıkış kodu 1 döner, `npm run build` durur.
+Kırık bağlantı bulunursa çıkış kodu 1 döner, `npm run site` durur.
 
 ### Bilinçli kabul edilen durumlar
 
