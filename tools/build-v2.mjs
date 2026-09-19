@@ -28,15 +28,11 @@ const NOINDEX = false;
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-/* Marka işareti — tek kaynak, stroke currentColor olduğu için temayı izler */
+/* Marka işareti — gerçek marka formu. Handoff'un SVG'si kendi PNG'sinden
+   farklı çizilmişti (yapraklar ters yönde), o yüzden PNG esas alındı.
+   Tema başına iki dosya; görünürlüğü CSS yönetir. */
 const MARK = (size) =>
-  `<svg class="mark" viewBox="0 0 100 100" width="${size}" height="${size}" fill="none" ` +
-  `stroke="currentColor" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round" ` +
-  `aria-hidden="true" focusable="false">` +
-  ['', 'rotate(90 50 50)', 'rotate(180 50 50)', 'rotate(270 50 50)']
-    .map((t) => `<path d="M42 42 L42 12 A30 30 0 0 0 12 42 Z"${t ? ` transform="${t}"` : ''}/>`)
-    .join('') +
-  `</svg>`;
+  `<span class="mark" style="width:${size}px;height:${size}px" aria-hidden="true"></span>`;
 
 /* ─── Konsol panelleri ─────────────────────────────────────────── */
 function panelOverview(c) {

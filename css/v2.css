@@ -95,7 +95,11 @@ section { background:var(--bg); color:var(--fg); }
        padding:24px 64px; border-bottom:1px solid var(--line); }
 .nav-links { display:flex; gap:32px; font-size:13.5px; font-weight:530; color:var(--soft); }
 .brand { display:flex; align-items:center; gap:12px; font-size:18px; font-weight:700; letter-spacing:.05em; }
-.brand .mark { display:block; width:24px; height:24px; }
+/* Marka işareti: koyu zeminde beyaz, açık zeminde lacivert dosya.
+   CSS background olduğu için tarayıcı yalnızca aktif temanınkini indirir. */
+.mark { display:block; flex:none; background-position:center; background-repeat:no-repeat; background-size:contain; }
+.pal-ink  .mark { background-image:url('/assets/v2/stoaix-mark-white.png'); }
+.pal-bone .mark { background-image:url('/assets/v2/stoaix-mark-blue.png'); }
 .nav-right { display:flex; align-items:center; gap:20px; }
 .switch { display:inline-flex; gap:5px; align-items:center; font-size:13.5px; font-weight:560; color:var(--soft); }
 .switch .sep { opacity:.35; }
