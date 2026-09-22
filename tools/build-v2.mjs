@@ -321,8 +321,6 @@ ${JSON.stringify({
   </div>
   <div class="mnav-foot">
     <a class="btn" href="${LINKS.briefing}" target="_blank" rel="noopener">${esc(c.brief)}</a>
-    <a class="btn-ghost" href="${LINKS.console}">${esc(c.explore)}</a>
-    <a href="${LINKS.login}" style="font-size:13.5px;color:var(--soft)">${esc(c.login)}</a>
   </div>
 </div>
 
@@ -344,7 +342,6 @@ ${JSON.stringify({
     <p>${esc(c.heroBody)}</p>
     <div class="row hero-actions">
       <a href="${LINKS.briefing}" class="btn" target="_blank" rel="noopener">${esc(c.brief)}</a>
-      <a href="${LINKS.console}" class="btn-ghost">${esc(c.explore)}</a>
     </div>
   </div>
 </section>

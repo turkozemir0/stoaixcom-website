@@ -11,6 +11,8 @@ export const LINKS = {
   sales: 'https://calendly.com/ataulufer1/20',
   /* Sessiz iletişim kanalı: CTA'da buton değil, ikincil metin linki olarak çıkar. */
   whatsapp: 'https://wa.me/905061185479',
+  /* Ana sayfadan kaldırıldı: kayıt ve giriş sayfalarına yönlendirme istenmiyor.
+     Tanımlar geri almayı kolaylaştırmak için duruyor; şu an hiçbir yerde kullanılmıyor. */
   console: '/signup',
   login: 'https://platform.stoaix.com/login',
   /* Footer, uzun kuyruk sayfalarını tek tek listelemek yerine dört hub'a bağlanır:
