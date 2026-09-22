@@ -9,6 +9,8 @@ export const LINKS = {
   briefing: 'https://calendly.com/ataulufer1/20',
   /* Her iki CTA da aynı takvime gider; ikisi de yeni sekmede açılır. */
   sales: 'https://calendly.com/ataulufer1/20',
+  /* Sessiz iletişim kanalı: CTA'da buton değil, ikincil metin linki olarak çıkar. */
+  whatsapp: 'https://wa.me/905061185479',
   console: '/signup',
   login: 'https://platform.stoaix.com/login',
   /* Footer, uzun kuyruk sayfalarını tek tek listelemek yerine dört hub'a bağlanır:
@@ -38,6 +40,7 @@ export const CONTENT = {
     nav: ['Platform', 'Specification', 'Deployment', 'Governance', 'Footprint'],
     brief: 'Request a briefing', sales: 'Talk to sales', explore: 'Explore the console →',
     login: 'Sign in',
+    wa: 'Message on WhatsApp',
     eyebrow: 'The AI sales operating system for clinic groups',
     proof: 'Built on 500+ clinic audits',
     heroBody: 'We operate the layer between your marketing spend and your treatment calendar — eight AI agents under your governance, one revenue ledger, and demand generation run by the same team.',
@@ -183,6 +186,7 @@ export const CONTENT = {
     nav: ['Platform', 'AI Asistanlar', 'Devreye alma', 'Yönetişim', 'Sahada'],
     brief: 'Tanışma görüşmesi', sales: 'Satış ekibiyle görüşün', explore: 'Konsolu keşfedin →',
     login: 'Giriş yap',
+    wa: "WhatsApp'tan yazın",
     eyebrow: 'Klinik grupları için yapay zeka satış işletim sistemi',
     proof: '500+ klinik denetimi üzerine kurulu',
     heroBody: 'Pazarlama bütçenizle tedavi takviminiz arasındaki katmanı biz işletiriz — sizin yönetişiminiz altında sekiz AI asistan, tek bir gelir tablosu ve aynı ekip tarafından yürütülen talep üretimi.',

@@ -31,7 +31,7 @@
 
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/v2.css?v=2">
+<link rel="stylesheet" href="/css/v2.css?v=3">
 
 <!-- Tema, ilk boyamadan önce uygulanır: koyu/açık geçişinde flaş olmaz. -->
 <script>
@@ -165,6 +165,21 @@
   evs.forEach(function(e){ window.addEventListener(e, onFirst, {passive:true}); });
   if ('requestIdleCallback' in window) requestIdleCallback(loadAnalytics, { timeout: 3500 });
   else setTimeout(loadAnalytics, 3500);
+
+  /* CTA tıklaması = iletişim dönüşümü; Calendly ve WhatsApp ayrı kanal olarak etiketlenir.
+     Buton davranışı değişmez: link yeni sekmede açılır, olay arka planda gönderilir. */
+  var ctaFired = {};
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="calendly.com"], a[href*="wa.me"]') : null;
+    if (!a) return;
+    var ch = a.href.indexOf('wa.me') > -1 ? 'whatsapp' : 'calendly-booking';
+    if (ctaFired[ch]) return;
+    ctaFired[ch] = true;
+    loadAnalytics();
+    var label = (a.textContent || '').trim().slice(0, 80);
+    if (window.fbq)  fbq('track', 'Lead', { content_name: label, content_category: ch });
+    if (window.gtag) gtag('event', 'generate_lead', { link_text: label, link_url: a.href, channel: ch });
+  });
 })();
 </script>
 </head>
@@ -737,6 +752,7 @@
         <a href="https://calendly.com/ataulufer1/20" class="btn" target="_blank" rel="noopener">Tanışma görüşmesi</a>
         <a href="https://calendly.com/ataulufer1/20" class="btn-ghost" target="_blank" rel="noopener">Satış ekibiyle görüşün</a>
       </div>
+      <a class="wa" href="https://wa.me/905061185479" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.86 9.86 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.12-2.9-6.99A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.16 0 4.19.84 5.72 2.37a8.05 8.05 0 0 1 2.37 5.73c0 4.46-3.63 8.09-8.1 8.09a8.1 8.1 0 0 1-4.12-1.13l-.3-.18-3.05.8.81-2.97-.2-.31a8.02 8.02 0 0 1-1.23-4.3c.01-4.46 3.64-8.09 8.1-8.09Zm4.68 11.44c-.08-.13-.29-.21-.61-.37-.31-.16-1.84-.91-2.13-1.01-.29-.11-.5-.16-.71.16-.21.31-.8 1-.98 1.21-.18.21-.36.24-.67.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.55-1.84-1.73-2.15-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.7-1.69-.96-2.31-.25-.6-.51-.52-.7-.53l-.6-.01c-.21 0-.55.08-.83.39-.29.31-1.09 1.06-1.09 2.6 0 1.53 1.11 3.01 1.27 3.22.16.21 2.19 3.35 5.32 4.7.74.32 1.32.51 1.77.65.74.24 1.42.2 1.96.12.6-.09 1.84-.75 2.1-1.48.26-.72.26-1.34.18-1.47Z"/></svg><span>WhatsApp&#39;tan yazın</span></a>
       <div class="leaders">
         
         <div>
