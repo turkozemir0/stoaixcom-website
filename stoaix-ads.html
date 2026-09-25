@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="tr" class="pal-ink">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>STOAIX Ads — reklamlarınızı yapay zeka yönetsin</title>
+<meta name="description" content="Meta reklam hesabınızı bağlayın. Kampanyalarınız sürekli analiz edilir, her gün bir değerlendirme ve öncelikli aksiyon planı gelir. Onayınız olmadan hiçbir değişiklik yapılmaz.">
+<meta name="author" content="Emir TÜRKÖZ, Ata Ulufer">
+<meta name="theme-color" content="#0A0A0B" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F1EEE8" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/assets/images/logo.png">
+
+<!-- 🔑 KANONİK ADRES BURASI, pilot.stoaix.com DEĞİL. Açılış sayfası buraya
+     TAŞINDI; panel alan adının kökü de buraya yönleniyor. İki adreste aynı
+     metni yayınlamak arama motorunda kopya içerik olurdu. -->
+<link rel="canonical" href="https://stoaix.com/stoaix-ads">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stoaix.com/stoaix-ads">
+<meta property="og:title" content="STOAIX Ads — reklamlarınızı yapay zeka yönetsin">
+<meta property="og:description" content="Meta reklam hesabınızı bağlayın. Her gün bir değerlendirme ve öncelik sıralı aksiyon planı. Onayınız olmadan hiçbir değişiklik yapılmaz.">
+<meta property="og:image" content="https://stoaix.com/assets/og-image.png">
+<meta property="og:site_name" content="STOAIX">
+<meta property="og:locale" content="tr_TR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="STOAIX Ads — reklamlarınızı yapay zeka yönetsin">
+<meta name="twitter:description" content="Meta reklam hesabınızı bağlayın. Her gün bir değerlendirme ve öncelik sıralı aksiyon planı. Onayınız olmadan hiçbir değişiklik yapılmaz.">
+<meta name="twitter:image" content="https://stoaix.com/assets/og-image.png">
+
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/v2.css?v=4">
+
+<!-- Tema, ilk boyamadan önce uygulanır: koyu/açık geçişinde flaş olmaz. -->
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('stoaix.theme');
+    if (t !== 'ink' && t !== 'bone') t = 'ink';           /* varsayılan: 6a ink */
+    document.documentElement.className = 'pal-' + t;
+  } catch (e) {}
+})();
+</script>
+
+<!-- ═══ SAYFAYA ÖZEL ═══════════════════════════════════════════════
+     Yalnız sonuç kartı gridi v2.css'te yok; geri kalan her şey paylaşılan
+     sistemden geliyor (.hero, .pillars, .spec-row, .step, .gov, .cta).
+     Bu blok v2.css'e KONMADI: sayfaya özel yirmi satır için bütün sitenin
+     önbellek sürümünü kırmak gereksiz olurdu. -->
+<style>
+.res { display:grid; grid-template-columns:repeat(auto-fill,minmax(330px,1fr));
+       gap:1px; background:var(--line-hair); border:1px solid var(--line-soft); }
+.res > article { background:var(--bg); padding:22px; display:flex; flex-direction:column; }
+.res .top { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom:15px; }
+.res .sec { font-size:15.5px; font-weight:620; display:block; }
+.res .kat { font-size:12px; color:var(--dim); display:block; }
+/* Düşüş yeşili SEMANTİK: marka vurgusundan ayrı tutuldu, "mavi ne demekti"
+   sorusu doğmasın. İki temada da okunur iki ayrı ton. */
+.res .down { font-size:21px; font-weight:640; letter-spacing:-.03em; white-space:nowrap;
+             font-variant-numeric:tabular-nums; color:#2E9E63; }
+.pal-ink .res .down { color:#5DD68A; }
+.res img { display:block; width:100%; height:auto; border:1px solid var(--line-hair); margin-bottom:15px; }
+.res dl { display:grid; grid-template-columns:auto 1fr; column-gap:16px; row-gap:6px;
+          font-size:13px; margin:0; font-variant-numeric:tabular-nums; }
+.res dt { color:var(--dim); }
+.res dd { margin:0; }
+.res dd.b { font-weight:600; }
+.fine { font-size:12.5px; color:var(--dim); margin:18px 0 0; max-width:64ch; }
+.lead-p { font-size:15.5px; line-height:1.55; color:var(--mid); max-width:62ch; margin:0 0 40px; }
+.locked { display:block; font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+          color:var(--dim); margin-top:5px; font-weight:530; }
+.spec-row.off .fn, .spec-row.off .bench { opacity:.55; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Ana içeriğe geç</a>
+
+<!-- ═══ NAV ═══════════════════════════════════════════════════
+     🔑 BAĞLANTILAR KÖKE MUTLAK: bu bir alt sayfa, `#platform` gibi salt
+     çapa buradan çalışmazdı. -->
+<header class="nav">
+  <a class="brand" href="/"><span class="mark" style="width:24px;height:24px" aria-hidden="true"></span>STOAIX</a>
+  <nav class="nav-links" aria-label="Platform, AI Asistanlar, STOAIX Ads, Devreye alma, Yönetişim">
+    <a href="/#platform">Platform</a>
+    <a href="/#specification">AI Asistanlar</a>
+    <a href="/stoaix-ads" aria-current="page">STOAIX Ads<span class="tag-new">new</span></a>
+    <a href="/#deployment">Devreye alma</a>
+    <a href="/#governance">Yönetişim</a>
+  </nav>
+  <div class="nav-right">
+    <span class="switch" role="group" aria-label="Tema">
+      <button type="button" data-theme="ink" class="on" aria-pressed="true">Koyu</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Açık</button>
+    </span>
+    <a class="nav-cta" href="https://pilot.stoaix.com/kayit">Hesap aç</a>
+    <button type="button" class="nav-burger" aria-label="Menü" aria-expanded="false" aria-controls="mnav">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h18M2 11h18M2 16h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ═══ MOBİL MENÜ ════════════════════════════════════════════ -->
+<div class="mnav" id="mnav" hidden>
+  <div class="mnav-top">
+    <span class="brand"><span class="mark" style="width:24px;height:24px" aria-hidden="true"></span>STOAIX</span>
+    <button type="button" class="nav-burger" data-close style="display:block" aria-label="Kapat">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l14 14M18 4L4 18"/></svg>
+    </button>
+  </div>
+  <a class="mlink" href="/#platform">Platform</a>
+  <a class="mlink" href="/#specification">AI Asistanlar</a>
+  <a class="mlink" href="/stoaix-ads" aria-current="page">STOAIX Ads<span class="tag-new">new</span></a>
+  <a class="mlink" href="/#deployment">Devreye alma</a>
+  <a class="mlink" href="/#governance">Yönetişim</a>
+  <div class="mnav-switches">
+    <span class="switch" role="group" aria-label="Tema">
+      <button type="button" data-theme="ink" class="on" aria-pressed="true">Koyu</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Açık</button>
+    </span>
+  </div>
+  <div class="mnav-foot">
+    <a class="btn" href="https://pilot.stoaix.com/kayit">Hesap aç</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ═══ HERO ══════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-head">
+    <h1 class="eyebrow">STOAIX Ads · Yapay zeka reklam yönetimi</h1>
+    <div class="proof">Meta Ads canlı · diğer kanallar henüz açık değil</div>
+  </div>
+  <!-- Hayalet yığın: bütün daktilo satırları aynı grid hücresinde görünmez
+       durur; kutu daima en uzun satır kadar yüksek kalır, satır değişiminde
+       sayfa zıplamaz. İlk satır HTML'de basılı gelir — JS yüklenmezse de
+       sayfa bir şey söylüyor olur. -->
+  <p class="hero-line" aria-hidden="true" data-tw='["Pazarlamanızı AI yönetsin.","Reklam bütçenizi gerçek büyümeye dönüştürün.","Performanssız reklamlara para harcamayı bırakın.","Daha akıllı reklamlar. Daha iyi lead&#39;ler. Daha hızlı büyüme.","Siz büyürken reklamlarınızı yöneten AI.","Pazarlama karmaşasını ölçülebilir büyümeye dönüştürün."]'>
+    <span class="tw-stack"><span>Pazarlamanızı AI yönetsin.</span><span>Reklam bütçenizi gerçek büyümeye dönüştürün.</span><span>Performanssız reklamlara para harcamayı bırakın.</span><span>Daha akıllı reklamlar. Daha iyi lead&#39;ler. Daha hızlı büyüme.</span><span>Siz büyürken reklamlarınızı yöneten AI.</span><span>Pazarlama karmaşasını ölçülebilir büyümeye dönüştürün.</span></span>
+    <span class="tw-live"><span class="tw">Pazarlamanızı AI yönetsin.</span><span class="caret">|</span></span>
+  </p>
+  <div class="hero-grid">
+    <p>
+      STOAIX Ads, Meta reklam hesabınızı bağladığınız anda kampanyalarınızı
+      analiz etmeye başlar. Her gün bir değerlendirme ve öncelik sıralı bir
+      aksiyon planı hazırlar — ve <strong>yalnızca siz onayladıktan sonra</strong>
+      harekete geçer.
+    </p>
+    <div class="row hero-actions">
+      <a class="btn" href="https://pilot.stoaix.com/kayit">Üç gün ücretsiz dene</a>
+      <a class="btn-ghost" href="#sonuclar">Sonuçları görün</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ÜÇ SÜTUN ══════════════════════════════════════════════
+     🔑 GRADYANLAR v2.css'TEN GELİYOR: iki ürün de aynı Claude Design
+     handoff'undan çıktığı için .p1/.p2/.p3 zeminleri birebir aynı — ve
+     burada açık tema karşılıkları da hazır. -->
+<section class="pillars-wrap">
+  <div class="pillars">
+    <article class="pillar p1">
+      <span class="ground" aria-hidden="true"></span><span class="veil" aria-hidden="true"></span>
+      <div class="copy">
+        <div class="n">01</div>
+        <h2 class="h">İzle</h2>
+        <p class="t">Her kampanya, her reklam, günün her saati analiz edilir. Sorunlar aylık toplantıda değil, oluştuğu gün yakalanır.</p>
+      </div>
+    </article>
+    <article class="pillar p2">
+      <span class="ground" aria-hidden="true"></span><span class="veil" aria-hidden="true"></span>
+      <div class="copy">
+        <div class="n">02</div>
+        <h2 class="h">Raporla ve planla</h2>
+        <p class="t">Her gün bir durum değerlendirmesi ve her önerinin gerekçesiyle birlikte öncelik sıralı bir aksiyon planı.</p>
+      </div>
+    </article>
+    <article class="pillar p3">
+      <span class="ground" aria-hidden="true"></span><span class="veil" aria-hidden="true"></span>
+      <div class="copy">
+        <div class="n">03</div>
+        <!-- 🔴 LİSTE BİLEREK KISA: ürün bugün yalnız DURAKLATABİLİYOR.
+             Tasarım "bütçe, teklif, kitle, kreatif, anahtar kelime" diyordu;
+             satmadığımız şeyi burada saymak ilk haftada fark edilen bir
+             yalan olurdu. -->
+        <h2 class="h">Onayla, uygulasın</h2>
+        <p class="t">Siz onaylarsınız, sistem uygular. Bugün duraklatma; her değişiklik kayıtlı ve geri alınabilir.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ═══ KAPSAM (ters zemin) ═══════════════════════════════════
+     🔴 BEŞ KANALIN DÖRDÜ HENÜZ YOK ve sayfa bunu saklamıyor. Kilitte TARİH
+     ya da FİYAT yazmıyor — ikisi de taahhüt olur; aynı karar panelin kenar
+     çubuğunda da verildi. -->
+<section class="pad alt">
+  <div class="sec-head">
+    <h2>Kapsam</h2>
+    <div class="note">Bugün Meta canlı. Diğer kanallar henüz açık değil.</div>
+  </div>
+  <div class="spec-head">
+    <div>Ref</div><div>Kanal</div><div>Ne yapar</div><div class="r">Sıklık</div>
+  </div>
+  <div class="spec-row">
+    <div class="ref">A-01</div>
+    <div class="agent">Meta Ads</div>
+    <div class="fn">Facebook ve Instagram. Kampanya, reklam seti ve kreatif kırılımı; huni sızıntısı, kreatif yorulması ve öğrenme aşaması takibi.</div>
+    <div class="bench">Sürekli</div>
+  </div>
+  <div class="spec-row off">
+    <div class="ref">A-02</div>
+    <div class="agent">Google Ads<span class="locked">henüz açık değil</span></div>
+    <div class="fn">Arama, Performance Max ve YouTube.</div>
+    <div class="bench">—</div>
+  </div>
+  <div class="spec-row off">
+    <div class="ref">A-03</div>
+    <div class="agent">ChatGPT Ads<span class="locked">henüz açık değil</span></div>
+    <div class="fn">Sohbet içi reklamlar, diğer kanallarla kıyaslanarak.</div>
+    <div class="bench">—</div>
+  </div>
+  <div class="spec-row off">
+    <div class="ref">A-04</div>
+    <div class="agent">SEO<span class="locked">henüz açık değil</span></div>
+    <div class="fn">Teknik denetim, içerik briefleri ve sıralama takibi.</div>
+    <div class="bench">—</div>
+  </div>
+  <div class="spec-row off">
+    <div class="ref">A-05</div>
+    <div class="agent">GEO<span class="locked">henüz açık değil</span></div>
+    <div class="fn">Yapay zeka yanıtlarında görünürlük — ChatGPT, Gemini, Perplexity.</div>
+    <div class="bench">—</div>
+  </div>
+  <div class="spec-row">
+    <div class="ref">A-06</div>
+    <div class="agent">Raporlama</div>
+    <div class="fn">Gün sonu raporu e-posta ve Telegram ile. Harcama, sonuç, sızıntı ve o güne ait değerlendirme.</div>
+    <div class="bench">Günlük</div>
+  </div>
+</section>
+
+<!-- ═══ SONUÇLAR ══════════════════════════════════════════════
+     🔑 ÇERÇEVE DÜZELTİLDİ. Tasarımın metni "STOAIX Ads devraldıktan sonra"
+     diyordu; bu sonuçlar STOAIX'in AJANS olarak yönettiği kampanyalardan
+     geliyor. Ajans sonucunu ürüne atfetmek olurdu. -->
+<section class="pad" id="sonuclar">
+  <p class="eyebrow" style="color:var(--accent);margin-bottom:16px">Sonuçlar</p>
+  <div class="sec-head" style="margin-bottom:18px">
+    <h2>Önce. Sonra.</h2>
+  </div>
+  <p class="lead-p">
+    STOAIX ekibinin yönettiği canlı reklam hesaplarından alınmış ekran
+    görüntüleri — devralmadan önce ve sonra. Kampanya isimleri
+    bulanıklaştırılmıştır. Aynı analiz disiplini bu panelin içinde çalışıyor.
+  </p>
+
+  <div class="res">
+    <article>
+      <div class="top"><span><span class="sec">Kanser Testi</span><span class="kat">Sağlık · Tanı</span></span><span class="down">−%69,75</span></div>
+      <img src="/assets/stoaix-ads/01-cancer-test.webp" width="1320" height="552" loading="lazy" decoding="async" alt="Kanser testi kampanyası — devralmadan önce ve sonra lead maliyeti">
+      <dl><dt>Lead maliyeti</dt><dd class="b">$18,18 → $5,50</dd><dt>Harcama</dt><dd>$1.466,08</dd><dt>Süre</dt><dd>9 gün</dd></dl>
+    </article>
+    <article>
+      <div class="top"><span><span class="sec">Kiropraktör</span><span class="kat">Sağlık · Klinik</span></span><span class="down">−%18,73</span></div>
+      <img src="/assets/stoaix-ads/02-chiropractor.webp" width="1320" height="879" loading="lazy" decoding="async" alt="Kiropraktör kampanyası — devralmadan önce ve sonra lead maliyeti">
+      <dl><dt>Lead maliyeti</dt><dd class="b">$29,84 → $24,25</dd><dt>Harcama</dt><dd>$1.261,21</dd><dt>Süre</dt><dd>7 gün</dd></dl>
+    </article>
+    <article>
+      <div class="top"><span><span class="sec">Diş İmplantı</span><span class="kat">Sağlık · Diş</span></span><span class="down">−%28,11</span></div>
+      <img src="/assets/stoaix-ads/03-dental-implants.webp" width="1114" height="1090" loading="lazy" decoding="async" alt="Diş implantı kampanyası — devralmadan önce ve sonra lead maliyeti">
+      <dl><dt>Lead maliyeti</dt><dd class="b">$61,44 → $44,17</dd><dt>Harcama</dt><dd>$3.665,79</dd><dt>Süre</dt><dd>8 gün</dd></dl>
+    </article>
+    <article>
+      <div class="top"><span><span class="sec">Sağlık Sigortası</span><span class="kat">Sigorta</span></span><span class="down">−%50,68</span></div>
+      <img src="/assets/stoaix-ads/04-health-insurance.webp" width="1320" height="703" loading="lazy" decoding="async" alt="Sağlık sigortası kampanyası — devralmadan önce ve sonra lead maliyeti">
+      <dl><dt>Lead maliyeti</dt><dd class="b">$43,43 → $21,42</dd><dt>Harcama</dt><dd>$906,00</dd><dt>Süre</dt><dd>7 gün</dd></dl>
+    </article>
+    <article>
+      <div class="top"><span><span class="sec">Ağrı Tedavisi</span><span class="kat">Sağlık · Lead üretimi</span></span><span class="down">−%49,42</span></div>
+      <img src="/assets/stoaix-ads/05-pain-relief.webp" width="1320" height="603" loading="lazy" decoding="async" alt="Ağrı tedavisi kampanyası — devralmadan önce ve sonra lead maliyeti">
+      <dl><dt>Lead maliyeti</dt><dd class="b">$45,81 → $23,17</dd><dt>Harcama</dt><dd>$274,58</dd><dt>Süre</dt><dd>23 gün</dd></dl>
+    </article>
+    <article>
+      <div class="top"><span><span class="sec">Sağlık Hizmetleri</span><span class="kat">Sağlık · Lead üretimi</span></span><span class="down">−%18,48</span></div>
+      <img src="/assets/stoaix-ads/06-healthcare.webp" width="1320" height="666" loading="lazy" decoding="async" alt="Sağlık hizmetleri kampanyası — devralmadan önce ve sonra lead maliyeti">
+      <dl><dt>Lead maliyeti</dt><dd class="b">$63,47 → $51,74</dd><dt>Harcama</dt><dd>$495,15</dd><dt>Süre</dt><dd>7 gün</dd></dl>
+    </article>
+    <article>
+      <div class="top"><span><span class="sec">Clinical Media</span><span class="kat">Sağlık · Medya</span></span><span class="down">−%69,08</span></div>
+      <img src="/assets/stoaix-ads/07-clinical-media.webp" width="1320" height="516" loading="lazy" decoding="async" alt="Clinical Media kampanyası — devralmadan önce ve sonra lead maliyeti">
+      <dl><dt>Lead maliyeti</dt><dd class="b">$157,01 → $48,55</dd><dt>Harcama</dt><dd>$438,30</dd><dt>Süre</dt><dd>29 gün</dd></dl>
+    </article>
+  </div>
+
+  <p class="fine">
+    Rakamlar doğrudan reklam platformlarından alınmıştır. Sonuçlar pazara,
+    bütçeye ve sektöre göre değişir; aynı düşüş garanti edilmez.
+  </p>
+</section>
+
+<!-- ═══ SEKTÖRLER (ters zemin) ════════════════════════════════
+     🔴 TEK SEKTÖRE ÖZEL DEĞİL. Klinikler önceliğimiz ama ürün her sektörün
+     reklam hesabını bağlayabiliyor; eşikler hesabın KENDİ geçmişinden
+     hesaplandığı için sektör ortalamasına ihtiyaç yok. -->
+<section class="pad alt">
+  <div class="sec-head" style="margin-bottom:10px">
+    <h2>Reklam veren her işletme için</h2>
+  </div>
+  <p class="lead-p" style="margin-bottom:28px">
+    Tek sektöre özel bir araç değil. Eşikler her hesabın kendi geçmişine göre
+    hesaplanıyor — sektör ortalaması kullanılmıyor.
+  </p>
+  <ul class="chips" style="list-style:none;padding:0;margin:0">
+    <li class="chip">E-ticaret</li><li class="chip">Klinik ve sağlık</li><li class="chip">Gayrimenkul</li>
+    <li class="chip">Eğitim</li><li class="chip">Turizm ve otelcilik</li><li class="chip">Otomotiv</li>
+    <li class="chip">SaaS ve B2B</li><li class="chip">Hukuk</li><li class="chip">Spor salonu</li>
+    <li class="chip">Restoran</li><li class="chip">Perakende</li><li class="chip">Finans</li>
+    <li class="chip">Güzellik</li><li class="chip">Seyahat</li><li class="chip">Etkinlik</li>
+    <li class="chip">Ev hizmetleri</li>
+  </ul>
+</section>
+
+<!-- ═══ GÜNLÜK DÖNGÜ + YÖNETİŞİM ══════════════════════════════ -->
+<section class="pad">
+  <div class="deploy-grid">
+    <div>
+      <p class="eyebrow">Günlük döngü</p>
+      <div class="step">
+        <div class="hd"><span class="w">01</span><span class="t">Analiz</span></div>
+        <p class="d">Harcama, dönüşüm, kreatif ve huni adımları bağlı tüm hesaplarda sürekli incelenir.</p>
+      </div>
+      <div class="step">
+        <div class="hd"><span class="w">02</span><span class="t">Rapor</span></div>
+        <p class="d">Gün sonunda bir özet gelir: ne oldu, ne anlama geliyor, neye karar vermeniz gerekiyor.</p>
+      </div>
+      <div class="step">
+        <div class="hd"><span class="w">03</span><span class="t">Plan</span></div>
+        <p class="d">Önerilen her değişiklik gerekçesi ve dayandığı sayılarla birlikte sunulur.</p>
+      </div>
+      <div class="step">
+        <div class="hd"><span class="w">04</span><span class="t">Onay</span></div>
+        <p class="d">Onaylarsınız, sistem uygular ve sonucunu ölçer. Onay olmadan hiçbir şey değişmez.</p>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow">Kontrol sizde</p>
+      <div class="gov">
+        <div class="t">Hesaplar sizin</div>
+        <p class="d">Reklamlar kendi Meta hesabınızda çalışır. Erişimi istediğiniz an kaldırabilirsiniz.</p>
+      </div>
+      <div class="gov">
+        <div class="t">Onay kapısı</div>
+        <p class="d">Reklam hesabınıza yazma yetkisi varsayılan olarak KAPALI. Açmak ayrı ve açık bir tercihtir — abonelik satın almakla verilmiş sayılmaz.</p>
+      </div>
+      <div class="gov">
+        <div class="t">Günlük tavan</div>
+        <p class="d">Sistemin bir günde uygulayabileceği aksiyon sayısı sınırlı — hesabınızda toplu değişiklik olmaz.</p>
+      </div>
+      <div class="gov">
+        <div class="t">Denetim kaydı</div>
+        <p class="d">Her değişiklik kimin onayladığıyla birlikte kaydedilir ve geri alınabilir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══════════════════════════════════════════════════ -->
+<section class="cta">
+  <div class="media" aria-hidden="true"></div>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="inner">
+    <div>
+      <h2>Bir ajansın işi. Günün her saati.</h2>
+    </div>
+    <div>
+      <p style="font-size:16.5px;line-height:1.5;color:rgba(242,242,240,.72);margin:0 0 30px;max-width:50ch">
+        Meta hesabınızı bağlayın. İlk değerlendirmeniz birkaç dakika içinde
+        hazır. Üç gün ücretsiz.
+      </p>
+      <div class="row">
+        <a class="btn" href="https://pilot.stoaix.com/kayit">Hesap aç</a>
+        <a class="btn-ghost" href="https://pilot.stoaix.com/login">Giriş yap</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div>
+    <span class="brand"><span class="mark" style="width:20px;height:20px" aria-hidden="true"></span>STOAIX</span>
+    <div class="copy">© 2026 STOAIX Ltd. — Londra, Birleşik Krallık</div>
+  </div>
+  <div class="footer-cols">
+    <div>
+      <h4>STOAIX Ads</h4>
+      <a href="https://pilot.stoaix.com/kayit">Hesap aç</a>
+      <a href="https://pilot.stoaix.com/login">Giriş</a>
+      <a href="#sonuclar">Sonuçlar</a>
+    </div>
+    <div>
+      <h4>Platform</h4>
+      <a href="/#specification">AI asistanlar</a>
+      <a href="/modules">Büyüme</a>
+      <a href="/#integrations">Entegrasyonlar</a>
+      <a href="/#governance">Güvenlik</a>
+    </div>
+    <div>
+      <h4>Şirket</h4>
+      <a href="/about">Hakkımızda</a>
+      <a href="/case-studies">Müşteri hikâyeleri</a>
+      <a href="/blog">Blog</a>
+      <a href="/contact">İletişim</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/v2.js?v=2" defer></script>
+</body>
+</html>

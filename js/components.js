@@ -74,6 +74,7 @@
             </div>
           </div>
         </div>
+        <a href="/stoaix-ads" class="nav-link">STOAIX Ads<span style="margin-left:6px;padding:2px 5px;border-radius:5px;background:var(--blue-tint);color:var(--blue);font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;vertical-align:1.5px">new</span></a>
         <a href="/modules.html" class="nav-link">Modules</a>
         <a href="/case-studies.html" class="nav-link">Case Studies</a>
         <a href="/documentation" class="nav-link">Docs</a>
@@ -126,6 +127,7 @@
 
   <div class="mobile-menu" id="mobileMenu">
     <a href="/product#features">Product</a>
+    <a href="/stoaix-ads">STOAIX Ads<span style="margin-left:6px;padding:2px 5px;border-radius:5px;background:var(--blue-tint);color:var(--blue);font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;vertical-align:1.5px">new</span></a>
     <a href="/modules.html">Modules</a>
     <a href="/case-studies.html">Case Studies</a>
     <a href="/documentation">Docs</a>

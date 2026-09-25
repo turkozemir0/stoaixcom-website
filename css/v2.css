@@ -109,6 +109,15 @@ section { background:var(--bg); color:var(--fg); }
                  font:inherit; color:inherit; letter-spacing:inherit; }
 .switch button:hover { opacity:.7; }
 .nav-cta { border-bottom:1px solid var(--fg); padding-bottom:2px; font-size:13.5px; font-weight:560; }
+/* Yumuşak "new" rozeti — nav ve mobil menüde aynı öge.
+   🔑 RENK TOKEN'DAN: vurgu koyu temada #4F7BFF, açıkta #2340F0; sabit kodlamak
+     iki temadan birinde okunmaz bir rozet bırakırdı.
+   🔑 `.mlink` 22px olduğu için rozet `em` ile ölçülüyor — mobil menüde
+     kendiliğinden büyüyor, ikinci bir kural gerekmiyor. */
+.tag-new { display:inline-block; margin-left:.5em; padding:.18em .4em;
+           border:1px solid var(--accent); color:var(--accent);
+           font-size:.62em; font-weight:700; letter-spacing:.09em;
+           text-transform:uppercase; vertical-align:.14em; opacity:.85; }
 .nav-burger { display:none; background:none; border:0; padding:8px; margin:-8px -8px -8px 0;
               cursor:pointer; color:var(--fg); }
 .nav-burger svg { display:block; }
