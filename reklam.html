@@ -33,6 +33,7 @@
 <!-- Panel ucu ile el sıkışma erken başlasın: form gönderimi oraya gidiyor. -->
 <link rel="preconnect" href="https://pilot.stoaix.com" crossorigin>
 <link rel="dns-prefetch" href="//connect.facebook.net">
+<link rel="preload" as="image" href="/assets/vsl/poster.webp" fetchpriority="high">
 
 <style>:root{
   --bg:#0A0A0B; --fg:#F2F2F0; --panel:#141416; --panel2:#0F0F11;
@@ -407,11 +408,22 @@ fbq('init','1426016022664547'); fbq('track','PageView');
 
 <div class="vwrap">
   <div class="vbox" id="vbox">
-    
-    <div class="vover" aria-hidden="true">
+    <!-- 🔑 preload="metadata": açılışta videonun tamamı değil yalnız
+         başlığı iniyor. Tam indirme oynatmaya basılınca başlıyor;
+         mobil veride ilk boyamayı geciktirmiyor. -->
+    <video id="vsl" poster="/assets/vsl/poster.webp" preload="metadata"
+           playsinline webkit-playsinline muted controlslist="nodownload"
+           aria-label="STOAIX Ads tanıtım videosu">
+      <source src="/assets/vsl/stoaix-ads-vsl.mp4" type="video/mp4">
+    </video>
+    <button type="button" class="vover" id="vover">
       <span class="vplay"><svg viewBox="0 0 24 24" width="38%" height="38%" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></span>
       <span class="vlbl">3 dakikalık demoyu izleyin</span>
-    </div>
+    </button>
+    <button type="button" class="vsound hide" id="vsound">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+      Sesi aç
+    </button>
   </div>
 </div>
 
@@ -871,7 +883,117 @@ fbq('init','1426016022664547'); fbq('track','PageView');
 
   /* ═══ 3 · VİDEO ═══════════════════════════════════════════════ */
 
-  /* Video henüz yüklenmedi: yer tutucu duruyor, ölçüm kodu yok. */
+  var box=D.getElementById('vbox');
+  var vid=D.getElementById('vsl');
+  var over=D.getElementById('vover');
+  var snd=D.getElementById('vsound');
+
+  /* İzlenme ölçümü:
+       - started      : ilk oynatma
+       - maxPct       : videonun görülen EN UZAK noktası (geri sarma şişirmez)
+       - watched      : gerçekten izlenen toplam saniye (atlamalar sayılmaz)
+       - çeyrekler    : 25 / 50 / 75 / 95 / 100
+     Sayfa kapanırken toplam süre tek bir olayla gönderiliyor. */
+  var started=false,maxPct=0,watched=0,last=0,marks={},sent=false;
+  var MARKS=[25,50,75,95,100];
+
+  function dur(){ return (vid && isFinite(vid.duration) && vid.duration>0) ? vid.duration : 0; }
+
+  vid.addEventListener('play',function(){
+    last=vid.currentTime;
+    if(started) return;
+    started=true;
+    ev('video_start',{video_title:'stoaix-ads-vsl',language:LANG});
+    if(W.fbq) W.fbq('trackCustom','VSLStart',{lang:LANG});
+  });
+
+  vid.addEventListener('timeupdate',function(){
+    var d=dur(); if(!d) return;
+    var now=vid.currentTime;
+    /* 1,5 sn'den küçük ilerleme = normal oynatma; büyükse atlama. */
+    var step=now-last;
+    if(step>0 && step<1.5) watched+=step;
+    last=now;
+
+    var pct=Math.min(100,(now/d)*100);
+    if(pct>maxPct) maxPct=pct;
+
+    for(var i=0;i<MARKS.length;i++){
+      var m=MARKS[i];
+      if(maxPct>=m && !marks[m]){
+        marks[m]=true;
+        ev('video_progress',{video_title:'stoaix-ads-vsl',video_percent:m,language:LANG});
+        if(W.clarity) try{ W.clarity('set','vsl_progress',String(m)); }catch(e){}
+        if(W.fbq) W.fbq('trackCustom','VSLProgress',{percent:m,lang:LANG});
+        /* Yarısını izleyen kişi ciddi bir niyet sinyali: Meta'ya sunucudan
+           da bildiriliyor ki kampanya bu kişilere benzeyenlere optimize
+           olsun (tarayıcı engellemelerinden bağımsız). */
+        if(m===50) capi('ViewContent',uid(),{contentName:'stoaix-ads-vsl-50'});
+      }
+    }
+  });
+
+  vid.addEventListener('ended',function(){
+    ev('video_complete',{video_title:'stoaix-ads-vsl',language:LANG});
+    if(W.fbq) W.fbq('trackCustom','VSLComplete',{lang:LANG});
+  });
+
+  function flush(){
+    if(sent||!started) return;
+    sent=true;
+    var d=dur();
+    ev('video_watch_time',{
+      video_title:'stoaix-ads-vsl',
+      watch_seconds:Math.round(watched),
+      max_percent:Math.round(maxPct),
+      duration_seconds:Math.round(d),
+      language:LANG
+    });
+    if(W.clarity) try{
+      W.clarity('set','vsl_watch_seconds',String(Math.round(watched)));
+      W.clarity('set','vsl_max_percent',String(Math.round(maxPct)));
+    }catch(e){}
+  }
+  /* pagehide, mobilde 'unload'tan güvenilir; visibilitychange sekme
+     değişiminde yakalıyor. İkisi de tek seferlik bayrakla korunuyor. */
+  W.addEventListener('pagehide',flush);
+  D.addEventListener('visibilitychange',function(){ if(D.hidden) flush(); });
+
+  /* ── oynatma kontrolü ── */
+  function play(withSound){
+    over.classList.add('hide');
+    if(withSound){ vid.muted=false; vid.volume=1; snd&&snd.classList.add('hide'); }
+    var p=vid.play();
+    if(p&&p.catch) p.catch(function(){ over.classList.remove('hide'); });
+  }
+  over.addEventListener('click',function(){ play(true); });
+  if(snd) snd.addEventListener('click',function(){
+    vid.muted=false; vid.volume=1; snd.classList.add('hide');
+    ev('video_unmute',{video_title:'stoaix-ads-vsl',language:LANG});
+    if(vid.paused) play(true);
+  });
+  vid.addEventListener('pause',function(){ if(vid.currentTime>0&&!vid.ended) flush(); });
+
+
+  /* Sessiz otomatik başlatma — yalnız video görünür alandayken ve
+     bağlantı buna uygunsa. Veri tasarrufu açıksa hiç başlatılmıyor. */
+  var conn=navigator.connection||{};
+  var slow=conn.saveData===true||/^(slow-)?2g$/.test(conn.effectiveType||'');
+  if(!slow && 'IntersectionObserver' in W){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        io.disconnect();
+        vid.muted=true;
+        vid.play().then(function(){
+          over.classList.add('hide');
+          if(snd) snd.classList.remove('hide');
+        }).catch(function(){ /* tarayıcı izin vermedi: poster kalsın */ });
+      });
+    },{threshold:.5});
+    io.observe(box);
+  }
+
 
 
   /* ═══ 4 · ARAYÜZ ══════════════════════════════════════════════ */
