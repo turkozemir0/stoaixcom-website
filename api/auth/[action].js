@@ -34,6 +34,7 @@ export default async function handler(req, res) {
     case 'verify-otp':      return handleVerifyOtp(req, res)
     case 'login':           return handleLogin(req, res)
     case 'forgot-password': return handleForgotPassword(req, res)
+    case 'capi':            return handleCapi(req, res)
     default:                return res.status(404).json({ error: 'Not found' })
   }
 }
@@ -313,4 +314,63 @@ async function handleForgotPassword(req, res) {
     console.error('Forgot password error:', err)
     return res.status(200).json({ success: true })
   }
+}
+
+// ── capi (VSL funnel → Meta Conversions API) ────────────────
+//
+// 🔑 NEDEN BU DOSYADA: Vercel'de fonksiyon sayısı sınırına dayanıldı
+//   (12/12). Ayrı bir `api/ads/track.js` açmak dağıtımı kırardı, bu
+//   yüzden mevcut yönlendiriciye yeni bir eylem olarak eklendi.
+//
+// 🔑 NEDEN SUNUCUDAN DA GÖNDERİYORUZ: tarayıcıdaki Meta pikselinin
+//   önemli bir kısmı reklam engelleyici, iOS izleme koruması ve
+//   Instagram içi tarayıcının kısıtları yüzünden Meta'ya hiç ulaşmıyor.
+//   Sunucu tarafı olay o boşluğu kapatıyor. Piksel ile AYNI `eventId`
+//   gönderiliyor; Meta iki kaydı tekilleştiriyor, dönüşüm çift sayılmaz.
+const CAPI_EVENTS = new Set(['Lead', 'ViewContent', 'CompleteRegistration', 'InitiateCheckout'])
+const CAPI_ORIGINS = new Set(['https://stoaix.com', 'https://www.stoaix.com'])
+
+async function handleCapi(req, res) {
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
+
+  // Olay adı beyaz listeden. Uç herkese açık; rastgele olay adıyla
+  // piksel verisini kirletebilmek istemiyoruz.
+  const b = req.body || {}
+  const eventName = String(b.eventName || '')
+  if (!CAPI_EVENTS.has(eventName)) {
+    return res.status(400).json({ error: 'Unsupported event' })
+  }
+
+  // Origin kontrolü zayıf bir kapı (sunucudan taklit edilebilir) ama
+  // tarayıcıdan gelen kötüye kullanımı elemeye yetiyor. Yerel geliştirme
+  // ve Origin göndermeyen sendBeacon çağrıları için yokluğu serbest.
+  const origin = req.headers.origin
+  if (origin && !CAPI_ORIGINS.has(origin)) {
+    return res.status(403).json({ error: 'Forbidden origin' })
+  }
+
+  try {
+    await sendEvent({
+      eventName,
+      eventId: b.eventId ? String(b.eventId).slice(0, 80) : undefined,
+      email: b.email ? String(b.email).slice(0, 200) : undefined,
+      value: Number.isFinite(Number(b.value)) ? Number(b.value) : 0,
+      currency: b.currency === 'GBP' || b.currency === 'USD' || b.currency === 'EUR'
+        ? b.currency
+        : 'GBP',
+      sourceUrl: b.sourceUrl ? String(b.sourceUrl).slice(0, 500) : 'https://stoaix.com/reklam',
+      contentName: b.contentName ? String(b.contentName).slice(0, 120) : undefined,
+      contentCategory: b.contentCategory ? String(b.contentCategory).slice(0, 60) : undefined,
+      fbc: b.fbc ? String(b.fbc).slice(0, 200) : undefined,
+      fbp: b.fbp ? String(b.fbp).slice(0, 200) : undefined,
+      clientIp: getClientIp(req),
+      clientUserAgent: getUserAgent(req),
+    })
+  } catch (err) {
+    // Ölçüm hatası ziyaretçiyi ilgilendirmiyor: sessizce logla, 200 dön.
+    console.error('CAPI relay error:', err)
+  }
+
+  // sendBeacon yanıtı okumuyor; gövdesiz 204 en ucuzu.
+  return res.status(204).end()
 }

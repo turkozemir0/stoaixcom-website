@@ -1,0 +1,1327 @@
+/* ═══════════════════════════════════════════════════════════════════
+   STOAIX Ads — VSL funnel üreteci
+
+   Çıktı:  reklam.html      (TR, /reklam)      ← varsayılan
+           reklam-en.html   (EN, /en/reklam)
+
+   Çalıştırma:  node tools/build-vsl.mjs      (ya da: npm run vsl)
+
+   Neden build-time: `tools/build-v2.mjs` ile aynı gerekçe — içerik tek
+   kaynaktan gelsin ama tarayıcıya TAM STATİK HTML insin. Reklam
+   trafiğinde ilk boyama süresi doğrudan paraya dönüyor; metni istemcide
+   kurmak hem ilk boyamayı geciktirir hem dil geçişinde titreme yapar.
+
+   ─────────────────────────────────────────────────────────────────
+   🔑 FORM NEREYE GİDİYOR
+
+   Kayıt formu bu sayfanın İÇİNDE; ziyaretçi ikinci bir sayfaya
+   gitmeden bilgilerini giriyor. Gönderim `pilot.stoaix.com/kayit/basla`
+   ucuna KLASİK FORM POST'u ile (fetch ile DEĞİL) gidiyor.
+
+   🔴 NEDEN fetch DEĞİL — SEBEP CORS, SameSite DEĞİL.
+   `stoaix.com` ile `pilot.stoaix.com` aynı SİTE (ikisinin de kayıtlı alan
+   adı `stoaix.com`), o yüzden SameSite=Lax burada hiçbir şeyi engellemez.
+   Engel şu: iki adres farklı ORIGIN. `fetch` ile çağırmak için kayıt
+   ucunun `Access-Control-Allow-Origin` + `Access-Control-Allow-Credentials`
+   döndürmesi ve istemcinin `credentials:'include'` demesi gerekirdi.
+
+   Form POST'u bunların hiçbirine ihtiyaç duymuyor: formlar CORS'a tabi
+   değil, preflight yok, JS kapalıyken bile çalışıyor — ve hesap açan uca
+   `Allow-Credentials: true` açmak zorunda kalmıyoruz. Üst düzey gezinme
+   olduğu için yanıttaki oturum çerezi normal yazılıyor, ardından gelen
+   `/onboarding` yönlendirmesi oturumlu açılıyor.
+
+   Bedeli: hata mesajı sayfada değil, adres satırından dönüyor (aşağıda).
+
+   🔴 HATA YOLU: POST bir gezinme olduğu için hata mesajını sayfada
+   gösteremeyiz. Bu yüzden panel ucu, başarısızlıkta ziyaretçiyi
+   `stoaix.com/reklam?hata=<kod>&...#start` adresine geri gönderiyor;
+   aşağıdaki script kodu okuyup formu hata mesajıyla ve DOLU alanlarla
+   yeniden kuruyor. Şifre asla adres satırına yazılmıyor.
+   ═══════════════════════════════════════════════════════════════════ */
+
+import { writeFileSync, existsSync, mkdirSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+import { COPY, LINKS } from './vsl-content.mjs';
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+
+/* ─── Ölçüm kimlikleri — sitenin geri kalanıyla aynı ───────────── */
+const GA_ID      = 'G-53TMTQML2Q';
+const CLARITY_ID = 'wnyyri0jrz';
+const PIXEL_ID   = '1426016022664547';
+
+/* Kendi sunucumuzdaki Meta Conversions API ucu.
+   🔑 YENİ DOSYA AÇILMADI: Vercel'de fonksiyon sayısı sınırı dolu (12/12).
+   Bu yüzden CAPI, mevcut `api/auth/[action].js` yönlendiricisine yeni bir
+   eylem olarak eklendi. */
+const CAPI_URL = '/api/auth/capi';
+
+/* ─── Bot koruması ───────────────────────────────────────────────
+   🔴 BURASI DOLDURULMAZSA CANLI KAYIT ÇALIŞMAZ.
+
+   Kayıt ucu (`pilot.stoaix.com/kayit/basla`) Cloudflare Turnstile
+   jetonu bekliyor — panelin kendi kayıt ekranıyla birebir aynı kural
+   (`stoaix-ads` deposu, lib/giris-koruma.ts). Panelde
+   `TURNSTILE_SECRET_KEY` tanımlıyken buraya site anahtarı yazılmazsa
+   uç her isteği "bot" diye reddeder.
+
+   Site anahtarı GİZLİ DEĞİL (adı üstünde, tarayıcıya iniyor); panelin
+   Vercel ortamındaki `NEXT_PUBLIC_TURNSTILE_SITE_KEY` değerinin aynısı.
+
+   Boş bırakılırsa widget hiç çizilmez ve üretici uyarı basar. */
+const TURNSTILE_SITE_KEY = '';
+
+/* ─── Video ─────────────────────────────────────────────────────
+   Dosyayı `assets/vsl/` içine bırakmak yeterli; üretici burada varlığını
+   kontrol edip oynatıcıyı otomatik bağlıyor. Dosya yoksa taslaktaki
+   poster + oynat düğmesi yer tutucusu çiziliyor (sayfa yine tam çalışır).
+
+   Harici barındırma (Vercel Blob, Bunny, Cloudflare Stream) kullanılacaksa
+   `VIDEO_URL` sabitine tam adresi yazmak yeterli — dosya kontrolü atlanır. */
+const VIDEO_URL = '';                       // ör. 'https://cdn.../vsl.mp4'
+const VIDEO_DIR = 'assets/vsl';
+const VIDEO_MP4 = `${VIDEO_DIR}/stoaix-ads-vsl.mp4`;
+const VIDEO_WEBM = `${VIDEO_DIR}/stoaix-ads-vsl.webm`;
+const VIDEO_POSTER = `${VIDEO_DIR}/poster.webp`;
+const VIDEO_VTT = { tr: `${VIDEO_DIR}/tr.vtt`, en: `${VIDEO_DIR}/en.vtt` };
+
+/* 🔑 SESSİZ OTOMATİK BAŞLAT. Ziyaretçi Instagram Reels'ten geliyor;
+   sessiz oynayan bir video orada normal ve izlenme oranını belirgin
+   yükseltiyor. Veri tasarrufu açık ya da bağlantı yavaşsa kendini
+   kapatıyor (aşağıdaki script). */
+const VIDEO_AUTOPLAY = true;
+
+const has = (p) => existsSync(join(ROOT, p));
+const abs = (p) => '/' + p.replace(/^\/+/, '');
+
+const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+/* ═══════════════════════════════════════════════════════════════
+   CSS
+   Taslak satır-içi stillerle geldi; buraya sınıflara çevrildi. Görsel
+   sonuç birebir aynı, çıktı ~4 kat küçük ve bakımı mümkün.
+   ═══════════════════════════════════════════════════════════════ */
+const CSS = `
+:root{
+  --bg:#0A0A0B; --fg:#F2F2F0; --panel:#141416; --panel2:#0F0F11;
+  --acc:#4F7BFF; --acc-h:#6A8FFF; --acc-l:#8FA9FF;
+  --ok:#4FD1A5; --gold:#F5B84A; --bad:#FF7A66;
+  --l08:rgba(242,242,240,.08); --l10:rgba(242,242,240,.10);
+  --l12:rgba(242,242,240,.12); --l14:rgba(242,242,240,.14);
+  --l16:rgba(242,242,240,.16); --l18:rgba(242,242,240,.18);
+  --l20:rgba(242,242,240,.20); --l35:rgba(242,242,240,.35);
+  --d42:rgba(242,242,240,.42); --d45:rgba(242,242,240,.45);
+  --d5:rgba(242,242,240,.50);  --d55:rgba(242,242,240,.55);
+  --d6:rgba(242,242,240,.60);  --d62:rgba(242,242,240,.62);
+  --d65:rgba(242,242,240,.65); --d7:rgba(242,242,240,.70);
+  --d72:rgba(242,242,240,.72); --d75:rgba(242,242,240,.75);
+  --d8:rgba(242,242,240,.80);  --d85:rgba(242,242,240,.85);
+  --d88:rgba(242,242,240,.88); --d9:rgba(242,242,240,.90);
+  --pad:clamp(18px,5vw,48px);
+  --sec:clamp(56px,9vw,104px);
+}
+*,*::before,*::after{box-sizing:border-box;text-wrap:pretty}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--fg);overflow-x:hidden;min-height:100vh;
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Segoe UI',system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  /* Yapışkan CTA çubuğunun altında kalan içerik olmasın. */
+  padding-bottom:0;
+}
+a{color:inherit;text-decoration:none;cursor:pointer}
+a:hover{opacity:.85}
+img{max-width:100%}
+button{font-family:inherit}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.rakam{font-variant-numeric:tabular-nums}
+.skip{position:absolute;left:-9999px;top:0;background:var(--acc);color:#fff;padding:10px 16px;z-index:100}
+.skip:focus{left:0}
+.wrap{max-width:1080px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+@keyframes om-pulse{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ── üst şerit ─────────────────────────────────────────────── */
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;
+     padding:16px var(--pad);border-bottom:1px solid var(--l12)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{display:block}
+.brand b{font-size:16px;font-weight:700;letter-spacing:.05em}
+.top-r{display:flex;align-items:center;gap:16px;font-size:13px;font-weight:560}
+.lang{color:var(--d55);display:inline-flex;gap:5px;align-items:center}
+.lang .sep{opacity:.35}
+.lang .on{opacity:1}
+.lang a{opacity:.45}
+.top-cta{background:var(--acc);color:#fff;padding:10px 14px;font-weight:640;white-space:nowrap}
+.top-cta:hover{background:var(--acc-h);opacity:1}
+
+/* ── kahraman ──────────────────────────────────────────────── */
+.hero{max-width:1080px;margin:0 auto;padding:clamp(36px,7vw,88px) var(--pad) 0;text-align:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12px;font-weight:620;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--d6);border:1px solid var(--l18);
+  padding:8px 14px;margin-bottom:clamp(22px,4vw,36px);max-width:100%}
+.dot{width:6px;height:6px;border-radius:100px;background:var(--ok);display:inline-block;
+  animation:om-pulse 2.4s ease-in-out infinite;flex:none}
+h1{margin:0 auto;font-size:clamp(38px,8.4vw,92px);line-height:1;letter-spacing:-.05em;
+   font-weight:660;max-width:980px}
+h1 .mut{color:rgba(242,242,240,.5)}
+.uline{position:relative;display:inline-block;white-space:nowrap;color:#fff}
+.uline svg{position:absolute;left:-2%;bottom:-.16em;width:104%;height:.28em;overflow:visible}
+.hsub{margin:clamp(22px,4vw,32px) auto 0;font-size:clamp(17px,2.2vw,21px);line-height:1.5;
+      color:var(--d72);max-width:680px}
+
+/* ── video ─────────────────────────────────────────────────── */
+.vwrap{max-width:1080px;margin:0 auto;padding:clamp(28px,5vw,48px) clamp(12px,4vw,48px) 0}
+.vbox{position:relative;aspect-ratio:16/9;width:100%;background:#141416;
+      border:1px solid var(--l16);overflow:hidden}
+.vbox video,.vbox .vposter{position:absolute;inset:0;width:100%;height:100%;
+      object-fit:cover;background:#000;display:block;border:0}
+.vover{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+       justify-content:center;gap:14px;background:transparent;border:0;width:100%;
+       color:inherit;cursor:pointer;padding:0}
+.vplay{width:clamp(64px,10vw,92px);height:clamp(64px,10vw,92px);border-radius:100px;
+       background:var(--acc);display:flex;align-items:center;justify-content:center;
+       box-shadow:0 0 0 12px rgba(79,123,255,.18)}
+.vlbl{font-size:13px;font-weight:600;color:var(--d75);background:rgba(10,10,11,.7);padding:6px 10px}
+.vsound{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:3;
+        display:inline-flex;align-items:center;gap:8px;background:rgba(10,10,11,.82);
+        color:#fff;border:1px solid var(--l20);padding:11px 16px;font-size:14px;
+        font-weight:640;cursor:pointer;white-space:nowrap}
+.vsound:hover{background:var(--acc)}
+.hide{display:none !important}
+
+/* ── birincil CTA ──────────────────────────────────────────── */
+.cta-wrap{max-width:640px;margin:0 auto;padding:clamp(24px,4vw,36px) var(--pad) 0;text-align:center}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--acc);
+     color:#fff;padding:22px 24px;font-size:clamp(17px,2.4vw,20px);font-weight:680;
+     letter-spacing:-.01em;box-shadow:0 12px 40px rgba(79,123,255,.35);min-height:44px}
+.btn:hover{background:var(--acc-h);opacity:1}
+.btn .ar{font-size:1.2em}
+.micro{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 18px;margin-top:16px;
+       font-size:13.5px;color:var(--d6)}
+.micro span{display:inline-flex;gap:6px;align-items:center}
+.micro i{color:var(--ok);font-style:normal}
+
+/* ── puan + yorumlar ───────────────────────────────────────── */
+.rate{display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;margin-bottom:32px}
+.stars{font-size:22px;letter-spacing:.12em;color:var(--gold)}
+.rate p{margin:0;font-size:15px;color:var(--d7)}
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px}
+.rev{background:var(--panel);border:1px solid var(--l12);padding:24px;display:flex;
+     flex-direction:column;gap:18px}
+.rev .s{font-size:14px;letter-spacing:.1em;color:var(--gold)}
+.rev blockquote{margin:0;font-size:17px;line-height:1.5;color:var(--d9);flex:1}
+.rev figcaption{display:flex;align-items:center;gap:12px;border-top:1px solid var(--l10);padding-top:16px}
+.rev .av{width:36px;height:36px;border-radius:100px;background:rgba(79,123,255,.18);
+         color:var(--acc-l);display:flex;align-items:center;justify-content:center;
+         font-size:14px;font-weight:680;flex:none}
+.rev .nm{font-size:14px;font-weight:640}
+.rev .rl{font-size:12.5px;color:var(--d5)}
+
+/* ── sonuçlar ──────────────────────────────────────────────── */
+.eye{font-size:12px;font-weight:620;letter-spacing:.16em;text-transform:uppercase;
+     color:var(--acc-l);margin-bottom:14px}
+h2{margin:0;font-size:clamp(30px,5vw,52px);line-height:1.05;letter-spacing:-.04em;font-weight:640}
+.cases{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+       padding:0 var(--pad) 12px;max-width:1180px;margin:0 auto;
+       -webkit-overflow-scrolling:touch}
+/* Varsayılan kaydırma çubuğu koyu zeminde parlak beyaz bir şerit olarak
+   çiziliyordu; kartların altında ikinci bir arayüz gibi duruyordu. */
+.cases{scrollbar-width:thin;scrollbar-color:var(--l20) transparent}
+.cases::-webkit-scrollbar{height:6px}
+.cases::-webkit-scrollbar-track{background:transparent}
+.cases::-webkit-scrollbar-thumb{background:var(--l20)}
+.case{flex:none;width:min(300px,78vw);scroll-snap-align:start;background:var(--panel);
+      border:1px solid var(--l12)}
+.case .shot{background:#EFEFEF;padding:10px;height:170px;overflow:hidden}
+.case .shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top}
+.case .body{padding:18px 18px 20px}
+.case .lbl{font-size:11.5px;font-weight:640;letter-spacing:.1em;text-transform:uppercase;
+           color:var(--d5);margin-bottom:6px}
+.case .red{font-size:40px;font-weight:680;letter-spacing:-.045em;line-height:1;
+           color:var(--ok);margin-bottom:12px}
+.case .nm{font-size:15px;font-weight:620}
+.case .mt{font-size:13px;color:var(--d5);margin-top:2px}
+.foot-note{font-size:12.5px;color:var(--d42);max-width:76ch}
+
+/* ── problem (ters tema) ───────────────────────────────────── */
+.inv{background:#F1EEE8;color:#14140F;margin-top:var(--sec);padding:var(--sec) var(--pad)}
+.inv h2{max-width:820px;margin-bottom:clamp(28px,5vw,48px)}
+.probs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
+       gap:2px;background:rgba(20,20,15,.14)}
+.prob{background:#F1EEE8;padding:26px 24px 26px 0}
+.prob .k{font-size:13px;font-weight:640;letter-spacing:.1em;text-transform:uppercase;
+         color:#C2452D;margin-bottom:12px}
+.prob .h{font-size:19px;font-weight:630;letter-spacing:-.015em;margin-bottom:8px}
+.prob .d{font-size:15.5px;line-height:1.55;color:rgba(20,20,15,.62)}
+.prob-ans{margin-top:clamp(32px,5vw,48px);font-size:clamp(22px,3.4vw,32px);line-height:1.2;
+          letter-spacing:-.03em;font-weight:640;max-width:760px}
+
+/* ── ne yapar ──────────────────────────────────────────────── */
+.feats{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));column-gap:48px}
+.feat{display:flex;gap:16px;padding:20px 0;border-top:1px solid var(--l14)}
+.feat .n{font-size:13px;font-weight:640;color:var(--acc-l);min-width:24px;padding-top:3px}
+.feat .h{font-size:18px;font-weight:630;letter-spacing:-.015em;margin-bottom:5px}
+.feat .d{font-size:15px;line-height:1.5;color:var(--d6)}
+
+/* ── nasıl çalışır ─────────────────────────────────────────── */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
+.step{border:1px solid var(--l16);padding:26px 24px}
+.step .hd{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:36px}
+.step .n{font-size:40px;font-weight:660;letter-spacing:-.04em;color:var(--acc);line-height:1}
+.step .tm{font-size:12.5px;font-weight:620;color:var(--d55);border:1px solid var(--l20);padding:4px 8px}
+.step .h{font-size:20px;font-weight:640;letter-spacing:-.02em;margin-bottom:8px}
+.step .d{font-size:15px;line-height:1.5;color:var(--d6)}
+.chans{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:28px}
+.chans .lbl{font-size:13px;color:var(--d5);margin-right:6px}
+.chan{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--l18);
+      padding:9px 14px;font-size:14px;font-weight:600;color:var(--d55)}
+.chan .cd{width:6px;height:6px;border-radius:100px;background:rgba(242,242,240,.3);display:inline-block}
+.chan .st{font-size:11px;font-weight:640;letter-spacing:.08em;text-transform:uppercase;opacity:.7}
+.chan.live{border-color:rgba(79,209,165,.5);color:var(--fg)}
+.chan.live .cd{background:var(--ok)}
+
+/* ── teklif + form ─────────────────────────────────────────── */
+.offer{max-width:1080px;margin:0 auto;padding:var(--sec) clamp(12px,4vw,48px) 0;scroll-margin-top:12px}
+.offer-in{border:1px solid var(--acc);
+  background:linear-gradient(180deg,rgba(79,123,255,.14),rgba(79,123,255,0) 60%);
+  padding:clamp(24px,5vw,56px) clamp(16px,5vw,56px);display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));
+  gap:clamp(28px,5vw,64px);align-items:start}
+.tag{display:inline-block;font-size:12px;font-weight:660;letter-spacing:.12em;
+     text-transform:uppercase;background:var(--acc);color:#fff;padding:6px 10px;margin-bottom:22px}
+.price-big{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.price-big .v{font-size:clamp(64px,11vw,104px);font-weight:700;letter-spacing:-.06em;line-height:.9}
+.price-big .p{font-size:18px;color:var(--d7);font-weight:560}
+.offer-sub{font-size:16px;line-height:1.5;color:var(--d7);max-width:420px;margin:0 0 28px}
+.incl{display:flex;flex-direction:column;gap:11px;border-top:1px solid var(--l14);
+      padding-top:24px;margin:0;list-style:none}
+.incl li{display:flex;gap:12px;font-size:15.5px;line-height:1.4;color:var(--d85)}
+.incl i{color:var(--ok);font-weight:700;flex:none;font-style:normal}
+
+.card{background:var(--bg);border:1px solid var(--l16);padding:clamp(20px,4vw,32px)}
+.card h3{margin:0 0 4px;font-size:22px;font-weight:660;letter-spacing:-.025em}
+.card .sub{font-size:14px;color:var(--d55);margin-bottom:22px}
+form{display:flex;flex-direction:column;gap:14px;margin:0}
+.fgroup{display:flex;flex-direction:column;gap:7px}
+.flabel{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--d8)}
+.flabel .opt{font-weight:500;color:var(--d42)}
+.picks{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pick{display:flex;flex-direction:column;gap:2px;padding:11px 12px;border:1px solid var(--l18);
+      background:var(--panel);cursor:pointer;text-align:left;color:inherit;min-height:44px}
+.pick .pn{font-size:14.5px;font-weight:640}
+.pick .pp{font-size:12.5px;color:var(--d55)}
+.pick[aria-pressed="true"]{border-color:var(--acc);background:rgba(79,123,255,.14)}
+input[type=text],input[type=email],input[type=password],input[type=tel],input[type=url]{
+  width:100%;background:var(--panel);border:1px solid var(--l18);color:var(--fg);
+  padding:14px;font-size:16px;font-family:inherit;outline:none;border-radius:0}
+input:focus{border-color:var(--acc)}
+.fgroup.bad input{border-color:var(--bad)}
+.ferr{font-size:12.5px;color:var(--bad);display:none}
+.fgroup.bad .ferr{display:block}
+.consent{display:flex;gap:12px;align-items:flex-start;margin-top:6px;padding:14px;
+         border:1px solid var(--l12);background:rgba(242,242,240,.03);cursor:pointer;
+         width:100%;text-align:left;color:inherit}
+.consent .box{flex:none;width:20px;height:20px;margin-top:1px;border:1.5px solid var(--d42);
+              background:transparent;display:flex;align-items:center;justify-content:center;
+              font-size:13px;font-weight:800;
+              /* 🔴 TİK İŞARETSİZKEN GÖRÜNMEZ. Karakter DOM'da duruyor ama
+                 rengi saydam; beyaz bıraktığımızda kutu, kullanıcı hiç
+                 dokunmadan işaretlenmiş gibi görünüyordu. */
+              color:transparent}
+.consent .txt{display:flex;flex-direction:column;gap:6px;font-size:13px;line-height:1.45;color:var(--d75)}
+.consent[aria-pressed="true"] .box{border-color:var(--acc);background:var(--acc);color:#fff}
+.consent.bad{border-color:rgba(255,122,102,.6)}
+.consent.bad .box{border-color:var(--bad)}
+#consentErr{font-size:12.5px;color:var(--bad);margin-top:-6px;display:none}
+.consent.bad ~ #consentErr{display:block}
+.submit{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--acc);
+        color:#fff;border:none;padding:20px 24px;font-size:18px;font-weight:680;
+        cursor:pointer;margin-top:4px;box-shadow:0 12px 40px rgba(79,123,255,.35);min-height:44px}
+.submit:hover{background:var(--acc-h)}
+.submit[disabled]{opacity:.6;cursor:progress}
+.fine{font-size:12.5px;color:var(--d5);text-align:center}
+.serr{display:none;border:1px solid rgba(255,122,102,.6);background:rgba(255,122,102,.08);
+      color:#FFB3A6;font-size:13.5px;line-height:1.45;padding:12px 14px}
+.serr.on{display:block}
+
+/* ── fiyat ─────────────────────────────────────────────────── */
+.pricing{max-width:1080px;margin:0 auto;padding:var(--sec) clamp(12px,4vw,48px) 0}
+.pricing .hd{margin-bottom:clamp(24px,4vw,40px)}
+.pricing h2{margin-bottom:12px;max-width:760px}
+.pricing .psub{font-size:16px;line-height:1.5;color:var(--d62);max-width:620px}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));
+       gap:12px;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;border:1px solid var(--l16);
+      background:var(--panel2);padding:clamp(24px,4vw,36px)}
+.plan.pop{border-color:var(--acc);
+  background:linear-gradient(180deg,rgba(79,123,255,.12),rgba(79,123,255,0) 50%)}
+.plan .badge{position:absolute;top:-1px;right:-1px;background:var(--acc);color:#fff;
+  font-size:11.5px;font-weight:680;letter-spacing:.1em;text-transform:uppercase;padding:7px 11px}
+.plan .nm{font-size:14px;font-weight:640;letter-spacing:.12em;text-transform:uppercase;
+          color:var(--d7);margin-bottom:14px}
+.plan.pop .nm{color:var(--acc-l)}
+.plan .pr{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.plan .pr .v{font-size:clamp(52px,8vw,68px);font-weight:700;letter-spacing:-.055em;line-height:1}
+.plan .pr .u{font-size:16px;color:var(--d6);font-weight:560}
+.plan .ds{font-size:15px;line-height:1.5;color:var(--d65);margin-bottom:22px;min-height:3em}
+.plan .bud{display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:14px 16px;background:rgba(242,242,240,.05);border:1px solid var(--l10);margin-bottom:24px}
+.plan .bud .k{font-size:12.5px;font-weight:600;color:var(--d55);text-transform:uppercase;letter-spacing:.08em}
+.plan .bud .v{font-size:16px;font-weight:680;letter-spacing:-.01em;text-align:right}
+.plan ul{display:flex;flex-direction:column;flex:1;margin:0 0 28px;padding:0;list-style:none}
+.plan li{display:flex;gap:12px;align-items:flex-start;padding:10px 0;
+         border-top:1px solid var(--l08);font-size:15px;line-height:1.4;color:var(--d88)}
+.plan li.off{color:var(--l35)}
+.plan li i{flex:none;width:16px;font-weight:700;color:var(--ok);font-style:normal}
+.plan li.off i{color:rgba(242,242,240,.25)}
+.plan .go{display:flex;align-items:center;justify-content:center;gap:10px;background:transparent;
+  color:#fff;border:1px solid var(--l35);padding:18px 22px;font-size:17px;font-weight:680;
+  cursor:pointer;min-height:44px}
+.plan.pop .go{background:var(--acc);border-color:var(--acc)}
+.plan .go:hover{opacity:.9}
+.price-foot{margin-top:16px;font-size:13px;color:rgba(242,242,240,.48);text-align:center}
+
+/* ── SSS ───────────────────────────────────────────────────── */
+.faq{max-width:820px;margin:0 auto;padding:var(--sec) var(--pad) 0}
+.faq h2{font-size:clamp(28px,4.4vw,44px);margin-bottom:24px}
+.qa{border-top:1px solid var(--l14)}
+.qa summary{display:flex;justify-content:space-between;gap:20px;align-items:center;
+  padding:20px 0;font-size:17px;font-weight:620;cursor:pointer;list-style:none;min-height:44px}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{content:"+";font-size:22px;font-weight:400;color:var(--acc-l);flex:none;line-height:1}
+.qa[open] summary::after{content:"\\2212"}
+.qa .ans{padding:0 0 22px;font-size:15.5px;line-height:1.6;color:var(--d65);max-width:680px}
+
+/* ── son çağrı + altbilgi ──────────────────────────────────── */
+.final{max-width:820px;margin:0 auto;padding:clamp(64px,10vw,120px) var(--pad);text-align:center}
+.final h2{font-size:clamp(32px,6vw,60px);line-height:1.02;letter-spacing:-.045em;
+          font-weight:660;margin-bottom:18px}
+.final p{margin:0 auto 30px;font-size:17px;line-height:1.5;color:var(--d65);max-width:520px}
+.final .btn{display:inline-flex;max-width:100%}
+.foot{padding:28px var(--pad) calc(28px + 84px);border-top:1px solid var(--l12);display:flex;
+      justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--d45)}
+.foot nav{display:flex;gap:18px}
+
+/* ── yapışkan CTA ──────────────────────────────────────────── */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(10,10,11,.94);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--l14);
+  padding:12px clamp(12px,4vw,24px) calc(12px + env(safe-area-inset-bottom));
+  transform:translateY(110%);transition:transform .22s ease;pointer-events:none}
+.sticky.on{transform:translateY(0);pointer-events:auto}
+.sticky .in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:14px}
+.sticky .pz{flex:none;line-height:1.15}
+.sticky .pz .v{font-size:20px;font-weight:700;letter-spacing:-.03em}
+.sticky .pz .p{font-size:11.5px;color:var(--d55)}
+.sticky a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:var(--acc);color:#fff;padding:16px 14px;font-size:16px;font-weight:680;
+  white-space:nowrap;min-height:44px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;
+    transition-duration:.001ms !important}
+}
+`.trim();
+
+/* ═══════════════════════════════════════════════════════════════
+   İSTEMCİ SCRIPT'İ
+   Tek blok, kütüphane yok. Dört iş yapıyor:
+     1. Kaynak takibi (UTM + fbclid + fbp) ve hata dönüşünü karşılama
+     2. Video: sessiz başlatma, ses açma, izlenme süresi ölçümü
+     3. Arayüz: plan seçimi, onay kutusu, yapışkan çubuk
+     4. Form: doğrulama, ölçüm olayları, panele gönderim
+   ═══════════════════════════════════════════════════════════════ */
+function script(t, opts) {
+  const { hasVideo, autoplay, turnstile } = opts;
+  return `
+(function(){
+  'use strict';
+  var D=document, W=window;
+  var LANG=${JSON.stringify(t.lang)};
+  var CAPI=${JSON.stringify(CAPI_URL)};
+  var ERRTXT=${JSON.stringify({
+    kayitli: t.lang === 'tr'
+      ? 'Bu e-posta zaten kayıtlı. Giriş yapmayı deneyin.'
+      : 'This email is already registered. Try logging in.',
+    eposta: t.err.email,
+    sifre: t.err.pass,
+    isletme: t.err.req,
+    onay: t.errConsent,
+    bot: t.lang === 'tr'
+      ? 'Güvenlik doğrulaması geçilemedi. Sayfayı yenileyip tekrar deneyin.'
+      : 'Security check failed. Refresh the page and try again.',
+    hiz: t.lang === 'tr'
+      ? 'Çok fazla deneme yapıldı. Birkaç dakika sonra tekrar deneyin.'
+      : 'Too many attempts. Please try again in a few minutes.',
+    sunucu: t.lang === 'tr'
+      ? 'Beklenmeyen bir hata oldu. Tekrar deneyin.'
+      : 'Something went wrong. Please try again.',
+  })};
+
+  /* ═══ 1 · KAYNAK TAKİBİ ═══════════════════════════════════════
+     🔑 UTM'LER OTURUM BOYU SAKLANIYOR. Ziyaretçi sayfayı yenilerse ya da
+     dil değiştirirse reklam kaynağı kaybolmasın; kayıt kaydına hangi
+     kampanyadan geldiği yazılabilsin. Kişisel veri saklanmıyor. */
+  var Q=new URLSearchParams(location.search);
+  var UTM=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var src={};
+  try{ src=JSON.parse(sessionStorage.getItem('stoaix.vsl.src')||'{}'); }catch(e){}
+  UTM.concat(['fbclid','ttclid','gclid']).forEach(function(k){
+    var v=Q.get(k); if(v) src[k]=v;
+  });
+  try{ sessionStorage.setItem('stoaix.vsl.src',JSON.stringify(src)); }catch(e){}
+
+  function cookie(n){
+    var m=D.cookie.match('(^|;)\\\\s*'+n+'\\\\s*=\\\\s*([^;]+)');
+    return m?m.pop():'';
+  }
+  /* Meta tıklama kimliği: reklamdan gelen ziyaretçiyi dönüşümle
+     eşleştirmek için CAPI'ye _fbc/_fbp çerezleriyle birlikte gidiyor. */
+  function fbc(){
+    var c=cookie('_fbc'); if(c) return c;
+    if(src.fbclid) return 'fb.1.'+Date.now()+'.'+src.fbclid;
+    return '';
+  }
+
+  /* Dil anahtarı ve panel bağlantıları kaynak parametrelerini taşısın. */
+  var keep=new URLSearchParams();
+  UTM.forEach(function(k){ if(src[k]) keep.set(k,src[k]); });
+  var qs=keep.toString();
+  if(qs){
+    D.querySelectorAll('a[data-keepq]').forEach(function(a){
+      a.href=a.href+(a.href.indexOf('?')>-1?'&':'?')+qs;
+    });
+  }
+
+  /* ═══ 2 · ÖLÇÜM ═══════════════════════════════════════════════
+     Pixel hemen (reklam atfı buna bağlı), GA + Clarity ilk etkileşimde
+     ya da en geç 2,5 sn boşta. */
+  function ev(name,params){
+    if(W.gtag) W.gtag('event',name,params||{});
+    if(W.clarity) try{ W.clarity('event',name); }catch(e){}
+  }
+  function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,10); }
+
+  /* Sunucu tarafı Meta olayı. Pixel ile AYNI event_id gidiyor; Meta iki
+     kaydı tekilleştiriyor, dönüşüm iki kez sayılmıyor. */
+  function capi(eventName,eventId,extra){
+    var body=JSON.stringify(Object.assign({
+      eventName:eventName, eventId:eventId,
+      sourceUrl:location.href, fbc:fbc(), fbp:cookie('_fbp')
+    },extra||{}));
+    try{
+      if(navigator.sendBeacon){
+        navigator.sendBeacon(CAPI,new Blob([body],{type:'application/json'}));
+        return;
+      }
+    }catch(e){}
+    try{ fetch(CAPI,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:body,keepalive:true}); }catch(e){}
+  }
+
+  /* ═══ 3 · VİDEO ═══════════════════════════════════════════════ */
+${hasVideo ? `
+  var box=D.getElementById('vbox');
+  var vid=D.getElementById('vsl');
+  var over=D.getElementById('vover');
+  var snd=D.getElementById('vsound');
+
+  /* İzlenme ölçümü:
+       - started      : ilk oynatma
+       - maxPct       : videonun görülen EN UZAK noktası (geri sarma şişirmez)
+       - watched      : gerçekten izlenen toplam saniye (atlamalar sayılmaz)
+       - çeyrekler    : 25 / 50 / 75 / 95 / 100
+     Sayfa kapanırken toplam süre tek bir olayla gönderiliyor. */
+  var started=false,maxPct=0,watched=0,last=0,marks={},sent=false;
+  var MARKS=[25,50,75,95,100];
+
+  function dur(){ return (vid && isFinite(vid.duration) && vid.duration>0) ? vid.duration : 0; }
+
+  vid.addEventListener('play',function(){
+    last=vid.currentTime;
+    if(started) return;
+    started=true;
+    ev('video_start',{video_title:'stoaix-ads-vsl',language:LANG});
+    if(W.fbq) W.fbq('trackCustom','VSLStart',{lang:LANG});
+  });
+
+  vid.addEventListener('timeupdate',function(){
+    var d=dur(); if(!d) return;
+    var now=vid.currentTime;
+    /* 1,5 sn'den küçük ilerleme = normal oynatma; büyükse atlama. */
+    var step=now-last;
+    if(step>0 && step<1.5) watched+=step;
+    last=now;
+
+    var pct=Math.min(100,(now/d)*100);
+    if(pct>maxPct) maxPct=pct;
+
+    for(var i=0;i<MARKS.length;i++){
+      var m=MARKS[i];
+      if(maxPct>=m && !marks[m]){
+        marks[m]=true;
+        ev('video_progress',{video_title:'stoaix-ads-vsl',video_percent:m,language:LANG});
+        if(W.clarity) try{ W.clarity('set','vsl_progress',String(m)); }catch(e){}
+        if(W.fbq) W.fbq('trackCustom','VSLProgress',{percent:m,lang:LANG});
+        /* Yarısını izleyen kişi ciddi bir niyet sinyali: Meta'ya sunucudan
+           da bildiriliyor ki kampanya bu kişilere benzeyenlere optimize
+           olsun (tarayıcı engellemelerinden bağımsız). */
+        if(m===50) capi('ViewContent',uid(),{contentName:'stoaix-ads-vsl-50'});
+      }
+    }
+  });
+
+  vid.addEventListener('ended',function(){
+    ev('video_complete',{video_title:'stoaix-ads-vsl',language:LANG});
+    if(W.fbq) W.fbq('trackCustom','VSLComplete',{lang:LANG});
+  });
+
+  function flush(){
+    if(sent||!started) return;
+    sent=true;
+    var d=dur();
+    ev('video_watch_time',{
+      video_title:'stoaix-ads-vsl',
+      watch_seconds:Math.round(watched),
+      max_percent:Math.round(maxPct),
+      duration_seconds:Math.round(d),
+      language:LANG
+    });
+    if(W.clarity) try{
+      W.clarity('set','vsl_watch_seconds',String(Math.round(watched)));
+      W.clarity('set','vsl_max_percent',String(Math.round(maxPct)));
+    }catch(e){}
+  }
+  /* pagehide, mobilde 'unload'tan güvenilir; visibilitychange sekme
+     değişiminde yakalıyor. İkisi de tek seferlik bayrakla korunuyor. */
+  W.addEventListener('pagehide',flush);
+  D.addEventListener('visibilitychange',function(){ if(D.hidden) flush(); });
+
+  /* ── oynatma kontrolü ── */
+  function play(withSound){
+    over.classList.add('hide');
+    if(withSound){ vid.muted=false; vid.volume=1; snd&&snd.classList.add('hide'); }
+    var p=vid.play();
+    if(p&&p.catch) p.catch(function(){ over.classList.remove('hide'); });
+  }
+  over.addEventListener('click',function(){ play(true); });
+  if(snd) snd.addEventListener('click',function(){
+    vid.muted=false; vid.volume=1; snd.classList.add('hide');
+    ev('video_unmute',{video_title:'stoaix-ads-vsl',language:LANG});
+    if(vid.paused) play(true);
+  });
+  vid.addEventListener('pause',function(){ if(vid.currentTime>0&&!vid.ended) flush(); });
+
+${autoplay ? `
+  /* Sessiz otomatik başlatma — yalnız video görünür alandayken ve
+     bağlantı buna uygunsa. Veri tasarrufu açıksa hiç başlatılmıyor. */
+  var conn=navigator.connection||{};
+  var slow=conn.saveData===true||/^(slow-)?2g$/.test(conn.effectiveType||'');
+  if(!slow && 'IntersectionObserver' in W){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        io.disconnect();
+        vid.muted=true;
+        vid.play().then(function(){
+          over.classList.add('hide');
+          if(snd) snd.classList.remove('hide');
+        }).catch(function(){ /* tarayıcı izin vermedi: poster kalsın */ });
+      });
+    },{threshold:.5});
+    io.observe(box);
+  }
+` : ''}
+` : `
+  /* Video henüz yüklenmedi: yer tutucu duruyor, ölçüm kodu yok. */
+`}
+
+  /* ═══ 4 · ARAYÜZ ══════════════════════════════════════════════ */
+  var form=D.getElementById('kayitForm');
+  var planInput=D.getElementById('planInput');
+
+  function setPlan(k){
+    if(planInput) planInput.value=k;
+    D.querySelectorAll('[data-plan]').forEach(function(b){
+      b.setAttribute('aria-pressed', b.getAttribute('data-plan')===k ? 'true':'false');
+    });
+  }
+  D.querySelectorAll('[data-plan]').forEach(function(b){
+    b.addEventListener('click',function(e){
+      e.preventDefault();
+      setPlan(b.getAttribute('data-plan'));
+      if(b.hasAttribute('data-jump')){
+        var s=D.getElementById('start');
+        if(s) s.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    });
+  });
+
+  var consent=D.getElementById('consent');
+  var consentInput=D.getElementById('consentInput');
+  consent.addEventListener('click',function(e){
+    e.preventDefault();
+    var on=consent.getAttribute('aria-pressed')==='true';
+    consent.setAttribute('aria-pressed', on?'false':'true');
+    consentInput.value = on?'':'1';
+    if(!on) consent.classList.remove('bad');
+  });
+
+  /* Yapışkan çubuk: kahraman CTA'sı geçildiyse ve teklif bölümü ekranda
+     değilse görünür. Teklif ekrandayken göstermek formun üstünü örtüyor. */
+  var sticky=D.getElementById('sticky');
+  var heroCta=D.getElementById('heroCta');
+  var startEl=D.getElementById('start');
+  var stickyOn=false;
+  function onScroll(){
+    if(!heroCta||!startEl||!sticky) return;
+    var past=heroCta.getBoundingClientRect().bottom<0;
+    var r=startEl.getBoundingClientRect();
+    var atOffer=r.top<W.innerHeight&&r.bottom>0;
+    var on=past&&!atOffer;
+    if(on!==stickyOn){ stickyOn=on; sticky.classList.toggle('on',on); }
+  }
+  W.addEventListener('scroll',onScroll,{passive:true});
+  W.addEventListener('resize',onScroll,{passive:true});
+  onScroll();
+
+  /* ═══ 5 · FORM ════════════════════════════════════════════════ */
+  var F={
+    isletme:{req:true},
+    eposta:{req:true,test:function(v){return /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(v);},err:'email'},
+    sifre:{req:true,test:function(v){return v.length>=8;},err:'pass'},
+    telefon:{req:true,test:function(v){return v.replace(/\\D/g,'').length>=7;},err:'phone'},
+    website:{req:false}
+  };
+
+  function group(name){ return D.querySelector('.fgroup[data-k="'+name+'"]'); }
+
+  function validate(){
+    var ok=true;
+    Object.keys(F).forEach(function(k){
+      var g=group(k); if(!g) return;
+      var inp=g.querySelector('input');
+      var v=(inp.value||'').trim();
+      var bos=F[k].req && !v;
+      var hatali=!bos && v && F[k].test && !F[k].test(v);
+      var bad=bos||hatali;
+      var msg=g.querySelector('.ferr');
+      if(bad && msg) msg.textContent=msg.getAttribute(bos?'data-bos':'data-hatali');
+      g.classList.toggle('bad',bad);
+      if(bad) ok=false;
+    });
+    var cOk=consentInput.value==='1';
+    consent.classList.toggle('bad',!cOk);
+    if(!cOk) ok=false;
+    return ok;
+  }
+
+  /* Alan düzeltilince hata işareti anında kalksın — gönderime kadar
+     kırmızı bırakmak kullanıcıyı formu baştan taramaya zorluyor. */
+  D.querySelectorAll('.fgroup input').forEach(function(inp){
+    inp.addEventListener('input',function(){
+      var g=inp.closest('.fgroup');
+      if(g && g.classList.contains('bad')) g.classList.remove('bad');
+    });
+  });
+
+  var busy=false, bekleyen=false;
+  var serrBox=D.getElementById('serr');
+
+  function hataGoster(kod){
+    if(!serrBox) return;
+    serrBox.textContent=ERRTXT[kod]||ERRTXT.sunucu;
+    serrBox.classList.add('on');
+  }
+${turnstile ? `
+  /* Turnstile jetonu form gönderilirken hazır olmayabilir (widget
+     arka planda çözüyor). Hazır değilse gönderimi BEKLETİYORUZ ve
+     jeton gelince kendimiz tetikliyoruz — kullanıcı düğmeye ikinci
+     kez basmak zorunda kalmasın. */
+  function jetonVar(){
+    var i=form.querySelector('[name="cf-turnstile-response"]');
+    return !!(i && i.value);
+  }
+  W.stxTurnstileOk=function(){
+    if(!bekleyen) return;
+    bekleyen=false;
+    /* Düğme yukarıda devre dışı bırakılmıştı; requestSubmit gönderen
+       olarak onu kullanıyor, devre dışıyken gönderim sessizce düşebilir.
+       Bir an için geri açıp hemen ardından gerçek gönderime giriyoruz. */
+    var b=D.getElementById('submitBtn');
+    if(b) b.disabled=false;
+    if(form.requestSubmit) form.requestSubmit(); else form.submit();
+  };
+  W.stxTurnstileErr=function(){
+    bekleyen=false; busy=false;
+    var b=D.getElementById('submitBtn');
+    if(b){ b.disabled=false; b.firstChild.nodeValue=${JSON.stringify(t.formCta)}; }
+    hataGoster('bot');
+  };
+` : `
+  function jetonVar(){ return true; }
+`}
+
+  form.addEventListener('submit',function(e){
+    if(busy) { e.preventDefault(); return; }
+    if(!validate()){
+      e.preventDefault();
+      var first=D.querySelector('.fgroup.bad,.consent.bad');
+      if(first) first.scrollIntoView({behavior:'smooth',block:'center'});
+      return;
+    }
+    if(!jetonVar()){
+      /* Jeton yolda: düğmeyi meşgul hâle alıp bekliyoruz. Dönüşüm
+         olayları burada ATEŞLENMİYOR — tekrar gönderimde iki kez
+         sayılmasınlar diye. */
+      e.preventDefault();
+      bekleyen=true;
+      var wb=D.getElementById('submitBtn');
+      if(wb){ wb.disabled=true; wb.firstChild.nodeValue=${JSON.stringify(t.formBusy)}; }
+      return;
+    }
+
+    /* Kaynak bilgisi gizli alanlara yazılıyor: panel tarafı kaydın hangi
+       kampanyadan geldiğini görebilsin. */
+    UTM.concat(['fbclid']).forEach(function(k){
+      var h=D.getElementById('src_'+k);
+      if(h) h.value=src[k]||'';
+    });
+    var fbcH=D.getElementById('src_fbc'); if(fbcH) fbcH.value=fbc();
+    var fbpH=D.getElementById('src_fbp'); if(fbpH) fbpH.value=cookie('_fbp');
+
+    /* Dönüşüm olayı — tarayıcı ve sunucu, aynı event_id ile. */
+    var eid=uid();
+    var eidH=D.getElementById('src_eid'); if(eidH) eidH.value=eid;
+    var email=(D.querySelector('.fgroup[data-k="eposta"] input').value||'').trim();
+    var plan=planInput?planInput.value:'';
+
+    if(W.fbq) W.fbq('track','Lead',{content_name:'vsl-signup',content_category:plan},{eventID:eid});
+    ev('generate_lead',{channel:'vsl-form',plan:plan,language:LANG});
+    ev('sign_up',{method:'vsl',plan:plan});
+    capi('Lead',eid,{email:email,value:10,currency:'GBP',
+      contentName:'vsl-signup',contentCategory:plan});
+
+    busy=true;
+    var btn=D.getElementById('submitBtn');
+    if(btn){ btn.disabled=true; btn.firstChild.nodeValue=${JSON.stringify(t.formBusy)}; }
+    /* Buradan sonrası normal form gönderimi: tarayıcı panele gidiyor. */
+  });
+
+  /* ═══ 6 · PANELDEN DÖNEN HATA ═════════════════════════════════ */
+  var hata=Q.get('hata');
+  if(hata){
+    var boxE=D.getElementById('serr');
+    if(boxE){ boxE.textContent=ERRTXT[hata]||ERRTXT.sunucu; boxE.classList.add('on'); }
+    /* Şifre dışındaki alanlar geri dolduruluyor; şifre adres satırına
+       hiç yazılmadığı için burada da yok. */
+    ['isletme','eposta','telefon','website'].forEach(function(k){
+      var v=Q.get(k); if(!v) return;
+      var g=group(k); if(g) g.querySelector('input').value=v;
+    });
+    var p=Q.get('plan'); if(p) setPlan(p);
+    ev('signup_error',{reason:hata,language:LANG});
+    setTimeout(function(){
+      var s=D.getElementById('start');
+      if(s) s.scrollIntoView({block:'start'});
+    },60);
+  }
+})();`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BÖLÜMLER
+   ═══════════════════════════════════════════════════════════════ */
+
+/* 🔑 BEYAZ MARKA İŞARETİ. Sayfa yalnız koyu temada; `/assets/images/logo.png`
+   koyu zeminde görünmüyordu. v2 sayfalarının kullandığı beyaz işaret
+   dosyası burada da esas alındı. */
+const MARK = `<img src="/assets/v2/stoaix-mark-white.png" width="22" height="22" alt="" decoding="async">`;
+
+function head(t, o) {
+  const url = LINKS.origin + t.path;
+  const alt = LINKS.origin + t.altPath;
+  const other = t.lang === 'tr' ? 'en' : 'tr';
+  /* LCP adayı: video varsa poster, yoksa H1 metni (zaten anında). */
+  const preload = o.poster
+    ? `\n<link rel="preload" as="image" href="${o.poster}" fetchpriority="high">`
+    : '';
+  return `<!DOCTYPE html>
+<html lang="${t.lang}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>${esc(t.title)}</title>
+<meta name="description" content="${esc(t.desc)}">
+
+<!-- 🔑 NOINDEX BİLİNÇLİ. Bu sayfa yalnız ücretli trafiğe açılıyor.
+     Organik tanıtım sayfası /stoaix-ads; ikisi arama motorunda
+     birbiriyle yarışırsa ikisi de kaybeder. -->
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="${url}">
+<link rel="alternate" hreflang="${t.lang}" href="${url}">
+<link rel="alternate" hreflang="${other}" href="${alt}">
+<link rel="alternate" hreflang="x-default" href="${LINKS.origin}/reklam">
+
+<meta name="theme-color" content="#0A0A0B">
+<link rel="icon" type="image/png" href="/assets/v2/stoaix-mark-white.png">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="${url}">
+<meta property="og:title" content="${esc(t.title)}">
+<meta property="og:description" content="${esc(t.desc)}">
+<meta property="og:image" content="${LINKS.origin}/assets/og-image.png">
+<meta property="og:site_name" content="STOAIX">
+<meta property="og:locale" content="${t.ogLocale}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${esc(t.title)}">
+<meta name="twitter:description" content="${esc(t.desc)}">
+<meta name="twitter:image" content="${LINKS.origin}/assets/og-image.png">
+
+<!-- Panel ucu ile el sıkışma erken başlasın: form gönderimi oraya gidiyor. -->
+<link rel="preconnect" href="${LINKS.panel}" crossorigin>
+<link rel="dns-prefetch" href="//connect.facebook.net">${preload}${TURNSTILE_SITE_KEY ? `
+<link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>` : ''}
+
+<style>${CSS}</style>
+
+<!-- ═══ ÖLÇÜM ═══════════════════════════════════════════════════
+     🔑 PIXEL HEMEN, GA + CLARITY GECİKMELİ. Ana sayfada üçü birden
+     gecikmeli yükleniyor çünkü orada organik trafik var. Burada
+     ziyaretçinin her biri ücretli: Pixel geç yüklenirse bir kısmı
+     sayfadan çıkmadan önce hiç sayılmaz ve kampanya yanlış kişiye
+     optimize olur. async olduğu için boyamayı geciktirmiyor. -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','${PIXEL_ID}'); fbq('track','PageView');
+(function(){
+  var loaded=false;
+  function load(){
+    if(loaded)return; loaded=true;
+    var g=document.createElement('script'); g.async=true;
+    g.src='https://www.googletagmanager.com/gtag/js?id=${GA_ID}';
+    document.head.appendChild(g);
+    window.dataLayer=window.dataLayer||[];
+    function gtag(){dataLayer.push(arguments);} window.gtag=gtag;
+    gtag('js',new Date()); gtag('config','${GA_ID}');
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","${CLARITY_ID}");
+  }
+  var evs=['scroll','pointerdown','touchstart','keydown','click'];
+  function first(){evs.forEach(function(e){window.removeEventListener(e,first,{passive:true});});load();}
+  evs.forEach(function(e){window.addEventListener(e,first,{passive:true});});
+  if('requestIdleCallback' in window) requestIdleCallback(load,{timeout:2500});
+  else setTimeout(load,2500);
+})();
+</script>
+<noscript><img height="1" width="1" style="display:none" alt=""
+  src="https://www.facebook.com/tr?id=${PIXEL_ID}&ev=PageView&noscript=1"></noscript>
+</head>`;
+}
+
+function topBar(t) {
+  const trOn = t.lang === 'tr';
+  return `
+<a class="skip" href="#main">${esc(t.skip)}</a>
+<header class="top">
+  <a class="brand" href="/">${MARK}<b>STOAIX</b></a>
+  <div class="top-r">
+    <span class="lang">
+      <a href="/reklam" class="${trOn ? 'on' : ''}" hreflang="tr" data-keepq>TR</a><span class="sep" aria-hidden="true">/</span><a href="/en/reklam" class="${trOn ? '' : 'on'}" hreflang="en" data-keepq>EN</a>
+    </span>
+    <a class="top-cta" href="#start">${esc(t.navCta)}</a>
+  </div>
+</header>`;
+}
+
+function hero(t) {
+  return `
+<main id="main">
+<section class="hero">
+  <p class="eyebrow"><span class="dot" aria-hidden="true"></span>${esc(t.eyebrow)}</p>
+  <h1><span class="mut">${esc(t.h1a)}</span><br>${esc(t.h1b)}<span class="uline">${esc(t.h1u)}<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 14 C 40 4, 80 4, 110 10 S 170 16, 197 6" fill="none" stroke="#4F7BFF" stroke-width="6" stroke-linecap="round"/></svg></span>${esc(t.h1c)}</h1>
+  <p class="hsub">${esc(t.sub)}</p>
+</section>`;
+}
+
+function video(t, o) {
+  if (!o.hasVideo) {
+    /* Yer tutucu: taslaktaki "video henüz yok" durumu. Sayfa bu hâliyle
+       de eksiksiz çalışıyor; dosya `assets/vsl/` içine bırakılıp üretici
+       tekrar çalıştırıldığında oynatıcı otomatik geliyor. */
+    return `
+<div class="vwrap">
+  <div class="vbox" id="vbox">
+    ${o.poster ? `<img class="vposter" src="${o.poster}" alt="" decoding="async">` : ''}
+    <div class="vover" aria-hidden="true">
+      <span class="vplay"><svg viewBox="0 0 24 24" width="38%" height="38%" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></span>
+      <span class="vlbl">${esc(t.videoLbl)}</span>
+    </div>
+  </div>
+</div>`;
+  }
+  const vtt = o.vtt
+    ? `\n      <track kind="captions" srclang="${t.lang}" label="${t.lang.toUpperCase()}" src="${o.vtt}" default>`
+    : '';
+  const sources = [
+    o.webm ? `<source src="${o.webm}" type="video/webm">` : '',
+    o.mp4 ? `<source src="${o.mp4}" type="video/mp4">` : '',
+  ].filter(Boolean).join('\n      ');
+  return `
+<div class="vwrap">
+  <div class="vbox" id="vbox">
+    <!-- 🔑 preload="metadata": açılışta videonun tamamı değil yalnız
+         başlığı iniyor. Tam indirme oynatmaya basılınca başlıyor;
+         mobil veride ilk boyamayı geciktirmiyor. -->
+    <video id="vsl" ${o.poster ? `poster="${o.poster}"` : ''} preload="metadata"
+           playsinline webkit-playsinline muted controlslist="nodownload"
+           aria-label="${esc(t.videoAria)}">
+      ${sources}${vtt}
+    </video>
+    <button type="button" class="vover" id="vover">
+      <span class="vplay"><svg viewBox="0 0 24 24" width="38%" height="38%" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="#fff"/></svg></span>
+      <span class="vlbl">${esc(t.videoLbl)}</span>
+    </button>
+    <button type="button" class="vsound hide" id="vsound">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4z"/></svg>
+      ${esc(t.videoUnmute)}
+    </button>
+  </div>
+</div>`;
+}
+
+function heroCta(t) {
+  return `
+<div class="cta-wrap" id="heroCta">
+  <a class="btn" href="#start">${esc(t.cta)}<span class="ar" aria-hidden="true">→</span></a>
+  <p class="micro">${t.micro.map((m) => `<span><i aria-hidden="true">✓</i>${esc(m)}</span>`).join('')}</p>
+</div>`;
+}
+
+function reviews(t) {
+  return `
+<section class="wrap" style="padding-top:var(--sec)">
+  <div class="rate">
+    <div class="stars" aria-hidden="true">★★★★★</div>
+    <p>${esc(t.rating)}</p>
+  </div>
+  <div class="revs">
+    ${t.reviews.map((r) => `<figure class="rev">
+      <div class="s" aria-hidden="true">★★★★★</div>
+      <blockquote>“${esc(r.q)}”</blockquote>
+      <figcaption>
+        <span class="av" aria-hidden="true">${esc(r.i)}</span>
+        <span><span class="nm">${esc(r.n)}</span><br><span class="rl">${esc(r.r)}</span></span>
+      </figcaption>
+    </figure>`).join('\n    ')}
+  </div>
+</section>`;
+}
+
+function results(t) {
+  return `
+<section style="padding-top:var(--sec)">
+  <div class="wrap" style="padding-bottom:24px">
+    <p class="eye">${esc(t.resEyebrow)}</p>
+    <h2>${esc(t.resHead)}</h2>
+  </div>
+  <div class="cases">
+    ${t.cases.map((c) => `<article class="case">
+      <div class="shot"><img src="${c.img}" alt="${esc(c.s)}" loading="lazy" decoding="async" width="300" height="150"></div>
+      <div class="body">
+        <p class="lbl">${esc(t.cplRed)}</p>
+        <p class="red rakam">${esc(c.red)}</p>
+        <p class="nm">${esc(c.s)}</p>
+        <p class="mt rakam">${esc(c.meta)}</p>
+      </div>
+    </article>`).join('\n    ')}
+  </div>
+  <div class="wrap" style="padding-top:8px"><p class="foot-note">${esc(t.resFoot)}</p></div>
+</section>`;
+}
+
+function problem(t) {
+  return `
+<section class="inv">
+  <div style="max-width:1080px;margin:0 auto">
+    <h2>${esc(t.probHead)}</h2>
+    <div class="probs">
+      ${t.probs.map((p) => `<div class="prob">
+        <p class="k">${esc(p.k)}</p>
+        <p class="h">${esc(p.h)}</p>
+        <p class="d">${esc(p.d)}</p>
+      </div>`).join('\n      ')}
+    </div>
+    <p class="prob-ans">${esc(t.probAns)}</p>
+  </div>
+</section>`;
+}
+
+function features(t) {
+  return `
+<section class="wrap" style="padding-top:var(--sec)">
+  <p class="eye">${esc(t.featEyebrow)}</p>
+  <h2 style="margin-bottom:clamp(28px,5vw,44px);max-width:760px">${esc(t.featHead)}</h2>
+  <div class="feats">
+    ${t.feats.map((f) => `<div class="feat">
+      <span class="n rakam">${esc(f.n)}</span>
+      <div><p class="h">${esc(f.h)}</p><p class="d">${esc(f.d)}</p></div>
+    </div>`).join('\n    ')}
+  </div>
+</section>`;
+}
+
+function how(t) {
+  return `
+<section class="wrap" style="padding-top:var(--sec)">
+  <h2 style="margin-bottom:clamp(28px,5vw,44px)">${esc(t.howHead)}</h2>
+  <div class="steps">
+    ${t.steps.map((s) => `<div class="step">
+      <div class="hd"><span class="n rakam">${esc(s.n)}</span><span class="tm rakam">${esc(s.time)}</span></div>
+      <p class="h">${esc(s.h)}</p>
+      <p class="d">${esc(s.d)}</p>
+    </div>`).join('\n    ')}
+  </div>
+  <div class="chans">
+    <span class="lbl">${esc(t.chLbl)}</span>
+    ${t.channels.map((c) => `<span class="chan${c.live ? ' live' : ''}"><span class="cd" aria-hidden="true"></span>${esc(c.n)}<span class="st">${esc(c.s)}</span></span>`).join('\n    ')}
+  </div>
+</section>`;
+}
+
+/* ─── Teklif + gömülü kayıt formu ──────────────────────────────── */
+function offer(t) {
+  const fields = [
+    { k: 'isletme', type: 'text',     ac: 'organization', im: 'text',  err: 'req' },
+    { k: 'eposta',  type: 'email',    ac: 'email',        im: 'email', err: 'email' },
+    { k: 'sifre',   type: 'password', ac: 'new-password', im: 'text',  err: 'pass' },
+    { k: 'telefon', type: 'tel',      ac: 'tel',          im: 'tel',   err: 'phone' },
+    { k: 'website', type: 'url',      ac: 'url',          im: 'url',   err: 'req', opt: true },
+  ];
+  const labelKey = { isletme: 'biz', eposta: 'email', sifre: 'pass', telefon: 'phone', website: 'web' };
+
+  /* 🔑 İKİ AYRI HATA METNİ. "Boş bıraktın" ile "yanlış yazdın" aynı şey
+     değil: boş bir e-posta alanına "Geçerli bir e-posta girin" yazmak
+     kullanıcıya yazdığı şeyin hatalı olduğunu söyler — oysa henüz hiçbir
+     şey yazmamıştır. Metni script seçiyor. */
+  const inputs = fields.map((f) => {
+    const lk = labelKey[f.k];
+    return `<div class="fgroup" data-k="${f.k}">
+              <label class="flabel" for="f_${f.k}">${esc(t.fl[lk])}${f.opt ? `<span class="opt">${esc(t.optional)}</span>` : ''}</label>
+              <input id="f_${f.k}" name="${f.k}" type="${f.type}" placeholder="${esc(t.ph[lk])}"
+                     autocomplete="${f.ac}" inputmode="${f.im}"${f.opt ? '' : ' required'}>
+              <span class="ferr" data-bos="${esc(t.err.req)}" data-hatali="${esc(t.err[f.err])}">${esc(t.err[f.err])}</span>
+            </div>`;
+  }).join('\n            ');
+
+  const planBtns = t.plans.map((p, i) => `<button type="button" class="pick" data-plan="${p.k}"
+                  aria-pressed="${p.pop ? 'true' : 'false'}">
+                  <span class="pn">${esc(p.name)}</span>
+                  <span class="pp rakam">${esc(p.price)}${esc(p.per)}</span>
+                </button>`).join('\n                ');
+
+  const defaultPlan = (t.plans.find((p) => p.pop) || t.plans[0]).k;
+
+  return `
+<section class="offer" id="start">
+  <div class="offer-in">
+    <div>
+      <p class="tag">${esc(t.offerTag)}</p>
+      <div class="price-big"><span class="v rakam">£10</span><span class="p">${esc(t.offerPer)}</span></div>
+      <p class="offer-sub">${esc(t.offerSub)}</p>
+      <ul class="incl">
+        ${t.incl.map((i) => `<li><i aria-hidden="true">✓</i><span>${esc(i)}</span></li>`).join('\n        ')}
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>${esc(t.formHead)}</h3>
+      <p class="sub">${esc(t.formSub)}</p>
+
+      <!-- 🔴 GERÇEK FORM POST'U, fetch DEĞİL. Gerekçe dosya başındaki
+           "FORM NEREYE GİDİYOR" notunda: panel farklı bir origin, fetch
+           CORS kurulumu isterdi; form POST'u istemiyor. -->
+      <form id="kayitForm" method="post" action="${LINKS.kayitPost}" novalidate>
+        <p class="serr" id="serr" role="alert"></p>
+
+        <div class="fgroup">
+          <span class="flabel">${esc(t.planLbl)}</span>
+          <div class="picks">
+                ${planBtns}
+          </div>
+        </div>
+
+            ${inputs}
+
+        <button type="button" class="consent" id="consent" aria-pressed="false">
+          <span class="box" aria-hidden="true">✓</span>
+          <span class="txt">${t.consent.map((c) => `<span>${esc(c)}</span>`).join('')}</span>
+        </button>
+        <span id="consentErr">${esc(t.errConsent)}</span>
+${TURNSTILE_SITE_KEY ? `
+        <!-- Cloudflare Turnstile — örtük render. Jetonu forma
+             \`cf-turnstile-response\` gizli alanı olarak KENDİSİ ekliyor,
+             bizim taşımamıza gerek yok. interaction-only: gerçekten
+             şüpheli bir istek olmadıkça ekranda hiçbir şey görünmüyor. -->
+        <div class="cf-turnstile" data-sitekey="${TURNSTILE_SITE_KEY}"
+             data-appearance="interaction-only" data-callback="stxTurnstileOk"
+             data-error-callback="stxTurnstileErr" data-language="${t.lang}"></div>` : ''}
+
+        <button type="submit" class="submit" id="submitBtn">${esc(t.formCta)}<span class="ar" aria-hidden="true">→</span></button>
+        <p class="fine">${esc(t.offerFine)}</p>
+
+        <input type="hidden" name="plan"   id="planInput"    value="${defaultPlan}">
+        <input type="hidden" name="onay"   id="consentInput" value="">
+        <input type="hidden" name="dil"    value="${t.lang}">
+        <input type="hidden" name="kaynak" value="vsl">
+        <input type="hidden" name="donus"  value="${LINKS.origin}${t.path}">
+        <input type="hidden" name="utm_source"   id="src_utm_source">
+        <input type="hidden" name="utm_medium"   id="src_utm_medium">
+        <input type="hidden" name="utm_campaign" id="src_utm_campaign">
+        <input type="hidden" name="utm_content"  id="src_utm_content">
+        <input type="hidden" name="utm_term"     id="src_utm_term">
+        <input type="hidden" name="fbclid" id="src_fbclid">
+        <input type="hidden" name="fbc"    id="src_fbc">
+        <input type="hidden" name="fbp"    id="src_fbp">
+        <input type="hidden" name="eid"    id="src_eid">
+      </form>
+    </div>
+  </div>
+</section>`;
+}
+
+function pricing(t) {
+  return `
+<section class="pricing" id="pricing">
+  <div class="hd">
+    <p class="eye">${esc(t.priceEyebrow)}</p>
+    <h2>${esc(t.priceHead)}</h2>
+    <p class="psub">${esc(t.priceSub)}</p>
+  </div>
+  <div class="plans">
+    ${t.plans.map((p) => `<div class="plan${p.pop ? ' pop' : ''}">
+      ${p.pop ? `<span class="badge">${esc(t.popular)}</span>` : ''}
+      <p class="nm">${esc(p.name)}</p>
+      <div class="pr"><span class="v rakam">${esc(p.price)}</span><span class="u">${esc(p.per)}</span></div>
+      <p class="ds">${esc(p.desc)}</p>
+      <div class="bud"><span class="k">${esc(t.budgetLbl)}</span><span class="v">${esc(p.budget)}</span></div>
+      <ul>
+        ${p.rows.map(([txt, on]) => `<li class="${on ? '' : 'off'}"><i aria-hidden="true">${on ? '✓' : '—'}</i><span>${esc(txt)}</span></li>`).join('\n        ')}
+      </ul>
+      <button type="button" class="go" data-plan="${p.k}" data-jump>${esc(t.planCta)}<span class="ar" aria-hidden="true">→</span></button>
+    </div>`).join('\n    ')}
+  </div>
+  <p class="price-foot">${esc(t.priceFoot)}</p>
+</section>`;
+}
+
+function faq(t) {
+  /* 🔑 <details> KULLANILDI, JS'li akordeon değil: JS yüklenmeden de
+     açılıp kapanıyor ve tarayıcının kendi klavye/erişilebilirlik
+     davranışı bedava geliyor. İlk soru açık başlıyor. */
+  return `
+<section class="faq">
+  <h2>${esc(t.faqHead)}</h2>
+  ${t.faq.map((q, i) => `<details class="qa"${i === 0 ? ' open' : ''}>
+    <summary>${esc(q.q)}</summary>
+    <div class="ans">${esc(q.a)}</div>
+  </details>`).join('\n  ')}
+</section>`;
+}
+
+function final(t) {
+  return `
+<section class="final">
+  <h2>${esc(t.finalHead)}</h2>
+  <p>${esc(t.finalSub)}</p>
+  <a class="btn" href="#start">${esc(t.cta)}<span class="ar" aria-hidden="true">→</span></a>
+</section>
+</main>
+
+<footer class="foot">
+  <span>${esc(t.copyright)}</span>
+  <nav>
+    ${t.legal.map((l) => `<a href="${l.h}">${esc(l.t)}</a>`).join('')}
+    <a href="${LINKS.login}" data-keepq>${esc(t.login)}</a>
+  </nav>
+</footer>
+
+<div class="sticky" id="sticky">
+  <div class="in">
+    <div class="pz"><div class="v rakam">£10</div><div class="p">${esc(t.stickyPer)}</div></div>
+    <a href="#start">${esc(t.stickyCta)}<span aria-hidden="true">→</span></a>
+  </div>
+</div>`;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BİRLEŞTİR
+   ═══════════════════════════════════════════════════════════════ */
+function page(t, o) {
+  return [
+    head(t, o),
+    '<body>',
+    topBar(t),
+    hero(t),
+    video(t, o),
+    heroCta(t),
+    reviews(t),
+    results(t),
+    problem(t),
+    features(t),
+    how(t),
+    offer(t),
+    pricing(t),
+    faq(t),
+    final(t),
+    `<script>${script(t, o)}</script>`,
+    '</body>',
+    '</html>',
+    '',
+  ].join('\n');
+}
+
+/* ─── Video varlığını çöz ──────────────────────────────────────── */
+const mp4 = VIDEO_URL || (has(VIDEO_MP4) ? abs(VIDEO_MP4) : '');
+const webm = VIDEO_URL ? '' : (has(VIDEO_WEBM) ? abs(VIDEO_WEBM) : '');
+const poster = has(VIDEO_POSTER) ? abs(VIDEO_POSTER) : '';
+const hasVideo = !!(mp4 || webm);
+
+if (!existsSync(join(ROOT, VIDEO_DIR))) mkdirSync(join(ROOT, VIDEO_DIR), { recursive: true });
+
+const out = [
+  ['tr', 'reklam.html'],
+  ['en', 'reklam-en.html'],
+];
+
+for (const [lang, file] of out) {
+  const t = COPY[lang];
+  const vtt = has(VIDEO_VTT[lang]) ? abs(VIDEO_VTT[lang]) : '';
+  const html = page(t, { hasVideo, mp4, webm, poster, vtt, autoplay: VIDEO_AUTOPLAY,
+                         turnstile: !!TURNSTILE_SITE_KEY });
+  writeFileSync(join(ROOT, file), html, 'utf8');
+  console.log(`✓ ${file}  (${(html.length / 1024).toFixed(1)} KB)`);
+}
+
+if (!TURNSTILE_SITE_KEY) {
+  console.warn(
+    [
+      '',
+      '⚠  TURNSTILE_SITE_KEY BOS (tools/build-vsl.mjs).',
+      '   Panelde TURNSTILE_SECRET_KEY tanimliysa /kayit/basla ucu funnel',
+      '   formundan gelen HER istegi "bot" diye reddeder.',
+      '   Site anahtarini panelin NEXT_PUBLIC_TURNSTILE_SITE_KEY degerinden',
+      '   kopyalayip bu sabite yazin, sonra `npm run vsl` ile tekrar uretin.',
+      '',
+    ].join(String.fromCharCode(10))
+  );
+}
+
+console.log(
+  hasVideo
+    ? `✓ video bağlandı: ${mp4 || webm}${poster ? ` · poster: ${poster}` : ' · poster YOK'}`
+    : `· video yok — yer tutucu çizildi. Dosyayı ${VIDEO_MP4} olarak bırakıp bu betiği tekrar çalıştırın.`
+);
