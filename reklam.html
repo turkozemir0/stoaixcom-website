@@ -251,6 +251,13 @@ input[type=text],input[type=email],input[type=password],input[type=tel],input[ty
   padding:14px;font-size:16px;font-family:inherit;outline:none;border-radius:0}
 input:focus{border-color:var(--acc)}
 .fgroup.bad input{border-color:var(--bad)}
+/* Şifre göster/gizle — alanın içinde, dokunma hedefi 44px'in üstünde */
+.pwrap{position:relative;display:block}
+.pwrap input{padding-right:54px}
+.preveal{position:absolute;right:1px;top:1px;bottom:1px;width:50px;display:flex;
+         align-items:center;justify-content:center;background:transparent;border:0;
+         color:var(--d55);cursor:pointer;padding:0}
+.preveal:hover{color:var(--fg)}
 .ferr{font-size:12.5px;color:var(--bad);display:none}
 .fgroup.bad .ferr{display:block}
 .consent{display:flex;gap:12px;align-items:flex-start;margin-top:6px;padding:14px;
@@ -668,8 +675,16 @@ fbq('init','1426016022664547'); fbq('track','PageView');
             </div>
             <div class="fgroup" data-k="sifre">
               <label class="flabel" for="f_sifre">Şifre oluştur</label>
-              <input id="f_sifre" name="sifre" type="password" placeholder="En az 8 karakter"
+              <span class="pwrap">
+                <input id="f_sifre" name="sifre" type="password" placeholder="En az 8 karakter"
                      autocomplete="new-password" inputmode="text" required>
+                <button type="button" class="preveal" id="pwToggle"
+                        aria-label="Şifreyi göster" aria-pressed="false"
+                        data-goster="Şifreyi göster" data-gizle="Şifreyi gizle">
+                  <svg class="eye-on" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
+                  <svg class="eye-off" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" hidden><path d="M2 12s3.6-6.5 10-6.5c1.9 0 3.5.6 4.9 1.4M22 12s-3.6 6.5-10 6.5c-1.9 0-3.6-.6-5-1.4"/><path d="M4 4l16 16"/></svg>
+                </button>
+              </span>
               <span class="ferr" data-bos="Zorunlu alan" data-hatali="En az 8 karakter">En az 8 karakter</span>
             </div>
             <div class="fgroup" data-k="telefon">
@@ -680,7 +695,7 @@ fbq('init','1426016022664547'); fbq('track','PageView');
             </div>
             <div class="fgroup" data-k="website">
               <label class="flabel" for="f_website">Web sitesi<span class="opt">İsteğe bağlı</span></label>
-              <input id="f_website" name="website" type="url" placeholder="www.siteniz.com"
+              <input id="f_website" name="website" type="text" placeholder="www.siteniz.com"
                      autocomplete="url" inputmode="url">
               <span class="ferr" data-bos="Zorunlu alan" data-hatali="Zorunlu alan">Zorunlu alan</span>
             </div>
@@ -1071,8 +1086,13 @@ fbq('init','1426016022664547'); fbq('track','PageView');
       var g=group(k); if(!g) return;
       var inp=g.querySelector('input');
       var v=(inp.value||'').trim();
-      var bos=F[k].req && !v;
-      var hatali=!bos && v && F[k].test && !F[k].test(v);
+      var bos=!!(F[k].req && !v);
+      /* 🔴 ÇİFT ÜNLEM ŞART. F[k].test tanımsız olan alanlarda (isletme,
+         website) bu ifade undefined dönüyordu; classList.toggle ikinci
+         argümanı undefined gelince YOK SAYIP sınıfı TERS ÇEVİRİYOR —
+         dolu alan "Zorunlu alan" diye işaretleniyor, if(bad) falsy
+         olduğu için gönderim de engellenmiyordu. Canlıda yaşandı. */
+      var hatali=!!(!bos && v && F[k].test && !F[k].test(v));
       var bad=bos||hatali;
       var msg=g.querySelector('.ferr');
       if(bad && msg) msg.textContent=msg.getAttribute(bos?'data-bos':'data-hatali');
@@ -1083,6 +1103,23 @@ fbq('init','1426016022664547'); fbq('track','PageView');
     consent.classList.toggle('bad',!cOk);
     if(!cOk) ok=false;
     return ok;
+  }
+
+  /* Şifreyi göster/gizle. Yazım hatasını kullanıcının kendisi görüyor;
+     ikinci bir şifre alanı eklemeden aynı işi yapıyor. */
+  var pwBtn=D.getElementById('pwToggle');
+  if(pwBtn){
+    pwBtn.addEventListener('click',function(){
+      var inp=D.getElementById('f_sifre');
+      var acik=inp.type==='text';
+      inp.type=acik?'password':'text';
+      pwBtn.setAttribute('aria-pressed',acik?'false':'true');
+      pwBtn.setAttribute('aria-label',pwBtn.getAttribute(acik?'data-goster':'data-gizle'));
+      pwBtn.querySelector('.eye-on').hidden=!acik;
+      pwBtn.querySelector('.eye-off').hidden=acik;
+      /* Odağı alanda bırak: düğmeye basınca imleç kaybolmasın. */
+      inp.focus();
+    });
   }
 
   /* Alan düzeltilince hata işareti anında kalksın — gönderime kadar

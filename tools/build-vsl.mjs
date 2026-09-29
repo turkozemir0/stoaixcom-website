@@ -325,6 +325,13 @@ input[type=text],input[type=email],input[type=password],input[type=tel],input[ty
   padding:14px;font-size:16px;font-family:inherit;outline:none;border-radius:0}
 input:focus{border-color:var(--acc)}
 .fgroup.bad input{border-color:var(--bad)}
+/* Şifre göster/gizle — alanın içinde, dokunma hedefi 44px'in üstünde */
+.pwrap{position:relative;display:block}
+.pwrap input{padding-right:54px}
+.preveal{position:absolute;right:1px;top:1px;bottom:1px;width:50px;display:flex;
+         align-items:center;justify-content:center;background:transparent;border:0;
+         color:var(--d55);cursor:pointer;padding:0}
+.preveal:hover{color:var(--fg)}
 .ferr{font-size:12.5px;color:var(--bad);display:none}
 .fgroup.bad .ferr{display:block}
 .consent{display:flex;gap:12px;align-items:flex-start;margin-top:6px;padding:14px;
@@ -711,8 +718,13 @@ ${autoplay ? `
       var g=group(k); if(!g) return;
       var inp=g.querySelector('input');
       var v=(inp.value||'').trim();
-      var bos=F[k].req && !v;
-      var hatali=!bos && v && F[k].test && !F[k].test(v);
+      var bos=!!(F[k].req && !v);
+      /* 🔴 ÇİFT ÜNLEM ŞART. F[k].test tanımsız olan alanlarda (isletme,
+         website) bu ifade undefined dönüyordu; classList.toggle ikinci
+         argümanı undefined gelince YOK SAYIP sınıfı TERS ÇEVİRİYOR —
+         dolu alan "Zorunlu alan" diye işaretleniyor, if(bad) falsy
+         olduğu için gönderim de engellenmiyordu. Canlıda yaşandı. */
+      var hatali=!!(!bos && v && F[k].test && !F[k].test(v));
       var bad=bos||hatali;
       var msg=g.querySelector('.ferr');
       if(bad && msg) msg.textContent=msg.getAttribute(bos?'data-bos':'data-hatali');
@@ -723,6 +735,23 @@ ${autoplay ? `
     consent.classList.toggle('bad',!cOk);
     if(!cOk) ok=false;
     return ok;
+  }
+
+  /* Şifreyi göster/gizle. Yazım hatasını kullanıcının kendisi görüyor;
+     ikinci bir şifre alanı eklemeden aynı işi yapıyor. */
+  var pwBtn=D.getElementById('pwToggle');
+  if(pwBtn){
+    pwBtn.addEventListener('click',function(){
+      var inp=D.getElementById('f_sifre');
+      var acik=inp.type==='text';
+      inp.type=acik?'password':'text';
+      pwBtn.setAttribute('aria-pressed',acik?'false':'true');
+      pwBtn.setAttribute('aria-label',pwBtn.getAttribute(acik?'data-goster':'data-gizle'));
+      pwBtn.querySelector('.eye-on').hidden=!acik;
+      pwBtn.querySelector('.eye-off').hidden=acik;
+      /* Odağı alanda bırak: düğmeye basınca imleç kaybolmasın. */
+      inp.focus();
+    });
   }
 
   /* Alan düzeltilince hata işareti anında kalksın — gönderime kadar
@@ -1105,7 +1134,11 @@ function offer(t) {
     { k: 'eposta',  type: 'email',    ac: 'email',        im: 'email', err: 'email' },
     { k: 'sifre',   type: 'password', ac: 'new-password', im: 'text',  err: 'pass' },
     { k: 'telefon', type: 'tel',      ac: 'tel',          im: 'tel',   err: 'phone' },
-    { k: 'website', type: 'url',      ac: 'url',          im: 'url',   err: 'req', opt: true },
+    /* 🔑 `type="url"` DEĞİL. Tarayıcı `type=url` alanında şema (https://)
+       zorunlu tutuyor; bizim yer tutucumuz olan `www.siteniz.com` bile
+       "geçersiz URL" sayılıyordu. Alan isteğe bağlı ve serbest metin
+       kabul ediyor — `inputmode="url"` klavyeyi yine doğru açıyor. */
+    { k: 'website', type: 'text',     ac: 'url',          im: 'url',   err: 'req', opt: true },
   ];
   const labelKey = { isletme: 'biz', eposta: 'email', sifre: 'pass', telefon: 'phone', website: 'web' };
 
@@ -1113,12 +1146,30 @@ function offer(t) {
      değil: boş bir e-posta alanına "Geçerli bir e-posta girin" yazmak
      kullanıcıya yazdığı şeyin hatalı olduğunu söyler — oysa henüz hiçbir
      şey yazmamıştır. Metni script seçiyor. */
+  /* 🔑 ŞİFRE TEKRARI YERİNE "GÖSTER" DÜĞMESİ. Panelin kendi kayıt
+     ekranında iki şifre alanı var; orada doğru karar, çünkü oraya
+     gelen kullanıcı zaten ürüne karar vermiş. Burası ücretli reklam
+     trafiği alan bir huni: her ek alan dönüşümden götürüyor. Aynı
+     yazım hatası sınıfını tek bir görünürlük düğmesi de kapatıyor ve
+     hiçbir alan eklemiyor. Ayrıntılı gerekçe için depo notlarına bak. */
   const inputs = fields.map((f) => {
     const lk = labelKey[f.k];
+    const input = `<input id="f_${f.k}" name="${f.k}" type="${f.type}" placeholder="${esc(t.ph[lk])}"
+                     autocomplete="${f.ac}" inputmode="${f.im}"${f.opt ? '' : ' required'}>`;
+    const govde = f.k === 'sifre'
+      ? `<span class="pwrap">
+                ${input}
+                <button type="button" class="preveal" id="pwToggle"
+                        aria-label="${esc(t.pwShow)}" aria-pressed="false"
+                        data-goster="${esc(t.pwShow)}" data-gizle="${esc(t.pwHide)}">
+                  <svg class="eye-on" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>
+                  <svg class="eye-off" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true" hidden><path d="M2 12s3.6-6.5 10-6.5c1.9 0 3.5.6 4.9 1.4M22 12s-3.6 6.5-10 6.5c-1.9 0-3.6-.6-5-1.4"/><path d="M4 4l16 16"/></svg>
+                </button>
+              </span>`
+      : input;
     return `<div class="fgroup" data-k="${f.k}">
               <label class="flabel" for="f_${f.k}">${esc(t.fl[lk])}${f.opt ? `<span class="opt">${esc(t.optional)}</span>` : ''}</label>
-              <input id="f_${f.k}" name="${f.k}" type="${f.type}" placeholder="${esc(t.ph[lk])}"
-                     autocomplete="${f.ac}" inputmode="${f.im}"${f.opt ? '' : ' required'}>
+              ${govde}
               <span class="ferr" data-bos="${esc(t.err.req)}" data-hatali="${esc(t.err[f.err])}">${esc(t.err[f.err])}</span>
             </div>`;
   }).join('\n            ');
