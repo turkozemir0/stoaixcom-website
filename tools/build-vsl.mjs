@@ -70,8 +70,14 @@ const CAPI_URL = '/api/auth/capi';
    Site anahtarı GİZLİ DEĞİL (adı üstünde, tarayıcıya iniyor); panelin
    Vercel ortamındaki `NEXT_PUBLIC_TURNSTILE_SITE_KEY` değerinin aynısı.
 
-   Boş bırakılırsa widget hiç çizilmez ve üretici uyarı basar. */
-const TURNSTILE_SITE_KEY = '';
+   Boş bırakılırsa widget hiç çizilmez ve üretici uyarı basar.
+
+   🔴 BU BOŞKEN CANLIDA KAYIT ALINAMADI. Panelde her iki anahtar da
+   tanımlıydı; funnel formu jetonsuz gittiği için uç haklı olarak
+   "Güvenlik doğrulaması geçilemedi" dönüyordu. Değer panelin
+   dağıtılmış paketinden alındı (site anahtarı zaten tarayıcıya inen
+   genel bir değer, gizli değil). */
+const TURNSTILE_SITE_KEY = '0x4AAAAAAFCn94-S1Al9bydE';
 
 /* ─── Video ─────────────────────────────────────────────────────
    Dosyayı `assets/vsl/` içine bırakmak yeterli; üretici burada varlığını

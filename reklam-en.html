@@ -34,6 +34,8 @@
 <link rel="preconnect" href="https://pilot.stoaix.com" crossorigin>
 <link rel="dns-prefetch" href="//connect.facebook.net">
 <link rel="preload" as="image" href="/assets/vsl/poster.webp" fetchpriority="high">
+<link rel="preconnect" href="https://challenges.cloudflare.com" crossorigin>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <style>:root{
   --bg:#0A0A0B; --fg:#F2F2F0; --panel:#141416; --panel2:#0F0F11;
@@ -689,6 +691,13 @@ fbq('init','1426016022664547'); fbq('track','PageView');
         </button>
         <span id="consentErr">Please accept to continue</span>
 
+        <!-- Cloudflare Turnstile — örtük render. Jetonu forma
+             `cf-turnstile-response` gizli alanı olarak KENDİSİ ekliyor,
+             bizim taşımamıza gerek yok. interaction-only: gerçekten
+             şüpheli bir istek olmadıkça ekranda hiçbir şey görünmüyor. -->
+        <div class="cf-turnstile" data-sitekey="0x4AAAAAAFCn94-S1Al9bydE"
+             data-appearance="interaction-only" data-callback="stxTurnstileOk"
+             data-error-callback="stxTurnstileErr" data-language="en"></div>
 
         <button type="submit" class="submit" id="submitBtn">Create account<span class="ar" aria-hidden="true">→</span></button>
         <p class="fine">Secure checkout · Cancel anytime during the trial</p>
@@ -1094,7 +1103,30 @@ fbq('init','1426016022664547'); fbq('track','PageView');
     serrBox.classList.add('on');
   }
 
-  function jetonVar(){ return true; }
+  /* Turnstile jetonu form gönderilirken hazır olmayabilir (widget
+     arka planda çözüyor). Hazır değilse gönderimi BEKLETİYORUZ ve
+     jeton gelince kendimiz tetikliyoruz — kullanıcı düğmeye ikinci
+     kez basmak zorunda kalmasın. */
+  function jetonVar(){
+    var i=form.querySelector('[name="cf-turnstile-response"]');
+    return !!(i && i.value);
+  }
+  W.stxTurnstileOk=function(){
+    if(!bekleyen) return;
+    bekleyen=false;
+    /* Düğme yukarıda devre dışı bırakılmıştı; requestSubmit gönderen
+       olarak onu kullanıyor, devre dışıyken gönderim sessizce düşebilir.
+       Bir an için geri açıp hemen ardından gerçek gönderime giriyoruz. */
+    var b=D.getElementById('submitBtn');
+    if(b) b.disabled=false;
+    if(form.requestSubmit) form.requestSubmit(); else form.submit();
+  };
+  W.stxTurnstileErr=function(){
+    bekleyen=false; busy=false;
+    var b=D.getElementById('submitBtn');
+    if(b){ b.disabled=false; b.firstChild.nodeValue="Create account"; }
+    hataGoster('bot');
+  };
 
 
   form.addEventListener('submit',function(e){
