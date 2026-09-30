@@ -1142,7 +1142,12 @@ function offer(t) {
     { k: 'isletme', type: 'text',     ac: 'organization', im: 'text',  err: 'req' },
     { k: 'eposta',  type: 'email',    ac: 'email',        im: 'email', err: 'email' },
     { k: 'sifre',   type: 'password', ac: 'new-password', im: 'text',  err: 'pass' },
-    { k: 'telefon', type: 'tel',      ac: 'tel',          im: 'tel',   err: 'phone' },
+    /* 🔑 TELEFON İSTEĞE BAĞLI — ürünle hizalandı. Panelin kendi kayıt
+       ekranı bu alanı "İsteğe bağlı" diye işaretliyor ve `/api/kayit-ol`
+       da boş kabul ediyor; funnel'da zorunlu tutmak, ücretli reklam
+       trafiğine ürünün istemediği bir engel koymaktı. Türkiye'de telefon
+       istemek ayrıca "aranacak mıyım" tereddüdü yaratıyor. */
+    { k: 'telefon', type: 'tel',      ac: 'tel',          im: 'tel',   err: 'phone', opt: true },
     /* 🔑 `type="url"` DEĞİL. Tarayıcı `type=url` alanında şema (https://)
        zorunlu tutuyor; bizim yer tutucumuz olan `www.siteniz.com` bile
        "geçersiz URL" sayılıyordu. Alan isteğe bağlı ve serbest metin
