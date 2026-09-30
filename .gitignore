@@ -1,2 +1,6 @@
 .DS_Store
 .vercel
+.env*
+
+# Clarity API ham yanitlari - analiz ciktisi, depoya girmez
+_clarity/

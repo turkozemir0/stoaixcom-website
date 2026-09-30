@@ -117,7 +117,9 @@ h1 .mut{color:rgba(242,242,240,.5)}
        background:var(--acc);display:flex;align-items:center;justify-content:center;
        box-shadow:0 0 0 12px rgba(79,123,255,.18)}
 .vlbl{font-size:13px;font-weight:600;color:var(--d75);background:rgba(10,10,11,.7);padding:6px 10px}
-.vsound{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:3;
+/* 🔑 58px, YERLI KONTROL CUBUGUNU ASIYOR. 16px'te düğme oynatıcının kendi
+   çubuğunun üstüne biniyor ve ikisi birbirini tıklanamaz kılıyordu. */
+.vsound{position:absolute;left:50%;bottom:58px;transform:translateX(-50%);z-index:3;
         display:inline-flex;align-items:center;gap:8px;background:rgba(10,10,11,.82);
         color:#fff;border:1px solid var(--l20);padding:11px 16px;font-size:14px;
         font-weight:640;cursor:pointer;white-space:nowrap}
@@ -420,8 +422,15 @@ fbq('init','1426016022664547'); fbq('track','PageView');
     <!-- 🔑 preload="metadata": açılışta videonun tamamı değil yalnız
          başlığı iniyor. Tam indirme oynatmaya basılınca başlıyor;
          mobil veride ilk boyamayı geciktirmiyor. -->
+    <!-- 🔴 CONTROLS NITELIGI SART — yokluğu CANLIDA ÖLÇÜLDÜ. Sessiz otomatik
+         başlatma sonrası kaplama gizleniyor ve geriye hiçbir kontrol
+         kalmıyordu: duraklatmak, geri sarmak ya da sesi açmak için
+         videoya dokunan kullanıcıda HİÇBİR ŞEY olmuyordu. Clarity ilk
+         gün bunu yakaladı — tek bir reklam ziyaretçisi aynı sayfada
+         15 "ölü tıklama" yaptı. Üç dakikalık bir VSL'de duraklatamamak
+         doğrudan terk sebebi. -->
     <video id="vsl" poster="/assets/vsl/poster.webp" preload="metadata"
-           playsinline webkit-playsinline muted controlslist="nodownload"
+           playsinline webkit-playsinline muted controls controlslist="nodownload"
            aria-label="STOAIX Ads tanıtım videosu">
       <source src="/assets/vsl/stoaix-ads-vsl.mp4" type="video/mp4">
     </video>
