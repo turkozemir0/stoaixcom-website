@@ -391,7 +391,31 @@ input:focus{border-color:var(--acc)}
      optimize olur. async olduğu için boyamayı geciktirmiyor. -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1426016022664547'); fbq('track','PageView');
+/* 🔑 KALICI ANONİM KİMLİK — Meta eşleşme kalitesini yükseltiyor.
+   Ölçüldü (6 Eki, Meta Event Match Quality): ViewContent compositeScore
+   5,8/10. Elimizdeki anahtarlar yalnız IP (%100), user-agent (%100),
+   fbp (%75), fbc (%75); e-posta yok çünkü ViewContent form öncesi bir
+   olay. `external_id` Meta'nın en çok ağırlık verdiği anahtarlardan ve
+   anonim olayda kullanılabilen tek güçlü ek sinyal.
+
+   🔴 AYNI HAM DEĞER İKİ KANALA DA GİDİYOR. Piksel Advanced Matching
+   ile kendisi hash'liyor, sunucu `fb-capi.js` içinde SHA256 yapıyor.
+   Değerler bayt bayt aynı olmazsa Meta iki kaydı eşleştiremez ve ek
+   sinyal boşa gider. base36 üretildiği için zaten küçük harf —
+   sunucudaki `.toLowerCase()` normalizasyonu bu yüzden çakışmıyor.
+
+   localStorage kapalıysa (gizli sekme, katı çerez ayarı) sessizce boş
+   dönüyor; olay yine gidiyor, yalnız bu anahtar eksik kalıyor. */
+window.__stxEid=(function(){
+  try{
+    var k='stx_eid', v=localStorage.getItem(k);
+    if(!v){ v=Date.now().toString(36)+Math.random().toString(36).slice(2,12); localStorage.setItem(k,v); }
+    return v;
+  }catch(e){ return '' }
+})();
+if(window.__stxEid) fbq('init','1426016022664547',{external_id:window.__stxEid});
+else fbq('init','1426016022664547');
+fbq('track','PageView');
 (function(){
   var loaded=false;
   function load(){
@@ -928,12 +952,18 @@ fbq('init','1426016022664547'); fbq('track','PageView');
     });
   });
 
-  /* Sunucu tarafı Meta olayı. Pixel ile AYNI event_id gidiyor; Meta iki
-     kaydı tekilleştiriyor, dönüşüm iki kez sayılmıyor. */
+  /* Sunucu tarafı Meta olayı.
+     ⚠️ Lead'de piksel ile AYNI event_id gidiyor; Meta iki kaydı
+     tekilleştiriyor, dönüşüm iki kez sayılmıyor. ViewContent'te piksel
+     karşılığı YOK (bkz. video ilerleme bloğu) — o olay yalnız buradan,
+     sunucudan gidiyor; tekilleştirilecek ikinci kayıt da yok.
+
+     `externalId` iki kanalda da aynı ham değer; sunucu SHA256'lıyor. */
   function capi(eventName,eventId,extra){
     var body=JSON.stringify(Object.assign({
       eventName:eventName, eventId:eventId,
-      sourceUrl:location.href, fbc:fbc(), fbp:cookie('_fbp')
+      sourceUrl:location.href, fbc:fbc(), fbp:cookie('_fbp'),
+      externalId:W.__stxEid||''
     },extra||{}));
     try{
       if(navigator.sendBeacon){

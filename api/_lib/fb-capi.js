@@ -11,7 +11,7 @@ function sha256(value) {
 export async function sendEvent({
   eventName, email, firstName, lastName,
   value, currency = 'USD', sourceUrl, eventId,
-  clientIp, clientUserAgent, fbc, fbp,
+  clientIp, clientUserAgent, fbc, fbp, externalId,
   contentName, contentCategory, contentIds,
 }) {
   const accessToken = process.env.FB_ACCESS_TOKEN
@@ -24,6 +24,13 @@ export async function sendEvent({
     em: email ? [sha256(email)] : undefined,
     fn: firstName ? [sha256(firstName)] : undefined,
     ln: lastName ? [sha256(lastName)] : undefined,
+    // 🔑 Anonim olaylarda (ViewContent) e-posta yok; `external_id` o
+    //   boşluğu dolduran tek güçlü anahtar. Tarayıcıdaki piksel AYNI ham
+    //   değeri Advanced Matching ile gönderiyor ve kendisi hash'liyor —
+    //   buradaki hash onunla birebir aynı çıkmazsa Meta iki kaydı
+    //   eşleştiremez. Değer base36 üretildiği için `sha256`'nın
+    //   `toLowerCase()` normalizasyonu sonucu değiştirmiyor.
+    external_id: externalId ? [sha256(externalId)] : undefined,
     client_ip_address: clientIp || undefined,
     client_user_agent: clientUserAgent || undefined,
     fbc: fbc || undefined,

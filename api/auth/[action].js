@@ -363,6 +363,10 @@ async function handleCapi(req, res) {
       contentCategory: b.contentCategory ? String(b.contentCategory).slice(0, 60) : undefined,
       fbc: b.fbc ? String(b.fbc).slice(0, 200) : undefined,
       fbp: b.fbp ? String(b.fbp).slice(0, 200) : undefined,
+      // Tarayıcıdaki kalıcı anonim kimlik (`window.__stxEid`). Piksel aynı
+      // ham değeri Advanced Matching ile gönderiyor; eşleşmenin tutması
+      // için burada DEĞİŞTİRİLMEDEN geçiyor, hash'i `fb-capi.js` atıyor.
+      externalId: b.externalId ? String(b.externalId).slice(0, 100) : undefined,
       clientIp: getClientIp(req),
       clientUserAgent: getUserAgent(req),
     })
