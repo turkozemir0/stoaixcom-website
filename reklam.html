@@ -133,6 +133,23 @@ h1 .mut{color:rgba(242,242,240,.5)}
      letter-spacing:-.01em;box-shadow:0 12px 40px rgba(79,123,255,.35);min-height:44px}
 .btn:hover{background:var(--acc-h);opacity:1}
 .btn .ar{font-size:1.2em}
+/* ── ikincil CTA: tanisma gorusmesi ───────────────────────────
+   Self-serve birincil kaliyor; bu ONUN YERINE DEGIL, YANINA.
+   Kendi satirinda duruyor (width:fit-content + auto margin) ki
+   birincil butonla ayni hizaya girip onunla yarismasin. */
+.btn-alt{display:flex;align-items:center;justify-content:center;gap:8px;
+     width:fit-content;max-width:100%;margin:14px auto 0;
+     background:transparent;color:var(--fg);border:1px solid var(--l16);
+     padding:15px 22px;font-size:clamp(14.5px,1.9vw,16px);font-weight:600;
+     letter-spacing:-.005em;min-height:44px}
+.btn-alt:hover{border-color:var(--l18);background:var(--l08);opacity:1}
+.btn-alt .ar{font-size:1.1em;color:var(--d6)}
+/* Form dibi: kaydolmak yerine konusmak isteyen icin. Buton degil,
+   ince bir satir — birincil eylem (Hesap ac) golgede kalmasin. */
+.alt-row{margin:18px 0 0;padding-top:16px;border-top:1px solid var(--l08);text-align:center;
+     font-size:14px;color:var(--d6);line-height:1.55}
+.alt-row a{color:var(--acc-l);font-weight:620;white-space:nowrap}
+.alt-row a:hover{color:var(--fg)}
 .micro{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 18px;margin-top:16px;
        font-size:13.5px;color:var(--d6)}
 .micro span{display:inline-flex;gap:6px;align-items:center}
@@ -447,6 +464,7 @@ fbq('init','1426016022664547'); fbq('track','PageView');
 
 <div class="cta-wrap" id="heroCta">
   <a class="btn" href="#start">3 günlük denemeyi başlat — £10<span class="ar" aria-hidden="true">→</span></a>
+  <a class="btn-alt" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="hero">Önce görüşelim · 20 dk tanışma<span class="ar" aria-hidden="true">→</span></a>
   <p class="micro"><span><i aria-hidden="true">✓</i>1 saatten kısa sürede hazır</span><span><i aria-hidden="true">✓</i>İstediğin an iptal</span><span><i aria-hidden="true">✓</i>Reklam hesapların sende kalır</span></p>
 </div>
 
@@ -741,6 +759,7 @@ fbq('init','1426016022664547'); fbq('track','PageView');
         <input type="hidden" name="fbp"    id="src_fbp">
         <input type="hidden" name="eid"    id="src_eid">
       </form>
+      <p class="alt-row">Formu doldurmadan önce konuşmak ister misin? <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="form">20 dakikalık tanışma görüşmesi ayarla →</a></p>
     </div>
   </div>
 </section>
@@ -828,6 +847,7 @@ fbq('init','1426016022664547'); fbq('track','PageView');
   <h2>Tahmin etmeyi bırakın. Ölçülmüş olanı görün.</h2>
   <p>Üç gün, £10 ve reklamlarınızı her saat ölçen bir panel. Farkı kendiniz görün.</p>
   <a class="btn" href="#start">3 günlük denemeyi başlat — £10<span class="ar" aria-hidden="true">→</span></a>
+  <a class="btn-alt" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="final">Önce görüşelim · 20 dk tanışma<span class="ar" aria-hidden="true">→</span></a>
 </section>
 </main>
 
@@ -896,6 +916,17 @@ fbq('init','1426016022664547'); fbq('track','PageView');
     if(W.clarity) try{ W.clarity('event',name); }catch(e){}
   }
   function uid(){ return Date.now().toString(36)+Math.random().toString(36).slice(2,10); }
+
+  /* 🔑 TOPLANTI TIKI SAYILIYOR. Iki yol yan yana durdugunda hangisinin
+     secildigini bilmek, su an elimizdeki en ucuz bilgi: 148 oturum / 0
+     kayit penceresinde A/B icin varyant basina ~$310 gerekiyor, bu ise
+     bedava. `data-keepq` utm'leri Calendly'ye tasiyor — hangi reklamin
+     gorusme urettigi orada okunur. */
+  D.querySelectorAll('a[data-toplanti]').forEach(function(a){
+    a.addEventListener('click',function(){
+      ev('toplanti_tik',{placement:a.getAttribute('data-toplanti')});
+    });
+  });
 
   /* Sunucu tarafı Meta olayı. Pixel ile AYNI event_id gidiyor; Meta iki
      kaydı tekilleştiriyor, dönüşüm iki kez sayılmıyor. */
