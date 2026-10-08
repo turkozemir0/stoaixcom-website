@@ -394,6 +394,32 @@ input:focus{border-color:var(--acc)}
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','1426016022664547'); fbq('track','PageView');
+/* 🔴 STUB'LAR HEMEN, SCRIPT LAZY. Eskiden `window.gtag` ve
+   `window.clarity` load() ICINDE tanimlaniyordu; load() ise ilk
+   etkilesimde ya da 2,5 sn bosta kosuyor. O ana kadar gonderilen HER
+   OLAY SESSIZCE KAYBOLUYORDU — `ev()` icindeki `if(W.gtag)` kontrolu
+   false donuyor, hata da log da yok.
+
+   Olculdu (8 Eki, GA4, /reklam): video sayfa acilir acilmaz basliyor,
+   `play` olayi gtag yuklenmeden tetikleniyor. Sonuc: `video_start`
+   olayi 39 Safari kullanicisinda 4 kez kaydedildi, oysa ayni gun
+   `video_watch_time` (ziyaretci cikarken, gtag coktan yuklenmisken
+   gonderiliyor) 25 kez geldi. Yani video %64 oraninda OYNUYORDU ama
+   olcum %10 gosteriyordu — uc gun boyunca yanlis sayiya bakildi.
+
+   Cozum standart GA4 kurulumu: dataLayer + gtag stub'i sayfa basinda
+   tanimlanir, olaylar kuyruga girer, gtag.js yuklenince hepsi birden
+   islenir. Clarity'nin kendi kuyrugu da (`clarity.q`) ayni sekilde.
+   Script INDIRME hala lazy — performans kazanci korunuyor, kaybolan
+   tek sey olaylar degil.
+
+   ⚠️ Bu degisiklikten sonra `video_start` ve benzeri erken olaylarin
+   sayisi BIR ANDA artacak. 8 Eki oncesiyle kiyaslarken dikkat: artis
+   davranis degisikligi degil, olcumun duzelmesi. */
+window.dataLayer=window.dataLayer||[];
+window.gtag=window.gtag||function(){window.dataLayer.push(arguments)};
+window.clarity=window.clarity||function(){(window.clarity.q=window.clarity.q||[]).push(arguments)};
+gtag('js',new Date()); gtag('config','G-53TMTQML2Q');
 (function(){
   var loaded=false;
   function load(){
@@ -401,9 +427,6 @@ fbq('init','1426016022664547'); fbq('track','PageView');
     var g=document.createElement('script'); g.async=true;
     g.src='https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q';
     document.head.appendChild(g);
-    window.dataLayer=window.dataLayer||[];
-    function gtag(){dataLayer.push(arguments);} window.gtag=gtag;
-    gtag('js',new Date()); gtag('config','G-53TMTQML2Q');
     (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");
   }
   var evs=['scroll','pointerdown','touchstart','keydown','click'];
