@@ -491,7 +491,7 @@ fbq('track','PageView');
 </div>
 
 <div class="cta-wrap" id="heroCta">
-  <a class="btn" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="hero">Ücretsiz 20 dakikalık görüşme ayarla<span class="ar" aria-hidden="true">→</span></a>
+  <a class="btn" href="https://calendly.com/ata-stoaix/30min" target="_blank" rel="noopener" data-keepq data-toplanti="hero">Ücretsiz 20 dakikalık görüşme ayarla<span class="ar" aria-hidden="true">→</span></a>
   <a class="btn-alt" href="#start">Ya da hemen başla — 3 gün £10<span class="ar" aria-hidden="true">→</span></a>
   <p class="micro"><span><i aria-hidden="true">✓</i>Hesabını bağladığın anda hazırsın</span><span><i aria-hidden="true">✓</i>İstediğin an iptal</span><span><i aria-hidden="true">✓</i>Reklam hesapların sende kalır</span></p>
 </div>
@@ -787,7 +787,7 @@ fbq('track','PageView');
         <input type="hidden" name="fbp"    id="src_fbp">
         <input type="hidden" name="eid"    id="src_eid">
       </form>
-      <p class="alt-row"><strong>Form doldurmak istemiyor musun?</strong><br><a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="form">Ücretsiz 20 dakikalık görüşme ayarla →</a></p>
+      <p class="alt-row"><strong>Form doldurmak istemiyor musun?</strong><br><a href="https://calendly.com/ata-stoaix/30min" target="_blank" rel="noopener" data-keepq data-toplanti="form">Ücretsiz 20 dakikalık görüşme ayarla →</a></p>
     </div>
   </div>
 </section>
@@ -874,7 +874,7 @@ fbq('track','PageView');
 <section class="final">
   <h2>Tahmin etmeyi bırakın. Ölçülmüş olanı görün.</h2>
   <p>Üç gün, £10 ve reklamlarınızı her saat ölçen bir panel. Farkı kendiniz görün.</p>
-  <a class="btn" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="final">Ücretsiz 20 dakikalık görüşme ayarla<span class="ar" aria-hidden="true">→</span></a>
+  <a class="btn" href="https://calendly.com/ata-stoaix/30min" target="_blank" rel="noopener" data-keepq data-toplanti="final">Ücretsiz 20 dakikalık görüşme ayarla<span class="ar" aria-hidden="true">→</span></a>
   <a class="btn-alt" href="#start">Ya da hemen başla — 3 gün £10<span class="ar" aria-hidden="true">→</span></a>
 </section>
 </main>
@@ -969,30 +969,34 @@ fbq('track','PageView');
      mu, yoksa tiklaniyor da acilmiyor mu" sorusu yanitlanamiyordu. */
   var icTarayici=/Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent||'');
 
-  /* 🔴 TAKVIM STOAIX PLATFORM ILE ORTAK — KLINIK METNI BURAYA UYMUYOR.
-     Calendly'deki tek randevu tipi "Ucretsiz Klinik Analiz Toplantisi",
-     40 dk, ve aciklamasi "Bu toplanti herkes icin degildir. Yalnizca
-     kliniklerle calisiyoruz." Reklam funnel'i ise sektor ayirmiyor; o
-     metin buradan gelen ziyaretcinin cogunu dogrudan eliyor.
+  /* 🔑 ADS'IN KENDI TAKVIMI — detaylar GIZLENMIYOR, aksine gosteriliyor.
 
-     Olculdu (8 Eki): butona 6 Eki'den beri 3 tik geldi, Calendly'de o
-     tarihten sonra olusturulmus TEK randevu yok. Takvimdeki 15 randevu
-     Platform tarafindan.
+     Gecmis: link once STOAIX Platform'un klinik takvimine gidiyordu
+     ("Ucretsiz Klinik Analiz Toplantisi", 40 dk; aciklamasi "Bu toplanti
+     herkes icin degildir. Yalnizca kliniklerle calisiyoruz."). Reklam
+     funnel'i sektor ayirmadigi icin o metin gelen ziyaretcinin cogunu
+     dogrudan eliyordu.
 
-     Ikinci takvim acmak ucretli oldugu icin cozum: AYNI randevu tipini
-     `hide_event_type_details=1` ile gomuyoruz. O parametre Calendly'nin
-     kendi basligini, SURESINI ve ACIKLAMASINI gizliyor; geriye yalniz
-     takvim + saat secimi kaliyor. Baslik ve vaat sayfada, bizim
-     dilimizde duruyor. Platform tarafi normal linki kullanmaya devam
-     ettigi icin klinik filtresi orada BOZULMUYOR.
+     Olculdu (8 Eki, Calendly API + GA4): butona 6 Eki'den beri 3 tik
+     geldi, o tarihten sonra olusturulmus randevu SIFIR. Takvimdeki 15
+     randevunun hepsi Platform tarafindan.
+
+     8 Eki'de Ads icin ayri Calendly hesabi acildi (ata@stoaix.co.uk).
+     Randevu tipi: "Ucretsiz Reklam Analizi", 20 dk — sayfadaki vaatle
+     ayni — ve aciklamasi reklam odakli, sektor kisiti yok. Detaylar
+     artik LEHIMIZE calistigi icin gizlenmiyor.
+
+     ⚠️ Calendly API slug'i degistirmiyor; link bu yuzden `/30min`
+     gorunuyor ama randevu tipi 20 dakikalik. Slug'i duzeltmek panelden
+     yapilir, link degisirse buradaki uc href + CAL_URL guncellenmeli.
 
      🔑 Popup kullaniliyor, yeni sekme degil: Instagram ic tarayicisinda
      yeni sekme guvenilir degil (bkz. `icTarayici`). Popup ayni sayfada
      iframe aciyor, ziyaretci funnel'dan cikmiyor.
 
      Renkler sayfa temasina sabitlendi; Calendly varsayilani beyaz. */
-  var CAL_URL='https://calendly.com/ataulufer1/20'
-    +'?hide_event_type_details=1&hide_gdpr_banner=1'
+  var CAL_URL='https://calendly.com/ata-stoaix/30min'
+    +'?hide_gdpr_banner=1'
     +'&background_color=0A0A0B&text_color=F2F2F0&primary_color=4F7BFF';
   var calHazir=false, calYukleniyor=false;
   function calYukle(sonra){
