@@ -995,6 +995,25 @@ fbq('init','1426016022664547'); fbq('track','PageView');
         e.preventDefault();
         W.Calendly.initPopupWidget({url:CAL_URL});
         ev('takvim_acildi',{placement:a.getAttribute('data-toplanti')});
+        /* 🔴 GUVENLIK AGI: popup acilip BOS KALIRSA ziyaretci hicbir sey
+           goremez ve geri donusu yoktur — `preventDefault` cagrildigi icin
+           normal link de calismaz. Calendly iframe'i cerez/ag kisitlarinda
+           yuklenmeyebiliyor (8 Eki testinde 15 sn sonra hala spinner
+           donuyordu; otomasyon ortamina ozgu olabilir ama riski canlida
+           birakamayiz).
+
+           Spinner 7 sn sonra hala gorunuyorsa popup kapatilip ziyaretci
+           Calendly'nin kendi sayfasina gonderiliyor. `takvim_yuklenmedi`
+           olayi GA'ya gidiyor: bu olay artarsa popup yolu bu ortamda
+           calismiyor demektir, dogrudan linke donmek gerekir. */
+        setTimeout(function(){
+          var sp=D.querySelector('.calendly-spinner');
+          if(sp && getComputedStyle(sp).display!=='none'){
+            ev('takvim_yuklenmedi',{placement:a.getAttribute('data-toplanti')});
+            try{ W.Calendly.closePopupWidget&&W.Calendly.closePopupWidget(); }catch(x){}
+            W.location.href=a.href;
+          }
+        },7000);
         return;
       }
       /* Script hazir degilse: yuklemeyi tetikle ama ziyaretciyi bekletme —
