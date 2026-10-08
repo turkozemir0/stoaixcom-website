@@ -950,9 +950,28 @@ fbq('track','PageView');
      kayit penceresinde A/B icin varyant basina ~$310 gerekiyor, bu ise
      bedava. `data-keepq` utm'leri Calendly'ye tasiyor — hangi reklamin
      gorusme urettigi orada okunur. */
+  /* 🔴 INSTAGRAM/FACEBOOK IC TARAYICISINDA `target="_blank"` GUVENILIR
+     DEGIL. Meta'nin in-app WebView'i yeni sekme/harici acilisi
+     engelleyebiliyor; o durumda ziyaretci butona basar ve HICBIR SEY
+     olmaz. Bu, toplanti CTA'si birincil butona alindigi icin (8 Eki)
+     dogrudan ana donusum yolunu kirar.
+
+     Olculdu (8 Eki, GA4, /reklam, 7 gun): trafigin ~%95'i WebView
+     (Safari 216 + Android Webview 60 kullanici), gercek tarayici 12.
+     Gelen 2 `toplanti_tik` olayinin ikisi de Safari'den, Android
+     WebView'den sifir.
+
+     Cozum: WebView'de `target` kaldiriliyor, link ayni sekmede aciliyor.
+     Masaustu ve normal mobil tarayicida davranis DEGISMIYOR.
+
+     🔑 Olaya `webview` alani eklendi: hangi ortamdan tiklandigini
+     GA'dan ayirabilmek icin. Bu alan olmadan "WebView'de tiklanmiyor
+     mu, yoksa tiklaniyor da acilmiyor mu" sorusu yanitlanamiyordu. */
+  var icTarayici=/Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent||'');
   D.querySelectorAll('a[data-toplanti]').forEach(function(a){
+    if(icTarayici) a.removeAttribute('target');
     a.addEventListener('click',function(){
-      ev('toplanti_tik',{placement:a.getAttribute('data-toplanti')});
+      ev('toplanti_tik',{placement:a.getAttribute('data-toplanti'),webview:icTarayici?'evet':'hayir'});
     });
   });
 

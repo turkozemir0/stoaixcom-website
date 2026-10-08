@@ -142,6 +142,19 @@
       ]
     },
     {
+      "source": "/(reklam|reklam-en|en/reklam)",
+      "headers": [
+        {
+          "key": "Permissions-Policy",
+          "value": "autoplay=*"
+        },
+        {
+          "key": "Feature-Policy",
+          "value": "autoplay *"
+        }
+      ]
+    },
+    {
       "source": "/(.*)\\.html",
       "headers": [
         {
