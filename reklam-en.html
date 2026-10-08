@@ -148,6 +148,10 @@ h1 .mut{color:rgba(242,242,240,.5)}
      font-size:14px;color:var(--d6);line-height:1.55}
 .alt-row a{color:var(--acc-l);font-weight:620;white-space:nowrap}
 .alt-row a:hover{color:var(--fg)}
+/* Toplanti vurgusu: form dibindeki satir artik iki satirli ve basligi
+   parlak — olculdu (8 Eki, GA4): /reklam'da kayit formu 3 gunde 0 kez
+   gonderildi, toplanti butonu 2 kez tiklandi. Tek pozitif sinyal bu. */
+.alt-row strong{display:block;color:var(--fg);font-size:15.5px;font-weight:660;margin-bottom:6px}
 .micro{display:flex;justify-content:center;flex-wrap:wrap;gap:8px 18px;margin-top:16px;
        font-size:13.5px;color:var(--d6)}
 .micro span{display:inline-flex;gap:6px;align-items:center}
@@ -445,7 +449,7 @@ fbq('init','1426016022664547'); fbq('track','PageView');
          15 "ölü tıklama" yaptı. Üç dakikalık bir VSL'de duraklatamamak
          doğrudan terk sebebi. -->
     <video id="vsl" poster="/assets/vsl/poster.webp" preload="metadata"
-           playsinline webkit-playsinline muted controls controlslist="nodownload"
+           autoplay playsinline webkit-playsinline muted controls controlslist="nodownload"
            aria-label="STOAIX Ads demo video">
       <source src="/assets/vsl/stoaix-ads-vsl.mp4" type="video/mp4">
     </video>
@@ -461,8 +465,8 @@ fbq('init','1426016022664547'); fbq('track','PageView');
 </div>
 
 <div class="cta-wrap" id="heroCta">
-  <a class="btn" href="#start">Start my 3-day trial — £10<span class="ar" aria-hidden="true">→</span></a>
-  <a class="btn-alt" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="hero">Rather talk first? · 20-min intro call<span class="ar" aria-hidden="true">→</span></a>
+  <a class="btn" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="hero">Book a free 20-minute call<span class="ar" aria-hidden="true">→</span></a>
+  <a class="btn-alt" href="#start">Or start now — 3 days £10<span class="ar" aria-hidden="true">→</span></a>
   <p class="micro"><span><i aria-hidden="true">✓</i>Ready the moment you connect</span><span><i aria-hidden="true">✓</i>Cancel anytime</span><span><i aria-hidden="true">✓</i>Your ad accounts stay yours</span></p>
 </div>
 
@@ -757,7 +761,7 @@ fbq('init','1426016022664547'); fbq('track','PageView');
         <input type="hidden" name="fbp"    id="src_fbp">
         <input type="hidden" name="eid"    id="src_eid">
       </form>
-      <p class="alt-row">Prefer to talk before filling this in? <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="form">Book a 20-minute intro call →</a></p>
+      <p class="alt-row"><strong>Don't want to fill a form?</strong><br><a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="form">Book a free 20-minute call →</a></p>
     </div>
   </div>
 </section>
@@ -844,8 +848,8 @@ fbq('init','1426016022664547'); fbq('track','PageView');
 <section class="final">
   <h2>Stop guessing. See what was measured.</h2>
   <p>Three days, £10, and a panel that measures your ads every hour. See the difference yourself.</p>
-  <a class="btn" href="#start">Start my 3-day trial — £10<span class="ar" aria-hidden="true">→</span></a>
-  <a class="btn-alt" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="final">Rather talk first? · 20-min intro call<span class="ar" aria-hidden="true">→</span></a>
+  <a class="btn" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener" data-keepq data-toplanti="final">Book a free 20-minute call<span class="ar" aria-hidden="true">→</span></a>
+  <a class="btn-alt" href="#start">Or start now — 3 days £10<span class="ar" aria-hidden="true">→</span></a>
 </section>
 </main>
 
@@ -1033,23 +1037,56 @@ fbq('init','1426016022664547'); fbq('track','PageView');
   vid.addEventListener('pause',function(){ if(vid.currentTime>0&&!vid.ended) flush(); });
 
 
-  /* Sessiz otomatik başlatma — yalnız video görünür alandayken ve
-     bağlantı buna uygunsa. Veri tasarrufu açıksa hiç başlatılmıyor. */
+  /* 🔴 MOBİLDE OTOMATİK OYNATMA ÇALIŞMIYORDU — AYLARCA SESSİZCE.
+     Ölçüldü (8 Eki, GA4, /reklam, 7 gün): masaüstü 7/8 = %88, MOBİL
+     29/285 = %10. Trafiğin %97'si mobil; yani sayfanın tek ikna aracı
+     ziyaretçilerin onda dokuzuna hiç ulaşmıyordu.
+
+     Sebep: oynatma YALNIZ JS'ten `play()` ile deneniyordu. Mobil
+     tarayıcılar (iOS Safari, Instagram içi WebView) JS kaynaklı çağrıyı
+     reddedebiliyor; `autoplay` ATTRIBUTE'unu ise `muted` + `playsinline`
+     ile birlikte kabul ediyorlar. Artık ikisi birden var: attribute asıl
+     yol, buradaki çağrı yedek.
+
+     🔑 HATA ARTIK SESSİZ DEĞİL. Eski `catch` bloğu boştu; arıza bu yüzden
+     görünmedi. Şimdi `video_autoplay_blocked` olayı gidiyor — GA'da bu
+     olay artarsa oynatma yine kırılmış demektir.
+
+     🔑 EŞİK .5 → .25: mobilde video kutusunun yarısının görünmesini
+     beklemek, kısa ekranlarda tetiği geciktiriyordu. */
   var conn=navigator.connection||{};
   var slow=conn.saveData===true||/^(slow-)?2g$/.test(conn.effectiveType||'');
-  if(!slow && 'IntersectionObserver' in W){
-    var io=new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(!e.isIntersecting) return;
-        io.disconnect();
-        vid.muted=true;
-        vid.play().then(function(){
-          over.classList.add('hide');
-          if(snd) snd.classList.remove('hide');
-        }).catch(function(){ /* tarayıcı izin vermedi: poster kalsın */ });
+  var tekrarBekliyor=false;
+  function otomatikBaslat(kaynak){
+    vid.muted=true;
+    var p=vid.play();
+    if(!p||!p.then){ over.classList.add('hide'); return; }
+    p.then(function(){
+      over.classList.add('hide');
+      if(snd) snd.classList.remove('hide');
+    }).catch(function(err){
+      ev('video_autoplay_blocked',{reason:(err&&err.name)||'bilinmiyor',trigger:kaynak,language:LANG});
+      /* Tarayıcı izin vermedi: ilk dokunuşta bir kez daha dene. */
+      if(tekrarBekliyor) return;
+      tekrarBekliyor=true;
+      ['touchstart','pointerdown','keydown'].forEach(function(t){
+        D.addEventListener(t,function h(){ D.removeEventListener(t,h); otomatikBaslat('etkilesim'); },{once:true,passive:true});
       });
-    },{threshold:.5});
-    io.observe(box);
+    });
+  }
+  if(!slow){
+    if('IntersectionObserver' in W){
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(!e.isIntersecting) return;
+          io.disconnect();
+          otomatikBaslat('gorunur');
+        });
+      },{threshold:.25});
+      io.observe(box);
+    } else {
+      otomatikBaslat('observer-yok');
+    }
   }
 
 
