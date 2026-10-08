@@ -989,7 +989,10 @@ fbq('track','PageView');
        - çeyrekler    : 25 / 50 / 75 / 95 / 100
      Sayfa kapanırken toplam süre tek bir olayla gönderiliyor. */
   var started=false,maxPct=0,watched=0,last=0,marks={},sent=false;
-  var MARKS=[25,50,75,95,100];
+  /* 🔑 10 BURADA OLMAK ZORUNDA. Asagidaki CAPI tetigi `m===10` ile
+     eslesiyor; bu dizide 10 yoksa dongu o degeri hic gezmez ve
+     ViewContent olayi HIC gitmez — sessizce. */
+  var MARKS=[10,25,50,75,95,100];
 
   function dur(){ return (vid && isFinite(vid.duration) && vid.duration>0) ? vid.duration : 0; }
 
@@ -1026,16 +1029,26 @@ fbq('track','PageView');
            kampanyanın aradığı kitle de değişir — ad set ayarı aynı kalsa
            bile.
 
-           Eşik %25 (3 dakikalık videoda ~45 saniye). Ölçüm notu: %50'de
-           (90 sn) haftalık ~245 olay bekleniyordu, Meta'nın öğrenme
-           eşiğinin (50) beş katı; %25 bunu daha da artırır, karşılığında
-           sinyal zayıflar. Karşılaştırma için ölçülmüş zincir (v1.1):
-           151 siteye-varan → 19 videoyu-yarılayan → 1 kayıt.
+           🔴 EŞİK, ORTALAMA KALIŞ SÜRESİNİN ALTINDA OLMAK ZORUNDA.
+           Ölçüldü (8 Eki, Clarity): ig/Mobil ziyaretçi sayfada ortalama
+           22 saniye kalıyor. %25 eşiği 45 saniyeye denk geliyordu — yani
+           ortalamanın iki katı; 36 saatte 72 ziyaretçiden yalnız 2'si
+           ulaşabildi. Olay gelmeyince Meta öğrenemiyor, öğrenemeyince
+           daha ucuz/ilgisiz kitleye gösteriyor, onlar daha da kısa
+           kalıyor — kısır döngü.
+
+           Eşik şimdi %10 (3 dakikalık videoda ~18 saniye), yani 22 sn
+           ortalamanın altında. Video sessiz otomatik oynadığı için
+           (aşağıdaki IntersectionObserver) ziyaretçinin ayrıca bir şey
+           yapması gerekmiyor.
+
+           Eşiği yükseltmeden önce güncel kalış süresine bak: eşik > kalış
+           süresi olursa olay akışı yine durur.
 
            Sunucudan gidiyor çünkü tarayıcı pikselinin önemli kısmı reklam
            engelleyici, iOS izleme koruması ve Instagram içi tarayıcı
            yüzünden Meta'ya hiç ulaşmıyor. */
-        if(m===25) capi('ViewContent',uid(),{contentName:'stoaix-ads-vsl-25'});
+        if(m===10) capi('ViewContent',uid(),{contentName:'stoaix-ads-vsl-10'});
       }
     }
   });
