@@ -938,10 +938,64 @@ fbq('init','1426016022664547'); fbq('track','PageView');
      GA'dan ayirabilmek icin. Bu alan olmadan "WebView'de tiklanmiyor
      mu, yoksa tiklaniyor da acilmiyor mu" sorusu yanitlanamiyordu. */
   var icTarayici=/Instagram|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent||'');
+
+  /* 🔴 TAKVIM STOAIX PLATFORM ILE ORTAK — KLINIK METNI BURAYA UYMUYOR.
+     Calendly'deki tek randevu tipi "Ucretsiz Klinik Analiz Toplantisi",
+     40 dk, ve aciklamasi "Bu toplanti herkes icin degildir. Yalnizca
+     kliniklerle calisiyoruz." Reklam funnel'i ise sektor ayirmiyor; o
+     metin buradan gelen ziyaretcinin cogunu dogrudan eliyor.
+
+     Olculdu (8 Eki): butona 6 Eki'den beri 3 tik geldi, Calendly'de o
+     tarihten sonra olusturulmus TEK randevu yok. Takvimdeki 15 randevu
+     Platform tarafindan.
+
+     Ikinci takvim acmak ucretli oldugu icin cozum: AYNI randevu tipini
+     `hide_event_type_details=1` ile gomuyoruz. O parametre Calendly'nin
+     kendi basligini, SURESINI ve ACIKLAMASINI gizliyor; geriye yalniz
+     takvim + saat secimi kaliyor. Baslik ve vaat sayfada, bizim
+     dilimizde duruyor. Platform tarafi normal linki kullanmaya devam
+     ettigi icin klinik filtresi orada BOZULMUYOR.
+
+     🔑 Popup kullaniliyor, yeni sekme degil: Instagram ic tarayicisinda
+     yeni sekme guvenilir degil (bkz. `icTarayici`). Popup ayni sayfada
+     iframe aciyor, ziyaretci funnel'dan cikmiyor.
+
+     Renkler sayfa temasina sabitlendi; Calendly varsayilani beyaz. */
+  var CAL_URL='https://calendly.com/ataulufer1/20'
+    +'?hide_event_type_details=1&hide_gdpr_banner=1'
+    +'&background_color=0A0A0B&text_color=F2F2F0&primary_color=4F7BFF';
+  var calHazir=false, calYukleniyor=false;
+  function calYukle(sonra){
+    if(calHazir) return sonra && sonra();
+    if(calYukleniyor) return;
+    calYukleniyor=true;
+    var l=D.createElement('link'); l.rel='stylesheet';
+    l.href='https://assets.calendly.com/assets/external/widget.css';
+    D.head.appendChild(l);
+    var s=D.createElement('script');
+    s.src='https://assets.calendly.com/assets/external/widget.js'; s.async=true;
+    s.onload=function(){ calHazir=true; calYukleniyor=false; sonra&&sonra(); };
+    s.onerror=function(){ calYukleniyor=false; ev('calendly_yuklenmedi',{language:LANG}); };
+    D.head.appendChild(s);
+  }
+  /* Script'i ilk etkilesimde onden yukle ki tikta bekleme olmasin. */
+  ['touchstart','pointerdown','keydown','scroll'].forEach(function(t){
+    D.addEventListener(t,function h(){ D.removeEventListener(t,h); calYukle(); },{once:true,passive:true});
+  });
+
   D.querySelectorAll('a[data-toplanti]').forEach(function(a){
     if(icTarayici) a.removeAttribute('target');
-    a.addEventListener('click',function(){
+    a.addEventListener('click',function(e){
       ev('toplanti_tik',{placement:a.getAttribute('data-toplanti'),webview:icTarayici?'evet':'hayir'});
+      if(W.Calendly){
+        e.preventDefault();
+        W.Calendly.initPopupWidget({url:CAL_URL});
+        ev('takvim_acildi',{placement:a.getAttribute('data-toplanti')});
+        return;
+      }
+      /* Script hazir degilse: yuklemeyi tetikle ama ziyaretciyi bekletme —
+         normal link calismaya devam ediyor (fallback). */
+      calYukle(function(){ if(W.Calendly) W.Calendly.initPopupWidget({url:CAL_URL}); });
     });
   });
 
