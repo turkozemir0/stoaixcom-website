@@ -130,6 +130,70 @@ function panelCalendar(c) {
 }
 
 /* ─── Sayfa ────────────────────────────────────────────────────── */
+function homeCalculator(lang) {
+  const tr = lang === 'tr';
+  const c = tr ? {
+    kicker: 'GELİR KAÇAĞI HESAPLAYICISI', heading: 'Masada kalan fırsatı hesaplayın.',
+    intro: 'Kendi verilerinizle aylık potansiyel ciroyu görün.', inputs: 'Klinik verileriniz',
+    leads: 'Aylık yeni lead', conversion: 'Lead’den hastaya dönüşüm oranı',
+    target: 'Hedef dönüşüm oranı', value: 'Hasta başına ortalama tahsilat',
+    help: 'Açıklamayı göster', close: 'Bildirimi kapat', currency: 'Para birimi',
+    result: 'Masada kalan fırsat', monthly: 'Her ay masada kalabilecek ciro',
+    annual: 'Yıllık potansiyel', patients: 'Ek hasta / ay',
+    details: 'Hesap nasıl yapılıyor?',
+    caution: 'Bu bir senaryo tahminidir; gerçekleşmiş kayıp veya getiri garantisi değildir.',
+    method: 'Aylık lead × dönüşüm oranları arasındaki yüzde puan farkı × hasta başına ortalama tahsilat. Yıllık tutar aylık sonucun 12 katıdır; maliyetler dahil değildir.',
+    cta: 'Bu açığı birlikte inceleyelim', full: 'Hesaplayıcıyı ayrı sayfada aç',
+    fullHref: '/gelir-kaybi-hesaplayici',
+  } : {
+    kicker: 'REVENUE LEAKAGE CALCULATOR', heading: 'Calculate the opportunity left behind.',
+    intro: 'Use your own numbers to estimate potential monthly revenue.', inputs: 'Your clinic numbers',
+    leads: 'New leads per month', conversion: 'Lead-to-patient conversion rate',
+    target: 'Target conversion rate', value: 'Average amount collected per patient',
+    help: 'Show explanation', close: 'Dismiss notification', currency: 'Currency',
+    result: 'Opportunity left behind', monthly: 'Potential monthly revenue left on the table',
+    annual: 'Annual potential', patients: 'Additional patients / month',
+    details: 'How is this calculated?',
+    caution: 'This is a scenario estimate, not measured lost revenue or a guaranteed return.',
+    method: 'Monthly leads × the percentage point gap between conversion rates × average amount collected per patient. Annual potential is 12 times the monthly amount; costs are excluded.',
+    cta: 'Review this gap together', full: 'Open the standalone calculator',
+    fullHref: '/revenue-loss-calculator',
+  };
+  const field = (key, label, value, attrs, currency = false) => `<div class="loss-field">
+          <div class="loss-field-label"><label for="${key}">${esc(label)}</label><button id="help-${key}" class="loss-help" type="button" aria-label="${esc(label)}: ${esc(c.help)}">?</button></div>
+          <div class="loss-input-row"><input id="${key}" name="${key}" type="number" ${attrs} value="${value}" inputmode="${key === 'leads' ? 'numeric' : 'decimal'}">${currency ? `<select name="currency" aria-label="${esc(c.currency)}"><option value="EUR">EUR</option><option value="TRY">TRY</option><option value="GBP">GBP</option><option value="USD">USD</option></select>` : ''}</div>
+        </div>`;
+  return `<section class="loss-calculator" id="revenue-calculator" aria-labelledby="loss-heading">
+  <div class="loss-inner">
+    <div class="loss-intro"><p class="loss-kicker">${esc(c.kicker)}</p><h2 id="loss-heading">${esc(c.heading)}</h2><p>${esc(c.intro)}</p></div>
+    <div class="loss-grid">
+      <div class="loss-inputs"><h3>${esc(c.inputs)}</h3>
+        <form id="loss-form" novalidate><div class="loss-fields">
+          ${field('leads', c.leads, 300, 'min="0" max="1000000" step="1"')}
+          ${field('conversion', c.conversion, 6, 'min="0" max="100" step="0.1"')}
+          ${field('target', c.target, 10, 'min="0" max="100" step="0.1"')}
+          ${field('value', c.value, 2500, 'min="0" max="100000000" step="1"', true)}
+        </div><p class="loss-error" id="calc-error" role="alert"></p></form>
+      </div>
+      <div class="loss-results" id="calc-results" aria-live="polite">
+        <h3>${esc(c.result)}</h3><p class="loss-rate" id="rate-explainer"></p>
+        <p class="loss-result-label">${esc(c.monthly)}</p><strong class="loss-big-number" id="monthly-value"></strong>
+        <div class="loss-summary"><div><strong id="annual-value"></strong><span>${esc(c.annual)}</span></div><div><strong id="patient-count"></strong><span>${esc(c.patients)}</span></div></div>
+        <a class="loss-cta" href="${LINKS.briefing}" target="_blank" rel="noopener">${esc(c.cta)} →</a>
+        <p class="loss-caution">${esc(c.caution)}</p>
+        <details class="loss-details"><summary>${esc(c.details)}</summary><p id="formula"></p><p>${esc(c.method)}</p></details>
+      </div>
+    </div>
+    <a class="loss-full-link" href="${c.fullHref}">${esc(c.full)} ↗</a>
+  </div>
+  <aside class="loss-toast" id="field-toast" role="status" aria-live="polite" hidden>
+    <button class="loss-toast-close" id="field-toast-close" type="button" aria-label="${esc(c.close)}">×</button>
+    <p class="loss-toast-label" id="field-toast-label"></p><strong class="loss-toast-title" id="field-toast-title"></strong>
+    <p class="loss-toast-body" id="field-toast-body"></p><a class="loss-toast-link" id="field-toast-link" hidden></a>
+  </aside>
+</section>`;
+}
+
 function page(lang) {
   const c = CONTENT[lang];
   const isTR = lang === 'tr';
@@ -210,7 +274,8 @@ function page(lang) {
 <meta name="twitter:site" content="@stoaix">
 
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${isTR ? '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>' : ''}
-<link rel="stylesheet" href="/css/v2.css?v=3">
+<link rel="stylesheet" href="/css/v2.css?v=4">
+<link rel="stylesheet" href="/css/revenue-calculator-widget.css?v=1">
 
 <!-- Tema, ilk boyamadan önce uygulanır: koyu/açık geçişinde flaş olmaz. -->
 <script>
@@ -285,8 +350,8 @@ ${JSON.stringify({
 <!-- ═══ NAV ═══════════════════════════════════════════════════ -->
 <header class="nav">
   <a class="brand" href="/">${MARK(24)}STOAIX</a>
-  <nav class="nav-links" aria-label="${esc(c.nav.join(', '))}">
-    ${c.nav.map((n, i) => `<a href="#${navIds[i]}">${esc(n)}</a>`).join('\n    ')}
+  <nav class="nav-links" aria-label="${esc([...c.nav.slice(0, 2), 'STOAIX Ads', ...c.nav.slice(2)].join(', '))}">
+    ${c.nav.map((n, i) => `<a href="#${navIds[i]}">${esc(n)}</a>${i === 1 ? '\n    <a href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>' : ''}`).join('\n    ')}
   </nav>
   <div class="nav-right">
     <span class="switch" role="group" aria-label="${esc(c.themeLabel)}">
@@ -310,7 +375,7 @@ ${JSON.stringify({
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l14 14M18 4L4 18"/></svg>
     </button>
   </div>
-  ${c.nav.map((n, i) => `<a class="mlink" href="#${navIds[i]}">${esc(n)}</a>`).join('\n  ')}
+  ${c.nav.map((n, i) => `<a class="mlink" href="#${navIds[i]}">${esc(n)}</a>${i === 1 ? '\n  <a class="mlink" href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>' : ''}`).join('\n  ')}
   <div class="mnav-switches">
     <span class="switch" role="group" aria-label="${esc(c.themeLabel)}">
       <button type="button" data-theme="ink" class="on" aria-pressed="true">${esc(c.dark)}</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">${esc(c.light)}</button>
@@ -342,6 +407,7 @@ ${JSON.stringify({
     <p>${esc(c.heroBody)}</p>
     <div class="row hero-actions">
       <a href="${LINKS.briefing}" class="btn" target="_blank" rel="noopener">${esc(c.brief)}</a>
+      <a href="#revenue-calculator" class="btn-ghost">${lang === 'tr' ? 'Gelir kaçağını hesaplayın' : 'Calculate revenue opportunity'}</a>
     </div>
   </div>
 </section>
@@ -385,6 +451,9 @@ ${panelCalendar(c)}
     </div>`).join('')}
   </div>
 </section>
+
+<!-- ═══ GELİR KAÇAĞI HESAPLAYICISI ═════════════════════════════ -->
+${homeCalculator(lang)}
 
 <!-- ═══ TEKNİK ŞARTNAME (ters zemin) ══════════════════════════ -->
 <section class="alt pad" id="specification">
@@ -511,6 +580,7 @@ ${panelCalendar(c)}
 </footer>
 
 <script src="/js/v2.js?v=2" defer></script>
+<script src="/js/revenue-loss-calculator.js?v=1" defer></script>
 </body>
 </html>
 `;

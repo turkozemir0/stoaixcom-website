@@ -609,11 +609,8 @@
       pricingEl.remove();
     }
 
-    // ── Lead-loss calculator pop-up (all marketing pages) ──
-    const popupScript = document.createElement('script');
-    popupScript.src = '/js/lead-calculator-popup.js';
-    popupScript.defer = true;
-    document.head.appendChild(popupScript);
+    // The former lead-loss pop-up assumed every missed lead became a paying
+    // patient. The scenario calculator now lives on the homepage and its own page.
   }
 
   // With defer, readyState is already 'interactive' — run immediately.

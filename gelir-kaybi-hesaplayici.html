@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Klinik Gelir Kaçağı Hesaplayıcısı | STOAIX</title>
+  <meta name="description" content="Klinik lead dönüşümünde her ay masada kalıyor olabilecek potansiyel ciroyu kendi verilerinizle hesaplayın.">
+  <link rel="canonical" href="https://stoaix.com/gelir-kaybi-hesaplayici">
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/gelir-kaybi-hesaplayici">
+  <link rel="alternate" hreflang="en" href="https://stoaix.com/revenue-loss-calculator">
+  <link rel="stylesheet" href="/css/revenue-loss-calculator.css">
+  <script src="/js/revenue-loss-calculator.js?v=1" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">İçeriğe geç</a>
+  <header class="top">
+    <a class="brand" href="/" aria-label="STOAIX"><span class="brand-mark" aria-hidden="true"></span>STOAIX</a>
+    <nav class="top-links" aria-label="Sayfa bağlantıları">
+      <a href="/">Ana sayfa</a>
+      <a href="/gelir-kaybi-hesaplayici" lang="tr" class="active">TR</a>
+      <a href="/revenue-loss-calculator" lang="en" class="">EN</a>
+    </nav>
+  </header>
+  <aside class="field-toast" id="field-toast" role="status" aria-live="polite" hidden>
+    <button class="field-toast-close" id="field-toast-close" type="button" aria-label="Bildirimi kapat">×</button>
+    <p class="field-toast-label" id="field-toast-label"></p>
+    <strong class="field-toast-title" id="field-toast-title"></strong>
+    <p class="field-toast-body" id="field-toast-body"></p>
+    <a class="field-toast-link" id="field-toast-link" hidden></a>
+  </aside>
+  <main id="main">
+    <div class="intro">
+      <p class="kicker">STOAIX / GELİR KAÇAĞI</p>
+      <h1>Her ay ne kadar ciro <em>masada kalıyor?</em></h1>
+      <p>Hastaya dönüşmeyen lead’lerin küçük bir kısmı kazanılsa, masada ne kadar ciro kalıyor?</p>
+    </div>
+    <div class="workspace">
+      <section class="inputs" aria-labelledby="inputs-title">
+        <div class="section-head"><h2 id="inputs-title">Klinik verileriniz</h2><span>Örnek değerler</span></div>
+        <form id="loss-form" novalidate>
+          <div class="fields">
+            <div class="field"><div class="field-label"><label for="leads">Aylık yeni lead</label><button id="help-leads" class="field-help" type="button" aria-label="Aylık yeni lead: Açıklamayı göster">?</button></div><input id="leads" name="leads" type="number" min="0" max="1000000" step="1" value="300" inputmode="numeric" aria-describedby="leads-help"><small id="leads-help">Ay içinde gelen tekil başvurular</small></div>
+            <div class="field"><div class="field-label"><label for="conversion">Lead’den hastaya dönüşüm oranı</label><button id="help-conversion" class="field-help" type="button" aria-label="Lead’den hastaya dönüşüm oranı: Açıklamayı göster">?</button></div><input id="conversion" name="conversion" type="number" min="0" max="100" step="0.1" value="6" inputmode="decimal" aria-describedby="conversion-help"><small id="conversion-help">Yeni başvuruların yüzde kaçı ödeme yapan hasta oluyor?</small></div>
+            <div class="field"><div class="field-label"><label for="target">Hedef dönüşüm oranı</label><button id="help-target" class="field-help" type="button" aria-label="Hedef dönüşüm oranı: Açıklamayı göster">?</button></div><input id="target" name="target" type="number" min="0" max="100" step="0.1" value="10" inputmode="decimal" aria-describedby="target-help"><small id="target-help">Aynı lead kitlesi için ulaşılabilir oran</small></div>
+            <div class="field"><div class="field-label"><label for="value">Hasta başına ortalama tahsilat</label><button id="help-value" class="field-help" type="button" aria-label="Hasta başına ortalama tahsilat: Açıklamayı göster">?</button></div><div class="input-row"><input id="value" name="value" type="number" min="0" max="100000000" step="1" value="2500" inputmode="decimal" aria-describedby="value-help"><select name="currency" aria-label="Para birimi"><option value="EUR">EUR</option><option value="TRY">TRY</option><option value="GBP">GBP</option><option value="USD">USD</option></select></div><small id="value-help">Bir yeni hastadan ortalama tahsilat</small></div>
+          </div>
+          <p class="footnote">Örnek değerlerdir. Kendi verilerinizle değiştirin; para birimi dönüşümü yapılmaz.</p>
+          <p class="error" id="calc-error" role="alert"></p>
+        </form>
+      </section>
+      <section class="results" id="calc-results" aria-labelledby="results-title">
+        <div class="section-head"><h2 id="results-title">Masada kalan fırsat</h2><span>Tahmini</span></div>
+        <p class="rate-explainer" id="rate-explainer"></p>
+        <p class="result-label">Her ay masada kalabilecek ciro</p>
+        <p class="big-number" id="monthly-value" aria-live="polite"></p>
+        <div class="summary">
+          <div><strong id="annual-value"></strong><span>Yıllık potansiyel</span></div>
+          <div><strong id="patient-count"></strong><span>Ek hasta / ay</span></div>
+        </div>
+        <a class="cta" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Bu açığı birlikte inceleyelim →</a>
+        <p class="disclaimer">Bu bir senaryo tahminidir; gerçekleşmiş kayıp veya getiri garantisi değildir.</p>
+        <details class="calc-details"><summary>Hesap nasıl yapılıyor?</summary><p id="formula"></p><p>Hedef oran ile mevcut oran arasındaki fark yüzde puan olarak hesaplanır. Yıllık tutar aylık sonucun 12 katıdır; maliyetler dahil değildir.</p></details>
+      </section>
+    </div>
+  </main>
+  <footer class="bottom"><span>STOAIX — Klinik büyümesinde görünürlük ve kontrol</span><a href="/">Ana sayfa ↑</a></footer>
+</body>
+</html>

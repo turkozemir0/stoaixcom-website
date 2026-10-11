@@ -32,6 +32,7 @@
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/v2.css?v=4">
+<link rel="stylesheet" href="/css/revenue-calculator-widget.css?v=1">
 
 <!-- Tema, ilk boyamadan önce uygulanır: koyu/açık geçişinde flaş olmaz. -->
 <script>
@@ -256,6 +257,7 @@
     <p>Pazarlama bütçenizle tedavi takviminiz arasındaki katmanı biz işletiriz — sizin yönetişiminiz altında sekiz AI asistan, tek bir gelir tablosu ve aynı ekip tarafından yürütülen talep üretimi.</p>
     <div class="row hero-actions">
       <a href="https://calendly.com/ataulufer1/20" class="btn" target="_blank" rel="noopener">Tanışma görüşmesi</a>
+      <a href="#revenue-calculator" class="btn-ghost">Gelir kaçağını hesaplayın</a>
     </div>
   </div>
 </section>
@@ -546,6 +548,49 @@
   </div>
 </section>
 
+<!-- ═══ GELİR KAÇAĞI HESAPLAYICISI ═════════════════════════════ -->
+<section class="loss-calculator" id="revenue-calculator" aria-labelledby="loss-heading">
+  <div class="loss-inner">
+    <div class="loss-intro"><p class="loss-kicker">GELİR KAÇAĞI HESAPLAYICISI</p><h2 id="loss-heading">Masada kalan fırsatı hesaplayın.</h2><p>Kendi verilerinizle aylık potansiyel ciroyu görün.</p></div>
+    <div class="loss-grid">
+      <div class="loss-inputs"><h3>Klinik verileriniz</h3>
+        <form id="loss-form" novalidate><div class="loss-fields">
+          <div class="loss-field">
+          <div class="loss-field-label"><label for="leads">Aylık yeni lead</label><button id="help-leads" class="loss-help" type="button" aria-label="Aylık yeni lead: Açıklamayı göster">?</button></div>
+          <div class="loss-input-row"><input id="leads" name="leads" type="number" min="0" max="1000000" step="1" value="300" inputmode="numeric"></div>
+        </div>
+          <div class="loss-field">
+          <div class="loss-field-label"><label for="conversion">Lead’den hastaya dönüşüm oranı</label><button id="help-conversion" class="loss-help" type="button" aria-label="Lead’den hastaya dönüşüm oranı: Açıklamayı göster">?</button></div>
+          <div class="loss-input-row"><input id="conversion" name="conversion" type="number" min="0" max="100" step="0.1" value="6" inputmode="decimal"></div>
+        </div>
+          <div class="loss-field">
+          <div class="loss-field-label"><label for="target">Hedef dönüşüm oranı</label><button id="help-target" class="loss-help" type="button" aria-label="Hedef dönüşüm oranı: Açıklamayı göster">?</button></div>
+          <div class="loss-input-row"><input id="target" name="target" type="number" min="0" max="100" step="0.1" value="10" inputmode="decimal"></div>
+        </div>
+          <div class="loss-field">
+          <div class="loss-field-label"><label for="value">Hasta başına ortalama tahsilat</label><button id="help-value" class="loss-help" type="button" aria-label="Hasta başına ortalama tahsilat: Açıklamayı göster">?</button></div>
+          <div class="loss-input-row"><input id="value" name="value" type="number" min="0" max="100000000" step="1" value="2500" inputmode="decimal"><select name="currency" aria-label="Para birimi"><option value="EUR">EUR</option><option value="TRY">TRY</option><option value="GBP">GBP</option><option value="USD">USD</option></select></div>
+        </div>
+        </div><p class="loss-error" id="calc-error" role="alert"></p></form>
+      </div>
+      <div class="loss-results" id="calc-results" aria-live="polite">
+        <h3>Masada kalan fırsat</h3><p class="loss-rate" id="rate-explainer"></p>
+        <p class="loss-result-label">Her ay masada kalabilecek ciro</p><strong class="loss-big-number" id="monthly-value"></strong>
+        <div class="loss-summary"><div><strong id="annual-value"></strong><span>Yıllık potansiyel</span></div><div><strong id="patient-count"></strong><span>Ek hasta / ay</span></div></div>
+        <a class="loss-cta" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Bu açığı birlikte inceleyelim →</a>
+        <p class="loss-caution">Bu bir senaryo tahminidir; gerçekleşmiş kayıp veya getiri garantisi değildir.</p>
+        <details class="loss-details"><summary>Hesap nasıl yapılıyor?</summary><p id="formula"></p><p>Aylık lead × dönüşüm oranları arasındaki yüzde puan farkı × hasta başına ortalama tahsilat. Yıllık tutar aylık sonucun 12 katıdır; maliyetler dahil değildir.</p></details>
+      </div>
+    </div>
+    <a class="loss-full-link" href="/gelir-kaybi-hesaplayici">Hesaplayıcıyı ayrı sayfada aç ↗</a>
+  </div>
+  <aside class="loss-toast" id="field-toast" role="status" aria-live="polite" hidden>
+    <button class="loss-toast-close" id="field-toast-close" type="button" aria-label="Bildirimi kapat">×</button>
+    <p class="loss-toast-label" id="field-toast-label"></p><strong class="loss-toast-title" id="field-toast-title"></strong>
+    <p class="loss-toast-body" id="field-toast-body"></p><a class="loss-toast-link" id="field-toast-link" hidden></a>
+  </aside>
+</section>
+
 <!-- ═══ TEKNİK ŞARTNAME (ters zemin) ══════════════════════════ -->
 <section class="alt pad" id="specification">
   <div class="sec-head">
@@ -803,5 +848,6 @@
 </footer>
 
 <script src="/js/v2.js?v=2" defer></script>
+<script src="/js/revenue-loss-calculator.js?v=1" defer></script>
 </body>
 </html>

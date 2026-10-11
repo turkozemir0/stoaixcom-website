@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clinic Revenue Leakage Calculator | STOAIX</title>
+  <meta name="description" content="Estimate the potential revenue that could be left on the table each month from your clinic lead conversion gap.">
+  <link rel="canonical" href="https://stoaix.com/revenue-loss-calculator">
+  <link rel="alternate" hreflang="en" href="https://stoaix.com/revenue-loss-calculator">
+  <link rel="alternate" hreflang="tr" href="https://stoaix.com/gelir-kaybi-hesaplayici">
+  <link rel="stylesheet" href="/css/revenue-loss-calculator.css">
+  <script src="/js/revenue-loss-calculator.js?v=1" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <a class="brand" href="/en" aria-label="STOAIX"><span class="brand-mark" aria-hidden="true"></span>STOAIX</a>
+    <nav class="top-links" aria-label="Page links">
+      <a href="/en">Home</a>
+      <a href="/gelir-kaybi-hesaplayici" lang="tr" class="">TR</a>
+      <a href="/revenue-loss-calculator" lang="en" class="active">EN</a>
+    </nav>
+  </header>
+  <aside class="field-toast" id="field-toast" role="status" aria-live="polite" hidden>
+    <button class="field-toast-close" id="field-toast-close" type="button" aria-label="Dismiss notification">×</button>
+    <p class="field-toast-label" id="field-toast-label"></p>
+    <strong class="field-toast-title" id="field-toast-title"></strong>
+    <p class="field-toast-body" id="field-toast-body"></p>
+    <a class="field-toast-link" id="field-toast-link" hidden></a>
+  </aside>
+  <main id="main">
+    <div class="intro">
+      <p class="kicker">STOAIX / REVENUE LEAKAGE</p>
+      <h1>How much revenue is <em>left on the table?</em></h1>
+      <p>If even a small share of unconverted leads became patients, how much revenue could be left on the table?</p>
+    </div>
+    <div class="workspace">
+      <section class="inputs" aria-labelledby="inputs-title">
+        <div class="section-head"><h2 id="inputs-title">Your clinic numbers</h2><span>Edit the example values</span></div>
+        <form id="loss-form" novalidate>
+          <div class="fields">
+            <div class="field"><div class="field-label"><label for="leads">New leads per month</label><button id="help-leads" class="field-help" type="button" aria-label="New leads per month: Show explanation">?</button></div><input id="leads" name="leads" type="number" min="0" max="1000000" step="1" value="300" inputmode="numeric" aria-describedby="leads-help"><small id="leads-help">Unique inquiries received in a month</small></div>
+            <div class="field"><div class="field-label"><label for="conversion">Lead-to-patient conversion rate</label><button id="help-conversion" class="field-help" type="button" aria-label="Lead-to-patient conversion rate: Show explanation">?</button></div><input id="conversion" name="conversion" type="number" min="0" max="100" step="0.1" value="6" inputmode="decimal" aria-describedby="conversion-help"><small id="conversion-help">What share of new leads become paying patients?</small></div>
+            <div class="field"><div class="field-label"><label for="target">Target conversion rate</label><button id="help-target" class="field-help" type="button" aria-label="Target conversion rate: Show explanation">?</button></div><input id="target" name="target" type="number" min="0" max="100" step="0.1" value="10" inputmode="decimal" aria-describedby="target-help"><small id="target-help">An achievable rate for the same group of leads</small></div>
+            <div class="field"><div class="field-label"><label for="value">Average amount collected per patient</label><button id="help-value" class="field-help" type="button" aria-label="Average amount collected per patient: Show explanation">?</button></div><div class="input-row"><input id="value" name="value" type="number" min="0" max="100000000" step="1" value="2500" inputmode="decimal" aria-describedby="value-help"><select name="currency" aria-label="Currency"><option value="EUR">EUR</option><option value="TRY">TRY</option><option value="GBP">GBP</option><option value="USD">USD</option></select></div><small id="value-help">Average amount collected from a new patient</small></div>
+          </div>
+          <p class="footnote">These are example values. Replace them with your data; currency selection does not convert rates.</p>
+          <p class="error" id="calc-error" role="alert"></p>
+        </form>
+      </section>
+      <section class="results" id="calc-results" aria-labelledby="results-title">
+        <div class="section-head"><h2 id="results-title">Opportunity left behind</h2><span>Estimate</span></div>
+        <p class="rate-explainer" id="rate-explainer"></p>
+        <p class="result-label">Potential monthly revenue left on the table</p>
+        <p class="big-number" id="monthly-value" aria-live="polite"></p>
+        <div class="summary">
+          <div><strong id="annual-value"></strong><span>Annual potential</span></div>
+          <div><strong id="patient-count"></strong><span>Additional patients / month</span></div>
+        </div>
+        <a class="cta" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Review this gap together →</a>
+        <p class="disclaimer">This is a scenario estimate, not measured lost revenue or a guaranteed return.</p>
+        <details class="calc-details"><summary>How is this calculated?</summary><p id="formula"></p><p>The difference between target and current rates is measured in percentage points. Annual potential is 12 times the monthly amount; costs are excluded.</p></details>
+      </section>
+    </div>
+  </main>
+  <footer class="bottom"><span>STOAIX — Visibility and control for clinic growth</span><a href="/en">Home ↑</a></footer>
+</body>
+</html>

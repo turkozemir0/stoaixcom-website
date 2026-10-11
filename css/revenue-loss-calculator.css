@@ -1,0 +1,58 @@
+:root{color-scheme:dark;--bg:#0a0a0b;--fg:#f2f2f0;--muted:#a9a9b0;--line:#33343a;--accent:#4f7bff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{text-decoration:underline}a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.skip{position:absolute;left:20px;top:-100px;padding:12px;background:white;color:black;z-index:4}.skip:focus{top:12px}
+.top{min-height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px clamp(20px,5vw,72px)}.brand{font-weight:750;font-size:20px;letter-spacing:.055em;display:flex;align-items:center;gap:11px}.brand-mark{width:25px;height:25px;background:url('/assets/v2/stoaix-mark-white.png') center/contain no-repeat}.top-links{display:flex;align-items:center;gap:25px;color:var(--muted);font-size:14px}.top-links .active{color:var(--fg)}
+.intro{padding:clamp(48px,7vw,92px) clamp(20px,5vw,72px) 38px;max-width:1100px}.kicker{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 18px}.intro h1{font-size:clamp(38px,5.8vw,78px);line-height:1.03;letter-spacing:-.055em;margin:0;max-width:940px}.intro p:last-child{max-width:660px;color:var(--muted);font-size:clamp(17px,1.7vw,20px);line-height:1.5;margin:24px 0 0}.workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.06fr);gap:clamp(32px,5vw,76px);padding:0 clamp(20px,5vw,72px) 90px;max-width:1540px}.inputs,.results{border-top:1px solid var(--line);padding-top:25px}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:baseline}.section-head h2{font-size:18px;letter-spacing:-.02em;margin:0}.section-head span{font-size:12px;color:var(--muted)}.fields{display:grid;grid-template-columns:1fr 1fr;gap:26px 20px;margin-top:38px}.field{display:flex;flex-direction:column;gap:11px}.field label{font-size:14px;font-weight:620}.field small{font-size:12px;line-height:1.45;color:var(--muted);min-height:34px}.field input,.field select{width:100%;height:58px;border:1px solid #56575d;background:#151517;color:var(--fg);padding:0 16px;border-radius:0;font-family:inherit;font-size:21px;font-weight:600}.field select{appearance:auto;font-size:16px}.input-row{display:flex;gap:9px}.input-row input{min-width:0}.input-row select{max-width:110px}.footnote{margin:29px 0 0;color:var(--muted);font-size:13px;line-height:1.55}.error{color:#ffb3aa;min-height:23px;font-size:13px;margin:14px 0 0}.results[hidden]{display:none}.result-label{text-transform:uppercase;letter-spacing:.16em;color:var(--muted);font-size:12px;margin:40px 0 14px}.big-number{font-size:clamp(44px,5vw,76px);font-weight:680;line-height:1.05;letter-spacing:-.055em;margin:0;white-space:nowrap;font-variant-numeric:tabular-nums}.summary{display:flex;gap:24px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:25px 0;margin-top:35px}.summary div{flex:1;min-width:125px}.summary strong{display:block;font-size:26px;letter-spacing:-.035em;font-variant-numeric:tabular-nums}.summary span{display:block;color:var(--muted);font-size:13px;margin-top:4px}.bars{margin-top:33px}.bar-row{display:grid;grid-template-columns:125px 1fr 45px;gap:12px;align-items:center;margin:14px 0;font-size:13px;color:var(--muted)}.bar{height:10px;background:#28292e}.bar i{display:block;height:100%;width:0;background:#777985;transition:width .28s ease}.bar-row:last-child .bar i{background:var(--accent)}.patient-line{display:flex;justify-content:space-between;gap:10px;color:var(--muted);font-size:12px;margin-top:15px}.formula{font-size:13px;line-height:1.55;color:var(--muted);padding-top:23px;margin-top:27px;border-top:1px solid var(--line)}.disclaimer{font-size:12px;color:var(--muted);line-height:1.6;margin:17px 0 0}.cta{display:inline-block;background:var(--fg);color:var(--bg);font-weight:680;padding:17px 23px;margin-top:28px}.cta:hover{background:#ddd;text-decoration:none}.bottom{border-top:1px solid var(--line);padding:29px clamp(20px,5vw,72px);display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:13px}
+@media(max-width:850px){.workspace{grid-template-columns:1fr;gap:42px}.intro{padding-bottom:48px}.big-number{font-size:clamp(42px,9vw,68px)}}@media(max-width:520px){.top{min-height:66px}.top-links{gap:14px;font-size:12px}.fields{grid-template-columns:1fr 1fr;gap:24px 12px}.field input,.field select{height:52px;font-size:18px;padding:0 10px}.field select{font-size:14px}.input-row select{max-width:80px}.big-number{white-space:normal;overflow-wrap:anywhere}.bar-row{grid-template-columns:90px 1fr 38px}.bottom{flex-direction:column}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar i{transition:none}}
+
+/* Red belongs to the loss signal; the rest of STOAIX keeps its ink palette. */
+:root{--loss:#ff5964}
+.kicker{color:var(--loss)}
+.intro h1 em{color:var(--loss);font-style:normal}
+.results{border-top:2px solid var(--loss)}
+.results .section-head h2{color:var(--loss)}
+.result-label{color:#ff9da4;font-weight:750;margin-top:30px}
+.big-number{color:var(--loss);font-weight:740}
+.loss-statement{border-left:2px solid var(--loss);padding:3px 0 3px 16px;margin:21px 0 0;max-width:560px;color:#e3d4d6;font-size:15px;line-height:1.5}
+.summary strong{color:#ffd4d7}
+.bar-row:last-child .bar i{background:var(--loss)}
+.cta{background:var(--loss);color:#0a0a0b}
+.cta:hover{background:#ff7e87}
+.field input:focus-visible,.field select:focus-visible{outline-color:var(--loss)}
+.calc-details{border-top:1px solid var(--line);padding-top:16px;margin-top:24px;color:var(--muted);font-size:12px;line-height:1.6}
+.calc-details summary{cursor:pointer;width:fit-content;color:var(--fg);font-size:13px}
+.calc-details summary:hover{text-decoration:underline}
+.calc-details p{max-width:600px;margin:12px 0 0}
+.rate-explainer{margin:24px 0 0;padding-bottom:15px;border-bottom:1px solid var(--line);color:var(--fg);font-size:15px;font-weight:620;font-variant-numeric:tabular-nums}
+.field-label{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:24px}
+.field-help{width:25px;height:25px;flex:none;border:1px solid #666b79;border-radius:50%;background:transparent;color:#aebbd2;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.field-help:hover,.field-help:focus-visible{border-color:#83a4ff;color:#fff}
+.field-toast{position:fixed;z-index:30;top:88px;right:24px;width:min(392px,calc(100vw - 24px));max-height:calc(100svh - 100px);overflow:auto;padding:21px 54px 22px 22px;background:#131821;border:1px solid #5979bb;box-shadow:0 16px 42px rgba(0,0,0,.42);animation:field-toast-in .25s ease-out}
+.field-toast[hidden]{display:none}
+.field-toast-label{margin:0 0 9px;color:#83a4ff;font-size:11px;font-weight:800;letter-spacing:.15em;text-transform:uppercase}
+.field-toast-title{display:block;color:var(--fg);font-size:17px;line-height:1.28;letter-spacing:-.02em}
+.field-toast-body{margin:9px 0 13px;color:#c8cdd8;font-size:12.5px;line-height:1.5}
+.field-toast-link{color:#a3bbff;font-size:13px;font-weight:730;text-decoration:underline;text-underline-offset:3px}
+.field-toast-link[hidden]{display:none}
+.field-toast-close{position:absolute;top:10px;right:10px;width:36px;height:36px;border:0;background:transparent;color:#d5d7df;font-size:24px;line-height:1;cursor:pointer}
+.field-toast-close:hover{color:white;background:#232a38}
+@keyframes field-toast-in{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:520px){.field-toast{top:72px;right:12px;padding:16px 46px 17px 17px;max-height:calc(100svh - 84px)}}
+@media(prefers-reduced-motion:reduce){.field-toast{animation:none}}
+
+/* Keep the standalone tool centered and compact; the loss amount retains emphasis. */
+.intro,.workspace{width:85%;max-width:1180px;margin-inline:auto;padding-left:0;padding-right:0}
+.intro{padding-top:clamp(42px,5vw,66px);padding-bottom:28px}
+.intro h1{font-size:clamp(36px,4.6vw,60px);max-width:760px}
+.intro p:last-child{font-size:clamp(15px,1.4vw,18px);margin-top:15px}
+.workspace{gap:clamp(24px,3vw,48px);padding-bottom:72px}
+.fields{gap:20px 16px;margin-top:26px}
+.field{gap:8px}
+.field small{min-height:0}
+.field input,.field select{height:50px;font-size:18px}
+.result-label{margin-top:24px}
+.big-number{font-size:clamp(48px,5.7vw,82px)}
+.summary{padding:18px 0;margin-top:24px}
+.summary strong{font-size:23px}
+@media(max-width:850px){.intro,.workspace{width:calc(100% - 48px)}}
+@media(max-width:520px){.intro,.workspace{width:calc(100% - 32px)}.fields{grid-template-columns:1fr 1fr}.field input,.field select{height:48px;font-size:16px}.field label{font-size:12px}.input-row select{max-width:72px;font-size:12px}}
+@media(max-width:360px){.fields{grid-template-columns:1fr}}

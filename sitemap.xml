@@ -18,6 +18,22 @@
     <priority>1.0</priority>
   </url>
 
+  <url>
+    <loc>https://stoaix.com/gelir-kaybi-hesaplayici</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/gelir-kaybi-hesaplayici"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stoaix.com/revenue-loss-calculator"/>
+  </url>
+  <url>
+    <loc>https://stoaix.com/revenue-loss-calculator</loc>
+    <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/gelir-kaybi-hesaplayici"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stoaix.com/revenue-loss-calculator"/>
+  </url>
 
   <!-- Core Brand Pages -->
   <url>
