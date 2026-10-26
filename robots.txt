@@ -1,25 +1,48 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.git/
+Disallow: /assets/.gitkeep
 
-# AI crawlers — explicitly allowed for GEO/LLM indexing
+# AI search crawlers: these decide whether STOAIX can be cited in AI answers
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# AI training crawlers: allowed so models learn the STOAIX brand and category
 User-agent: GPTBot
 Allow: /
 
 User-agent: ClaudeBot
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: Google-Extended
 Allow: /
 
+User-agent: Applebot-Extended
+Allow: /
+
+# Classic search engines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
-
-# Block non-public directories
-Disallow: /.git/
-Disallow: /assets/.gitkeep
 
 # AI-readable content summaries
 # English: https://stoaix.com/llms.txt

@@ -84,6 +84,98 @@
     <priority>0.4</priority>
   </url>
 
+  <!-- Case Studies & Product Pages (EN) -->
+  <url>
+    <loc>https://stoaix.com/case-studies</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/case-study-dental</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/case-study-dental-tourism</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/case-study-aesthetic</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/case-study-cosmetic-surgery</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/case-study-body-surgery</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/case-study-rhinoplasty</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/case-study-hair-transplant</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/case-study-hair-restoration</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/case-study-physiotherapy</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/healthcare-clinics</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/modules</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/modules-smile-design</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/modules-social-media</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://stoaix.com/partners</loc>
+    <lastmod>2026-10-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
   <!-- Blog Index -->
   <url>
     <loc>https://stoaix.com/blog</loc>
@@ -1268,703 +1360,703 @@
   </url>
 
   <url>
-    <loc>https://stoaix.com/blog/ai-ile-hasta-iletisim-kalitesi.html</loc>
+    <loc>https://stoaix.com/blog/ai-ile-hasta-iletisim-kalitesi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-ile-hasta-iletisim-kalitesi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ai-ile-hasta-iletisim-kalitesi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/aile-hekimligi-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/aile-hekimligi-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/aile-hekimligi-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/aile-hekimligi-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/algoloji-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/algoloji-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/algoloji-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/algoloji-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/bariatrik-klinik-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/bariatrik-klinik-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/bariatrik-klinik-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/bariatrik-klinik-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/cocuk-gelisim-otizm-klinigi-hasta-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/cocuk-gelisim-otizm-klinigi-hasta-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/cocuk-gelisim-otizm-klinigi-hasta-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/cocuk-gelisim-otizm-klinigi-hasta-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/cok-lokasyonlu-klinik-zinciri-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/cok-lokasyonlu-klinik-zinciri-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/cok-lokasyonlu-klinik-zinciri-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/cok-lokasyonlu-klinik-zinciri-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/dahiliye-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/dahiliye-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dahiliye-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dahiliye-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/dermatoloji-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/dermatoloji-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dermatoloji-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dermatoloji-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/dis-klinigi-kayip-hasta-geri-kazanma.html</loc>
+    <loc>https://stoaix.com/blog/dis-klinigi-kayip-hasta-geri-kazanma</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-kayip-hasta-geri-kazanma.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-klinigi-kayip-hasta-geri-kazanma"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/dis-turizmi-uk-hasta-kazanma.html</loc>
+    <loc>https://stoaix.com/blog/dis-turizmi-uk-hasta-kazanma</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-turizmi-uk-hasta-kazanma.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/dis-turizmi-uk-hasta-kazanma"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/diyetisyen-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/diyetisyen-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/diyetisyen-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/diyetisyen-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/endokrinoloji-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/endokrinoloji-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/endokrinoloji-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/endokrinoloji-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/estetik-klinik-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/estetik-klinik-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/estetik-klinik-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/estetik-klinik-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/estetik-klinik-hasta-donusum-hunisi.html</loc>
+    <loc>https://stoaix.com/blog/estetik-klinik-hasta-donusum-hunisi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/estetik-klinik-hasta-donusum-hunisi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/estetik-klinik-hasta-donusum-hunisi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/fizik-tedavi-merkezi-hasta-takip-sistemi.html</loc>
+    <loc>https://stoaix.com/blog/fizik-tedavi-merkezi-hasta-takip-sistemi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/fizik-tedavi-merkezi-hasta-takip-sistemi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/fizik-tedavi-merkezi-hasta-takip-sistemi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/fizioterapi-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/fizioterapi-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/fizioterapi-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/fizioterapi-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/gastroenteroloji-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/gastroenteroloji-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/gastroenteroloji-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/gastroenteroloji-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/gogus-hastaliklari-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/gogus-hastaliklari-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/gogus-hastaliklari-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/gogus-hastaliklari-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/goz-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/goz-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/goz-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/goz-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/goz-sagligi-klinigi-hasta-yonetimi-2026.html</loc>
+    <loc>https://stoaix.com/blog/goz-sagligi-klinigi-hasta-yonetimi-2026</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/goz-sagligi-klinigi-hasta-yonetimi-2026.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/goz-sagligi-klinigi-hasta-yonetimi-2026"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/hasta-geri-bildirimi-anket-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/hasta-geri-bildirimi-anket-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-geri-bildirimi-anket-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-geri-bildirimi-anket-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/hasta-iletisimi-ozel-klinik.html</loc>
+    <loc>https://stoaix.com/blog/hasta-iletisimi-ozel-klinik</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-iletisimi-ozel-klinik.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-iletisimi-ozel-klinik"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/hasta-iptal-yonetimi-ozel-klinik.html</loc>
+    <loc>https://stoaix.com/blog/hasta-iptal-yonetimi-ozel-klinik</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-iptal-yonetimi-ozel-klinik.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-iptal-yonetimi-ozel-klinik"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/hasta-kazanimi-ozel-klinik-2026.html</loc>
+    <loc>https://stoaix.com/blog/hasta-kazanimi-ozel-klinik-2026</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-kazanimi-ozel-klinik-2026.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-kazanimi-ozel-klinik-2026"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/hasta-ltv-hesaplama-ozel-klinik.html</loc>
+    <loc>https://stoaix.com/blog/hasta-ltv-hesaplama-ozel-klinik</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-ltv-hesaplama-ozel-klinik.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-ltv-hesaplama-ozel-klinik"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/hastane-sonrasi-bakim-ozel-klinik-koordinasyonu.html</loc>
+    <loc>https://stoaix.com/blog/hastane-sonrasi-bakim-ozel-klinik-koordinasyonu</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hastane-sonrasi-bakim-ozel-klinik-koordinasyonu.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hastane-sonrasi-bakim-ozel-klinik-koordinasyonu"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/hekim-kisisel-markasi-dijital-strateji.html</loc>
+    <loc>https://stoaix.com/blog/hekim-kisisel-markasi-dijital-strateji</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hekim-kisisel-markasi-dijital-strateji.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hekim-kisisel-markasi-dijital-strateji"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/idari-maliyet-azaltma-ozel-klinik.html</loc>
+    <loc>https://stoaix.com/blog/idari-maliyet-azaltma-ozel-klinik</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/idari-maliyet-azaltma-ozel-klinik.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/idari-maliyet-azaltma-ozel-klinik"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/isitme-cihazi-merkezi-hasta-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/isitme-cihazi-merkezi-hasta-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/isitme-cihazi-merkezi-hasta-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/isitme-cihazi-merkezi-hasta-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ivf-ureme-tibbi-klinigi-hasta-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/ivf-ureme-tibbi-klinigi-hasta-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ivf-ureme-tibbi-klinigi-hasta-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ivf-ureme-tibbi-klinigi-hasta-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/jinekologi-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/jinekologi-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/jinekologi-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/jinekologi-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/kardiyak-rehabilitasyon-klinigi-hasta-takibi.html</loc>
+    <loc>https://stoaix.com/blog/kardiyak-rehabilitasyon-klinigi-hasta-takibi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kardiyak-rehabilitasyon-klinigi-hasta-takibi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kardiyak-rehabilitasyon-klinigi-hasta-takibi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/kardiyoloji-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/kardiyoloji-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kardiyoloji-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kardiyoloji-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/kbb-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/kbb-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kbb-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kbb-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-chatbot-vs-ai-asistan-karsilastirma.html</loc>
+    <loc>https://stoaix.com/blog/klinik-chatbot-vs-ai-asistan-karsilastirma</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-chatbot-vs-ai-asistan-karsilastirma.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-chatbot-vs-ai-asistan-karsilastirma"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-fiyatlandirma-stratejisi-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/klinik-fiyatlandirma-stratejisi-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-fiyatlandirma-stratejisi-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-fiyatlandirma-stratejisi-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-google-my-business-optimizasyonu.html</loc>
+    <loc>https://stoaix.com/blog/klinik-google-my-business-optimizasyonu</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-google-my-business-optimizasyonu.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-google-my-business-optimizasyonu"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-hasta-portali-dijital-deneyim.html</loc>
+    <loc>https://stoaix.com/blog/klinik-hasta-portali-dijital-deneyim</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-hasta-portali-dijital-deneyim.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-hasta-portali-dijital-deneyim"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-icerik-pazarlama-stratejisi.html</loc>
+    <loc>https://stoaix.com/blog/klinik-icerik-pazarlama-stratejisi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-icerik-pazarlama-stratejisi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-icerik-pazarlama-stratejisi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-muayene-odasi-verimliligi.html</loc>
+    <loc>https://stoaix.com/blog/klinik-muayene-odasi-verimliligi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-muayene-odasi-verimliligi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-muayene-odasi-verimliligi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-online-randevu-telefon-karsilastirma.html</loc>
+    <loc>https://stoaix.com/blog/klinik-online-randevu-telefon-karsilastirma</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-online-randevu-telefon-karsilastirma.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-online-randevu-telefon-karsilastirma"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-performans-kpi-olcum-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/klinik-performans-kpi-olcum-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-performans-kpi-olcum-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-performans-kpi-olcum-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-performans-metrikleri-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/klinik-performans-metrikleri-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-performans-metrikleri-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-performans-metrikleri-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-personel-egitimi-onboarding-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/klinik-personel-egitimi-onboarding-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-personel-egitimi-onboarding-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-personel-egitimi-onboarding-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-personel-verimliligi-artirma.html</loc>
+    <loc>https://stoaix.com/blog/klinik-personel-verimliligi-artirma</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-personel-verimliligi-artirma.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-personel-verimliligi-artirma"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-randevu-no-show-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/klinik-randevu-no-show-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-randevu-no-show-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-randevu-no-show-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-whatsapp-business-hasta-iletisimi.html</loc>
+    <loc>https://stoaix.com/blog/klinik-whatsapp-business-hasta-iletisimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-whatsapp-business-hasta-iletisimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-whatsapp-business-hasta-iletisimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-yerel-seo-il-ilce-bazli-strateji.html</loc>
+    <loc>https://stoaix.com/blog/klinik-yerel-seo-il-ilce-bazli-strateji</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-yerel-seo-il-ilce-bazli-strateji.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-yerel-seo-il-ilce-bazli-strateji"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/klinik-yonetim-yazilimi-secim-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/klinik-yonetim-yazilimi-secim-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-yonetim-yazilimi-secim-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/klinik-yonetim-yazilimi-secim-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/kvkk-uyumlu-hasta-iletisimi-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/kvkk-uyumlu-hasta-iletisimi-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kvkk-uyumlu-hasta-iletisimi-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/kvkk-uyumlu-hasta-iletisimi-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/mesai-sonrasi-aramalar-ozel-klinik.html</loc>
+    <loc>https://stoaix.com/blog/mesai-sonrasi-aramalar-ozel-klinik</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/mesai-sonrasi-aramalar-ozel-klinik.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/mesai-sonrasi-aramalar-ozel-klinik"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/nefroloji-klinigi-hasta-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/nefroloji-klinigi-hasta-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/nefroloji-klinigi-hasta-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/nefroloji-klinigi-hasta-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/no-show-azaltma-ozel-klinik-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/no-show-azaltma-ozel-klinik-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/no-show-azaltma-ozel-klinik-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/no-show-azaltma-ozel-klinik-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/noroloji-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/noroloji-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/noroloji-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/noroloji-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/obezite-klinigi-metabolik-hastalik-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/obezite-klinigi-metabolik-hastalik-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/obezite-klinigi-metabolik-hastalik-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/obezite-klinigi-metabolik-hastalik-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/onkoloji-takip-klinigi-hasta-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/onkoloji-takip-klinigi-hasta-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/onkoloji-takip-klinigi-hasta-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/onkoloji-takip-klinigi-hasta-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ortopedi-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/ortopedi-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ortopedi-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ortopedi-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/otomatik-randevu-ozel-klinik.html</loc>
+    <loc>https://stoaix.com/blog/otomatik-randevu-ozel-klinik</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/otomatik-randevu-ozel-klinik.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/otomatik-randevu-ozel-klinik"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-acilis-kontrol-listesi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-acilis-kontrol-listesi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-acilis-kontrol-listesi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-acilis-kontrol-listesi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-bekleme-listesi-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-bekleme-listesi-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-bekleme-listesi-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-bekleme-listesi-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-buyume-stratejisi-2026.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-buyume-stratejisi-2026</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-buyume-stratejisi-2026.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-buyume-stratejisi-2026"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-crm-secim-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-crm-secim-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-crm-secim-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-crm-secim-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-dijital-donusum-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-dijital-donusum-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-dijital-donusum-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-dijital-donusum-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-email-pazarlama.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-email-pazarlama</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-email-pazarlama.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-email-pazarlama"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-finansal-yonetim-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-finansal-yonetim-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-finansal-yonetim-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-finansal-yonetim-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-fiyatlandirma-stratejisi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-fiyatlandirma-stratejisi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-fiyatlandirma-stratejisi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-fiyatlandirma-stratejisi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-gelir-artirma-stratejileri.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-gelir-artirma-stratejileri</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-gelir-artirma-stratejileri.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-gelir-artirma-stratejileri"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-google-reklamlari-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-google-reklamlari-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-google-reklamlari-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-google-reklamlari-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-hasta-hizmetleri-kalitesi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-hasta-hizmetleri-kalitesi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-hasta-hizmetleri-kalitesi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-hasta-hizmetleri-kalitesi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-hasta-memnuniyeti-artirma.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-hasta-memnuniyeti-artirma</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-hasta-memnuniyeti-artirma.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-hasta-memnuniyeti-artirma"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-hasta-sadakat-programi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-hasta-sadakat-programi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-hasta-sadakat-programi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-hasta-sadakat-programi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-network-ve-referal-sistemi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-network-ve-referal-sistemi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-network-ve-referal-sistemi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-network-ve-referal-sistemi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-online-itibar-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-online-itibar-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-online-itibar-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-online-itibar-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-randevu-sistemi-secim-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-randevu-sistemi-secim-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-randevu-sistemi-secim-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-randevu-sistemi-secim-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-referral-hasta-programi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-referral-hasta-programi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-referral-hasta-programi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-referral-hasta-programi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-sigorta-anlasmasi-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-sigorta-anlasmasi-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-sigorta-anlasmasi-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-sigorta-anlasmasi-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-sms-pazarlama-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-sms-pazarlama-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-sms-pazarlama-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-sms-pazarlama-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-sosyal-kanit-stratejisi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-sosyal-kanit-stratejisi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-sosyal-kanit-stratejisi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-sosyal-kanit-stratejisi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-sosyal-medya-pazarlama.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-sosyal-medya-pazarlama</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-sosyal-medya-pazarlama.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-sosyal-medya-pazarlama"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-sosyal-medya-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-sosyal-medya-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-sosyal-medya-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-sosyal-medya-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-tele-tip-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-tele-tip-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-tele-tip-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-tele-tip-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-telemedicine-uzaktan-hasta-hizmetleri.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-telemedicine-uzaktan-hasta-hizmetleri</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-telemedicine-uzaktan-hasta-hizmetleri.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-telemedicine-uzaktan-hasta-hizmetleri"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-trendleri-2026.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-trendleri-2026</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-trendleri-2026.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-trendleri-2026"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-web-sitesi-seo-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-web-sitesi-seo-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-web-sitesi-seo-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-web-sitesi-seo-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/ozel-klinik-whatsapp-pazarlama.html</loc>
+    <loc>https://stoaix.com/blog/ozel-klinik-whatsapp-pazarlama</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-whatsapp-pazarlama.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/ozel-klinik-whatsapp-pazarlama"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/palyatif-bakim-merkezi-hasta-koordinasyonu.html</loc>
+    <loc>https://stoaix.com/blog/palyatif-bakim-merkezi-hasta-koordinasyonu</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/palyatif-bakim-merkezi-hasta-koordinasyonu.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/palyatif-bakim-merkezi-hasta-koordinasyonu"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/pediatri-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/pediatri-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/pediatri-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/pediatri-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/plastik-cerrahi-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/plastik-cerrahi-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/plastik-cerrahi-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/plastik-cerrahi-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/psikiyatri-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/psikiyatri-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/psikiyatri-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/psikiyatri-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/psikoloji-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/psikoloji-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/psikoloji-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/psikoloji-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/randevu-hatirlatma-ozel-klinik-rehberi.html</loc>
+    <loc>https://stoaix.com/blog/randevu-hatirlatma-ozel-klinik-rehberi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/randevu-hatirlatma-ozel-klinik-rehberi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/randevu-hatirlatma-ozel-klinik-rehberi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/romatoloji-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/romatoloji-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/romatoloji-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/romatoloji-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/sac-ekimi-uluslararasi-hasta-donusumu.html</loc>
+    <loc>https://stoaix.com/blog/sac-ekimi-uluslararasi-hasta-donusumu</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/sac-ekimi-uluslararasi-hasta-donusumu.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/sac-ekimi-uluslararasi-hasta-donusumu"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/saglik-turizmi-yabanci-hasta-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/saglik-turizmi-yabanci-hasta-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/saglik-turizmi-yabanci-hasta-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/saglik-turizmi-yabanci-hasta-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/sesli-ai-ozel-klinik-rehberi-2026.html</loc>
+    <loc>https://stoaix.com/blog/sesli-ai-ozel-klinik-rehberi-2026</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/sesli-ai-ozel-klinik-rehberi-2026.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/sesli-ai-ozel-klinik-rehberi-2026"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/spor-hekimligi-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/spor-hekimligi-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/spor-hekimligi-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/spor-hekimligi-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/turkiye-saglik-turizmi-strateji-2026.html</loc>
+    <loc>https://stoaix.com/blog/turkiye-saglik-turizmi-strateji-2026</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/turkiye-saglik-turizmi-strateji-2026.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/turkiye-saglik-turizmi-strateji-2026"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/uroloji-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/uroloji-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/uroloji-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/uroloji-klinigi-ai-resepsiyonist"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/uyku-bozuklugu-klinigi-polisomnografi-yonetimi.html</loc>
+    <loc>https://stoaix.com/blog/uyku-bozuklugu-klinigi-polisomnografi-yonetimi</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/uyku-bozuklugu-klinigi-polisomnografi-yonetimi.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/uyku-bozuklugu-klinigi-polisomnografi-yonetimi"/>
   </url>
   <url>
-    <loc>https://stoaix.com/blog/veteriner-klinigi-ai-resepsiyonist.html</loc>
+    <loc>https://stoaix.com/blog/veteriner-klinigi-ai-resepsiyonist</loc>
     <lastmod>2026-05-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/veteriner-klinigi-ai-resepsiyonist.html"/>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/veteriner-klinigi-ai-resepsiyonist"/>
   </url>
 </urlset>
