@@ -296,6 +296,7 @@
         <span style="font-size:0.7rem;color:var(--text-3);opacity:0.7;">Protected by reCAPTCHA — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Privacy</a> · <a href="https://policies.google.com/terms" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Terms</a></span>
         <span>Made for clinics that refuse to miss a patient.</span>
       </div>
+    <div class="container footer-bottom-inner footer-legal" style="padding-top:0;justify-content:center;text-align:center;font-size:.72rem;opacity:.8;">STOAIX LTD · Registered in England and Wales · Company No. 17131250 · Registered office: 4 Raven Road, Unit 1c3-1121, London, E18 1HB</div>
     </div>
   </footer>`;
 
