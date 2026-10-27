@@ -20,6 +20,14 @@ const supabase = createClient(
 
 const PARTNER_API = 'https://partner.stoaix.com/api/webhook'
 
+// ═══ BU UÇ YALNIZ PARTNER SENKRONU YAPAR (27 Eki 2026, sahip kararı) ═══
+// Abonelik/hak durumunu (org_subscriptions, org_entitlement_overrides, organizations.crm_config)
+// YALNIZ platform webhook'u yazar: platform.stoaix.com/api/billing/webhook — legacy koruması,
+// ek ürün (G3) ve modül (self_serve_modules) ayrımı orada. Bu uç aynı olayları yazdığında çift
+// işleme oluyordu (iptalde platform 'canceled', bu uç 'cancelled' — son yazan kazanıyordu).
+// Burada kalan: org'u OKUMAK + partner.stoaix.com'a bildirim. Satın alma anındaki kurulum
+// (api/_lib/provision.js) bu kararın dışında.
+
 const PLAN_PRICES = {
   essential:    { monthly: 79, annual: 63 },
   professional: { monthly: 149, annual: 119 },
@@ -121,12 +129,7 @@ export default async function handler(req, res) {
 
         const { price, interval } = getPriceFromSubscription(subscription)
 
-        // Update org_subscriptions status
-        await supabase
-          .from('org_subscriptions')
-          .update({ status: 'active' })
-          .eq('organization_id', orgId)
-
+        // org_subscriptions durumu platform webhook'unda yazılır (yalnız partner senkronu burada)
         await forwardToPartner('payment', {
           organization_id: orgId,
           stripe_invoice_id: invoice.id,
@@ -168,35 +171,11 @@ export default async function handler(req, res) {
         const { orgId } = await resolveOrgId(subscription.customer, subscription)
         if (!orgId) break
 
-        // À la carte MODÜL aboneliği iptali: yalnız ilgili modül erişimini kapat; PLAN org_subscriptions'a DOKUNMA.
-        // (Aksi halde mevcut full-plan org'a eklenmiş modülün iptali, o müşterinin PLAN sub'ını cancelled yapardı = erişim kaybı.)
-        if (subscription.metadata?.self_serve_modules === '1') {
-          const featureKeys = (subscription.metadata.feature_keys || '').split(',').filter(Boolean)
-          const crmFlags = (subscription.metadata.crm_flags || '').split(',').filter(Boolean)
-          for (const fk of featureKeys) {
-            await supabase
-              .from('org_entitlement_overrides')
-              .update({ enabled: false })
-              .eq('organization_id', orgId)
-              .eq('feature_key', fk)
-          }
-          if (crmFlags.length > 0) {
-            const { data: orgRow } = await supabase.from('organizations').select('crm_config').eq('id', orgId).single()
-            const crm = (orgRow?.crm_config && typeof orgRow.crm_config === 'object') ? { ...orgRow.crm_config } : {}
-            for (const flag of crmFlags) {
-              if (crm[flag]) crm[flag] = { ...crm[flag], enabled: false }
-            }
-            await supabase.from('organizations').update({ crm_config: crm }).eq('id', orgId)
-          }
-          break
-        }
+        // À la carte MODÜL aboneliği iptali: modül hakları + crm bayrakları platform webhook'unda kapanır
+        // (yalnız reason='self_serve:<sub.id>' hakları). Partner'a PLAN iptali bildirilmez (modül ≠ plan).
+        if (subscription.metadata?.self_serve_modules === '1') break
 
-        // Normal PLAN aboneliği iptali (mevcut davranış)
-        await supabase
-          .from('org_subscriptions')
-          .update({ status: 'cancelled' })
-          .eq('organization_id', orgId)
-
+        // PLAN aboneliği iptali: org_subscriptions platform webhook'unda 'canceled' yazılır; burada yalnız partner
         await forwardToPartner('status', {
           organization_id: orgId,
           status: 'cancelled',
@@ -228,16 +207,7 @@ export default async function handler(req, res) {
         }
 
         if (newPlanId && price > 0) {
-          // Update org_subscriptions
-          await supabase
-            .from('org_subscriptions')
-            .update({
-              plan_id: newPlanId,
-              billing_interval: interval,
-              status: subscription.status === 'active' ? 'active' : subscription.status,
-            })
-            .eq('organization_id', orgId)
-
+          // org_subscriptions (plan/dönem/durum) platform webhook'unda syncSubscription ile yazılır
           await forwardToPartner('plan-change', {
             organization_id: orgId,
             plan_type: newPlanId,
