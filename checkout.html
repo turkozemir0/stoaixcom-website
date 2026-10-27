@@ -616,7 +616,7 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       essential:   { name: t('Essential','Essential'),       monthly: 497, quarterly: 447, semi_annual: 397, annual: 347, badge: '',
                       features: [t('Full CRM','Tam CRM'), t('WhatsApp & Instagram — Unlimited','WhatsApp ve Instagram — Sınırsız'), t('Knowledge base — Unlimited','Bilgi tabanı — Sınırsız'), t('Chat AI & Automation','Chat AI ve Otomasyon'), t('5 team members','5 ekip üyesi')] },
       professional: { name: t('Professional','Professional'), monthly: 747, quarterly: 677, semi_annual: 607, annual: 537, badge: t('Most Popular','En Popüler'),
-                      features: [t('Everything in Essential','Essential\'daki her şey'), t('Inbound voice calls — 200 min/mo','Sesli gelen aramalar — 200 dk/ay'), t('Advanced analytics','Gelişmiş analitik'), t('Multi-pipeline — 3','Çoklu pipeline — 3'), t('10 team members','10 ekip üyesi')] },
+                      features: [t('Everything in Text AI Receptionist','Yazılı AI Resepsiyonist\'teki her şey'), t('Inbound voice calls — 200 min/mo','Sesli gelen aramalar — 200 dk/ay'), t('Advanced analytics','Gelişmiş analitik'), t('Multi-pipeline — 3','Çoklu pipeline — 3'), t('10 team members','10 ekip üyesi')] },
       business:     { name: t('Business','Business'),         monthly: 997, quarterly: 897, semi_annual: 797, annual: 697, badge: t('Most Valuable','En Değerlisi'),
                       features: [t('Everything in Professional','Professional\'daki her şey'), t('Inbound + outbound voice — 500 min/mo','Sesli gelen+giden — 500 dk/ay'), t('All voice workflows','Tüm ses iş akışları'), t('Multi-language voice (8 languages)','Çok dilli ses (8 dil)'), t('Multi-pipeline — Unlimited','Çoklu pipeline — Sınırsız'), t('20 team members','20 ekip üyesi')] },
     }
@@ -647,6 +647,16 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         'By subscribing you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.<br />Subscription starts immediately. Cancel anytime.',
         'Abone olarak <a href="#">Kullanım Koşulları</a>\'nı ve <a href="#">Gizlilik Politikası</a>\'nı kabul etmiş olursunuz.<br />Abonelik hemen başlar. İstediğiniz zaman iptal edebilirsiniz.'
       )
+      // Giriş paketi: self-iptal kapalı (panel + Stripe portalı) — iptal ekip üzerinden (sahip kararı 27 Eki)
+      if (isEntry) {
+        legalEl.innerHTML = t(
+          'By subscribing you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.<br />Billed monthly. To cancel, just contact our team.',
+          'Abone olarak <a href="#">Kullanım Koşulları</a>\'nı ve <a href="#">Gizlilik Politikası</a>\'nı kabul etmiş olursunuz.<br />Aylık faturalandırılır. İptal için ekibimize yazmanız yeterli.'
+        )
+        // 3. Yalnız aylık fiyat var: dönem 'Değiştir' bağlantısı gizli
+        const billingChangeLink = document.querySelector('#billingBadge a')
+        if (billingChangeLink) billingChangeLink.parentNode.innerHTML = '<span id="billingBadgeText">' + t('Monthly billing', 'Aylık faturalandırma') + '</span>'
+      }
     } else {
       document.getElementById('successTitle').textContent = t('Trial started!', 'Deneme başladı!')
       legalEl.innerHTML = t(

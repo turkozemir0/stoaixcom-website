@@ -323,7 +323,7 @@
           <ul class="mplan-features">
             <li>Full CRM</li>
             <li>WhatsApp &amp; Instagram — Unlimited</li>
-            <li>Chat AI &amp; Workflow</li>
+            <li>Chat AI (workflows: add-on module)</li>
             <li>5 Team Members</li>
             <li>1,000 Conversations / mo</li>
           </ul>
@@ -336,7 +336,7 @@
           <div class="mplan-price-custom">Custom Pricing</div>
           <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-primary mplan-btn">Book a call</a>
           <ul class="mplan-features">
-            <li>Everything in Essential, plus:</li>
+            <li>Everything in Text AI Receptionist, plus:</li>
             <li>Voice AI — 200 min/mo</li>
             <li>Advanced Analytics</li>
             <li>10 Team Members</li>
@@ -444,7 +444,7 @@
             </tr>
             <tr>
               <td class="pt-feat">Chat AI &amp; Workflow</td>
-              <td class="pt-c ptc-y"></td>
+              <td class="pt-c ptc-v">AI ✓ · Workflows: add-on</td>
               <td class="pt-c pt-biz ptc-y"></td>
               <td class="pt-c ptc-y"></td>
               <td class="pt-c ptc-y"></td>

@@ -113,6 +113,11 @@ function injectToggle(activeLang, onToggle) {
 /* ─── Shared (navbar / footer / common CTAs) ─────────────── */
 const TR_COMMON = {
   /* giriş paketi fiyat kartı (deneme yok, ilk ay hemen tahsil) */
+  'Billed monthly. To cancel, just contact our team.': 'Aylık faturalandırılır. İptal için ekibimize yazmanız yeterli.',
+  'No setup fee — live the same day': 'Kurulum ücreti yok — aynı gün yayında',
+  'Everything in Text AI Receptionist, plus:': 'Yazılı AI Resepsiyonist\'teki her şey, artı:',
+  'Chat AI (workflows: add-on module)': 'Yapay Zeka Resepsiyonist (iş akışları: ek modül)',
+  'AI ✓ · Workflows: add-on': 'AI ✓ · İş akışları: ek modül',
   'Text AI Receptionist': 'Yazılı AI Resepsiyonist',
   'Get started — billed today': 'Hemen başla — ücret bugün alınır',
   'First month charged today': 'İlk ay bugün tahsil edilir',
@@ -1281,6 +1286,10 @@ const TR_SIGNUP = Object.assign({}, TR_COMMON, {
   'Text AI Receptionist': 'Yazılı AI Resepsiyonist',
   'Get Started — STOAIX': 'Hemen Başlayın — STOAIX',
   'CRM and lead scoring included': 'CRM ve lead puanlama dahil',
+  'live the same day.': 'aynı gün yayında.',
+  'Set up your AI receptionist yourself — no meetings, no developers, no waiting.': 'AI resepsiyonistinizi kendiniz kurun — toplantı yok, geliştirici yok, bekleme yok.',
+  'AI receptionist on WhatsApp, Instagram and Messenger — 24/7': 'WhatsApp, Instagram ve Messenger\'da AI resepsiyonist — 7/24',
+  'Knowledge base and unified inbox — all from one dashboard': 'Bilgi bankası ve ortak gelen kutusu — hepsi tek panelden',
   '$200 / month': '$200 / ay',
   'Get your AI receptionist live today': 'AI resepsiyonistinizi bugün yayına alın',
   'Billed monthly. Cancel anytime.': 'Aylık faturalandırılır. İstediğiniz zaman iptal edin.',

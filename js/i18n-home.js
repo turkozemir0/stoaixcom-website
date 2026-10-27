@@ -113,6 +113,11 @@ function injectToggle(activeLang, onToggle) {
 /* ─── Shared (navbar / footer / common CTAs) ─────────────── */
 const TR_COMMON = {
   /* giriş paketi fiyat kartı (deneme yok, ilk ay hemen tahsil) */
+  'Billed monthly. To cancel, just contact our team.': 'Aylık faturalandırılır. İptal için ekibimize yazmanız yeterli.',
+  'No setup fee — live the same day': 'Kurulum ücreti yok — aynı gün yayında',
+  'Everything in Text AI Receptionist, plus:': 'Yazılı AI Resepsiyonist\'teki her şey, artı:',
+  'Chat AI (workflows: add-on module)': 'Yapay Zeka Resepsiyonist (iş akışları: ek modül)',
+  'AI ✓ · Workflows: add-on': 'AI ✓ · İş akışları: ek modül',
   'Text AI Receptionist': 'Yazılı AI Resepsiyonist',
   'Get started — billed today': 'Hemen başla — ücret bugün alınır',
   'First month charged today': 'İlk ay bugün tahsil edilir',
