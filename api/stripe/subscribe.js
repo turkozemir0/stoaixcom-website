@@ -1,5 +1,8 @@
 import Stripe from 'stripe'
-import { provisionSubscription, provisionModules } from '../_lib/provision.js'
+import {
+  provisionSubscription, provisionModules, provisionEntryPackage,
+  ENTRY_PLAN_ID, resolveEntryPriceId, findExistingOrgForEmail, resolvePromoId,
+} from '../_lib/provision.js'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -52,6 +55,14 @@ export default async function handler(req, res) {
   // ── Modül satın alma dalı (à la carte, deneme yok) — free-trial/plan dalına DOKUNMAZ ──
   if (Array.isArray(req.body.product_keys) && req.body.product_keys.length > 0) {
     return handleModuleSubscribe(req, res)
+  }
+
+  // ── Giriş paketi (yazili_resepsiyonist, deneme yok) — AYRI dal; essential/modül akışına dokunmaz ──
+  if (req.body.entrySubscriptionId) {
+    return handleEntryConfirm(req, res)
+  }
+  if (String(req.body.plan || '').toLowerCase() === ENTRY_PLAN_ID) {
+    return handleEntrySubscribe(req, res)
   }
 
   // ── Normal subscribe flow ──
@@ -306,5 +317,168 @@ async function handleModuleSubscribe(req, res) {
   } catch (err) {
     console.error('Module subscribe error:', err)
     return res.status(500).json({ error: err.message || 'Module subscription failed' })
+  }
+}
+
+// ── Giriş paketi satın alma (yazili_resepsiyonist, deneme yok) ──
+// Sıra: hesap kontrolü → customer → abonelik (ilk fatura hemen) → [3DS: istemci onaylar,
+// handleEntryConfirm devam eder] → provisionEntryPackage. Org yalnız ödeme alındıktan sonra açılır.
+const LOGIN_URL = 'https://platform.stoaix.com/login'
+const LIVE_SUB_STATUSES = ['active', 'trialing', 'past_due', 'unpaid']
+
+function entryFormFields(body) {
+  const { email, firstName, lastName, company, phone, password, country, website, partnerRef, promoCode, fbc, fbp } = body
+  return { email, firstName, lastName, company, phone, password, country, website, partnerRef, promoCode, fbc, fbp }
+}
+
+async function handleEntrySubscribe(req, res) {
+  const form = entryFormFields(req.body)
+  const { paymentMethodId } = req.body
+
+  if (!form.email || !paymentMethodId) {
+    return res.status(400).json({ error: 'Missing required fields' })
+  }
+
+  try {
+    // 1. Bu e-postanın zaten hesabı varsa ödeme ALINMAZ, girişe yönlendirilir (çift org önlenir)
+    if (await findExistingOrgForEmail(form.email)) {
+      return res.status(409).json({
+        error: 'An account with this email already exists. Please log in.',
+        redirect_url: LOGIN_URL,
+      })
+    }
+
+    const priceId = await resolveEntryPriceId()
+    if (!priceId) {
+      console.error('Entry package price not configured (plans.stripe_price_monthly)')
+      return res.status(500).json({ error: 'Plan is not available right now. Please try again later.' })
+    }
+    const stripePromoId = await resolvePromoId(form.promoCode)
+
+    // 2. Customer: önceki yarım kalmış denemeden kalan (canlı aboneliği olmayan) customer yeniden kullanılır
+    let customer = null
+    const existingCustomers = await stripe.customers.list({ email: form.email, limit: 10 })
+    for (const c of existingCustomers.data) {
+      const subs = await stripe.subscriptions.list({ customer: c.id, status: 'all', limit: 20 })
+      if (subs.data.some((s) => LIVE_SUB_STATUSES.includes(s.status))) continue
+      // Aynı customer'da terk edilmiş (3DS tamamlanmamış) giriş paketi aboneliği kalmasın
+      for (const s of subs.data) {
+        if (s.status === 'incomplete' && s.metadata?.plan_id === ENTRY_PLAN_ID) {
+          await stripe.subscriptions.cancel(s.id).catch(() => {})
+        }
+      }
+      customer = c
+      break
+    }
+    if (!customer) {
+      customer = await stripe.customers.create({
+        email: form.email,
+        name: `${form.firstName || ''} ${form.lastName || ''}`.trim() || undefined,
+        phone: form.phone || undefined,
+        metadata: { company: form.company || '', plan: ENTRY_PLAN_ID, billing: 'monthly' },
+      })
+    }
+
+    await stripe.paymentMethods.attach(paymentMethodId, { customer: customer.id })
+    await stripe.customers.update(customer.id, {
+      invoice_settings: { default_payment_method: paymentMethodId },
+    })
+
+    // 3. Abonelik — plan_id metadata'sı OLUŞTURMA anında (platform webhook'u metadata'sız
+    //    aboneliği 'essential' sayar). organization_id, org açılınca eklenir.
+    const subscription = await stripe.subscriptions.create({
+      customer: customer.id,
+      items: [{ price: priceId }],
+      payment_settings: {
+        payment_method_types: ['card'],
+        save_default_payment_method: 'on_subscription',
+      },
+      metadata: { plan_id: ENTRY_PLAN_ID, self_serve_entry: '1' },
+      ...(stripePromoId && { promotion_code: stripePromoId }),
+      expand: ['latest_invoice.payment_intent'],
+    }, {
+      idempotencyKey: `entrysub_${customer.id}_${paymentMethodId}`,
+    })
+
+    const paymentIntent = subscription.latest_invoice?.payment_intent
+    if (paymentIntent?.status === 'requires_payment_method') {
+      await stripe.subscriptions.cancel(subscription.id).catch(() => {})
+      return res.status(400).json({ error: 'Payment failed. Please try a different card.' })
+    }
+    if (paymentIntent?.status === 'requires_action') {
+      // 3DS — istemci confirmCardPayment yapar, sonra entrySubscriptionId ile handleEntryConfirm'e döner
+      return res.status(200).json({
+        success: true,
+        requires_payment_action: true,
+        payment_client_secret: paymentIntent.client_secret,
+        entry_subscription_id: subscription.id,
+        customer_id: customer.id,
+      })
+    }
+    if (subscription.status !== 'active') {
+      return res.status(400).json({ error: 'Payment could not be completed. Please try again.' })
+    }
+
+    const result = await provisionEntryPackage({
+      ...form,
+      subscription,
+      customerId: customer.id,
+      promoApplied: !!stripePromoId,
+      req,
+    })
+    return res.status(200).json(result)
+  } catch (err) {
+    console.error('Entry subscribe error:', err)
+    return res.status(500).json({ error: err.message || 'Subscription failed' })
+  }
+}
+
+// ── Giriş paketi: 3DS sonrası kurulum ──
+async function handleEntryConfirm(req, res) {
+  const form = entryFormFields(req.body)
+  const { entrySubscriptionId, customerId } = req.body
+
+  if (!entrySubscriptionId || !customerId || !form.email) {
+    return res.status(400).json({ error: 'Missing required fields' })
+  }
+
+  try {
+    const subscription = await stripe.subscriptions.retrieve(entrySubscriptionId, {
+      expand: ['latest_invoice.payment_intent', 'customer'],
+    })
+    const subCustomer = subscription.customer
+
+    if (subCustomer?.id !== customerId || subscription.metadata?.plan_id !== ENTRY_PLAN_ID) {
+      return res.status(400).json({ error: 'Invalid request.' })
+    }
+    if ((subCustomer.email || '').toLowerCase() !== form.email.toLowerCase()) {
+      return res.status(400).json({ error: 'Invalid request.' })
+    }
+    // İdempotent: org zaten açıldıysa (çift istek) yeniden kurma
+    if (subscription.metadata?.organization_id) {
+      return res.status(200).json({ success: true, redirect_url: LOGIN_URL })
+    }
+
+    const paymentIntent = subscription.latest_invoice?.payment_intent
+    if (subscription.status !== 'active' && paymentIntent?.status !== 'succeeded') {
+      return res.status(400).json({ error: 'Card authentication failed. Please try again.' })
+    }
+
+    if (await findExistingOrgForEmail(form.email)) {
+      console.error(`ENTRY CONFIRM: paid sub ${subscription.id} but email already has an org; not provisioning — review manually`)
+      return res.status(200).json({ success: true, redirect_url: LOGIN_URL })
+    }
+
+    const result = await provisionEntryPackage({
+      ...form,
+      subscription,
+      customerId,
+      promoApplied: (subscription.discounts || []).length > 0 || !!subscription.discount,
+      req,
+    })
+    return res.status(200).json(result)
+  } catch (err) {
+    console.error('Entry confirm error:', err)
+    return res.status(500).json({ error: err.message || 'Subscription setup failed' })
   }
 }

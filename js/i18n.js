@@ -1262,6 +1262,22 @@ const TR_SIGNUP = Object.assign({}, TR_COMMON, {
   'No charge until your trial ends. Cancel anytime.': 'Deneme süreniz dolana kadar ücret alınmaz. İstediğiniz zaman iptal edin.',
   'Already have an account?': 'Zaten hesabınız var mı?',
   'Log in': 'Giriş yap',
+  /* giriş paketi (yazili_resepsiyonist) */
+  'Clinic website (optional)': 'Klinik web sitesi (isteğe bağlı)',
+  'yourclinic.com': 'klinikiniz.com',
+  'Country': 'Ülke',
+  'Turkey': 'Türkiye',
+  'United Kingdom': 'Birleşik Krallık',
+  'Germany': 'Almanya',
+  'Netherlands': 'Hollanda',
+  'Austria': 'Avusturya',
+  'Switzerland': 'İsviçre',
+  'United States': 'Amerika Birleşik Devletleri',
+  'AI Receptionist': 'AI Resepsiyonist',
+  '$200 / month': '$200 / ay',
+  'Get your AI receptionist live today': 'AI resepsiyonistinizi bugün yayına alın',
+  'Billed monthly. Cancel anytime.': 'Aylık faturalandırılır. İstediğiniz zaman iptal edin.',
+  'No setup fee — live in 5 minutes': 'Kurulum ücreti yok — 5 dakikada yayında',
 });
 
 /* ─── Checkout page ──────────────────────────────────────── */

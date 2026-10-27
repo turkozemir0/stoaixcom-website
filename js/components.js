@@ -318,7 +318,7 @@
           <div class="mplan-price">
             <span class="pt-currency">$</span><span class="price-num">497</span><span class="pt-period">/mo</span>
           </div>
-          <a href="signup.html?plan=essential&billing=monthly" class="btn-outline mplan-btn">Start free trial</a>
+          <a href="signup.html?plan=yazili_resepsiyonist" class="btn-outline mplan-btn">Start free trial</a>
           <div class="mplan-trial">3-day free trial</div>
           <ul class="mplan-features">
             <li>Full CRM</li>
@@ -390,7 +390,7 @@
                 <div class="pt-plan-price">
                   <span class="pt-currency">$</span><span class="price-num">497</span><span class="pt-period">/mo</span>
                 </div>
-                <a href="signup.html?plan=essential&billing=monthly" class="btn-outline pt-btn">Start free trial</a>
+                <a href="signup.html?plan=yazili_resepsiyonist" class="btn-outline pt-btn">Start free trial</a>
                 <div class="pt-trial">3-day free trial</div>
               </th>
               <th class="pt-th-plan pt-th-biz">

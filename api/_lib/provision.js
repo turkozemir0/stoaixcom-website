@@ -512,3 +512,291 @@ export async function provisionModules(params) {
   }
   return { success: true, redirect_url: redirectUrl }
 }
+
+// ─────────────────────────────────────────────────────────────
+// GİRİŞ PAKETİ (plan_id='yazili_resepsiyonist') — stoaix.com kendi kendine kayıt.
+// provisionSubscription (essential) ve provisionModules'ten AYRI dal; ikisine dokunmaz.
+//  - Deneme YOK (sahip kararı 27 Eki; plans.trial_days=0) → ilk fatura hemen, 3DS PaymentIntent ile.
+//  - Org YALNIZ ödeme başarılı olduktan sonra açılır (subscribe.js 3DS'i önce tamamlatır).
+//  - organizations.plan_id VE org_subscriptions.plan_id birlikte (kilit abonelik satırını okur;
+//    org satırı platform webhook'unun legacy korumasına takılmamak için).
+//  - Stripe abonelik metadata'sı plan_id'yi OLUŞTURMA anında taşır: platform webhook'u metadata
+//    yoksa planı 'essential' sayıp tüm modülleri açar (getPlanIdFromSub).
+//  - Abonelik/hak yazımının sahibi platform webhook'u (platform.stoaix.com/api/billing/webhook);
+//    burada yalnız satın alma anındaki ilk kurulum yapılır.
+//  - country + website formdan → onboarding v2 ilk ekranında önceden dolu gelir.
+// ─────────────────────────────────────────────────────────────
+export const ENTRY_PLAN_ID = 'yazili_resepsiyonist'
+const ENTRY_PRICE_USD = 200
+// Onboarding v2'nin desteklediği ülkeler (platform SadeOnboarding); dışındakiler TR'ye düşer.
+const ENTRY_COUNTRIES = ['TR', 'DE', 'GB', 'NL', 'AT', 'CH', 'US']
+const ENTRY_ONBOARDING_URL = 'https://platform.stoaix.com/auth/callback?next=/onboarding/v2'
+
+export function normalizeCountry(country) {
+  const c = String(country || '').trim().toUpperCase()
+  return ENTRY_COUNTRIES.includes(c) ? c : 'TR'
+}
+
+export function normalizeWebsite(website) {
+  let w = String(website || '').trim()
+  if (!w) return null
+  if (!/^https?:\/\//i.test(w)) w = `https://${w}`
+  try {
+    const u = new URL(w)
+    if (!u.hostname.includes('.') || w.length > 300) return null
+    return u.toString().replace(/\/$/, '')
+  } catch {
+    return null
+  }
+}
+
+// Fiyat tek kaynaktan: plans.stripe_price_monthly (modül kataloğuyla aynı tablo).
+// Env yalnız acil geçersiz kılma içindir.
+export async function resolveEntryPriceId() {
+  if (process.env.STRIPE_PRICE_YAZILI_RESEPSIYONIST_MONTHLY) {
+    return process.env.STRIPE_PRICE_YAZILI_RESEPSIYONIST_MONTHLY
+  }
+  const { data } = await supabase
+    .from('plans')
+    .select('stripe_price_monthly')
+    .eq('id', ENTRY_PLAN_ID)
+    .maybeSingle()
+  return data?.stripe_price_monthly || null
+}
+
+// Ödeme ALINMADAN önce: bu e-postanın zaten bir org'u var mı? Varsa yeni org açılmaz
+// (çift org / çift org_users kaydı → hafızadaki duplicate kayıt sorunu).
+export async function findExistingOrgForEmail(email) {
+  const lowerEmail = email.toLowerCase()
+  const { data: orgRows } = await supabase
+    .from('organizations')
+    .select('id')
+    .in('email', Array.from(new Set([email, lowerEmail])))
+    .limit(1)
+  if (orgRows && orgRows.length > 0) return orgRows[0].id
+
+  const { data: leadRow } = await supabase
+    .from('signup_leads')
+    .select('user_id')
+    .eq('email', lowerEmail)
+    .maybeSingle()
+  if (!leadRow?.user_id) return null
+
+  const { data: orgUser } = await supabase
+    .from('org_users')
+    .select('organization_id')
+    .eq('user_id', leadRow.user_id)
+    .limit(1)
+    .maybeSingle()
+  return orgUser?.organization_id || null
+}
+
+export async function resolvePromoId(promoCode) {
+  if (!promoCode) return null
+  const { data: promo } = await supabase
+    .from('promo_codes')
+    .select('stripe_promo_id, expires_at, used')
+    .eq('code', promoCode.toUpperCase())
+    .maybeSingle()
+  if (promo && !promo.used && new Date(promo.expires_at) > new Date() && promo.stripe_promo_id) {
+    return promo.stripe_promo_id
+  }
+  return null
+}
+
+/**
+ * Ödemesi ALINMIŞ giriş paketi aboneliği için kullanıcı + org + abonelik satırını açar.
+ * @param {object} params
+ * @param {object} params.subscription - ödemesi başarılı Stripe aboneliği (latest_invoice expand'li)
+ * @param {string} params.customerId
+ * @param {string} params.country - formdan (normalizeCountry uygulanır)
+ * @param {string|null} params.website - formdan (normalizeWebsite uygulanır)
+ * @param {boolean} params.promoApplied - abonelikte promo kodu kullanıldı mı
+ * @returns {{ success: boolean, redirect_url: string }}
+ */
+export async function provisionEntryPackage(params) {
+  const {
+    subscription, customerId, email, firstName, lastName, company, phone, password,
+    country, website, partnerRef, promoCode, promoApplied, fbc, fbp, req,
+  } = params
+
+  const lowerEmail = email.toLowerCase()
+  const userMetadata = {
+    first_name: firstName,
+    last_name: lastName,
+    company,
+    phone: phone || null,
+    plan: ENTRY_PLAN_ID,
+    billing: 'monthly',
+    stripe_customer_id: customerId,
+    stripe_subscription_id: subscription.id,
+    trial_ends_at: null,
+  }
+
+  // 1. Auth kullanıcısı (signup_leads'teki OTP kullanıcısı varsa onu güncelle, yoksa oluştur)
+  const { data: leadRow } = await supabase
+    .from('signup_leads')
+    .select('user_id')
+    .eq('email', lowerEmail)
+    .maybeSingle()
+
+  let userId = leadRow?.user_id
+  if (userId) {
+    const { error: updateErr } = await supabase.auth.admin.updateUserById(userId, { user_metadata: userMetadata })
+    if (updateErr) {
+      console.warn('updateUserById failed (user may have been deleted), creating new user:', updateErr.message)
+      userId = null
+    }
+  }
+
+  if (!userId) {
+    const { data: authData, error: authError } = await supabase.auth.admin.createUser({
+      email,
+      password: password || Math.random().toString(36).slice(2) + 'A1!',
+      email_confirm: true,
+      user_metadata: userMetadata,
+    })
+    if (authError) {
+      if (authError.message?.includes('already')) {
+        const { data: linkData } = await supabase.auth.admin.generateLink({ type: 'magiclink', email: lowerEmail })
+        userId = linkData?.user?.id
+      } else {
+        throw new Error(authError.message)
+      }
+    } else {
+      userId = authData?.user?.id
+    }
+    if (!userId) throw new Error('User creation failed')
+
+    await supabase.from('signup_leads').update({ user_id: userId }).eq('email', lowerEmail)
+  }
+
+  // 2. Organization — giriş paketi, onboarding v2'ye hazır. v2 koşusu BOŞ org ister:
+  //    burada mesaj/lead/KB/playbook/intake yazılmaz.
+  const slug = generateSlug(company || firstName || 'org')
+  let finalSlug = slug
+  const { data: existing } = await supabase.from('organizations').select('slug').like('slug', `${slug}%`)
+  if (existing && existing.length > 0) finalSlug = `${slug}-${existing.length + 1}`
+
+  const { data: org, error: orgError } = await supabase
+    .from('organizations')
+    .insert({
+      name: company || `${firstName}'s Clinic`,
+      slug: finalSlug,
+      sector: 'clinic',
+      plan_id: ENTRY_PLAN_ID,
+      status: 'onboarding',
+      onboarding_status: 'in_progress',
+      email,
+      phone: phone || null,
+      country: normalizeCountry(country),
+      website: normalizeWebsite(website),
+      referral_code: partnerRef || null,
+    })
+    .select('id')
+    .single()
+  if (orgError) throw new Error(`Organization creation failed: ${orgError.message}`)
+
+  const { error: orgUserError } = await supabase
+    .from('org_users')
+    .insert({ user_id: userId, organization_id: org.id, role: 'admin' })
+  if (orgUserError) {
+    await supabase.from('organizations').delete().eq('id', org.id)
+    throw new Error(`Org user link failed: ${orgUserError.message}`)
+  }
+
+  // 3. org_subscriptions — yazılamazsa org geri alınır: satırsız org'da entitlements ALLOW_ALL
+  //    döner (her şey açık); yarım org bırakılmaz (platform api/orgs deseni).
+  const item = subscription.items?.data?.[0]
+  const periodStart = subscription.current_period_start || item?.current_period_start
+  const periodEnd = subscription.current_period_end || item?.current_period_end
+  const { error: subError } = await supabase.from('org_subscriptions').insert({
+    organization_id: org.id,
+    plan_id: ENTRY_PLAN_ID,
+    status: 'active',
+    stripe_customer_id: customerId,
+    stripe_subscription_id: subscription.id,
+    billing_interval: 'monthly',
+    trial_ends_at: null,
+    current_period_start: periodStart ? new Date(periodStart * 1000).toISOString() : new Date().toISOString(),
+    current_period_end: periodEnd ? new Date(periodEnd * 1000).toISOString() : null,
+  })
+  if (subError) {
+    await supabase.from('org_users').delete().eq('organization_id', org.id)
+    await supabase.from('organizations').delete().eq('id', org.id)
+    console.error(`ENTRY PROVISION FAILED after payment: sub=${subscription.id} customer=${customerId}:`, subError.message)
+    throw new Error('Payment received but account setup failed. Our team has been notified and will contact you shortly.')
+  }
+
+  // 4. Stripe metadata: organization_id artık var (plan_id oluşturmada yazıldı, korunur).
+  //    Tetiklenen customer.subscription.updated, satırlar hazır olduğu için platform
+  //    webhook'unda tutarlı senkron olur.
+  await stripe.subscriptions.update(subscription.id, {
+    metadata: { organization_id: org.id, plan_id: ENTRY_PLAN_ID, self_serve_entry: '1' },
+  })
+
+  // 5. Partner paneli (ortak linkinden geldiyse)
+  if (partnerRef) {
+    try {
+      await fetch('https://partner.stoaix.com/api/webhook/conversion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.PARTNER_WEBHOOK_SECRET}`,
+        },
+        body: JSON.stringify({
+          organization_id: org.id,
+          org_name: company || `${firstName}'s Clinic`,
+          plan_type: ENTRY_PLAN_ID,
+          monthly_price: ENTRY_PRICE_USD,
+          referral_code: partnerRef,
+        }),
+      })
+    } catch (err) {
+      console.error('Partner webhook error:', err)
+    }
+  }
+
+  // 5b. Promo kodu kullanıldı
+  if (promoCode && promoApplied) {
+    await supabase
+      .from('promo_codes')
+      .update({ used: true, used_at: new Date().toISOString() })
+      .eq('code', promoCode.toUpperCase())
+  }
+
+  // 6. Lead dönüştü + FB CAPI Purchase (değer: gerçekten tahsil edilen tutar)
+  await supabase
+    .from('signup_leads')
+    .update({ converted: true, converted_at: new Date().toISOString() })
+    .eq('email', lowerEmail)
+
+  const amountPaid = subscription.latest_invoice?.amount_paid
+  sendEvent({
+    eventName: 'Purchase',
+    email,
+    firstName,
+    lastName,
+    value: typeof amountPaid === 'number' ? amountPaid / 100 : ENTRY_PRICE_USD,
+    sourceUrl: 'https://stoaix.com/checkout',
+    clientIp: getClientIp(req),
+    clientUserAgent: getUserAgent(req),
+    fbc,
+    fbp,
+    contentName: 'Yazili AI Resepsiyonist',
+    contentCategory: 'subscription',
+    contentIds: ENTRY_PLAN_ID,
+  }).catch(() => {})
+
+  // 7. Magic link → doğrudan onboarding v2
+  const { data: linkData, error: linkError } = await supabase.auth.admin.generateLink({
+    type: 'magiclink',
+    email,
+    options: { redirectTo: ENTRY_ONBOARDING_URL },
+  })
+  const redirectUrl = linkError || !linkData?.properties?.action_link
+    ? 'https://platform.stoaix.com/login'
+    : linkData.properties.action_link
+
+  return { success: true, redirect_url: redirectUrl }
+}

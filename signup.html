@@ -522,6 +522,25 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
           <input class="form-input" type="text" id="company" name="company" placeholder="City Dental Clinic" required autocomplete="organization" />
         </div>
 
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label" for="website">Clinic website (optional)</label>
+            <input class="form-input" type="text" inputmode="url" id="website" name="website" placeholder="yourclinic.com" autocomplete="url" maxlength="200" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="country">Country</label>
+            <select class="form-input" id="country" name="country" required>
+              <option value="TR">Turkey</option>
+              <option value="GB">United Kingdom</option>
+              <option value="DE">Germany</option>
+              <option value="NL">Netherlands</option>
+              <option value="AT">Austria</option>
+              <option value="CH">Switzerland</option>
+              <option value="US">United States</option>
+            </select>
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="form-label" for="phone">Phone number</label>
           <input class="form-input" type="tel" id="phone" name="phone" placeholder="+44 7700 900000" required autocomplete="tel" />
@@ -543,7 +562,16 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
 
           <div class="plan-cards">
             <div class="plan-option">
-              <input type="radio" name="plan" id="plan_essential" value="essential" checked />
+              <input type="radio" name="plan" id="plan_yazili_resepsiyonist" value="yazili_resepsiyonist" checked />
+              <label class="plan-option-label" for="plan_yazili_resepsiyonist">
+                <span class="plan-option-name">AI Receptionist</span>
+                <span class="plan-option-price">$200 / month</span>
+                <span class="plan-trial-note no-trial">WhatsApp · Instagram · Messenger + CRM</span>
+              </label>
+            </div>
+            <!-- Essential: kod korunur, yalnız ?plan=essential ile görünür (sahip kararı 27 Eki) -->
+            <div class="plan-option" id="planOptionEssential" style="display:none">
+              <input type="radio" name="plan" id="plan_essential" value="essential" />
               <label class="plan-option-label" for="plan_essential">
                 <span class="plan-option-name">Essential</span>
                 <span class="plan-option-price" id="price_essential">$497 / month</span>
@@ -838,6 +866,13 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
       trialNote.innerHTML = 'Subscribe to Business and get started immediately. Cancel anytime.'
       if (subtitleEl) subtitleEl.textContent = 'Subscribe to get started today'
       if (badgeEl) badgeEl.innerHTML = badgeEl.querySelector('svg').outerHTML + ' No setup fee — live in 5 minutes'
+    } else if (planValue === 'yazili_resepsiyonist') {
+      // Giriş paketi: deneme yok, ilk ay hemen tahsil edilir. Metinler EN; TR karşılığı i18n.js TR_SIGNUP'ta.
+      submitBtn.innerHTML = 'Continue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
+      submitBtn.classList.remove('enterprise-btn')
+      trialNote.innerHTML = 'Billed monthly. Cancel anytime.'
+      if (subtitleEl) subtitleEl.textContent = 'Get your AI receptionist live today'
+      if (badgeEl) badgeEl.innerHTML = badgeEl.querySelector('svg').outerHTML + ' No setup fee — live in 5 minutes'
     } else {
       submitBtn.innerHTML = 'Continue <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>'
       submitBtn.classList.remove('enterprise-btn')
@@ -851,8 +886,21 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
     radio.addEventListener('change', () => updatePlanUI(radio.value))
   })
 
+  // ?plan=essential → eski essential kartı görünür ve seçili olur; diğer her şey giriş paketi
+  if (new URLSearchParams(window.location.search).get('plan') === 'essential') {
+    document.getElementById('planOptionEssential').style.display = ''
+    document.getElementById('plan_essential').checked = true
+  }
+
+  // Ülke varsayılanı site dilinden (TR sitesi ⇒ TR); kullanıcı değiştirebilir
+  ;(function setDefaultCountry() {
+    let lang = 'tr'
+    try { lang = localStorage.getItem('stoaix-lang') || (navigator.language || 'tr').slice(0, 2) } catch (e) {}
+    if (lang === 'en') document.getElementById('country').value = 'GB'
+  })()
+
   // Set initial state based on pre-selected plan
-  const initialPlan = document.querySelector('input[name="plan"]:checked')?.value || 'essential'
+  const initialPlan = document.querySelector('input[name="plan"]:checked')?.value || 'yazili_resepsiyonist'
   updatePlanUI(initialPlan)
 
   // ─── Form submit → reCAPTCHA → send OTP ──────────────────────────────────────
@@ -1012,6 +1060,8 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         email: currentEmail,
         company: document.getElementById('company').value,
         phone: document.getElementById('phone').value,
+        country: document.getElementById('country').value,
+        website: document.getElementById('website').value.trim(),
       })
       sessionStorage.setItem('signup_password', document.getElementById('password').value)
       sessionStorage.setItem('signup_data', JSON.stringify({
@@ -1020,6 +1070,8 @@ src="https://www.facebook.com/tr?id=1426016022664547&ev=PageView&noscript=1"
         email: currentEmail,
         company: document.getElementById('company').value,
         phone: document.getElementById('phone').value,
+        country: document.getElementById('country').value,
+        website: document.getElementById('website').value.trim(),
         plan,
         billing,
       }))
