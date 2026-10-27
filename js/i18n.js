@@ -112,6 +112,11 @@ function injectToggle(activeLang, onToggle) {
 
 /* ─── Shared (navbar / footer / common CTAs) ─────────────── */
 const TR_COMMON = {
+  /* giriş paketi fiyat kartı (deneme yok, ilk ay hemen tahsil) */
+  'Text AI Receptionist': 'Yazılı AI Resepsiyonist',
+  'Get started — billed today': 'Hemen başla — ücret bugün alınır',
+  'First month charged today': 'İlk ay bugün tahsil edilir',
+  'Text AI Receptionist: first month charged today': 'Yazılı AI Resepsiyonist: ilk ay bugün tahsil edilir',
   'Product': 'Ürün',
   'Voice AI': 'Sesli AI',
   'Answer every call, 24/7': 'Her aramayı yanıtla, 7/24',
@@ -1273,7 +1278,9 @@ const TR_SIGNUP = Object.assign({}, TR_COMMON, {
   'Austria': 'Avusturya',
   'Switzerland': 'İsviçre',
   'United States': 'Amerika Birleşik Devletleri',
-  'AI Receptionist': 'AI Resepsiyonist',
+  'Text AI Receptionist': 'Yazılı AI Resepsiyonist',
+  'Get Started — STOAIX': 'Hemen Başlayın — STOAIX',
+  'CRM and lead scoring included': 'CRM ve lead puanlama dahil',
   '$200 / month': '$200 / ay',
   'Get your AI receptionist live today': 'AI resepsiyonistinizi bugün yayına alın',
   'Billed monthly. Cancel anytime.': 'Aylık faturalandırılır. İstediğiniz zaman iptal edin.',

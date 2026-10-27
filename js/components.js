@@ -313,13 +313,13 @@
       <!-- Mobile plan cards (visible < 768px) -->
       <div class="mobile-plans">
         <div class="mplan-card mplan-essential">
-          <div class="mplan-name">Essential</div>
+          <div class="mplan-name">Text AI Receptionist</div>
           <div class="mplan-tagline">For solo &amp; small teams</div>
           <div class="mplan-price">
-            <span class="pt-currency">$</span><span class="price-num">497</span><span class="pt-period">/mo</span>
+            <span class="pt-currency">$</span><span class="price-num">200</span><span class="pt-period">/mo</span>
           </div>
-          <a href="signup.html?plan=yazili_resepsiyonist" class="btn-outline mplan-btn">Start free trial</a>
-          <div class="mplan-trial">3-day free trial</div>
+          <a href="signup.html?plan=yazili_resepsiyonist" class="btn-outline mplan-btn">Get started — billed today</a>
+          <div class="mplan-trial">First month charged today</div>
           <ul class="mplan-features">
             <li>Full CRM</li>
             <li>WhatsApp &amp; Instagram — Unlimited</li>
@@ -385,13 +385,13 @@
             <tr>
               <th class="pt-feat-col" aria-label="Feature"></th>
               <th class="pt-th-plan">
-                <div class="pt-plan-name">Essential</div>
+                <div class="pt-plan-name">Text AI Receptionist</div>
                 <div class="pt-plan-tagline">For solo &amp; small teams</div>
                 <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num">497</span><span class="pt-period">/mo</span>
+                  <span class="pt-currency">$</span><span class="price-num">200</span><span class="pt-period">/mo</span>
                 </div>
-                <a href="signup.html?plan=yazili_resepsiyonist" class="btn-outline pt-btn">Start free trial</a>
-                <div class="pt-trial">3-day free trial</div>
+                <a href="signup.html?plan=yazili_resepsiyonist" class="btn-outline pt-btn">Get started — billed today</a>
+                <div class="pt-trial">First month charged today</div>
               </th>
               <th class="pt-th-plan pt-th-biz">
                 <div class="pt-pop-badge">Most Popular</div>
@@ -562,7 +562,7 @@
       <div class="pricing-note reveal">
         <span>* Professional: kurulum sırasında gelen veya giden seçilir · </span>
         <span>Voice AI overage: $0.19/min after plan limit · </span>
-        <span>Essential: 3-day free trial</span>
+        <span>Text AI Receptionist: first month charged today</span>
       </div>
     </div>
   </section>`;
