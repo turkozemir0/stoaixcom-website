@@ -307,7 +307,7 @@
       <div class="section-header reveal">
         <div class="section-badge">Pricing</div>
         <h2 class="section-headline centered">Simple, transparent pricing.</h2>
-        <p class="section-sub centered">Start free. Scale when you&#39;re ready. No contracts, cancel anytime.</p>
+        <p class="section-sub centered">Start today. Scale when you&#39;re ready. No contracts — to cancel, just contact our team.</p>
       </div>
 
       <!-- Mobile plan cards (visible < 768px) -->

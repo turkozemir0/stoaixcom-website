@@ -328,7 +328,7 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'Go live': 'Yayına alın',
   'Forward your number. Add the chat widget. Connect WhatsApp. Your AI agent is answering calls and messages — right now.': 'Numaranızı yönlendirin. Chat widget\'ını ekleyin. WhatsApp\'ı bağlayın. AI ajanınız aramaları ve mesajları şu an yanıtlıyor.',
   'Simple, transparent pricing.': 'Sade ve şeffaf fiyatlandırma.',
-  'Start free. Scale when you\'re ready. No contracts, cancel anytime.': 'Ücretsiz başlayın. Hazır olduğunuzda büyütün. Sözleşme yok, istediğiniz zaman iptal edin.',
+  'Start today. Scale when you\'re ready. No contracts — to cancel, just contact our team.': 'Bugün başlayın. Hazır olduğunuzda büyütün. Sözleşme yok — iptal için ekibimize yazmanız yeterli.',
   /* --- Plan badge names --- */
   'Most Popular': 'En Popüler',
   'Best Value': 'En Çok Tercih Edilen',

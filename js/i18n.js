@@ -322,7 +322,7 @@ const TR_INDEX = Object.assign({}, TR_COMMON, {
   'Go live': 'Yayına alın',
   'Forward your number. Add the chat widget. Connect WhatsApp. Your AI agent is answering calls and messages — right now.': 'Numaranızı yönlendirin. Chat widget\'ını ekleyin. WhatsApp\'ı bağlayın. AI ajanınız aramaları ve mesajları şu an yanıtlıyor.',
   'Simple, transparent pricing.': 'Sade ve şeffaf fiyatlandırma.',
-  'Start free. Scale when you\'re ready. No contracts, cancel anytime.': 'Ücretsiz başlayın. Hazır olduğunuzda büyütün. Sözleşme yok, istediğiniz zaman iptal edin.',
+  'Start today. Scale when you\'re ready. No contracts — to cancel, just contact our team.': 'Bugün başlayın. Hazır olduğunuzda büyütün. Sözleşme yok — iptal için ekibimize yazmanız yeterli.',
   /* --- Plan badge names --- */
   'Most Popular': 'En Popüler',
   'Best Value': 'En Çok Tercih Edilen',
@@ -1252,7 +1252,7 @@ const TR_SIGNUP = Object.assign({}, TR_COMMON, {
   'Answers calls and messages 24/7 in 15+ languages': '15+ dilde 7/24 arama ve mesajları yanıtlar',
   'WhatsApp, Voice AI, web chat — all from one dashboard': 'WhatsApp, Sesli AI, web chat — hepsi tek panelden',
   'CRM, lead scoring and automatic follow-up included': 'CRM, lead puanlama ve otomatik takip dahil',
-  'No contracts — cancel anytime': 'Sözleşme yok — istediğiniz zaman iptal edin',
+  'No contracts — to cancel, just contact our team': 'Sözleşme yok — iptal için ekibimize yazmanız yeterli',
   '$0 setup fee — live in under 5 minutes': '$0 kurulum ücreti — 5 dakikadan kısa sürede yayında',
   'Create your account': 'Hesabınızı oluşturun',
   'Start your 3-day free trial today': 'Bugün 3 günlük ücretsiz denemenizi başlatın',
