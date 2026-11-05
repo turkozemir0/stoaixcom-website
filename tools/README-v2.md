@@ -150,10 +150,34 @@ yerinde duruyor.
 
 ### Fiyat
 
-Fiyat tablosu `components.js` içindeki `PRICING_HTML` ile yalnızca
-`/product` sayfasına inject ediliyor. Menüde fiyat bağlantısı yok — satış
-görüşmesi üzerinden ilerleniyor. Self-serve yol duruyor: hero'daki hayalet
-buton `/signup`'a gidiyor.
+Eski fiyat tablosu `components.js` içindeki `PRICING_HTML` ile `/product` ve
+eski ürün sayfalarına inject ediliyor; 2026-11'de `/pricing` eklenene kadar
+fiyatın tek yeri orasıydı. Yeni yapı için bkz. *Fiyatlandırma sayfası*.
+
+## Fiyatlandırma sayfası (Kasım 2026)
+
+Ata'nın artifact'i (`claude.ai/artifact/AVhxqmTpAxAXURkcd6NR5K`) birebir taşındı.
+
+| Dosya | İçerik |
+|---|---|
+| `js/pricing.mjs` | Fiyat, asistan, tablo ve SSS verisinin **tek kaynağı** + çizim + davranış |
+| `tools/build-pricing.mjs` | `pricing.html` üreteci; aylık durumu statik basar |
+| `css/pricing.css` | Sayfanın stili. `v2.css` yüklenmez, sınıf adları çakışır |
+| `tools/v2-content.mjs → tr.pricing` | Ana sayfa bölümünün metinleri |
+
+Fiyat değişikliği `js/pricing.mjs`'te yapılır, `npm run site` ile hem sayfa hem
+ana sayfa kartları güncellenir. Değişince `?v=` numaralarını artır:
+`pricing.mjs` ve `pricing.css` için `tools/build-pricing.mjs`, `v2.css` ve `v2.js`
+için `tools/build-v2.mjs`.
+
+Artifact'ten bilinçli farklar: içerik JS yerine statik basılı (SEO, JS kapalı
+okuma); tema anahtarı ana sayfayla ortak ve varsayılan koyu; analitik eklendi;
+EN bağlantısı `/en`'e gidiyor; yeniden çizimde klavye odağı ve mobil kaydırma
+konumu korunuyor.
+
+Ana sayfa bölümü (`#pricing`) ve menü bağlantısı yalnız Türkçe sayfada var:
+`tr.pricing` alanı olmayan dilde hiçbiri basılmaz. EN'e açmak için `en.pricing`
+yaz ve `/en/pricing` üret.
 
 ## Kök dili Türkçe oldu (19 Eyl 2026)
 

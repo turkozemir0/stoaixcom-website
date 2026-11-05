@@ -52,6 +52,26 @@
     });
   });
 
+  /* ─── Fiyat bölümü: aylık / yıllık ──────────────────────────────
+     İki fiyat da HTML'de hazır; /pricing aynı seçimle açılsın diye
+     bağlantılar da güncellenir. */
+  var billingBtns = document.querySelectorAll('.price-intro [data-billing]');
+
+  billingBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var yearly = b.dataset.billing === 'yearly';
+      billingBtns.forEach(function (x) {
+        x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+      });
+      document.querySelectorAll('.price-intro [data-monthly]').forEach(function (v) {
+        v.firstChild.textContent = yearly ? v.dataset.yearly : v.dataset.monthly;
+      });
+      document.querySelectorAll('.price-intro [data-pricing-link]').forEach(function (a) {
+        a.setAttribute('href', '/pricing' + (yearly ? '?billing=yearly' : '') + '#h-prices');
+      });
+    });
+  });
+
   /* ─── Konsol sekmeleri ──────────────────────────────────────── */
   var tabs = document.querySelectorAll('[data-tab]');
 

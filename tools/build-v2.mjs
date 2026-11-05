@@ -14,6 +14,8 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { CONTENT, LINKS } from './v2-content.mjs';
+import { ANALYTICS_SNIPPET } from './site-analytics.mjs';
+import { startsHtml } from '../js/pricing.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://stoaix.com';
@@ -194,6 +196,25 @@ function homeCalculator(lang) {
 </section>`;
 }
 
+/* Fiyat bölümü yalnız Türkçe: /pricing Türkçe sayfaya bağlanıyor, EN karşılığı henüz yok.
+   Metin v2-content.mjs'ten, kartlar ve fiyatlar js/pricing.mjs'ten gelir. */
+function homePricing(p) {
+  return `
+<!-- ═══ FİYATLANDIRMA ═════════════════════════════════════════ -->
+<section class="pad price-intro" id="pricing" aria-labelledby="pricing-heading">
+  <h2 id="pricing-heading">${esc(p.head)} <em>${esc(p.headEm)}</em></h2>
+  <p>${esc(p.body)}</p>
+  <span class="guar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>${esc(p.guarantee)}</span>
+  <div class="seg" role="group" aria-label="${esc(p.billingLabel)}">
+    <button type="button" data-billing="monthly" aria-pressed="true">${esc(p.monthly)}</button>
+    <button type="button" data-billing="yearly" aria-pressed="false">${esc(p.yearly)}<span class="off">${esc(p.yearlyOff)}</span></button>
+  </div>
+  <div class="starts" aria-label="${esc(p.startsLabel)}">${startsHtml({ href: '/pricing#h-prices', bothPrices: true })}</div>
+  <a class="starts-more" href="/pricing#h-prices" data-pricing-link>${esc(p.more)}</a>
+</section>
+`;
+}
+
 function page(lang) {
   const c = CONTENT[lang];
   const isTR = lang === 'tr';
@@ -201,46 +222,9 @@ function page(lang) {
   const enUrl = `${ORIGIN}/en`;
   const trUrl = `${ORIGIN}/`;
   const navIds = ['platform', 'specification', 'deployment', 'governance', 'footprint'];
+  const pricingNav = c.pricing ? [c.pricing.nav] : [];
 
-  const analytics = ANALYTICS ? `
-<!-- Analytics: ilk kullanıcı etkileşiminde VEYA en geç ~3.5sn (idle) yüklenir. -->
-<script>
-(function () {
-  var loaded = false;
-  function loadAnalytics() {
-    if (loaded) return; loaded = true;
-    var g = document.createElement('script'); g.async = true;
-    g.src = 'https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q';
-    document.head.appendChild(g);
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){ dataLayer.push(arguments); } window.gtag = gtag;
-    gtag('js', new Date()); gtag('config', 'G-53TMTQML2Q');
-    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1426016022664547'); fbq('track', 'PageView');
-  }
-  var evs = ['scroll','mousemove','touchstart','pointerdown','keydown','click'];
-  function onFirst(){ evs.forEach(function(e){ window.removeEventListener(e, onFirst, {passive:true}); }); loadAnalytics(); }
-  evs.forEach(function(e){ window.addEventListener(e, onFirst, {passive:true}); });
-  if ('requestIdleCallback' in window) requestIdleCallback(loadAnalytics, { timeout: 3500 });
-  else setTimeout(loadAnalytics, 3500);
-
-  /* CTA tıklaması = iletişim dönüşümü; Calendly ve WhatsApp ayrı kanal olarak etiketlenir.
-     Buton davranışı değişmez: link yeni sekmede açılır, olay arka planda gönderilir. */
-  var ctaFired = {};
-  document.addEventListener('click', function (e) {
-    var a = e.target && e.target.closest ? e.target.closest('a[href*="calendly.com"], a[href*="wa.me"]') : null;
-    if (!a) return;
-    var ch = a.href.indexOf('wa.me') > -1 ? 'whatsapp' : 'calendly-booking';
-    if (ctaFired[ch]) return;
-    ctaFired[ch] = true;
-    loadAnalytics();
-    var label = (a.textContent || '').trim().slice(0, 80);
-    if (window.fbq)  fbq('track', 'Lead', { content_name: label, content_category: ch });
-    if (window.gtag) gtag('event', 'generate_lead', { link_text: label, link_url: a.href, channel: ch });
-  });
-})();
-</script>` : '\n<!-- Analytics önizlemede kapalı (tools/build-v2.mjs → ANALYTICS). -->';
+  const analytics = ANALYTICS ? ANALYTICS_SNIPPET : '\n<!-- Analytics önizlemede kapalı (tools/build-v2.mjs → ANALYTICS). -->';
 
   return `<!DOCTYPE html>
 <html lang="${c.htmlLang}" class="pal-ink">
@@ -274,7 +258,7 @@ function page(lang) {
 <meta name="twitter:site" content="@stoaix">
 
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${isTR ? '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>' : ''}
-<link rel="stylesheet" href="/css/v2.css?v=4">
+<link rel="stylesheet" href="/css/v2.css?v=5">
 <link rel="stylesheet" href="/css/revenue-calculator-widget.css?v=1">
 
 <!-- Tema, ilk boyamadan önce uygulanır: koyu/açık geçişinde flaş olmaz. -->
@@ -350,8 +334,8 @@ ${JSON.stringify({
 <!-- ═══ NAV ═══════════════════════════════════════════════════ -->
 <header class="nav">
   <a class="brand" href="/">${MARK(24)}STOAIX</a>
-  <nav class="nav-links" aria-label="${esc([...c.nav.slice(0, 2), 'STOAIX Ads', ...c.nav.slice(2)].join(', '))}">
-    ${c.nav.map((n, i) => `<a href="#${navIds[i]}">${esc(n)}</a>${i === 1 ? '\n    <a href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>' : ''}`).join('\n    ')}
+  <nav class="nav-links" aria-label="${esc([...c.nav.slice(0, 2), 'STOAIX Ads', ...pricingNav, ...c.nav.slice(2)].join(', '))}">
+    ${c.nav.map((n, i) => `<a href="#${navIds[i]}">${esc(n)}</a>${i === 1 ? `\n    <a href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>${pricingNav.map((l) => `\n    <a href="/pricing">${esc(l)}</a>`).join('')}` : ''}`).join('\n    ')}
   </nav>
   <div class="nav-right">
     <span class="switch" role="group" aria-label="${esc(c.themeLabel)}">
@@ -375,7 +359,7 @@ ${JSON.stringify({
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l14 14M18 4L4 18"/></svg>
     </button>
   </div>
-  ${c.nav.map((n, i) => `<a class="mlink" href="#${navIds[i]}">${esc(n)}</a>${i === 1 ? '\n  <a class="mlink" href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>' : ''}`).join('\n  ')}
+  ${c.nav.map((n, i) => `<a class="mlink" href="#${navIds[i]}">${esc(n)}</a>${i === 1 ? `\n  <a class="mlink" href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>${pricingNav.map((l) => `\n  <a class="mlink" href="/pricing">${esc(l)}</a>`).join('')}` : ''}`).join('\n  ')}
   <div class="mnav-switches">
     <span class="switch" role="group" aria-label="${esc(c.themeLabel)}">
       <button type="button" data-theme="ink" class="on" aria-pressed="true">${esc(c.dark)}</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">${esc(c.light)}</button>
@@ -524,7 +508,7 @@ ${homeCalculator(lang)}
     </div>
   </div>
 </section>
-
+${c.pricing ? homePricing(c.pricing) : ''}
 <!-- ═══ SSS ═══════════════════════════════════════════════════ -->
 <section class="pad" id="faq">
   <div class="sec-head">
@@ -569,6 +553,7 @@ ${homeCalculator(lang)}
   <div>
     <span class="brand">${MARK(20)}STOAIX</span>
     <div class="copy">${esc(c.copyright)}</div>
+    <div class="copy" style="font-size:.72rem;opacity:.8;margin-top:6px;max-width:380px;">STOAIX LTD · Registered in England and Wales · Company No. 17131250 · Registered office: 4 Raven Road, Unit 1c3-1121, London, E18 1HB</div>
   </div>
   <div class="footer-cols">
     ${c.footerCols.map((f, ci) => `
@@ -579,7 +564,7 @@ ${homeCalculator(lang)}
   </div>
 </footer>
 
-<script src="/js/v2.js?v=2" defer></script>
+<script src="/js/v2.js?v=3" defer></script>
 <script src="/js/revenue-loss-calculator.js?v=1" defer></script>
 </body>
 </html>

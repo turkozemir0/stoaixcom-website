@@ -186,6 +186,17 @@ export const CONTENT = {
     title: 'STOAIX — Klinik grupları için yapay zeka satış işletim sistemi',
     metaDesc: 'Sizin yönetişiminiz altında sekiz AI asistan: her arama yanıtlanır, her lead bir dakika içinde aranır, her takip tamamlanır. Talep, satış ve sadakat tek gelir tablosunda.',
     nav: ['Platform', 'AI Asistanlar', 'Devreye alma', 'Yönetişim', 'Sahada'],
+    /* Fiyat bölümü: /pricing giriş metniyle birebir. Yalnız TR; EN sayfasında bu alan yok. */
+    pricing: {
+      nav: 'Fiyatlandırma',
+      head: 'Pazarlamadan satışa, kliniğinizi büyüten',
+      headEm: 'tek sistem.',
+      body: 'Hastayı getiren reklamdan randevuyu teyit eden asistana kadar her adım tek yerde. Fiyatlar açık: ihtiyacınız olanı seçer, yalnızca onun için ödersiniz.',
+      guarantee: '30 gün para iade garantisi',
+      billingLabel: 'Ödeme dönemi', monthly: 'Aylık', yearly: 'Yıllık', yearlyOff: '−%20',
+      startsLabel: 'Başlangıç fiyatları',
+      more: 'Tüm asistanlar ve dahil olanlar →',
+    },
     brief: 'Tanışma görüşmesi', sales: 'Satış ekibiyle görüşün', explore: 'Konsolu keşfedin →',
     login: 'Giriş yap',
     wa: "WhatsApp'tan yazın",
