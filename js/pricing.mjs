@@ -3,10 +3,14 @@
    Kaynak: Ata'nın fiyatlandırma artifact'i; metin ve fiyatlar birebir.
 
    Fiyatların tek kaynağı burası. tools/build-pricing.mjs bu modülü Node'da
-   içe aktarıp pricing.html'i aylık başlangıç durumuyla statik basar, ana
-   sayfadaki üç kart da buradan üretilir (tools/build-v2.mjs). Tarayıcıda
-   JS yalnızca etkileşimde yeniden çizer. Değiştirince HTML'lerdeki ?v=
-   numarasını artır: /js/* bir yıl immutable sunuluyor.
+   içe aktarıp pricing.html + pricing-en.html'i aylık başlangıç durumuyla
+   statik basar, ana sayfadaki üç kart da buradan üretilir (tools/build-v2.mjs).
+   Tarayıcıda JS yalnızca etkileşimde yeniden çizer. Değiştirince HTML'lerdeki
+   ?v= numarasını artır: /js/* bir yıl immutable sunuluyor.
+
+   Dil: rakamlar ve yapı *_TR verisinde; EN yalnızca metinleri çevirir
+   (EN_TEXT), böylece fiyat iki yerde tutulmaz. Dil setLang() ile seçilir;
+   tarayıcıda <html lang> belirler.
    ═══════════════════════════════════════════════════════════════════ */
 
 const USD_TRY = 50;            // örnek kur — yayında güncellenecek
@@ -16,14 +20,14 @@ const TRIO_DISCOUNT = { text: 50, voice: 100 };
 const INCLUDED_MESSAGES = 1000;
 const INCLUDED_MINUTES = 1000;
 
-const BLOCKS = [
+const BLOCKS_TR = [
   { id: 'mkt', title: 'Pazarlama', tag: 'Doğru hastayı kliniğinize getirir; reklam bütçeniz boşa gitmez.', color: 'var(--c-mkt)' },
   { id: 'sales', title: 'Satış', tag: 'Gelen hiçbir hasta adayı cevapsız ya da takipsiz kalmaz.', color: 'var(--c-sales)', open: true },
   { id: 'loyal', title: 'Sadakat', tag: 'Tedavi biter, ilişki sürer: hazırlık, bakım ve yorum.', color: 'var(--c-loyal)' }
 ];
 
 // proof: kart altındaki sonuç satırı. sample: true olanlar gerçek veriyle değiştirilecek örnek rakamlar.
-const AGENTS = [
+const AGENTS_TR = [
   { id: 'mkt1', block: 'mkt', name: 'Reklam Yöneticisi', icon: 'mega', tilt: -3, pain: 'Reklama para gidiyor, hasta gelmiyor mu?',
     proof: { v: '−%32', t: 'hasta adayı başına maliyet', sample: true },
     opts: [{ k: 'a', label: 'Meta', price: 200, ln: 'Instagram ve Facebook reklamlarınızı kurar, her gün iyileştirir, ayda bir sade bir raporla sonucu gösterir.' }] },
@@ -62,11 +66,11 @@ const AGENTS = [
     opts: [{ k: 'text', label: 'Yazılı', price: 150, ln: 'İyileşme sürecini gün gün takip eder, bakımı ve kontrol randevusunu hatırlatır.' },
            { k: 'voice', label: 'Sesli', price: 250, ln: 'Tedavi sonrası hastayı arar, iyileşmeyi sorar, sorun varsa ekibinize iletir.' }] }
 ];
-const byId = Object.fromEntries(AGENTS.map(a => [a.id, a]));
 
-const fmt = n => n.toLocaleString('tr-TR');
+let locale = 'tr-TR';
+const fmt = n => n.toLocaleString(locale);
 // Tablonun "dahil olanlar" bölümü. t/v: yazılı ve sesli sütunları (true = dahil, false = yok, metin = değer); both: iki sütunu kaplar; hl: vurgulu satır.
-const INCLUDED = [
+const INCLUDED_TR = [
   { group: 'Her asistana dahil', rows: [
     { n: 'Aylık kullanım', d: 'Her asistan için ayrı ayrı', t: `${fmt(INCLUDED_MESSAGES)} mesaj`, v: `${fmt(INCLUDED_MINUTES)} dakika`, hl: true },
     { n: 'WhatsApp, Instagram, Facebook Messenger, web sohbet', d: 'Tüm mesaj kanalları tek asistanda', t: true, v: false },
@@ -91,7 +95,7 @@ const INCLUDED = [
   ] }
 ];
 
-const FAQ = [
+const FAQ_TR = [
   ['Yapay zekâ asistanlarının fiyatı neye göre değişir?', 'Her asistanın sabit bir aylık fiyatı vardır. Fiyatı belirleyen iki şey var: asistanın yaptığı iş ve yazılı mı sesli mi çalıştığı. Kliniğinize gerekmeyen hiçbir asistan için ödeme yapmazsınız.'],
   ['Yazılı ve sesli asistan arasındaki fark nedir?', 'Yazılı asistan WhatsApp, Instagram, Facebook Messenger ve web sitenizden gelen mesajlara cevap verir. Sesli asistan telefonla arar ya da gelen aramayı açar. İkisi de aynı CRM’i ve aynı hasta geçmişini kullanır.'],
   ['Aylık kullanıma ne dahil?', `Her yazılı asistana ayda ${fmt(INCLUDED_MESSAGES)} mesaj, her sesli asistana ayda ${fmt(INCLUDED_MINUTES)} dakika dahildir. Aşan kısım mesaj başına $0,04, dakika başına $0,15 olarak ücretlendirilir.`],
@@ -102,6 +106,129 @@ const FAQ = [
   ['Hasta verileri güvende mi?', 'Hasta verisi kliniğinize aittir. KVKK ve GDPR kapsamında veri işleme sözleşmesi imzalarız; veriler yalnızca hizmet için kullanılır.'],
   ['Fiyatlara reklam bütçesi dahil mi?', 'Hayır. Pazarlama asistanlarının fiyatı reklam yönetimi içindir. Reklam bütçesini Meta ve Google’a doğrudan siz ödersiniz.']
 ];
+
+/* ─── İngilizce metinler ─── Rakamlar burada tekrarlanmaz, fiyatlar AGENTS_TR'den gelir.
+   TL karşılığı gösterilmez: fiyatlar zaten USD. */
+const fmtEn = n => n.toLocaleString('en-GB');
+const EN_TEXT = {
+  blocks: {
+    mkt: { title: 'Marketing', tag: 'Brings the right patients to your clinic, so your ad budget isn’t wasted.' },
+    sales: { title: 'Sales', tag: 'No enquiry goes unanswered or without follow-up.' },
+    loyal: { title: 'Loyalty', tag: 'Treatment ends, the relationship continues: preparation, aftercare and reviews.' }
+  },
+  agents: {
+    mkt1: { name: 'Ads Manager', pain: 'Spending on ads but patients aren’t coming?', v: '−32%', t: 'cost per lead',
+      opts: { a: ['Meta', 'Sets up your Instagram and Facebook ads, improves them every day and shows the results in a simple monthly report.'] } },
+    mkt2: { name: 'Growth Manager', pain: 'Let patients find you on Google and ChatGPT.', v: '3×', t: 'leads from Google',
+      opts: { a: ['Meta + Google', 'Runs your Meta and Google ads and makes your website stand out in Google search and AI answers.'] } },
+    rec: { name: 'Receptionist', pain: 'Don’t let a late-night message go cold by morning.', v: '15,000+', t: 'patients answered, day and night',
+      opts: { text: ['Written', 'Replies to every message from WhatsApp, Instagram and your website within seconds, in your clinic’s voice.'],
+              voice: ['Voice', 'Answers every call to your clinic 24/7, handles questions and writes the appointment into your calendar.'] } },
+    fol: { name: 'Follow-up Specialist', pain: 'Don’t lose leads who stop replying.', v: '+27%', t: 'sales conversion, in October',
+      opts: { text: ['Written', 'Writes again at the right moment to leads who asked for a price and disappeared, and resolves hesitation with questions.'],
+              voice: ['Voice', 'Calls leads who haven’t replied, answers their questions and gets them booked.'] } },
+    conf: { name: 'Appointment Agent', pain: 'Keep every chair filled.', v: '90% → 1%', t: 'patients left unanswered',
+      opts: { text: ['Written', 'Confirms appointments, reminds patients the day before and moves cancellations to a new slot.'],
+              voice: ['Voice', 'Calls patients to confirm appointments and records changes in the calendar.'] } },
+    react: { name: 'Reactivation Specialist', pain: 'Your old list still means patients.', v: '18%', t: 'old leads back in conversation',
+      opts: { text: ['Written', 'Writes again to past leads who showed interest but never came, and moves those interested to an appointment.'],
+              voice: ['Voice', 'Calls past leads who showed interest but never came, and moves those interested to an appointment.'],
+              mix: ['Multichannel', 'Reaches out by phone, WhatsApp and email together, and moves those interested to an appointment.'] } },
+    rev: { name: 'Review Agent', pain: 'Don’t let happy patients stay silent.', v: '4×', t: 'Google reviews per month',
+      opts: { text: ['Written', 'Asks about satisfaction after treatment; sends happy patients to Google reviews and complaints to you.'],
+              voice: ['Voice', 'Calls patients to ask about satisfaction and invites happy ones to leave a review.'] } },
+    pre: { name: 'Preparation Agent', pain: 'Patients arrive ready and calm.', v: '−40%', t: 'last-minute cancellations',
+      opts: { text: ['Written', 'Delivers pre-treatment instructions step by step, answers questions and eases anxiety.'],
+              voice: ['Voice', 'Calls patients before treatment and checks preparation together.'] } },
+    post: { name: 'Aftercare Agent', pain: 'Stay with your patients after treatment too.', v: '96%', t: 'patients returning for check-ups',
+      opts: { text: ['Written', 'Tracks recovery day by day and reminds patients about care and check-up appointments.'],
+              voice: ['Voice', 'Calls patients after treatment, asks about recovery and alerts your team to any problem.'] } }
+  },
+  included: [
+    { group: 'Included with every agent', rows: [
+      { n: 'Monthly usage', d: 'For each agent separately', t: `${fmtEn(INCLUDED_MESSAGES)} messages`, v: `${fmtEn(INCLUDED_MINUTES)} minutes`, hl: true },
+      { n: 'WhatsApp, Instagram, Facebook Messenger, web chat', d: 'All message channels in one agent', t: true, v: false },
+      { n: 'Phone line', d: 'Inbound and outbound calls', t: false, v: true },
+      { n: 'STOAIX CRM', d: 'All leads and conversations on one screen', t: true, v: true },
+      { n: 'Connection to your existing CRM and clinic software', d: 'No need to change the system you use', t: true, v: true },
+      { n: 'Calendar integration', d: 'Appointments are written straight into your calendar', t: true, v: true },
+      { n: 'Handover to your team', d: 'Passes the right conversation to a person instantly', t: true, v: true },
+      { n: 'Reporting dashboard', d: 'How many patients wrote, how many booked', t: true, v: true },
+      { n: 'Turkish, English and other languages', d: 'Replies in whatever language the patient writes', t: true, v: true }
+    ] },
+    { group: 'Service and assurance', rows: [
+      { n: 'Setup and a conversation script tailored to your clinic', d: 'Your prices, treatments and tone', t: true, v: true },
+      { n: 'Standard support', d: 'By email and dashboard', t: true, v: true },
+      { n: 'KVKK and GDPR-compliant data processing agreement', d: 'Patient data is yours', t: true, v: true },
+      { n: '30-day money-back guarantee', d: 'Success criteria are agreed together at setup', t: true, v: true }
+    ] },
+    { group: 'Paid extras and exclusions', rows: [
+      { n: 'VIP live support', d: 'Direct access by WhatsApp and phone', both: '$300 / mo' },
+      { n: 'Usage above the included amount', d: 'Only the excess is charged', t: '$0.04 / message', v: '$0.15 / min' },
+      { n: 'Ad budget', d: 'You pay Meta and Google directly', both: 'Not included', dim: true }
+    ] }
+  ],
+  faq: [
+    ['What determines the price of the AI agents?', 'Each agent has a fixed monthly price. Two things set it: the work the agent does, and whether it works in writing or by voice. You never pay for an agent your clinic doesn’t need.'],
+    ['What is the difference between a written and a voice agent?', 'A written agent replies to messages from WhatsApp, Instagram, Facebook Messenger and your website. A voice agent makes calls or answers incoming ones. Both use the same CRM and the same patient history.'],
+    ['What monthly usage is included?', `Each written agent includes ${fmtEn(INCLUDED_MESSAGES)} messages a month, each voice agent ${fmtEn(INCLUDED_MINUTES)} minutes a month. Anything above that is charged at $0.04 per message and $0.15 per minute.`],
+    ['How does the team discount work?', 'When the Receptionist, Follow-up Specialist and Appointment Agent are selected together, a discount of $50 a month on written or $100 a month on voice is applied automatically. On an annual plan you also pay 20% less on all monthly fees.'],
+    ['Is there a commitment?', 'Monthly payment comes with no commitment; you can stop in any month. The annual plan is 20% cheaper.'],
+    ['Can I keep using my existing CRM and clinic software?', 'Yes. STOAIX CRM comes with every agent, but we also connect to the CRM, calendar or clinic software you already use. There is no extra charge for integration.'],
+    ['How does the money-back guarantee work?', 'We agree the success criteria together in writing at setup. If they aren’t met within the first 30 days, we refund what you paid.'],
+    ['Is patient data safe?', 'Patient data belongs to your clinic. We sign a data processing agreement under KVKK and GDPR; the data is used only to deliver the service.'],
+    ['Do the prices include ad budget?', 'No. The price of the marketing agents covers ad management. You pay the ad budget directly to Meta and Google.']
+  ]
+};
+
+const UI = {
+  tr: {
+    locale: 'tr-TR', per: '/ay', written: 'Yazılı', voice: 'Sesli', price: 'Fiyat', from: 'başlangıç fiyatı', sample: 'örnek veri',
+    agent: 'Asistan', included: 'Dahil', notIncluded: 'Yok', both: '✓ Yazılı ve sesli', inTeam: '✓ Takımda', addTeam: '+ Takıma ekle',
+    metaAds: 'Meta Reklam Yöneticisi', receptionist: 'Resepsiyonist',
+    trio: 'Takım indirimi', trioWho: 'Resepsiyonist, Takip Uzmanı ve Randevu Asistanı birlikte', annualDeal: 'yıllık anlaşma',
+    optLabel: n => `${n} seçeneği`,
+    blockMeta: (n, p) => `${n} asistan · <b class="num">${p}</b>/ay’dan başlayan`,
+    trioApplied: p => `Takım indirimi uygulandı: −${p}/ay`,
+    trioHint: (n, p) => `${n} eklenirse −${p}/ay indirim`,
+    count: n => `${n} asistan`,
+    note: y => y ? `Yıllık anlaşma fiyatları gösteriliyor (%20 indirimli). Örnek kur: 1 $ = ${USD_TRY} ₺.`
+                 : `Aylık fiyatlar. Yıllık anlaşmada %20 indirim. Örnek kur: 1 $ = ${USD_TRY} ₺.`,
+    ldName: 'STOAIX yapay zekâ asistanları', ldType: 'Klinikler için yapay zekâ hasta iletişimi ve pazarlama asistanları', ldCatalog: 'Asistan fiyatları'
+  },
+  en: {
+    locale: 'en-GB', per: '/mo', written: 'Written', voice: 'Voice', price: 'Price', from: 'starting price', sample: 'sample data',
+    agent: 'Agent', included: 'Included', notIncluded: 'Not included', both: '✓ Written and voice', inTeam: '✓ In your team', addTeam: '+ Add to team',
+    metaAds: 'Meta Ads Manager', receptionist: 'Receptionist',
+    trio: 'Team discount', trioWho: 'Receptionist, Follow-up Specialist and Appointment Agent together', annualDeal: 'annual plan',
+    optLabel: n => `${n} option`,
+    blockMeta: (n, p) => `${n} agents · from <b class="num">${p}</b>/mo`,
+    trioApplied: p => `Team discount applied: −${p}/mo`,
+    trioHint: (n, p) => `Add ${n} for −${p}/mo`,
+    count: n => `${n} ${n === 1 ? 'agent' : 'agents'}`,
+    note: y => y ? 'Annual plan prices shown (20% off).' : 'Monthly prices. 20% off on annual plans.',
+    ldName: 'STOAIX AI agents', ldType: 'AI patient communication and marketing agents for clinics', ldCatalog: 'Agent prices'
+  }
+};
+
+let L, U, BLOCKS, AGENTS, byId, INCLUDED, FAQ;
+
+export function setLang(lang) {
+  L = lang === 'en' ? 'en' : 'tr';
+  U = UI[L];
+  locale = U.locale;
+  const en = L === 'en';
+  BLOCKS = en ? BLOCKS_TR.map(b => ({ ...b, ...EN_TEXT.blocks[b.id] })) : BLOCKS_TR;
+  AGENTS = en ? AGENTS_TR.map(a => {
+    const e = EN_TEXT.agents[a.id];
+    return { ...a, name: e.name, pain: e.pain, proof: { ...a.proof, v: e.v, t: e.t },
+      opts: a.opts.map(o => ({ ...o, label: e.opts[o.k][0], ln: e.opts[o.k][1] })) };
+  }) : AGENTS_TR;
+  byId = Object.fromEntries(AGENTS.map(a => [a.id, a]));
+  INCLUDED = en ? EN_TEXT.included : INCLUDED_TR;
+  FAQ = en ? EN_TEXT.faq : FAQ_TR;
+}
+setLang('tr');
 
 const ICONS = {
   chat: 'M5 6h14v9H10l-5 4z', loop: 'M19 12a7 7 0 1 1-2-4.9M19 5v4h-4', cal: 'M5 7h14v12H5zM5 11h14M9 15l2 2 4-4',
@@ -184,7 +311,7 @@ function cardHtml(a) {
   const p = picked(a.id);
   const on = Boolean(p && p.k === mode);
   const strike = isYearly() ? `<s class="num">${usd(o.price)}</s>` : '';
-  const opts = a.opts.length > 1 ? `<div class="opts" role="group" aria-label="${a.name} seçeneği">${a.opts.map(x =>
+  const opts = a.opts.length > 1 ? `<div class="opts" role="group" aria-label="${U.optLabel(a.name)}">${a.opts.map(x =>
     `<button type="button" id="opt-${a.id}-${x.k}" data-opt="${a.id}" data-k="${x.k}" aria-pressed="${x.k === mode}">${x.label}<small class="num">${usd(shown(x.price))}</small></button>`).join('')}</div>` : '';
   return `<article class="agent${on ? ' sel' : ''}" style="--cat:${colorOf(a)}">
     <div class="portrait">${avatar(a, mode)}</div>
@@ -192,10 +319,10 @@ function cardHtml(a) {
       <span class="chip">${o.label}</span>
       <h4>${a.name}</h4>
       <p class="pain">${a.pain}</p>
-      <div class="proof"><b class="num">${a.proof.v}</b><span>${a.proof.t}</span>${a.proof.sample ? '<span class="ex">örnek veri</span>' : ''}</div>
+      <div class="proof"><b class="num">${a.proof.v}</b><span>${a.proof.t}</span>${a.proof.sample ? `<span class="ex">${U.sample}</span>` : ''}</div>
       ${opts}
-      <div class="pr"><span class="v num">${usd(shown(o.price))}</span><span class="per">/ay</span>${strike}<span class="tl num">${tl(shown(o.price))}</span></div>
-      <button type="button" class="add" id="add-${a.id}" data-add="${a.id}" aria-pressed="${on}">${on ? '✓ Takımda' : '+ Takıma ekle'}</button>
+      <div class="pr"><span class="v num">${usd(shown(o.price))}</span><span class="per">${U.per}</span>${strike}${L === 'en' ? '' : `<span class="tl num">${tl(shown(o.price))}</span>`}</div>
+      <button type="button" class="add" id="add-${a.id}" data-add="${a.id}" aria-pressed="${on}">${on ? U.inTeam : U.addTeam}</button>
     </div>
   </article>`;
 }
@@ -210,7 +337,7 @@ export function blocksHtml() {
         <span class="faces" style="color:${b.color}">${faces}</span>
         <h3 class="bt">${b.title}</h3>
         <span class="tag">${b.tag}</span>
-        <span class="meta">${all.length} asistan · <b class="num">${usd(from)}</b>/ay’dan başlayan</span>
+        <span class="meta">${U.blockMeta(all.length, usd(from))}</span>
         <span class="chev" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6l5 5 5-5"/></svg></span>
       </summary>
       <div class="body"><div class="team">${all.map(cardHtml).join('')}</div></div>
@@ -229,45 +356,43 @@ function renderBlocks() {
 // Tablo hücreleri: mobilde her hücrenin üstünde sütun etiketi görünür.
 const ICON_TEXT = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 3.5h11v7h-6l-3 2.5v-2.5h-2z"/></svg>';
 const ICON_VOICE = '<svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" aria-hidden="true"><path d="M4 2.5l2 .5.8 3-1.5 1a7 7 0 0 0 3.7 3.7l1-1.5 3 .8.5 2c-.3 1-1.3 1.5-2.5 1.5A10 10 0 0 1 2.5 5c0-1.2.5-2.2 1.5-2.5z"/></svg>';
-const KIND_ICON = { 'Yazılı': ICON_TEXT, 'Sesli': ICON_VOICE };
-const kindLabel = label => KIND_ICON[label] ? `<span class="kd">${KIND_ICON[label]}${label}</span>` : label;
+const kindIcon = label => label === U.written ? ICON_TEXT : label === U.voice ? ICON_VOICE : '';
+const kindLabel = label => kindIcon(label) ? `<span class="kd">${kindIcon(label)}${label}</span>` : label;
 const cell = (label, html, cls = '') => `<div class="c num ${cls}" role="cell"><span class="lbl">${kindLabel(label)}</span>${html}</div>`;
-const priceCell = (o, label) => cell(label, `${usd(shown(o.price))}<span class="per-s">/ay</span>${isYearly() ? `<span class="was">${usd(o.price)}</span>` : ''}`, label === 'Fiyat' ? 'pc span' : 'pc');
-const markCell = (label, v) => v === true ? cell(label, '<span class="yes" aria-label="Dahil">✓</span>')
-  : v === false ? cell(label, '<span aria-label="Yok">—</span>', 'no') : cell(label, v);
+const priceCell = (o, label) => cell(label, `${usd(shown(o.price))}<span class="per-s">${U.per}</span>${isYearly() ? `<span class="was">${usd(o.price)}</span>` : ''}`, label === U.price ? 'pc span' : 'pc');
+const markCell = (label, v) => v === true ? cell(label, `<span class="yes" aria-label="${U.included}">✓</span>`)
+  : v === false ? cell(label, `<span aria-label="${U.notIncluded}">—</span>`, 'no') : cell(label, v);
 const nameCell = (n, d) => `<div class="nm" role="rowheader">${n}<small>${d}</small></div>`;
 const group = (title, color, first) => `<div class="pt-g${first ? ' first' : ''}" role="row"><span class="dot" style="background:${color}"></span><span role="cell">${title}</span></div>`;
 const row = (inner, cls = '') => `<div class="pt-row ${cls}" role="row">${inner}</div>`;
 // Mobilde iki sütunda da dahil olan satır tek "✓ Yazılı ve sesli" hücresine iner.
 const bothYes = r => r.t === true && r.v === true;
-const mobCell = '<div class="c mob" role="cell"><span class="yes" style="font-size:15px">✓ Yazılı ve sesli</span></div>';
+const mobCell = () => `<div class="c mob" role="cell"><span class="yes" style="font-size:15px">${U.both}</span></div>`;
 
 function agentRows(a) {
   const t = optOf(a, 'text'), v = optOf(a, 'voice');
-  const pair = t && v ? row(nameCell(a.name, firstClause(t.ln)) + priceCell(t, 'Yazılı') + priceCell(v, 'Sesli')) : '';
+  const pair = t && v ? row(nameCell(a.name, firstClause(t.ln)) + priceCell(t, U.written) + priceCell(v, U.voice)) : '';
   const rest = a.opts.filter(o => !(t && v) || (o !== t && o !== v));
-  return pair + rest.map(o => row(nameCell(`${a.name} · ${o.label}`, firstClause(o.ln)) + priceCell(o, 'Fiyat'))).join('');
+  return pair + rest.map(o => row(nameCell(`${a.name} · ${o.label}`, firstClause(o.ln)) + priceCell(o, U.price))).join('');
 }
 
 function includedRow(r) {
-  const cells = r.both ? cell('Fiyat', r.dim ? `<span class="muted">${r.both}</span>` : r.both, 'span')
-    : markCell('Yazılı', r.t) + markCell('Sesli', r.v) + (bothYes(r) ? mobCell : '');
+  const cells = r.both ? cell(U.price, r.dim ? `<span class="muted">${r.both}</span>` : r.both, 'span')
+    : markCell(U.written, r.t) + markCell(U.voice, r.v) + (bothYes(r) ? mobCell() : '');
   return row(nameCell(r.n, r.d) + cells, [bothYes(r) ? 'both' : '', r.hl ? 'hl' : ''].join(' '));
 }
 
 export function tableHtml() {
-  const head = `<div class="pt-row pt-head" role="row"><div role="columnheader">Asistan</div><div class="c" role="columnheader">${kindLabel('Yazılı')}</div><div class="c" role="columnheader">${kindLabel('Sesli')}</div></div>`;
+  const head = `<div class="pt-row pt-head" role="row"><div role="columnheader">${U.agent}</div><div class="c" role="columnheader">${kindLabel(U.written)}</div><div class="c" role="columnheader">${kindLabel(U.voice)}</div></div>`;
   const priced = BLOCKS.map((b, i) => group(b.title, b.color, i === 0) + AGENTS.filter(a => a.block === b.id).map(agentRows).join('')).join('');
   const off = n => `<span class="yes" style="font-size:16px">−${usd(shown(n))}</span>`;
-  const trio = row(nameCell('Takım indirimi', 'Resepsiyonist, Takip Uzmanı ve Randevu Asistanı birlikte') + cell('Yazılı', off(TRIO_DISCOUNT.text)) + cell('Sesli', off(TRIO_DISCOUNT.voice)));
+  const trio = row(nameCell(U.trio, U.trioWho) + cell(U.written, off(TRIO_DISCOUNT.text)) + cell(U.voice, off(TRIO_DISCOUNT.voice)));
   const incl = INCLUDED.map(g => group(g.group, 'var(--dim)', false) + g.rows.map(includedRow).join('')).join('');
   return head + priced + trio + incl;
 }
 
 export function noteText() {
-  return isYearly()
-    ? `Yıllık anlaşma fiyatları gösteriliyor (%20 indirimli). Örnek kur: 1 $ = ${USD_TRY} ₺.`
-    : `Aylık fiyatlar. Yıllık anlaşmada %20 indirim. Örnek kur: 1 $ = ${USD_TRY} ₺.`;
+  return U.note(isYearly());
 }
 
 function renderTable() {
@@ -291,10 +416,10 @@ function renderBar() {
   document.getElementById('tbarNames').textContent = items.map(x => x.a.opts.length > 1 ? `${x.a.name} (${x.o.label.toLowerCase()})` : x.a.name).join(', ');
   const near = ['text', 'voice'].find(ch => !trios.includes(ch) && TRIO.filter(id => state.picks.some(p => p.id === id && p.k === ch)).length === 2);
   document.getElementById('tbarNote').innerHTML = trios.length
-    ? `<b>Takım indirimi uygulandı: −${usd(trioOff)}/ay</b>`
-    : near ? `${byId[TRIO.find(id => !state.picks.some(p => p.id === id && p.k === near))].name} eklenirse −${usd(TRIO_DISCOUNT[near])}/ay indirim` : `${items.length} asistan`;
-  document.getElementById('tbarTotal').textContent = usd(total) + '/ay';
-  document.getElementById('tbarSub').textContent = isYearly() ? 'yıllık anlaşma' : tl(total);
+    ? `<b>${U.trioApplied(usd(trioOff))}</b>`
+    : near ? U.trioHint(byId[TRIO.find(id => !state.picks.some(p => p.id === id && p.k === near))].name, usd(TRIO_DISCOUNT[near])) : U.count(items.length);
+  document.getElementById('tbarTotal').textContent = usd(total) + U.per;
+  document.getElementById('tbarSub').textContent = isYearly() ? U.annualDeal : (L === 'en' ? '' : tl(total));
 }
 
 export function faqHtml() {
@@ -309,34 +434,35 @@ export function structuredData() {
     priceSpecification: { '@type': 'UnitPriceSpecification', price: o.price, priceCurrency: 'USD', unitCode: 'MON' }
   })));
   return [
-    { '@context': 'https://schema.org', '@type': 'Service', name: 'STOAIX yapay zekâ asistanları',
+    { '@context': 'https://schema.org', '@type': 'Service', name: U.ldName,
       provider: { '@type': 'Organization', name: 'STOAIX', url: 'https://www.stoaix.com' },
-      serviceType: 'Klinikler için yapay zekâ hasta iletişimi ve pazarlama asistanları', areaServed: ['TR', 'GB'],
-      hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Asistan fiyatları', itemListElement: offers } },
+      serviceType: U.ldType, areaServed: ['TR', 'GB'],
+      hasOfferCatalog: { '@type': 'OfferCatalog', name: U.ldCatalog, itemListElement: offers } },
     { '@context': 'https://schema.org', '@type': 'FAQPage',
       mainEntity: FAQ.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }
   ];
 }
 
 // Girişte gösterilen en temel üç başlangıç fiyatı
-const STARTERS = Object.freeze([
-  { id: 'mkt1', k: 'a', name: 'Meta Reklam Yöneticisi', kind: null },
-  { id: 'rec', k: 'text', name: 'Resepsiyonist', kind: 'Yazılı' },
-  { id: 'rec', k: 'voice', name: 'Resepsiyonist', kind: 'Sesli' },
-]);
+const starters = () => [
+  { id: 'mkt1', k: 'a', name: U.metaAds, kind: null },
+  { id: 'rec', k: 'text', name: U.receptionist, kind: U.written },
+  { id: 'rec', k: 'voice', name: U.receptionist, kind: U.voice },
+];
 
-export function startsHtml({ href = '#h-prices', bothPrices = false } = {}) {
-  return STARTERS.map(x => {
+// home: ana sayfada kartların gideceği fiyat sayfası; iki fiyat da basılır, JS seçime göre gösterir.
+export function startsHtml({ home = null } = {}) {
+  return starters().map(x => {
     const a = AGENTS.find(g => g.id === x.id);
     const b = BLOCKS.find(g => g.id === a.block);
-    const kind = x.kind ? `<span class="kd">${KIND_ICON[x.kind]}${x.kind}</span>` : '';
+    const kind = x.kind ? `<span class="kd">${kindIcon(x.kind)}${x.kind}</span>` : '';
     const price = optOf(a, x.k).price;
-    const both = bothPrices ? ` data-monthly="${usd(price)}" data-yearly="${usd(price * (1 - ANNUAL_DISCOUNT))}"` : '';
-    return `<a class="st" href="${href}" style="--cat:${b.color}"${bothPrices ? ' data-pricing-link' : ''}>
+    const both = home ? ` data-monthly="${usd(price)}" data-yearly="${usd(price * (1 - ANNUAL_DISCOUNT))}"` : '';
+    return `<a class="st" href="${home ? home + '#h-prices' : '#h-prices'}" style="--cat:${b.color}"${home ? ` data-pricing-link="${home}"` : ''}>
       <span class="cat"><i></i>${b.title}</span>
       <span class="nm">${kind}${x.name}</span>
-      <span class="from">başlangıç fiyatı</span>
-      <span class="v num"${both}>${usd(shown(price))}<small>/ay</small></span>
+      <span class="from">${U.from}</span>
+      <span class="v num"${both}>${usd(shown(price))}<small>${U.per}</small></span>
     </a>`;
   }).join('');
 }
@@ -407,4 +533,7 @@ function init() {
   if (new URLSearchParams(location.search).get('billing') === 'yearly') setState({ billing: 'yearly' });
 }
 
-if (typeof document !== 'undefined') init();
+if (typeof document !== 'undefined') {
+  setLang(document.documentElement.lang);
+  init();
+}

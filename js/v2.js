@@ -67,7 +67,7 @@
         v.firstChild.textContent = yearly ? v.dataset.yearly : v.dataset.monthly;
       });
       document.querySelectorAll('.price-intro [data-pricing-link]').forEach(function (a) {
-        a.setAttribute('href', '/pricing' + (yearly ? '?billing=yearly' : '') + '#h-prices');
+        a.setAttribute('href', a.dataset.pricingLink + (yearly ? '?billing=yearly' : '') + '#h-prices');
       });
     });
   });

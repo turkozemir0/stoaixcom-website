@@ -40,6 +40,17 @@ export const CONTENT = {
     title: 'STOAIX — The AI sales operating system for clinic groups',
     metaDesc: 'Eight AI agents under your governance: every call answered, every lead contacted in under a minute, every follow-up completed. Demand, sales and loyalty on one revenue ledger.',
     nav: ['Platform', 'Specification', 'Deployment', 'Governance', 'Footprint'],
+    /* Pricing section: same copy as the /en/pricing intro. */
+    pricing: {
+      nav: 'Pricing', href: '/en/pricing',
+      head: 'From marketing to sales, your clinic grows on',
+      headEm: 'one system.',
+      body: 'Every step in one place, from the ad that brings the patient to the agent that confirms the appointment. Pricing is open: choose what you need and pay only for that.',
+      guarantee: '30-day money-back guarantee',
+      billingLabel: 'Billing period', monthly: 'Monthly', yearly: 'Annual', yearlyOff: '−20%',
+      startsLabel: 'Starting prices',
+      more: 'All agents and what’s included →',
+    },
     brief: 'Request a briefing', sales: 'Talk to sales', explore: 'Explore the console →',
     login: 'Sign in',
     wa: 'Message on WhatsApp',
@@ -186,9 +197,9 @@ export const CONTENT = {
     title: 'STOAIX — Klinik grupları için yapay zeka satış işletim sistemi',
     metaDesc: 'Sizin yönetişiminiz altında sekiz AI asistan: her arama yanıtlanır, her lead bir dakika içinde aranır, her takip tamamlanır. Talep, satış ve sadakat tek gelir tablosunda.',
     nav: ['Platform', 'AI Asistanlar', 'Devreye alma', 'Yönetişim', 'Sahada'],
-    /* Fiyat bölümü: /pricing giriş metniyle birebir. Yalnız TR; EN sayfasında bu alan yok. */
+    /* Fiyat bölümü: /pricing giriş metniyle birebir. */
     pricing: {
-      nav: 'Fiyatlandırma',
+      nav: 'Fiyatlandırma', href: '/pricing',
       head: 'Pazarlamadan satışa, kliniğinizi büyüten',
       headEm: 'tek sistem.',
       body: 'Hastayı getiren reklamdan randevuyu teyit eden asistana kadar her adım tek yerde. Fiyatlar açık: ihtiyacınız olanı seçer, yalnızca onun için ödersiniz.',

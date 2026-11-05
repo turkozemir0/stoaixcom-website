@@ -161,9 +161,14 @@ Ata'nın artifact'i (`claude.ai/artifact/AVhxqmTpAxAXURkcd6NR5K`) birebir taşı
 | Dosya | İçerik |
 |---|---|
 | `js/pricing.mjs` | Fiyat, asistan, tablo ve SSS verisinin **tek kaynağı** + çizim + davranış |
-| `tools/build-pricing.mjs` | `pricing.html` üreteci; aylık durumu statik basar |
+| `tools/build-pricing.mjs` | `pricing.html` + `pricing-en.html` üreteci; aylık durumu statik basar, sayfa metinleri burada |
 | `css/pricing.css` | Sayfanın stili. `v2.css` yüklenmez, sınıf adları çakışır |
-| `tools/v2-content.mjs → tr.pricing` | Ana sayfa bölümünün metinleri |
+| `tools/v2-content.mjs → {tr,en}.pricing` | Ana sayfa bölümünün metinleri |
+
+`/en/pricing → /pricing-en` rewrite'ı `vercel.json`da genel `/en/:path*` kuralından
+**önce** tanımlıdır; sıra değişirse sayfa Türkçe açılır. EN metinleri
+`js/pricing.mjs → EN_TEXT` içinde; rakamlar çevrilmez, `AGENTS_TR`'den gelir.
+EN'de TL karşılığı ve örnek kur gösterilmez.
 
 Fiyat değişikliği `js/pricing.mjs`'te yapılır, `npm run site` ile hem sayfa hem
 ana sayfa kartları güncellenir. Değişince `?v=` numaralarını artır:
@@ -172,12 +177,8 @@ için `tools/build-v2.mjs`.
 
 Artifact'ten bilinçli farklar: içerik JS yerine statik basılı (SEO, JS kapalı
 okuma); tema anahtarı ana sayfayla ortak ve varsayılan koyu; analitik eklendi;
-EN bağlantısı `/en`'e gidiyor; yeniden çizimde klavye odağı ve mobil kaydırma
-konumu korunuyor.
-
-Ana sayfa bölümü (`#pricing`) ve menü bağlantısı yalnız Türkçe sayfada var:
-`tr.pricing` alanı olmayan dilde hiçbiri basılmaz. EN'e açmak için `en.pricing`
-yaz ve `/en/pricing` üret.
+yeniden çizimde klavye odağı ve mobil kaydırma konumu korunuyor; artifact Türkçe
+olduğu için EN sürümü ayrıca çevrildi.
 
 ## Kök dili Türkçe oldu (19 Eyl 2026)
 

@@ -31,6 +31,10 @@
       "destination": "/reklam-en"
     },
     {
+      "source": "/en/pricing",
+      "destination": "/pricing-en"
+    },
+    {
       "source": "/en/:path*",
       "destination": "/:path*"
     },

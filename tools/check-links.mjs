@@ -27,6 +27,7 @@ const PAGES = [
   { file: 'index.html', lang: 'tr', label: '/' },
   { file: 'index-en.html', lang: 'en', label: '/en' },
   { file: 'pricing.html', lang: 'tr', label: '/pricing' },
+  { file: 'pricing-en.html', lang: 'en', label: '/en/pricing' },
 ];
 
 /* i18n-home.js'in Türkçe sözlük tanımladığı yollar. Bu listede olmayan bir
@@ -80,7 +81,9 @@ const ACCEPTED_ENGLISH = new Set([
 const ACCEPTED_DUPLICATE = new Set([
   '/healthcare-clinics',  // Göz/Ophthalmology için ayrı sayfa yok, aynı hub'a gidiyor
   '/pricing',             // menü, üç fiyat kartı ve alt bağlantı bilinçli olarak aynı sayfaya gider
+  '/en/pricing',          // aynısı, İngilizce
   '/',                    // /pricing menüsü ana sayfanın bölümlerine gider
+  '/en',                  // aynısı, İngilizce
 ]);
 
 const dictPaths = turkishDictPaths();

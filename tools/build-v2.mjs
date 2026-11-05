@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { CONTENT, LINKS } from './v2-content.mjs';
 import { ANALYTICS_SNIPPET } from './site-analytics.mjs';
-import { startsHtml } from '../js/pricing.mjs';
+import { setLang, startsHtml } from '../js/pricing.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ORIGIN = 'https://stoaix.com';
@@ -196,9 +196,9 @@ function homeCalculator(lang) {
 </section>`;
 }
 
-/* Fiyat bölümü yalnız Türkçe: /pricing Türkçe sayfaya bağlanıyor, EN karşılığı henüz yok.
-   Metin v2-content.mjs'ten, kartlar ve fiyatlar js/pricing.mjs'ten gelir. */
-function homePricing(p) {
+/* Metin v2-content.mjs'ten, kartlar ve fiyatlar js/pricing.mjs'ten gelir. */
+function homePricing(p, lang) {
+  setLang(lang);
   return `
 <!-- ═══ FİYATLANDIRMA ═════════════════════════════════════════ -->
 <section class="pad price-intro" id="pricing" aria-labelledby="pricing-heading">
@@ -209,8 +209,8 @@ function homePricing(p) {
     <button type="button" data-billing="monthly" aria-pressed="true">${esc(p.monthly)}</button>
     <button type="button" data-billing="yearly" aria-pressed="false">${esc(p.yearly)}<span class="off">${esc(p.yearlyOff)}</span></button>
   </div>
-  <div class="starts" aria-label="${esc(p.startsLabel)}">${startsHtml({ href: '/pricing#h-prices', bothPrices: true })}</div>
-  <a class="starts-more" href="/pricing#h-prices" data-pricing-link>${esc(p.more)}</a>
+  <div class="starts" aria-label="${esc(p.startsLabel)}">${startsHtml({ home: p.href })}</div>
+  <a class="starts-more" href="${p.href}#h-prices" data-pricing-link="${p.href}">${esc(p.more)}</a>
 </section>
 `;
 }
@@ -222,7 +222,6 @@ function page(lang) {
   const enUrl = `${ORIGIN}/en`;
   const trUrl = `${ORIGIN}/`;
   const navIds = ['platform', 'specification', 'deployment', 'governance', 'footprint'];
-  const pricingNav = c.pricing ? [c.pricing.nav] : [];
 
   const analytics = ANALYTICS ? ANALYTICS_SNIPPET : '\n<!-- Analytics önizlemede kapalı (tools/build-v2.mjs → ANALYTICS). -->';
 
@@ -334,8 +333,8 @@ ${JSON.stringify({
 <!-- ═══ NAV ═══════════════════════════════════════════════════ -->
 <header class="nav">
   <a class="brand" href="/">${MARK(24)}STOAIX</a>
-  <nav class="nav-links" aria-label="${esc([...c.nav.slice(0, 2), 'STOAIX Ads', ...pricingNav, ...c.nav.slice(2)].join(', '))}">
-    ${c.nav.map((n, i) => `<a href="#${navIds[i]}">${esc(n)}</a>${i === 1 ? `\n    <a href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>${pricingNav.map((l) => `\n    <a href="/pricing">${esc(l)}</a>`).join('')}` : ''}`).join('\n    ')}
+  <nav class="nav-links" aria-label="${esc([...c.nav.slice(0, 2), 'STOAIX Ads', c.pricing.nav, ...c.nav.slice(2)].join(', '))}">
+    ${c.nav.map((n, i) => `<a href="#${navIds[i]}">${esc(n)}</a>${i === 1 ? `\n    <a href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>\n    <a href="${c.pricing.href}">${esc(c.pricing.nav)}</a>` : ''}`).join('\n    ')}
   </nav>
   <div class="nav-right">
     <span class="switch" role="group" aria-label="${esc(c.themeLabel)}">
@@ -359,7 +358,7 @@ ${JSON.stringify({
       <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l14 14M18 4L4 18"/></svg>
     </button>
   </div>
-  ${c.nav.map((n, i) => `<a class="mlink" href="#${navIds[i]}">${esc(n)}</a>${i === 1 ? `\n  <a class="mlink" href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>${pricingNav.map((l) => `\n  <a class="mlink" href="/pricing">${esc(l)}</a>`).join('')}` : ''}`).join('\n  ')}
+  ${c.nav.map((n, i) => `<a class="mlink" href="#${navIds[i]}">${esc(n)}</a>${i === 1 ? `\n  <a class="mlink" href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>\n  <a class="mlink" href="${c.pricing.href}">${esc(c.pricing.nav)}</a>` : ''}`).join('\n  ')}
   <div class="mnav-switches">
     <span class="switch" role="group" aria-label="${esc(c.themeLabel)}">
       <button type="button" data-theme="ink" class="on" aria-pressed="true">${esc(c.dark)}</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">${esc(c.light)}</button>
@@ -508,7 +507,7 @@ ${homeCalculator(lang)}
     </div>
   </div>
 </section>
-${c.pricing ? homePricing(c.pricing) : ''}
+${homePricing(c.pricing, lang)}
 <!-- ═══ SSS ═══════════════════════════════════════════════════ -->
 <section class="pad" id="faq">
   <div class="sec-head">
@@ -564,7 +563,7 @@ ${c.pricing ? homePricing(c.pricing) : ''}
   </div>
 </footer>
 
-<script src="/js/v2.js?v=3" defer></script>
+<script src="/js/v2.js?v=4" defer></script>
 <script src="/js/revenue-loss-calculator.js?v=1" defer></script>
 </body>
 </html>
