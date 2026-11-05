@@ -178,7 +178,10 @@ için `tools/build-v2.mjs`.
 Artifact'ten bilinçli farklar: içerik JS yerine statik basılı (SEO, JS kapalı
 okuma); tema anahtarı ana sayfayla ortak ve varsayılan koyu; analitik eklendi;
 yeniden çizimde klavye odağı ve mobil kaydırma konumu korunuyor; artifact Türkçe
-olduğu için EN sürümü ayrıca çevrildi.
+olduğu için EN sürümü ayrıca çevrildi. Mobilde artifact'te olmayan hamburger menü
+ve dil geçişi eklendi, dokunma hedefleri 44px'e çıkarıldı. `color-mix` için yedek
+`@supports not` bloğundadır: değerler `var()` içerdiğinden üstüne yazılan yedek
+satır eski iOS'ta işe yaramaz.
 
 ## Kök dili Türkçe oldu (19 Eyl 2026)
 

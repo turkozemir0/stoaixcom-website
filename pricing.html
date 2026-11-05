@@ -29,7 +29,7 @@
 
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/css/pricing.css?v=1">
+<link rel="stylesheet" href="/css/pricing.css?v=2">
 
 <!-- Tema, ilk boyamadan önce uygulanır; tercih ana sayfayla ortak. -->
 <script>
@@ -118,8 +118,26 @@
     <span class="switch" role="group" aria-label="Tema"><button type="button" id="th-dark" data-set-theme="ink" aria-pressed="true">Koyu</button><span class="sep">/</span><button type="button" id="th-light" data-set-theme="bone" aria-pressed="false">Açık</button></span>
     <span class="switch lang"><a href="/en/pricing" hreflang="en" style="opacity:.45">EN</a><span class="sep">/</span><span>TR</span></span>
     <a class="nav-cta" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Tanışma görüşmesi</a>
+    <button type="button" class="nav-burger" aria-label="Menüyü aç" aria-expanded="false" aria-controls="mnav">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h18M2 11h18M2 16h18"/></svg>
+    </button>
   </div>
 </header>
+
+<div class="mnav" id="mnav" hidden>
+  <div class="mnav-top">
+    <span class="brand"><span class="mark" aria-hidden="true"></span>STOAIX</span>
+    <button type="button" class="nav-burger" data-close style="display:block" aria-label="Menüyü kapat">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l14 14M18 4L4 18"/></svg>
+    </button>
+  </div>
+  <a class="mlink" href="/#platform">Platform</a>
+  <a class="mlink" href="/#specification">AI Asistanlar</a>
+  <a class="mlink" href="/stoaix-ads">STOAIX Ads</a>
+  <a class="mlink" href="#top" aria-current="page">Fiyatlandırma</a>
+  <div class="mnav-switches"><span class="switch"><a href="/en/pricing" hreflang="en" style="opacity:.45">EN</a><span class="sep">/</span><span>TR</span></span></div>
+  <div class="mnav-foot"><a class="btn" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Tanışma görüşmesi</a></div>
+</div>
 
 <main id="top">
   <section class="hero gut">
@@ -798,6 +816,6 @@
   <a class="btn" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Görüşme planla</a>
 </div>
 
-<script type="module" src="/js/pricing.mjs?v=2"></script>
+<script type="module" src="/js/pricing.mjs?v=3"></script>
 </body>
 </html>

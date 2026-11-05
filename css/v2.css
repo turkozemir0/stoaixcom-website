@@ -436,6 +436,15 @@ body.menu-open { overflow:hidden; }
   .st .v { font-size:24px; }
   .st .v small { font-size:11px; }
   .st .from { font-size:10.5px; margin-top:2px; }
+  .seg button { min-height:44px; }
+}
+@media (max-width:340px) {
+  .st { padding-inline:4px; }
+  .st .nm { font-size:11.5px; }
+}
+/* iOS 16.2 öncesi color-mix bilmez; değer var() içerdiği için @supports şart. */
+@supports not (color:color-mix(in srgb, red, blue)) {
+  .guar { border:1px solid var(--good); background:none; }
 }
 
 /* ═══ HAREKET AZALTMA ════════════════════════════════════════════ */

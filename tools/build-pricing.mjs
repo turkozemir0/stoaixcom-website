@@ -27,7 +27,7 @@ const TEXT = {
     file: 'pricing.html', url: URL_TR, ogLocale: 'tr_TR', ogAlt: 'en_GB', home: '/',
     title: 'STOAIX Fiyatlandırma',
     desc: 'Pazarlamadan satışa kliniğinizi büyüten tek sistem. Diş, saç ekimi ve estetik klinikleri için yapay zekâ asistanlarının şeffaf fiyatları: yazılı ve sesli seçenekler, CRM ve tüm entegrasyonlar dahil, 30 gün para iade garantisi.',
-    menu: 'Ana menü', nav: ['Platform', 'AI Asistanlar', 'STOAIX Ads', 'Fiyatlandırma'],
+    menu: 'Ana menü', openMenu: 'Menüyü aç', closeMenu: 'Menüyü kapat', nav: ['Platform', 'AI Asistanlar', 'STOAIX Ads', 'Fiyatlandırma'],
     themeLabel: 'Tema', dark: 'Koyu', light: 'Açık',
     langSwitch: '<a href="/en/pricing" hreflang="en" style="opacity:.45">EN</a><span class="sep">/</span><span>TR</span>',
     brief: 'Tanışma görüşmesi',
@@ -51,7 +51,7 @@ const TEXT = {
     file: 'pricing-en.html', url: URL_EN, ogLocale: 'en_GB', ogAlt: 'tr_TR', home: '/en',
     title: 'STOAIX Pricing',
     desc: 'From marketing to sales, your clinic grows on one system. Transparent pricing for AI agents for dental, hair transplant and aesthetic clinics: written and voice options, CRM and all integrations included, 30-day money-back guarantee.',
-    menu: 'Main menu', nav: ['Platform', 'Specification', 'STOAIX Ads', 'Pricing'],
+    menu: 'Main menu', openMenu: 'Open menu', closeMenu: 'Close menu', nav: ['Platform', 'Specification', 'STOAIX Ads', 'Pricing'],
     themeLabel: 'Theme', dark: 'Dark', light: 'Light',
     langSwitch: '<span>EN</span><span class="sep">/</span><a href="/pricing" hreflang="tr" style="opacity:.45">TR</a>',
     brief: 'Request a briefing',
@@ -106,7 +106,7 @@ function page(lang) {
 <meta name="twitter:site" content="@stoaix">
 
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${lang === 'tr' ? '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>' : ''}
-<link rel="stylesheet" href="/css/pricing.css?v=1">
+<link rel="stylesheet" href="/css/pricing.css?v=2">
 
 <!-- Tema, ilk boyamadan önce uygulanır; tercih ana sayfayla ortak. -->
 <script>
@@ -151,8 +151,26 @@ ${JSON.stringify(structuredData()).replace(/</g, '\\u003c')}
     <span class="switch" role="group" aria-label="${c.themeLabel}"><button type="button" id="th-dark" data-set-theme="ink" aria-pressed="true">${c.dark}</button><span class="sep">/</span><button type="button" id="th-light" data-set-theme="bone" aria-pressed="false">${c.light}</button></span>
     <span class="switch lang">${c.langSwitch}</span>
     <a class="nav-cta" ${CALL}>${c.brief}</a>
+    <button type="button" class="nav-burger" aria-label="${c.openMenu}" aria-expanded="false" aria-controls="mnav">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h18M2 11h18M2 16h18"/></svg>
+    </button>
   </div>
 </header>
+
+<div class="mnav" id="mnav" hidden>
+  <div class="mnav-top">
+    <span class="brand"><span class="mark" aria-hidden="true"></span>STOAIX</span>
+    <button type="button" class="nav-burger" data-close style="display:block" aria-label="${c.closeMenu}">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l14 14M18 4L4 18"/></svg>
+    </button>
+  </div>
+  <a class="mlink" href="${c.home}#platform">${c.nav[0]}</a>
+  <a class="mlink" href="${c.home}#specification">${c.nav[1]}</a>
+  <a class="mlink" href="/stoaix-ads">${c.nav[2]}</a>
+  <a class="mlink" href="#top" aria-current="page">${c.nav[3]}</a>
+  <div class="mnav-switches"><span class="switch">${c.langSwitch}</span></div>
+  <div class="mnav-foot"><a class="btn" ${CALL}>${c.brief}</a></div>
+</div>
 
 <main id="top">
   <section class="hero gut">
@@ -226,7 +244,7 @@ ${JSON.stringify(structuredData()).replace(/</g, '\\u003c')}
   <a class="btn" ${CALL}>${c.barBtn}</a>
 </div>
 
-<script type="module" src="/js/pricing.mjs?v=2"></script>
+<script type="module" src="/js/pricing.mjs?v=3"></script>
 </body>
 </html>
 `;

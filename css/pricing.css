@@ -223,7 +223,7 @@ h1, h2, h3, h4, p { margin:0; text-wrap:balance; }
 
 /* Takım çubuğu */
 .tbar { position:fixed; left:0; right:0; bottom:0; z-index:20; background:color-mix(in srgb, var(--panel) 94%, transparent);
-        backdrop-filter:blur(10px); border-top:1px solid var(--line);
+        -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); border-top:1px solid var(--line);
         padding-top:14px; padding-bottom:calc(14px + env(safe-area-inset-bottom,0px));
         display:flex; align-items:center; gap:20px; }
 .tbar[hidden] { display:none; }
@@ -238,9 +238,21 @@ h1, h2, h3, h4, p { margin:0; text-wrap:balance; }
 .tbar .sum .s { font-size:12.5px; color:var(--dim); }
 body.has-team { padding-bottom:90px; }
 
+/* Mobil menü: artifact'te yoktu, ana sayfadaki menüyle aynı davranış ve ölçüler. */
+.nav-burger { display:none; background:none; border:0; padding:8px; margin:-8px -8px -8px 0; cursor:pointer; color:var(--fg); }
+.nav-burger svg { display:block; }
+.mnav { display:none; position:fixed; inset:0; z-index:40; background:var(--bg); padding:24px 28px 40px; overflow-y:auto; overscroll-behavior:contain; }
+.mnav.open { display:block; }
+.mnav-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:36px; }
+.mnav a.mlink { display:block; padding:20px 0; border-bottom:1px solid var(--line-soft); font-size:22px; font-weight:620; letter-spacing:-.02em; }
+.mnav-switches { display:flex; gap:28px; padding:24px 0 4px; flex-wrap:wrap; }
+.mnav-foot { margin-top:28px; display:grid; gap:20px; justify-items:start; }
+body.menu-open { overflow:hidden; }
+
 @media (max-width:1100px) {
   :root { --gut:28px; }
   .nav-links, .nav-cta { display:none; }
+  .nav-burger { display:block; }
   .hero h1 { font-size:50px; }
 }
 @media (max-width:720px) {
@@ -291,5 +303,26 @@ body.has-team { padding-bottom:90px; }
   .cta .inner { padding-block:48px 72px; }
   .tbar .faces, .tbar .who .s { display:none; }
   .tbar .btn { padding:12px 16px; font-size:14px; }
+  /* Tam opak: bulanıklık uygulanmayan WebView'da arkadaki yazı fiyatın altından görünüyordu. */
+  .tbar { background:var(--panel); }
   .footer { justify-content:center; text-align:center; }
+  /* Parmakla dokunma hedefi en az 44px. */
+  .seg button, .opts button, .add { min-height:44px; }
+}
+@media (max-width:340px) {
+  .st { padding-inline:4px; }
+  .st .nm { font-size:11.5px; }
+}
+
+/* iOS 16.2 öncesi color-mix bilmez. Değerler var() içerdiği için önceki satıra
+   yazılan yedek işe yaramaz (kural hesaplama anında geçersizleşir); @supports şart. */
+@supports not (color:color-mix(in srgb, red, blue)) {
+  .guar { border:1px solid var(--good); background:none; }
+  .pt-row.hl { background:var(--panel-2); }
+  .blk[open] { border-color:var(--cat); }
+  .blk > summary { background:none; }
+  .faces .face { background:var(--panel-2); }
+  .agent:hover { border-color:var(--cat); }
+  .portrait { border:1px solid var(--cat); background:var(--panel-2); }
+  .tbar { background:var(--panel); }
 }

@@ -499,7 +499,34 @@ function paintTheme() {
   document.querySelectorAll('[data-set-theme]').forEach(b => b.setAttribute('aria-pressed', b.dataset.setTheme === theme));
 }
 
+// Ana sayfadaki mobil menüyle aynı davranış (js/v2.js).
+function mobileNav() {
+  const menu = document.getElementById('mnav');
+  const openBtn = document.querySelector('.nav-burger[aria-controls]');
+  const close = () => {
+    menu.classList.remove('open');
+    menu.hidden = true;
+    document.body.classList.remove('menu-open');
+    openBtn.setAttribute('aria-expanded', 'false');
+    openBtn.focus();
+  };
+  openBtn.addEventListener('click', () => {
+    menu.hidden = false;
+    menu.classList.add('open');
+    document.body.classList.add('menu-open');
+    openBtn.setAttribute('aria-expanded', 'true');
+    menu.querySelector('a, button').focus();
+  });
+  menu.addEventListener('click', e => {
+    if (e.target.closest('[data-close]') || e.target.closest('a')) close();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) close();
+  });
+}
+
 function init() {
+  mobileNav();
   document.addEventListener('click', e => {
     const t = e.target;
     const add = t.closest('[data-add]'); if (add) return togglePick(add.dataset.add);

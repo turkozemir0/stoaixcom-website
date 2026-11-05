@@ -257,7 +257,7 @@ function page(lang) {
 <meta name="twitter:site" content="@stoaix">
 
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${isTR ? '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>' : ''}
-<link rel="stylesheet" href="/css/v2.css?v=5">
+<link rel="stylesheet" href="/css/v2.css?v=6">
 <link rel="stylesheet" href="/css/revenue-calculator-widget.css?v=1">
 
 <!-- Tema, ilk boyamadan önce uygulanır: koyu/açık geçişinde flaş olmaz. -->
