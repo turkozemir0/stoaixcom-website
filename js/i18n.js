@@ -195,6 +195,9 @@ const TR_COMMON = {
   'Transparent pricing, on one page.': 'Şeffaf fiyatlar, tek sayfada.',
   'Choose the AI agents your clinic needs and pay only for those. Every agent’s price and what’s included is on the pricing page.': 'Kliniğinizin ihtiyacı olan AI asistanları seçin, yalnızca onlar için ödeyin. Her asistanın fiyatı ve içindekiler fiyatlandırma sayfasında.',
   'See pricing →': 'Fiyatları görün →',
+  'Create an account': 'Hesap oluşturun',
+  'Subscription started!': 'Abonelik başladı!',
+  'Charged now': 'Şimdi tahsil edilir',
   /* promo popup */
   'Limited Offer': 'Sınırlı Teklif',
   'You have a 10% discount!': '%10 indiriminiz var!',
