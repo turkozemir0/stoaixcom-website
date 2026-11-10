@@ -22,6 +22,11 @@ const URL_TR = 'https://stoaix.com/pricing';
 const URL_EN = 'https://stoaix.com/en/pricing';
 const CALL = `href="${LINKS.briefing}" target="_blank" rel="noopener"`;
 
+/* "Takımınızı kurun" (asistan seçici + alttaki takım çubuğu) şimdilik kapalı
+   (sahip kararı 10 Kas). Kod ve metinler duruyor; true yapıp derlemek yeterli.
+   js/pricing.mjs bölüm yokken renderBlocks/renderBar'ı atlar. */
+const SHOW_TEAM = false;
+
 const TEXT = {
   tr: {
     file: 'pricing.html', url: URL_TR, ogLocale: 'tr_TR', ogAlt: 'en_GB', home: '/',
@@ -198,7 +203,7 @@ ${JSON.stringify(structuredData()).replace(/</g, '\\u003c')}
       <p class="pt-note" id="ptNote">${noteText()}</p>
     </div>
   </section>
-
+${SHOW_TEAM ? `
   <section class="sec gut" aria-labelledby="h-team">
     <div class="wrap">
       <div class="sec-h">
@@ -214,7 +219,7 @@ ${JSON.stringify(structuredData()).replace(/</g, '\\u003c')}
       <p class="team-hint">${c.teamHint}</p>
     </div>
   </section>
-
+` : ''}
   <section class="sec gut" aria-labelledby="h-faq">
     <div class="sec-h">
       <span class="eyebrow">${c.faqEye}</span>
@@ -236,15 +241,15 @@ ${JSON.stringify(structuredData()).replace(/</g, '\\u003c')}
   <span class="brand" style="font-size:15px"><span class="mark" style="width:20px;height:20px" aria-hidden="true"></span>STOAIX</span>
   <span>${c.footer}</span>
 </footer>
-
+${SHOW_TEAM ? `
 <div class="tbar gut" id="tbar" hidden>
   <div class="faces" id="tbarFaces"></div>
   <div class="who"><div class="t" id="tbarNames"></div><div class="s" id="tbarNote"></div></div>
   <div class="sum"><div class="v num" id="tbarTotal"></div><div class="s num" id="tbarSub"></div></div>
   <a class="btn" ${CALL}>${c.barBtn}</a>
 </div>
-
-<script type="module" src="/js/pricing.mjs?v=3"></script>
+` : ''}
+<script type="module" src="/js/pricing.mjs?v=4"></script>
 </body>
 </html>
 `;

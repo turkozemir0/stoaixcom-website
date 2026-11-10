@@ -348,6 +348,7 @@ export function blocksHtml() {
 // Yeniden çizimde mobildeki yatay kaydırma konumu korunur; yoksa karta dokununca liste başa döner.
 function renderBlocks() {
   const host = document.getElementById('blocks');
+  if (!host) return; // "Takımınızı kurun" bölümü kapalı (build-pricing.mjs → SHOW_TEAM)
   const scrolled = [...host.querySelectorAll('[data-block]')].map(b => [b.dataset.block, b.querySelector('.team').scrollLeft]);
   host.innerHTML = blocksHtml();
   scrolled.forEach(([id, left]) => { host.querySelector(`[data-block="${id}"] .team`).scrollLeft = left; });
@@ -402,6 +403,7 @@ function renderTable() {
 
 function renderBar() {
   const bar = document.getElementById('tbar');
+  if (!bar) return; // takım çubuğu yalnız "Takımınızı kurun" açıkken basılır
   const has = state.picks.length > 0;
   bar.hidden = !has;
   document.body.classList.toggle('has-team', has);
