@@ -1,164 +1,269 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr" class="pal-ink">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact STOAIX — Get in Touch</title>
-  <meta name="description" content="Contact the STOAIX team. Questions about our AI receptionist platform? We're here to help. Email us or book a demo call." />
-  <link rel="canonical" href="https://stoaix.com/contact" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://stoaix.com/contact" />
-  <meta property="og:title" content="Contact STOAIX — Get in Touch" />
-  <meta property="og:description" content="Questions about our AI receptionist platform? Reach the STOAIX team directly." />
-  <meta property="og:site_name" content="STOAIX" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>İletişim — STOAIX</title>
+<meta name="description" content="STOAIX ekibine ulaşın: tanışma görüşmesi planlayın, WhatsApp’tan yazın ya da hello@stoaix.com adresine e-posta gönderin.">
+<meta name="theme-color" content="#0A0A0B" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F1EEE8" media="(prefers-color-scheme: light)">
+<link rel="icon" type="image/png" href="/assets/images/logo.png">
+<link rel="canonical" href="https://stoaix.com/contact">
+<link rel="alternate" hreflang="en" href="https://stoaix.com/en/contact">
+<link rel="alternate" hreflang="tr" href="https://stoaix.com/contact">
+<link rel="alternate" hreflang="x-default" href="https://stoaix.com/contact">
 
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "url": "https://stoaix.com/contact",
-    "name": "Contact STOAIX",
-    "description": "Contact page for STOAIX — AI receptionist platform",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "STOAIX",
-      "url": "https://stoaix.com",
-      "email": "hello@stoaix.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "GB",
-        "addressLocality": "London"
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stoaix.com/contact">
+<meta property="og:title" content="İletişim — STOAIX">
+<meta property="og:description" content="STOAIX ekibine ulaşın: tanışma görüşmesi planlayın, WhatsApp’tan yazın ya da hello@stoaix.com adresine e-posta gönderin.">
+<meta property="og:image" content="https://stoaix.com/assets/og-image.png">
+<meta property="og:site_name" content="STOAIX">
+<meta property="og:locale" content="tr_TR">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="İletişim — STOAIX">
+<meta name="twitter:description" content="STOAIX ekibine ulaşın: tanışma görüşmesi planlayın, WhatsApp’tan yazın ya da hello@stoaix.com adresine e-posta gönderin.">
+<meta name="twitter:image" content="https://stoaix.com/assets/og-image.png">
+<meta name="twitter:site" content="@stoaix">
+
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/v2.css?v=7">
+<link rel="stylesheet" href="/css/company.css?v=1">
+
+<!-- Tema, ilk boyamadan önce uygulanır; tercih ana sayfayla ortak. -->
+<script>
+(function () {
+  try {
+    var t = localStorage.getItem('stoaix.theme');
+    if (t !== 'ink' && t !== 'bone') t = 'ink';
+    document.documentElement.className = 'pal-' + t;
+  } catch (e) {}
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "url": "https://stoaix.com/contact",
+  "name": "İletişim — STOAIX",
+  "inLanguage": "tr",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "STOAIX",
+    "legalName": "STOAIX Ltd",
+    "url": "https://stoaix.com",
+    "email": "hello@stoaix.com",
+    "logo": "https://stoaix.com/assets/logo-iconwithname.svg",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "4 Raven Road, Unit 1c3-1121",
+      "addressLocality": "London",
+      "postalCode": "E18 1HB",
+      "addressCountry": "GB"
+    },
+    "founder": [
+      {
+        "@type": "Person",
+        "name": "Ata Ulufer",
+        "jobTitle": "CEO"
+      },
+      {
+        "@type": "Person",
+        "name": "Emir Türköz",
+        "jobTitle": "CTO"
       }
-    }
+    ]
   }
-  </script>
+}
+</script>
+<!-- Analytics: ilk kullanıcı etkileşiminde VEYA en geç ~3.5sn (idle) yüklenir. -->
+<script>
+(function () {
+  var loaded = false;
+  function loadAnalytics() {
+    if (loaded) return; loaded = true;
+    var g = document.createElement('script'); g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q';
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); } window.gtag = gtag;
+    gtag('js', new Date()); gtag('config', 'G-53TMTQML2Q');
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1426016022664547'); fbq('track', 'PageView');
+  }
+  var evs = ['scroll','mousemove','touchstart','pointerdown','keydown','click'];
+  function onFirst(){ evs.forEach(function(e){ window.removeEventListener(e, onFirst, {passive:true}); }); loadAnalytics(); }
+  evs.forEach(function(e){ window.addEventListener(e, onFirst, {passive:true}); });
+  if ('requestIdleCallback' in window) requestIdleCallback(loadAnalytics, { timeout: 3500 });
+  else setTimeout(loadAnalytics, 3500);
 
-  <style>
-    .contact-page {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 120px 24px 100px;
-    }
-    .contact-hero { text-align: center; margin-bottom: 72px; }
-    .contact-hero h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      margin-bottom: 16px;
-    }
-    .contact-hero p {
-      font-size: 1.1rem;
-      color: var(--text-2);
-      max-width: 480px;
-      margin: 0 auto;
-      line-height: 1.65;
-    }
-    .contact-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-    }
-    .contact-card {
-      background: #fff;
-      border: 1px solid #e5e7eb;
-      border-radius: 16px;
-      padding: 32px 28px;
-      text-decoration: none;
-      color: inherit;
-      transition: border-color 0.2s, box-shadow 0.2s;
-    }
-    .contact-card:hover { border-color: var(--blue); box-shadow: 0 4px 20px rgba(37,99,235,0.10); }
-    .contact-card-icon {
-      width: 44px; height: 44px;
-      background: rgba(37,99,235,0.08);
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-      color: var(--blue);
-    }
-    .contact-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
-    .contact-card p { font-size: 0.9rem; color: var(--text-2); line-height: 1.6; margin: 0; }
-    .contact-card .contact-link { font-size: 0.9rem; color: var(--blue); font-weight: 600; margin-top: 12px; display: block; }
-  </style>
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wnyyri0jrz");
+  /* CTA tıklaması = iletişim dönüşümü; Calendly ve WhatsApp ayrı kanal olarak etiketlenir.
+     Buton davranışı değişmez: link yeni sekmede açılır, olay arka planda gönderilir. */
+  var ctaFired = {};
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="calendly.com"], a[href*="wa.me"]') : null;
+    if (!a) return;
+    var ch = a.href.indexOf('wa.me') > -1 ? 'whatsapp' : 'calendly-booking';
+    if (ctaFired[ch]) return;
+    ctaFired[ch] = true;
+    loadAnalytics();
+    var label = (a.textContent || '').trim().slice(0, 80);
+    if (window.fbq)  fbq('track', 'Lead', { content_name: label, content_category: ch });
+    if (window.gtag) gtag('event', 'generate_lead', { link_text: label, link_url: a.href, channel: ch });
+  });
+})();
 </script>
 </head>
 <body>
-  <nav class="navbar" id="navbar"></nav>
+<a class="skip" href="#main">Ana içeriğe geç</a>
 
-  <main class="contact-page">
-    <div class="contact-hero">
-      <h1>Contact STOAIX</h1>
-      <p>Have a question, want a demo, or need support? The STOAIX team is here to help.</p>
+<!-- ═══ NAV ═══════════════════════════════════════════════════ -->
+<header class="nav">
+  <a class="brand" href="/"><span class="mark" style="width:24px;height:24px" aria-hidden="true"></span>STOAIX</a>
+  <nav class="nav-links" aria-label="Platform, AI Asistanlar, STOAIX Ads, Fiyatlandırma, Devreye alma, Yönetişim, Sahada">
+    <a href="/#platform">Platform</a>
+    <a href="/#specification">AI Asistanlar</a>
+    <a href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>
+    <a href="/pricing">Fiyatlandırma</a>
+    <a href="/#deployment">Devreye alma</a>
+    <a href="/#governance">Yönetişim</a>
+    <a href="/#footprint">Sahada</a>
+  </nav>
+  <div class="nav-right">
+    <span class="switch" role="group" aria-label="Tema">
+      <button type="button" data-theme="ink" class="on" aria-pressed="true">Koyu</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Açık</button>
+    </span>
+    <span class="switch" role="group" aria-label="Dil">
+      <a href="/en/contact" hreflang="en" class="off">EN</a><span class="sep" aria-hidden="true">/</span><a href="/contact" hreflang="tr" class="on" aria-current="true">TR</a>
+    </span>
+    <a class="nav-cta" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Tanışma görüşmesi</a>
+    <button type="button" class="nav-burger" aria-label="Menü" aria-expanded="false" aria-controls="mnav">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h18M2 11h18M2 16h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ═══ MOBİL MENÜ ════════════════════════════════════════════ -->
+<div class="mnav" id="mnav" hidden>
+  <div class="mnav-top">
+    <span class="brand"><span class="mark" style="width:24px;height:24px" aria-hidden="true"></span>STOAIX</span>
+    <button type="button" class="nav-burger" data-close style="display:block" aria-label="Kapat">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l14 14M18 4L4 18"/></svg>
+    </button>
+  </div>
+  <a class="mlink" href="/#platform">Platform</a>
+  <a class="mlink" href="/#specification">AI Asistanlar</a>
+  <a class="mlink" href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>
+  <a class="mlink" href="/pricing">Fiyatlandırma</a>
+  <a class="mlink" href="/#deployment">Devreye alma</a>
+  <a class="mlink" href="/#governance">Yönetişim</a>
+  <a class="mlink" href="/#footprint">Sahada</a>
+  <div class="mnav-switches">
+    <span class="switch" role="group" aria-label="Tema">
+      <button type="button" data-theme="ink" class="on" aria-pressed="true">Koyu</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Açık</button>
+    </span>
+    <span class="switch" role="group" aria-label="Dil">
+      <a href="/en/contact" hreflang="en" class="off">EN</a><span class="sep" aria-hidden="true">/</span><a href="/contact" hreflang="tr" class="on">TR</a>
+    </span>
+  </div>
+  <div class="mnav-foot">
+    <a class="btn" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Tanışma görüşmesi</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ═══ HERO ══════════════════════════════════════════════════ -->
+<section class="hero page-hero">
+  <div class="hero-head">
+    <p class="eyebrow">İletişim</p>
+    <div class="proof">STOAIX Ltd. · Londra</div>
+  </div>
+  <h1 class="page-title">Doğrudan ekibe ulaşın.</h1>
+  <div class="hero-grid">
+    <p>Kliniğiniz için doğru kurulumu konuşmak, bir soru sormak ya da mevcut hesabınızla ilgili destek almak için aşağıdaki kanallardan birini seçin. Mesajınızı doğrudan ekibimiz okur.</p>
+  </div>
+</section>
+
+<!-- ═══ KANALLAR ═══════════════════════════════════════════════ -->
+<section class="pad channels-wrap">
+  <h2 class="vh">Size uygun kanalı seçin</h2>
+  <div class="channels">
+    <a class="ch" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">
+      <span class="t">Tanışma görüşmesi</span>
+      <span class="d">20 dakikalık görüşmede hasta akışınıza bakar, hangi asistanların fark yaratacağını birlikte belirleriz.</span>
+      <span class="go">Görüşme planla →</span>
+    </a>
+    <a class="ch" href="https://wa.me/905061185479" target="_blank" rel="noopener">
+      <span class="t">WhatsApp</span>
+      <span class="d">Kısa bir sorunuz varsa en hızlı yol.</span>
+      <span class="go">+90 506 118 54 79 →</span>
+    </a>
+    <a class="ch" href="mailto:hello@stoaix.com">
+      <span class="t">E-posta</span>
+      <span class="d">Genel sorular, iş birlikleri ve mevcut müşteri desteği için.</span>
+      <span class="go">hello@stoaix.com →</span>
+    </a>
+  </div>
+</section>
+
+<!-- ═══ ŞİRKET BİLGİLERİ ═══════════════════════════════════════ -->
+<section class="pad alt">
+  <div class="sec-head">
+    <h2>Şirket bilgileri</h2>
+    <div class="note">Companies House üzerinden doğrulanabilir</div>
+  </div>
+  <dl class="facts">
+    <div><dt>Unvan</dt><dd>STOAIX Ltd</dd></div>
+    <div><dt>Kayıt</dt><dd>İngiltere ve Galler</dd></div>
+    <div><dt>Şirket numarası</dt><dd><a href="https://find-and-update.company-information.service.gov.uk/company/17131250" target="_blank" rel="noopener">17131250</a></dd></div>
+    <div><dt>Kayıtlı adres</dt><dd>4 Raven Road, Unit 1c3-1121, London, E18 1HB</dd></div>
+    <div><dt>Kurucular</dt><dd>Ata Ulufer (CEO) · Emir Türköz (CTO)</dd></div>
+    <div><dt>E-posta</dt><dd><a href="mailto:hello@stoaix.com">hello@stoaix.com</a></dd></div>
+  </dl>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div>
+    <span class="brand"><span class="mark" style="width:20px;height:20px" aria-hidden="true"></span>STOAIX</span>
+    <div class="copy">© 2026 STOAIX Ltd. — Londra, Birleşik Krallık</div>
+    <div class="copy" style="font-size:.72rem;opacity:.8;margin-top:6px;max-width:380px;">STOAIX LTD · Registered in England and Wales · Company No. 17131250 · Registered office: 4 Raven Road, Unit 1c3-1121, London, E18 1HB</div>
+  </div>
+  <div class="footer-cols">
+    
+    <div>
+      <h4>Platform</h4>
+      <a href="/#specification">AI asistanlar</a>
+      <a href="/#revenue-calculator">Büyüme</a>
+      <a href="/#integrations">Entegrasyonlar</a>
+      <a href="/#governance">Güvenlik</a>
     </div>
-
-    <div class="contact-cards">
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-            <polyline points="22,6 12,13 2,6"/>
-          </svg>
-        </div>
-        <h3>General Enquiries</h3>
-        <p>Questions about STOAIX, our platform, or how we work with clinics.</p>
-        <a href="mailto:hello@stoaix.com" class="contact-link">hello@stoaix.com</a>
-      </div>
-
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-            <line x1="8" y1="21" x2="16" y2="21"/>
-            <line x1="12" y1="17" x2="12" y2="21"/>
-          </svg>
-        </div>
-        <h3>Book a Demo</h3>
-        <p>See STOAIX live in action — we'll show you exactly how it works for your clinic type.</p>
-        <a href="/signup" class="contact-link">Start free trial →</a>
-      </div>
-
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <h3>Partner Programme</h3>
-        <p>Agencies and resellers — learn about white-label and revenue share opportunities.</p>
-        <a href="/partners" class="contact-link">View partner programme →</a>
-      </div>
-
-      <div class="contact-card">
-        <div class="contact-card-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="12" y1="8" x2="12" y2="12"/>
-            <line x1="12" y1="16" x2="12.01" y2="16"/>
-          </svg>
-        </div>
-        <h3>Support</h3>
-        <p>Already a customer? Email our support team and we'll get back to you within a few hours.</p>
-        <a href="mailto:hello@stoaix.com" class="contact-link">hello@stoaix.com</a>
-      </div>
+    <div>
+      <h4>Çözümler</h4>
+      <span>Diş klinikleri</span>
+      <span>Saç ekimi klinikleri</span>
+      <span>Estetik cerrahi</span>
+      <span>Medikal estetik</span>
+      <span>Dermatoloji</span>
+      <span>Göz klinikleri</span>
+      <span>Fizyoterapi</span>
+      <span>Çok şubeli klinik grupları</span>
     </div>
-  </main>
+    <div>
+      <h4>Şirket</h4>
+      <a href="/about">Hakkımızda</a>
+      <a href="/contact">İletişim</a>
+    </div>
+  </div>
+</footer>
 
-  <footer class="footer"></footer>
-
-  <script defer src="/js/components.js?v=20260925"></script>
-  <script defer src="/js/main.js?v=20260919"></script>
+<script src="/js/v2.js?v=4" defer></script>
 </body>
 </html>

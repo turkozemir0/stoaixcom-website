@@ -38,9 +38,21 @@
   <!-- Core Brand Pages -->
   <url>
     <loc>https://stoaix.com/about</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stoaix.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stoaix.com/about"/>
+  </url>
+  <url>
+    <loc>https://stoaix.com/en/about</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/about"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stoaix.com/en/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stoaix.com/about"/>
   </url>
   <url>
     <loc>https://stoaix.com/stoaix-ads</loc>
@@ -76,9 +88,21 @@
 
   <url>
     <loc>https://stoaix.com/contact</loc>
-    <lastmod>2026-05-01</lastmod>
+    <lastmod>2026-11-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stoaix.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stoaix.com/contact"/>
+  </url>
+  <url>
+    <loc>https://stoaix.com/en/contact</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://stoaix.com/contact"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stoaix.com/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stoaix.com/contact"/>
   </url>
 
   <url>

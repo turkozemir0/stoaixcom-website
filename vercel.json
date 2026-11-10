@@ -35,6 +35,14 @@
       "destination": "/pricing-en"
     },
     {
+      "source": "/en/about",
+      "destination": "/about-en"
+    },
+    {
+      "source": "/en/contact",
+      "destination": "/contact-en"
+    },
+    {
       "source": "/en/:path*",
       "destination": "/:path*"
     },

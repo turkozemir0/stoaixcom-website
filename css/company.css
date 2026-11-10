@@ -1,0 +1,57 @@
+/* ═══════════════════════════════════════════════════════════════════
+   STOAIX — şirket sayfaları (Hakkımızda + İletişim)
+   v2.css'in üstüne yalnız bu sayfalara özel birkaç blok. Renkler v2
+   tokenlarından gelir; iki tema ve ters zeminli .alt bölümler kendiliğinden
+   çalışır. Üreteç: tools/build-company.mjs
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Hero: ana sayfadaki daktilo satırının statik, bir kademe küçük karşılığı. */
+.page-title { font-size:72px; line-height:1; letter-spacing:-.05em; font-weight:600;
+              max-width:1080px; margin:0 0 48px; }
+
+/* ─── Hikâye: fotoğraf solda, metin sağda ─────────────────────── */
+.story { display:grid; grid-template-columns:minmax(0,.8fr) minmax(0,1fr); gap:80px; align-items:start; }
+.story figure { margin:0; }
+.story img { display:block; width:100%; height:auto; border:1px solid var(--line-hair); }
+.story figcaption { margin-top:14px; font-size:13.5px; color:var(--dim); }
+.story h2 { font-size:44px; line-height:1.08; letter-spacing:-.038em; font-weight:620; margin:18px 0 28px; }
+.story p:not(.eyebrow) { font-size:17px; line-height:1.65; color:var(--mid); margin:0 0 18px; max-width:62ch; }
+
+/* ─── İlkeler: v2 .step satırları iki sütunda ─────────────────── */
+.principles { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:80px; }
+.principles .d { margin:0; }
+
+/* ─── Şirket bilgileri ve iletişim kanalları: hairline ızgara ─── */
+.facts, .channels { display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+                    gap:1px; background:var(--line-hair); border:1px solid var(--line-soft); margin:0; }
+.facts > div { background:var(--bg); padding:22px; }
+.facts dt { font-size:11.5px; font-weight:640; letter-spacing:.1em; text-transform:uppercase;
+            color:var(--dim); margin-bottom:8px; }
+.facts dd { margin:0; font-size:15.5px; line-height:1.5; }
+.facts a { border-bottom:1px solid var(--line); }
+
+.channels-wrap { padding-top:0; }
+.channels .ch { background:var(--bg); padding:30px 28px; display:flex; flex-direction:column; min-height:230px; }
+.channels .ch:hover { opacity:1; background:var(--panel); }
+.ch .t { font-size:21px; font-weight:630; letter-spacing:-.02em; }
+.ch .d { font-size:15px; line-height:1.55; color:var(--soft); margin:12px 0 28px; }
+.ch .go { margin-top:auto; font-size:15px; font-weight:600; }
+
+/* ═══ RESPONSIVE — kırılımlar v2.css ile aynı ════════════════════ */
+@media (max-width:1280px) {
+  .page-title { font-size:62px; }
+  .story, .principles { gap:56px; }
+}
+@media (max-width:1100px) {
+  .page-title { font-size:48px; margin-bottom:36px; }
+  .story { grid-template-columns:minmax(0,1fr); gap:48px; }
+  .story figure { max-width:520px; }
+  .story h2 { font-size:34px; }
+  .principles { grid-template-columns:minmax(0,1fr); }
+  .facts, .channels { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:760px) {
+  .page-title { font-size:36px; letter-spacing:-.045em; }
+  .facts, .channels { grid-template-columns:minmax(0,1fr); }
+  .channels .ch { min-height:0; }
+}

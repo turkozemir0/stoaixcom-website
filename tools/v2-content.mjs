@@ -15,20 +15,19 @@ export const LINKS = {
      Tanımlar geri almayı kolaylaştırmak için duruyor; şu an hiçbir yerde kullanılmıyor. */
   console: '/signup',
   login: 'https://platform.stoaix.com/login',
-  /* Footer, uzun kuyruk sayfalarını tek tek listelemek yerine dört hub'a bağlanır:
-     sayfa compact kalır, 250 URL'lik kümeye yetki bu hub'lar üzerinden akar. */
+  /* Footer yalnızca güncel tasarıma uyan hedeflere bağlanır. Çözümler sütunu
+     bilinçli olarak linksizdir (null): eski tasarımlı dikey sayfalara gitmesin.
+     '#' ile başlayanlar ana sayfa çapasıdır; alt sayfada köke göre çözülür. */
   footer: {
     en: [
-      ['#specification', '/modules', '#integrations', '#governance'],
-      ['/ai-receptionist-dental-clinic-uk', '/ai-receptionist-aesthetic-clinic-uk',
-       '/healthcare-clinics', '/healthcare-clinics'],
-      ['/about', '/case-studies', '/clinic-resources', '/blog', '/contact'],
+      ['#specification', '#revenue-calculator', '#integrations', '#governance'],
+      [null, null, null, null, null, null, null, null],
+      ['/en/about', '/en/contact'],
     ],
     tr: [
-      ['#specification', '/modules', '#integrations', '#governance'],
-      ['/dis-klinigi-icin-ai', '/estetik-klinik-icin-ai',
-       '/healthcare-clinics', '/healthcare-clinics'],
-      ['/about', '/case-studies', '/klinik-kaynaklari', '/blog', '/contact'],
+      ['#specification', '#revenue-calculator', '#integrations', '#governance'],
+      [null, null, null, null, null, null, null, null],
+      ['/about', '/contact'],
     ],
   },
 };
@@ -183,8 +182,8 @@ export const CONTENT = {
     leaders: [{ n: 'Ata Ulufer', r: 'Co-founder & CEO' }, { n: 'Emir Türköz', r: 'Co-founder & CTO' }],
     footerCols: [
       { h: 'Platform', items: ['AI agents', 'Growth', 'Integrations', 'Security'] },
-      { h: 'Solutions', items: ['Dental', 'Aesthetics & hair', 'Ophthalmology', 'Multi-site groups'] },
-      { h: 'Company', items: ['About', 'Customer stories', 'Resources', 'Blog', 'Contact'] },
+      { h: 'Solutions', items: ['Dental clinics', 'Hair transplant clinics', 'Aesthetic surgery', 'Medical aesthetics', 'Dermatology', 'Ophthalmology', 'Physiotherapy', 'Multi-site clinic groups'] },
+      { h: 'Company', items: ['About', 'Contact'] },
     ],
     copyright: '© 2026 STOAIX Ltd. — London, UK',
     skip: 'Skip to main content', menu: 'Menu', close: 'Close',
@@ -338,8 +337,8 @@ export const CONTENT = {
     leaders: [{ n: 'Ata Ulufer', r: 'Kurucu Ortak & CEO' }, { n: 'Emir Türköz', r: 'Kurucu Ortak & CTO' }],
     footerCols: [
       { h: 'Platform', items: ['AI asistanlar', 'Büyüme', 'Entegrasyonlar', 'Güvenlik'] },
-      { h: 'Çözümler', items: ['Diş', 'Estetik ve saç', 'Göz', 'Çok şubeli gruplar'] },
-      { h: 'Şirket', items: ['Hakkımızda', 'Müşteri hikâyeleri', 'Kaynaklar', 'Blog', 'İletişim'] },
+      { h: 'Çözümler', items: ['Diş klinikleri', 'Saç ekimi klinikleri', 'Estetik cerrahi', 'Medikal estetik', 'Dermatoloji', 'Göz klinikleri', 'Fizyoterapi', 'Çok şubeli klinik grupları'] },
+      { h: 'Şirket', items: ['Hakkımızda', 'İletişim'] },
     ],
     copyright: '© 2026 STOAIX Ltd. — Londra, Birleşik Krallık',
     skip: 'Ana içeriğe geç', menu: 'Menü', close: 'Kapat',
