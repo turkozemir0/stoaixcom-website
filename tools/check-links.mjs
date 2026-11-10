@@ -28,6 +28,10 @@ const PAGES = [
   { file: 'index-en.html', lang: 'en', label: '/en' },
   { file: 'pricing.html', lang: 'tr', label: '/pricing' },
   { file: 'pricing-en.html', lang: 'en', label: '/en/pricing' },
+  { file: 'about.html', lang: 'tr', label: '/about' },
+  { file: 'about-en.html', lang: 'en', label: '/en/about' },
+  { file: 'contact.html', lang: 'tr', label: '/contact' },
+  { file: 'contact-en.html', lang: 'en', label: '/en/contact' },
 ];
 
 /* i18n-home.js'in Türkçe sözlük tanımladığı yollar. Bu listede olmayan bir
@@ -74,12 +78,11 @@ function resolveLocal(pathname) {
    amaç, YENİ bir tutarsızlık çıktığında gürültüye karışmadan görünmesi.
    Bir madde çözülürse (ör. /blog için Türkçe sözlük yazılırsa) buradan sil. */
 const ACCEPTED_ENGLISH = new Set([
-  '/modules',   // ürün modülleri — Türkçe sözlüğü yok
   '/blog',      // blog dizini İngilizce, yazıların kendi dili karışık
-  '/contact',   // iletişim formu İngilizce
 ]);
 const ACCEPTED_DUPLICATE = new Set([
-  '/healthcare-clinics',  // Göz/Ophthalmology için ayrı sayfa yok, aynı hub'a gidiyor
+  '/contact',             // Hakkımızda: hero butonu ve footer aynı sayfaya gider
+  '/en/contact',          // aynısı, İngilizce
   '/pricing',             // menü, üç fiyat kartı ve alt bağlantı bilinçli olarak aynı sayfaya gider
   '/en/pricing',          // aynısı, İngilizce
   '/',                    // /pricing menüsü ana sayfanın bölümlerine gider

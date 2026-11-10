@@ -9,563 +9,247 @@
 
 (function () {
 
-  /* ─── Component templates ──────────────────────────────── */
+  /* Şablonlar init() anında üretilir: components.js bazı sayfalarda defer
+     olmadan, i18n.js etiketinden ÖNCE yükleniyor. Dil kararı betik
+     yüklenirken verilseydi i18n.js henüz DOM'da olmazdı ve sayfa
+     "i18n yok → İngilizce" sanılırdı (metin Türkçe, linkler /en olurdu). */
+  function templates() {
+    /* ─── Dil ve hedefler ──────────────────────────────────────
+       i18n.js ile aynı karar: lang="tr" sayfa doğrudan Türkçedir — i18n onu
+       çevirmez, metni burada Türkçe basarız. Diğer sayfalarda metin İngilizce
+       basılır, i18n sözlüğü (TR_COMMON) gerekirse çevirir. i18n yüklemeyen
+       sayfalar (yasal metinler) hep İngilizcedir.
+       Linkler ziyaretçinin dilindeki yeni tasarımlı sayfalara gider; eski
+       /modules, /case-studies, /healthcare-clinics vercel.json'da yönlendirilir. */
+    const NATIVE_TR = document.documentElement.lang === 'tr';
+    const HAS_I18N = !!document.querySelector('script[src*="i18n"]');
+    const IS_TR = NATIVE_TR || (HAS_I18N && (function () {
+      const seg = location.pathname.split('/').filter(Boolean)[0];
+      if (seg === 'tr' || seg === 'en') return seg === 'tr';
+      try {
+        const saved = localStorage.getItem('stoaix-lang');
+        if (saved === 'tr' || saved === 'en') return saved === 'tr';
+      } catch (e) {}
+      return (navigator.language || '').toLowerCase().startsWith('tr');
+    })());
+    const t = (en, tr) => (NATIVE_TR ? tr : en);
+    /* Dile bağlı link: iki hedef de yazılır, init() i18n'in son kararına hizalar. */
+    const H = (tr, en) => `href="${IS_TR ? tr : en}" data-href-tr="${tr}" data-href-en="${en}"`;
+    const CALL = 'https://calendly.com/ataulufer1/20';
+    const NEW_TAG = '<span style="margin-left:6px;padding:2px 5px;border-radius:5px;background:var(--blue-tint);color:var(--blue);font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;vertical-align:1.5px">new</span>';
+    /* Linksiz footer satırı: .footer-col a ile aynı görünüm. */
+    const PLAIN = 'display:block;font-size:.85rem;color:var(--text-2);margin-bottom:10px';
+    const CLINICS = NATIVE_TR
+      ? ['Diş klinikleri', 'Saç ekimi klinikleri', 'Estetik cerrahi', 'Medikal estetik', 'Dermatoloji', 'Göz klinikleri', 'Fizyoterapi', 'Çok şubeli klinik grupları']
+      : ['Dental clinics', 'Hair transplant clinics', 'Aesthetic surgery', 'Medical aesthetics', 'Dermatology', 'Ophthalmology', 'Physiotherapy', 'Multi-site clinic groups'];
 
-  const NAVBAR_HTML = `
-  <nav class="navbar" id="navbar">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <img fetchpriority="high" src="/assets/logo-iconwithname.svg" class="nav-logo-wordmark" alt="STOAIX" />
-      </a>
 
-      <div class="nav-links">
-        <div class="nav-dropdown-item">
-          <button class="nav-link-btn">Product <span class="nav-chevron">↓</span></button>
-          <div class="nav-dropdown">
-            <div class="dropdown-inner">
-              <a href="/product#features" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 18.5a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13Z"/>
-                    <path d="M19.14 19.14 22 22M2 22l2.86-2.86"/>
-                    <path d="M12 12v-2M12 8v-.5"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">Voice AI</div>
-                  <div class="dropdown-desc">Answer every call, 24/7</div>
-                </div>
-              </a>
-              <a href="/product#channels" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">WhatsApp &amp; Chat</div>
-                  <div class="dropdown-desc">Automate message channels</div>
-                </div>
-              </a>
-              <a href="/product#features" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
-                    <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">CRM &amp; Pipeline</div>
-                  <div class="dropdown-desc">Track and score every lead</div>
-                </div>
-              </a>
-              <a href="/product#features" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-                    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">Integrations</div>
-                  <div class="dropdown-desc">Connect your existing tools</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <a href="/stoaix-ads" class="nav-link">STOAIX Ads<span style="margin-left:6px;padding:2px 5px;border-radius:5px;background:var(--blue-tint);color:var(--blue);font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;vertical-align:1.5px">new</span></a>
-        <a href="/modules.html" class="nav-link">Modules</a>
-        <a href="/case-studies.html" class="nav-link">Case Studies</a>
-        <a href="/documentation" class="nav-link">Docs</a>
-        <div class="nav-dropdown-item">
-          <button class="nav-link-btn">Solutions <span class="nav-chevron">↓</span></button>
-          <div class="nav-dropdown">
-            <div class="dropdown-inner">
-              <a href="/healthcare-clinics.html" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">Healthcare Clinics</div>
-                  <div class="dropdown-desc">Hair transplant, dental, aesthetics</div>
-                </div>
-              </a>
-              <a href="/partners.html" class="dropdown-link">
-                <span class="dropdown-icon-wrap">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
-                    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                  </svg>
-                </span>
-                <div>
-                  <div class="dropdown-title">Partner Program</div>
-                  <div class="dropdown-desc">Earn up to 50% recurring commission</div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-        <a href="/media" class="nav-link" style="display:inline-flex;align-items:center;gap:5px;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          Media
-        </a>
-      </div>
+    /* ─── Component templates ──────────────────────────────── */
 
-      <div class="nav-actions">
-        <a href="https://platform.stoaix.com/login" class="nav-login" target="_blank" rel="noopener noreferrer">Log in</a>
-        <a href="https://calendly.com/ataulufer1/20" class="btn-primary btn-sm" target="_blank" rel="noopener noreferrer">Book a call</a>
-      </div>
-
-      <button class="nav-hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="/product#features">Product</a>
-    <a href="/stoaix-ads">STOAIX Ads<span style="margin-left:6px;padding:2px 5px;border-radius:5px;background:var(--blue-tint);color:var(--blue);font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;vertical-align:1.5px">new</span></a>
-    <a href="/modules.html">Modules</a>
-    <a href="/case-studies.html">Case Studies</a>
-    <a href="/documentation">Docs</a>
-    <a href="/healthcare-clinics.html">Healthcare Clinics</a>
-    <a href="/partners.html">Partner Program</a>
-    <a href="/media">Media</a>
-    <a href="https://platform.stoaix.com/login" class="nav-login" target="_blank" rel="noopener noreferrer">Log in</a>
-    <a href="https://calendly.com/ataulufer1/20" class="btn-primary" target="_blank" rel="noopener noreferrer">Book a call</a>
-  </div>`;
-
-  const MARQUEE_HTML = `
-  <section class="marquee-section">
-    <p class="marquee-label">Powered by the best. Connects with everything.</p>
-    <div class="marquee-track-wrapper">
-      <div class="marquee-fade marquee-fade-left"></div>
-      <div class="marquee-fade marquee-fade-right"></div>
-
-      <div class="marquee-track">
-        <div class="marquee-inner marquee-left">
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/whatsapp.svg" alt="WhatsApp">WhatsApp</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zapier.svg" alt="Zapier">Zapier</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/make.svg" alt="Make">Make</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/hubspot.svg" alt="HubSpot">HubSpot</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/salesforce.svg" alt="Salesforce">Salesforce</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/twilio.svg" alt="Twilio">Twilio</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/gohighlevel.png" alt="Go High Level">Go High Level</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/calendly.svg" alt="Calendly">Calendly</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pipedrive.png" alt="Pipedrive">Pipedrive</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zoho.svg" alt="Zoho CRM">Zoho CRM</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googleads.svg" alt="Google Ads">Google Ads</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/tiktok.svg" alt="TikTok">TikTok</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/linkedin.svg" alt="LinkedIn">LinkedIn</div>
-          <!-- Duplicate for seamless loop -->
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/whatsapp.svg" alt="WhatsApp">WhatsApp</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zapier.svg" alt="Zapier">Zapier</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/make.svg" alt="Make">Make</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/hubspot.svg" alt="HubSpot">HubSpot</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/salesforce.svg" alt="Salesforce">Salesforce</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/twilio.svg" alt="Twilio">Twilio</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/gohighlevel.png" alt="Go High Level">Go High Level</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/calendly.svg" alt="Calendly">Calendly</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pipedrive.png" alt="Pipedrive">Pipedrive</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zoho.svg" alt="Zoho CRM">Zoho CRM</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googleads.svg" alt="Google Ads">Google Ads</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/tiktok.svg" alt="TikTok">TikTok</div>
-          <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/linkedin.svg" alt="LinkedIn">LinkedIn</div>
-        </div>
-      </div>
-
-      <div class="marquee-track">
-        <div class="marquee-inner marquee-right">
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/instagram.svg" alt="Instagram">Instagram DM</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/telegram.svg" alt="Telegram">Telegram</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/facebook.svg" alt="Facebook">Facebook</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googlecalendar.svg" alt="Google Calendar">Google Calendar</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/slack.svg" alt="Slack">Slack</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentsoft.png" alt="Dentsoft">Dentsoft</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/komocrm.png" alt="Komo CRM">Komo CRM</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/typeform.svg" alt="Typeform">Typeform</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/notion.svg" alt="Notion">Notion</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/airtable.svg" alt="Airtable">Airtable</div>
-          <div class="logo-pill logo-pill-dim">Webhook API</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentally.png" alt="Dentally">Dentally</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pabau.png" alt="Pabau">Pabau</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/fresha.png" alt="Fresha">Fresha</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/acuity.png" alt="Acuity Scheduling">Acuity Scheduling</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/freshworks.png" alt="Freshworks">Freshworks</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/youtube.svg" alt="YouTube">YouTube</div>
-          <!-- Duplicate -->
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/instagram.svg" alt="Instagram">Instagram DM</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/telegram.svg" alt="Telegram">Telegram</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/facebook.svg" alt="Facebook">Facebook</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googlecalendar.svg" alt="Google Calendar">Google Calendar</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/slack.svg" alt="Slack">Slack</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentsoft.png" alt="Dentsoft">Dentsoft</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/komocrm.png" alt="Komo CRM">Komo CRM</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/typeform.svg" alt="Typeform">Typeform</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/notion.svg" alt="Notion">Notion</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/airtable.svg" alt="Airtable">Airtable</div>
-          <div class="logo-pill logo-pill-dim">Webhook API</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentally.png" alt="Dentally">Dentally</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pabau.png" alt="Pabau">Pabau</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/fresha.png" alt="Fresha">Fresha</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/acuity.png" alt="Acuity Scheduling">Acuity Scheduling</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/freshworks.png" alt="Freshworks">Freshworks</div>
-          <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/youtube.svg" alt="YouTube">YouTube</div>
-        </div>
-      </div>
-    </div>
-  </section>`;
-
-  const FOOTER_HTML = `
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div class="footer-brand">
-        <a href="/" class="nav-logo">
+    const NAVBAR_HTML = `
+    <nav class="navbar" id="navbar">
+      <div class="nav-inner">
+        <a ${H('/', '/en')} class="nav-logo">
           <img fetchpriority="high" src="/assets/logo-iconwithname.svg" class="nav-logo-wordmark" alt="STOAIX" />
         </a>
-        <p class="footer-tagline">AI receptionist for healthcare clinics. Answer every call, handle every message, convert every lead.</p>
-        <div class="footer-socials">
-          <a href="https://www.linkedin.com/company/stoaix-ai" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
-              <circle cx="4" cy="4" r="2"/>
-            </svg>
-          </a>
-          <a href="https://www.instagram.com/stoaix.ai" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-            </svg>
-          </a>
-          <a href="https://www.youtube.com/@stoaix" class="social-link" aria-label="YouTube" target="_blank" rel="noopener">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
-              <polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02"/>
-            </svg>
-          </a>
-        </div>
-      </div>
 
-      <div class="footer-cols">
-        <div class="footer-col">
-          <div class="footer-col-title">Product</div>
-          <a href="#">Voice AI</a>
-          <a href="#">WhatsApp Chatbot</a>
-          <a href="#">Web Chat Widget</a>
-          <a href="#">Outbound AI</a>
-          <a href="#">CRM &amp; Pipeline</a>
-          <a href="#">Integrations</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Solutions</div>
-          <a href="/healthcare-clinics.html">Healthcare Clinics</a>
-          <a href="#">Real Estate</a>
-          <a href="#">Education</a>
-          <a href="#">E-Commerce</a>
-          <a href="/partners.html">Agencies &amp; Resellers</a>
-          <a href="/partners.html">White Label</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Company</div>
-          <a href="/about">About STOAIX</a>
-          <a href="/blog">Blog</a>
-          <a href="/media">Media</a>
-          <a href="/case-studies">Case Studies</a>
-          <a href="/documentation">Documentation</a>
-          <a href="/partners">Partners</a>
-          <a href="/contact">Contact</a>
-          <a href="mailto:hello@stoaix.com">hello@stoaix.com</a>
-          <a href="tel:+447348940452">+44 734 894 0452</a>
-        </div>
-        <div class="footer-col">
-          <div class="footer-col-title">Legal</div>
-          <a href="/privacy-policy">Privacy Policy</a>
-          <a href="/terms">Terms of Service</a>
-          <a href="/cookie-policy">Cookie Policy</a>
-          <a href="/privacy-policy#gdpr">GDPR</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
-        <span>© 2026 STOAIX Ltd. — London, UK</span>
-        <span style="font-size:0.7rem;color:var(--text-3);opacity:0.7;">Protected by reCAPTCHA — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Privacy</a> · <a href="https://policies.google.com/terms" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Terms</a></span>
-        <span>Made for clinics that refuse to miss a patient.</span>
-      </div>
-    <div class="container footer-bottom-inner footer-legal" style="padding-top:0;justify-content:center;text-align:center;font-size:.72rem;opacity:.8;">STOAIX LTD · Registered in England and Wales · Company No. 17131250 · Registered office: 4 Raven Road, Unit 1c3-1121, London, E18 1HB</div>
-    </div>
-  </footer>`;
-
-
-  const PRICING_HTML = `
-  <section class="pricing-section" id="pricing">
-    <div class="container">
-      <div class="section-header reveal">
-        <div class="section-badge">Pricing</div>
-        <h2 class="section-headline centered">Simple, transparent pricing.</h2>
-        <p class="section-sub centered">Start today. Scale when you&#39;re ready. No contracts — to cancel, just contact our team.</p>
-      </div>
-
-      <!-- Mobile plan cards (visible < 768px) -->
-      <div class="mobile-plans">
-        <div class="mplan-card mplan-essential">
-          <div class="mplan-name">Text AI Receptionist</div>
-          <div class="mplan-tagline">For solo &amp; small teams</div>
-          <div class="mplan-price">
-            <span class="pt-currency">$</span><span class="price-num">200</span><span class="pt-period">/mo</span>
-          </div>
-          <a href="signup.html?plan=yazili_resepsiyonist" class="btn-outline mplan-btn">Get started — billed today</a>
-          <div class="mplan-trial">First month charged today</div>
-          <ul class="mplan-features">
-            <li>Full CRM</li>
-            <li>WhatsApp &amp; Instagram — Unlimited</li>
-            <li>Chat AI (workflows: add-on module)</li>
-            <li>5 Team Members</li>
-            <li>1,000 Conversations / mo</li>
-          </ul>
+        <div class="nav-links">
+          <a ${H('/#platform', '/en#platform')} class="nav-link">Platform</a>
+          <a href="/stoaix-ads" class="nav-link">STOAIX Ads${NEW_TAG}</a>
+          <a ${H('/pricing', '/en/pricing')} class="nav-link">${t('Pricing', 'Fiyatlandırma')}</a>
+          <a ${H('/about', '/en/about')} class="nav-link">${t('About', 'Hakkımızda')}</a>
+          <a ${H('/contact', '/en/contact')} class="nav-link">${t('Contact us', 'İletişim')}</a>
         </div>
 
-        <div class="mplan-card mplan-pro featured">
-          <div class="mplan-badge">Most Popular</div>
-          <div class="mplan-name">Professional</div>
-          <div class="mplan-tagline">For growing businesses</div>
-          <div class="mplan-price-custom">Custom Pricing</div>
-          <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-primary mplan-btn">Book a call</a>
-          <ul class="mplan-features">
-            <li>Everything in Text AI Receptionist, plus:</li>
-            <li>Voice AI — 200 min/mo</li>
-            <li>Advanced Analytics</li>
-            <li>10 Team Members</li>
-            <li>2,000 Conversations / mo</li>
-          </ul>
+        <div class="nav-actions">
+          <a href="${CALL}" class="btn-primary btn-sm" target="_blank" rel="noopener noreferrer">${t('Book a call', 'Tanışma görüşmesi')}</a>
         </div>
 
-        <div class="mplan-card mplan-biz">
-          <div class="mplan-badge mplan-badge-gold">Most Valuable</div>
-          <div class="mplan-name">Business</div>
-          <div class="mplan-tagline">For scaling operations</div>
-          <div class="mplan-price-custom">Custom Pricing</div>
-          <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-primary mplan-btn">Book a call</a>
-          <ul class="mplan-features">
-            <li>Everything in Professional, plus:</li>
-            <li>Voice AI — 500 min/mo + Outbound</li>
-            <li>Multi-language Voice (8 languages)</li>
-            <li>20 Team Members</li>
-            <li>5,000 Conversations / mo</li>
-          </ul>
-        </div>
-
-        <div class="mplan-card mplan-ent">
-          <div class="mplan-name">Enterprise</div>
-          <div class="mplan-tagline">For large organisations</div>
-          <div class="mplan-price-custom">Custom Pricing</div>
-          <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-outline mplan-btn">Book a call</a>
-          <ul class="mplan-features">
-            <li>Everything in Business, plus:</li>
-            <li>Unlimited Voice AI</li>
-            <li>Custom Integrations</li>
-            <li>SLA Guarantee</li>
-            <li>Dedicated Support</li>
-          </ul>
-        </div>
-
-        <button class="mplan-compare-toggle" id="mplanCompareToggle">
-          <span>Compare all features</span>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M3 5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
         </button>
       </div>
+    </nav>
 
-      <div class="ptable-wrap reveal">
-        <table class="ptable" role="table">
-          <thead>
-            <tr>
-              <th class="pt-feat-col" aria-label="Feature"></th>
-              <th class="pt-th-plan">
-                <div class="pt-plan-name">Text AI Receptionist</div>
-                <div class="pt-plan-tagline">For solo &amp; small teams</div>
-                <div class="pt-plan-price">
-                  <span class="pt-currency">$</span><span class="price-num">200</span><span class="pt-period">/mo</span>
-                </div>
-                <a href="signup.html?plan=yazili_resepsiyonist" class="btn-outline pt-btn">Get started — billed today</a>
-                <div class="pt-trial">First month charged today</div>
-              </th>
-              <th class="pt-th-plan pt-th-biz">
-                <div class="pt-pop-badge">Most Popular</div>
-                <div class="pt-plan-name">Professional</div>
-                <div class="pt-plan-tagline">For growing businesses</div>
-                <div class="pt-ent-price">Custom Pricing</div>
-                <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-primary pt-btn">Book a call</a>
-                <div class="pt-trial">&nbsp;</div>
-              </th>
-              <th class="pt-th-plan">
-                <div class="pt-pop-badge" style="background:rgba(245,158,11,0.15);color:#b45309;border-color:rgba(245,158,11,0.3);">Most Valuable</div>
-                <div class="pt-plan-name">Business</div>
-                <div class="pt-plan-tagline">For scaling operations</div>
-                <div class="pt-ent-price">Custom Pricing</div>
-                <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-primary pt-btn">Book a call</a>
-                <div class="pt-trial">&nbsp;</div>
-              </th>
-              <th class="pt-th-plan pt-th-ent">
-                <div class="pt-plan-name">Enterprise</div>
-                <div class="pt-plan-tagline">For large organisations</div>
-                <div class="pt-ent-price">Custom Pricing</div>
-                <div class="pt-billing-note">Custom billing</div>
-                <a href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener noreferrer" class="btn-outline pt-btn">Book a call</a>
-                <div class="pt-trial">&nbsp;</div>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="pt-group-row"><td colspan="5">Core</td></tr>
-            <tr>
-              <td class="pt-feat">Full CRM</td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c pt-biz ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-            <tr>
-              <td class="pt-feat">WhatsApp &amp; Instagram</td>
-              <td class="pt-c ptc-v">Unlimited</td>
-              <td class="pt-c pt-biz ptc-v">Unlimited</td>
-              <td class="pt-c ptc-v">Unlimited</td>
-              <td class="pt-c ptc-v">Unlimited</td>
-            </tr>
-            <tr>
-              <td class="pt-feat">Knowledge Base</td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c pt-biz ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-            <tr>
-              <td class="pt-feat">Chat AI &amp; Workflow</td>
-              <td class="pt-c ptc-v">AI ✓ · Workflows: add-on</td>
-              <td class="pt-c pt-biz ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-            <tr>
-              <td class="pt-feat">Team Members</td>
-              <td class="pt-c ptc-v">5</td>
-              <td class="pt-c pt-biz ptc-v">10</td>
-              <td class="pt-c ptc-v">20</td>
-              <td class="pt-c ptc-v">Unlimited</td>
-            </tr>
-            <tr>
-              <td class="pt-feat">Conversations / mo</td>
-              <td class="pt-c ptc-v">1,000</td>
-              <td class="pt-c pt-biz ptc-v">2,000</td>
-              <td class="pt-c ptc-v">5,000</td>
-              <td class="pt-c ptc-v">Unlimited</td>
-            </tr>
+    <div class="mobile-menu" id="mobileMenu">
+      <a ${H('/#platform', '/en#platform')}>Platform</a>
+      <a href="/stoaix-ads">STOAIX Ads${NEW_TAG}</a>
+      <a ${H('/pricing', '/en/pricing')}>${t('Pricing', 'Fiyatlandırma')}</a>
+      <a ${H('/about', '/en/about')}>${t('About', 'Hakkımızda')}</a>
+      <a ${H('/contact', '/en/contact')}>${t('Contact us', 'İletişim')}</a>
+      <a href="${CALL}" class="btn-primary" target="_blank" rel="noopener noreferrer">${t('Book a call', 'Tanışma görüşmesi')}</a>
+    </div>`;
 
-            <tr class="pt-group-row"><td colspan="5">Voice AI</td></tr>
-            <tr>
-              <td class="pt-feat">Voice AI</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-v">200 min/mo<span class="pt-sub-note">gelen veya giden*</span></td>
-              <td class="pt-c ptc-v">500 min/mo<span class="pt-sub-note">shared pool with outbound</span></td>
-              <td class="pt-c ptc-v">Unlimited</td>
-            </tr>
-            <tr>
-              <td class="pt-feat">Voice AI — Outbound</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-n"><span class="pt-sub-note">seçimle</span></td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-            <tr>
-              <td class="pt-feat">All Voice Workflows</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-n">—</td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-            <tr>
-              <td class="pt-feat">Multi-language Voice</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-n">—</td>
-              <td class="pt-c ptc-v">8 languages</td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
+    const MARQUEE_HTML = `
+    <section class="marquee-section">
+      <p class="marquee-label">Powered by the best. Connects with everything.</p>
+      <div class="marquee-track-wrapper">
+        <div class="marquee-fade marquee-fade-left"></div>
+        <div class="marquee-fade marquee-fade-right"></div>
 
-            <tr class="pt-group-row"><td colspan="5">Analytics &amp; Pipeline</td></tr>
-            <tr>
-              <td class="pt-feat">Advanced Analytics</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-            <tr>
-              <td class="pt-feat">Analytics Export</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-n">—</td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-            <tr>
-              <td class="pt-feat">Multi-pipeline</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-v">3 pipelines</td>
-              <td class="pt-c ptc-v">Unlimited</td>
-              <td class="pt-c ptc-v">Unlimited</td>
-            </tr>
+        <div class="marquee-track">
+          <div class="marquee-inner marquee-left">
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/whatsapp.svg" alt="WhatsApp">WhatsApp</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zapier.svg" alt="Zapier">Zapier</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/make.svg" alt="Make">Make</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/hubspot.svg" alt="HubSpot">HubSpot</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/salesforce.svg" alt="Salesforce">Salesforce</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/twilio.svg" alt="Twilio">Twilio</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/gohighlevel.png" alt="Go High Level">Go High Level</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/calendly.svg" alt="Calendly">Calendly</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pipedrive.png" alt="Pipedrive">Pipedrive</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zoho.svg" alt="Zoho CRM">Zoho CRM</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googleads.svg" alt="Google Ads">Google Ads</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/tiktok.svg" alt="TikTok">TikTok</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/linkedin.svg" alt="LinkedIn">LinkedIn</div>
+            <!-- Duplicate for seamless loop -->
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/whatsapp.svg" alt="WhatsApp">WhatsApp</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zapier.svg" alt="Zapier">Zapier</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/make.svg" alt="Make">Make</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/hubspot.svg" alt="HubSpot">HubSpot</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/salesforce.svg" alt="Salesforce">Salesforce</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/twilio.svg" alt="Twilio">Twilio</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/gohighlevel.png" alt="Go High Level">Go High Level</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/calendly.svg" alt="Calendly">Calendly</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pipedrive.png" alt="Pipedrive">Pipedrive</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/zoho.svg" alt="Zoho CRM">Zoho CRM</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googleads.svg" alt="Google Ads">Google Ads</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/tiktok.svg" alt="TikTok">TikTok</div>
+            <div class="logo-pill"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/linkedin.svg" alt="LinkedIn">LinkedIn</div>
+          </div>
+        </div>
 
-            <tr class="pt-group-row"><td colspan="5">Support</td></tr>
-            <tr>
-              <td class="pt-feat">AI Support</td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c pt-biz ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-            <tr>
-              <td class="pt-feat">Dedicated Support</td>
-              <td class="pt-c"><span class="ptc-addon-tag">Included</span></td>
-              <td class="pt-c pt-biz"><span class="ptc-addon-tag">Included</span></td>
-              <td class="pt-c"><span class="ptc-addon-tag">Included</span></td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-            <tr>
-              <td class="pt-feat">SLA Guarantee</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-
-            <tr class="pt-group-row"><td colspan="5">Enterprise</td></tr>
-            <tr>
-              <td class="pt-feat">Custom Integrations</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-            <tr>
-              <td class="pt-feat">Custom Minute Packages</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c pt-biz ptc-n">—</td>
-              <td class="pt-c ptc-n">—</td>
-              <td class="pt-c ptc-y"></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="marquee-track">
+          <div class="marquee-inner marquee-right">
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/instagram.svg" alt="Instagram">Instagram DM</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/telegram.svg" alt="Telegram">Telegram</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/facebook.svg" alt="Facebook">Facebook</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googlecalendar.svg" alt="Google Calendar">Google Calendar</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/slack.svg" alt="Slack">Slack</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentsoft.png" alt="Dentsoft">Dentsoft</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/komocrm.png" alt="Komo CRM">Komo CRM</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/typeform.svg" alt="Typeform">Typeform</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/notion.svg" alt="Notion">Notion</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/airtable.svg" alt="Airtable">Airtable</div>
+            <div class="logo-pill logo-pill-dim">Webhook API</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentally.png" alt="Dentally">Dentally</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pabau.png" alt="Pabau">Pabau</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/fresha.png" alt="Fresha">Fresha</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/acuity.png" alt="Acuity Scheduling">Acuity Scheduling</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/freshworks.png" alt="Freshworks">Freshworks</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/youtube.svg" alt="YouTube">YouTube</div>
+            <!-- Duplicate -->
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/instagram.svg" alt="Instagram">Instagram DM</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/telegram.svg" alt="Telegram">Telegram</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/facebook.svg" alt="Facebook">Facebook</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/googlecalendar.svg" alt="Google Calendar">Google Calendar</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/slack.svg" alt="Slack">Slack</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentsoft.png" alt="Dentsoft">Dentsoft</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/komocrm.png" alt="Komo CRM">Komo CRM</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/typeform.svg" alt="Typeform">Typeform</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/notion.svg" alt="Notion">Notion</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/airtable.svg" alt="Airtable">Airtable</div>
+            <div class="logo-pill logo-pill-dim">Webhook API</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/dentally.png" alt="Dentally">Dentally</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/pabau.png" alt="Pabau">Pabau</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/fresha.png" alt="Fresha">Fresha</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/acuity.png" alt="Acuity Scheduling">Acuity Scheduling</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/freshworks.png" alt="Freshworks">Freshworks</div>
+            <div class="logo-pill logo-pill-dim"><img loading="lazy" decoding="async" class="pill-logo" src="/assets/logos/youtube.svg" alt="YouTube">YouTube</div>
+          </div>
+        </div>
       </div>
+    </section>`;
 
-      <div class="pricing-note reveal">
-        <span>* Professional: kurulum sırasında gelen veya giden seçilir · </span>
-        <span>Voice AI overage: $0.19/min after plan limit · </span>
-        <span>Text AI Receptionist: first month charged today</span>
+    const FOOTER_HTML = `
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <a ${H('/', '/en')} class="nav-logo">
+            <img fetchpriority="high" src="/assets/logo-iconwithname.svg" class="nav-logo-wordmark" alt="STOAIX" />
+          </a>
+          <p class="footer-tagline">${t('The AI sales operating system for clinic groups.', 'Klinik grupları için yapay zeka satış işletim sistemi.')}</p>
+          <div class="footer-socials">
+            <a href="https://www.linkedin.com/company/stoaix-ai" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="https://www.instagram.com/stoaix.ai" class="social-link" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@stoaix" class="social-link" aria-label="YouTube" target="_blank" rel="noopener">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.97C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.97C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/>
+                <polygon points="9.75,15.02 15.5,12 9.75,8.98 9.75,15.02"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-cols">
+          <div class="footer-col">
+            <div class="footer-col-title">Platform</div>
+            <a ${H('/#specification', '/en#specification')}>${t('AI agents', 'AI asistanlar')}</a>
+            <a ${H('/#revenue-calculator', '/en#revenue-calculator')}>${t('Growth', 'Büyüme')}</a>
+            <a ${H('/#integrations', '/en#integrations')}>${t('Integrations', 'Entegrasyonlar')}</a>
+            <a ${H('/#governance', '/en#governance')}>${t('Security', 'Güvenlik')}</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">${t('Solutions', 'Çözümler')}</div>
+            ${CLINICS.map((c) => `<span style="${PLAIN}">${c}</span>`).join('\n          ')}
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">${t('Company', 'Şirket')}</div>
+            <a ${H('/about', '/en/about')}>${t('About', 'Hakkımızda')}</a>
+            <a ${H('/contact', '/en/contact')}>${t('Contact us', 'İletişim')}</a>
+          </div>
+          <div class="footer-col">
+            <div class="footer-col-title">${t('Legal', 'Yasal')}</div>
+            <a href="/privacy-policy">${t('Privacy Policy', 'Gizlilik Politikası')}</a>
+            <a href="/terms">${t('Terms of Service', 'Kullanım Koşulları')}</a>
+            <a href="/cookie-policy">${t('Cookie Policy', 'Çerez Politikası')}</a>
+            <a href="/privacy-policy#gdpr">${t('GDPR', 'KVKK')}</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>`;
+      <div class="footer-bottom">
+        <div class="container footer-bottom-inner">
+          <span>${t('© 2026 STOAIX Ltd. — London, UK', '© 2026 STOAIX Ltd. — Londra, Birleşik Krallık')}</span>
+          <span style="font-size:0.7rem;color:var(--text-3);opacity:0.7;">Protected by reCAPTCHA — <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Privacy</a> · <a href="https://policies.google.com/terms" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline;">Terms</a></span>
+          <span>${t('Made for clinics that refuse to miss a patient.', 'Tek bir hastayı bile kaçırmak istemeyen klinikler için.')}</span>
+        </div>
+      <div class="container footer-bottom-inner footer-legal" style="padding-top:0;justify-content:center;text-align:center;font-size:.72rem;opacity:.8;">STOAIX LTD · Registered in England and Wales · Company No. 17131250 · Registered office: 4 Raven Road, Unit 1c3-1121, London, E18 1HB</div>
+      </div>
+    </footer>`;
+
+
+    /* Eski paket tablosu (Text AI $200 · Professional · Business · Enterprise)
+       güncel fiyatlandırmayla çelişiyordu. Fiyatın tek kaynağı artık /pricing
+       (js/pricing.mjs); bu bölüm yalnızca oraya yönlendirir. */
+    const PRICING_HTML = `
+    <section class="pricing-section" id="pricing">
+      <div class="container">
+        <div class="section-header reveal">
+          <div class="section-badge">${t('Pricing', 'Fiyatlandırma')}</div>
+          <h2 class="section-headline centered">${t('Transparent pricing, on one page.', 'Şeffaf fiyatlar, tek sayfada.')}</h2>
+          <p class="section-sub centered">${t('Choose the AI agents your clinic needs and pay only for those. Every agent’s price and what’s included is on the pricing page.', 'Kliniğinizin ihtiyacı olan AI asistanları seçin, yalnızca onlar için ödeyin. Her asistanın fiyatı ve içindekiler fiyatlandırma sayfasında.')}</p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px">
+            <a ${H('/pricing', '/en/pricing')} class="btn-primary">${t('See pricing', 'Fiyatları görün')} →</a>
+            <a href="${CALL}" class="btn-outline" target="_blank" rel="noopener noreferrer">${t('Book a call', 'Tanışma görüşmesi')}</a>
+          </div>
+        </div>
+      </div>
+    </section>`;
+
+    return { NAVBAR_HTML, MARQUEE_HTML, FOOTER_HTML, PRICING_HTML };
+  }
+
 
 
   /* ─── Injection logic ──────────────────────────────────── */
@@ -577,6 +261,7 @@
   }
 
   function init() {
+    const { NAVBAR_HTML, MARQUEE_HTML, FOOTER_HTML, PRICING_HTML } = templates();
     const navEl      = document.getElementById('navbar');
     const mobileEl   = document.getElementById('mobileMenu');
     const marqueeEl  = document.querySelector('.marquee-section');
@@ -609,6 +294,16 @@
       pricingEl.insertAdjacentHTML('afterend', PRICING_HTML);
       pricingEl.remove();
     }
+
+    // i18n.js dil kararını bu betikten SONRA verir ve <html lang>'i günceller
+    // (ör. sözlüğü olmayan İngilizce sayfa Türkçe tarayıcıda İngilizce kalır).
+    // Linkleri o son karara hizala: metin ve hedef hep aynı dilde olsun.
+    window.addEventListener('load', function () {
+      const lang = document.documentElement.lang === 'tr' ? 'tr' : 'en';
+      document.querySelectorAll('[data-href-' + lang + ']').forEach(function (a) {
+        a.setAttribute('href', a.getAttribute('data-href-' + lang));
+      });
+    });
 
     // The former lead-loss pop-up assumed every missed lead became a paying
     // patient. The scenario calculator now lives on the homepage and its own page.

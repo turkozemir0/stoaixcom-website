@@ -195,6 +195,111 @@
       "source": "/tr/v2",
       "destination": "/",
       "permanent": true
+    },
+    {
+      "source": "/case-studies",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/case-studies",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/case-studies",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-:slug",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/case-study-:slug",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/case-study-:slug",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/healthcare-clinics",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/tr/healthcare-clinics",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/en/healthcare-clinics",
+      "destination": "/en",
+      "permanent": true
+    },
+    {
+      "source": "/modules",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/tr/modules",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/en/modules",
+      "destination": "/en/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/modules-smile-design",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/tr/modules-smile-design",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/en/modules-smile-design",
+      "destination": "/en/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/modules-social-media",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/tr/modules-social-media",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/en/modules-social-media",
+      "destination": "/en/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/blog/dis-klinigi-ucretsiz-deneme",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/tr/blog/dis-klinigi-ucretsiz-deneme",
+      "destination": "/pricing",
+      "permanent": true
+    },
+    {
+      "source": "/en/blog/dis-klinigi-ucretsiz-deneme",
+      "destination": "/pricing",
+      "permanent": true
     }
   ]
 }
