@@ -104,6 +104,16 @@ export function ctaSection(c) {
 </section>`;
 }
 
+/* Yasal metinler tek dilde (İngilizce); etiketler sayfa dilinde */
+const LEGAL = {
+  tr: ['Gizlilik', 'Kullanım koşulları', 'Çerezler'],
+  en: ['Privacy', 'Terms', 'Cookies'],
+  de: ['Datenschutz', 'Nutzungsbedingungen', 'Cookies'],
+};
+const LEGAL_HREFS = ['/privacy-policy', '/terms', '/cookie-policy'];
+const legalLinks = (lang) => (LEGAL[lang] || LEGAL.en)
+  .map((t, i) => `<a href="${LEGAL_HREFS[i]}" style="color:inherit">${esc(t)}</a>`).join(' · ');
+
 export function footer(c, lang, { base = '', links = LINKS.footer[lang] } = {}) {
   return `<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
 <footer class="footer">
@@ -111,6 +121,7 @@ export function footer(c, lang, { base = '', links = LINKS.footer[lang] } = {}) 
     <span class="brand">${MARK(20)}STOAIX</span>
     <div class="copy">${esc(c.copyright)}</div>
     <div class="copy" style="font-size:.72rem;opacity:.8;margin-top:6px;max-width:380px;">STOAIX LTD · Registered in England and Wales · Company No. 17131250 · Registered office: 4 Raven Road, Unit 1c3-1121, London, E18 1HB</div>
+    <div class="copy" style="font-size:.72rem;margin-top:10px;">${legalLinks(lang)}</div>
   </div>
   <div class="footer-cols">
     ${c.footerCols.map((f, ci) => `

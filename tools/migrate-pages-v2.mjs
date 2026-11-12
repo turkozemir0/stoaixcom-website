@@ -16,7 +16,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { parsePost } from './blog/parse-post.mjs';
-import { renderPost, GENERATOR, ORIGIN } from './blog/render-post.mjs';
+import { renderPost, refreshFooter, GENERATOR, ORIGIN } from './blog/render-post.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const isDry = process.argv.includes('--dry');
@@ -36,28 +36,36 @@ export const PAGES = [
   'klinik-lead-management-starter-kit', 'clinic-lead-management-starter-kit-en',
 ];
 
+/* h1 ve metnin tek kapta olduğu sayfalar (yasal metinler) */
+export const CONTAINER_PAGES = ['privacy-policy', 'terms', 'cookie-policy'];
+
 const plain = (html) => html.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
 
-function migrate(slug) {
+function migrate(slug, opts) {
   const path = join(ROOT, `${slug}.html`);
   const src = readFileSync(path, 'utf8');
-  if (src.includes(`content="${GENERATOR}"`)) return 'skip';
-  const p = parsePost(src, { siblings: true });
+  if (src.includes(`content="${GENERATOR}"`)) {
+    const next = refreshFooter(src);
+    if (!isDry && next !== src) writeFileSync(path, next);
+    return 'skip';
+  }
+  const p = parsePost(src, opts);
   const page = {
     ...p,
     canonical: p.canonical || `${ORIGIN}/${slug}`,
     plainH1: plain(p.hero.h1),
     section: null,
     category: plain(p.hero.category),
-    lede: p.hero.lede || p.desc,
+    lede: (opts.container && plain(p.hero.metaLine).replace(/\s*\|\s*/g, ' · ')) || p.hero.lede || p.desc,
   };
   if (!isDry) writeFileSync(path, renderPost(page));
   return 'ok';
 }
 
 const tally = { ok: 0, skip: 0, fail: [] };
-for (const slug of PAGES) {
-  try { tally[migrate(slug)]++; } catch (e) { tally.fail.push(`${slug}: ${e.message}`); }
+const jobs = [...PAGES.map((s) => [s, { siblings: true }]), ...CONTAINER_PAGES.map((s) => [s, { container: true }])];
+for (const [slug, opts] of jobs) {
+  try { tally[migrate(slug, opts)]++; } catch (e) { tally.fail.push(`${slug}: ${e.message}`); }
 }
 console.log(`sayfalar: ${tally.ok} taşındı · ${tally.skip} zaten v2 · ${tally.fail.length} hata${isDry ? ' (deneme)' : ''}`);
 tally.fail.forEach((x) => console.log(`  ✗ ${x}`));

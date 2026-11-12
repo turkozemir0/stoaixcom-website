@@ -44,7 +44,7 @@ Her asistan ayrı ayrı, aylık, kurulum ücretsiz ve taahhütsüz alınır. Fiy
 - Reviews — tedavi olan her hastayı Google yorumuna davet eder, şikâyeti klinik ekibine iletir
 - Recall — kontrol veya tekrar tedavi zamanı gelen hastayı geri getirir
 - Talep üretimi — Google ve Meta kampanyaları, SEO motoru, açılış sayfaları; stratejist denetiminde
-- 24 sistemle iki yönlü senkron (HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar, webhook API) — veri taşıma yok, çift giriş yok
+- 24+ sistemle iki yönlü senkron (HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar, webhook API) — veri taşıma yok, çift giriş yok
 
 ## Kimin İçin
 
@@ -58,10 +58,10 @@ Klinikler geliri yalnızca kaçan aramada değil, zincirin her boşluğunda kayb
 
 - Kuruluş: 2025 — Ata Ulufer (Kurucu Ortak & CEO), Emir Türköz (Kurucu Ortak & CTO), Londra, Birleşik Krallık
 - Dayanak: 500+ klinik denetimi
-- Pazar: 15 ülke, 6 dil sahada — Türkiye, Birleşik Krallık, Almanya, Polonya, Hollanda, İtalya, İspanya, Romanya, Azerbaycan, Gürcistan, BAE, Suudi Arabistan, Katar, ABD, Kanada
+- Pazar: 15+ ülke, 6 dil sahada — Türkiye, Birleşik Krallık, Almanya, Polonya, Hollanda, İtalya, İspanya, Romanya, Azerbaycan, Gürcistan, BAE, Suudi Arabistan, Katar, ABD, Kanada
 - Sektör: SağlıkTeknolojisi / Yapay zeka satış işletim sistemi / Özel sağlık ve klinik grupları
 - Fiyatlandırma: Aylık abonelik (yönetilen hizmet). Asistan başına şeffaf fiyat, yazılı Resepsiyonist $200/ay, sesli Resepsiyonist $300/ay, Meta Reklam Yöneticisi $200/ay'dan başlar; tüm liste: https://stoaix.com/pricing
-- Entegrasyon: HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar dahil 24 sistemle iki yönlü senkron, ayrıca webhook API
+- Entegrasyon: HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar dahil 24+ sistemle iki yönlü senkron, ayrıca webhook API
 - Uyumluluk: KVKK ve GDPR — veri işleme sözleşmesi, bölgesel barındırma, tam kayıt izi, SSO ve rol bazlı erişim
 - Dil: Türkçe ve İngilizce başta olmak üzere 6 dil sahada
 

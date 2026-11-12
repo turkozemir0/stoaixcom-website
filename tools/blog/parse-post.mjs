@@ -59,7 +59,7 @@ function readHero(body) {
     h1: inner(h1),
     category: pick(/(^| )(post-category|category-badge|badge|hero-label)( |$)/),
     lede: pick(/(^| )(hero-lead|hero-desc|post-description|lead|hero-sub|subtitle|hero-subtitle|article-lead|intro)( |$)/),
-    metaLine: pick(/(^| )(post-meta|meta|hero-meta)( |$)/),
+    metaLine: pick(/(^| )(post-meta|meta|hero-meta|legal-meta)( |$)/),
   };
 }
 
@@ -89,16 +89,25 @@ function readSiblings(heroNode) {
   return render(after, { decodeEntities: false }).trim();
 }
 
+/* Tek kap düzeni: h1, bilgi satırı ve metin aynı kapta (ör. main.legal-page) */
+function readContainer(heroNode) {
+  const nodes = heroNode.children.filter((e) => !(e.type === 'tag' && (e.name === 'h1' || hasClass(e, /(^| )(legal-meta|post-meta|meta)( |$)/))));
+  clean(nodes);
+  const html = render(nodes, { decodeEntities: false }).trim();
+  if (!html) throw new Error('kap boş');
+  return html;
+}
+
 const READ_TIME = /(\d+)\s*(dk|dak|dakika|min|minute)s?\.?\s*(okuma|read)?/i;
 
-export function parsePost(html, { siblings = false } = {}) {
+export function parsePost(html, { siblings = false, container = false } = {}) {
   const doc = parseDocument(html, { decodeEntities: false });
   const htmlEl = find(doc, (e) => e.name === 'html');
   const head = find(doc, (e) => e.name === 'head');
   const body = find(doc, (e) => e.name === 'body');
   const h = readHead(head);
   const hero = readHero(body);
-  const content = siblings ? readSiblings(hero.node) : readBody(body, hero.node);
+  const content = container ? readContainer(hero.node) : siblings ? readSiblings(hero.node) : readBody(body, hero.node);
   const article = h.ld.flatMap((x) => (x['@graph'] ? x['@graph'] : [x]))
     .find((x) => /Article|BlogPosting/.test(x['@type']));
   const rt = (hero.metaLine.match(READ_TIME) || [])[1];

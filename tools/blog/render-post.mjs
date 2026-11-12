@@ -35,7 +35,7 @@ function langHrefs(alternates) {
   return { en: path('en') || '/en', tr: path('tr') || '/' };
 }
 
-export function pageHead({ lang, htmlLang, title, desc, canonical, alternates = [], robots, ogType = 'article', ld = [], extraCss = '', published, modified }) {
+export function pageHead({ lang, htmlLang, title, desc, canonical, alternates = [], robots, ogType = 'article', ld = [], extraCss = '', sheets = [], published, modified }) {
   const c = CONTENT[lang];
   const og = `${ORIGIN}/assets/${lang === 'tr' ? 'og-image.png' : 'og-image-en.png'}`;
   return `<!DOCTYPE html>
@@ -68,7 +68,7 @@ ${alternates.map((a) => `<link rel="alternate" hreflang="${esc(a.hreflang)}" hre
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${lang === 'tr' ? '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>' : ''}
 <link rel="stylesheet" href="/css/v2.css?v=7">
 <link rel="stylesheet" href="/css/company.css?v=1">
-<link rel="stylesheet" href="/css/blog.css?v=1">${extraCss ? `\n<style>\n${extraCss}\n</style>` : ''}
+<link rel="stylesheet" href="/css/blog.css?v=1">${sheets.map((h) => `\n<link rel="stylesheet" href="${h}">`).join('')}${extraCss ? `\n<style>\n${extraCss}\n</style>` : ''}
 ${ld.map((x) => `\n<script type="application/ld+json">\n${ldJson(x)}\n</script>`).join('')}${ANALYTICS_SNIPPET}
 </head>
 <body class="theme-locked">
@@ -80,10 +80,10 @@ ${header(c, lang, { base: homeOf(lang), brandHref: homeOf(lang), langHref: langH
 `;
 }
 
-export function pageTail(lang) {
+export function pageTail(lang, { ctaHead } = {}) {
   const c = CONTENT[lang];
   return `
-${ctaSection(c)}
+${ctaSection(ctaHead ? { ...c, ctaHead } : c)}
 </main>
 
 ${siteFooter(c, lang, { base: homeOf(lang) })}
@@ -92,6 +92,14 @@ ${siteFooter(c, lang, { base: homeOf(lang) })}
 </body>
 </html>
 `;
+}
+
+/* Taşınmış sayfanın footer'ını güncel şablonla değiştirir (göç bir kez yapılır,
+   footer değişiklikleri sonraki derlemelerde bu yolla sayfalara ulaşır). */
+const FOOTER_RE = /<!-- ═══ FOOTER[\s\S]*?<\/footer>/;
+export function refreshFooter(html) {
+  const lang = /<html lang="en/.test(html) ? 'en' : 'tr';
+  return html.replace(FOOTER_RE, () => siteFooter(CONTENT[lang], lang, { base: homeOf(lang) }));
 }
 
 export function crumbs(lang, items) {

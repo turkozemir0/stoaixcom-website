@@ -40,12 +40,14 @@ export const MARKETS = {
     key: 'en', lang: 'en', prefix: '/en', hreflang: 'en', ogLocale: 'en_GB',
     home: '/en', anchorBase: '/en', pricing: '/en/pricing', contact: '/en/contact',
     country: 'United Kingdom', areaServed: ['GB', 'IE'], label: 'EN',
+    local: { sym: '£', rate: 0.75, note: 'Pound amounts are approximate (1 USD ≈ £0.75, November 2026); billing is in US dollars.' },
     chrome: CONTENT.en,
   },
   au: {
     key: 'au', lang: 'en', prefix: '/en-au', hreflang: 'en-AU', ogLocale: 'en_AU',
     home: '/en-au/ai-assistants', anchorBase: '/en', pricing: '/en/pricing', contact: '/en/contact',
     country: 'Australia', areaServed: ['AU', 'NZ'], label: 'AU',
+    local: { sym: 'A$', rate: 1.46, note: 'Australian dollar amounts are approximate (1 USD ≈ A$1.46, November 2026); billing is in US dollars.' },
     chrome: { ...CONTENT.en, ogLocale: 'en_AU', htmlLang: 'en-AU' },
   },
   de: {

@@ -14,7 +14,7 @@ import { readFileSync, writeFileSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { parsePost } from './blog/parse-post.mjs';
-import { renderPost, GENERATOR } from './blog/render-post.mjs';
+import { renderPost, refreshFooter, GENERATOR } from './blog/render-post.mjs';
 import { renderIndex } from './blog/render-index.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -41,7 +41,11 @@ function categoryOf(p) {
 function migrate(file) {
   const path = join(BLOG, file);
   const src = readFileSync(path, 'utf8');
-  if (isMigrated(src)) return 'skip';
+  if (isMigrated(src)) {
+    const next = refreshFooter(src);
+    if (!isDry && next !== src) writeFileSync(path, next);
+    return 'skip';
+  }
   const p = parsePost(src);
   const post = {
     ...p,

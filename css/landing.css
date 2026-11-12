@@ -1,0 +1,71 @@
+/* ═══════════════════════════════════════════════════════════════════
+   STOAIX — reklam açılış sayfaları (hızlı yanıt, eski lead canlandırma)
+   v2.css + company.css + seo.css üstüne: sohbet örneği, büyük rakamlar,
+   yanıt süresi çubukları, önce/sonra karşılaştırması.
+   Üreteç: tools/pages/landing.mjs
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Sohbet örneği + rakamlar ────────────────────────────────── */
+.lp-demo { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:80px; align-items:center; padding-top:0; }
+.lp-chat { border:1px solid var(--line); background:var(--panel); max-width:460px; }
+.lp-chat .hd { display:flex; justify-content:space-between; gap:16px; padding:16px 20px; border-bottom:1px solid var(--line-soft); }
+.lp-chat .who { font-size:14px; font-weight:620; }
+.lp-chat .live { font-size:12.5px; color:var(--dim); }
+.lp-chat .body { padding:20px; display:flex; flex-direction:column; gap:12px; }
+.lp-chat .stamp { font-size:12px; color:var(--dim); text-align:center; margin-bottom:4px; }
+.lp-chat .b { max-width:86%; padding:12px 14px; font-size:14.5px; line-height:1.5; }
+.lp-chat .in { align-self:flex-start; background:var(--bub); }
+.lp-chat .out { align-self:flex-end; background:var(--fg); color:var(--bg); }
+.lp-chat .note { font-size:12.5px; font-weight:600; color:var(--accent); text-align:right; }
+
+.lp-stats { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); margin:0; }
+.lp-stats.wide { grid-template-columns:repeat(4,minmax(0,1fr)); }
+.lp-stats > div { background:var(--bg); padding:24px 22px; }
+.lp-stats dt { font-size:40px; line-height:1; letter-spacing:-.03em; font-weight:620; font-variant-numeric:tabular-nums; }
+.lp-stats dd { margin:12px 0 0; font-size:14px; line-height:1.45; color:var(--soft); }
+
+/* ─── Yanıt süresi çubukları ──────────────────────────────────── */
+.lp-bars { margin:6px 0 24px; }
+.lp-bars .r { display:grid; grid-template-columns:minmax(0,1fr) 56px; gap:6px 16px; padding:12px 0; border-bottom:1px solid var(--line-soft); }
+.lp-bars .l { font-size:15px; color:var(--soft); }
+.lp-bars .v { font-size:15px; font-weight:620; text-align:right; font-variant-numeric:tabular-nums; }
+.lp-bars .bar { grid-column:1 / -1; height:4px; background:var(--line-hair); }
+.lp-bars .bar i { display:block; height:100%; background:var(--dim); }
+.lp-bars .r.top .l { color:var(--fg); font-weight:600; }
+.lp-bars .r.top .bar i { background:var(--accent); }
+
+/* ─── Büyük rakamlı kartlar ───────────────────────────────────── */
+.lp-lede { font-size:17px; line-height:1.6; color:var(--mid); max-width:68ch; margin:-12px 0 36px; }
+.lp-nums { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); }
+.lp-nums > div { background:var(--bg); padding:28px 26px; }
+.lp-nums p.n { color:var(--fg); font-size:44px; line-height:1; letter-spacing:-.03em; font-weight:620; margin:0 0 22px; }
+.lp-nums h3 { font-size:17px; font-weight:620; margin:0 0 10px; }
+.lp-nums p { font-size:14.5px; line-height:1.55; color:var(--soft); margin:0; }
+
+/* ─── Önce / sonra ────────────────────────────────────────────── */
+.lp-vs { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); }
+.lp-vs > div { background:var(--bg); padding:28px 26px; }
+.lp-vs .k { font-size:11.5px; font-weight:640; letter-spacing:.1em; text-transform:uppercase; color:var(--dim); margin:0 0 10px; }
+.lp-vs h3 { font-size:20px; font-weight:620; margin:0 0 20px; }
+.lp-vs ul { list-style:none; padding:0; margin:0; }
+.lp-vs li { position:relative; padding:12px 0 12px 26px; border-top:1px solid var(--line-hair); font-size:15px; line-height:1.5; color:var(--soft); }
+.lp-vs li::before { position:absolute; left:0; top:12px; font-weight:700; }
+.lp-vs .no li::before { content:'×'; color:var(--dim); }
+.lp-vs .yes li::before { content:'✓'; color:var(--accent); }
+.lp-vs .yes li { color:var(--fg); }
+
+/* ─── Liste (karar süreleri vb.) ──────────────────────────────── */
+.lp-list { list-style:none; padding:0; margin:0 0 24px; }
+.lp-list li { padding:12px 0; border-bottom:1px solid var(--line-soft); font-size:15.5px; color:var(--soft); }
+
+/* ═══ RESPONSIVE — kırılımlar v2.css ile aynı ════════════════════ */
+@media (max-width:1100px) {
+  .lp-demo { grid-template-columns:minmax(0,1fr); gap:40px; }
+  .lp-stats.wide { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .lp-nums { grid-template-columns:minmax(0,1fr); }
+}
+@media (max-width:760px) {
+  .lp-vs { grid-template-columns:minmax(0,1fr); }
+  .lp-stats dt { font-size:32px; }
+  .lp-nums p.n { font-size:36px; }
+}

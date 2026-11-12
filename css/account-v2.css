@@ -1,0 +1,87 @@
+/* ═══════════════════════════════════════════════════════════════════
+   STOAIX — hesap ve ödeme sayfaları için v2 görünüm katmanı
+   (signup, login, şifre sıfırlama, checkout, modules-checkout,
+   partners/apply). styles.css'ten SONRA yüklenir; yalnızca tokenları
+   ve köşeleri değiştirir, JS'in kullandığı sınıflara dokunmaz.
+   Renkler v2.css .pal-bone ile aynı.
+   ═══════════════════════════════════════════════════════════════════ */
+
+@font-face {
+  font-family: 'Inter v2';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/inter-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                 U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Inter v2';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/assets/fonts/inter-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                 U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+                 U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --bg:#F1EEE8; --bg-2:#ECE8E0; --bg-3:#E6E1D7; --bg-4:#E0DACF;
+  --surface:#FBFAF7; --surface-2:#FBFAF7;
+  --border:rgba(20,20,15,.16); --border-2:rgba(20,20,15,.24); --hairline:rgba(20,20,15,.08);
+
+  --text:#14140F; --text-1:#14140F; --text-2:rgba(20,20,15,.68); --text-3:rgba(20,20,15,.45);
+  --text-mid:rgba(20,20,15,.68); --text-soft:rgba(20,20,15,.6);
+
+  --blue:#2340F0; --blue-h:#14140F; --blue-l:#2340F0;
+  --blue-tint:rgba(35,64,240,.06); --blue-mid:rgba(35,64,240,.18); --blue-dark:#14140F;
+  --teal:#2340F0; --teal-h:#14140F; --teal-tint:rgba(35,64,240,.06); --teal-mid:rgba(35,64,240,.18);
+
+  --ink-900:#14140F; --ink-800:#14140F; --ink-700:#14140F; --ink-cta:#14140F;
+  --on-dark:#F1EEE8; --on-dark-2:rgba(241,238,232,.72); --on-dark-3:rgba(241,238,232,.55);
+  --sky:#F1EEE8; --mint:#F1EEE8;
+
+  --font:'Inter v2', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-display:'Inter v2', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+
+  --r-sm:0; --r-md:0; --r-mdl:0; --r-lg:0; --r-xl:0; --r-2xl:0;
+  --shadow-sm:none;
+}
+
+body { background:var(--bg); color:var(--text); font-family:var(--font); letter-spacing:-.005em; }
+h1, h2, h3, .auth-title { letter-spacing:-.03em; font-weight:620; }
+
+/* Köşeler: kartlar, alanlar, butonlar. Yuvarlak göstergeler (spinner, nokta) hariç. */
+input, select, textarea, button, .btn, [class*="btn-"], [class*="-card"], [class*="card-"],
+.form-input, .otp-input, .plan-option, .auth-card, .checkout-card, .signup-left, .signup-right {
+  border-radius:0 !important;
+}
+.btn-primary, button[type="submit"] { background:var(--text); color:var(--bg); box-shadow:none; }
+.btn-primary:hover, button[type="submit"]:hover { background:#000; }
+.form-input:focus, input:focus, select:focus, textarea:focus { border-color:var(--text); box-shadow:none; outline:none; }
+
+/* ─── Sayfa içi <style> bloklarındaki sabit renkler ───────────────
+   Bu sayfalar renkleri kendi <style>'larında da yazıyor; "html body"
+   öneki o kurallardan güçlü olsun diye. Durum renkleri (yeşil/kırmızı)
+   bilerek korunuyor. */
+html body { background:var(--bg); }
+html body .auth-nav { background:rgba(241,238,232,.92); }
+html body .signup-left { background:var(--text); }
+html body .signup-left::before { display:none; }
+html body .signup-right, html body .auth-card, html body .checkout-card,
+html body .order-summary, html body .legal-modal, html body .success-overlay { background:var(--surface); box-shadow:none; }
+html body .auth-card, html body .checkout-card, html body .order-summary { border:1px solid var(--border); }
+html body .form-input, html body .otp-input, html body .stripe-element-wrap { background:var(--surface); }
+html body .form-input:focus, html body .otp-input:focus, html body .stripe-element-wrap.focused { background:var(--surface); box-shadow:none; border-color:var(--text); }
+html body .form-input::placeholder { color:var(--text-3); }
+html body .btn-auth, html body .btn-checkout { background:var(--text); color:var(--bg); box-shadow:none; }
+html body .btn-auth:hover, html body .btn-checkout:hover { background:#000; }
+html body .btn-auth.enterprise-btn { background:var(--text); }
+html body .plan-option input:checked + .plan-option-label,
+html body .plan-option.custom-plan input:checked + .plan-option-label { background:var(--blue-tint); border-color:var(--text); }
+html body .plan-option-badge, html body .plan-display-badge, html body .ds-upsell-badge { background:var(--blue-tint); }
+html body .plan-option-custom-tag { color:var(--text); background:var(--bg-3); }
+html body .billing-tab-s.active, html body .billing-tab-c.active { background:var(--surface); box-shadow:none; }
+html body .charge-callout { background:var(--blue-tint); border-color:var(--blue-mid); }

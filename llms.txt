@@ -44,7 +44,7 @@ Each assistant is sold on its own, monthly, with no setup fee and no commitment.
 - Reviews — invites every treated patient to leave a Google review and passes any complaint to the clinic team
 - Recall — brings patients back when their next treatment is due
 - Demand generation — Google and Meta campaigns, SEO engine, landing pages, reviewed by strategists
-- Two-way sync with 24 systems (HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar, webhook API) — no migration, no parallel data entry
+- Two-way sync with 24+ systems (HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar, webhook API) — no migration, no parallel data entry
 
 ## Who It's For
 
@@ -58,10 +58,10 @@ Clinics lose revenue at every gap in the chain, not only at the missed call. Enq
 
 - Founded: 2025 — Ata Ulufer (Co-founder & CEO), Emir Türköz (Co-founder & CTO), London, UK
 - Evidence base: 500+ clinic audits
-- Market: 15 countries, 6 languages in production — United Kingdom, Türkiye, Germany, Poland, Netherlands, Italy, Spain, Romania, Azerbaijan, Georgia, UAE, Saudi Arabia, Qatar, United States, Canada
+- Market: 15+ countries, 6 languages in production — United Kingdom, Türkiye, Germany, Poland, Netherlands, Italy, Spain, Romania, Azerbaijan, Georgia, UAE, Saudi Arabia, Qatar, United States, Canada
 - Sector: HealthTech / AI sales operating system / Private healthcare and clinic groups
 - Pricing model: Monthly subscription (managed service). Published per assistant: written Receptionist from $200/mo, voice Receptionist from $300/mo, Meta Ads Manager from $200/mo; full list: https://stoaix.com/en/pricing
-- Integration: Two-way sync with 24 systems including HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar and a webhook API
+- Integration: Two-way sync with 24+ systems including HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar and a webhook API
 - Compliance: KVKK and UK GDPR — data processing agreement, regional hosting, full audit trail, SSO and role-based access
 - Language: British English, Turkish and four more in production
 

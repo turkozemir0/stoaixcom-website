@@ -38,6 +38,13 @@ const ORG_ID = `${ORIGIN}/#organization`;
 const NUM_LOCALE = { en: 'en-GB', de: 'de-DE', tr: 'tr-TR' };
 
 const money = (n, lang) => `$${n.toLocaleString(NUM_LOCALE[lang], { maximumFractionDigits: 2, minimumFractionDigits: n % 1 ? 2 : 0 })}`;
+/* UK ve AU: USD fiyatın yanında yaklaşık yerel karşılık (markets.mjs → local) */
+const LOCAL_STEP = 5;
+const approx = (n, local) => (n < 1 ? (n * local.rate).toFixed(2) : String(Math.round((n * local.rate) / LOCAL_STEP) * LOCAL_STEP));
+const price = (n, m, unit = '') => {
+  const { lang, local } = MARKETS[m];
+  return local ? `${money(n, lang)}${unit} (≈ ${local.sym}${Number(approx(n, local)).toLocaleString(NUM_LOCALE[lang], { minimumFractionDigits: n < 1 ? 2 : 0 })})` : `${money(n, lang)}${unit}`;
+};
 const ldJson = (data) => JSON.stringify(data, null, 2).replace(/</g, '\\u003c');
 
 /* ─── Fiyat ──────────────────────────────────────────────────────── */
@@ -55,8 +62,8 @@ function priceRows(item, m) {
     const included = (c.included && c.included[k])
       || (k === 'text' ? `${PRICE_DATA.includedMessages.toLocaleString(NUM_LOCALE[lang])} ${ui.messages}`
         : `${PRICE_DATA.includedMinutes.toLocaleString(NUM_LOCALE[lang])} ${ui.minutes}`);
-    const overage = k === 'text' ? `${money(PRICE_DATA.overage.message, lang)} ${ui.perMessage}`
-      : k === 'voice' ? `${money(PRICE_DATA.overage.minute, lang)} ${ui.perMinute}` : '—';
+    const overage = k === 'text' ? `${price(PRICE_DATA.overage.message, m)} ${ui.perMessage}`
+      : k === 'voice' ? `${price(PRICE_DATA.overage.minute, m)} ${ui.perMinute}` : '—';
     return { k, label, monthly: opt.price, annual: opt.price * (1 - PRICE_DATA.annualDiscount), included, overage };
   });
 }
@@ -231,7 +238,7 @@ function hero(item, m) {
   const ui = uiFor(m);
   const M = MARKETS[m];
   const from = fromPrice(item);
-  const proof = from ? ui.fromPrice(`${money(from, M.lang)}${ui.perMonth}`) : ui.freeCrm;
+  const proof = from ? ui.fromPrice(`${price(from, m, ui.perMonth)}`) : ui.freeCrm;
   return `
 <!-- ═══ HERO ══════════════════════════════════════════════════ -->
 <section class="hero page-hero">
@@ -259,7 +266,7 @@ function factsSection(item, m) {
   const lang = MARKETS[m].lang;
   const from = fromPrice(item);
   const rows = [
-    [ui.price, from ? ui.fromPrice(`${money(from, lang)}${ui.perMonth}`) : ui.freeCrm],
+    [ui.price, from ? ui.fromPrice(`${price(from, m, ui.perMonth)}`) : ui.freeCrm],
     ...(c.facts || []),
   ];
   return `
@@ -315,10 +322,10 @@ function priceSection(item, m) {
       <div class="scroll-x"><table class="tbl sx">
         <thead><tr><th scope="col">${esc(ui.option)}</th><th scope="col">${esc(ui.monthly)}</th><th scope="col">${esc(ui.annual)}</th><th scope="col">${esc(ui.included)}</th><th scope="col">${esc(ui.overage)}</th></tr></thead>
         <tbody>
-          ${rows.map((r) => `<tr><th scope="row">${esc(r.label)}</th><td>${money(r.monthly, lang)}${esc(ui.perMonth)}</td><td>${money(r.annual, lang)}${esc(ui.perMonth)}</td><td>${esc(r.included)}</td><td>${esc(r.overage)}</td></tr>`).join('\n          ')}
+          ${rows.map((r) => `<tr><th scope="row">${esc(r.label)}</th><td>${price(r.monthly, m, esc(ui.perMonth))}</td><td>${price(r.annual, m, esc(ui.perMonth))}</td><td>${esc(r.included)}</td><td>${esc(r.overage)}</td></tr>`).join('\n          ')}
         </tbody>
       </table></div>
-      <p class="fine">${esc(ui.priceNote)}${item.price && item.price.trio ? ` ${esc(ui.trio(PRICE_DATA.trioDiscount.text, PRICE_DATA.trioDiscount.voice))}` : ''}${item.price && item.price.adBudget ? ` ${esc(ui.adBudget)}` : ''}</p>
+      <p class="fine">${esc(ui.priceNote)}${MARKETS[m].local ? ` ${esc(MARKETS[m].local.note)}` : ''}${item.price && item.price.trio ? ` ${esc(ui.trio(PRICE_DATA.trioDiscount.text, PRICE_DATA.trioDiscount.voice))}` : ''}${item.price && item.price.adBudget ? ` ${esc(ui.adBudget)}` : ''}</p>
       <p><a class="more" href="${MARKETS[m].pricing}">${esc(ui.pricingLink)}</a></p>` : '';
   return `
 <!-- ═══ FİYAT ══════════════════════════════════════════════════ -->${qaSection(c.priceH, c.priceText, { extra: table })}`;
@@ -415,7 +422,7 @@ function cardsSection(h, items, m, { alt = true } = {}) {
     return `<a class="ch" href="${pathFor(p, m)}">
       <span class="t">${esc(pc.name)}</span>
       <span class="d">${esc(pc.card)}</span>
-      <span class="go">${esc(from ? ui.fromPrice(`${money(from, lang)}${ui.perMonth}`) : ui.freeCrm)} →</span>
+      <span class="go">${esc(from ? ui.fromPrice(`${price(from, m, ui.perMonth)}`) : ui.freeCrm)} →</span>
     </a>`;
   }).join('\n    ')}
   </div>
