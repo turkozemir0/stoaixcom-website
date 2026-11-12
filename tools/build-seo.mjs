@@ -30,7 +30,7 @@ import { esc, header, ctaSection, footer } from './v2-chrome.mjs';
 import { ANALYTICS_SNIPPET } from './site-analytics.mjs';
 import { PRICE_DATA } from '../js/pricing.mjs';
 import { MARKETS, MARKET_ORDER, ORIGIN, UPDATED, RULES, uiFor } from './seo/markets.mjs';
-import { PRODUCTS, HUB, contentFor, pathFor, urlFor, fileFor, allPages } from './seo/catalog.mjs';
+import { PRODUCTS, TOPICS, HUB, byId, marketsOf, contentFor, pathFor, urlFor, fileFor, allPages } from './seo/catalog.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const EXT = 'target="_blank" rel="noopener"';
@@ -45,6 +45,7 @@ const price = (n, m, unit = '') => {
   const { lang, local } = MARKETS[m];
   return local ? `${money(n, lang)}${unit} (≈ ${local.sym}${Number(approx(n, local)).toLocaleString(NUM_LOCALE[lang], { minimumFractionDigits: n < 1 ? 2 : 0 })})` : `${money(n, lang)}${unit}`;
 };
+const slugify = (t) => t.toLocaleLowerCase('tr-TR').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/ı/g, 'i').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const ldJson = (data) => JSON.stringify(data, null, 2).replace(/</g, '\\u003c');
 
 /* ─── Fiyat ──────────────────────────────────────────────────────── */
@@ -107,6 +108,7 @@ function structuredData(item, m) {
     const rows = priceRows(item, m);
     graph.push({
       '@type': 'Service', '@id': `${self}#service`, name: c.serviceName || c.name, serviceType: c.serviceType,
+      ...(c.aka && c.aka.length ? { alternateName: c.aka } : {}),
       description: c.lede, provider: { '@id': ORG_ID }, url: self,
       areaServed: M.areaServed.map((code) => ({ '@type': 'Country', name: code })),
       audience: { '@type': 'BusinessAudience', audienceType: c.audience },
@@ -114,6 +116,15 @@ function structuredData(item, m) {
         '@type': 'Offer', name: `${c.name} — ${r.label}`, price: r.monthly, priceCurrency: 'USD', url: self,
         priceSpecification: { '@type': 'UnitPriceSpecification', price: r.monthly, priceCurrency: 'USD', unitText: 'MONTH' },
       })) } : {}),
+    });
+  }
+  if (c.terms) {
+    graph.push({
+      '@type': 'DefinedTermSet', '@id': `${self}#terms`, name: c.name, url: self, inLanguage: M.hreflang,
+      hasDefinedTerm: c.terms.map((t) => ({
+        '@type': 'DefinedTerm', name: t.t, description: t.d, inDefinedTermSet: `${self}#terms`,
+        ...(t.aka ? { alternateName: t.aka } : {}),
+      })),
     });
   }
   if (c.faq && c.faq.length) {
@@ -127,7 +138,16 @@ function structuredData(item, m) {
 
 /* ─── Sayfa iskeleti ─────────────────────────────────────────────── */
 function langLinks(item, m) {
-  return MARKET_ORDER.map((k) => ({ code: MARKETS[k].hreflang, label: MARKETS[k].label, href: pathFor(item, k), on: k === m }));
+  /* Tek pazarlı sayfada dil seçici diğer pazarların ana sayfasına gider. */
+  const own = marketsOf(item);
+  return MARKET_ORDER.map((k) => ({ code: MARKETS[k].hreflang, label: MARKETS[k].label, href: own.includes(k) ? pathFor(item, k) : MARKETS[k].home, on: k === m }));
+}
+
+function hreflangLinks(item) {
+  const own = marketsOf(item);
+  if (own.length < 2) return '';
+  return [...own.map((k) => `<link rel="alternate" hreflang="${MARKETS[k].hreflang}" href="${urlFor(item, k)}">`),
+    `<link rel="alternate" hreflang="x-default" href="${urlFor(item, own.includes('en') ? 'en' : own[0])}">`].join('\n');
 }
 
 function head(item, m) {
@@ -146,8 +166,7 @@ function head(item, m) {
 <meta name="theme-color" content="#F1EEE8" media="(prefers-color-scheme: light)">
 <link rel="icon" type="image/png" href="/assets/images/logo.png">
 <link rel="canonical" href="${self}">
-${MARKET_ORDER.map((k) => `<link rel="alternate" hreflang="${MARKETS[k].hreflang}" href="${urlFor(item, k)}">`).join('\n')}
-<link rel="alternate" hreflang="x-default" href="${urlFor(item, 'en')}">
+${hreflangLinks(item)}
 
 <meta property="og:type" content="website">
 <meta property="og:url" content="${self}">
@@ -166,7 +185,7 @@ ${MARKET_ORDER.map((k) => `<link rel="alternate" hreflang="${MARKETS[k].hreflang
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${M.lang === 'en' ? '' : '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>'}
 <link rel="stylesheet" href="/css/v2.css?v=7">
 <link rel="stylesheet" href="/css/company.css?v=1">
-<link rel="stylesheet" href="/css/seo.css?v=1">
+<link rel="stylesheet" href="/css/seo.css?v=2">
 
 <script>
 (function () {
@@ -268,13 +287,14 @@ function factsSection(item, m) {
   const rows = [
     [ui.price, from ? ui.fromPrice(`${price(from, m, ui.perMonth)}`) : ui.freeCrm],
     ...(c.facts || []),
+    ...(c.aka && c.aka.length ? [[ui.aka, c.aka.join(' · ')]] : []),
   ];
   return `
 <!-- ═══ KISACA ═════════════════════════════════════════════════ -->
 <section class="pad facts-wrap">
   <h2 class="vh">${esc(ui.facts)}</h2>
   <dl class="facts">
-    ${rows.map(([k, v]) => `<div><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('\n    ')}
+    ${rows.map(([k, v]) => `<div${k === ui.aka ? ' class="wide"' : ''}><dt>${esc(k)}</dt><dd>${esc(v)}</dd></div>`).join('\n    ')}
   </dl>
 </section>
 `;
@@ -352,6 +372,39 @@ function compareSection(item, m) {
   </div>
 </section>
 `;
+}
+
+/* Niyet sayfalarının kendine özgü bölümleri: { h, p: [...], items?: [{t,d}], table?: {cols, rows}, alt? } */
+function extraSections(item, m) {
+  const c = contentFor(item, m);
+  return (c.sections || []).map((x) => {
+    const grid = x.items ? `
+      <div class="uses in-qa">
+        ${x.items.map((u) => `<div class="gov"><h3 class="t">${esc(u.t)}</h3><p class="d">${esc(u.d)}</p></div>`).join('\n        ')}
+      </div>` : '';
+    const table = x.table ? `
+      <div class="scroll-x"><table class="tbl sx cmp">
+        <thead><tr>${x.table.cols.map((h) => `<th scope="col">${esc(h)}</th>`).join('')}</tr></thead>
+        <tbody>
+          ${x.table.rows.map(([k, ...v]) => `<tr><th scope="row">${esc(k)}</th>${v.map((t) => `<td>${esc(t)}</td>`).join('')}</tr>`).join('\n          ')}
+        </tbody>
+      </table></div>` : '';
+    const after = (x.after || []).map((p) => `\n      <p>${esc(p)}</p>`).join('');
+    const links = x.links ? `\n      <p>${x.links.map((l) => `<a class="more" href="${/^(\/|https?:)/.test(l.href) ? l.href : pathFor(byId(l.href), m)}">${esc(l.t)} →</a>`).join('&nbsp;&nbsp;&nbsp;')}</p>` : '';
+    return `\n<!-- ═══ ${esc(x.h)} ═══ -->${qaSection(x.h, x.p || [], { alt: !!x.alt, extra: grid + table + after + links })}`;
+  }).join('');
+}
+
+/* Sözlük: DefinedTermSet şemasının sayfada görünen karşılığı. */
+function termsSection(item, m) {
+  const c = contentFor(item, m);
+  if (!c.terms) return '';
+  const ui = uiFor(m);
+  const grid = `
+      <div class="uses in-qa">
+        ${c.terms.map((t) => `<div class="gov" id="terim-${slugify(t.t)}"><h3 class="t">${esc(t.t)}</h3><p class="d">${esc(t.d)}</p>${t.aka ? `<p class="d aka">${esc(ui.aka)}: ${esc(t.aka.join(', '))}</p>` : ''}</div>`).join('\n        ')}
+      </div>`;
+  return `\n<!-- ═══ TERİMLER ═══ -->${qaSection(c.termsH || ui.terms, [], { extra: grid })}`;
 }
 
 function usesSection(item, m) {
@@ -433,7 +486,7 @@ function cardsSection(h, items, m, { alt = true } = {}) {
 /* ─── Sayfalar ───────────────────────────────────────────────────── */
 function productPage(item, m) {
   const c = contentFor(item, m);
-  const related = item.related.map((id) => PRODUCTS.find((p) => p.id === id));
+  const related = item.related.map(byId);
   return head(item, m)
     + hero(item, m)
     + factsSection(item, m)
@@ -441,6 +494,8 @@ function productPage(item, m) {
     + stepsSection(item, m)
     + priceSection(item, m)
     + compareSection(item, m)
+    + termsSection(item, m)
+    + extraSections(item, m)
     + usesSection(item, m)
     + localSection(item, m)
     + faqSection(item, m)
@@ -451,7 +506,7 @@ function productPage(item, m) {
 
 function hubPage(m) {
   const c = contentFor(HUB, m);
-  const groups = c.groups.map((g) => cardsSection(g.h, g.ids.map((id) => PRODUCTS.find((p) => p.id === id)), m, { alt: g.alt }));
+  const groups = c.groups.map((g) => cardsSection(g.h, g.ids.map(byId).filter((p) => marketsOf(p).includes(m)), m, { alt: g.alt }));
   return head(HUB, m)
     + hero(HUB, m)
     + `\n<!-- ═══ NEDİR ══════════════════════════════════════════════════ -->${qaSection(c.whatH, c.what)}`
@@ -473,7 +528,7 @@ function lint(item, m) {
   const warn = [];
   if (c.title.length > 65) warn.push(`title ${c.title.length} karakter`);
   if (c.desc.length > 165) warn.push(`desc ${c.desc.length} karakter`);
-  if (m === 'tr' && /\bajan|agent\b/i.test(JSON.stringify(c))) warn.push('"ajan/agent" geçiyor');
+  if (m === 'tr' && /\bajan(?!s)|\bagent\b/i.test(JSON.stringify(c))) warn.push('"ajan/agent" geçiyor');
   return warn.length ? `  ! ${where}: ${warn.join(', ')}` : null;
 }
 
@@ -487,5 +542,5 @@ for (const page of allPages()) {
   mkdirSync(dirname(join(ROOT, file)), { recursive: true });
   writeFileSync(join(ROOT, file), out, 'utf8');
 }
-console.log(`SEO sayfaları: ${allPages().length} dosya (${PRODUCTS.length} ürün + hub × ${MARKET_ORDER.length} pazar)`);
+console.log(`SEO sayfaları: ${allPages().length} dosya (${PRODUCTS.length} ürün + hub × ${MARKET_ORDER.length} pazar, ${TOPICS.length} niyet sayfası)`);
 if (warnings.length) console.log(warnings.join('\n'));

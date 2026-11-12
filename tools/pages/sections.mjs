@@ -116,7 +116,7 @@ export function page({ lang, slug, title, desc, crumbName, faqItems = [], body, 
     ...(faqItems.length ? [{ '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqItems.map(([q, a]) => ({
       '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) }] : []),
   ];
-  return `${pageHead({ lang, htmlLang: lang, title, desc, canonical, robots, ogType: 'website', ld, sheets: ['/css/seo.css?v=1', ...sheets] })}
+  return `${pageHead({ lang, htmlLang: lang, title, desc, canonical, robots, ogType: 'website', ld, sheets: ['/css/seo.css?v=2', ...sheets] })}
 ${body}
 ${pageTail(lang, { ctaHead })}`;
 }

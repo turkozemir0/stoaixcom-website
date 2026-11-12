@@ -17,10 +17,21 @@ import ads from './products/ads.mjs';
 import growth from './products/growth.mjs';
 import crm from './products/crm.mjs';
 import hub from './hub.mjs';
+import { TOPICS } from './topics/index.mjs';
 
 /* Sıra: hub ve footer listesinde görünen sıra (çoğu kliniğin ilk ihtiyacı başta). */
 export const PRODUCTS = [receptionist, chatbot, followup, reminders, reactivation, reviews, preop, aftercare, ads, growth, crm];
 export const HUB = hub;
+export { TOPICS };
+/* Ürünler + niyet sayfaları: related ve hub grupları id'yi buradan bulur. */
+export const ALL = [...PRODUCTS, ...TOPICS];
+export const byId = (id) => {
+  const item = [HUB, ...ALL].find((p) => p.id === id);
+  if (!item) throw new Error(`katalogda "${id}" yok`);
+  return item;
+};
+/* Niyet sayfaları yalnız kendi pazarlarında yayımlanır (çoğu yalnız TR). */
+export const marketsOf = (item) => item.markets || MARKET_ORDER;
 
 /* AU, EN metnini devralırken iki şey değişir: fiyat US$ ile yazılır,
    acil durum numarası 000 olur. */
@@ -47,7 +58,7 @@ export const fileFor = (item, m) => (m === 'tr' ? `${item.slugs.tr}.html` : `${M
 
 /* Üretilen tüm sayfalar — { item, m, file, path, lang } */
 export function allPages() {
-  return [HUB, ...PRODUCTS].flatMap((item) => MARKET_ORDER.map((m) => ({
+  return [HUB, ...ALL].flatMap((item) => marketsOf(item).map((m) => ({
     item, m, file: fileFor(item, m), path: pathFor(item, m), lang: MARKETS[m].lang,
   })));
 }

@@ -67,7 +67,7 @@ export const MARKETS = {
 /* Sayfa iskeletindeki sabit metinler — dil başına (AU, EN'i kullanır). */
 export const UI = {
   en: {
-    home: 'Home', hub: 'AI assistants', all: 'All assistants', updated: 'Last updated', facts: 'At a glance',
+    aka: 'Also known as', terms: 'Terms', home: 'Home', hub: 'AI assistants', all: 'All assistants', updated: 'Last updated', facts: 'At a glance',
     price: 'Price', fromPrice: (v) => `from ${v}`, perMonth: '/mo', monthly: 'Monthly', annual: 'Annual plan',
     option: 'Option', included: 'Included each month', overage: 'Above the included amount',
     written: 'Written', voice: 'Voice', mix: 'Multichannel', messages: 'messages', minutes: 'minutes',
@@ -81,7 +81,7 @@ export const UI = {
     crumbs: 'Breadcrumb', freeCrm: 'Included free with every assistant',
   },
   de: {
-    home: 'Start', hub: 'KI-Assistenten', all: 'Alle Assistenten', updated: 'Zuletzt aktualisiert', facts: 'Auf einen Blick',
+    aka: 'Auch bekannt als', terms: 'Begriffe', home: 'Start', hub: 'KI-Assistenten', all: 'Alle Assistenten', updated: 'Zuletzt aktualisiert', facts: 'Auf einen Blick',
     price: 'Preis', fromPrice: (v) => `ab ${v}`, perMonth: '/Monat', monthly: 'Monatlich', annual: 'Jahresvertrag',
     option: 'Variante', included: 'Monatlich inklusive', overage: 'Über dem Inklusivvolumen',
     written: 'Text', voice: 'Telefon', mix: 'Mehrkanal', messages: 'Nachrichten', minutes: 'Minuten',
@@ -95,7 +95,7 @@ export const UI = {
     crumbs: 'Brotkrumen', freeCrm: 'Bei jedem Assistenten kostenlos enthalten',
   },
   tr: {
-    home: 'Ana sayfa', hub: 'Yapay zekâ asistanları', all: 'Tüm asistanlar', updated: 'Son güncelleme', facts: 'Kısaca',
+    aka: 'Diğer adları', terms: 'Terimler', home: 'Ana sayfa', hub: 'Yapay zekâ asistanları', all: 'Tüm asistanlar', updated: 'Son güncelleme', facts: 'Kısaca',
     price: 'Fiyat', fromPrice: (v) => `${v}’dan başlayan`, perMonth: '/ay', monthly: 'Aylık', annual: 'Yıllık anlaşma',
     option: 'Seçenek', included: 'Her ay dahil', overage: 'Dahil kullanımın üstü',
     written: 'Yazılı', voice: 'Sesli', mix: 'Çok kanallı', messages: 'mesaj', minutes: 'dakika',
@@ -155,7 +155,7 @@ export const RULES = {
     recording: { t: 'Arama kaydı', d: 'Arama kaydediliyor ya da yazıya dökülüyorsa hasta aramanın başında bilgilendirilir; aydınlatma metniniz bunu açıklar. Kayıtların saklanıp saklanmayacağına ve süresine siz karar verirsiniz.' },
     marketing: { t: 'İYS ve ticari ileti izni', d: 'Mevcut randevuyla ilgili hatırlatma bilgilendirme mesajıdır. Eski adaylara kampanya ya da tanıtım içerikli mesaj ticari elektronik iletidir; İleti Yönetim Sistemi’nde (İYS) kayıtlı onay gerekir. Kampanyaları yalnızca onayı olan kişilere kurarız.' },
     reviews: { t: 'Sağlıkta tanıtım kuralları ve yorumlar', d: 'Sağlık Hizmetlerinde Tanıtım ve Bilgilendirme Faaliyetleri Hakkında Yönetmelik hasta teşekkürü ve tavsiyesini tanıtımda kullanmayı yasaklar. Asistan herkese aynı nötr soruyu sorar, karşılığında bir şey vaat etmez; yorumlar Google’da kalır, kendi tanıtımınızda kullanılmaz.' },
-    ads: { t: 'Sağlıkta reklam yasağı', d: 'Türkiye’de sağlık kuruluşları reklam yapamaz, yalnızca bilgilendirme yapabilir. Fiyat, kampanya, önce-sonra görseli ve talep yaratan ifadeler yaptırım riskidir. Reklam metinlerini bu sınırla, bilgilendirici dille kurarız; yurt dışı hasta kampanyaları hedef ülkenin kurallarına göre ayrıca kurulur.' },
+    ads: { t: 'Sağlıkta reklam yasağı', d: 'Sağlık Hizmetlerinde Tanıtım ve Bilgilendirme Faaliyetleri Hakkında Yönetmelik (12 Kasım 2025) reklamı yasaklar, bilgilendirmeye izin verir: yurt içine fiyat, indirim, kampanya ve hediye duyurulamaz; önce-sonra görseli ancak hasta onayı ve uyarı notuyla kullanılabilir. Yetki belgeli sağlık turizmi kuruluşları yurt dışına, Türkçe dışındaki dillerde sponsorlu tanıtım yapabilir. Reklam metinlerini bu sınırlarla kurarız.' },
     software: { t: 'Kullandığınız klinik yazılımı', d: 'Türkiye’de klinikler çoğunlukla bir HBYS, diş kliniği yazılımı ya da Google Takvim gibi ortak bir takvim kullanır. STOAIX’i mevcut takviminize ya da sisteminize bağlarız; uyumluluğu yayına almadan önce tanışma görüşmesinde kontrol ederiz.' },
   },
 };

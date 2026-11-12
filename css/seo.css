@@ -59,3 +59,10 @@
   .qa-body > p:first-child { font-size:18px; }
   .tbl { font-size:14px; }
 }
+
+/* Niyet sayfaları: soru-cevap gövdesi içindeki kart ızgarası */
+.qa-body .uses.in-qa { grid-template-columns:repeat(2,minmax(0,1fr)); column-gap:32px; margin:8px 0 8px; }
+.qa-body .uses.in-qa .gov { padding-top:16px; }
+@media (max-width:760px) { .qa-body .uses.in-qa { grid-template-columns:minmax(0,1fr); } }
+.qa-body .aka { font-size:13.5px; color:var(--dim); margin-top:6px; }
+.facts > div.wide { grid-column:1 / -1; }

@@ -90,6 +90,8 @@ export default {
       { h: 'Satış: hiçbir talep cevapsız kalmaz', ids: ['receptionist', 'chatbot', 'followup', 'reminders', 'reactivation'], alt: true },
       { h: 'Sadakat: tedavi öncesi ve sonrası', ids: ['reviews', 'preop', 'aftercare'], alt: false },
       { h: 'Pazarlama ve altındaki CRM', ids: ['ads', 'growth', 'crm'], alt: true },
+      { h: 'Ne arıyorsanız: aynı sistemin diğer adları', ids: ['cagri-merkezi', 'randevu-otomasyonu', 'satis-otomasyonu', 'klinik-yapay-zeka', 'whatsapp-otomasyonu', 'instagram-dm', 'sozluk'], alt: false },
+      { h: 'Sağlık turizmi, branşlar ve mevzuat', ids: ['st-yapay-zeka', 'st-call-center', 'st-crm', 'st-reklam', 'st-hasta-bulma', 'dis-crm', 'dis-reklam', 'sac-crm', 'sac-reklam', 'reklam-yasagi'], alt: true },
     ],
     faq: [
       ['STOAIX yapay zekâ asistanlarının fiyatı ne kadar?', 'Her asistanın sabit aylık fiyatı vardır: randevu hatırlatma ayda $100’dan, canlandırma ya da Büyüme Yöneticisi ayda $500’a kadar. Yazılı ve sesli seçenekler ayrı fiyatlanır, STOAIX CRM ücretsiz gelir, yıllık anlaşma %20 daha ucuzdur.'],

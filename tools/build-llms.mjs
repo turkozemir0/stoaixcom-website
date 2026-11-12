@@ -13,7 +13,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { PRICE_DATA } from '../js/pricing.mjs';
-import { PRODUCTS, HUB, contentFor, urlFor } from './seo/catalog.mjs';
+import { PRODUCTS, TOPICS, HUB, contentFor, urlFor } from './seo/catalog.mjs';
 import { MARKET_ORDER } from './seo/markets.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -34,6 +34,7 @@ const COPY = {
     label: { text: 'written', voice: 'voice', mix: 'multichannel', a: '' },
     free: 'free with every assistant',
     hub: 'All assistants',
+    aka: 'Also known as',
     m: 'en',
   },
   tr: {
@@ -42,6 +43,9 @@ const COPY = {
     label: { text: 'yazılı', voice: 'sesli', mix: 'çok kanallı', a: '' },
     free: 'her asistanla ücretsiz',
     hub: 'Tüm asistanlar',
+    aka: 'Diğer adları',
+    topics: '## Arama konuları (Türkçe sayfalar)',
+    topicsIntro: 'Kliniklerin aynı ihtiyacı farklı adlarla aradığı konular. Her sayfa bir arama niyetini karşılar; eş anlamlılar sayfanın içinde ve “Diğer adları” satırında.',
     m: 'tr',
   },
 };
@@ -55,9 +59,15 @@ function section(lang) {
     const price = p
       ? p.map((o) => `$${o.price.toLocaleString("en-US")}/mo${t.label[o.k] ? ` ${t.label[o.k]}` : ` (${o.label})`}`).join(', ')
       : t.free;
-    return `- **${c.name}** — ${c.card} ${price}.\n  ${urls(item)}`;
+    const aka = c.aka ? ` ${t.aka}: ${c.aka.join(', ')}.` : '';
+    return `- **${c.name}** — ${c.card} ${price}.${aka}\n  ${urls(item)}`;
   });
-  return [START, t.head, '', t.intro, '', `- **${t.hub}** — ${urls(HUB)}`, ...lines, END].join('\n');
+  /* Niyet sayfaları yalnız TR; İngilizce dosyaya girmez. */
+  const topics = t.topics ? ['', t.topics, '', t.topicsIntro, '', ...TOPICS.map((item) => {
+    const c = contentFor(item, t.m);
+    return `- **${c.name}** — ${c.card}${c.aka ? ` ${t.aka}: ${c.aka.join(', ')}.` : ''}\n  ${urlFor(item, t.m)}`;
+  })] : [];
+  return [START, t.head, '', t.intro, '', `- **${t.hub}** — ${urls(HUB)}`, ...lines, ...topics, END].join('\n');
 }
 
 for (const [file, lang] of [['llms.txt', 'en'], ['tr-llms.txt', 'tr']]) {
@@ -73,5 +83,5 @@ for (const [file, lang] of [['llms.txt', 'en'], ['tr-llms.txt', 'tr']]) {
     out = `${src.slice(0, at)}\n\n${block}\n${src.slice(at)}`;
   }
   writeFileSync(path, out);
-  console.log(`${file}: ${PRODUCTS.length} ürün × ${MARKET_ORDER.length} pazar`);
+  console.log(`${file}: ${PRODUCTS.length} ürün × ${MARKET_ORDER.length} pazar${COPY[lang].topics ? ` + ${TOPICS.length} konu` : ''}`);
 }

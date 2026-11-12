@@ -9,28 +9,67 @@
 Her asistan ayrı ayrı, aylık, kurulum ücretsiz ve taahhütsüz alınır. Fiyatlar ABD doları, KDV hariçtir. Her asistana ayda 1.000 mesaj ya da 1.000 dakika dahildir; üstü mesaj başına $0.04, dakika başına $0.15. Yıllık anlaşma %20 daha ucuzdur. STOAIX CRM her asistanla ücretsizdir. 30 gün para iade garantisi vardır. Reklam hizmetlerinde reklam bütçesi doğrudan Meta ve Google'a ödenir.
 
 - **Tüm asistanlar** — UK: https://stoaix.com/en/ai-assistants · AU: https://stoaix.com/en-au/ai-assistants · DE: https://stoaix.com/de/ki-assistenten · TR: https://stoaix.com/yapay-zeka-asistanlari
-- **Yapay zekâ resepsiyonist** — Kliniğinize gelen her aramayı 7/24 açar, soruları yanıtlar, randevuyu takvime yazar. $300/mo sesli, $200/mo yazılı.
+- **Yapay zekâ resepsiyonist** — Kliniğinize gelen her aramayı 7/24 açar, soruları yanıtlar, randevuyu takvime yazar. $300/mo sesli, $200/mo yazılı. Diğer adları: yapay zekâ sesli asistan, sesli asistan, çağrı asistanı, telefon asistanı, sanal resepsiyonist, AI resepsiyonist.
   UK: https://stoaix.com/en/ai-receptionist · AU: https://stoaix.com/en-au/ai-receptionist · DE: https://stoaix.com/de/ki-telefonassistent · TR: https://stoaix.com/yapay-zeka-resepsiyonist
-- **WhatsApp yapay zekâ asistanı** — WhatsApp, Instagram ve web sitenizden gelen her mesaja saniyeler içinde cevap verir, randevuyu oluşturur. $200/mo yazılı.
+- **WhatsApp yapay zekâ asistanı** — WhatsApp, Instagram ve web sitenizden gelen her mesaja saniyeler içinde cevap verir, randevuyu oluşturur. $200/mo yazılı. Diğer adları: yapay zekâ chatbot, WhatsApp chatbot, Instagram chatbot, sohbet robotu, web sitesi sohbet asistanı.
   UK: https://stoaix.com/en/ai-chatbot · AU: https://stoaix.com/en-au/ai-chatbot · DE: https://stoaix.com/de/ki-chatbot-whatsapp · TR: https://stoaix.com/whatsapp-yapay-zeka-asistani
-- **Hasta adayı takibi** — Fiyat sorup kaybolan her adaya geri döner; randevu alana ya da “hayır” diyene kadar takip eder. $200/mo yazılı, $300/mo sesli.
+- **Hasta adayı takibi** — Fiyat sorup kaybolan her adaya geri döner; randevu alana ya da “hayır” diyene kadar takip eder. $200/mo yazılı, $300/mo sesli. Diğer adları: lead takibi, hasta adayı takip sistemi, satış takip otomasyonu.
   UK: https://stoaix.com/en/lead-follow-up · AU: https://stoaix.com/en-au/lead-follow-up · DE: https://stoaix.com/de/lead-nachfassen · TR: https://stoaix.com/hasta-adayi-takibi
-- **Randevu hatırlatma** — Her randevuyu teyit eder, bir gün önce hatırlatır, iptal edeni yeni bir saate taşır. $100/mo yazılı, $150/mo sesli.
+- **Randevu hatırlatma** — Her randevuyu teyit eder, bir gün önce hatırlatır, iptal edeni yeni bir saate taşır. $100/mo yazılı, $150/mo sesli. Diğer adları: randevu teyidi, randevu hatırlatma mesajı, gelmeyen hasta azaltma.
   UK: https://stoaix.com/en/appointment-reminders · AU: https://stoaix.com/en-au/appointment-reminders · DE: https://stoaix.com/de/terminerinnerung · TR: https://stoaix.com/randevu-hatirlatma
-- **Eski hasta canlandırma** — Geçmişte ilgilenip gelmemiş adaylara yeniden ulaşır, ilgilenenleri danışma randevusuna taşır. $500/mo yazılı, $500/mo sesli, $1,000/mo çok kanallı.
+- **Eski hasta canlandırma** — Geçmişte ilgilenip gelmemiş adaylara yeniden ulaşır, ilgilenenleri danışma randevusuna taşır. $500/mo yazılı, $500/mo sesli, $1,000/mo çok kanallı. Diğer adları: eski aday canlandırma, lead reaktivasyonu, hasta geri kazanma.
   UK: https://stoaix.com/en/patient-reactivation · AU: https://stoaix.com/en-au/patient-reactivation · DE: https://stoaix.com/de/patientenreaktivierung · TR: https://stoaix.com/eski-hasta-canlandirma
-- **Google yorum artırma** — Tedaviden sonra her hastaya nasıl geçtiğini sorar, Google’da yorum bırakmaya davet eder. $100/mo yazılı, $150/mo sesli.
+- **Google yorum artırma** — Tedaviden sonra her hastaya nasıl geçtiğini sorar, Google’da yorum bırakmaya davet eder. $100/mo yazılı, $150/mo sesli. Diğer adları: yorum yönetimi, Google yorum isteme.
   UK: https://stoaix.com/en/patient-reviews · AU: https://stoaix.com/en-au/patient-reviews · DE: https://stoaix.com/de/google-bewertungen · TR: https://stoaix.com/google-yorum-artirma
-- **Tedavi öncesi hazırlık** — Tedavi öncesi talimatlarınızı adım adım iletir, hastanın sorularını yanıtlar, hazır olduğunu teyit eder. $150/mo yazılı, $250/mo sesli.
+- **Tedavi öncesi hazırlık** — Tedavi öncesi talimatlarınızı adım adım iletir, hastanın sorularını yanıtlar, hazır olduğunu teyit eder. $150/mo yazılı, $250/mo sesli. Diğer adları: ameliyat öncesi bilgilendirme, tedavi öncesi talimat.
   UK: https://stoaix.com/en/pre-treatment-instructions · AU: https://stoaix.com/en-au/pre-treatment-instructions · DE: https://stoaix.com/de/op-vorbereitung · TR: https://stoaix.com/tedavi-oncesi-hazirlik
-- **Tedavi sonrası takip** — Tedaviden sonra hastayı gün gün takip eder, bakım adımlarını iletir, kontrol randevusunu oluşturur. $150/mo yazılı, $250/mo sesli.
+- **Tedavi sonrası takip** — Tedaviden sonra hastayı gün gün takip eder, bakım adımlarını iletir, kontrol randevusunu oluşturur. $150/mo yazılı, $250/mo sesli. Diğer adları: ameliyat sonrası takip, hasta bakım takibi.
   UK: https://stoaix.com/en/post-treatment-aftercare · AU: https://stoaix.com/en-au/post-treatment-aftercare · DE: https://stoaix.com/de/nachsorge · TR: https://stoaix.com/tedavi-sonrasi-takip
-- **Klinik Meta reklam yönetimi** — Instagram ve Facebook reklamlarınızı kurar, her gün iyileştirir, ayda bir sade raporla sonucu gösterir. $200/mo (Meta).
+- **Klinik Meta reklam yönetimi** — Instagram ve Facebook reklamlarınızı kurar, her gün iyileştirir, ayda bir sade raporla sonucu gösterir. $200/mo (Meta). Diğer adları: klinik reklam ajansı, sağlık reklam ajansı, klinik reklam yönetimi, Instagram reklam yönetimi.
   UK: https://stoaix.com/en/meta-ads-for-clinics · AU: https://stoaix.com/en-au/meta-ads-for-clinics · DE: https://stoaix.com/de/meta-werbung-praxis · TR: https://stoaix.com/klinik-meta-reklam-yonetimi
-- **Klinik SEO ve Google reklam** — Meta ve Google reklamlarınızı yönetir, kliniğinizi Google aramasında ve yapay zekâ cevaplarında öne çıkarır. $500/mo (Meta + Google).
+- **Klinik SEO ve Google reklam** — Meta ve Google reklamlarınızı yönetir, kliniğinizi Google aramasında ve yapay zekâ cevaplarında öne çıkarır. $500/mo (Meta + Google). Diğer adları: klinik dijital pazarlama, klinik büyüme, Google Ads yönetimi, GEO (yapay zekâ arama görünürlüğü).
   UK: https://stoaix.com/en/clinic-seo-google-ads · AU: https://stoaix.com/en-au/clinic-seo-google-ads · DE: https://stoaix.com/de/praxis-seo-google-ads · TR: https://stoaix.com/klinik-seo-google-reklam
-- **Klinik CRM** — Her başvuru, her konuşma ve her randevu tek yerde; her asistanla ücretsiz. her asistanla ücretsiz.
+- **Klinik CRM** — Her başvuru, her konuşma ve her randevu tek yerde; her asistanla ücretsiz. her asistanla ücretsiz. Diğer adları: hasta takip sistemi, hasta takip programı, yapay zekâ CRM, klinik CRM programı.
   UK: https://stoaix.com/en/clinic-crm · AU: https://stoaix.com/en-au/clinic-crm · DE: https://stoaix.com/de/praxis-crm · TR: https://stoaix.com/klinik-crm
+
+## Arama konuları (Türkçe sayfalar)
+
+Kliniklerin aynı ihtiyacı farklı adlarla aradığı konular. Her sayfa bir arama niyetini karşılar; eş anlamlılar sayfanın içinde ve “Diğer adları” satırında.
+
+- **Yapay zekâ çağrı merkezi** — Gelen aramaları karşılayan, dönüş aramalarını yapan, 7/24 çalışan klinik çağrı merkezi. Diğer adları: yapay zekâ destekli çağrı merkezi, klinik call center, AI call center, çağrı asistanı, yapay zekâ çağrı asistanı, çağrı merkezi asistanı, sesli asistan.
+  https://stoaix.com/yapay-zeka-cagri-merkezi
+- **Randevu otomasyonu** — Telefondan, WhatsApp’tan ve Instagram’dan gelen talebi randevuya çevirip takvime yazan yapay zekâ. Diğer adları: yapay zekâ randevu sistemi, yapay zekâ destekli randevu sistemi, klinik randevu sistemi, randevu programı, online randevu, otomatik randevu.
+  https://stoaix.com/randevu-otomasyonu
+- **Yapay zekâ satış otomasyonu** — İlk mesajdan randevuya kadar her adayı karşılayan, takip eden ve geri getiren satış hattı. Diğer adları: satış otomasyonu, yapay zekâ satış asistanı, satış süreci otomasyonu, lead takip otomasyonu, yapay zekâ otomasyon.
+  https://stoaix.com/yapay-zeka-satis-otomasyonu
+- **Klinikler için yapay zekâ** — Kliniğinizde yapay zekânın nereden başlayacağını, hangi işi alacağını ve ne kadar tuttuğunu gösteren rehber. Diğer adları: klinik yapay zekâ, klinik için yapay zekâ, klinik otomasyon, klinik yapay zekâ otomasyon, yapay zekâ otomasyon sistemi, klinik büyüme sistemi.
+  https://stoaix.com/klinik-yapay-zeka
+- **Klinikler için WhatsApp otomasyonu** — WhatsApp’ta ilk yanıt, takip, randevu hatırlatma ve eski aday mesajları tek akışta. Diğer adları: WhatsApp Business otomasyonu, WhatsApp AI otomasyon, WhatsApp otomasyon sistemi, WhatsApp yapay zekâ chatbot, WhatsApp otomatik mesaj.
+  https://stoaix.com/whatsapp-otomasyonu
+- **Instagram DM otomasyonu** — Instagram DM ve yorumlardan gelen hasta sorularına yapay zekâ cevabı, randevuya kadar. Diğer adları: Instagram DM otomasyonu, Instagram chatbot, Instagram otomatik mesaj, Instagram yapay zekâ asistanı.
+  https://stoaix.com/instagram-dm-otomasyonu
+- **Sağlık turizmi için yapay zekâ** — Yurt dışından gelen hasta adayını kendi dilinde, gece gündüz karşılayan ve takip eden yapay zekâ ekibi. Diğer adları: sağlık turizmi yapay zekâ, medikal turizm yapay zekâ, sağlık turizmi otomasyonu, sağlık turizmi chatbot, uluslararası hasta asistanı.
+  https://stoaix.com/saglik-turizmi-yapay-zeka
+- **Sağlık turizmi call center** — Yurt dışından gelen arama ve mesajları 7/24, hastanın dilinde karşılayan yapay zekâ çağrı merkezi. Diğer adları: sağlık turizmi çağrı merkezi, medikal turizm call center, uluslararası hasta çağrı merkezi, çok dilli çağrı merkezi.
+  https://stoaix.com/saglik-turizmi-call-center
+- **Sağlık turizmi CRM** — Yurt dışı hasta adaylarını ülke, dil, aşama, teklif ve tarihle takip eden CRM; STOAIX asistanlarıyla ücretsiz. Diğer adları: sağlık turizmi CRM yazılımı, yabancı hasta takip sistemi, uluslararası hasta takip sistemi, medikal turizm CRM, hasta koordinasyon yazılımı.
+  https://stoaix.com/saglik-turizmi-crm
+- **Sağlık turizmi reklam yönetimi** — Yurt dışına, Türkçe dışındaki dillerde Meta ve Google reklamları; her başvuruya anında cevap. Diğer adları: sağlık turizmi reklam ajansı, sağlık turizmi reklam, medikal turizm reklam ajansı, sağlık turizmi dijital pazarlama, yurt dışı hasta reklamı.
+  https://stoaix.com/saglik-turizmi-reklam-yonetimi
+- **Sağlık turizmi hasta bulma** — Yurt dışından düzenli hasta adayı akışı: reklam, arama görünürlüğü, eski başvurular ve hızlı cevap. Diğer adları: yurt dışından hasta bulma, sağlık turizmi hasta kazanımı, yabancı hasta bulma, medikal turizm lead.
+  https://stoaix.com/saglik-turizmi-hasta-bulma
+- **Sağlıkta reklam yasağı** — 12 Kasım 2025 yönetmeliğine göre klinikler neyi tanıtabilir, neyi yapamaz; yurt içi ve yurt dışı ayrımıyla. Diğer adları: sağlık reklam yasağı, sağlıkta tanıtım yönetmeliği, diş kliniği reklam yasağı, saç ekimi reklam yasağı, sağlık turizmi reklam yönetmeliği, doktor reklam yasağı.
+  https://stoaix.com/saglikta-reklam-yasagi
+- **Diş kliniği CRM** — Diş kliniğine gelen her başvuruyu, konuşmayı ve randevuyu tek yerde toplayan CRM; asistanlarla ücretsiz. Diğer adları: diş kliniği CRM programı, diş kliniği hasta takip programı, diş hekimi CRM, diş kliniği randevu programı.
+  https://stoaix.com/dis-klinigi-crm
+- **Diş kliniği reklamı** — Diş kliniği için kurallara uygun Meta ve Google reklamı; her başvuruya anında cevap. Diğer adları: diş kliniği reklam ajansı, diş kliniği reklam yönetimi, diş hekimi reklam, diş kliniği dijital pazarlama, diş kliniği Instagram reklamı.
+  https://stoaix.com/dis-klinigi-reklam
+- **Saç ekimi CRM** — Saç ekimi kliniğine gelen yurt içi ve yurt dışı başvuruları fotoğraf, dil ve aşamasıyla takip eden CRM. Diğer adları: saç ekimi CRM yazılımı, saç ekimi hasta takip sistemi, saç ekimi lead takibi.
+  https://stoaix.com/sac-ekimi-crm
+- **Saç ekimi reklamı** — Saç ekimi kliniği için yurt dışına, kurallara uygun Meta ve Google reklamı; başvuruya adayın dilinde cevap. Diğer adları: saç ekimi reklam ajansı, saç ekimi reklam yönetimi, saç ekimi dijital pazarlama, saç ekimi Instagram reklamı.
+  https://stoaix.com/sac-ekimi-reklam
+- **Klinikler için yapay zekâ sözlüğü** — Sesli asistan, çağrı asistanı, call center, chatbot, CRM: aynı şeyin farklı adları ve ne anlama geldikleri.
+  https://stoaix.com/yapay-zeka-sozlugu
 <!-- products:end -->
 
 ## Ne Yapar

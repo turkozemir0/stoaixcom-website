@@ -9,27 +9,27 @@
 Each assistant is sold on its own, monthly, with no setup fee and no commitment. Prices are in US dollars, excluding VAT/GST. Each assistant includes 1,000 messages or 1,000 minutes a month; above that, $0.04 per message and $0.15 per minute. The annual plan is 20% cheaper. The STOAIX CRM is free with every assistant. 30-day money-back guarantee. Ad spend for the advertising services is paid directly to Meta and Google.
 
 - **All assistants** — UK: https://stoaix.com/en/ai-assistants · AU: https://stoaix.com/en-au/ai-assistants · DE: https://stoaix.com/de/ki-assistenten · TR: https://stoaix.com/yapay-zeka-asistanlari
-- **AI receptionist** — Answers every call to your clinic 24/7 and books the appointment into your calendar. $300/mo voice, $200/mo written.
+- **AI receptionist** — Answers every call to your clinic 24/7 and books the appointment into your calendar. $300/mo voice, $200/mo written. Also known as: AI voice assistant, AI phone assistant, virtual receptionist, AI call answering, AI call assistant.
   UK: https://stoaix.com/en/ai-receptionist · AU: https://stoaix.com/en-au/ai-receptionist · DE: https://stoaix.com/de/ki-telefonassistent · TR: https://stoaix.com/yapay-zeka-resepsiyonist
-- **AI chatbot for WhatsApp and Instagram** — Replies to every WhatsApp, Instagram and website message in seconds and books the appointment. $200/mo written.
+- **AI chatbot for WhatsApp and Instagram** — Replies to every WhatsApp, Instagram and website message in seconds and books the appointment. $200/mo written. Also known as: AI chatbot, WhatsApp chatbot, Instagram chatbot, website chat assistant.
   UK: https://stoaix.com/en/ai-chatbot · AU: https://stoaix.com/en-au/ai-chatbot · DE: https://stoaix.com/de/ki-chatbot-whatsapp · TR: https://stoaix.com/whatsapp-yapay-zeka-asistani
-- **Lead follow-up** — Follows up every enquiry that asked for a price and went quiet, until it books or says no. $200/mo written, $300/mo voice.
+- **Lead follow-up** — Follows up every enquiry that asked for a price and went quiet, until it books or says no. $200/mo written, $300/mo voice. Also known as: lead follow-up automation, lead nurturing, speed to lead.
   UK: https://stoaix.com/en/lead-follow-up · AU: https://stoaix.com/en-au/lead-follow-up · DE: https://stoaix.com/de/lead-nachfassen · TR: https://stoaix.com/hasta-adayi-takibi
-- **Appointment reminders** — Confirms every appointment, reminds the patient the day before and moves cancellations to a new time. $100/mo written, $150/mo voice.
+- **Appointment reminders** — Confirms every appointment, reminds the patient the day before and moves cancellations to a new time. $100/mo written, $150/mo voice. Also known as: appointment confirmation, no-show reduction, patient recall reminders.
   UK: https://stoaix.com/en/appointment-reminders · AU: https://stoaix.com/en-au/appointment-reminders · DE: https://stoaix.com/de/terminerinnerung · TR: https://stoaix.com/randevu-hatirlatma
-- **Patient reactivation** — Contacts old enquiries who never booked and brings the interested ones back to a consultation. $500/mo written, $500/mo voice, $1,000/mo multichannel.
+- **Patient reactivation** — Contacts old enquiries who never booked and brings the interested ones back to a consultation. $500/mo written, $500/mo voice, $1,000/mo multichannel. Also known as: database reactivation, lead reactivation, patient win-back.
   UK: https://stoaix.com/en/patient-reactivation · AU: https://stoaix.com/en-au/patient-reactivation · DE: https://stoaix.com/de/patientenreaktivierung · TR: https://stoaix.com/eski-hasta-canlandirma
-- **Google reviews** — Asks every patient how it went after treatment and invites them to leave a Google review. $100/mo written, $150/mo voice.
+- **Google reviews** — Asks every patient how it went after treatment and invites them to leave a Google review. $100/mo written, $150/mo voice. Also known as: review management, Google review requests.
   UK: https://stoaix.com/en/patient-reviews · AU: https://stoaix.com/en-au/patient-reviews · DE: https://stoaix.com/de/google-bewertungen · TR: https://stoaix.com/google-yorum-artirma
-- **Pre-treatment preparation** — Sends your pre-treatment instructions step by step, answers patient questions and confirms they are ready. $150/mo written, $250/mo voice.
+- **Pre-treatment preparation** — Sends your pre-treatment instructions step by step, answers patient questions and confirms they are ready. $150/mo written, $250/mo voice. Also known as: pre-op instructions, pre-treatment preparation.
   UK: https://stoaix.com/en/pre-treatment-instructions · AU: https://stoaix.com/en-au/pre-treatment-instructions · DE: https://stoaix.com/de/op-vorbereitung · TR: https://stoaix.com/tedavi-oncesi-hazirlik
-- **Post-treatment aftercare** — Checks in on patients day by day after treatment, sends your aftercare steps and books the follow-up visit. $150/mo written, $250/mo voice.
+- **Post-treatment aftercare** — Checks in on patients day by day after treatment, sends your aftercare steps and books the follow-up visit. $150/mo written, $250/mo voice. Also known as: post-op follow-up, patient aftercare.
   UK: https://stoaix.com/en/post-treatment-aftercare · AU: https://stoaix.com/en-au/post-treatment-aftercare · DE: https://stoaix.com/de/nachsorge · TR: https://stoaix.com/tedavi-sonrasi-takip
-- **Meta ads for clinics** — Sets up your Instagram and Facebook ads, improves them every day and reports results monthly. $200/mo (Meta).
+- **Meta ads for clinics** — Sets up your Instagram and Facebook ads, improves them every day and reports results monthly. $200/mo (Meta). Also known as: clinic ad agency, healthcare marketing agency, Facebook ads for clinics.
   UK: https://stoaix.com/en/meta-ads-for-clinics · AU: https://stoaix.com/en-au/meta-ads-for-clinics · DE: https://stoaix.com/de/meta-werbung-praxis · TR: https://stoaix.com/klinik-meta-reklam-yonetimi
-- **Clinic SEO and Google Ads** — Runs your Meta and Google ads and makes your clinic easier to find in Google and AI answers. $500/mo (Meta + Google).
+- **Clinic SEO and Google Ads** — Runs your Meta and Google ads and makes your clinic easier to find in Google and AI answers. $500/mo (Meta + Google). Also known as: clinic marketing agency, Google Ads management, GEO (generative engine optimisation).
   UK: https://stoaix.com/en/clinic-seo-google-ads · AU: https://stoaix.com/en-au/clinic-seo-google-ads · DE: https://stoaix.com/de/praxis-seo-google-ads · TR: https://stoaix.com/klinik-seo-google-reklam
-- **Clinic CRM** — Every enquiry, conversation and appointment in one place, free with every assistant. free with every assistant.
+- **Clinic CRM** — Every enquiry, conversation and appointment in one place, free with every assistant. free with every assistant. Also known as: patient CRM, lead management for clinics, AI CRM.
   UK: https://stoaix.com/en/clinic-crm · AU: https://stoaix.com/en-au/clinic-crm · DE: https://stoaix.com/de/praxis-crm · TR: https://stoaix.com/klinik-crm
 <!-- products:end -->
 
