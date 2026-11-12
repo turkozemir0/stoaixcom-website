@@ -437,7 +437,7 @@ export function structuredData() {
   })));
   return [
     { '@context': 'https://schema.org', '@type': 'Service', name: U.ldName,
-      provider: { '@type': 'Organization', name: 'STOAIX', url: 'https://www.stoaix.com' },
+      provider: { '@type': 'Organization', name: 'STOAIX', url: 'https://stoaix.com' },
       serviceType: U.ldType, areaServed: ['TR', 'GB'],
       hasOfferCatalog: { '@type': 'OfferCatalog', name: U.ldCatalog, itemListElement: offers } },
     { '@context': 'https://schema.org', '@type': 'FAQPage',
