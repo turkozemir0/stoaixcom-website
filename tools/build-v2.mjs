@@ -14,7 +14,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { CONTENT, LINKS } from './v2-content.mjs';
-import { esc, header, ctaSection, footer } from './v2-chrome.mjs';
+import { esc, header, ctaSection, siteFooter } from './v2-chrome.mjs';
 import { ANALYTICS_SNIPPET } from './site-analytics.mjs';
 import { setLang, startsHtml } from '../js/pricing.mjs';
 
@@ -476,7 +476,7 @@ ${ctaSection(c)}
 
 </main>
 
-${footer(c, lang)}
+${siteFooter(c, lang)}
 
 <script src="/js/v2.js?v=4" defer></script>
 <script src="/js/revenue-loss-calculator.js?v=1" defer></script>

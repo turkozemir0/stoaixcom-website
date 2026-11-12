@@ -20,7 +20,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { CONTENT, LINKS } from './v2-content.mjs';
-import { esc, header, ctaSection, footer } from './v2-chrome.mjs';
+import { esc, header, ctaSection, siteFooter } from './v2-chrome.mjs';
 import { ANALYTICS_SNIPPET } from './site-analytics.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -228,7 +228,7 @@ function tail(lang) {
   return `
 </main>
 
-${footer(c, lang, { base: lang === 'tr' ? '/' : '/en' })}
+${siteFooter(c, lang, { base: lang === 'tr' ? '/' : '/en' })}
 
 <script src="/js/v2.js?v=4" defer></script>
 </body>

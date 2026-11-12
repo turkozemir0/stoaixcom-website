@@ -1,0 +1,61 @@
+/* ═══════════════════════════════════════════════════════════════════
+   STOAIX — ürün ve pazar sayfaları (SEO / GEO)
+   v2.css + company.css üstüne: sayfa yolu, soru-cevap düzeni, tablolar,
+   kullanım ızgarası. Renkler v2 tokenlarından; iki tema ve ters zeminli
+   .alt bölümler kendiliğinden çalışır. Üreteç: tools/build-seo.mjs
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ─── Sayfa yolu ve güncelleme tarihi ─────────────────────────── */
+.crumbs { display:flex; flex-wrap:wrap; gap:8px; font-size:13px; color:var(--dim); margin-bottom:28px; }
+.crumbs a { color:var(--soft); }
+.crumbs a:hover { color:var(--fg); opacity:1; }
+.crumbs .sl { opacity:.6; }
+.updated { margin:40px 0 0; font-size:13px; color:var(--dim); }
+
+/* ─── Kısaca: company.css .facts ızgarası, üst boşluksuz ───────── */
+.facts-wrap { padding-top:0; }
+
+/* ─── Soru-cevap: başlık solda, cevap sağda ───────────────────── */
+.qa { display:grid; grid-template-columns:minmax(0,.62fr) minmax(0,1fr); gap:80px; align-items:start; }
+.qa h2 { font-size:40px; line-height:1.1; letter-spacing:-.036em; font-weight:620; margin:0; text-wrap:balance; }
+.qa-body > p { font-size:17px; line-height:1.65; color:var(--mid); margin:0 0 18px; max-width:68ch; }
+.qa-body > p:first-child { font-size:19px; color:var(--fg); }
+.qa-body .fine { font-size:13.5px; line-height:1.6; color:var(--dim); margin-top:18px; }
+.qa-body .more { font-size:15px; font-weight:600; border-bottom:1px solid var(--line); padding-bottom:2px; }
+
+/* ─── Tablolar: şartname tablosunun hairline dili ─────────────── */
+.tbl { width:100%; border-collapse:collapse; margin:10px 0 4px; font-size:15px; }
+.tbl th, .tbl td { text-align:left; padding:16px 14px 16px 0; border-bottom:1px solid var(--line-soft); vertical-align:baseline; }
+.tbl thead th { font-size:11px; font-weight:640; letter-spacing:.12em; text-transform:uppercase; color:var(--dim);
+                border-bottom:1px solid var(--line); padding-top:0; }
+.tbl tbody th { font-weight:620; }
+.tbl td { color:var(--soft); font-variant-numeric:tabular-nums; }
+.cmp td:first-of-type { color:var(--fg); }
+
+/* ─── Adımlar: numaralı liste, ilkeler ızgarası ───────────────── */
+.steps-list { list-style:none; padding:0; margin:0; }
+
+/* ─── Kullanım ve yerel kurallar: üç sütun .gov ───────────────── */
+.uses { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); column-gap:48px; }
+.uses .t { margin:0 0 8px; }
+.uses .d { margin:0; }
+
+/* ─── İlgili asistanlar: company.css .channels kartları ───────── */
+.related .channels { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.related .ch { min-height:200px; }
+
+/* ═══ RESPONSIVE — kırılımlar v2.css ile aynı ════════════════════ */
+@media (max-width:1280px) {
+  .qa { gap:56px; }
+}
+@media (max-width:1100px) {
+  .qa { grid-template-columns:minmax(0,1fr); gap:28px; }
+  .qa h2 { font-size:32px; }
+  .uses { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .related .channels { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media (max-width:760px) {
+  .uses, .related .channels { grid-template-columns:minmax(0,1fr); }
+  .qa-body > p:first-child { font-size:18px; }
+  .tbl { font-size:14px; }
+}

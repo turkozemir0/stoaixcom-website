@@ -19,6 +19,7 @@
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
+import { allPages } from './seo/catalog.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const CHECK_REMOTE = process.argv.includes('--remote');
@@ -32,6 +33,9 @@ const PAGES = [
   { file: 'about-en.html', lang: 'en', label: '/en/about' },
   { file: 'contact.html', lang: 'tr', label: '/contact' },
   { file: 'contact-en.html', lang: 'en', label: '/en/contact' },
+  /* SEO açılış sayfaları (tools/build-seo.mjs) — 4 pazar. cards: ürün kartı ve
+     footer aynı sayfaya bilinçli olarak gider, tekrar denetimi atlanır. */
+  ...allPages().map(({ file, path, lang }) => ({ file, lang, label: path, cards: true })),
 ];
 
 /* i18n-home.js'in Türkçe sözlük tanımladığı yollar. Bu listede olmayan bir
@@ -139,7 +143,7 @@ for (const page of PAGES) {
     }
 
     /* 4 — aynı hedefe giden farklı etiketler */
-    if (!isLangSwitch && !isBrand && !ACCEPTED_DUPLICATE.has(pathname)) {
+    if (!page.cards && !isLangSwitch && !isBrand && !ACCEPTED_DUPLICATE.has(pathname)) {
       if (seen.has(pathname) && seen.get(pathname) !== label) {
         pushOnce(notes, `${page.label} · "${seen.get(pathname)}" ve "${label}" aynı yere gidiyor: ${pathname}`);
       } else {

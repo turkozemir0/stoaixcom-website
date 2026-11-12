@@ -2,6 +2,37 @@
 
 > STOAIX is an AI sales operating system for clinic groups. Eight AI agents operate the layer between marketing spend and the treatment calendar — answering every call and message, contacting new enquiries within 60 seconds, completing every follow-up, reactivating dormant leads, filling cancelled slots, and running post-treatment surveys and recall. Demand generation (Google and Meta campaigns, SEO, landing pages) is run by the same team. STOAIX works as a business partner alongside clinic staff rather than replacing them. Single-site private clinics are served by the same platform, most often starting with the AI receptionist.
 
+
+<!-- products:start (tools/build-llms.mjs üretir, elle düzenlemeyin) -->
+## Products, Prices and Pages (UK, Australia, Germany, Türkiye)
+
+Each assistant is sold on its own, monthly, with no setup fee and no commitment. Prices are in US dollars, excluding VAT/GST. Each assistant includes 1,000 messages or 1,000 minutes a month; above that, $0.04 per message and $0.15 per minute. The annual plan is 20% cheaper. The STOAIX CRM is free with every assistant. 30-day money-back guarantee. Ad spend for the advertising services is paid directly to Meta and Google.
+
+- **All assistants** — UK: https://stoaix.com/en/ai-assistants · AU: https://stoaix.com/en-au/ai-assistants · DE: https://stoaix.com/de/ki-assistenten · TR: https://stoaix.com/yapay-zeka-asistanlari
+- **AI receptionist** — Answers every call to your clinic 24/7 and books the appointment into your calendar. $300/mo voice, $200/mo written.
+  UK: https://stoaix.com/en/ai-receptionist · AU: https://stoaix.com/en-au/ai-receptionist · DE: https://stoaix.com/de/ki-telefonassistent · TR: https://stoaix.com/yapay-zeka-resepsiyonist
+- **AI chatbot for WhatsApp and Instagram** — Replies to every WhatsApp, Instagram and website message in seconds and books the appointment. $200/mo written.
+  UK: https://stoaix.com/en/ai-chatbot · AU: https://stoaix.com/en-au/ai-chatbot · DE: https://stoaix.com/de/ki-chatbot-whatsapp · TR: https://stoaix.com/whatsapp-yapay-zeka-asistani
+- **Lead follow-up** — Follows up every enquiry that asked for a price and went quiet, until it books or says no. $200/mo written, $300/mo voice.
+  UK: https://stoaix.com/en/lead-follow-up · AU: https://stoaix.com/en-au/lead-follow-up · DE: https://stoaix.com/de/lead-nachfassen · TR: https://stoaix.com/hasta-adayi-takibi
+- **Appointment reminders** — Confirms every appointment, reminds the patient the day before and moves cancellations to a new time. $100/mo written, $150/mo voice.
+  UK: https://stoaix.com/en/appointment-reminders · AU: https://stoaix.com/en-au/appointment-reminders · DE: https://stoaix.com/de/terminerinnerung · TR: https://stoaix.com/randevu-hatirlatma
+- **Patient reactivation** — Contacts old enquiries who never booked and brings the interested ones back to a consultation. $500/mo written, $500/mo voice, $1,000/mo multichannel.
+  UK: https://stoaix.com/en/patient-reactivation · AU: https://stoaix.com/en-au/patient-reactivation · DE: https://stoaix.com/de/patientenreaktivierung · TR: https://stoaix.com/eski-hasta-canlandirma
+- **Google reviews** — Asks every patient how it went after treatment and invites them to leave a Google review. $100/mo written, $150/mo voice.
+  UK: https://stoaix.com/en/patient-reviews · AU: https://stoaix.com/en-au/patient-reviews · DE: https://stoaix.com/de/google-bewertungen · TR: https://stoaix.com/google-yorum-artirma
+- **Pre-treatment preparation** — Sends your pre-treatment instructions step by step, answers patient questions and confirms they are ready. $150/mo written, $250/mo voice.
+  UK: https://stoaix.com/en/pre-treatment-instructions · AU: https://stoaix.com/en-au/pre-treatment-instructions · DE: https://stoaix.com/de/op-vorbereitung · TR: https://stoaix.com/tedavi-oncesi-hazirlik
+- **Post-treatment aftercare** — Checks in on patients day by day after treatment, sends your aftercare steps and books the follow-up visit. $150/mo written, $250/mo voice.
+  UK: https://stoaix.com/en/post-treatment-aftercare · AU: https://stoaix.com/en-au/post-treatment-aftercare · DE: https://stoaix.com/de/nachsorge · TR: https://stoaix.com/tedavi-sonrasi-takip
+- **Meta ads for clinics** — Sets up your Instagram and Facebook ads, improves them every day and reports results monthly. $200/mo (Meta).
+  UK: https://stoaix.com/en/meta-ads-for-clinics · AU: https://stoaix.com/en-au/meta-ads-for-clinics · DE: https://stoaix.com/de/meta-werbung-praxis · TR: https://stoaix.com/klinik-meta-reklam-yonetimi
+- **Clinic SEO and Google Ads** — Runs your Meta and Google ads and makes your clinic easier to find in Google and AI answers. $500/mo (Meta + Google).
+  UK: https://stoaix.com/en/clinic-seo-google-ads · AU: https://stoaix.com/en-au/clinic-seo-google-ads · DE: https://stoaix.com/de/praxis-seo-google-ads · TR: https://stoaix.com/klinik-seo-google-reklam
+- **Clinic CRM** — Every enquiry, conversation and appointment in one place, free with every assistant. free with every assistant.
+  UK: https://stoaix.com/en/clinic-crm · AU: https://stoaix.com/en-au/clinic-crm · DE: https://stoaix.com/de/praxis-crm · TR: https://stoaix.com/klinik-crm
+<!-- products:end -->
+
 ## What STOAIX Does
 
 - Reception — answers every inbound call and message 24/7, handles questions, books appointments
@@ -10,7 +41,7 @@
 - Revive — segments and reactivates dormant lead data with campaigns
 - Scheduler — confirms, reminds, reschedules and fills cancelled slots
 - Feedback — runs satisfaction surveys and escalates issues to the clinic team
-- Reviews — routes happy patients to Google and Trustpilot reviews
+- Reviews — invites every treated patient to leave a Google review and passes any complaint to the clinic team
 - Recall — brings patients back when their next treatment is due
 - Demand generation — Google and Meta campaigns, SEO engine, landing pages, reviewed by strategists
 - Two-way sync with 24 systems (HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar, webhook API) — no migration, no parallel data entry

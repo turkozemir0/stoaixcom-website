@@ -562,6 +562,13 @@ function init() {
   if (new URLSearchParams(location.search).get('billing') === 'yearly') setState({ billing: 'yearly' });
 }
 
+/* SEO ürün sayfaları (tools/build-seo.mjs) fiyatı buradan okur; fiyat tek yerde kalır. */
+export const PRICE_DATA = Object.freeze({
+  agents: AGENTS_TR, trio: TRIO, trioDiscount: TRIO_DISCOUNT, annualDiscount: ANNUAL_DISCOUNT,
+  includedMessages: INCLUDED_MESSAGES, includedMinutes: INCLUDED_MINUTES,
+  overage: { message: 0.04, minute: 0.15 }, vipSupport: 300,
+});
+
 if (typeof document !== 'undefined') {
   setLang(document.documentElement.lang);
   init();

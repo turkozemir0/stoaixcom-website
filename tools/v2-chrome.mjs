@@ -8,6 +8,7 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 import { LINKS } from './v2-content.mjs';
+import { withProductsColumn } from './seo/catalog.mjs';
 
 export const esc = (s) => String(s).replace(/[&<>"']/g, (c) =>
   ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -20,8 +21,20 @@ export const MARK = (size) =>
 
 const navIds = ['platform', 'specification', 'deployment', 'governance', 'footprint'];
 
-export function header(c, lang, { base = '', langHref = { en: '/en', tr: '/' }, brandHref = '/' } = {}) {
+/* Dil anahtarı varsayılan olarak EN / TR. SEO sayfaları dört pazar taşır
+   (EN, AU, DE, TR); onlar `langs` ile kendi listelerini verir:
+   [{ code: 'en', label: 'EN', href: '/en/…', on: true }, …] */
+function langSwitch(langs, withCurrent) {
+  return langs.map((l) => `<a href="${l.href}" hreflang="${l.code}" class="${l.on ? 'on' : 'off'}"${l.on && withCurrent ? ' aria-current="true"' : ''}>${esc(l.label)}</a>`)
+    .join('<span class="sep" aria-hidden="true">/</span>');
+}
+
+export function header(c, lang, { base = '', langHref = { en: '/en', tr: '/' }, brandHref = '/', langs = null } = {}) {
   const isTR = lang === 'tr';
+  const switchLangs = langs || [
+    { code: 'en', label: 'EN', href: langHref.en, on: !isTR },
+    { code: 'tr', label: 'TR', href: langHref.tr, on: isTR },
+  ];
   return `<!-- ═══ NAV ═══════════════════════════════════════════════════ -->
 <header class="nav">
   <a class="brand" href="${brandHref}">${MARK(24)}STOAIX</a>
@@ -33,7 +46,7 @@ export function header(c, lang, { base = '', langHref = { en: '/en', tr: '/' }, 
       <button type="button" data-theme="ink" class="on" aria-pressed="true">${esc(c.dark)}</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">${esc(c.light)}</button>
     </span>
     <span class="switch" role="group" aria-label="${esc(c.langLabel)}">
-      <a href="${langHref.en}" hreflang="en" class="${isTR ? 'off' : 'on'}"${isTR ? '' : ' aria-current="true"'}>EN</a><span class="sep" aria-hidden="true">/</span><a href="${langHref.tr}" hreflang="tr" class="${isTR ? 'on' : 'off'}"${isTR ? ' aria-current="true"' : ''}>TR</a>
+      ${langSwitch(switchLangs, true)}
     </span>
     <a class="nav-cta" href="${LINKS.briefing}" target="_blank" rel="noopener">${esc(c.brief)}</a>
     <button type="button" class="nav-burger" aria-label="${esc(c.menu)}" aria-expanded="false" aria-controls="mnav">
@@ -56,7 +69,7 @@ export function header(c, lang, { base = '', langHref = { en: '/en', tr: '/' }, 
       <button type="button" data-theme="ink" class="on" aria-pressed="true">${esc(c.dark)}</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">${esc(c.light)}</button>
     </span>
     <span class="switch" role="group" aria-label="${esc(c.langLabel)}">
-      <a href="${langHref.en}" hreflang="en" class="${isTR ? 'off' : 'on'}">EN</a><span class="sep" aria-hidden="true">/</span><a href="${langHref.tr}" hreflang="tr" class="${isTR ? 'on' : 'off'}">TR</a>
+      ${langSwitch(switchLangs, false)}
     </span>
   </div>
   <div class="mnav-foot">
@@ -91,7 +104,7 @@ export function ctaSection(c) {
 </section>`;
 }
 
-export function footer(c, lang, { base = '' } = {}) {
+export function footer(c, lang, { base = '', links = LINKS.footer[lang] } = {}) {
   return `<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
 <footer class="footer">
   <div>
@@ -104,11 +117,17 @@ export function footer(c, lang, { base = '' } = {}) {
     <div>
       <h4>${esc(f.h)}</h4>
       ${f.items.map((item, ii) => {
-        const href = LINKS.footer[lang][ci][ii];
+        const href = links[ci][ii];
         const to = href && href[0] === '#' ? base + href : href;
         return href ? `<a href="${to}">${esc(item)}</a>` : `<span>${esc(item)}</span>`;
       }).join('\n      ')}
     </div>`).join('')}
   </div>
 </footer>`;
+}
+
+/* Ana site footer'ı: footer() + ürün sayfalarına giden "Yapay zekâ asistanları" sütunu */
+export function siteFooter(c, lang, opts = {}) {
+  const { c: withCol, links } = withProductsColumn(c, lang, LINKS.footer[lang]);
+  return footer(withCol, lang, { ...opts, links });
 }

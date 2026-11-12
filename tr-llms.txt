@@ -2,6 +2,37 @@
 
 > STOAIX, klinik grupları için geliştirilmiş bir yapay zeka satış işletim sistemidir. Sekiz AI asistan, pazarlama bütçesi ile tedavi takvimi arasındaki katmanı işletir — her aramayı ve mesajı yanıtlar, yeni talebi 60 saniye içinde arar, her takibi tamamlar, eski lead datasını yeniden canlandırır, iptal olan slotları doldurur, tedavi sonrası anket ve geri çağırma yürütür. Talep üretimi (Google ve Meta kampanyaları, SEO, açılış sayfaları) aynı ekip tarafından yönetilir. STOAIX, klinik çalışanlarının yerini almaz; onlarla birlikte, iş ortağı gibi çalışır. Tek şubeli klinikler de aynı platformu kullanır ve çoğunlukla AI resepsiyonist ile başlar.
 
+
+<!-- products:start (tools/build-llms.mjs üretir, elle düzenlemeyin) -->
+## Ürünler, Fiyatlar ve Sayfalar (Birleşik Krallık, Avustralya, Almanya, Türkiye)
+
+Her asistan ayrı ayrı, aylık, kurulum ücretsiz ve taahhütsüz alınır. Fiyatlar ABD doları, KDV hariçtir. Her asistana ayda 1.000 mesaj ya da 1.000 dakika dahildir; üstü mesaj başına $0.04, dakika başına $0.15. Yıllık anlaşma %20 daha ucuzdur. STOAIX CRM her asistanla ücretsizdir. 30 gün para iade garantisi vardır. Reklam hizmetlerinde reklam bütçesi doğrudan Meta ve Google'a ödenir.
+
+- **Tüm asistanlar** — UK: https://stoaix.com/en/ai-assistants · AU: https://stoaix.com/en-au/ai-assistants · DE: https://stoaix.com/de/ki-assistenten · TR: https://stoaix.com/yapay-zeka-asistanlari
+- **Yapay zekâ resepsiyonist** — Kliniğinize gelen her aramayı 7/24 açar, soruları yanıtlar, randevuyu takvime yazar. $300/mo sesli, $200/mo yazılı.
+  UK: https://stoaix.com/en/ai-receptionist · AU: https://stoaix.com/en-au/ai-receptionist · DE: https://stoaix.com/de/ki-telefonassistent · TR: https://stoaix.com/yapay-zeka-resepsiyonist
+- **WhatsApp yapay zekâ asistanı** — WhatsApp, Instagram ve web sitenizden gelen her mesaja saniyeler içinde cevap verir, randevuyu oluşturur. $200/mo yazılı.
+  UK: https://stoaix.com/en/ai-chatbot · AU: https://stoaix.com/en-au/ai-chatbot · DE: https://stoaix.com/de/ki-chatbot-whatsapp · TR: https://stoaix.com/whatsapp-yapay-zeka-asistani
+- **Hasta adayı takibi** — Fiyat sorup kaybolan her adaya geri döner; randevu alana ya da “hayır” diyene kadar takip eder. $200/mo yazılı, $300/mo sesli.
+  UK: https://stoaix.com/en/lead-follow-up · AU: https://stoaix.com/en-au/lead-follow-up · DE: https://stoaix.com/de/lead-nachfassen · TR: https://stoaix.com/hasta-adayi-takibi
+- **Randevu hatırlatma** — Her randevuyu teyit eder, bir gün önce hatırlatır, iptal edeni yeni bir saate taşır. $100/mo yazılı, $150/mo sesli.
+  UK: https://stoaix.com/en/appointment-reminders · AU: https://stoaix.com/en-au/appointment-reminders · DE: https://stoaix.com/de/terminerinnerung · TR: https://stoaix.com/randevu-hatirlatma
+- **Eski hasta canlandırma** — Geçmişte ilgilenip gelmemiş adaylara yeniden ulaşır, ilgilenenleri danışma randevusuna taşır. $500/mo yazılı, $500/mo sesli, $1,000/mo çok kanallı.
+  UK: https://stoaix.com/en/patient-reactivation · AU: https://stoaix.com/en-au/patient-reactivation · DE: https://stoaix.com/de/patientenreaktivierung · TR: https://stoaix.com/eski-hasta-canlandirma
+- **Google yorum artırma** — Tedaviden sonra her hastaya nasıl geçtiğini sorar, Google’da yorum bırakmaya davet eder. $100/mo yazılı, $150/mo sesli.
+  UK: https://stoaix.com/en/patient-reviews · AU: https://stoaix.com/en-au/patient-reviews · DE: https://stoaix.com/de/google-bewertungen · TR: https://stoaix.com/google-yorum-artirma
+- **Tedavi öncesi hazırlık** — Tedavi öncesi talimatlarınızı adım adım iletir, hastanın sorularını yanıtlar, hazır olduğunu teyit eder. $150/mo yazılı, $250/mo sesli.
+  UK: https://stoaix.com/en/pre-treatment-instructions · AU: https://stoaix.com/en-au/pre-treatment-instructions · DE: https://stoaix.com/de/op-vorbereitung · TR: https://stoaix.com/tedavi-oncesi-hazirlik
+- **Tedavi sonrası takip** — Tedaviden sonra hastayı gün gün takip eder, bakım adımlarını iletir, kontrol randevusunu oluşturur. $150/mo yazılı, $250/mo sesli.
+  UK: https://stoaix.com/en/post-treatment-aftercare · AU: https://stoaix.com/en-au/post-treatment-aftercare · DE: https://stoaix.com/de/nachsorge · TR: https://stoaix.com/tedavi-sonrasi-takip
+- **Klinik Meta reklam yönetimi** — Instagram ve Facebook reklamlarınızı kurar, her gün iyileştirir, ayda bir sade raporla sonucu gösterir. $200/mo (Meta).
+  UK: https://stoaix.com/en/meta-ads-for-clinics · AU: https://stoaix.com/en-au/meta-ads-for-clinics · DE: https://stoaix.com/de/meta-werbung-praxis · TR: https://stoaix.com/klinik-meta-reklam-yonetimi
+- **Klinik SEO ve Google reklam** — Meta ve Google reklamlarınızı yönetir, kliniğinizi Google aramasında ve yapay zekâ cevaplarında öne çıkarır. $500/mo (Meta + Google).
+  UK: https://stoaix.com/en/clinic-seo-google-ads · AU: https://stoaix.com/en-au/clinic-seo-google-ads · DE: https://stoaix.com/de/praxis-seo-google-ads · TR: https://stoaix.com/klinik-seo-google-reklam
+- **Klinik CRM** — Her başvuru, her konuşma ve her randevu tek yerde; her asistanla ücretsiz. her asistanla ücretsiz.
+  UK: https://stoaix.com/en/clinic-crm · AU: https://stoaix.com/en-au/clinic-crm · DE: https://stoaix.com/de/praxis-crm · TR: https://stoaix.com/klinik-crm
+<!-- products:end -->
+
 ## Ne Yapar
 
 - Reception — gelen her aramayı ve mesajı 7/24 yanıtlar, soruları karşılar, randevu açar
@@ -10,7 +41,7 @@
 - Revive — eski lead datasını segmentler ve kampanyayla yeniden canlandırır
 - Scheduler — teyit alır, hatırlatır, erteler ve iptal olan slotu doldurur
 - Feedback — memnuniyet anketi yapar, sorunları klinik ekibine eskale eder
-- Reviews — memnun hastayı Google ve Trustpilot yorumuna yönlendirir
+- Reviews — tedavi olan her hastayı Google yorumuna davet eder, şikâyeti klinik ekibine iletir
 - Recall — kontrol veya tekrar tedavi zamanı gelen hastayı geri getirir
 - Talep üretimi — Google ve Meta kampanyaları, SEO motoru, açılış sayfaları; stratejist denetiminde
 - 24 sistemle iki yönlü senkron (HubSpot, Salesforce, Dentally, Pabau, Fresha, Google Calendar, webhook API) — veri taşıma yok, çift giriş yok
