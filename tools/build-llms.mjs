@@ -60,7 +60,9 @@ function section(lang) {
       ? p.map((o) => `$${o.price.toLocaleString("en-US")}/mo${t.label[o.k] ? ` ${t.label[o.k]}` : ` (${o.label})`}`).join(', ')
       : t.free;
     const aka = c.aka ? ` ${t.aka}: ${c.aka.join(', ')}.` : '';
-    return `- **${c.name}** — ${c.card} ${price}.${aka}\n  ${urls(item)}`;
+    /* Ücretsiz üründe kart metni bunu zaten söylüyor; tekrar yazma. */
+    const tail = p || !c.card.includes(t.free) ? ` ${price}.` : '';
+    return `- **${c.name}** — ${c.card}${tail}${aka}\n  ${urls(item)}`;
   });
   /* Niyet sayfaları yalnız TR; İngilizce dosyaya girmez. */
   const topics = t.topics ? ['', t.topics, '', t.topicsIntro, '', ...TOPICS.map((item) => {
