@@ -37,7 +37,7 @@ export const CONTENT = {
     htmlLang: 'en',
     ogLocale: 'en_GB',
     title: 'STOAIX — The AI sales operating system for clinic groups',
-    metaDesc: 'Eight AI agents under your governance: every call answered, every lead contacted in under a minute, every follow-up completed. Demand, sales and loyalty on one revenue ledger.',
+    metaDesc: 'Eight AI agents under your governance: every call answered, every lead contacted in under a minute, every follow-up completed. One revenue ledger.',
     nav: ['Platform', 'Specification', 'Deployment', 'Governance', 'Footprint'],
     /* Pricing section: same copy as the /en/pricing intro. */
     pricing: {
@@ -194,8 +194,8 @@ export const CONTENT = {
     htmlLang: 'tr',
     ogLocale: 'tr_TR',
     title: 'STOAIX — Klinik grupları için yapay zeka satış işletim sistemi',
-    metaDesc: 'Sizin yönetişiminiz altında sekiz AI asistan: her arama yanıtlanır, her lead bir dakika içinde aranır, her takip tamamlanır. Talep, satış ve sadakat tek gelir tablosunda.',
-    nav: ['Platform', 'AI Asistanlar', 'Devreye alma', 'Yönetişim', 'Sahada'],
+    metaDesc: 'Sizin kontrolünüzde çalışan sekiz yapay zekâ asistanı: her arama yanıtlanır, her lead bir dakikada aranır, her takip tamamlanır. Talep ve satış tek tabloda.',
+    nav: ['Platform', 'AI Asistanlar', 'Devreye alma', 'Güvenlik', 'Sahada'],
     /* Fiyat bölümü: /pricing giriş metniyle birebir. */
     pricing: {
       nav: 'Fiyatlandırma', href: '/pricing',
@@ -212,7 +212,7 @@ export const CONTENT = {
     wa: "WhatsApp'tan yazın",
     eyebrow: 'Klinik grupları için yapay zeka satış işletim sistemi',
     proof: '500+ klinik denetimi üzerine kurulu',
-    heroBody: 'Pazarlama bütçenizle tedavi takviminiz arasındaki katmanı biz işletiriz — sizin yönetişiminiz altında sekiz AI asistan, tek bir gelir tablosu ve aynı ekip tarafından yürütülen talep üretimi.',
+    heroBody: 'Pazarlama bütçenizle tedavi takviminiz arasındaki katmanı biz işletiriz — sizin kontrolünüzde çalışan sekiz AI asistanı, tek bir gelir tablosu ve aynı ekip tarafından yürütülen talep üretimi.',
     tw: [
       "Kaçan lead'leri randevuya dönüştürün.",
       'İlk mesajdan sonra lead kaybetmeyi durdurun.',
@@ -301,12 +301,12 @@ export const CONTENT = {
     intTitle: 'Kliniklerinizin kullandığı sistemlerle entegre',
     intSub: 'İki yönlü senkron. Taşıma yok, çift veri girişi yok.',
     stack: ['WhatsApp', 'HubSpot', 'Salesforce', 'Twilio', 'Zapier', 'Make', 'Go High Level', 'Calendly', 'Pipedrive', 'Zoho CRM', 'Google Ads', 'Dentally', 'Pabau', 'Fresha', 'Acuity', 'Dentsoft', 'Komo CRM', 'Google Calendar', 'Slack', 'Instagram DM', 'Telegram', 'Notion', 'Airtable', 'Webhook API'],
-    deployTitle: 'Devreye alma', govTitle: 'Yönetişim',
+    deployTitle: 'Devreye alma', govTitle: 'Kontrol ve güvenlik',
     deploy: [
       { w: '01', t: 'Analiz', d: 'Arama kayıtları, yanıt süreleri, lead kaynakları ve CRM hijyeni 500+ klinik referansıyla karşılaştırılır.' },
       { w: '02', t: 'Kurulum', d: 'Numaralar, kanallar, CRM ve PMS bağlanır. AI asistanlar tedavi, fiyat aralığı ve eskalasyon kurallarıyla eğitilir.' },
       { w: '03', t: 'Kontrollü yayın', d: 'Tek kanal, tek klinik, gözetim altında. Transkriptler ekibinizle her gün incelenir.' },
-      { w: '04', t: 'Ölçek ve yönetişim', d: 'Kalan kanallar ve şubeler açılır. Atanmış müşteri lideriyle aylık performans toplantısı yapılır.' },
+      { w: '04', t: 'Ölçek ve kontrol', d: 'Kalan kanallar ve şubeler açılır. Atanmış müşteri lideriyle aylık performans toplantısı yapılır.' },
     ],
     governance: [
       { t: 'KVKK ve GDPR uyumlu', d: 'Veri işleme sözleşmesi, bölgesel barındırma, tam kayıt izi.' },
