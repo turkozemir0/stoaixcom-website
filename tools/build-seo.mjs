@@ -31,6 +31,7 @@ import { ANALYTICS_SNIPPET } from './site-analytics.mjs';
 import { PRICE_DATA } from '../js/pricing.mjs';
 import { MARKETS, MARKET_ORDER, ORIGIN, UPDATED, RULES, uiFor } from './seo/markets.mjs';
 import { PRODUCTS, TOPICS, HUB, byId, marketsOf, contentFor, pathFor, urlFor, fileFor, allPages } from './seo/catalog.mjs';
+import { loadArticles, articlesSection } from './seo/articles.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const EXT = 'target="_blank" rel="noopener"';
@@ -185,7 +186,7 @@ ${hreflangLinks(item)}
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${M.lang === 'en' ? '' : '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>'}
 <link rel="stylesheet" href="/css/v2.css?v=7">
 <link rel="stylesheet" href="/css/company.css?v=1">
-<link rel="stylesheet" href="/css/seo.css?v=2">
+<link rel="stylesheet" href="/css/seo.css?v=3">
 
 <script>
 (function () {
@@ -484,6 +485,8 @@ function cardsSection(h, items, m, { alt = true } = {}) {
 }
 
 /* ─── Sayfalar ───────────────────────────────────────────────────── */
+const ARTICLES = loadArticles(join(dirname(fileURLToPath(import.meta.url)), '..'));
+
 function productPage(item, m) {
   const c = contentFor(item, m);
   const related = item.related.map(byId);
@@ -499,6 +502,7 @@ function productPage(item, m) {
     + usesSection(item, m)
     + localSection(item, m)
     + faqSection(item, m)
+    + articlesSection(ARTICLES, item, m)
     + cardsSection(uiFor(m).relatedH, related, m)
     + `\n${ctaSection(MARKETS[m].chrome)}\n`
     + tail(m);
@@ -513,6 +517,7 @@ function hubPage(m) {
     + groups.join('')
     + localSection(HUB, m)
     + faqSection(HUB, m)
+    + articlesSection(ARTICLES, HUB, m)
     + `\n${ctaSection(MARKETS[m].chrome)}\n`
     + tail(m);
 }
