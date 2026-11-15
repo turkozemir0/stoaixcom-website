@@ -9,7 +9,7 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { loadSite } from './lib/site.mjs';
-import { structure, content, clusters, fanout } from './lib/checks.mjs';
+import { structure, content, clusters, fanout, technical } from './lib/checks.mjs';
 import { renderReport } from './lib/report.mjs';
 import { fetchGsc } from './lib/gsc.mjs';
 import { loadArticles } from '../seo/articles.mjs';
@@ -18,7 +18,12 @@ import { allPages } from '../seo/catalog.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT = join(ROOT, 'reports', 'seo');
+const SNAPSHOT = join(OUT, 'snapshot.json');
 const toStdout = process.argv.includes('--stdout');
+
+/* Sayfa fotoğrafı (drift tabanı): sayfa başına tek satır, git diff'i okunur kalsın */
+const readSnapshot = (file = SNAPSHOT) => (existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : null);
+const writeSnapshot = (snap) => writeFileSync(SNAPSHOT, `{\n${Object.entries(snap).map(([k, v]) => `${JSON.stringify(k)}: ${JSON.stringify(v)}`).join(',\n')}\n}\n`);
 
 function previousReport(date) {
   if (!existsSync(OUT)) return null;
@@ -43,19 +48,24 @@ async function main() {
   const { entries } = JSON.parse(readFileSync(join(ROOT, 'tools', 'seo-agent', 'fanout.json'), 'utf8'));
 
   const c = content(pages, money);
+  const articles = loadArticles(ROOT);
+  const prev = previousReport(date);
+  const t = technical(pages, readFileSync(join(ROOT, 'robots.txt'), 'utf8'), articles.map((a) => a.path), readSnapshot());
   const result = {
     date,
     structure: structure(pages),
     content: { ...c, rows: undefined },
-    clusters: clusters(loadArticles(ROOT), clusterOf, FALLBACK_CLUSTER),
+    clusters: clusters(articles, clusterOf, FALLBACK_CLUSTER),
+    technical: { ...t, snapshot: undefined },
     fanout: fanout(entries, pages),
     gsc: await gscOrError(),
   };
-  const md = renderReport(result, previousReport(date));
+  const md = renderReport(result, prev);
   if (toStdout) { console.log(md); return; }
   mkdirSync(OUT, { recursive: true });
   writeFileSync(join(OUT, `${date}.json`), `${JSON.stringify({ ...result, pagesScores: c.rows }, null, 2)}\n`);
   writeFileSync(join(OUT, `${date}.md`), md);
+  writeSnapshot(t.snapshot);
   console.log(`rapor: reports/seo/${date}.md`);
 }
 

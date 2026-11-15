@@ -54,25 +54,64 @@ async function query(token, site, [startDate, endDate], dimensions) {
   return (await res.json()).rows || [];
 }
 
-/* Saf analiz — testlenebilir */
-export function analyze(curRows, prevPageRows) {
-  const rows = curRows.map((r) => ({ query: r.keys[0], page: r.keys[1], clicks: r.clicks, impr: r.impressions, ctr: r.ctr, pos: r.position }));
+/* Eşikler (Ryze GSC analizi + RUNBOOK): ilk 5'te olup CTR'si %2'nin altındaki sorgu başlık/açıklama sorunudur;
+   tıklaması %30'dan fazla düşen sayfa içerik yenileme adayıdır; aynı sorguda 2+ sayfa yamyamlaşmadır. */
+export const CTR_ANOMALY = { maxPos: 5, maxCtr: 0.02, minImpr: 50 };
+export const DECAY = { minPrevClicks: 10, drop: 0.3 };
+export const CANNIBAL = { minImpr: 10 };
+
+const toRows = (raw) => raw.map((r) => ({ query: r.keys[0], page: r.keys[1], clicks: r.clicks, impr: r.impressions, ctr: r.ctr, pos: r.position }));
+const sumBy = (rows, key, val) => {
+  const m = new Map();
+  for (const r of rows) m.set(r[key], (m.get(r[key]) || 0) + r[val]);
+  return m;
+};
+
+function cannibalization(rows) {
+  const byQuery = new Map();
+  for (const r of rows.filter((x) => x.impr >= CANNIBAL.minImpr)) {
+    byQuery.set(r.query, [...(byQuery.get(r.query) || []), r]);
+  }
+  return [...byQuery].filter(([, rs]) => rs.length > 1)
+    .map(([query, rs]) => ({ query, pages: rs.sort((a, b) => b.impr - a.impr).map((r) => ({ page: r.page, pos: r.pos, impr: r.impr })) }))
+    .sort((a, b) => b.pages[0].impr - a.pages[0].impr)
+    .slice(0, 15);
+}
+
+/* Saf analiz — testlenebilir. İki dönem de ['query','page'] boyutunda. */
+export function analyze(curRaw, prevRaw = []) {
+  const rows = toRows(curRaw);
+  const prevRows = toRows(prevRaw);
   const striking = rows
     .filter((r) => r.pos >= STRIKING.minPos && r.pos <= STRIKING.maxPos && r.impr >= STRIKING.minImpr)
     .sort((a, b) => b.impr - a.impr)
     .slice(0, 25);
   const breadth = new Map();
   for (const r of rows) breadth.set(r.page, (breadth.get(r.page) || 0) + 1);
-  const prev = new Map(prevPageRows.map((r) => [r.keys[0], r.clicks]));
-  const pageClicks = new Map();
-  for (const r of rows) pageClicks.set(r.page, (pageClicks.get(r.page) || 0) + r.clicks);
-  const movers = [...pageClicks].map(([page, clicks]) => ({ page, clicks, prev: prev.get(page) || 0, delta: clicks - (prev.get(page) || 0) }))
-    .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta)).slice(0, 10);
+  const pageClicks = sumBy(rows, 'page', 'clicks');
+  const prevPageClicks = sumBy(prevRows, 'page', 'clicks');
+  const movers = [...new Set([...pageClicks.keys(), ...prevPageClicks.keys()])]
+    .map((page) => ({ page, clicks: pageClicks.get(page) || 0, prev: prevPageClicks.get(page) || 0 }))
+    .map((m) => ({ ...m, delta: m.clicks - m.prev }));
+  const decaying = movers
+    .filter((m) => m.prev >= DECAY.minPrevClicks && m.clicks < m.prev * (1 - DECAY.drop))
+    .sort((a, b) => a.delta - b.delta);
+  const ctrAnomalies = rows
+    .filter((r) => r.pos <= CTR_ANOMALY.maxPos && r.ctr < CTR_ANOMALY.maxCtr && r.impr >= CTR_ANOMALY.minImpr)
+    .sort((a, b) => b.impr - a.impr)
+    .slice(0, 15);
+  const curQ = new Set(rows.map((r) => r.query));
+  const prevQ = new Set(prevRows.map((r) => r.query));
   return {
-    totals: { clicks: rows.reduce((s, r) => s + r.clicks, 0), impr: rows.reduce((s, r) => s + r.impr, 0), queries: new Set(rows.map((r) => r.query)).size },
+    totals: { clicks: rows.reduce((s, r) => s + r.clicks, 0), impr: rows.reduce((s, r) => s + r.impr, 0), queries: curQ.size },
     striking,
     breadth: [...breadth].map(([page, queries]) => ({ page, queries })).sort((a, b) => b.queries - a.queries).slice(0, 15),
-    movers,
+    movers: [...movers].sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta)).slice(0, 10),
+    decaying,
+    ctrAnomalies,
+    cannibalization: cannibalization(rows),
+    newQueries: [...curQ].filter((q) => !prevQ.has(q)).length,
+    lostQueries: [...prevQ].filter((q) => !curQ.has(q)).length,
   };
 }
 
@@ -81,9 +120,9 @@ export async function fetchGsc(env = process.env) {
   const site = env.GSC_SITE || 'sc-domain:stoaix.com';
   const token = await accessToken(readKey(env.GSC_SERVICE_ACCOUNT));
   const w = windows();
-  const [cur, prevPages] = await Promise.all([
+  const [cur, prev] = await Promise.all([
     query(token, site, w.cur, ['query', 'page']),
-    query(token, site, w.prev, ['page']),
+    query(token, site, w.prev, ['query', 'page']),
   ]);
-  return { site, window: w.cur, ...analyze(cur, prevPages) };
+  return { site, window: w.cur, ...analyze(cur, prev) };
 }

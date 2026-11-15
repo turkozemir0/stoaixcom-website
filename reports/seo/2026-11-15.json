@@ -30,7 +30,9 @@
         "titleLen": 56,
         "descLen": 161,
         "faq": true,
-        "ageDays": 3
+        "ageDays": 3,
+        "cite": 55,
+        "citeTop": false
       },
       {
         "path": "/en-au/clinic-crm",
@@ -45,7 +47,9 @@
         "titleLen": 59,
         "descLen": 139,
         "faq": true,
-        "ageDays": 3
+        "ageDays": 3,
+        "cite": 55,
+        "citeTop": false
       },
       {
         "path": "/de/praxis-crm",
@@ -60,7 +64,9 @@
         "titleLen": 62,
         "descLen": 152,
         "faq": true,
-        "ageDays": 3
+        "ageDays": 3,
+        "cite": 55,
+        "citeTop": true
       },
       {
         "path": "/klinik-crm",
@@ -75,7 +81,9 @@
         "titleLen": 59,
         "descLen": 151,
         "faq": true,
-        "ageDays": 3
+        "ageDays": 3,
+        "cite": 70,
+        "citeTop": true
       },
       {
         "path": "/saglik-turizmi-crm",
@@ -90,7 +98,9 @@
         "titleLen": 56,
         "descLen": 156,
         "faq": true,
-        "ageDays": 3
+        "ageDays": 3,
+        "cite": 55,
+        "citeTop": true
       },
       {
         "path": "/dis-klinigi-crm",
@@ -105,7 +115,9 @@
         "titleLen": 48,
         "descLen": 158,
         "faq": true,
-        "ageDays": 3
+        "ageDays": 3,
+        "cite": 55,
+        "citeTop": true
       },
       {
         "path": "/sac-ekimi-crm",
@@ -120,7 +132,9 @@
         "titleLen": 49,
         "descLen": 136,
         "faq": true,
-        "ageDays": 3
+        "ageDays": 3,
+        "cite": 47,
+        "citeTop": false
       },
       {
         "path": "/en-au/meta-ads-for-clinics",
@@ -135,7 +149,9 @@
         "titleLen": 66,
         "descLen": 158,
         "faq": true,
-        "ageDays": 3
+        "ageDays": 3,
+        "cite": 59,
+        "citeTop": false
       },
       {
         "path": "/en-au/clinic-seo-google-ads",
@@ -150,7 +166,9 @@
         "titleLen": 65,
         "descLen": 152,
         "faq": true,
-        "ageDays": 3
+        "ageDays": 3,
+        "cite": 59,
+        "citeTop": false
       },
       {
         "path": "/en-au/ai-assistants",
@@ -165,9 +183,185 @@
         "titleLen": 61,
         "descLen": 158,
         "faq": true,
-        "ageDays": 3
+        "ageDays": 3,
+        "cite": 59,
+        "citeTop": true
       }
     ],
+    "citeAvgMoney": 60,
+    "lowestCite": [
+      {
+        "path": "/sac-ekimi-crm",
+        "money": true,
+        "words": 610,
+        "firstHand": 0,
+        "specific": 0,
+        "filler": 0,
+        "score": 0,
+        "answerQs": 6,
+        "answerMisses": 0,
+        "titleLen": 49,
+        "descLen": 136,
+        "faq": true,
+        "ageDays": 3,
+        "cite": 47,
+        "citeTop": false
+      },
+      {
+        "path": "/en/patient-reactivation",
+        "money": true,
+        "words": 1250,
+        "firstHand": 1,
+        "specific": 4,
+        "filler": 0,
+        "score": 3.1,
+        "answerQs": 9,
+        "answerMisses": 0,
+        "titleLen": 59,
+        "descLen": 147,
+        "faq": true,
+        "ageDays": 3,
+        "cite": 53,
+        "citeTop": true
+      },
+      {
+        "path": "/en-au/patient-reactivation",
+        "money": true,
+        "words": 1186,
+        "firstHand": 0,
+        "specific": 4,
+        "filler": 0,
+        "score": 1.7,
+        "answerQs": 8,
+        "answerMisses": 0,
+        "titleLen": 67,
+        "descLen": 150,
+        "faq": true,
+        "ageDays": 3,
+        "cite": 53,
+        "citeTop": true
+      },
+      {
+        "path": "/de/nachsorge",
+        "money": true,
+        "words": 768,
+        "firstHand": 0,
+        "specific": 4,
+        "filler": 0,
+        "score": 2.6,
+        "answerQs": 7,
+        "answerMisses": 0,
+        "titleLen": 55,
+        "descLen": 165,
+        "faq": true,
+        "ageDays": 3,
+        "cite": 53,
+        "citeTop": false
+      },
+      {
+        "path": "/de/praxis-seo-google-ads",
+        "money": true,
+        "words": 759,
+        "firstHand": 0,
+        "specific": 1,
+        "filler": 0,
+        "score": 0.7,
+        "answerQs": 7,
+        "answerMisses": 0,
+        "titleLen": 64,
+        "descLen": 153,
+        "faq": true,
+        "ageDays": 3,
+        "cite": 53,
+        "citeTop": false
+      },
+      {
+        "path": "/en/ai-assistants",
+        "money": true,
+        "words": 864,
+        "firstHand": 1,
+        "specific": 1,
+        "filler": 0,
+        "score": 2.1,
+        "answerQs": 6,
+        "answerMisses": 0,
+        "titleLen": 59,
+        "descLen": 165,
+        "faq": true,
+        "ageDays": 3,
+        "cite": 55,
+        "citeTop": true
+      },
+      {
+        "path": "/de/ki-assistenten",
+        "money": true,
+        "words": 693,
+        "firstHand": 0,
+        "specific": 1,
+        "filler": 0,
+        "score": 0.7,
+        "answerQs": 6,
+        "answerMisses": 0,
+        "titleLen": 54,
+        "descLen": 159,
+        "faq": true,
+        "ageDays": 3,
+        "cite": 55,
+        "citeTop": true
+      },
+      {
+        "path": "/yapay-zeka-asistanlari",
+        "money": true,
+        "words": 1083,
+        "firstHand": 0,
+        "specific": 2,
+        "filler": 0,
+        "score": 0.9,
+        "answerQs": 6,
+        "answerMisses": 0,
+        "titleLen": 46,
+        "descLen": 158,
+        "faq": true,
+        "ageDays": 3,
+        "cite": 55,
+        "citeTop": true
+      },
+      {
+        "path": "/de/ki-chatbot-whatsapp",
+        "money": true,
+        "words": 1049,
+        "firstHand": 0,
+        "specific": 3,
+        "filler": 0,
+        "score": 1.4,
+        "answerQs": 10,
+        "answerMisses": 0,
+        "titleLen": 60,
+        "descLen": 153,
+        "faq": true,
+        "ageDays": 3,
+        "cite": 55,
+        "citeTop": true
+      },
+      {
+        "path": "/de/lead-nachfassen",
+        "money": true,
+        "words": 980,
+        "firstHand": 0,
+        "specific": 4,
+        "filler": 0,
+        "score": 2,
+        "answerQs": 9,
+        "answerMisses": 0,
+        "titleLen": 62,
+        "descLen": 150,
+        "faq": true,
+        "ageDays": 3,
+        "cite": 55,
+        "citeTop": true
+      }
+    ],
+    "citeNotInTop": 15,
     "answerFirstMisses": [
       {
         "path": "/blog/ai-resepsiyonist-zaman-tasarrufu",
@@ -182,7 +376,9 @@
         "titleLen": 57,
         "descLen": 146,
         "faq": true,
-        "ageDays": 331
+        "ageDays": 331,
+        "cite": 0,
+        "citeTop": false
       },
       {
         "path": "/blog/dis-klinigi-ozel-yapilandirma",
@@ -197,7 +393,9 @@
         "titleLen": 56,
         "descLen": 142,
         "faq": true,
-        "ageDays": 355
+        "ageDays": 355,
+        "cite": 0,
+        "citeTop": false
       },
       {
         "path": "/blog/whatsapp-ai-chatbot-lead",
@@ -212,7 +410,9 @@
         "titleLen": 79,
         "descLen": 125,
         "faq": true,
-        "ageDays": 306
+        "ageDays": 306,
+        "cite": 51,
+        "citeTop": true
       },
       {
         "path": "/whatsapp-follow-up-mesajlari-klinik",
@@ -227,7 +427,9 @@
         "titleLen": 66,
         "descLen": 147,
         "faq": false,
-        "ageDays": null
+        "ageDays": null,
+        "cite": 0,
+        "citeTop": false
       },
       {
         "path": "/clinic-whatsapp-follow-up-messages",
@@ -242,7 +444,9 @@
         "titleLen": 52,
         "descLen": 112,
         "faq": false,
-        "ageDays": null
+        "ageDays": null,
+        "cite": 0,
+        "citeTop": false
       },
       {
         "path": "/eski-lead-reactivation-kit",
@@ -257,7 +461,9 @@
         "titleLen": 35,
         "descLen": 118,
         "faq": false,
-        "ageDays": null
+        "ageDays": null,
+        "cite": 0,
+        "citeTop": false
       },
       {
         "path": "/old-lead-reactivation-kit",
@@ -272,7 +478,9 @@
         "titleLen": 34,
         "descLen": 136,
         "faq": false,
-        "ageDays": null
+        "ageDays": null,
+        "cite": 0,
+        "citeTop": false
       },
       {
         "path": "/klinik-lead-management-starter-kit",
@@ -287,7 +495,9 @@
         "titleLen": 43,
         "descLen": 150,
         "faq": false,
-        "ageDays": null
+        "ageDays": null,
+        "cite": 0,
+        "citeTop": false
       },
       {
         "path": "/clinic-lead-management-starter-kit-en",
@@ -302,7 +512,9 @@
         "titleLen": 43,
         "descLen": 149,
         "faq": false,
-        "ageDays": null
+        "ageDays": null,
+        "cite": 0,
+        "citeTop": false
       },
       {
         "path": "/randevu-no-show-azaltma-paketi",
@@ -317,7 +529,9 @@
         "titleLen": 61,
         "descLen": 134,
         "faq": false,
-        "ageDays": null
+        "ageDays": null,
+        "cite": 0,
+        "citeTop": false
       }
     ],
     "longTitles": [
@@ -683,6 +897,110 @@
       "/blog/uyku-bozuklugu-klinigi-polisomnografi-yonetimi"
     ]
   },
+  "technical": {
+    "robots": {
+      "search": [
+        {
+          "bot": "Googlebot",
+          "allowed": true
+        },
+        {
+          "bot": "Bingbot",
+          "allowed": true
+        },
+        {
+          "bot": "OAI-SearchBot",
+          "allowed": true
+        },
+        {
+          "bot": "Claude-SearchBot",
+          "allowed": true
+        },
+        {
+          "bot": "PerplexityBot",
+          "allowed": true
+        },
+        {
+          "bot": "DuckAssistBot",
+          "allowed": true
+        },
+        {
+          "bot": "Applebot",
+          "allowed": true
+        },
+        {
+          "bot": "ChatGPT-User",
+          "allowed": true
+        },
+        {
+          "bot": "Claude-User",
+          "allowed": true
+        },
+        {
+          "bot": "Perplexity-User",
+          "allowed": true
+        }
+      ],
+      "training": [
+        {
+          "bot": "GPTBot",
+          "allowed": true
+        },
+        {
+          "bot": "ClaudeBot",
+          "allowed": true
+        },
+        {
+          "bot": "CCBot",
+          "allowed": true
+        },
+        {
+          "bot": "Google-Extended",
+          "allowed": true
+        },
+        {
+          "bot": "Applebot-Extended",
+          "allowed": true
+        },
+        {
+          "bot": "meta-externalagent",
+          "allowed": true
+        }
+      ],
+      "blockedSearch": [],
+      "hasSitemap": true
+    },
+    "hreflang": [],
+    "hreflangNoDefault": 136,
+    "eeat": {
+      "posts": 215,
+      "noAuthor": [
+        "/ai-resepsiyonist-nedir",
+        "/ai-resepsiyonist-vs-insan-sekreter",
+        "/ai-resepsiyonist-vs-cagri-merkezi",
+        "/what-is-ai-receptionist-clinic",
+        "/ai-receptionist-vs-human-receptionist-uk",
+        "/ai-receptionist-vs-answering-service-uk",
+        "/ai-receptionist-private-gp-uk",
+        "/missed-calls-private-clinic-uk",
+        "/reduce-no-shows-private-clinic-uk",
+        "/sik-sorulan-sorular"
+      ],
+      "noAuthorUrl": 205,
+      "noVisibleDate": [
+        "/ai-receptionist-private-gp-uk",
+        "/sik-sorulan-sorular"
+      ],
+      "badDateOrder": [],
+      "orgSameAs": true
+    },
+    "drift": {
+      "hasBaseline": true,
+      "critical": [],
+      "warning": [],
+      "info": 0
+    }
+  },
   "fanout": [
     {
       "query": "yapay zeka resepsiyonist",
@@ -806,7 +1124,9 @@
       "titleLen": 62,
       "descLen": 156,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 58,
+      "citeTop": false
     },
     {
       "path": "/en",
@@ -821,7 +1141,9 @@
       "titleLen": 56,
       "descLen": 146,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 54,
+      "citeTop": false
     },
     {
       "path": "/pricing",
@@ -836,7 +1158,9 @@
       "titleLen": 20,
       "descLen": 226,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 71,
+      "citeTop": false
     },
     {
       "path": "/en/pricing",
@@ -851,7 +1175,9 @@
       "titleLen": 14,
       "descLen": 233,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 62,
+      "citeTop": false
     },
     {
       "path": "/about",
@@ -866,7 +1192,9 @@
       "titleLen": 19,
       "descLen": 136,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/en/about",
@@ -881,7 +1209,9 @@
       "titleLen": 14,
       "descLen": 128,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/contact",
@@ -896,7 +1226,9 @@
       "titleLen": 17,
       "descLen": 120,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/en/contact",
@@ -911,7 +1243,9 @@
       "titleLen": 16,
       "descLen": 92,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/gelir-kaybi-hesaplayici",
@@ -926,7 +1260,9 @@
       "titleLen": 42,
       "descLen": 106,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/revenue-loss-calculator",
@@ -941,7 +1277,9 @@
       "titleLen": 42,
       "descLen": 111,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 54,
+      "citeTop": false
     },
     {
       "path": "/klinik-kaynaklari",
@@ -956,7 +1294,9 @@
       "titleLen": 45,
       "descLen": 175,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/clinic-resources",
@@ -971,7 +1311,9 @@
       "titleLen": 48,
       "descLen": 161,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/klinik-lead-kaybi-kontrol-listesi",
@@ -986,7 +1328,9 @@
       "titleLen": 42,
       "descLen": 138,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/clinic-lead-leak-checklist",
@@ -1001,7 +1345,9 @@
       "titleLen": 35,
       "descLen": 138,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/whatsapp-follow-up-mesajlari-klinik",
@@ -1016,7 +1362,9 @@
       "titleLen": 66,
       "descLen": 147,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/clinic-whatsapp-follow-up-messages",
@@ -1031,7 +1379,9 @@
       "titleLen": 52,
       "descLen": 112,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/eski-lead-reactivation-kit",
@@ -1046,7 +1396,9 @@
       "titleLen": 35,
       "descLen": 118,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/old-lead-reactivation-kit",
@@ -1061,7 +1413,9 @@
       "titleLen": 34,
       "descLen": 136,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/klinik-lead-management-starter-kit",
@@ -1076,7 +1430,9 @@
       "titleLen": 43,
       "descLen": 150,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/clinic-lead-management-starter-kit-en",
@@ -1091,7 +1447,9 @@
       "titleLen": 43,
       "descLen": 149,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/randevu-no-show-azaltma-paketi",
@@ -1106,7 +1464,9 @@
       "titleLen": 61,
       "descLen": 134,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/appointment-no-show-reduction-kit",
@@ -1121,7 +1481,9 @@
       "titleLen": 42,
       "descLen": 128,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/ai-resepsiyonist-nedir",
@@ -1136,7 +1498,9 @@
       "titleLen": 63,
       "descLen": 185,
       "faq": true,
-      "ageDays": 185
+      "ageDays": 185,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/what-is-ai-receptionist-clinic",
@@ -1151,7 +1515,9 @@
       "titleLen": 57,
       "descLen": 187,
       "faq": true,
-      "ageDays": 223
+      "ageDays": 223,
+      "cite": 57,
+      "citeTop": true
     },
     {
       "path": "/media",
@@ -1166,7 +1532,9 @@
       "titleLen": 26,
       "descLen": 136,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/stoaix-ads",
@@ -1181,7 +1549,9 @@
       "titleLen": 47,
       "descLen": 176,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 44,
+      "citeTop": false
     },
     {
       "path": "/privacy-policy",
@@ -1196,7 +1566,9 @@
       "titleLen": 23,
       "descLen": 89,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 51,
+      "citeTop": false
     },
     {
       "path": "/terms",
@@ -1211,7 +1583,9 @@
       "titleLen": 25,
       "descLen": 100,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/cookie-policy",
@@ -1226,7 +1600,9 @@
       "titleLen": 22,
       "descLen": 63,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/sik-sorulan-sorular",
@@ -1241,7 +1617,9 @@
       "titleLen": 71,
       "descLen": 160,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/ai-resepsiyonist-vs-insan-sekreter",
@@ -1256,7 +1634,9 @@
       "titleLen": 78,
       "descLen": 157,
       "faq": true,
-      "ageDays": 185
+      "ageDays": 185,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/ai-resepsiyonist-vs-cagri-merkezi",
@@ -1271,7 +1651,9 @@
       "titleLen": 77,
       "descLen": 156,
       "faq": true,
-      "ageDays": 185
+      "ageDays": 185,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/ai-receptionist-dental-clinic-uk",
@@ -1286,7 +1668,9 @@
       "titleLen": 46,
       "descLen": 167,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/ai-receptionist-aesthetic-clinic-uk",
@@ -1301,7 +1685,9 @@
       "titleLen": 49,
       "descLen": 171,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/ai-receptionist-hair-transplant-clinic",
@@ -1316,7 +1702,9 @@
       "titleLen": 52,
       "descLen": 169,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/ai-receptionist-physiotherapy-clinic-uk",
@@ -1331,7 +1719,9 @@
       "titleLen": 53,
       "descLen": 165,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 43,
+      "citeTop": false
     },
     {
       "path": "/ai-receptionist-private-gp-uk",
@@ -1346,7 +1736,9 @@
       "titleLen": 52,
       "descLen": 166,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/ai-receptionist-dermatology-clinic-uk",
@@ -1361,7 +1753,9 @@
       "titleLen": 51,
       "descLen": 183,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/ai-receptionist-vs-human-receptionist-uk",
@@ -1376,7 +1770,9 @@
       "titleLen": 69,
       "descLen": 173,
       "faq": true,
-      "ageDays": 223
+      "ageDays": 223,
+      "cite": 54,
+      "citeTop": true
     },
     {
       "path": "/ai-receptionist-vs-answering-service-uk",
@@ -1391,7 +1787,9 @@
       "titleLen": 70,
       "descLen": 173,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 67,
+      "citeTop": false
     },
     {
       "path": "/missed-calls-private-clinic-uk",
@@ -1406,7 +1804,9 @@
       "titleLen": 71,
       "descLen": 175,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/reduce-no-shows-private-clinic-uk",
@@ -1421,7 +1821,9 @@
       "titleLen": 53,
       "descLen": 212,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 63,
+      "citeTop": false
     },
     {
       "path": "/sac-ekimi-eski-lead-canlandirma",
@@ -1436,7 +1838,9 @@
       "titleLen": 51,
       "descLen": 145,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 51,
+      "citeTop": false
     },
     {
       "path": "/dis-klinigi-eski-lead-canlandirma",
@@ -1451,7 +1855,9 @@
       "titleLen": 45,
       "descLen": 161,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 51,
+      "citeTop": false
     },
     {
       "path": "/estetik-klinik-eski-lead-canlandirma",
@@ -1466,7 +1872,9 @@
       "titleLen": 49,
       "descLen": 145,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 51,
+      "citeTop": false
     },
     {
       "path": "/sac-ekimi-hizli-yanit",
@@ -1481,7 +1889,9 @@
       "titleLen": 47,
       "descLen": 138,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 51,
+      "citeTop": false
     },
     {
       "path": "/dis-klinigi-hizli-yanit",
@@ -1496,7 +1906,9 @@
       "titleLen": 41,
       "descLen": 145,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/estetik-klinik-hizli-yanit",
@@ -1511,7 +1923,9 @@
       "titleLen": 45,
       "descLen": 147,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/dis-klinigi-icin-ai",
@@ -1526,7 +1940,9 @@
       "titleLen": 44,
       "descLen": 142,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/estetik-klinik-icin-ai",
@@ -1541,7 +1957,9 @@
       "titleLen": 47,
       "descLen": 164,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/sac-ekimi-klinigi-icin-ai",
@@ -1556,7 +1974,9 @@
       "titleLen": 50,
       "descLen": 147,
       "faq": true,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/en/ai-assistants",
@@ -1571,7 +1991,9 @@
       "titleLen": 59,
       "descLen": 165,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/en-au/ai-assistants",
@@ -1586,7 +2008,9 @@
       "titleLen": 61,
       "descLen": 158,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": true
     },
     {
       "path": "/de/ki-assistenten",
@@ -1601,7 +2025,9 @@
       "titleLen": 54,
       "descLen": 159,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/yapay-zeka-asistanlari",
@@ -1616,7 +2042,9 @@
       "titleLen": 46,
       "descLen": 158,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/en/ai-receptionist",
@@ -1631,7 +2059,9 @@
       "titleLen": 62,
       "descLen": 158,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 63,
+      "citeTop": true
     },
     {
       "path": "/en-au/ai-receptionist",
@@ -1646,7 +2076,9 @@
       "titleLen": 49,
       "descLen": 153,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 63,
+      "citeTop": true
     },
     {
       "path": "/de/ki-telefonassistent",
@@ -1661,7 +2093,9 @@
       "titleLen": 66,
       "descLen": 160,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 57,
+      "citeTop": true
     },
     {
       "path": "/yapay-zeka-resepsiyonist",
@@ -1676,7 +2110,9 @@
       "titleLen": 63,
       "descLen": 158,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 73,
+      "citeTop": true
     },
     {
       "path": "/en/ai-chatbot",
@@ -1691,7 +2127,9 @@
       "titleLen": 62,
       "descLen": 148,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/en-au/ai-chatbot",
@@ -1706,7 +2144,9 @@
       "titleLen": 62,
       "descLen": 156,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/de/ki-chatbot-whatsapp",
@@ -1721,7 +2161,9 @@
       "titleLen": 60,
       "descLen": 153,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/whatsapp-yapay-zeka-asistani",
@@ -1736,7 +2178,9 @@
       "titleLen": 63,
       "descLen": 154,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/en/lead-follow-up",
@@ -1751,7 +2195,9 @@
       "titleLen": 68,
       "descLen": 154,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": true
     },
     {
       "path": "/en-au/lead-follow-up",
@@ -1766,7 +2212,9 @@
       "titleLen": 54,
       "descLen": 164,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": true
     },
     {
       "path": "/de/lead-nachfassen",
@@ -1781,7 +2229,9 @@
       "titleLen": 62,
       "descLen": 150,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/hasta-adayi-takibi",
@@ -1796,7 +2246,9 @@
       "titleLen": 61,
       "descLen": 155,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 63,
+      "citeTop": true
     },
     {
       "path": "/en/appointment-reminders",
@@ -1811,7 +2263,9 @@
       "titleLen": 56,
       "descLen": 152,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": true
     },
     {
       "path": "/en-au/appointment-reminders",
@@ -1826,7 +2280,9 @@
       "titleLen": 55,
       "descLen": 162,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": true
     },
     {
       "path": "/de/terminerinnerung",
@@ -1841,7 +2297,9 @@
       "titleLen": 54,
       "descLen": 150,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/randevu-hatirlatma",
@@ -1856,7 +2314,9 @@
       "titleLen": 65,
       "descLen": 144,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 63,
+      "citeTop": true
     },
     {
       "path": "/en/patient-reactivation",
@@ -1871,7 +2331,9 @@
       "titleLen": 59,
       "descLen": 147,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 53,
+      "citeTop": true
     },
     {
       "path": "/en-au/patient-reactivation",
@@ -1886,7 +2348,9 @@
       "titleLen": 67,
       "descLen": 150,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 53,
+      "citeTop": true
     },
     {
       "path": "/de/patientenreaktivierung",
@@ -1901,7 +2365,9 @@
       "titleLen": 58,
       "descLen": 160,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/eski-hasta-canlandirma",
@@ -1916,7 +2382,9 @@
       "titleLen": 61,
       "descLen": 161,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/en/patient-reviews",
@@ -1931,7 +2399,9 @@
       "titleLen": 63,
       "descLen": 154,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/en-au/patient-reviews",
@@ -1946,7 +2416,9 @@
       "titleLen": 61,
       "descLen": 158,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/de/google-bewertungen",
@@ -1961,7 +2433,9 @@
       "titleLen": 62,
       "descLen": 150,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/google-yorum-artirma",
@@ -1976,7 +2450,9 @@
       "titleLen": 64,
       "descLen": 153,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/en/pre-treatment-instructions",
@@ -1991,7 +2467,9 @@
       "titleLen": 65,
       "descLen": 145,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/en-au/pre-treatment-instructions",
@@ -2006,7 +2484,9 @@
       "titleLen": 60,
       "descLen": 142,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/de/op-vorbereitung",
@@ -2021,7 +2501,9 @@
       "titleLen": 66,
       "descLen": 153,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/tedavi-oncesi-hazirlik",
@@ -2036,7 +2518,9 @@
       "titleLen": 59,
       "descLen": 154,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 63,
+      "citeTop": true
     },
     {
       "path": "/en/post-treatment-aftercare",
@@ -2051,7 +2535,9 @@
       "titleLen": 55,
       "descLen": 165,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/en-au/post-treatment-aftercare",
@@ -2066,7 +2552,9 @@
       "titleLen": 58,
       "descLen": 154,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/de/nachsorge",
@@ -2081,7 +2569,9 @@
       "titleLen": 55,
       "descLen": 165,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 53,
+      "citeTop": false
     },
     {
       "path": "/tedavi-sonrasi-takip",
@@ -2096,7 +2586,9 @@
       "titleLen": 54,
       "descLen": 156,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 63,
+      "citeTop": true
     },
     {
       "path": "/en/meta-ads-for-clinics",
@@ -2111,7 +2603,9 @@
       "titleLen": 59,
       "descLen": 156,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/en-au/meta-ads-for-clinics",
@@ -2126,7 +2620,9 @@
       "titleLen": 66,
       "descLen": 158,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/de/meta-werbung-praxis",
@@ -2141,7 +2637,9 @@
       "titleLen": 58,
       "descLen": 160,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/klinik-meta-reklam-yonetimi",
@@ -2156,7 +2654,9 @@
       "titleLen": 59,
       "descLen": 157,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 58,
+      "citeTop": true
     },
     {
       "path": "/en/clinic-seo-google-ads",
@@ -2171,7 +2671,9 @@
       "titleLen": 58,
       "descLen": 160,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/en-au/clinic-seo-google-ads",
@@ -2186,7 +2688,9 @@
       "titleLen": 65,
       "descLen": 152,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/de/praxis-seo-google-ads",
@@ -2201,7 +2705,9 @@
       "titleLen": 64,
       "descLen": 153,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 53,
+      "citeTop": false
     },
     {
       "path": "/klinik-seo-google-reklam",
@@ -2216,7 +2722,9 @@
       "titleLen": 60,
       "descLen": 145,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 57,
+      "citeTop": true
     },
     {
       "path": "/en/clinic-crm",
@@ -2231,7 +2739,9 @@
       "titleLen": 56,
       "descLen": 161,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/en-au/clinic-crm",
@@ -2246,7 +2756,9 @@
       "titleLen": 59,
       "descLen": 139,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/de/praxis-crm",
@@ -2261,7 +2773,9 @@
       "titleLen": 62,
       "descLen": 152,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/klinik-crm",
@@ -2276,7 +2790,9 @@
       "titleLen": 59,
       "descLen": 151,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/yapay-zeka-cagri-merkezi",
@@ -2291,7 +2807,9 @@
       "titleLen": 58,
       "descLen": 157,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/randevu-otomasyonu",
@@ -2306,7 +2824,9 @@
       "titleLen": 55,
       "descLen": 163,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 64,
+      "citeTop": true
     },
     {
       "path": "/yapay-zeka-satis-otomasyonu",
@@ -2321,7 +2841,9 @@
       "titleLen": 52,
       "descLen": 160,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 61,
+      "citeTop": true
     },
     {
       "path": "/klinik-yapay-zeka",
@@ -2336,7 +2858,9 @@
       "titleLen": 59,
       "descLen": 151,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/whatsapp-otomasyonu",
@@ -2351,7 +2875,9 @@
       "titleLen": 55,
       "descLen": 158,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 64,
+      "citeTop": true
     },
     {
       "path": "/instagram-dm-otomasyonu",
@@ -2366,7 +2892,9 @@
       "titleLen": 59,
       "descLen": 162,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/saglik-turizmi-yapay-zeka",
@@ -2381,7 +2909,9 @@
       "titleLen": 58,
       "descLen": 157,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/saglik-turizmi-call-center",
@@ -2396,7 +2926,9 @@
       "titleLen": 51,
       "descLen": 151,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/saglik-turizmi-crm",
@@ -2411,7 +2943,9 @@
       "titleLen": 56,
       "descLen": 156,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/saglik-turizmi-reklam-yonetimi",
@@ -2426,7 +2960,9 @@
       "titleLen": 49,
       "descLen": 155,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 61,
+      "citeTop": true
     },
     {
       "path": "/saglik-turizmi-hasta-bulma",
@@ -2441,7 +2977,9 @@
       "titleLen": 56,
       "descLen": 154,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 73,
+      "citeTop": true
     },
     {
       "path": "/saglikta-reklam-yasagi",
@@ -2456,7 +2994,9 @@
       "titleLen": 61,
       "descLen": 165,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 57,
+      "citeTop": true
     },
     {
       "path": "/dis-klinigi-crm",
@@ -2471,7 +3011,9 @@
       "titleLen": 48,
       "descLen": 158,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/dis-klinigi-reklam",
@@ -2486,7 +3028,9 @@
       "titleLen": 62,
       "descLen": 162,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 61,
+      "citeTop": true
     },
     {
       "path": "/sac-ekimi-crm",
@@ -2501,7 +3045,9 @@
       "titleLen": 49,
       "descLen": 136,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/sac-ekimi-reklam",
@@ -2516,7 +3062,9 @@
       "titleLen": 56,
       "descLen": 164,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 61,
+      "citeTop": true
     },
     {
       "path": "/yapay-zeka-sozlugu",
@@ -2531,7 +3079,9 @@
       "titleLen": 56,
       "descLen": 156,
       "faq": true,
-      "ageDays": 3
+      "ageDays": 3,
+      "cite": 57,
+      "citeTop": true
     },
     {
       "path": "/blog",
@@ -2546,7 +3096,9 @@
       "titleLen": 72,
       "descLen": 167,
       "faq": false,
-      "ageDays": null
+      "ageDays": null,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/blog/after-hours-calls-private-clinic-uk",
@@ -2561,7 +3113,9 @@
       "titleLen": 84,
       "descLen": 198,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 57,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-chatbot-3x-lead-nasil",
@@ -2576,7 +3130,9 @@
       "titleLen": 72,
       "descLen": 163,
       "faq": true,
-      "ageDays": 289
+      "ageDays": 289,
+      "cite": 60,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-amortisasyon-suresi",
@@ -2591,7 +3147,9 @@
       "titleLen": 63,
       "descLen": 137,
       "faq": true,
-      "ageDays": 305
+      "ageDays": 305,
+      "cite": 54,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-analitik",
@@ -2606,7 +3164,9 @@
       "titleLen": 64,
       "descLen": 137,
       "faq": true,
-      "ageDays": 294
+      "ageDays": 294,
+      "cite": 54,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-crm-baglantisi",
@@ -2621,7 +3181,9 @@
       "titleLen": 56,
       "descLen": 147,
       "faq": true,
-      "ageDays": 290
+      "ageDays": 290,
+      "cite": 52,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-crm-entegrasyon",
@@ -2636,7 +3198,9 @@
       "titleLen": 65,
       "descLen": 140,
       "faq": true,
-      "ageDays": 309
+      "ageDays": 309,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-dogal-konusma",
@@ -2651,7 +3215,9 @@
       "titleLen": 55,
       "descLen": 139,
       "faq": true,
-      "ageDays": 307
+      "ageDays": 307,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-donusum-orani",
@@ -2666,7 +3232,9 @@
       "titleLen": 60,
       "descLen": 135,
       "faq": true,
-      "ageDays": 292
+      "ageDays": 292,
+      "cite": 58,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-egitme-ozellestirme",
@@ -2681,7 +3249,9 @@
       "titleLen": 62,
       "descLen": 134,
       "faq": true,
-      "ageDays": 301
+      "ageDays": 301,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-hangi-sektor-uygun",
@@ -2696,7 +3266,9 @@
       "titleLen": 52,
       "descLen": 133,
       "faq": true,
-      "ageDays": 302
+      "ageDays": 302,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-insan-devri",
@@ -2711,7 +3283,9 @@
       "titleLen": 49,
       "descLen": 112,
       "faq": true,
-      "ageDays": 298
+      "ageDays": 298,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-karmasik-lead",
@@ -2726,7 +3300,9 @@
       "titleLen": 70,
       "descLen": 121,
       "faq": true,
-      "ageDays": 300
+      "ageDays": 300,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-katilim-artirma",
@@ -2741,7 +3317,9 @@
       "titleLen": 73,
       "descLen": 127,
       "faq": true,
-      "ageDays": 297
+      "ageDays": 297,
+      "cite": 57,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-chatbot-lead-artisi-roi",
@@ -2756,7 +3334,9 @@
       "titleLen": 54,
       "descLen": 178,
       "faq": true,
-      "ageDays": 315
+      "ageDays": 315,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-lead-bilgi-toplama",
@@ -2771,7 +3351,9 @@
       "titleLen": 72,
       "descLen": 151,
       "faq": true,
-      "ageDays": 304
+      "ageDays": 304,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-lead-nitelendirme-nasil",
@@ -2786,7 +3368,9 @@
       "titleLen": 57,
       "descLen": 124,
       "faq": true,
-      "ageDays": 310
+      "ageDays": 310,
+      "cite": 66,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-lead-nitelendirme-sorulari",
@@ -2801,7 +3385,9 @@
       "titleLen": 62,
       "descLen": 171,
       "faq": true,
-      "ageDays": 314
+      "ageDays": 314,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-chatbot-lead-takip",
@@ -2816,7 +3402,9 @@
       "titleLen": 60,
       "descLen": 154,
       "faq": true,
-      "ageDays": 303
+      "ageDays": 303,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-lead-yakalama-724",
@@ -2831,7 +3419,9 @@
       "titleLen": 51,
       "descLen": 159,
       "faq": true,
-      "ageDays": 318
+      "ageDays": 318,
+      "cite": 65,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-maliyet-per-lead",
@@ -2846,7 +3436,9 @@
       "titleLen": 55,
       "descLen": 120,
       "faq": true,
-      "ageDays": 295
+      "ageDays": 295,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-chatbot-marka-sesi",
@@ -2861,7 +3453,9 @@
       "titleLen": 64,
       "descLen": 120,
       "faq": true,
-      "ageDays": 296
+      "ageDays": 296,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-chatbot-on-nitelendirme",
@@ -2876,7 +3470,9 @@
       "titleLen": 68,
       "descLen": 151,
       "faq": true,
-      "ageDays": 293
+      "ageDays": 293,
+      "cite": 65,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-randevu-alma",
@@ -2891,7 +3487,9 @@
       "titleLen": 45,
       "descLen": 146,
       "faq": true,
-      "ageDays": 312
+      "ageDays": 312,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-chatbot-satis-ekibi",
@@ -2906,7 +3504,9 @@
       "titleLen": 55,
       "descLen": 161,
       "faq": true,
-      "ageDays": 316
+      "ageDays": 316,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-chatbot-satis-verimlilik",
@@ -2921,7 +3521,9 @@
       "titleLen": 59,
       "descLen": 126,
       "faq": true,
-      "ageDays": 299
+      "ageDays": 299,
+      "cite": 76,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-vs-iletisim-formu",
@@ -2936,7 +3538,9 @@
       "titleLen": 46,
       "descLen": 137,
       "faq": true,
-      "ageDays": 308
+      "ageDays": 308,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-chatbot-web-sitesi-kurulum",
@@ -2951,7 +3555,9 @@
       "titleLen": 61,
       "descLen": 148,
       "faq": true,
-      "ageDays": 317
+      "ageDays": 317,
+      "cite": 62,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-ile-hasta-iletisim-kalitesi",
@@ -2966,7 +3572,9 @@
       "titleLen": 71,
       "descLen": 135,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-lead-gen-nasil-baslanir",
@@ -2981,7 +3589,9 @@
       "titleLen": 53,
       "descLen": 156,
       "faq": true,
-      "ageDays": 291
+      "ageDays": 291,
+      "cite": 54,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-receptionist-vs-answering-service-clinic",
@@ -2996,7 +3606,9 @@
       "titleLen": 77,
       "descLen": 152,
       "faq": true,
-      "ageDays": 223
+      "ageDays": 223,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-724-calisma",
@@ -3011,7 +3623,9 @@
       "titleLen": 49,
       "descLen": 139,
       "faq": true,
-      "ageDays": 337
+      "ageDays": 337,
+      "cite": 39,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-cevaplayamadigi-arama",
@@ -3026,7 +3640,9 @@
       "titleLen": 67,
       "descLen": 119,
       "faq": true,
-      "ageDays": 345
+      "ageDays": 345,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-resepsiyonist-dahili-aktarma",
@@ -3041,7 +3657,9 @@
       "titleLen": 63,
       "descLen": 134,
       "faq": true,
-      "ageDays": 335
+      "ageDays": 335,
+      "cite": 50,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-resepsiyonist-egitim-gerektiriyor-mu",
@@ -3056,7 +3674,9 @@
       "titleLen": 54,
       "descLen": 148,
       "faq": true,
-      "ageDays": 330
+      "ageDays": 330,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-en-uygun-fiyat",
@@ -3071,7 +3691,9 @@
       "titleLen": 67,
       "descLen": 144,
       "faq": true,
-      "ageDays": 329
+      "ageDays": 329,
+      "cite": 41,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-fatura-sorulari",
@@ -3086,7 +3708,9 @@
       "titleLen": 67,
       "descLen": 146,
       "faq": true,
-      "ageDays": 340
+      "ageDays": 340,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-hangi-sektor",
@@ -3101,7 +3725,9 @@
       "titleLen": 68,
       "descLen": 132,
       "faq": true,
-      "ageDays": 323
+      "ageDays": 323,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-hata-yonetimi",
@@ -3116,7 +3742,9 @@
       "titleLen": 47,
       "descLen": 123,
       "faq": true,
-      "ageDays": 326
+      "ageDays": 326,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-insan-devri",
@@ -3131,7 +3759,9 @@
       "titleLen": 63,
       "descLen": 141,
       "faq": true,
-      "ageDays": 324
+      "ageDays": 324,
+      "cite": 54,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-izleme-analitik",
@@ -3146,7 +3776,9 @@
       "titleLen": 53,
       "descLen": 177,
       "faq": true,
-      "ageDays": 320
+      "ageDays": 320,
+      "cite": 52,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-resepsiyonist-kapasite",
@@ -3161,7 +3793,9 @@
       "titleLen": 59,
       "descLen": 162,
       "faq": true,
-      "ageDays": 347
+      "ageDays": 347,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-kurulum-suresi",
@@ -3176,7 +3810,9 @@
       "titleLen": 53,
       "descLen": 136,
       "faq": true,
-      "ageDays": 344
+      "ageDays": 344,
+      "cite": 45,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-marka-imaji",
@@ -3191,7 +3827,9 @@
       "titleLen": 61,
       "descLen": 126,
       "faq": true,
-      "ageDays": 322
+      "ageDays": 322,
+      "cite": 50,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-musteri-memnuniyeti",
@@ -3206,7 +3844,9 @@
       "titleLen": 75,
       "descLen": 133,
       "faq": true,
-      "ageDays": 341
+      "ageDays": 341,
+      "cite": 56,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-musteri-tepkisi",
@@ -3221,7 +3861,9 @@
       "titleLen": 66,
       "descLen": 162,
       "faq": true,
-      "ageDays": 349
+      "ageDays": 349,
+      "cite": 41,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-otomatik-randevu",
@@ -3236,7 +3878,9 @@
       "titleLen": 55,
       "descLen": 143,
       "faq": true,
-      "ageDays": 346
+      "ageDays": 346,
+      "cite": 39,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-ozelestirme",
@@ -3251,7 +3895,9 @@
       "titleLen": 69,
       "descLen": 134,
       "faq": true,
-      "ageDays": 332
+      "ageDays": 332,
+      "cite": 56,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-resepsiyonist-personel-etkisi",
@@ -3266,7 +3912,9 @@
       "titleLen": 48,
       "descLen": 134,
       "faq": true,
-      "ageDays": 343
+      "ageDays": 343,
+      "cite": 64,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-resepsiyonist-roi-ne-zaman",
@@ -3281,7 +3929,9 @@
       "titleLen": 54,
       "descLen": 158,
       "faq": true,
-      "ageDays": 327
+      "ageDays": 327,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-saglayici-degisimi",
@@ -3296,7 +3946,9 @@
       "titleLen": 63,
       "descLen": 115,
       "faq": true,
-      "ageDays": 321
+      "ageDays": 321,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-resepsiyonist-secmeden-once-sorular",
@@ -3311,7 +3963,9 @@
       "titleLen": 69,
       "descLen": 128,
       "faq": true,
-      "ageDays": 342
+      "ageDays": 342,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-sinirli-musteri",
@@ -3326,7 +3980,9 @@
       "titleLen": 69,
       "descLen": 146,
       "faq": true,
-      "ageDays": 334
+      "ageDays": 334,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-telefon-sistemi-entegrasyon",
@@ -3341,7 +3997,9 @@
       "titleLen": 68,
       "descLen": 129,
       "faq": true,
-      "ageDays": 328
+      "ageDays": 328,
+      "cite": 51,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-veri-gizliligi-kvkk",
@@ -3356,7 +4014,9 @@
       "titleLen": 63,
       "descLen": 141,
       "faq": true,
-      "ageDays": 333
+      "ageDays": 333,
+      "cite": 39,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-vs-cevaplama-hizmeti",
@@ -3371,7 +4031,9 @@
       "titleLen": 70,
       "descLen": 158,
       "faq": true,
-      "ageDays": 348
+      "ageDays": 348,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-vs-sanal",
@@ -3386,7 +4048,9 @@
       "titleLen": 69,
       "descLen": 146,
       "faq": true,
-      "ageDays": 339
+      "ageDays": 339,
+      "cite": 62,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-vs-yari-zamanli",
@@ -3401,7 +4065,9 @@
       "titleLen": 59,
       "descLen": 130,
       "faq": true,
-      "ageDays": 325
+      "ageDays": 325,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-resepsiyonist-yogun-saat-guvenilirlik",
@@ -3416,7 +4082,9 @@
       "titleLen": 63,
       "descLen": 133,
       "faq": true,
-      "ageDays": 336
+      "ageDays": 336,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/blog/ai-resepsiyonist-zaman-tasarrufu",
@@ -3431,7 +4099,9 @@
       "titleLen": 57,
       "descLen": 146,
       "faq": true,
-      "ageDays": 331
+      "ageDays": 331,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/blog/ai-web-ziyaretci-anlik-yanit",
@@ -3446,7 +4116,9 @@
       "titleLen": 60,
       "descLen": 147,
       "faq": true,
-      "ageDays": 313
+      "ageDays": 313,
+      "cite": 51,
+      "citeTop": false
     },
     {
       "path": "/blog/aile-hekimligi-klinigi-ai-resepsiyonist",
@@ -3461,7 +4133,9 @@
       "titleLen": 83,
       "descLen": 150,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 45,
+      "citeTop": false
     },
     {
       "path": "/blog/algoloji-klinigi-ai-resepsiyonist",
@@ -3476,7 +4150,9 @@
       "titleLen": 80,
       "descLen": 141,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/appointment-reminders-private-clinic-uk",
@@ -3491,7 +4167,9 @@
       "titleLen": 81,
       "descLen": 157,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 58,
+      "citeTop": true
     },
     {
       "path": "/blog/automated-scheduling-private-clinic-uk",
@@ -3506,7 +4184,9 @@
       "titleLen": 87,
       "descLen": 186,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 58,
+      "citeTop": true
     },
     {
       "path": "/blog/bariatrik-klinik-ai-resepsiyonist",
@@ -3521,7 +4201,9 @@
       "titleLen": 91,
       "descLen": 152,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/blog/cocuk-gelisim-otizm-klinigi-hasta-yonetimi",
@@ -3536,7 +4218,9 @@
       "titleLen": 74,
       "descLen": 133,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/cok-lokasyonlu-klinik-zinciri-yonetimi",
@@ -3551,7 +4235,9 @@
       "titleLen": 82,
       "descLen": 131,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/dahiliye-klinigi-ai-resepsiyonist",
@@ -3566,7 +4252,9 @@
       "titleLen": 77,
       "descLen": 158,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 59,
+      "citeTop": true
     },
     {
       "path": "/blog/dental-tourism-clinic-uk",
@@ -3581,7 +4269,9 @@
       "titleLen": 82,
       "descLen": 173,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/dermatoloji-klinigi-ai-resepsiyonist",
@@ -3596,7 +4286,9 @@
       "titleLen": 66,
       "descLen": 149,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 66,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-acil-arama",
@@ -3611,7 +4303,9 @@
       "titleLen": 65,
       "descLen": 151,
       "faq": true,
-      "ageDays": 366
+      "ageDays": 366,
+      "cite": 60,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-ai-aksan",
@@ -3626,7 +4320,9 @@
       "titleLen": 79,
       "descLen": 159,
       "faq": true,
-      "ageDays": 364
+      "ageDays": 364,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-ai-islev",
@@ -3641,7 +4337,9 @@
       "titleLen": 50,
       "descLen": 123,
       "faq": true,
-      "ageDays": 356
+      "ageDays": 356,
+      "cite": 43,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-ai-kurulum-gereksinimleri",
@@ -3656,7 +4354,9 @@
       "titleLen": 60,
       "descLen": 145,
       "faq": true,
-      "ageDays": 182
+      "ageDays": 182,
+      "cite": 70,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-ai-randevu-alma",
@@ -3671,7 +4371,9 @@
       "titleLen": 61,
       "descLen": 146,
       "faq": true,
-      "ageDays": 182
+      "ageDays": 182,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-ai-randevu-deneyimi",
@@ -3686,7 +4388,9 @@
       "titleLen": 66,
       "descLen": 176,
       "faq": true,
-      "ageDays": 371
+      "ageDays": 371,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-ai-resepsiyonist-fiyat",
@@ -3701,7 +4405,9 @@
       "titleLen": 58,
       "descLen": 172,
       "faq": true,
-      "ageDays": 182
+      "ageDays": 182,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-ai-resepsiyonist-kurulum",
@@ -3716,7 +4422,9 @@
       "titleLen": 55,
       "descLen": 141,
       "faq": true,
-      "ageDays": 182
+      "ageDays": 182,
+      "cite": 70,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-ai-roi",
@@ -3731,7 +4439,9 @@
       "titleLen": 77,
       "descLen": 160,
       "faq": true,
-      "ageDays": 368
+      "ageDays": 368,
+      "cite": 77,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-ai-vs-insan",
@@ -3746,7 +4456,9 @@
       "titleLen": 81,
       "descLen": 154,
       "faq": true,
-      "ageDays": 357
+      "ageDays": 357,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-ai-yazilim-entegrasyonu",
@@ -3761,7 +4473,9 @@
       "titleLen": 75,
       "descLen": 133,
       "faq": true,
-      "ageDays": 182
+      "ageDays": 182,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-alternatifler",
@@ -3776,7 +4490,9 @@
       "titleLen": 62,
       "descLen": 157,
       "faq": true,
-      "ageDays": 350
+      "ageDays": 350,
+      "cite": 64,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-bilmem-gerekenler",
@@ -3791,7 +4507,9 @@
       "titleLen": 74,
       "descLen": 145,
       "faq": true,
-      "ageDays": 353
+      "ageDays": 353,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-cevaplanmayan-aramalar",
@@ -3806,7 +4524,9 @@
       "titleLen": 85,
       "descLen": 174,
       "faq": true,
-      "ageDays": 182
+      "ageDays": 182,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-ezamanli-aramalar",
@@ -3821,7 +4541,9 @@
       "titleLen": 76,
       "descLen": 160,
       "faq": true,
-      "ageDays": 365
+      "ageDays": 365,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-hasta-degerlendirmesi",
@@ -3836,7 +4558,9 @@
       "titleLen": 74,
       "descLen": 133,
       "faq": true,
-      "ageDays": 351
+      "ageDays": 351,
+      "cite": 41,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-hasta-gecmisi",
@@ -3851,7 +4575,9 @@
       "titleLen": 66,
       "descLen": 129,
       "faq": true,
-      "ageDays": 358
+      "ageDays": 358,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-hasta-memnuniyeti",
@@ -3866,7 +4592,9 @@
       "titleLen": 75,
       "descLen": 148,
       "faq": true,
-      "ageDays": 360
+      "ageDays": 360,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-hastalar-ai-kabul",
@@ -3881,7 +4609,9 @@
       "titleLen": 57,
       "descLen": 130,
       "faq": true,
-      "ageDays": 182
+      "ageDays": 182,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-kayip-hasta-geri-kazanma",
@@ -3896,7 +4626,9 @@
       "titleLen": 71,
       "descLen": 110,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 66,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-kucuk-klinik",
@@ -3911,7 +4643,9 @@
       "titleLen": 61,
       "descLen": 135,
       "faq": true,
-      "ageDays": 361
+      "ageDays": 361,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-kvkk-uyum",
@@ -3926,7 +4660,9 @@
       "titleLen": 79,
       "descLen": 163,
       "faq": true,
-      "ageDays": 363
+      "ageDays": 363,
+      "cite": 59,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-mesai-sonrasi-aramalar",
@@ -3941,7 +4677,9 @@
       "titleLen": 64,
       "descLen": 138,
       "faq": true,
-      "ageDays": 182
+      "ageDays": 182,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-ne-iceriyor",
@@ -3956,7 +4694,9 @@
       "titleLen": 58,
       "descLen": 165,
       "faq": true,
-      "ageDays": 359
+      "ageDays": 359,
+      "cite": 36,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-no-show-azaltma",
@@ -3971,7 +4711,9 @@
       "titleLen": 65,
       "descLen": 170,
       "faq": true,
-      "ageDays": 369
+      "ageDays": 369,
+      "cite": 77,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-ozel-yapilandirma",
@@ -3986,7 +4728,9 @@
       "titleLen": 56,
       "descLen": 142,
       "faq": true,
-      "ageDays": 355
+      "ageDays": 355,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-randevu-hatirlatma-ai",
@@ -4001,7 +4745,9 @@
       "titleLen": 60,
       "descLen": 162,
       "faq": true,
-      "ageDays": 182
+      "ageDays": 182,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-sistem-guncellemeleri",
@@ -4016,7 +4762,9 @@
       "titleLen": 70,
       "descLen": 139,
       "faq": true,
-      "ageDays": 352
+      "ageDays": 352,
+      "cite": 56,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-klinigi-yanit-hizi",
@@ -4031,7 +4779,9 @@
       "titleLen": 77,
       "descLen": 156,
       "faq": true,
-      "ageDays": 354
+      "ageDays": 354,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/blog/dis-klinigi-zaman-tasarrufu",
@@ -4046,7 +4796,9 @@
       "titleLen": 71,
       "descLen": 154,
       "faq": true,
-      "ageDays": 367
+      "ageDays": 367,
+      "cite": 74,
+      "citeTop": true
     },
     {
       "path": "/blog/dis-turizmi-uk-hasta-kazanma",
@@ -4061,7 +4813,9 @@
       "titleLen": 94,
       "descLen": 147,
       "faq": true,
-      "ageDays": 178
+      "ageDays": 178,
+      "cite": 54,
+      "citeTop": false
     },
     {
       "path": "/blog/diyetisyen-klinigi-ai-resepsiyonist",
@@ -4076,7 +4830,9 @@
       "titleLen": 86,
       "descLen": 122,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/endokrinoloji-klinigi-ai-resepsiyonist",
@@ -4091,7 +4847,9 @@
       "titleLen": 86,
       "descLen": 154,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 74,
+      "citeTop": true
     },
     {
       "path": "/blog/estetik-klinik-ai-resepsiyonist",
@@ -4106,7 +4864,9 @@
       "titleLen": 76,
       "descLen": 143,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 46,
+      "citeTop": false
     },
     {
       "path": "/blog/estetik-klinik-hasta-donusum-hunisi",
@@ -4121,7 +4881,9 @@
       "titleLen": 69,
       "descLen": 136,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/fizik-tedavi-merkezi-hasta-takip-sistemi",
@@ -4136,7 +4898,9 @@
       "titleLen": 74,
       "descLen": 120,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 49,
+      "citeTop": false
     },
     {
       "path": "/blog/fizioterapi-klinigi-ai-resepsiyonist",
@@ -4151,7 +4915,9 @@
       "titleLen": 69,
       "descLen": 132,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 50,
+      "citeTop": true
     },
     {
       "path": "/blog/gastroenteroloji-klinigi-ai-resepsiyonist",
@@ -4166,7 +4932,9 @@
       "titleLen": 84,
       "descLen": 132,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/gogus-hastaliklari-klinigi-ai-resepsiyonist",
@@ -4181,7 +4949,9 @@
       "titleLen": 76,
       "descLen": 136,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 45,
+      "citeTop": false
     },
     {
       "path": "/blog/goz-klinigi-ai-resepsiyonist",
@@ -4196,7 +4966,9 @@
       "titleLen": 59,
       "descLen": 151,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/goz-sagligi-klinigi-hasta-yonetimi-2026",
@@ -4211,7 +4983,9 @@
       "titleLen": 79,
       "descLen": 161,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 39,
+      "citeTop": false
     },
     {
       "path": "/blog/hair-transplant-international-patients",
@@ -4226,7 +5000,9 @@
       "titleLen": 92,
       "descLen": 166,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 51,
+      "citeTop": false
     },
     {
       "path": "/blog/hasta-geri-bildirimi-anket-yonetimi",
@@ -4241,7 +5017,9 @@
       "titleLen": 81,
       "descLen": 162,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 74,
+      "citeTop": true
     },
     {
       "path": "/blog/hasta-iletisimi-ozel-klinik",
@@ -4256,7 +5034,9 @@
       "titleLen": 78,
       "descLen": 224,
       "faq": true,
-      "ageDays": 178
+      "ageDays": 178,
+      "cite": 58,
+      "citeTop": true
     },
     {
       "path": "/blog/hasta-iptal-yonetimi-ozel-klinik",
@@ -4271,7 +5051,9 @@
       "titleLen": 81,
       "descLen": 127,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 64,
+      "citeTop": false
     },
     {
       "path": "/blog/hasta-kazanimi-ozel-klinik-2026",
@@ -4286,7 +5068,9 @@
       "titleLen": 61,
       "descLen": 192,
       "faq": true,
-      "ageDays": 178
+      "ageDays": 178,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/hasta-ltv-hesaplama-ozel-klinik",
@@ -4301,7 +5085,9 @@
       "titleLen": 68,
       "descLen": 117,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/hastane-sonrasi-bakim-ozel-klinik-koordinasyonu",
@@ -4316,7 +5102,9 @@
       "titleLen": 80,
       "descLen": 157,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/health-tourism-ai-receptionist",
@@ -4331,7 +5119,9 @@
       "titleLen": 88,
       "descLen": 179,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 65,
+      "citeTop": true
     },
     {
       "path": "/blog/hekim-kisisel-markasi-dijital-strateji",
@@ -4346,7 +5136,9 @@
       "titleLen": 79,
       "descLen": 133,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/blog/idari-maliyet-azaltma-ozel-klinik",
@@ -4361,7 +5153,9 @@
       "titleLen": 68,
       "descLen": 194,
       "faq": true,
-      "ageDays": 178
+      "ageDays": 178,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/isitme-cihazi-merkezi-hasta-yonetimi",
@@ -4376,7 +5170,9 @@
       "titleLen": 81,
       "descLen": 138,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 49,
+      "citeTop": false
     },
     {
       "path": "/blog/ivf-ureme-tibbi-klinigi-hasta-yonetimi",
@@ -4391,7 +5187,9 @@
       "titleLen": 90,
       "descLen": 127,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/jinekologi-klinigi-ai-resepsiyonist",
@@ -4406,7 +5204,9 @@
       "titleLen": 83,
       "descLen": 128,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": false
     },
     {
       "path": "/blog/kacirilmis-aramalar-ozel-klinik-maliyet",
@@ -4421,7 +5221,9 @@
       "titleLen": 66,
       "descLen": 172,
       "faq": true,
-      "ageDays": 185
+      "ageDays": 185,
+      "cite": 69,
+      "citeTop": true
     },
     {
       "path": "/blog/kardiyak-rehabilitasyon-klinigi-hasta-takibi",
@@ -4436,7 +5238,9 @@
       "titleLen": 75,
       "descLen": 150,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 74,
+      "citeTop": true
     },
     {
       "path": "/blog/kardiyoloji-klinigi-ai-resepsiyonist",
@@ -4451,7 +5255,9 @@
       "titleLen": 72,
       "descLen": 132,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/kbb-klinigi-ai-resepsiyonist",
@@ -4466,7 +5272,9 @@
       "titleLen": 69,
       "descLen": 118,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 53,
+      "citeTop": false
     },
     {
       "path": "/blog/klinik-chatbot-vs-ai-asistan-karsilastirma",
@@ -4481,7 +5289,9 @@
       "titleLen": 68,
       "descLen": 160,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/klinik-fiyatlandirma-stratejisi-rehberi",
@@ -4496,7 +5306,9 @@
       "titleLen": 78,
       "descLen": 125,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 37,
+      "citeTop": false
     },
     {
       "path": "/blog/klinik-google-my-business-optimizasyonu",
@@ -4511,7 +5323,9 @@
       "titleLen": 83,
       "descLen": 156,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/klinik-hasta-portali-dijital-deneyim",
@@ -4526,7 +5340,9 @@
       "titleLen": 73,
       "descLen": 128,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 44,
+      "citeTop": false
     },
     {
       "path": "/blog/klinik-icerik-pazarlama-stratejisi",
@@ -4541,7 +5357,9 @@
       "titleLen": 82,
       "descLen": 156,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/klinik-muayene-odasi-verimliligi",
@@ -4556,7 +5374,9 @@
       "titleLen": 78,
       "descLen": 166,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 59,
+      "citeTop": true
     },
     {
       "path": "/blog/klinik-online-randevu-telefon-karsilastirma",
@@ -4571,7 +5391,9 @@
       "titleLen": 73,
       "descLen": 132,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/blog/klinik-performans-kpi-olcum-rehberi",
@@ -4586,7 +5408,9 @@
       "titleLen": 69,
       "descLen": 134,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 0,
+      "citeTop": false
     },
     {
       "path": "/blog/klinik-performans-metrikleri-rehberi",
@@ -4601,7 +5425,9 @@
       "titleLen": 63,
       "descLen": 126,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/klinik-personel-egitimi-onboarding-rehberi",
@@ -4616,7 +5442,9 @@
       "titleLen": 76,
       "descLen": 144,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/klinik-personel-verimliligi-artirma",
@@ -4631,7 +5459,9 @@
       "titleLen": 73,
       "descLen": 123,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/klinik-randevu-no-show-yonetimi",
@@ -4646,7 +5476,9 @@
       "titleLen": 74,
       "descLen": 134,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/klinik-whatsapp-business-hasta-iletisimi",
@@ -4661,7 +5493,9 @@
       "titleLen": 79,
       "descLen": 138,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 54,
+      "citeTop": true
     },
     {
       "path": "/blog/klinik-yerel-seo-il-ilce-bazli-strateji",
@@ -4676,7 +5510,9 @@
       "titleLen": 72,
       "descLen": 171,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/klinik-yonetim-yazilimi-secim-rehberi",
@@ -4691,7 +5527,9 @@
       "titleLen": 68,
       "descLen": 158,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/kucuk-isletme-ai-chatbot-lead",
@@ -4706,7 +5544,9 @@
       "titleLen": 59,
       "descLen": 147,
       "faq": true,
-      "ageDays": 311
+      "ageDays": 311,
+      "cite": 49,
+      "citeTop": false
     },
     {
       "path": "/blog/kucuk-isletme-ai-resepsiyonist-butce",
@@ -4721,7 +5561,9 @@
       "titleLen": 74,
       "descLen": 119,
       "faq": true,
-      "ageDays": 338
+      "ageDays": 338,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/kvkk-uyumlu-hasta-iletisimi-rehberi",
@@ -4736,7 +5578,9 @@
       "titleLen": 75,
       "descLen": 161,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/mesai-sonrasi-aramalar-ozel-klinik",
@@ -4751,7 +5595,9 @@
       "titleLen": 70,
       "descLen": 148,
       "faq": true,
-      "ageDays": 178
+      "ageDays": 178,
+      "cite": 64,
+      "citeTop": true
     },
     {
       "path": "/blog/missed-calls-cost-private-clinic",
@@ -4766,7 +5612,9 @@
       "titleLen": 74,
       "descLen": 135,
       "faq": true,
-      "ageDays": 223
+      "ageDays": 223,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/nefroloji-klinigi-hasta-yonetimi",
@@ -4781,7 +5629,9 @@
       "titleLen": 80,
       "descLen": 148,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 66,
+      "citeTop": true
     },
     {
       "path": "/blog/no-show-azaltma-ozel-klinik-rehberi",
@@ -4796,7 +5646,9 @@
       "titleLen": 66,
       "descLen": 168,
       "faq": true,
-      "ageDays": 178
+      "ageDays": 178,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/noroloji-klinigi-ai-resepsiyonist",
@@ -4811,7 +5663,9 @@
       "titleLen": 68,
       "descLen": 129,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/obezite-klinigi-metabolik-hastalik-yonetimi",
@@ -4826,7 +5680,9 @@
       "titleLen": 81,
       "descLen": 140,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/onkoloji-takip-klinigi-hasta-yonetimi",
@@ -4841,7 +5697,9 @@
       "titleLen": 69,
       "descLen": 145,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/ortopedi-klinigi-ai-resepsiyonist",
@@ -4856,7 +5714,9 @@
       "titleLen": 77,
       "descLen": 136,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 58,
+      "citeTop": true
     },
     {
       "path": "/blog/otomatik-randevu-ozel-klinik",
@@ -4871,7 +5731,9 @@
       "titleLen": 71,
       "descLen": 175,
       "faq": true,
-      "ageDays": 178
+      "ageDays": 178,
+      "cite": 59,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-acilis-kontrol-listesi",
@@ -4886,7 +5748,9 @@
       "titleLen": 64,
       "descLen": 132,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 48,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-bekleme-listesi-yonetimi",
@@ -4901,7 +5765,9 @@
       "titleLen": 76,
       "descLen": 107,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 43,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-buyume-stratejisi-2026",
@@ -4916,7 +5782,9 @@
       "titleLen": 74,
       "descLen": 159,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-crm-secim-rehberi",
@@ -4931,7 +5799,9 @@
       "titleLen": 61,
       "descLen": 127,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-dijital-donusum-rehberi",
@@ -4946,7 +5816,9 @@
       "titleLen": 68,
       "descLen": 122,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-email-pazarlama",
@@ -4961,7 +5833,9 @@
       "titleLen": 70,
       "descLen": 130,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-finansal-yonetim-rehberi",
@@ -4976,7 +5850,9 @@
       "titleLen": 76,
       "descLen": 137,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-fiyatlandirma-stratejisi",
@@ -4991,7 +5867,9 @@
       "titleLen": 80,
       "descLen": 137,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-gelir-artirma-stratejileri",
@@ -5006,7 +5884,9 @@
       "titleLen": 61,
       "descLen": 158,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-google-reklamlari-rehberi",
@@ -5021,7 +5901,9 @@
       "titleLen": 60,
       "descLen": 142,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-hasta-hizmetleri-kalitesi",
@@ -5036,7 +5918,9 @@
       "titleLen": 77,
       "descLen": 141,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-hasta-memnuniyeti-artirma",
@@ -5051,7 +5935,9 @@
       "titleLen": 72,
       "descLen": 146,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 66,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-hasta-sadakat-programi",
@@ -5066,7 +5952,9 @@
       "titleLen": 75,
       "descLen": 127,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-network-ve-referal-sistemi",
@@ -5081,7 +5969,9 @@
       "titleLen": 74,
       "descLen": 134,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-online-itibar-yonetimi",
@@ -5096,7 +5986,9 @@
       "titleLen": 77,
       "descLen": 140,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 41,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-randevu-sistemi-secim-rehberi",
@@ -5111,7 +6003,9 @@
       "titleLen": 72,
       "descLen": 161,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 66,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-referral-hasta-programi",
@@ -5126,7 +6020,9 @@
       "titleLen": 75,
       "descLen": 111,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 41,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-sigorta-anlasmasi-yonetimi",
@@ -5141,7 +6037,9 @@
       "titleLen": 85,
       "descLen": 121,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 43,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-sms-pazarlama-rehberi",
@@ -5156,7 +6054,9 @@
       "titleLen": 74,
       "descLen": 140,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-sosyal-kanit-stratejisi",
@@ -5171,7 +6071,9 @@
       "titleLen": 85,
       "descLen": 130,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 41,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-sosyal-medya-pazarlama",
@@ -5186,7 +6088,9 @@
       "titleLen": 68,
       "descLen": 127,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 51,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-sosyal-medya-yonetimi",
@@ -5201,7 +6105,9 @@
       "titleLen": 84,
       "descLen": 123,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 58,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-tele-tip-rehberi",
@@ -5216,7 +6122,9 @@
       "titleLen": 71,
       "descLen": 118,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-telemedicine-uzaktan-hasta-hizmetleri",
@@ -5231,7 +6139,9 @@
       "titleLen": 75,
       "descLen": 122,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 43,
+      "citeTop": false
     },
     {
       "path": "/blog/ozel-klinik-trendleri-2026",
@@ -5246,7 +6156,9 @@
       "titleLen": 79,
       "descLen": 128,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 56,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-web-sitesi-seo-rehberi",
@@ -5261,7 +6173,9 @@
       "titleLen": 74,
       "descLen": 138,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 62,
+      "citeTop": true
     },
     {
       "path": "/blog/ozel-klinik-whatsapp-pazarlama",
@@ -5276,7 +6190,9 @@
       "titleLen": 70,
       "descLen": 117,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 37,
+      "citeTop": false
     },
     {
       "path": "/blog/palyatif-bakim-merkezi-hasta-koordinasyonu",
@@ -5291,7 +6207,9 @@
       "titleLen": 77,
       "descLen": 132,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 54,
+      "citeTop": true
     },
     {
       "path": "/blog/patient-acquisition-private-clinic-uk",
@@ -5306,7 +6224,9 @@
       "titleLen": 75,
       "descLen": 193,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 48,
+      "citeTop": false
     },
     {
       "path": "/blog/patient-communication-private-clinic-uk",
@@ -5321,7 +6241,9 @@
       "titleLen": 73,
       "descLen": 144,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 67,
+      "citeTop": true
     },
     {
       "path": "/blog/pediatri-klinigi-ai-resepsiyonist",
@@ -5336,7 +6258,9 @@
       "titleLen": 80,
       "descLen": 121,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 54,
+      "citeTop": true
     },
     {
       "path": "/blog/plastik-cerrahi-klinigi-ai-resepsiyonist",
@@ -5351,7 +6275,9 @@
       "titleLen": 88,
       "descLen": 157,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 64,
+      "citeTop": true
     },
     {
       "path": "/blog/psikiyatri-klinigi-ai-resepsiyonist",
@@ -5366,7 +6292,9 @@
       "titleLen": 74,
       "descLen": 122,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/psikoloji-klinigi-ai-resepsiyonist",
@@ -5381,7 +6309,9 @@
       "titleLen": 81,
       "descLen": 148,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 58,
+      "citeTop": true
     },
     {
       "path": "/blog/randevu-hatirlatma-ozel-klinik-rehberi",
@@ -5396,7 +6326,9 @@
       "titleLen": 84,
       "descLen": 147,
       "faq": true,
-      "ageDays": 178
+      "ageDays": 178,
+      "cite": 45,
+      "citeTop": false
     },
     {
       "path": "/blog/reduce-admin-costs-private-clinic-uk",
@@ -5411,7 +6343,9 @@
       "titleLen": 68,
       "descLen": 195,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 63,
+      "citeTop": true
     },
     {
       "path": "/blog/reduce-no-shows-private-clinic",
@@ -5426,7 +6360,9 @@
       "titleLen": 65,
       "descLen": 155,
       "faq": true,
-      "ageDays": 223
+      "ageDays": 223,
+      "cite": 59,
+      "citeTop": true
     },
     {
       "path": "/blog/romatoloji-klinigi-ai-resepsiyonist",
@@ -5441,7 +6377,9 @@
       "titleLen": 84,
       "descLen": 154,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/sac-ekimi-uluslararasi-hasta-donusumu",
@@ -5456,7 +6394,9 @@
       "titleLen": 79,
       "descLen": 143,
       "faq": true,
-      "ageDays": 178
+      "ageDays": 178,
+      "cite": 55,
+      "citeTop": false
     },
     {
       "path": "/blog/saglik-turizmi-ai-resepsiyonist",
@@ -5471,7 +6411,9 @@
       "titleLen": 56,
       "descLen": 166,
       "faq": true,
-      "ageDays": 185
+      "ageDays": 185,
+      "cite": 70,
+      "citeTop": true
     },
     {
       "path": "/blog/saglik-turizmi-yabanci-hasta-yonetimi",
@@ -5486,7 +6428,9 @@
       "titleLen": 80,
       "descLen": 126,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 51,
+      "citeTop": false
     },
     {
       "path": "/blog/sesli-ai-ozel-klinik-rehberi-2026",
@@ -5501,7 +6445,9 @@
       "titleLen": 60,
       "descLen": 178,
       "faq": true,
-      "ageDays": 178
+      "ageDays": 178,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/spor-hekimligi-klinigi-ai-resepsiyonist",
@@ -5516,7 +6462,9 @@
       "titleLen": 86,
       "descLen": 142,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 54,
+      "citeTop": true
     },
     {
       "path": "/blog/turkiye-klinikler-icin-ai-cozumleri-2026",
@@ -5531,7 +6479,9 @@
       "titleLen": 74,
       "descLen": 175,
       "faq": true,
-      "ageDays": 185
+      "ageDays": 185,
+      "cite": 62,
+      "citeTop": false
     },
     {
       "path": "/blog/turkiye-saglik-turizmi-strateji-2026",
@@ -5546,7 +6496,9 @@
       "titleLen": 78,
       "descLen": 128,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 43,
+      "citeTop": false
     },
     {
       "path": "/blog/uroloji-klinigi-ai-resepsiyonist",
@@ -5561,7 +6513,9 @@
       "titleLen": 67,
       "descLen": 122,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/uyku-bozuklugu-klinigi-polisomnografi-yonetimi",
@@ -5576,7 +6530,9 @@
       "titleLen": 86,
       "descLen": 118,
       "faq": true,
-      "ageDays": 174
+      "ageDays": 174,
+      "cite": 55,
+      "citeTop": true
     },
     {
       "path": "/blog/veteriner-klinigi-ai-resepsiyonist",
@@ -5591,7 +6547,9 @@
       "titleLen": 77,
       "descLen": 116,
       "faq": true,
-      "ageDays": 175
+      "ageDays": 175,
+      "cite": 47,
+      "citeTop": false
     },
     {
       "path": "/blog/voice-ai-private-clinic-guide-2026",
@@ -5606,7 +6564,9 @@
       "titleLen": 65,
       "descLen": 202,
       "faq": true,
-      "ageDays": 222
+      "ageDays": 222,
+      "cite": 54,
+      "citeTop": false
     },
     {
       "path": "/blog/whatsapp-ai-chatbot-lead",
@@ -5621,7 +6581,9 @@
       "titleLen": 79,
       "descLen": 125,
       "faq": true,
-      "ageDays": 306
+      "ageDays": 306,
+      "cite": 51,
+      "citeTop": true
     }
   ]
 }

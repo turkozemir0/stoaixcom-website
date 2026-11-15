@@ -3,6 +3,9 @@
 import { clickDepth, inboundCounts } from './site.mjs';
 import { infoGain, answerFirst, meta } from './content.mjs';
 import { coverage } from './fanout.mjs';
+import { citability } from './citability.mjs';
+import { snapshot, drift, hreflangIssues, eeat, orgSameAs } from './technical.mjs';
+import { crawlerAccess } from './robots.mjs';
 
 export const MAX_DEPTH = 3;
 const TITLE_MAX = 65;
@@ -32,11 +35,13 @@ export function content(pages, moneyPaths = new Set(), today = new Date()) {
     if (m.noindex) continue;
     const ig = infoGain(html);
     const af = answerFirst(html);
+    const cite = citability(html);
     const ageDays = m.modified ? Math.floor((today - new Date(m.modified)) / 86400000) : null;
     rows.push({
       path, money: moneyPaths.has(path), ...ig,
       answerQs: af.total, answerMisses: af.misses.length,
       titleLen: m.title.length, descLen: m.desc.length, faq: m.hasFaqSchema, ageDays,
+      cite: cite.best, citeTop: cite.bestInTop,
     });
   }
   const money = rows.filter((r) => r.money);
@@ -46,6 +51,9 @@ export function content(pages, moneyPaths = new Set(), today = new Date()) {
     moneyAvgScore: avg(money.map((r) => r.score)),
     withFirstHand: rows.filter((r) => r.firstHand > 0).length,
     lowestMoney: [...money].sort((a, b) => a.score - b.score).slice(0, 10),
+    citeAvgMoney: avg(money.map((r) => r.cite)),
+    lowestCite: [...money].sort((a, b) => a.cite - b.cite).slice(0, 10),
+    citeNotInTop: money.filter((r) => !r.citeTop).length,
     answerFirstMisses: rows.filter((r) => r.answerMisses > 0).sort((a, b) => b.answerMisses - a.answerMisses).slice(0, 10),
     longTitles: rows.filter((r) => r.titleLen > TITLE_MAX).map((r) => r.path),
     longDescs: rows.filter((r) => r.descLen > DESC_MAX).map((r) => r.path),
@@ -60,6 +68,33 @@ export function clusters(articles, clusterOf, fallback) {
     sizes[c] = (sizes[c] || 0) + 1;
   }
   return { sizes, unassigned: articles.filter((a) => clusterOf(a.slug) === fallback).map((a) => a.path) };
+}
+
+/* Teknik: tarayıcılar, hreflang, E-E-A-T, drift. prevSnapshot geçen haftanın fotoğrafı. */
+export function technical(pages, robotsText, articlePaths, prevSnapshot = null) {
+  const snaps = Object.fromEntries([...pages].map(([p, { html }]) => [p, snapshot(html)]));
+  const posts = articlePaths.filter((p) => pages.has(p)).map((p) => ({ path: p, ...eeat(pages.get(p).html) }));
+  const changes = prevSnapshot ? drift(prevSnapshot, snaps) : [];
+  return {
+    snapshot: snaps,
+    robots: crawlerAccess(robotsText),
+    hreflang: hreflangIssues(snaps).filter((i) => !i.minor),
+    hreflangNoDefault: hreflangIssues(snaps).filter((i) => i.minor).length,
+    eeat: {
+      posts: posts.length,
+      noAuthor: posts.filter((p) => !p.author).map((p) => p.path),
+      noAuthorUrl: posts.filter((p) => p.author && !p.authorUrl).length,
+      noVisibleDate: posts.filter((p) => !p.visibleDate).map((p) => p.path),
+      badDateOrder: posts.filter((p) => !p.dateOrderOk).map((p) => p.path),
+      orgSameAs: pages.has('/') ? orgSameAs(pages.get('/').html) : false,
+    },
+    drift: {
+      hasBaseline: Boolean(prevSnapshot),
+      critical: changes.filter((c) => c.level === 'CRITICAL'),
+      warning: changes.filter((c) => c.level === 'WARNING'),
+      info: changes.filter((c) => c.level === 'INFO').length,
+    },
+  };
 }
 
 export const fanout = (entries, pages) => entries.map((e) => coverage(e, pages));
