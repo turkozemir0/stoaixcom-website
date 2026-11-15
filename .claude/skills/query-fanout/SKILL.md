@@ -21,4 +21,9 @@ AI arama senin sorgunu çalıştırmaz. Sorgunun arkasındaki soruları çalış
 - Cevap tek sayfaya sığmıyorsa yeni sayfa açma kararını PR'da öner, kendin açma (topical-authority).
 - Kümeyi bağla: cevap başka bir sayfaya derinleşiyorsa ona açıklayıcı anchor ile link ver.
 
+## Niyet tipi (SXO)
+Fan çıkarırken her alt sorunun hangi sayfa türünü istediğini not et. "Fiyatı ne kadar" sorusu fiyat bloğu ya da tablo ister. "Nasıl" sorusu adım listesi, "X mi Y mi" sorusu karşılaştırma tablosu ister. Cevabı doğru biçimde vermek, cevabı vermek kadar önemlidir.
+
+Alıcı sorularının AI motorlarında nasıl göründüğünü ölçmek ayrı bir iştir. Bkz. `docs/seo-agent/AI-VISIBILITY.md`.
+
 llms.txt ya da "AI işaretlemesi" peşine düşme. Google'ın kendi cümlesi: AI Overviews için ek gereksinim yok. İyi SEO yeter, ama sorunun tamamına yönelik olmalı.

@@ -15,6 +15,7 @@
     "vsl": "node tools/build-vsl.mjs",
     "check-links": "node tools/check-links.mjs",
     "seo:audit": "node tools/seo-agent/audit.mjs",
+    "seo:gate": "node tools/seo-agent/gate.mjs",
     "test:seo": "node --test tools/seo-agent/test/*.test.mjs"
   },
   "devDependencies": {

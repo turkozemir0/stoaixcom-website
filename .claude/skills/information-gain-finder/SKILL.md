@@ -22,6 +22,22 @@ Sayfa yolu + hedef sorgu. İçerik kaynağı: ürün sayfası ise `tools/seo/pro
 4. Eklemeleri yaz. Her soru başlığında ilk paragraf ≤ 60 kelime, doğrudan cevap (answer-first).
 5. Önce/sonra skorunu raporla: `npm run seo:audit -- --stdout`. Skor bir pusula, hedef değil. Skoru yükseltmek için sayı doldurma.
 
+## Alıntılanabilir pasaj (GEO)
+Raporda "en düşük alıntılanabilirlik" tablosu var. Bir pasajı AI motorunun alıntılayabileceği hâle getirmek için:
+- **İlk cümle tanım olsun.** Örnek: "X, Y için Z yapan bir yazılımdır."
+- **Uzunluk** 134–167 kelime arası olsun.
+- **Zamirle başlama.** Pasaj "Bu", "O" ya da "Bunlar" ile açılmamalı. Pasaj tek başına okunduğunda anlaşılır olmalı.
+- **Somut bilgi ver.** En az bir rakam ya da süreç adımı olsun. Kaynak varsa adını ver.
+- **Yer:** En iyi pasaj sayfanın ilk %30'unda olmalı. Alıntıların çoğu oradan gelir.
+- **Karşılaştırma tabloyla yapılır.** Tablo, AI'ın en kolay çıkardığı biçimdir.
+
+## Yasak kalıplar (kapı yakalar)
+- Dolgu cümleler: "Günümüzde…", "dijital çağda…".
+- Kanıtsız üstünlük iddiaları: "en iyi", "lider", "1 numara".
+- Kaynaksız genellemeler: "uzmanlara göre", "araştırmalar gösteriyor".
+
+`npm run seo:gate` bu kalıpları bulur.
+
 ## Puan (PR açıklamasına)
 Unique / Specific / Authentic: her biri 1–5 + tek cümle gerekçe.
 
