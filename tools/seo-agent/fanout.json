@@ -1,0 +1,105 @@
+{
+  "_note": "Ana sorgu → AI'ın arkasında araştırdığı alt sorular. İlk liste elle yazıldı; asistan her ay ChatGPT/Perplexity'ye 'If someone asks [query], what sub-questions would you research before answering?' diye sorup listeyi günceller. match: alt sorunun cevaplanmış sayılması için kümenin metninde geçmesi gereken desenler (hepsi).",
+  "entries": [
+    {
+      "query": "yapay zeka resepsiyonist", "market": "tr",
+      "pages": ["/yapay-zeka-resepsiyonist", "/ai-resepsiyonist-nedir", "/ai-resepsiyonist-vs-insan-sekreter", "/ai-resepsiyonist-vs-cagri-merkezi"],
+      "fan": [
+        { "q": "Yapay zekâ resepsiyonist nedir, nasıl çalışır?", "match": ["resepsiyonist", "nedir"] },
+        { "q": "Ne kadar tutar?", "match": ["\\$\\s?\\d{3}|aylık"] },
+        { "q": "İnsan sekreterin yerini alır mı?", "match": ["sekreter|resepsiyon ekib"] },
+        { "q": "Hasta robotla konuştuğunu anlar mı / tepkisi ne olur?", "match": ["hasta(lar)?.{0,40}(fark|anla|tepki)"] },
+        { "q": "KVKK'ya uygun mu, kayıtlar nerede tutulur?", "match": ["kvkk"] },
+        { "q": "Mevcut telefon hattına nasıl bağlanır?", "match": ["yönlendir|hat"] },
+        { "q": "Takvime/randevu sistemine yazabilir mi?", "match": ["takvim"] },
+        { "q": "Kurulum ne kadar sürer?", "match": ["kurulum.{0,60}(gün|hafta|saat)"] },
+        { "q": "Hangi dilleri konuşur?", "match": ["dil(de|inde)|ingilizce|arapça"] },
+        { "q": "Cevaplayamadığı soruda ne olur?", "match": ["devr|aktar"] }
+      ]
+    },
+    {
+      "query": "klinik crm", "market": "tr",
+      "pages": ["/klinik-crm", "/dis-klinigi-crm", "/sac-ekimi-crm", "/saglik-turizmi-crm"],
+      "fan": [
+        { "q": "Klinik CRM nedir, hasta yönetim yazılımından farkı ne?", "match": ["crm", "(hbys|hasta yönetim|yazılım)"] },
+        { "q": "Fiyatı ne kadar?", "match": ["ücretsiz|\\$\\s?\\d"] },
+        { "q": "WhatsApp ve Instagram mesajları CRM'e düşer mi?", "match": ["whatsapp", "instagram"] },
+        { "q": "Reklamdan gelen lead nereden geldi görülür mü?", "match": ["kaynak|kampanya"] },
+        { "q": "Excel'den / eski sistemden veri taşınır mı?", "match": ["excel|taşı|içe aktar"] },
+        { "q": "Ekip içinde lead nasıl paylaştırılır?", "match": ["ata(n|ma)|paylaştır|sorumlu"] },
+        { "q": "Raporlama: hangi metrikler izlenir?", "match": ["rapor"] }
+      ]
+    },
+    {
+      "query": "hasta adayı takibi", "market": "tr",
+      "pages": ["/hasta-adayi-takibi", "/yapay-zeka-satis-otomasyonu"],
+      "fan": [
+        { "q": "Fiyat sorup kaybolan hasta adayına ne zaman ve kaç kez yazılmalı?", "match": ["(kaç|gün|saat).{0,80}(mesaj|yaz|ara)"] },
+        { "q": "İlk yanıt hızı neden önemli?", "match": ["dakika|hız"] },
+        { "q": "Takip mesajı örnekleri", "match": ["örnek|mesaj"] },
+        { "q": "Ne zaman takip bırakılmalı?", "match": ["bırak|durdur|hayır diyen"] },
+        { "q": "Otomatik takip spam sayılır mı / izin gerekir mi?", "match": ["izin|onay|spam|iys"] },
+        { "q": "Takip sonuçları nasıl ölçülür?", "match": ["dönüş|oran|ölç"] }
+      ]
+    },
+    {
+      "query": "whatsapp yapay zeka asistanı klinik", "market": "tr",
+      "pages": ["/whatsapp-yapay-zeka-asistani", "/whatsapp-otomasyonu", "/instagram-dm-otomasyonu"],
+      "fan": [
+        { "q": "WhatsApp Business API mi gerekir, normal hesap olur mu?", "match": ["business api|whatsapp business"] },
+        { "q": "Meta onayı / şablon mesaj kuralları neler?", "match": ["şablon|meta onay|24 saat"] },
+        { "q": "Fiyat soran hastaya ne cevap verir?", "match": ["fiyat"] },
+        { "q": "Fotoğraf ve ses kaydını anlar mı?", "match": ["fotoğraf|görsel|sesli mesaj|ses kaydı"] },
+        { "q": "İnsan devri nasıl olur?", "match": ["devr|ekibinize"] },
+        { "q": "Ücreti ne kadar?", "match": ["\\$\\s?\\d|aylık"] }
+      ]
+    },
+    {
+      "query": "randevu hatırlatma no-show", "market": "tr",
+      "pages": ["/randevu-hatirlatma", "/randevu-otomasyonu"],
+      "fan": [
+        { "q": "No-show oranı nasıl düşürülür?", "match": ["no-show|gelmeme"] },
+        { "q": "Hatırlatma ne zaman gönderilmeli (24 saat / 2 saat)?", "match": ["(\\d+)\\s?(saat|gün) önce"] },
+        { "q": "SMS mi WhatsApp mı arama mı?", "match": ["sms", "whatsapp"] },
+        { "q": "İptal edilen saat nasıl yeniden doldurulur?", "match": ["boş (saat|slot)|yeniden doldur|bekleme listesi"] },
+        { "q": "Hasta teyit etmezse ne olur?", "match": ["teyit"] }
+      ]
+    },
+    {
+      "query": "ai receptionist for clinics", "market": "en",
+      "pages": ["/en/ai-receptionist", "/what-is-ai-receptionist-clinic", "/ai-receptionist-vs-human-receptionist-uk", "/ai-receptionist-vs-answering-service-uk"],
+      "fan": [
+        { "q": "What is an AI receptionist and how does it work?", "match": ["ai receptionist", "(how it works|what is)"] },
+        { "q": "How much does an AI receptionist cost?", "match": ["\\$\\s?\\d{3}|per month|/mo"] },
+        { "q": "Is it GDPR compliant / where is call data stored?", "match": ["gdpr|uk gdpr"] },
+        { "q": "Can it book into my practice management system?", "match": ["calendar|practice management|pms"] },
+        { "q": "Will patients know they're talking to AI?", "match": ["patients?.{0,60}(know|tell|notice|disclos)"] },
+        { "q": "AI receptionist vs answering service?", "match": ["answering service"] },
+        { "q": "What happens with emergencies or clinical questions?", "match": ["emergenc|999|clinical"] },
+        { "q": "How long does setup take?", "match": ["set ?up.{0,60}(day|week|hour)"] }
+      ]
+    },
+    {
+      "query": "reduce no shows private clinic", "market": "en",
+      "pages": ["/en/appointment-reminders", "/reduce-no-shows-private-clinic-uk"],
+      "fan": [
+        { "q": "What is a typical no-show rate for private clinics?", "match": ["no-show rate|\\d+\\s?%"] },
+        { "q": "When should reminders be sent?", "match": ["(\\d+)\\s?(hours?|days?) before"] },
+        { "q": "SMS, WhatsApp or phone call?", "match": ["sms", "whatsapp"] },
+        { "q": "How do you refill cancelled slots?", "match": ["waitlist|wait list|refill|fill the slot|cancelled slot"] },
+        { "q": "Should clinics charge deposits / no-show fees?", "match": ["deposit|fee"] }
+      ]
+    },
+    {
+      "query": "patient reactivation", "market": "en",
+      "pages": ["/en/patient-reactivation"],
+      "fan": [
+        { "q": "What is database reactivation for clinics?", "match": ["reactivation"] },
+        { "q": "How old can a lead be and still convert?", "match": ["(months?|years?) (old|ago)"] },
+        { "q": "What message do you send to an old enquiry?", "match": ["message"] },
+        { "q": "Is it allowed under PECR/GDPR to contact old leads?", "match": ["pecr|gdpr|consent"] },
+        { "q": "How is success measured?", "match": ["booked|consultation"] }
+      ]
+    }
+  ]
+}

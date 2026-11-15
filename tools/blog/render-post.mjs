@@ -68,7 +68,7 @@ ${alternates.map((a) => `<link rel="alternate" hreflang="${esc(a.hreflang)}" hre
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${lang === 'tr' ? '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>' : ''}
 <link rel="stylesheet" href="/css/v2.css?v=7">
 <link rel="stylesheet" href="/css/company.css?v=1">
-<link rel="stylesheet" href="/css/blog.css?v=1">${sheets.map((h) => `\n<link rel="stylesheet" href="${h}">`).join('')}${extraCss ? `\n<style>\n${extraCss}\n</style>` : ''}
+<link rel="stylesheet" href="/css/blog.css?v=2">${sheets.map((h) => `\n<link rel="stylesheet" href="${h}">`).join('')}${extraCss ? `\n<style>\n${extraCss}\n</style>` : ''}
 ${ld.map((x) => `\n<script type="application/ld+json">\n${ldJson(x)}\n</script>`).join('')}${ANALYTICS_SNIPPET}
 </head>
 <body class="theme-locked">

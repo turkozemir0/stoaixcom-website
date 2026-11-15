@@ -15,19 +15,20 @@ export const LINKS = {
      Tanımlar geri almayı kolaylaştırmak için duruyor; şu an hiçbir yerde kullanılmıyor. */
   console: '/signup',
   login: 'https://platform.stoaix.com/login',
-  /* Footer yalnızca güncel tasarıma uyan hedeflere bağlanır. Çözümler sütunu
-     bilinçli olarak linksizdir (null): eski tasarımlı dikey sayfalara gitmesin.
+  /* Footer yalnızca güncel tasarıma uyan hedeflere bağlanır; karşılığı olmayan
+     çözüm satırı linksiz kalır (null). Blog ve Kaynaklar burada: ana sayfadan
+     3 tıkta ulaşılmayan yazı kalmasın (SEO asistanı tıklama derinliğini ölçer).
      '#' ile başlayanlar ana sayfa çapasıdır; alt sayfada köke göre çözülür. */
   footer: {
     en: [
       ['#specification', '#revenue-calculator', '#integrations', '#governance'],
-      [null, null, null, null, null, null, null, null],
-      ['/en/about', '/en/contact'],
+      ['/ai-receptionist-dental-clinic-uk', '/ai-receptionist-hair-transplant-clinic', '/ai-receptionist-aesthetic-clinic-uk', null, '/ai-receptionist-dermatology-clinic-uk', null, '/ai-receptionist-physiotherapy-clinic-uk', null],
+      ['/en/about', '/en/contact', '/blog', '/clinic-resources'],
     ],
     tr: [
       ['#specification', '#revenue-calculator', '#integrations', '#governance'],
-      [null, null, null, null, null, null, null, null],
-      ['/about', '/contact'],
+      ['/dis-klinigi-icin-ai', '/sac-ekimi-klinigi-icin-ai', '/estetik-klinik-icin-ai', null, null, null, null, null],
+      ['/about', '/contact', '/blog', '/klinik-kaynaklari'],
     ],
   },
 };
@@ -183,7 +184,7 @@ export const CONTENT = {
     footerCols: [
       { h: 'Platform', items: ['AI agents', 'Growth', 'Integrations', 'Security'] },
       { h: 'Solutions', items: ['Dental clinics', 'Hair transplant clinics', 'Aesthetic surgery', 'Medical aesthetics', 'Dermatology', 'Ophthalmology', 'Physiotherapy', 'Multi-site clinic groups'] },
-      { h: 'Company', items: ['About', 'Contact'] },
+      { h: 'Company', items: ['About', 'Contact', 'Blog', 'Resources'] },
     ],
     copyright: '© 2026 STOAIX Ltd. — London, UK',
     skip: 'Skip to main content', menu: 'Menu', close: 'Close',
@@ -338,7 +339,7 @@ export const CONTENT = {
     footerCols: [
       { h: 'Platform', items: ['AI asistanlar', 'Büyüme', 'Entegrasyonlar', 'Güvenlik'] },
       { h: 'Çözümler', items: ['Diş klinikleri', 'Saç ekimi klinikleri', 'Estetik cerrahi', 'Medikal estetik', 'Dermatoloji', 'Göz klinikleri', 'Fizyoterapi', 'Çok şubeli klinik grupları'] },
-      { h: 'Şirket', items: ['Hakkımızda', 'İletişim'] },
+      { h: 'Şirket', items: ['Hakkımızda', 'İletişim', 'Blog', 'Kaynaklar'] },
     ],
     copyright: '© 2026 STOAIX Ltd. — Londra, Birleşik Krallık',
     skip: 'Ana içeriğe geç', menu: 'Menü', close: 'Kapat',
