@@ -9,7 +9,7 @@ function sha256(value) {
 }
 
 export async function sendEvent({
-  eventName, email, firstName, lastName,
+  eventName, email, phone, firstName, lastName,
   value, currency = 'USD', sourceUrl, eventId,
   clientIp, clientUserAgent, fbc, fbp, externalId,
   contentName, contentCategory, contentIds,
@@ -22,6 +22,8 @@ export async function sendEvent({
 
   const userData = {
     em: email ? [sha256(email)] : undefined,
+    // Meta telefonu ülke koduyla, yalnız rakam olarak bekliyor (E.164'ün '+'sız hali).
+    ph: phone ? [sha256(String(phone).replace(/\D/g, ''))] : undefined,
     fn: firstName ? [sha256(firstName)] : undefined,
     ln: lastName ? [sha256(lastName)] : undefined,
     // 🔑 Anonim olaylarda (ViewContent) e-posta yok; `external_id` o

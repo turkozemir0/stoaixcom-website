@@ -1,5 +1,7 @@
 import { createClient } from '@supabase/supabase-js'
 import { Resend } from 'resend'
+import { parsePhoneNumberFromString } from 'libphonenumber-js/max'
+import { promises as dns } from 'dns'
 import { sendEvent, getClientIp, getUserAgent } from '../_lib/fb-capi.js'
 
 const supabase = createClient(
@@ -35,7 +37,8 @@ export default async function handler(req, res) {
     case 'login':           return handleLogin(req, res)
     case 'forgot-password': return handleForgotPassword(req, res)
     case 'capi':            return handleCapi(req, res)
-    default:                return res.status(404).json({ error: 'Not found' })
+    case 'demo-lead':       return handleDemoLead(req, res)
+    default:               return res.status(404).json({ error: 'Not found' })
   }
 }
 
@@ -377,4 +380,180 @@ async function handleCapi(req, res) {
 
   // sendBeacon yanıtı okumuyor; gövdesiz 204 en ucuzu.
   return res.status(204).end()
+}
+
+// ── demo-lead (site geneli "sitenize özel demo" popup'ı) ─────
+//
+// 🔑 NEDEN BU DOSYADA: fonksiyon sınırı 12/12 (bkz. capi). Popup
+//   `js/demo-popup.js` içinde; iki adımda web sitesi + cep numarası alır.
+//
+// 🔑 VERİTABANI YOK (sahip kararı): lead yalnızca düz metin e-posta
+//   olarak ekibe gider. Gönderim başarısız olursa lead kaybolmasın diye
+//   tüm alanlar önce Vercel loguna yazılıyor.
+//
+// Numara kontrolü libphonenumber'ın "max" metaverisiyle yapılır: ülkenin
+// numaralandırma planına uymayan, cep hattı olmayan ya da 5555555555 gibi
+// uydurma desenler reddedilir. Hattın operatörde AKTİF olduğunu
+// söyleyemez — bu bilinçli bir sınır (HLR/OTP sürtünme ve maliyet getirir).
+const DEMO_LEAD_TO = ['emir@stoaix.co.uk', 'ata@stoaix.co.uk']
+const DEMO_COUNTRIES = new Set(['TR', 'GB', 'DE', 'AU', 'IE', 'US', 'CA', 'NL', 'FR', 'AE', 'SA', 'AZ', 'CY', 'AT', 'CH'])
+const DEMO_MOBILE_TYPES = new Set(['MOBILE', 'FIXED_LINE_OR_MOBILE'])
+// Canlı alan adları + önizleme dağıtımları + yerel test.
+const DEMO_ORIGIN_RE = /^(https:\/\/(www\.)?stoaix\.com|https:\/\/[a-z0-9-]+\.vercel\.app|http:\/\/(localhost|127\.0\.0\.1)(:\d+)?)$/
+
+// Sıcak örnek boyunca yaşayan basit sınırlar (Fluid Compute örneği yeniden
+// kullanıyor). Kesin değil ama aynı tarayıcıdan art arda tıklamayı ve
+// aynı numaranın ekibe iki kez düşmesini eler.
+const demoHits = new Map()   // ip → [zaman damgaları]
+const demoSeen = new Map()   // e164 → zaman damgası
+
+function demoRateLimited(ip) {
+  const now = Date.now()
+  const list = (demoHits.get(ip) || []).filter((t) => now - t < 10 * 60 * 1000)
+  list.push(now)
+  demoHits.set(ip, list)
+  if (demoHits.size > 5000) demoHits.clear()
+  return list.length > 8
+}
+
+export function normalizeWebsite(raw) {
+  let s = String(raw || '').trim().toLowerCase().replace(/\s+/g, '')
+  if (!s || s.length > 200) return null
+  if (!/^https?:\/\//.test(s)) s = 'https://' + s
+  try {
+    const u = new URL(s)
+    const host = u.hostname.replace(/^www\./, '')
+    // En az bir nokta ve harfli bir uzantı (klinik.com, x.com.tr, ...).
+    if (!/^([a-z0-9-]+\.)+[a-z¡-￿]{2,}$/i.test(host)) return null
+    return { host, url: u.origin + (u.pathname === '/' ? '' : u.pathname) }
+  } catch {
+    return null
+  }
+}
+
+// Formata uyan ama elle uydurulmuş numaralar: tek/iki rakamın tekrarı
+// (5555555555, 5050505050) veya abone kısmının düz sırası (…1234567).
+function looksFake(nationalNumber) {
+  const d = String(nationalNumber)
+  if (new Set(d).size <= 2) return true
+  if (/(\d)\1{6,}/.test(d)) return true
+  const tail = d.slice(-7)
+  return '0123456789'.includes(tail) || '9876543210'.includes(tail)
+}
+
+export function checkDemoPhone(raw, country) {
+  let s = String(raw || '').trim()
+  if (s.startsWith('00')) s = '+' + s.slice(2)
+  const digits = s.replace(/\D/g, '')
+  if (digits.length < 6 || digits.length > 16) return { error: 'phone_invalid' }
+  const cc = DEMO_COUNTRIES.has(country) ? country : 'GB'
+  const p = parsePhoneNumberFromString(s, s.startsWith('+') ? undefined : cc)
+  if (!p || !p.isValid() || looksFake(p.nationalNumber)) return { error: 'phone_invalid' }
+  if (!DEMO_MOBILE_TYPES.has(p.getType())) return { error: 'phone_not_mobile' }
+  return { e164: p.number, intl: p.formatInternational(), country: p.country }
+}
+
+async function handleDemoLead(req, res) {
+  const origin = req.headers.origin
+  if (origin && !DEMO_ORIGIN_RE.test(origin)) {
+    return res.status(403).json({ error: 'forbidden' })
+  }
+
+  const b = req.body || {}
+  // Bal küpü alanı (görünmez) doluysa ya da form 2 saniyeden kısa sürede
+  // gönderildiyse bottur: başarı dönüp sessizce at, ipucu verme.
+  if (b.company_url || Number(b.elapsed) < 2000) {
+    return res.status(200).json({ ok: true })
+  }
+
+  const ip = getClientIp(req) || 'unknown'
+  if (demoRateLimited(ip)) return res.status(429).json({ error: 'rate_limited' })
+
+  const site = normalizeWebsite(b.website)
+  if (!site) return res.status(400).json({ error: 'website_invalid' })
+
+  const phone = checkDemoPhone(b.phone, String(b.country || '').toUpperCase())
+  if (phone.error) return res.status(400).json({ error: phone.error })
+
+  const lang = ['tr', 'en', 'de'].includes(b.lang) ? b.lang : 'en'
+  const page = b.page ? String(b.page).slice(0, 300) : '-'
+  const referrer = b.referrer ? String(b.referrer).slice(0, 300) : '-'
+
+  // Alan adı DNS'te yoksa lead yine geçer (yazım hatası olabilir, numara
+  // elimizde) ama ekip bunu e-postada görür.
+  let dnsOk = true
+  try {
+    await Promise.race([
+      dns.lookup(site.host),
+      new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 1500)),
+    ])
+  } catch {
+    dnsOk = false
+  }
+
+  const lead = {
+    website: site.url,
+    host: site.host,
+    phone: phone.e164,
+    phoneCountry: phone.country,
+    lang,
+    page,
+    referrer,
+    dnsOk,
+    ip,
+    at: new Date().toISOString(),
+  }
+  console.log('[demo-lead]', JSON.stringify(lead))
+
+  const prev = demoSeen.get(phone.e164)
+  const duplicate = prev && Date.now() - prev < 30 * 60 * 1000
+  demoSeen.set(phone.e164, Date.now())
+  if (demoSeen.size > 5000) demoSeen.clear()
+
+  if (!duplicate) {
+    const when = new Date().toLocaleString('tr-TR', { timeZone: 'Europe/Istanbul' })
+    const text = [
+      'Yeni demo talebi',
+      '',
+      `Web sitesi: ${site.url}${dnsOk ? '' : '  (UYARI: alan adı DNS\'te bulunamadı, yazım hatası olabilir)'}`,
+      `Telefon:    ${phone.intl} (${phone.country})`,
+      `WhatsApp:   https://wa.me/${phone.e164.slice(1)}`,
+      '',
+      `Dil:        ${lang}`,
+      `Sayfa:      ${page}`,
+      `Önceki:     ${referrer}`,
+      `Zaman:      ${when} (TR)`,
+    ].join('\n')
+
+    try {
+      const { error } = await resend.emails.send({
+        from: 'STOAIX <noreply@stoaix.com>',
+        to: DEMO_LEAD_TO,
+        subject: `Demo talebi: ${site.host}`,
+        text,
+      })
+      if (error) console.error('[demo-lead] resend error:', error)
+    } catch (err) {
+      console.error('[demo-lead] resend throw:', err)
+    }
+  }
+
+  try {
+    await sendEvent({
+      eventName: 'Lead',
+      eventId: b.eventId ? String(b.eventId).slice(0, 80) : undefined,
+      phone: phone.e164,
+      sourceUrl: page !== '-' ? page : 'https://stoaix.com/',
+      contentName: 'demo-popup',
+      currency: lang === 'tr' ? 'USD' : 'GBP',
+      fbc: b.fbc ? String(b.fbc).slice(0, 200) : undefined,
+      fbp: b.fbp ? String(b.fbp).slice(0, 200) : undefined,
+      clientIp: getClientIp(req),
+      clientUserAgent: getUserAgent(req),
+    })
+  } catch (err) {
+    console.error('[demo-lead] capi error:', err)
+  }
+
+  return res.status(200).json({ ok: true, phone: phone.intl })
 }

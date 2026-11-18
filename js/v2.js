@@ -331,4 +331,17 @@
       rz = setTimeout(drawMap, 200);
     });
   })();
+
+  /* ─── Demo popup ────────────────────────────────────────────────
+     Ayrı dosyada; sayfa yüklendikten sonra çekilir ki ilk boyamayla
+     yarışmasın. Hangi sayfada/ne zaman açılacağına dosya kendisi karar
+     verir. demo-popup.js değişince buradaki ?v= numarasını artır. */
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      var s = document.createElement('script');
+      s.src = '/js/demo-popup.js?v=1';
+      s.async = true;
+      document.body.appendChild(s);
+    }, 1500);
+  });
 })();
