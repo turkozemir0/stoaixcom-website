@@ -4,8 +4,10 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 import { CONTENT } from '../v2-content.mjs';
-import { esc, header, ctaSection, siteFooter, refreshTicker } from '../v2-chrome.mjs';
+import { esc, header, ctaSection, siteFooter, footer, refreshTicker } from '../v2-chrome.mjs';
 import { ANALYTICS_SNIPPET } from '../site-analytics.mjs';
+import { MARKETS, uiFor } from '../seo/markets.mjs';
+import { PRODUCTS, contentFor, pathFor } from '../seo/catalog.mjs';
 
 export const ORIGIN = 'https://stoaix.com';
 export const GENERATOR = 'stoaix-blog-v2';
@@ -20,10 +22,19 @@ export const COPY = {
     blog: 'Blog', home: 'Home', crumbs: 'Breadcrumb', readTime: (n) => `${n} min read`,
     published: 'Published', updated: 'Updated', locale: 'en-GB',
   },
+  de: {
+    blog: 'Ratgeber', home: 'Startseite', crumbs: 'Brotkrümelnavigation', readTime: (n) => `${n} Min. Lesezeit`,
+    published: 'Veröffentlicht', updated: 'Aktualisiert', locale: 'de-DE',
+  },
 };
 
+/* Almanca yazılar: ana sitenin DE sürümü yok; nav/footer DE pazar sayfalarıyla aynı (markets.mjs) */
+export const langOf = (html) => (/<html lang="de/.test(html) ? 'de' : /<html lang="en/.test(html) ? 'en' : 'tr');
+const chromeFor = (lang) => (lang === 'de' ? { ...CONTENT.en, ...MARKETS.de.chrome } : CONTENT[lang]);
+const ogImage = (lang) => `${ORIGIN}/assets/${lang === 'tr' ? 'og-image.png' : 'og-image-en.png'}`;
+
 const fmtDate = (iso, lang) => new Date(`${iso}T12:00:00Z`).toLocaleDateString(COPY[lang].locale, { day: 'numeric', month: 'long', year: 'numeric' });
-const homeOf = (lang) => (lang === 'tr' ? '/' : '/en');
+const homeOf = (lang) => (lang === 'tr' ? '/' : lang === 'de' ? MARKETS.de.home : '/en');
 
 /* ─── Ortak iskelet ───────────────────────────────────────────── */
 /* Dil düğmesi: sayfanın diğer dildeki karşılığı varsa ona, yoksa o dilin ana sayfasına */
@@ -35,9 +46,17 @@ function langHrefs(alternates) {
   return { en: path('en') || '/en', tr: path('tr') || '/' };
 }
 
+/* Üç dilli yazıda (DE karşılığı olan ya da kendisi DE) anahtar EN / DE / TR */
+function langList(lang, alternates) {
+  const hrefs = Object.fromEntries(alternates.map((a) => [a.hreflang.toLowerCase().slice(0, 2), a.href.replace(ORIGIN, '') || '/']));
+  if (lang !== 'de' && !hrefs.de) return null;
+  return [['en', '/en'], ['de', MARKETS.de.home], ['tr', '/']]
+    .map(([code, home]) => ({ code, label: code.toUpperCase(), href: hrefs[code] || home, on: code === lang }));
+}
+
 export function pageHead({ lang, htmlLang, title, desc, canonical, alternates = [], robots, ogType = 'article', ld = [], extraCss = '', sheets = [], published, modified }) {
-  const c = CONTENT[lang];
-  const og = `${ORIGIN}/assets/${lang === 'tr' ? 'og-image.png' : 'og-image-en.png'}`;
+  const c = chromeFor(lang);
+  const og = ogImage(lang);
   return `<!DOCTYPE html>
 <html lang="${esc(htmlLang)}" class="pal-bone">
 <head>
@@ -65,7 +84,7 @@ ${alternates.map((a) => `<link rel="alternate" hreflang="${esc(a.hreflang)}" hre
 <meta name="twitter:description" content="${esc(desc)}">
 <meta name="twitter:image" content="${og}">
 
-<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${lang === 'tr' ? '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>' : ''}
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${lang !== 'en' ? '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>' : ''}
 <link rel="stylesheet" href="/css/v2.css?v=7">
 <link rel="stylesheet" href="/css/company.css?v=1">
 <link rel="stylesheet" href="/css/blog.css?v=2">${sheets.map((h) => `\n<link rel="stylesheet" href="${h}">`).join('')}${extraCss ? `\n<style>\n${extraCss}\n</style>` : ''}
@@ -74,19 +93,29 @@ ${ld.map((x) => `\n<script type="application/ld+json">\n${ldJson(x)}\n</script>`
 <body class="theme-locked">
 <a class="skip" href="#main">${esc(c.skip)}</a>
 
-${header(c, lang, { base: homeOf(lang), brandHref: homeOf(lang), langHref: langHrefs(alternates) })}
+${header(c, lang, { base: lang === 'de' ? MARKETS.de.anchorBase : homeOf(lang), brandHref: homeOf(lang), langHref: langHrefs(alternates), langs: langList(lang, alternates) })}
 
 <main id="main">
 `;
 }
 
+/* DE footer: DE pazar sayfalarındaki gibi Platform / Lösungen / Unternehmen */
+function deFooter() {
+  const c = chromeFor('de');
+  const products = PRODUCTS.filter((p) => p.id !== 'crm');
+  const cols = [c.footerCols[0], { h: uiFor('de').hub, items: products.map((p) => contentFor(p, 'de').name) }, c.footerCols[2]];
+  const links = [['#specification', '#revenue-calculator', '#integrations', '#governance'], products.map((p) => pathFor(p, 'de')), ['/en/about', '/en/contact']];
+  return footer({ ...c, footerCols: cols }, 'de', { base: MARKETS.de.anchorBase, links });
+}
+const footerFor = (lang) => (lang === 'de' ? deFooter() : siteFooter(CONTENT[lang], lang, { base: homeOf(lang) }));
+
 export function pageTail(lang, { ctaHead } = {}) {
-  const c = CONTENT[lang];
+  const c = chromeFor(lang);
   return `
 ${ctaSection(ctaHead ? { ...c, ctaHead } : c)}
 </main>
 
-${siteFooter(c, lang, { base: homeOf(lang) })}
+${footerFor(lang)}
 
 <script src="/js/v2.js?v=10" defer></script>
 </body>
@@ -101,8 +130,7 @@ const FOOTER_RE = /<!-- ═══ FOOTER[\s\S]*?<\/footer>/;
    (Adı tarihsel; migrate-blog-v2 ve migrate-pages-v2 her çalıştırmada
    çağırır, bant metni değişince bu sayfalar da güncel kalır.) */
 export function refreshFooter(html) {
-  const lang = /<html lang="en/.test(html) ? 'en' : 'tr';
-  return refreshTicker(html.replace(FOOTER_RE, () => siteFooter(CONTENT[lang], lang, { base: homeOf(lang) })));
+  return refreshTicker(html.replace(FOOTER_RE, () => footerFor(langOf(html))));
 }
 
 export function crumbs(lang, items) {
@@ -143,9 +171,9 @@ function structuredData(post) {
     description: post.desc,
     inLanguage: post.htmlLang,
     mainEntityOfPage: post.canonical,
-    image: `${ORIGIN}/assets/${post.lang === 'tr' ? 'og-image.png' : 'og-image-en.png'}`,
+    image: ogImage(post.lang),
     ...(post.published ? { datePublished: post.published, dateModified: post.modified } : {}),
-    author: { '@type': 'Organization', name: 'STOAIX', url: ORIGIN },
+    author: post.author || { '@type': 'Organization', name: 'STOAIX', url: ORIGIN },
     publisher: { '@type': 'Organization', name: 'STOAIX', url: ORIGIN, logo: { '@type': 'ImageObject', url: `${ORIGIN}/assets/images/logo.png` } },
   };
   return [...kept, article, breadcrumb];
