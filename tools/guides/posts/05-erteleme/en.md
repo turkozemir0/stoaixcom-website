@@ -42,7 +42,7 @@ If timing is the issue, gently surface the planning fallacy: "What do you think 
 
 ## Give the patient permission to say no
 
-It sounds backwards, but the best way to reduce pressure is to make saying no easy. "Have you decided to put this on hold for now?" gives the patient a safe exit. When no is allowed, people are more honest: they either share the real concern or give a clear no. A clear no is useful too. It keeps your follow-up list clean and frees your team's time for patients who are genuinely interested.
+It sounds backwards, but one way to reduce pressure is to make saying no easy. "Have you decided to put this on hold for now?" gives the patient a safe exit. When no is allowed, people are more honest: they either share the real concern or give a clear no. A clear no is useful too. It keeps your follow-up list clean and frees your team's time for patients who are genuinely interested.
 
 ## Create a sense of progress, not waiting
 
