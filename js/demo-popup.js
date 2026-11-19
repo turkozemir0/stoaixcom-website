@@ -1,6 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════════
    STOAIX — "sitenize özel demo" popup'ı
    v2.js tarafından sayfa yüklendikten sonra çekilir (bkz. v2.js sonu).
+   Fiyat sayfaları v2.js yüklemiyor; orada tools/build-pricing.mjs
+   doğrudan <script> basar. Dosya değişince İKİ yerdeki ?v= de artar.
 
    Akış bilerek iki adımlı ve ikinci adım baştan gösterilmez:
      1) Web sitesi  →  2) Cep numarası (ülke kodu sayfa dilinden)  →  bitti
@@ -17,18 +19,31 @@
   window.__stxDemoPopup = true;
 
   var preview = /[?&]demopopup=preview/.test(location.search);
-  var DELAY_MS = 25000;                       /* sekme görünürken geçen süre */
   var SNOOZE_MS = 7 * 24 * 60 * 60 * 1000;    /* kapatana 7 gün gösterme */
   var K_SENT = 'stoaix.demo.sent';
   var K_SNOOZE = 'stoaix.demo.snoozed';
+  var K_SEEN_MS = 'stoaix.demo.ms';          /* oturum boyunca biriken süre */
 
-  /* Kendi eylemi olan sayfalar: iletişim, fiyat, funnel, ödeme, hesaplayıcı. */
-  var EXCLUDE = /^\/(?:en\/|tr\/)?(?:contact(?:-en)?|pricing(?:-en)?|reklam(?:-en)?|signup|checkout|modules-checkout|login|forgot-password|reset-password|stoaix-ads|product|revenue-loss-calculator|gelir-kaybi-hesaplayici)(?:\.html)?\/?$/i;
+  /* Bekleme süresi, sekme görünürken geçen ve sayfalar arasında BİRİKEN
+     süredir. Clarity (Kas 2026): ana sayfada mobil ort. ~60 sn kalınıyor,
+     25 sn çoğunluğu yakalıyor. Fiyat sayfası reklam trafiğinin inişi ve
+     orada ort. 150–430 sn kalınıyor; karar veremeyene 60 sn'de çıkar. */
+  var PRICING = /^\/(?:en\/|tr\/)?pricing(?:-en)?(?:\.html)?\/?$/i;
+  var DELAY_MS = PRICING.test(location.pathname) ? 60000 : 25000;
+
+  /* Kendi eylemi olan sayfalar: iletişim, funnel, ödeme, hesaplayıcı. */
+  var EXCLUDE = /^\/(?:en\/|tr\/)?(?:contact(?:-en)?|reklam(?:-en)?|signup|checkout|modules-checkout|login|forgot-password|reset-password|stoaix-ads|product|revenue-loss-calculator|gelir-kaybi-hesaplayici)(?:\.html)?\/?$/i;
 
   function store(k, v) {
     try {
       if (v === undefined) return localStorage.getItem(k);
       localStorage.setItem(k, v);
+    } catch (e) { return null; }
+  }
+  function session(k, v) {
+    try {
+      if (v === undefined) return sessionStorage.getItem(k);
+      sessionStorage.setItem(k, v);
     } catch (e) { return null; }
   }
 
@@ -186,13 +201,13 @@
     '@keyframes dp-pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}' +
     '.dp h2{font-size:25px;line-height:1.18;font-weight:680;letter-spacing:-.02em;margin:0 30px 10px 0}' +
     '.dp-sub{font-size:15px;line-height:1.5;color:var(--soft);margin:0 0 22px}' +
-    '.dp-chat{border:1px solid var(--line-soft);background:var(--bub);padding:14px 14px 16px;margin:0 0 22px}' +
+    '.dp-chat{border:1px solid var(--line-soft);background:var(--bub,rgba(127,127,127,.07));padding:14px 14px 16px;margin:0 0 22px}' +
     '.dp-chat-h{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;margin-bottom:12px}' +
     '.dp-av{width:28px;height:28px;border-radius:100px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}' +
     '.dp-chat-h small{display:block;font-size:11px;font-weight:500;color:var(--dim)}' +
     '.dp-chat-h small::before{content:"";display:inline-block;width:6px;height:6px;border-radius:100px;background:#2BB673;margin-right:5px;vertical-align:1px}' +
     '.dp-host{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:300px}' +
-    '.dp-bubble{background:var(--panel);border:1px solid var(--line-hair);padding:11px 13px;font-size:14px;line-height:1.45;max-width:88%;border-radius:2px 12px 12px 12px}' +
+    '.dp-bubble{background:var(--panel);border:1px solid var(--line-hair,var(--line-soft));padding:11px 13px;font-size:14px;line-height:1.45;max-width:88%;border-radius:2px 12px 12px 12px}' +
     '.dp-bubble b{font-weight:640;color:var(--accent);overflow-wrap:anywhere}' +
     '.dp-label{display:block;font-size:12px;font-weight:620;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:0 0 8px}' +
     '.dp-row{display:flex;gap:0}' +
@@ -489,14 +504,15 @@
     });
   }
 
-  /* ─── Tetikleyici: sekme görünürken geçen süre ───────────────── */
+  /* ─── Tetikleyici: sekme görünürken geçen, sayfalar arası biriken süre ─ */
   if (preview) { open(); return; }
 
-  var visibleMs = 0;
+  var visibleMs = Number(session(K_SEEN_MS) || 0);
   var tick = setInterval(function () {
     if (document.visibilityState !== 'visible') return;
     if (document.body.classList.contains('menu-open')) return;
     visibleMs += 1000;
+    session(K_SEEN_MS, String(visibleMs));
     if (visibleMs >= DELAY_MS) {
       clearInterval(tick);
       open();

@@ -335,7 +335,8 @@
   /* ─── Demo popup ────────────────────────────────────────────────
      Ayrı dosyada; sayfa yüklendikten sonra çekilir ki ilk boyamayla
      yarışmasın. Hangi sayfada/ne zaman açılacağına dosya kendisi karar
-     verir. demo-popup.js değişince buradaki ?v= numarasını artır. */
+     verir. demo-popup.js değişince buradaki ?v= numarasını artır
+     (tools/build-pricing.mjs içindekini de). */
   window.addEventListener('load', function () {
     setTimeout(function () {
       var s = document.createElement('script');
