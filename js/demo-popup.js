@@ -82,7 +82,7 @@
     tr: {
       label: 'Ücretsiz demo',
       eyebrow: 'Ücretsiz demo',
-      title: 'Kliniğinize özel AI resepsiyonist demosu hazırlayalım.',
+      title: 'Kliniğinize özel AI Asistan demosu hazırlayalım.',
       sub: 'Hastalarınıza sitenizdeki bilgilerle, sizin adınıza yanıt veren asistanı ücretsiz kuralım.',
       preview: 'Önizleme',
       patient: 'Hasta',

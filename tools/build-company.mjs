@@ -230,7 +230,7 @@ function tail(lang) {
 
 ${siteFooter(c, lang, { base: lang === 'tr' ? '/' : '/en' })}
 
-<script src="/js/v2.js?v=8" defer></script>
+<script src="/js/v2.js?v=9" defer></script>
 </body>
 </html>
 `;
