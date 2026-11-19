@@ -88,7 +88,7 @@ ${ctaSection(ctaHead ? { ...c, ctaHead } : c)}
 
 ${siteFooter(c, lang, { base: homeOf(lang) })}
 
-<script src="/js/v2.js?v=6" defer></script>
+<script src="/js/v2.js?v=7" defer></script>
 </body>
 </html>
 `;

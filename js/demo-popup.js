@@ -87,7 +87,7 @@
       preview: 'Önizleme',
       patient: 'Hasta',
       ask: 'Yarın için randevu var mı?',
-      bubble: function (h) { return 'Merhaba, ' + h + ' adına yanıtlıyorum. Yarın 14:30 ve 16:00 boş; hangisini ayırayım?'; },
+      reply: 'Merhaba, yarın 14:30 ve 16:00 müsait. Hangisi sizin için uygun?',
       hostPh: 'kliniginiz.com',
       siteLabel: 'Web siteniz',
       next: 'Demomu hazırla',
@@ -119,7 +119,7 @@
       preview: 'Preview',
       patient: 'Patient',
       ask: 'Anything free tomorrow?',
-      bubble: function (h) { return 'Hi, replying for ' + h + '. Tomorrow we have 2:30pm and 4pm free — which shall I book?'; },
+      reply: 'Hi, we have 2:30pm and 4pm free tomorrow. Which suits you best?',
       hostPh: htmlLang === 'en-au' ? 'yourclinic.com.au' : 'yourclinic.co.uk',
       siteLabel: 'Your website',
       next: 'Build my demo',
@@ -151,7 +151,7 @@
       preview: 'Vorschau',
       patient: 'Patient',
       ask: 'Haben Sie morgen einen Termin frei?',
-      bubble: function (h) { return 'Hallo, ich antworte für ' + h + '. Morgen sind 14:30 und 16:00 Uhr frei – welchen darf ich eintragen?'; },
+      reply: 'Hallo, morgen sind 14:30 und 16:00 Uhr frei. Welche Uhrzeit passt Ihnen?',
       hostPh: 'ihre-praxis.de',
       siteLabel: 'Ihre Website',
       next: 'Demo erstellen',
@@ -216,7 +216,6 @@
     '.dp-w{font-size:11px;font-weight:640;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}' +
     '.dp-w.ai{color:var(--accent)}' +
     '.dp-m{font-size:14px;line-height:1.45;background:var(--bub,rgba(127,127,127,.07));padding:10px 12px}' +
-    '.dp-m b{font-weight:640;color:var(--accent);overflow-wrap:anywhere}' +
     '.dp-label{display:block;font-size:12px;font-weight:620;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:0 0 8px}' +
     '.dp-row{display:flex;gap:0}' +
     '.dp input,.dp select{font:inherit;font-size:16px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:0;padding:15px 14px;min-width:0;outline:none;-webkit-appearance:none;appearance:none}' +
@@ -275,7 +274,7 @@
             '<div class="dp-con-bar"><span class="dp-dots"><i></i><i></i><i></i></span><span class="dp-con-t" data-dp-host></span><span class="dp-pill"><span class="dp-dot"></span>' + T.preview + '</span></div>' +
             '<div class="dp-tr">' +
               '<div class="dp-line"><span class="dp-w">' + T.patient + '</span><span class="dp-m">' + T.ask + '</span></div>' +
-              '<div class="dp-line"><span class="dp-w ai">AI</span><span class="dp-m" data-dp-bubble></span></div>' +
+              '<div class="dp-line"><span class="dp-w ai">AI</span><span class="dp-m">' + T.reply + '</span></div>' +
             '</div>' +
           '</div>' +
           '<label class="dp-label" for="dpSite">' + T.siteLabel + '</label>' +
@@ -331,14 +330,6 @@
   function setHost(h) {
     var shown = h || T.hostPh;
     $$('[data-dp-host]').forEach(function (el) { el.textContent = shown; });
-    var bubble = $('[data-dp-bubble]');
-    var parts = T.bubble('\u0000').split('\u0000');
-    bubble.textContent = '';
-    bubble.appendChild(document.createTextNode(parts[0]));
-    var b = document.createElement('b');
-    b.textContent = shown;
-    bubble.appendChild(b);
-    bubble.appendChild(document.createTextNode(parts[1] || ''));
   }
 
   function showStep(n) {
