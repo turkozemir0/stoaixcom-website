@@ -36,47 +36,51 @@ function langSwitch(langs, withCurrent) {
    Metinler bilinçli olarak ana sayfanın zaten verdiği sözlerle sınırlı
    (60 sn, 7/24, tek hasta kaydı, 500+ denetim); rakamlı garanti YOK.
    Son madde demo popup'ını açar (js/demo-popup.js → window.stxOpenDemo). */
-const TICKER_V = 2;
+const TICKER_V = 3;
+/* 1. maddedeki 15 sn YAZILI yanıt (sahip onayı, 19 Kas); 3. maddedeki
+   60 sn SESLİ arama (ana sayfadaki Speed-to-Lead) — çelişmez. Bantta
+   sayı/sayaç yok: eski "canlı sayaç" (live-stats.js) formülle üretiyor,
+   gerçek veri bağlanmadan kullanılmayacak. */
 const TICKER = {
   tr: {
     label: 'Duyurular', pause: 'Kayan yazıyı durdur', play: 'Kayan yazıyı başlat',
     items: [
-      'Yalnızca sağlık klinikleri için',
-      'Lead takibi artık gündeminizde değil',
-      'Her yeni talep 60 saniye içinde aranır',
-      'Gece gelen mesaj da yanıtlanır · 7/24',
-      'WhatsApp, Instagram ve telefon tek hasta kaydında',
-      'İptal olan randevu boş kalmaz',
-      'Eski lead’leriniz yeniden randevuya dönüşür',
-      '500+ klinik denetimi üzerine kurulu',
+      'Lead’leriniz 15 saniye içinde yanıt alır',
+      'Gece 03:00’te yazan hasta sabahı beklemez',
+      'Reklamdan gelen her lead 60 saniye içinde aranır',
+      'Hiçbir lead yarıda kalmaz: yanıt gelene kadar 7 temas',
+      'WhatsApp, Instagram ve telefon tek ekranda',
+      'İptal olan randevu sıradaki hastayla dolar',
+      'Unutulan eski lead’ler yeniden randevuya dönüşür',
+      'Yalnızca sağlık klinikleri için · 500+ klinik denetimi',
     ],
     demo: 'Kliniğinize özel ücretsiz AI Asistan demosu',
   },
   en: {
     label: 'Announcements', pause: 'Pause scrolling text', play: 'Play scrolling text',
     items: [
-      'Made only for healthcare clinics',
-      'Lead follow-up is off your plate',
-      'Every new enquiry called within 60 seconds',
-      'The 3am message gets answered too · 24/7',
-      'WhatsApp, Instagram and calls in one patient record',
-      'Cancelled slots don’t stay empty',
-      'Old leads turned back into bookings',
-      'Built on 500+ clinic audits',
+      'Your leads get a reply within 15 seconds',
+      'The patient who messages at 3am doesn’t wait for morning',
+      'Every lead from your ads is called within 60 seconds',
+      'No lead left hanging: 7 touchpoints until they reply',
+      'WhatsApp, Instagram and calls on one screen',
+      'Cancelled slots refill with the next patient',
+      'Forgotten old leads turned back into bookings',
+      'Made only for healthcare clinics · 500+ clinic audits',
     ],
     demo: 'Free AI Assistant demo for your clinic',
   },
   de: {
     label: 'Hinweise', pause: 'Laufschrift anhalten', play: 'Laufschrift fortsetzen',
     items: [
-      'Nur für Praxen und Kliniken im Gesundheitswesen',
-      'Lead-Nachverfolgung ist nicht mehr Ihr Problem',
-      'Jede neue Anfrage wird innerhalb von 60 Sekunden angerufen',
-      'Auch die Nachricht um 3 Uhr nachts wird beantwortet · 24/7',
-      'WhatsApp, Instagram und Anrufe in einer Patientenakte',
-      'Abgesagte Termine bleiben nicht leer',
-      'Alte Leads werden wieder zu Terminen',
-      'Basierend auf 500+ Praxis-Audits',
+      'Ihre Leads erhalten innerhalb von 15 Sekunden eine Antwort',
+      'Wer um 3 Uhr nachts schreibt, wartet nicht bis zum Morgen',
+      'Jeder Lead aus Ihren Anzeigen wird innerhalb von 60 Sekunden angerufen',
+      'Kein Lead bleibt liegen: 7 Kontakte bis zur Antwort',
+      'WhatsApp, Instagram und Telefon auf einem Bildschirm',
+      'Abgesagte Termine füllt der nächste Patient',
+      'Vergessene Leads werden wieder zu Terminen',
+      'Nur für Gesundheitspraxen · 500+ Praxis-Audits',
     ],
     demo: 'Kostenlose KI-Assistent-Demo für Ihre Praxis',
   },

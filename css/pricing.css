@@ -124,7 +124,8 @@ h1, h2, h3, h4, p { margin:0; text-wrap:balance; }
 .pt-row .nm small { display:block; font-size:13px; font-weight:450; color:var(--dim); margin-top:3px; line-height:1.45; }
 .pt-row .lbl { display:none; }
 .pt-row .mob { display:none; }
-.pt-head { position:sticky; top:0; z-index:2; background:var(--panel); border-top:0; border-bottom:1px solid var(--line); }
+/* top: kayan bant görünürken altına oturur (css/ticker.css → --tk-off). */
+.pt-head { position:sticky; top:var(--tk-off, 0px); transition:top .38s cubic-bezier(.2,.8,.2,1); z-index:2; background:var(--panel); border-top:0; border-bottom:1px solid var(--line); }
 .pt-head > * { font-size:11.5px; font-weight:680; letter-spacing:.14em; text-transform:uppercase; color:var(--dim); padding-block:18px; }
 .pt-head .c { font-size:11.5px; font-weight:680; }
 .kd { display:inline-flex; align-items:center; justify-content:center; gap:6px; }

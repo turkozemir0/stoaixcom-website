@@ -112,7 +112,7 @@ function page(lang) {
 <meta name="twitter:site" content="@stoaix">
 
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>${lang === 'tr' ? '\n<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>' : ''}
-<link rel="stylesheet" href="/css/pricing.css?v=2">
+<link rel="stylesheet" href="/css/pricing.css?v=3">
 
 <!-- Tema, ilk boyamadan önce uygulanır; tercih ana sayfayla ortak. -->
 <script>

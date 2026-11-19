@@ -6,7 +6,8 @@
      · Web Animations ile sabit px/sn hız (mesaj uzunluğundan bağımsız)
      · sayfa hızlı kaydırılınca bant hızlanır, sonra yumuşakça sakinleşir
      · fare üzerine gelince yavaşlayıp durur, ayrılınca yeniden açılır
-     · ekran dışındayken durur (pil), durdur/başlat düğmesi
+     · ekran dışındayken (gizliyken) durur (pil), durdur/başlat düğmesi
+     · akıllı yapışkan: aşağı kaydırınca gizlenir, yukarı kaydırınca gelir
      · demo bağlantısı popup'ı sayfa yenilemeden açar
    ═══════════════════════════════════════════════════════════════════ */
 'use strict';
@@ -45,6 +46,44 @@
     btn.setAttribute('aria-pressed', p ? 'true' : 'false');
     btn.setAttribute('aria-label', btn.getAttribute(p ? 'data-play' : 'data-pause'));
   }
+
+  /* ─── Akıllı yapışkan ─────────────────────────────────────────────
+     Bant tepeye yapışık (css). Aşağı kaydırınca gizlenir, yukarı
+     kaydırınca geri gelir; sayfanın başında her zaman görünür. Görünür
+     yüksekliği --tk-off olarak yazar ki fiyat tablosu başlığı gibi
+     başka yapışkan öğeler altına otursun. Hareket azaltmada da çalışır
+     (geçiş animasyonu CSS'te kapalı). */
+  var root = document.documentElement;
+  var hiddenBar = false, acc = 0, prevY = Math.max(0, window.scrollY);
+  var onHiddenChange = function () {};            /* akış kurulunca kick() olur */
+
+  function publishOffset() {
+    root.style.setProperty('--tk-off', hiddenBar ? '0px' : bar.offsetHeight + 'px');
+  }
+  function setHidden(h) {
+    if (h === hiddenBar) return;
+    hiddenBar = h;
+    bar.classList.toggle('tk-hide', h);
+    publishOffset();
+    onHiddenChange();
+  }
+  function onScrollSticky() {
+    var y = Math.max(0, window.scrollY);          /* iOS esneme: negatif olabilir */
+    var dy = y - prevY;
+    prevY = y;
+    bar.classList.toggle('tk-stuck', y > 0);
+    if (y <= bar.offsetHeight) { acc = 0; setHidden(false); return; }
+    /* Popup açıkken ya da bant odaktayken (klavye) yerinden oynatma. */
+    if (root.classList.contains('dp-lock') || bar.contains(document.activeElement)) return;
+    /* Yön değişince birikim sıfırlanır; küçük titremeler bandı oynatmaz. */
+    acc = (dy > 0) === (acc > 0) ? acc + dy : dy;
+    if (acc > 24) setHidden(true);
+    else if (acc < -12) setHidden(false);
+  }
+  window.addEventListener('scroll', onScrollSticky, { passive: true });
+  window.addEventListener('resize', publishOffset);
+  publishOffset();
+  onScrollSticky();
 
   /* ─── Hareket azaltma: akış yok, mesajlar yerinde sırayla değişir ── */
   if (reduced) {
@@ -105,7 +144,7 @@
   var raf = 0, lastT = 0;
 
   function goal() {
-    return (paused || hover || !visible) ? 0 : 1 + boost;
+    return (paused || hover || !visible || hiddenBar) ? 0 : 1 + boost;
   }
   function loop(now) {
     /* Zamana bağlı: kare seyrekleşse de (zayıf cihaz, arka plan) doğru hızda
@@ -127,6 +166,7 @@
     raf = requestAnimationFrame(loop);
   }
   function kick() { if (!raf) raf = requestAnimationFrame(loop); }
+  onHiddenChange = kick;
 
   /* Kaydırma hızı → kısa süreli canlanma (en fazla ~3,5x). */
   var lastY = window.scrollY, lastS = performance.now();

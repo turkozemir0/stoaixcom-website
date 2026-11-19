@@ -7,6 +7,11 @@
    Renk sabit marka mavisi (#2340F0): ink temasının #4F7BFF'i üzerinde
    beyaz küçük metin AA kontrastını geçmiyor, #2340F0 geçiyor (~6.5:1).
 
+   Sayfaya yapışır ama okumayı bölmez: aşağı kaydırırken gizlenir,
+   yukarı kaydırınca (menü arayan kullanıcı) geri gelir. Görünür bant
+   yüksekliği --tk-off olarak köke yazılır; başka yapışkan öğeler
+   (fiyat tablosu başlığı) top: var(--tk-off, 0px) ile altına oturur.
+
    "Canlı" hissi dört katmandan gelir, hepsi yalnız transform/opacity:
      1. rozette kalp atışı (lub-dub + yayılan halka)
      2. ayraç işaretlerinde sırayla nefes alan dalga
@@ -19,8 +24,13 @@
   --tk-h: 36px;
   --tk-bg: #2340F0;
   --tk-bg2: #1A31CF;
-  position: relative;
-  z-index: 2;
+  /* Akıllı yapışkan: tepeye yapışır; js/ticker.js aşağı kaydırırken
+     .tk-hide ile yukarı kaydırır, yukarı kaydırınca geri getirir.
+     z-index: içerikten üstte, mobil menüden (40) ve popup'tan (60) altta. */
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  transition: transform .38s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease;
   isolation: isolate;
   display: flex;
   align-items: stretch;
@@ -32,6 +42,9 @@
   -webkit-font-smoothing: antialiased;
   -webkit-tap-highlight-color: transparent;
 }
+
+.tk-hide { transform: translateY(-100%); }
+.tk-stuck { box-shadow: 0 8px 22px -12px rgba(0,0,0,.55); }
 
 /* 3 — ışık */
 .tk::after {
@@ -212,6 +225,7 @@
 /* ─── Hareket azaltma: akış yok, mesajlar yerinde sırayla değişir ── */
 @media (prefers-reduced-motion: reduce) {
   .tk::after, .tk-pulse, .tk-pulse::after, .tk-sep, .tk-track { animation: none; }
+  .tk { transition: none; }
   .tk-list[aria-hidden] { display: none; }
   .tk-list li { display: none; }
   /* JS yoksa ilk mesaj sabit durur; JS (.tk-rot) sırayla .on verir. */
