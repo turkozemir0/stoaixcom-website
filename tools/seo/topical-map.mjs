@@ -37,13 +37,17 @@ export const ROOT_PAGES = [
   'sik-sorulan-sorular',
 ];
 
+/* Rehber yazıları (tools/guides) kümesini kendisi söyler; slug kuralı gerekmez */
+import { GUIDE_CLUSTERS } from '../guides/registry.mjs';
+
 export function clusterOf(slug) {
+  if (GUIDE_CLUSTERS[slug]) return GUIDE_CLUSTERS[slug];
   const hit = CLUSTER_RULES.find(([, re]) => re.test(slug));
   return hit ? hit[0] : FALLBACK_CLUSTER;
 }
 
 /* Yazının dili → sayfasının yayımlandığı pazar (EN yazılar UK sayfasına bağlanır) */
-export const marketForLang = (lang) => (lang === 'tr' ? 'tr' : 'en');
+export const marketForLang = (lang) => (lang === 'tr' ? 'tr' : lang === 'de' ? 'de' : 'en');
 
 /* Aynı kümede, aynı dilde, yazının kendisi hariç ilk n kardeş (alfabetik, sabit) */
 export function siblingsOf(articles, article, n = 3) {

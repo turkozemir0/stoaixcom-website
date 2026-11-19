@@ -7,6 +7,7 @@
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { esc } from '../v2-chrome.mjs';
+import { langOf } from '../blog/render-post.mjs';
 import { clusterOf, siblingsOf, marketForLang, FALLBACK_CLUSTER, ROOT_PAGES } from './topical-map.mjs';
 import { HUB, byId, marketsOf, contentFor, pathFor } from './catalog.mjs';
 
@@ -21,7 +22,7 @@ const COPY = {
 const clean = (s) => s.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/\s+/g, ' ').trim();
 
 export function parseArticle(html, slug, dir = '/blog') {
-  const lang = /<html lang="en/.test(html) ? 'en' : 'tr';
+  const lang = langOf(html);
   const h1 = /<h1[^>]*>([\s\S]*?)<\/h1>/.exec(html);
   const title = h1 ? clean(h1[1]) : slug;
   return { slug, path: `${dir}/${slug}`, title, lang, isPost: dir === '/blog' };
