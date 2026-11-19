@@ -42,7 +42,7 @@ Zamanlama söz konusuysa planlama yanılgısını nazikçe görünür kılın: "
 
 ## Hastaya "hayır" deme izni verin
 
-Kulağa ters gelse de baskıyı azaltmanın en iyi yolu, reddi kolaylaştırmaktır. "Bu konuyu şimdilik kenara koymaya mı karar verdiniz?" gibi bir soru hastaya güvenli bir alan açar. Hayır demek serbest olduğunda insanlar daha dürüst konuşur; ya gerçek kaygısını söyler ya da net bir ret verir. Net ret de bir kazançtır: takip listenizi temiz tutar ve ekibinizin zamanını gerçekten ilgilenen hastaya ayırır.
+Kulağa ters gelse de baskıyı azaltmanın etkili bir yolu, reddi kolaylaştırmaktır. "Bu konuyu şimdilik kenara koymaya mı karar verdiniz?" gibi bir soru hastaya güvenli bir alan açar. Hayır demek serbest olduğunda insanlar daha dürüst konuşur; ya gerçek kaygısını söyler ya da net bir ret verir. Net ret de bir kazançtır: takip listenizi temiz tutar ve ekibinizin zamanını gerçekten ilgilenen hastaya ayırır.
 
 ## Bekleme değil, ilerleme hissi yaratın
 
