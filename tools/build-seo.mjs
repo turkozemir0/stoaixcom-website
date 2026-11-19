@@ -236,7 +236,7 @@ function tail(m) {
 
 ${pageFooter(m)}
 
-<script src="/js/v2.js?v=7" defer></script>
+<script src="/js/v2.js?v=8" defer></script>
 </body>
 </html>
 `;

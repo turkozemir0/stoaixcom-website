@@ -250,7 +250,7 @@ ${SHOW_TEAM ? `
 </div>
 ` : ''}
 <script type="module" src="/js/pricing.mjs?v=4"></script>
-<script src="/js/demo-popup.js?v=3" defer></script>
+<script src="/js/demo-popup.js?v=4" defer></script>
 </body>
 </html>
 `;

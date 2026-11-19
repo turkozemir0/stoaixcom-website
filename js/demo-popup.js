@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════
-   STOAIX — "sitenize özel demo" popup'ı
+   STOAIX — "kliniğinize özel demo" popup'ı
    v2.js tarafından sayfa yüklendikten sonra çekilir (bkz. v2.js sonu).
    Fiyat sayfaları v2.js yüklemiyor; orada tools/build-pricing.mjs
    doğrudan <script> basar. Dosya değişince İKİ yerdeki ?v= de artar.
@@ -82,7 +82,7 @@
     tr: {
       label: 'Ücretsiz demo',
       eyebrow: 'Ücretsiz demo',
-      title: 'Sitenize özel AI resepsiyonist demosu hazırlayalım.',
+      title: 'Kliniğinize özel AI resepsiyonist demosu hazırlayalım.',
       sub: 'Hastalarınıza sitenizdeki bilgilerle, sizin adınıza yanıt veren asistanı ücretsiz kuralım.',
       preview: 'Önizleme',
       patient: 'Hasta',
