@@ -127,6 +127,8 @@ for (const page of PAGES) {
       continue;
     }
     if (href.startsWith('mailto:') || href.startsWith('tel:')) continue;
+    /* yalnız sorgu (?demopopup=preview gibi) — hedef sayfanın kendisi */
+    if (href.startsWith('?')) continue;
 
     /* 2 — iç bağlantı, dosya var mı */
     const [pathname] = href.split('#');

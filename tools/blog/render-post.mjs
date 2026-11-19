@@ -4,7 +4,7 @@
    ═══════════════════════════════════════════════════════════════════ */
 
 import { CONTENT } from '../v2-content.mjs';
-import { esc, header, ctaSection, siteFooter } from '../v2-chrome.mjs';
+import { esc, header, ctaSection, siteFooter, refreshTicker } from '../v2-chrome.mjs';
 import { ANALYTICS_SNIPPET } from '../site-analytics.mjs';
 
 export const ORIGIN = 'https://stoaix.com';
@@ -88,7 +88,7 @@ ${ctaSection(ctaHead ? { ...c, ctaHead } : c)}
 
 ${siteFooter(c, lang, { base: homeOf(lang) })}
 
-<script src="/js/v2.js?v=9" defer></script>
+<script src="/js/v2.js?v=10" defer></script>
 </body>
 </html>
 `;
@@ -97,9 +97,12 @@ ${siteFooter(c, lang, { base: homeOf(lang) })}
 /* Taşınmış sayfanın footer'ını güncel şablonla değiştirir (göç bir kez yapılır,
    footer değişiklikleri sonraki derlemelerde bu yolla sayfalara ulaşır). */
 const FOOTER_RE = /<!-- ═══ FOOTER[\s\S]*?<\/footer>/;
+/* Taşınmış sayfaların ortak parçalarını tazeler: footer + kayan bant.
+   (Adı tarihsel; migrate-blog-v2 ve migrate-pages-v2 her çalıştırmada
+   çağırır, bant metni değişince bu sayfalar da güncel kalır.) */
 export function refreshFooter(html) {
   const lang = /<html lang="en/.test(html) ? 'en' : 'tr';
-  return html.replace(FOOTER_RE, () => siteFooter(CONTENT[lang], lang, { base: homeOf(lang) }));
+  return refreshTicker(html.replace(FOOTER_RE, () => siteFooter(CONTENT[lang], lang, { base: homeOf(lang) })));
 }
 
 export function crumbs(lang, items) {

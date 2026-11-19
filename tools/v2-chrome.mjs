@@ -29,13 +29,99 @@ function langSwitch(langs, withCurrent) {
     .join('<span class="sep" aria-hidden="true">/</span>');
 }
 
+/* ─── Kayan duyuru bandı ─────────────────────────────────────────
+   Nav'ın üstünde, her v2 sayfasında ve fiyat sayfalarında (build-pricing
+   da bunu çağırır). Stil css/ticker.css, davranış js/ticker.js; ikisi de
+   işaretlemenin içinden yüklenir ki sürüm numarası tek yerde dursun.
+   Metinler bilinçli olarak ana sayfanın zaten verdiği sözlerle sınırlı
+   (60 sn, 7/24, tek hasta kaydı, 500+ denetim); rakamlı garanti YOK.
+   Son madde demo popup'ını açar (js/demo-popup.js → window.stxOpenDemo). */
+const TICKER_V = 2;
+const TICKER = {
+  tr: {
+    label: 'Duyurular', pause: 'Kayan yazıyı durdur', play: 'Kayan yazıyı başlat',
+    items: [
+      'Yalnızca sağlık klinikleri için',
+      'Lead takibi artık gündeminizde değil',
+      'Her yeni talep 60 saniye içinde aranır',
+      'Gece gelen mesaj da yanıtlanır · 7/24',
+      'WhatsApp, Instagram ve telefon tek hasta kaydında',
+      'İptal olan randevu boş kalmaz',
+      'Eski lead’leriniz yeniden randevuya dönüşür',
+      '500+ klinik denetimi üzerine kurulu',
+    ],
+    demo: 'Kliniğinize özel ücretsiz AI Asistan demosu',
+  },
+  en: {
+    label: 'Announcements', pause: 'Pause scrolling text', play: 'Play scrolling text',
+    items: [
+      'Made only for healthcare clinics',
+      'Lead follow-up is off your plate',
+      'Every new enquiry called within 60 seconds',
+      'The 3am message gets answered too · 24/7',
+      'WhatsApp, Instagram and calls in one patient record',
+      'Cancelled slots don’t stay empty',
+      'Old leads turned back into bookings',
+      'Built on 500+ clinic audits',
+    ],
+    demo: 'Free AI Assistant demo for your clinic',
+  },
+  de: {
+    label: 'Hinweise', pause: 'Laufschrift anhalten', play: 'Laufschrift fortsetzen',
+    items: [
+      'Nur für Praxen und Kliniken im Gesundheitswesen',
+      'Lead-Nachverfolgung ist nicht mehr Ihr Problem',
+      'Jede neue Anfrage wird innerhalb von 60 Sekunden angerufen',
+      'Auch die Nachricht um 3 Uhr nachts wird beantwortet · 24/7',
+      'WhatsApp, Instagram und Anrufe in einer Patientenakte',
+      'Abgesagte Termine bleiben nicht leer',
+      'Alte Leads werden wieder zu Terminen',
+      'Basierend auf 500+ Praxis-Audits',
+    ],
+    demo: 'Kostenlose KI-Assistent-Demo für Ihre Praxis',
+  },
+};
+
+export function ticker(lang) {
+  const t = TICKER[lang] || TICKER.en;
+  const list = (hidden) => {
+    const tab = hidden ? ' tabindex="-1"' : '';
+    const li = t.items.map((m, i) =>
+      `<li style="--i:${i}"><span class="tk-sep" aria-hidden="true"></span>${i === 0 ? '<span class="tk-inl">STOAIX HEALTH</span> ' : ''}${esc(m)}</li>`);
+    li.push(`<li style="--i:${t.items.length}"><span class="tk-sep" aria-hidden="true"></span><a class="tk-demo" href="?demopopup=preview" data-tk-demo${tab}>${esc(t.demo)}<span class="tk-arr" aria-hidden="true">→</span></a></li>`);
+    return `<ul class="tk-list"${hidden ? ' aria-hidden="true"' : ''}>${li.join('')}</ul>`;
+  };
+  return `<!-- ═══ KAYAN BANT ═════════════════════════════════════════════ -->
+<link rel="stylesheet" href="/css/ticker.css?v=${TICKER_V}">
+<div class="tk" role="region" aria-label="${esc(t.label)}" data-tk>
+  <div class="tk-badge"><span class="tk-pulse" aria-hidden="true"></span><span class="tk-name">STOAIX HEALTH</span></div>
+  <div class="tk-view"><div class="tk-track">${list(false)}${list(true)}</div></div>
+  <button type="button" class="tk-ctl" aria-pressed="false" aria-label="${esc(t.pause)}" data-pause="${esc(t.pause)}" data-play="${esc(t.play)}"><svg class="i-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.5" y="1" width="2.4" height="8"/><rect x="6.1" y="1" width="2.4" height="8"/></svg><svg class="i-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1l7 4-7 4z"/></svg></button>
+</div>
+<script src="/js/ticker.js?v=${TICKER_V}" defer></script>
+`;
+}
+
+/* Taşınmış (artık yeniden üretilmeyen) sayfalarda bandı ekler ya da
+   günceller: blog yazıları, migrate-pages-v2 sayfaları, elle yazılmış
+   stoaix-ads.html. Nav işaretinin hemen önüne konur; tekrar çalışınca
+   eskisini silip yenisini basar, iki kez eklemez. */
+const TICKER_RE = /<!-- ═══ KAYAN BANT[\s\S]*?(?=<!-- ═══ NAV ═══)/;
+export function refreshTicker(html) {
+  if (!html.includes('<!-- ═══ NAV ═══')) return html;
+  const code = (html.match(/<html lang="([a-zA-Z-]+)"/) || [])[1] || 'en';
+  const lang = code.startsWith('tr') ? 'tr' : code.startsWith('de') ? 'de' : 'en';
+  const clean = html.replace(TICKER_RE, '');
+  return clean.replace('<!-- ═══ NAV ═══', `${ticker(lang)}<!-- ═══ NAV ═══`);
+}
+
 export function header(c, lang, { base = '', langHref = { en: '/en', tr: '/' }, brandHref = '/', langs = null } = {}) {
   const isTR = lang === 'tr';
   const switchLangs = langs || [
     { code: 'en', label: 'EN', href: langHref.en, on: !isTR },
     { code: 'tr', label: 'TR', href: langHref.tr, on: isTR },
   ];
-  return `<!-- ═══ NAV ═══════════════════════════════════════════════════ -->
+  return `${ticker(lang)}<!-- ═══ NAV ═══════════════════════════════════════════════════ -->
 <header class="nav">
   <a class="brand" href="${brandHref}">${MARK(24)}STOAIX</a>
   <nav class="nav-links" aria-label="${esc([...c.nav.slice(0, 2), 'STOAIX Ads', c.pricing.nav, ...c.nav.slice(2)].join(', '))}">

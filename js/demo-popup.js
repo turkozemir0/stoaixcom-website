@@ -47,13 +47,11 @@
     } catch (e) { return null; }
   }
 
-  if (!preview) {
-    if (EXCLUDE.test(location.pathname)) return;
-    if (navigator.webdriver) return;
-    if (store(K_SENT)) return;
-    var snoozed = Number(store(K_SNOOZE) || 0);
-    if (snoozed && Date.now() - snoozed < SNOOZE_MS) return;
-  }
+  /* Bu koşullar yalnız OTOMATİK açılışı engeller. Kayan banttaki demo
+     bağlantısı (js/ticker.js → window.stxOpenDemo) her sayfada açar. */
+  var snoozed = Number(store(K_SNOOZE) || 0);
+  var autoOpen = !EXCLUDE.test(location.pathname) && !navigator.webdriver &&
+    !store(K_SENT) && !(snoozed && Date.now() - snoozed < SNOOZE_MS);
 
   /* ─── Dil ve varsayılan ülke ───────────────────────────────────── */
   var htmlLang = (document.documentElement.lang || 'en').toLowerCase();
@@ -354,7 +352,7 @@
   }
 
   /* ─── Aç / kapat ──────────────────────────────────────────────── */
-  function open() {
+  function open(source) {
     if (backdrop) return;
     var style = document.createElement('style');
     style.textContent = css;
@@ -374,7 +372,7 @@
     wire();
     requestAnimationFrame(function () { requestAnimationFrame(function () { backdrop.classList.add('in'); }); });
     showStep(1);
-    track('demo_popup_view', { lang: lang });
+    track('demo_popup_view', { lang: lang, source: source || (preview ? 'link' : 'timer') });
   }
 
   function close(reason) {
@@ -507,7 +505,9 @@
   }
 
   /* ─── Tetikleyici: sekme görünürken geçen, sayfalar arası biriken süre ─ */
+  window.stxOpenDemo = function (source) { open(source || 'manual'); };
   if (preview) { open(); return; }
+  if (!autoOpen) return;
 
   var visibleMs = Number(session(K_SEEN_MS) || 0);
   var tick = setInterval(function () {

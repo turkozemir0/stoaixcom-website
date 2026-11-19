@@ -14,6 +14,7 @@ import { writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { LINKS } from './v2-content.mjs';
+import { ticker } from './v2-chrome.mjs';
 import { ANALYTICS_SNIPPET } from './site-analytics.mjs';
 import { blocksHtml, categoryDefs, faqHtml, noteText, setLang, startsHtml, structuredData, tableHtml } from '../js/pricing.mjs';
 
@@ -144,7 +145,7 @@ ${JSON.stringify(structuredData()).replace(/</g, '\\u003c')}
   </defs>
 </svg>
 
-<header class="nav gut">
+${ticker(lang)}<header class="nav gut">
   <a class="brand" href="${c.home}"><span class="mark" aria-hidden="true"></span>STOAIX</a>
   <nav class="nav-links" aria-label="${c.menu}">
     <a href="${c.home}#platform">${c.nav[0]}</a>
@@ -250,7 +251,7 @@ ${SHOW_TEAM ? `
 </div>
 ` : ''}
 <script type="module" src="/js/pricing.mjs?v=4"></script>
-<script src="/js/demo-popup.js?v=5" defer></script>
+<script src="/js/demo-popup.js?v=6" defer></script>
 </body>
 </html>
 `;
