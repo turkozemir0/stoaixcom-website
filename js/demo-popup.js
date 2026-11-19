@@ -83,10 +83,11 @@
       label: 'Ücretsiz demo',
       eyebrow: 'Ücretsiz demo',
       title: 'Sitenize özel AI resepsiyonist demosu hazırlayalım.',
-      sub: 'Web sitenizdeki bilgilerle eğitilmiş, hastalarınıza sizin adınıza yanıt veren asistanı kuralım; nasıl çalıştığını kendiniz görün.',
-      assistant: 'AI asistan',
-      online: 'çevrimiçi',
-      bubble: function (h) { return 'Merhaba! ' + h + ' adına yazıyorum. Randevu, fiyat ve tedavi sorularınızı 7/24 yanıtlıyorum.'; },
+      sub: 'Hastalarınıza sitenizdeki bilgilerle, sizin adınıza yanıt veren asistanı ücretsiz kuralım.',
+      preview: 'Önizleme',
+      patient: 'Hasta',
+      ask: 'Yarın için randevu var mı?',
+      bubble: function (h) { return 'Merhaba, ' + h + ' adına yanıtlıyorum. Yarın 14:30 ve 16:00 boş; hangisini ayırayım?'; },
       hostPh: 'kliniginiz.com',
       siteLabel: 'Web siteniz',
       next: 'Demomu hazırla',
@@ -114,10 +115,11 @@
       label: 'Free demo',
       eyebrow: 'Free demo',
       title: 'Let us build an AI receptionist demo for your website.',
-      sub: 'We train an assistant on your website so it answers patients in your clinic’s name — then you try it yourself.',
-      assistant: 'AI assistant',
-      online: 'online',
-      bubble: function (h) { return 'Hi! I’m replying on behalf of ' + h + '. Ask me about appointments, prices or treatments, day or night.'; },
+      sub: 'We’ll build you a free assistant that answers patients in your name, trained on your website.',
+      preview: 'Preview',
+      patient: 'Patient',
+      ask: 'Anything free tomorrow?',
+      bubble: function (h) { return 'Hi, replying for ' + h + '. Tomorrow we have 2:30pm and 4pm free — which shall I book?'; },
       hostPh: htmlLang === 'en-au' ? 'yourclinic.com.au' : 'yourclinic.co.uk',
       siteLabel: 'Your website',
       next: 'Build my demo',
@@ -145,10 +147,11 @@
       label: 'Kostenlose Demo',
       eyebrow: 'Kostenlose Demo',
       title: 'Wir erstellen eine KI-Rezeptions-Demo für Ihre Website.',
-      sub: 'Wir trainieren einen Assistenten mit den Inhalten Ihrer Website, der Ihren Patienten in Ihrem Namen antwortet – testen Sie ihn selbst.',
-      assistant: 'KI-Assistent',
-      online: 'online',
-      bubble: function (h) { return 'Hallo! Ich antworte im Namen von ' + h + '. Fragen Sie mich zu Terminen, Preisen oder Behandlungen – rund um die Uhr.'; },
+      sub: 'Wir richten kostenlos einen Assistenten ein, der Ihren Patienten mit den Inhalten Ihrer Website antwortet.',
+      preview: 'Vorschau',
+      patient: 'Patient',
+      ask: 'Haben Sie morgen einen Termin frei?',
+      bubble: function (h) { return 'Hallo, ich antworte für ' + h + '. Morgen sind 14:30 und 16:00 Uhr frei – welchen darf ich eintragen?'; },
       hostPh: 'ihre-praxis.de',
       siteLabel: 'Ihre Website',
       next: 'Demo erstellen',
@@ -201,14 +204,19 @@
     '@keyframes dp-pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 55%,transparent)}70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}' +
     '.dp h2{font-size:25px;line-height:1.18;font-weight:680;letter-spacing:-.02em;margin:0 30px 10px 0}' +
     '.dp-sub{font-size:15px;line-height:1.5;color:var(--soft);margin:0 0 22px}' +
-    '.dp-chat{border:1px solid var(--line-soft);background:var(--bub,rgba(127,127,127,.07));padding:14px 14px 16px;margin:0 0 22px}' +
-    '.dp-chat-h{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;margin-bottom:12px}' +
-    '.dp-av{width:28px;height:28px;border-radius:100px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}' +
-    '.dp-chat-h small{display:block;font-size:11px;font-weight:500;color:var(--dim)}' +
-    '.dp-chat-h small::before{content:"";display:inline-block;width:6px;height:6px;border-radius:100px;background:#2BB673;margin-right:5px;vertical-align:1px}' +
-    '.dp-host{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:300px}' +
-    '.dp-bubble{background:var(--panel);border:1px solid var(--line-hair,var(--line-soft));padding:11px 13px;font-size:14px;line-height:1.45;max-width:88%;border-radius:2px 12px 12px 12px}' +
-    '.dp-bubble b{font-weight:640;color:var(--accent);overflow-wrap:anywhere}' +
+    /* Ana sayfadaki .console / .transcript bileşeninin küçük hali. */
+    '.dp-con{border:1px solid var(--line);background:var(--bg);margin:0 0 22px}' +
+    '.dp-con-bar{display:flex;align-items:center;gap:12px;padding:10px 14px;border-bottom:1px solid var(--line-soft)}' +
+    '.dp-dots{display:flex;gap:5px;flex:none}' +
+    '.dp-dots i{width:7px;height:7px;border-radius:100px;background:var(--line)}' +
+    '.dp-con-t{flex:1;min-width:0;font-size:12.5px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}' +
+    '.dp-pill{flex:none;display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;padding:4px 9px;border:1px solid var(--line);color:var(--soft)}' +
+    '.dp-tr{padding:14px;display:grid;gap:9px}' +
+    '.dp-line{display:grid;grid-template-columns:54px minmax(0,1fr);gap:12px;align-items:baseline}' +
+    '.dp-w{font-size:11px;font-weight:640;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}' +
+    '.dp-w.ai{color:var(--accent)}' +
+    '.dp-m{font-size:14px;line-height:1.45;background:var(--bub,rgba(127,127,127,.07));padding:10px 12px}' +
+    '.dp-m b{font-weight:640;color:var(--accent);overflow-wrap:anywhere}' +
     '.dp-label{display:block;font-size:12px;font-weight:620;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin:0 0 8px}' +
     '.dp-row{display:flex;gap:0}' +
     '.dp input,.dp select{font:inherit;font-size:16px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:0;padding:15px 14px;min-width:0;outline:none;-webkit-appearance:none;appearance:none}' +
@@ -231,7 +239,7 @@
     '.dp-cc:focus-within{border-color:var(--accent);border-right:1px solid var(--accent)}' +
     '.dp-consent{font-size:12px;line-height:1.5;color:var(--dim);margin:14px 0 0}' +
     '.dp-consent a{text-decoration:underline;text-underline-offset:2px}' +
-    '.dp-ok{width:46px;height:46px;border-radius:100px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 0 18px}' +
+    '.dp-ok{width:44px;height:44px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;margin:0 0 18px}' +
     '.dp-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}' +
     '.dp-step{animation:dp-fade .3s ease}' +
     '@keyframes dp-fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}' +
@@ -241,7 +249,7 @@
       '.dp-in{padding:28px 20px calc(22px + env(safe-area-inset-bottom))}' +
       '.dp h2{font-size:22px}' +
       '.dp-sub{font-size:14.5px;margin-bottom:18px}' +
-      '.dp-chat{margin-bottom:18px}' +
+      '.dp-con{margin-bottom:18px}' +
       '.dp-row.stack{flex-direction:column}' +
       '.dp-row.stack .dp-btn{width:100%;margin-top:10px;padding:17px 20px}' +
     '}' +
@@ -260,12 +268,15 @@
 
         /* 1 — web sitesi */
         '<form class="dp-step" data-step="1" novalidate>' +
-          '<p class="dp-eyebrow"><span class="dp-dot"></span>' + T.eyebrow + '</p>' +
+          '<p class="dp-eyebrow">' + T.eyebrow + '</p>' +
           '<h2 id="dpTitle">' + T.title + '</h2>' +
           '<p class="dp-sub">' + T.sub + '</p>' +
-          '<div class="dp-chat" aria-hidden="true">' +
-            '<div class="dp-chat-h"><span class="dp-av">AI</span><div><div class="dp-host" data-dp-host></div><small>' + T.assistant + ' · ' + T.online + '</small></div></div>' +
-            '<div class="dp-bubble" data-dp-bubble></div>' +
+          '<div class="dp-con" aria-hidden="true">' +
+            '<div class="dp-con-bar"><span class="dp-dots"><i></i><i></i><i></i></span><span class="dp-con-t" data-dp-host></span><span class="dp-pill"><span class="dp-dot"></span>' + T.preview + '</span></div>' +
+            '<div class="dp-tr">' +
+              '<div class="dp-line"><span class="dp-w">' + T.patient + '</span><span class="dp-m">' + T.ask + '</span></div>' +
+              '<div class="dp-line"><span class="dp-w ai">AI</span><span class="dp-m" data-dp-bubble></span></div>' +
+            '</div>' +
           '</div>' +
           '<label class="dp-label" for="dpSite">' + T.siteLabel + '</label>' +
           '<div class="dp-row stack">' +
@@ -279,7 +290,7 @@
         /* 2 — telefon */
         '<form class="dp-step" data-step="2" novalidate hidden>' +
           '<div class="dp-chip"><span>✓ <span data-dp-host></span></span><button type="button" data-dp-back>' + T.change + '</button></div>' +
-          '<p class="dp-eyebrow"><span class="dp-dot"></span>' + T.eyebrow2 + '</p>' +
+          '<p class="dp-eyebrow">' + T.eyebrow2 + '</p>' +
           '<h2 tabindex="-1">' + T.title2 + '</h2>' +
           '<p class="dp-sub">' + T.sub2 + '</p>' +
           '<label class="dp-label" for="dpPhone">' + T.phoneLabel + '</label>' +

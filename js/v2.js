@@ -340,7 +340,7 @@
   window.addEventListener('load', function () {
     setTimeout(function () {
       var s = document.createElement('script');
-      s.src = '/js/demo-popup.js?v=1';
+      s.src = '/js/demo-popup.js?v=2';
       s.async = true;
       document.body.appendChild(s);
     }, 1500);

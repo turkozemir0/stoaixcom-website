@@ -478,7 +478,7 @@ ${ctaSection(c)}
 
 ${siteFooter(c, lang)}
 
-<script src="/js/v2.js?v=5" defer></script>
+<script src="/js/v2.js?v=6" defer></script>
 <script src="/js/revenue-loss-calculator.js?v=1" defer></script>
 </body>
 </html>
