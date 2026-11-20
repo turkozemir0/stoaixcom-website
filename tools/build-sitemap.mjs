@@ -46,6 +46,7 @@ const CORE_SINGLE = [
   'sac-ekimi-eski-lead-canlandirma', 'dis-klinigi-eski-lead-canlandirma', 'estetik-klinik-eski-lead-canlandirma',
   'sac-ekimi-hizli-yanit', 'dis-klinigi-hizli-yanit', 'estetik-klinik-hizli-yanit',
   'dis-klinigi-icin-ai', 'estetik-klinik-icin-ai', 'sac-ekimi-klinigi-icin-ai',
+  'yayin-ilkeleri', 'en/editorial-policy', 'de/redaktionsrichtlinien',
 ];
 
 const read = (file) => readFileSync(join(ROOT, file), 'utf8');
@@ -55,6 +56,12 @@ const isIndexable = (file) => existsSync(join(ROOT, file)) && !/<meta[^>]+name="
 function lastmodOf(file) {
   const m = read(file).match(/"dateModified":\s*"(\d{4}-\d{2}-\d{2})/);
   return m ? m[1] : null;
+}
+
+/* Sayfanın kendi beyan ettiği dil karşılıkları (rehberler, yayın ilkeleri) */
+function declaredAlternates(file) {
+  return [...read(file).matchAll(/<link rel="alternate" hreflang="([^"]+)" href="([^"]+)">/g)]
+    .map(([, hreflang, href]) => alt(hreflang, href));
 }
 
 const alt = (hreflang, href) => `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${href}"/>`;
@@ -79,7 +86,7 @@ function coreEntries() {
       ];
     });
   const singles = CORE_SINGLE.filter((p) => isIndexable(`${p}.html`))
-    .map((p) => urlEntry(`${ORIGIN}/${p}`, { lastmod: lastmodOf(`${p}.html`) }));
+    .map((p) => urlEntry(`${ORIGIN}/${p}`, { lastmod: lastmodOf(`${p}.html`), alternates: declaredAlternates(`${p}.html`) }));
   return [...pairs, ...singles];
 }
 
@@ -101,7 +108,7 @@ function blogEntries() {
     .sort();
   return [
     urlEntry(`${ORIGIN}/blog`),
-    ...posts.map((f) => urlEntry(`${ORIGIN}/${f.replace(/\.html$/, '')}`, { lastmod: lastmodOf(f) })),
+    ...posts.map((f) => urlEntry(`${ORIGIN}/${f.replace(/\.html$/, '')}`, { lastmod: lastmodOf(f), alternates: declaredAlternates(f) })),
   ];
 }
 

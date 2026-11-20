@@ -66,3 +66,8 @@
 @media (max-width:760px) { .qa-body .uses.in-qa { grid-template-columns:minmax(0,1fr); } }
 .qa-body .aka { font-size:13.5px; color:var(--dim); margin-top:6px; }
 .facts > div.wide { grid-column:1 / -1; }
+
+/* Küme yazıları listesi (tools/seo/articles.mjs) */
+.cluster-list { list-style:none; padding:0; margin:0; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px 32px; }
+.cluster-list a { text-decoration:underline; text-underline-offset:3px; }
+@media (max-width:720px) { .cluster-list { grid-template-columns:minmax(0,1fr); } }

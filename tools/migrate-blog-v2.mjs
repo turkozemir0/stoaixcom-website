@@ -16,6 +16,7 @@ import { dirname, join } from 'node:path';
 import { parsePost } from './blog/parse-post.mjs';
 import { renderPost, refreshFooter, GENERATOR } from './blog/render-post.mjs';
 import { renderIndex } from './blog/render-index.mjs';
+import { loadArticles, clusterBox, withClusterBox } from './seo/articles.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const BLOG = join(ROOT, 'blog');
@@ -58,6 +59,19 @@ function migrate(file) {
   return 'ok';
 }
 
+/* Konu kümesi: her yazı hub'ına ve kardeşlerine bağlanır (tools/seo/topical-map.mjs) */
+function linkClusters() {
+  const articles = loadArticles(ROOT);
+  let changed = 0;
+  for (const a of articles.filter((x) => x.isPost)) {
+    const path = join(BLOG, `${a.slug}.html`);
+    const src = readFileSync(path, 'utf8');
+    const next = withClusterBox(src, clusterBox(articles, a)).replace('/css/blog.css?v=1', '/css/blog.css?v=2');
+    if (next !== src) { writeFileSync(path, next); changed++; }
+  }
+  console.log(`blog: ${articles.length} yazı küme kutusuyla bağlı (${changed} güncellendi)`);
+}
+
 const files = (only.length ? only : readdirSync(BLOG).filter((f) => f.endsWith('.html') && f !== 'index.html')).sort();
 const tally = { ok: 0, skip: 0, fail: [] };
 for (const f of files) {
@@ -69,5 +83,6 @@ tally.fail.forEach((x) => console.log(`  ✗ ${x}`));
 if (!isDry && !only.length) {
   const count = renderIndex(BLOG);
   console.log(`blog/index.html: ${count} yazı`);
+  linkClusters();
 }
 if (tally.fail.length) process.exitCode = 1;

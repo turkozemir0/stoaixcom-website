@@ -11,11 +11,13 @@ import { mediaPage } from './pages/media.mjs';
 import { landingPage } from './pages/landing.mjs';
 import { HIZLI_YANIT } from './pages/landing-hizli-yanit.mjs';
 import { ESKI_LEAD } from './pages/landing-eski-lead.mjs';
+import { EDITORIAL_FILES } from './pages/editorial.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const PAGES = {
   'partners.html': partnersPage,
   'media.html': mediaPage,
+  ...EDITORIAL_FILES,
   ...Object.fromEntries([...HIZLI_YANIT, ...ESKI_LEAD].map((d) => [`${d.slug}.html`, () => landingPage(d)])),
 };
 

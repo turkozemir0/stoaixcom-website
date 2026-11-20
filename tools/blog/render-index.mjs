@@ -1,6 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════
    blog/index.html — taşınmış yazıların başlık kartları
-   Türkçe ve İngilizce yazılar iki ayrı bölümde, en yeniden eskiye.
+   Türkçe, İngilizce ve Almanca yazılar ayrı bölümlerde, en yeniden eskiye.
    Kart bilgileri yazının kendi head'inden ve hero'sundan okunur.
    ═══════════════════════════════════════════════════════════════════ */
 
@@ -29,15 +29,15 @@ function readCard(dir, file) {
 
 const PAGE = {
   title: 'Blog — Özel klinikler için hasta iletişimi ve büyüme rehberleri | STOAIX',
-  desc: 'Özel klinik sahipleri için rehberler: kaçan aramalar, WhatsApp takibi, randevu hatırlatma, gelmeyen hasta, yapay zekâ resepsiyonist ve klinik CRM. Türkçe ve İngilizce.',
+  desc: 'Özel klinik sahipleri için rehberler: kaçan aramalar, WhatsApp takibi, randevu hatırlatma, gelmeyen hasta, yapay zekâ resepsiyonist, klinik CRM ve sağlık turizmi satış görüşmeleri. Türkçe, İngilizce ve Almanca.',
   eyebrow: 'Blog',
   h1: 'Klinik sahipleri için rehberler',
   lede: 'Hasta iletişimi, randevu, takip ve yapay zekâ asistanları üzerine yazılar. Her yazı tek bir soruya cevap verir.',
-  sections: { tr: 'Türkçe yazılar', en: 'In English' },
+  sections: { tr: 'Türkçe yazılar', en: 'In English', de: 'Auf Deutsch' },
 };
 
 const card = (p) => `
-    <a class="post-card" href="${p.href}"${p.lang === 'en' ? ' hreflang="en" lang="en"' : ''}>
+    <a class="post-card" href="${p.href}"${p.lang !== 'tr' ? ` hreflang="${p.lang}" lang="${p.lang}"` : ''}>
       ${p.category ? `<span class="k">${esc(p.category)}</span>` : ''}
       <span class="t">${esc(p.title)}</span>
       <span class="d">${esc(p.desc)}</span>
@@ -48,7 +48,7 @@ export function renderIndex(dir) {
   const posts = readdirSync(dir).filter((f) => f.endsWith('.html') && f !== 'index.html')
     .map((f) => readCard(dir, f)).filter(Boolean)
     .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
-  const byLang = { tr: posts.filter((p) => p.lang === 'tr'), en: posts.filter((p) => p.lang === 'en') };
+  const byLang = Object.fromEntries(['tr', 'en', 'de'].map((l) => [l, posts.filter((p) => p.lang === l)]));
   const ld = [{
     '@context': 'https://schema.org',
     '@type': 'Blog',
@@ -72,7 +72,7 @@ export function renderIndex(dir) {
   </div>
 </section>
 ${Object.entries(byLang).filter(([, list]) => list.length).map(([lang, list]) => `
-<section class="pad"${lang === 'en' ? ' lang="en"' : ''}>
+<section class="pad"${lang !== 'tr' ? ` lang="${lang}"` : ''}>
   <div class="sec-head">
     <h2>${esc(PAGE.sections[lang])}</h2>
     <span class="note">${list.length}</span>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="de" class="pal-bone">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="generator" content="stoaix-blog-v2">
+<meta name="stoaix-guide" content="a8-metrikler">
+<title>Kennzahlen für Patientenanfragen: Wochenkarte und Gesprächsbogen</title>
+<meta name="description" content="Welche Kennzahlen sollte eine Praxis für Patientenanfragen messen? Fünf Kernquoten, Median der Reaktionszeit, eine Wochenkarte und ein Gesprächsbogen mit 10 Punkten.">
+<meta name="theme-color" content="#F1EEE8">
+<link rel="icon" type="image/png" href="/assets/images/logo.png">
+<link rel="canonical" href="https://stoaix.com/blog/kennzahlen-patientenanfragen">
+<link rel="alternate" hreflang="tr" href="https://stoaix.com/blog/hasta-adayi-donusum-metrikleri">
+<link rel="alternate" hreflang="en" href="https://stoaix.com/blog/patient-enquiry-conversion-metrics">
+<link rel="alternate" hreflang="de" href="https://stoaix.com/blog/kennzahlen-patientenanfragen">
+<link rel="alternate" hreflang="x-default" href="https://stoaix.com/blog/patient-enquiry-conversion-metrics">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://stoaix.com/blog/kennzahlen-patientenanfragen">
+<meta property="og:title" content="Kennzahlen für Patientenanfragen: Wochenkarte und Gesprächsbogen">
+<meta property="og:description" content="Welche Kennzahlen sollte eine Praxis für Patientenanfragen messen? Fünf Kernquoten, Median der Reaktionszeit, eine Wochenkarte und ein Gesprächsbogen mit 10 Punkten.">
+<meta property="og:image" content="https://stoaix.com/assets/guides/og/kennzahlen-patientenanfragen.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="STOAIX">
+<meta property="og:locale" content="de_DE">
+<meta property="article:published_time" content="2026-11-20">
+<meta property="article:modified_time" content="2026-11-20">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Kennzahlen für Patientenanfragen: Wochenkarte und Gesprächsbogen">
+<meta name="twitter:description" content="Welche Kennzahlen sollte eine Praxis für Patientenanfragen messen? Fünf Kernquoten, Median der Reaktionszeit, eine Wochenkarte und ein Gesprächsbogen mit 10 Punkten.">
+<meta name="twitter:image" content="https://stoaix.com/assets/guides/og/kennzahlen-patientenanfragen.png">
+
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/inter-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/css/v2.css?v=7">
+<link rel="stylesheet" href="/css/company.css?v=1">
+<link rel="stylesheet" href="/css/blog.css?v=2">
+<style>
+.prose .series-note { font-size:15px; color:var(--soft); border-left:2px solid var(--accent); padding-left:12px; }
+.guide-series { margin:40px 0 0; padding:22px 24px; border:1px solid var(--line); border-radius:14px; }
+.guide-series .series-pillar { font-weight:630; margin:6px 0 12px; }
+.guide-series .series-list { margin:0; padding-left:22px; display:grid; gap:8px; }
+.guide-series [aria-current] { font-weight:630; }
+.prose .guide-byline { font-size:14px; color:var(--soft); margin-top:32px; padding-top:16px; border-top:1px solid var(--line-soft); }
+.prose .guide-fig { margin:8px 0 30px; }
+.prose .guide-fig img { display:block; width:100%; height:auto; border-radius:14px; border:1px solid var(--line-soft); }
+.prose .guide-fig figcaption { font-size:14px; color:var(--soft); margin-top:10px; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "de",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie hoch sollte die Umwandlungsquote einer Praxis sein?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eine für alle gültige Quote gibt es nicht; Behandlungsart, Kanal und Preisniveau verändern das Ergebnis stark. Das sinnvollste Ziel ist, die eigenen letzten 90 Tage als Ausgangslinie zu nehmen und sich Woche für Woche zu verbessern."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Mit welcher Kennzahl sollte ich anfangen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wenn Sie heute nichts messen, beginnen Sie mit dem Median der ersten Reaktionszeit und der Terminquote. Beide lassen sich am schnellsten verbessern und zeigen am schnellsten Wirkung."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dürfen Gesprächsaufzeichnungen ausgewertet werden?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aufzeichnen und Auswerten ist Verarbeitung personenbezogener Daten; Patientinnen und Mitarbeitende müssen vorab informiert werden und in der Regel einwilligen, und Aufzeichnungen müssen sicher und nur zweckgebunden gespeichert werden. Richten Sie das mit Ihrer Datenschutzberatung ein."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wer füllt die Wochenkarte aus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Koordinatorin oder Praxismanagerin, die für den Prozess verantwortlich ist, füllt sie aus, und das Team liest sie gemeinsam in der Wochenrunde. Kommen die Daten aus dem CRM, sinkt der Aufwand deutlich."
+      }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Kennzahlen für Patientenanfragen: Wochenkarte und Gesprächsbogen",
+  "description": "Welche Kennzahlen sollte eine Praxis für Patientenanfragen messen? Fünf Kernquoten, Median der Reaktionszeit, eine Wochenkarte und ein Gesprächsbogen mit 10 Punkten.",
+  "inLanguage": "de",
+  "mainEntityOfPage": "https://stoaix.com/blog/kennzahlen-patientenanfragen",
+  "image": "https://stoaix.com/assets/guides/og/kennzahlen-patientenanfragen.png",
+  "datePublished": "2026-11-20",
+  "dateModified": "2026-11-20",
+  "author": {
+    "@type": "Organization",
+    "name": "STOAIX",
+    "url": "https://stoaix.com",
+    "publishingPrinciples": "https://stoaix.com/de/redaktionsrichtlinien"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "STOAIX",
+    "url": "https://stoaix.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://stoaix.com/assets/images/logo.png"
+    }
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Startseite",
+      "item": "https://stoaix.com/de/ki-assistenten"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Ratgeber",
+      "item": "https://stoaix.com/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Kennzahlen für Patientenanfragen: Wochenkarte und Gesprächsbogen",
+      "item": "https://stoaix.com/blog/kennzahlen-patientenanfragen"
+    }
+  ]
+}
+</script>
+<!-- Analytics: ilk kullanıcı etkileşiminde VEYA en geç ~3.5sn (idle) yüklenir. -->
+<script>
+(function () {
+  var loaded = false;
+  function loadAnalytics() {
+    if (loaded) return; loaded = true;
+    var g = document.createElement('script'); g.async = true;
+    g.src = 'https://www.googletagmanager.com/gtag/js?id=G-53TMTQML2Q';
+    document.head.appendChild(g);
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); } window.gtag = gtag;
+    gtag('js', new Date()); gtag('config', 'G-53TMTQML2Q');
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wnyyri0jrz");
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1426016022664547'); fbq('track', 'PageView');
+  }
+  var evs = ['scroll','mousemove','touchstart','pointerdown','keydown','click'];
+  function onFirst(){ evs.forEach(function(e){ window.removeEventListener(e, onFirst, {passive:true}); }); loadAnalytics(); }
+  evs.forEach(function(e){ window.addEventListener(e, onFirst, {passive:true}); });
+  if ('requestIdleCallback' in window) requestIdleCallback(loadAnalytics, { timeout: 3500 });
+  else setTimeout(loadAnalytics, 3500);
+
+  /* CTA tıklaması = iletişim dönüşümü; Calendly ve WhatsApp ayrı kanal olarak etiketlenir.
+     Buton davranışı değişmez: link yeni sekmede açılır, olay arka planda gönderilir. */
+  var ctaFired = {};
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="calendly.com"], a[href*="wa.me"]') : null;
+    if (!a) return;
+    var ch = a.href.indexOf('wa.me') > -1 ? 'whatsapp' : 'calendly-booking';
+    if (ctaFired[ch]) return;
+    ctaFired[ch] = true;
+    loadAnalytics();
+    var label = (a.textContent || '').trim().slice(0, 80);
+    if (window.fbq)  fbq('track', 'Lead', { content_name: label, content_category: ch });
+    if (window.gtag) gtag('event', 'generate_lead', { link_text: label, link_url: a.href, channel: ch });
+  });
+})();
+</script>
+</head>
+<body class="theme-locked">
+<a class="skip" href="#main">Zum Inhalt springen</a>
+
+<!-- ═══ KAYAN BANT ═════════════════════════════════════════════ -->
+<link rel="stylesheet" href="/css/ticker.css?v=3">
+<div class="tk" role="region" aria-label="Hinweise" data-tk>
+  <div class="tk-badge"><span class="tk-pulse" aria-hidden="true"></span><span class="tk-name">STOAIX HEALTH</span></div>
+  <div class="tk-view"><div class="tk-track"><ul class="tk-list"><li style="--i:0"><span class="tk-sep" aria-hidden="true"></span><span class="tk-inl">STOAIX HEALTH</span> Ihre Leads erhalten innerhalb von 15 Sekunden eine Antwort</li><li style="--i:1"><span class="tk-sep" aria-hidden="true"></span>Wer um 3 Uhr nachts schreibt, wartet nicht bis zum Morgen</li><li style="--i:2"><span class="tk-sep" aria-hidden="true"></span>Jeder Lead aus Ihren Anzeigen wird innerhalb von 60 Sekunden angerufen</li><li style="--i:3"><span class="tk-sep" aria-hidden="true"></span>Kein Lead bleibt liegen: 7 Kontakte bis zur Antwort</li><li style="--i:4"><span class="tk-sep" aria-hidden="true"></span>WhatsApp, Instagram und Telefon auf einem Bildschirm</li><li style="--i:5"><span class="tk-sep" aria-hidden="true"></span>Abgesagte Termine füllt der nächste Patient</li><li style="--i:6"><span class="tk-sep" aria-hidden="true"></span>Vergessene Leads werden wieder zu Terminen</li><li style="--i:7"><span class="tk-sep" aria-hidden="true"></span>Nur für Gesundheitspraxen · 500+ Praxis-Audits</li><li style="--i:8"><span class="tk-sep" aria-hidden="true"></span><a class="tk-demo" href="?demopopup=preview" data-tk-demo>Kostenlose KI-Assistent-Demo für Ihre Praxis<span class="tk-arr" aria-hidden="true">→</span></a></li></ul><ul class="tk-list" aria-hidden="true"><li style="--i:0"><span class="tk-sep" aria-hidden="true"></span><span class="tk-inl">STOAIX HEALTH</span> Ihre Leads erhalten innerhalb von 15 Sekunden eine Antwort</li><li style="--i:1"><span class="tk-sep" aria-hidden="true"></span>Wer um 3 Uhr nachts schreibt, wartet nicht bis zum Morgen</li><li style="--i:2"><span class="tk-sep" aria-hidden="true"></span>Jeder Lead aus Ihren Anzeigen wird innerhalb von 60 Sekunden angerufen</li><li style="--i:3"><span class="tk-sep" aria-hidden="true"></span>Kein Lead bleibt liegen: 7 Kontakte bis zur Antwort</li><li style="--i:4"><span class="tk-sep" aria-hidden="true"></span>WhatsApp, Instagram und Telefon auf einem Bildschirm</li><li style="--i:5"><span class="tk-sep" aria-hidden="true"></span>Abgesagte Termine füllt der nächste Patient</li><li style="--i:6"><span class="tk-sep" aria-hidden="true"></span>Vergessene Leads werden wieder zu Terminen</li><li style="--i:7"><span class="tk-sep" aria-hidden="true"></span>Nur für Gesundheitspraxen · 500+ Praxis-Audits</li><li style="--i:8"><span class="tk-sep" aria-hidden="true"></span><a class="tk-demo" href="?demopopup=preview" data-tk-demo tabindex="-1">Kostenlose KI-Assistent-Demo für Ihre Praxis<span class="tk-arr" aria-hidden="true">→</span></a></li></ul></div></div>
+  <button type="button" class="tk-ctl" aria-pressed="false" aria-label="Laufschrift anhalten" data-pause="Laufschrift anhalten" data-play="Laufschrift fortsetzen"><svg class="i-pause" viewBox="0 0 10 10" aria-hidden="true"><rect x="1.5" y="1" width="2.4" height="8"/><rect x="6.1" y="1" width="2.4" height="8"/></svg><svg class="i-play" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 1l7 4-7 4z"/></svg></button>
+</div>
+<script src="/js/ticker.js?v=3" defer></script>
+<!-- ═══ NAV ═══════════════════════════════════════════════════ -->
+<header class="nav">
+  <a class="brand" href="/de/ki-assistenten"><span class="mark" style="width:24px;height:24px" aria-hidden="true"></span>STOAIX</a>
+  <nav class="nav-links" aria-label="Plattform, Spezifikation, STOAIX Ads, Preise, Einführung, Governance, Einsatzorte">
+    <a href="/en#platform">Plattform</a>
+    <a href="/en#specification">Spezifikation</a>
+    <a href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>
+    <a href="/en/pricing">Preise</a>
+    <a href="/en#deployment">Einführung</a>
+    <a href="/en#governance">Governance</a>
+    <a href="/en#footprint">Einsatzorte</a>
+  </nav>
+  <div class="nav-right">
+    <span class="switch" role="group" aria-label="Darstellung">
+      <button type="button" data-theme="ink" class="on" aria-pressed="true">Dunkel</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Hell</button>
+    </span>
+    <span class="switch" role="group" aria-label="Sprache">
+      <a href="/blog/patient-enquiry-conversion-metrics" hreflang="en" class="off">EN</a><span class="sep" aria-hidden="true">/</span><a href="/blog/kennzahlen-patientenanfragen" hreflang="de" class="on" aria-current="true">DE</a><span class="sep" aria-hidden="true">/</span><a href="/blog/hasta-adayi-donusum-metrikleri" hreflang="tr" class="off">TR</a>
+    </span>
+    <a class="nav-cta" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Erstgespräch buchen</a>
+    <button type="button" class="nav-burger" aria-label="Menü" aria-expanded="false" aria-controls="mnav">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 6h18M2 11h18M2 16h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ═══ MOBİL MENÜ ════════════════════════════════════════════ -->
+<div class="mnav" id="mnav" hidden>
+  <div class="mnav-top">
+    <span class="brand"><span class="mark" style="width:24px;height:24px" aria-hidden="true"></span>STOAIX</span>
+    <button type="button" class="nav-burger" data-close style="display:block" aria-label="Schließen">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4l14 14M18 4L4 18"/></svg>
+    </button>
+  </div>
+  <a class="mlink" href="/en#platform">Plattform</a>
+  <a class="mlink" href="/en#specification">Spezifikation</a>
+  <a class="mlink" href="/stoaix-ads">STOAIX Ads<span class="tag-new">new</span></a>
+  <a class="mlink" href="/en/pricing">Preise</a>
+  <a class="mlink" href="/en#deployment">Einführung</a>
+  <a class="mlink" href="/en#governance">Governance</a>
+  <a class="mlink" href="/en#footprint">Einsatzorte</a>
+  <div class="mnav-switches">
+    <span class="switch" role="group" aria-label="Darstellung">
+      <button type="button" data-theme="ink" class="on" aria-pressed="true">Dunkel</button><span class="sep" aria-hidden="true">/</span><button type="button" data-theme="bone" class="off" aria-pressed="false">Hell</button>
+    </span>
+    <span class="switch" role="group" aria-label="Sprache">
+      <a href="/blog/patient-enquiry-conversion-metrics" hreflang="en" class="off">EN</a><span class="sep" aria-hidden="true">/</span><a href="/blog/kennzahlen-patientenanfragen" hreflang="de" class="on">DE</a><span class="sep" aria-hidden="true">/</span><a href="/blog/hasta-adayi-donusum-metrikleri" hreflang="tr" class="off">TR</a>
+    </span>
+  </div>
+  <div class="mnav-foot">
+    <a class="btn" href="https://calendly.com/ataulufer1/20" target="_blank" rel="noopener">Erstgespräch buchen</a>
+  </div>
+</div>
+
+<main id="main">
+
+<!-- ═══ HERO ══════════════════════════════════════════════════ -->
+<section class="hero page-hero post-hero">
+  <nav class="crumbs" aria-label="Brotkrümelnavigation">
+    <a href="/de/ki-assistenten">Startseite</a><span class="sl" aria-hidden="true">/</span><a href="/blog">Ratgeber</a><span class="sl" aria-hidden="true">/</span><span aria-current="page">Kennzahlen für Patientenanfragen: Wochenkarte und Gesprächsbogen</span>
+  </nav>
+  <div class="hero-head">
+    <p class="eyebrow">Patientenanfragen</p>
+  </div>
+  <h1 class="page-title">Kennzahlen für Patientenanfragen: Wochenkarte und Gesprächsbogen</h1>
+  <div class="hero-grid">
+    <p>Ein Prozess, den man nicht misst, ist ein Prozess, den man nur fühlt. Wenige, richtig gewählte Kennzahlen zeigen dem Team jede Woche, was zu verbessern ist.</p>
+  </div>
+  <p class="post-meta-line"><span>Veröffentlicht: <time datetime="2026-11-20">20. November 2026</time></span><span>6 Min. Lesezeit</span></p>
+</section>
+
+<!-- ═══ YAZI ══════════════════════════════════════════════════ -->
+<section class="pad post-wrap">
+  <article class="prose legacy">
+<p class="series-note">Dieser Beitrag ist Teil der Reihe <a href="/blog/patientenanfragen-management-leitfaden">Patientenanfragen managen: von der ersten Nachricht bis zum Beratungstermin</a>.</p>
+<blockquote><p><strong>Kurze Antwort:</strong> Für den Anfrageprozess reichen fünf Quoten: Erreichung, Terminvereinbarung, Erscheinen, Annahme des Behandlungsplans und Behandlungsbeginn. Dazu kommt der Median der ersten Reaktionszeit. Jede Quote wird mit den eigenen letzten 90 Tagen verglichen, nicht mit Branchenwerten. Die Zahlen stehen auf einer einseitigen Wochenkarte, und jede Woche werden einige zufällig gewählte Gespräche mit einem 10-Punkte-Bogen ausgewertet. So sieht man nicht nur, dass sich eine Zahl verändert hat, sondern auch warum.</p></blockquote>
+<h2 id="was-ist-eine-kennzahl-fur-patientenanfragen">Was ist eine Kennzahl für Patientenanfragen?</h2>
+<p>Eine Kennzahl für Patientenanfragen zeigt, welcher Anteil der Anfragen von einer Stufe zur nächsten gelangt, vom ersten Kontakt bis zum Behandlungsbeginn. Viele Praxen schauen nur auf zwei Zahlen: wie viele Anfragen über Werbung oder soziale Medien kamen und wie viele Behandlungen am Monatsende stattfanden. Alles dazwischen bleibt im Dunkeln. Läuft ein Monat schlecht, weiß niemand, ob das Problem bei der Werbung, am Telefon, im Behandlungsplan oder beim Nachfassen liegt, also wird meist am sichtbarsten Hebel gedreht: dem Werbebudget. Die Messung Stufe für Stufe zeigt, wo genau Anfragen verloren gehen. Dieser Teil liefert eine Wochenkarte, die eine Koordinatorin in einer halben Stunde pro Woche ausfüllt, und einen Gesprächsbogen, mit dem das Team die Gesprächsqualität bewertet. Ziel ist kein Bericht, sondern jede Woche eine Sache zu verbessern.</p>
+<h2 id="funf-kernquoten">Fünf Kernquoten</h2>
+<div class="tbl-scroll"><table>
+<thead><tr><th>Quote</th><th>Formel</th><th>Was sie zeigt</th></tr></thead>
+<tbody>
+<tr><td>1. Erreichungsquote</td><td>Anfragen mit begonnenem Gespräch / eingegangene Anfragen</td><td>Tempo und Kanal der ersten Antwort</td></tr>
+<tr><td>2. Terminquote</td><td>Vereinbarte Termine / Anfragen mit Gespräch</td><td>Qualität des ersten Gesprächs</td></tr>
+<tr><td>3. Erscheinensquote</td><td>Erschienene / vereinbarte Termine</td><td>Erinnerung und Vertrauen</td></tr>
+<tr><td>4. Planannahmequote</td><td>Angenommene / vorgestellte Behandlungspläne</td><td>Plan, Kosten und Nachfassen</td></tr>
+<tr><td>5. Beginnquote</td><td>Begonnene Behandlungen / angenommene Pläne</td><td>Anzahlung, Terminierung, letzte Sorgen</td></tr>
+</tbody>
+</table></div>
+<p>Das Produkt der fünf Quoten ergibt die Gesamtumwandlung von der Anfrage bis zum Behandlungsbeginn. Sinkt sie, zeigt der Blick auf die gesunkene Einzelquote, wo man ansetzen sollte.</p>
+<p>Wir nennen bewusst keinen allgemeinen „guten“ Wert. Praxen mit unterschiedlichen Behandlungen, Kanälen, Standorten und Preisniveaus über eine Zahl zu vergleichen, führt in die Irre. Der richtige Vergleich ist die eigene Historie: Nehmen Sie die letzten 90 Tage als Ausgangslinie und vergleichen Sie jede Woche damit.</p>
+<h2 id="zeitkennzahlen-median-statt-durchschnitt">Zeitkennzahlen: Median statt Durchschnitt</h2>
+<p>Bei Zeiten führt der Durchschnitt in die Irre. Ein paar nachts eingegangene und morgens beantwortete Anfragen ziehen ihn um Stunden nach oben und verdecken das echte Tempo tagsüber. Deshalb wird für Zeiten der Median verwendet: der Wert, unter dem die Hälfte der Anfragen liegt.</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>Zeitkennzahl</th><th>Messung</th><th>Hinweis</th></tr></thead>
+<tbody>
+<tr><td>Erste Reaktionszeit</td><td>Von der Nachricht bis zur ersten Antwort durch Mensch oder Assistent</td><td>Innerhalb und außerhalb der Sprechzeiten getrennt</td></tr>
+<tr><td>Zeit bis zum Termin</td><td>Vom ersten Kontakt bis zum Termin</td><td>Ist sie lang, kann der Kalender der Engpass sein</td></tr>
+<tr><td>Entscheidungsdauer</td><td>Von der Planvorstellung bis zur Entscheidung</td><td>Zeigt die Qualität des Nachfassens</td></tr>
+</tbody>
+</table></div>
+<p>Warum Tempo zählt und wie es gemessen wird, steht ausführlich unter <a href="/blog/reaktionszeit-patientenanfragen">Reaktionszeit bei Patientenanfragen</a>.</p>
+<h2 id="vorlage-fur-die-wochenkarte">Vorlage für die Wochenkarte</h2>
+<p>Die Wochenkarte passt auf eine Seite und wird jeden Montag ausgefüllt. Neben jeder Zahl stehen die Spalten „Vorwoche“ und „90-Tage-Ausgangslinie“.</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>Zeile</th><th>Diese Woche</th><th>Vorwoche</th><th>90-Tage-Ausgangslinie</th></tr></thead>
+<tbody>
+<tr><td>Eingegangene Anfragen</td><td></td><td></td><td></td></tr>
+<tr><td>Median erste Reaktion (Sprechzeiten)</td><td></td><td></td><td></td></tr>
+<tr><td>Median erste Reaktion (außerhalb)</td><td></td><td></td><td></td></tr>
+<tr><td>Erreichungsquote</td><td></td><td></td><td></td></tr>
+<tr><td>Terminquote</td><td></td><td></td><td></td></tr>
+<tr><td>Erscheinensquote</td><td></td><td></td><td></td></tr>
+<tr><td>Planannahmequote</td><td></td><td></td><td></td></tr>
+<tr><td>Beginnquote</td><td></td><td></td><td></td></tr>
+<tr><td>Häufigstes Einwand-Schlagwort</td><td></td><td></td><td></td></tr>
+<tr><td>Die eine Verbesserung dieser Woche</td><td></td><td></td><td></td></tr>
+</tbody>
+</table></div>
+<p>Die letzte Zeile ist die wichtigste. Das Team ändert jede Woche nur eine Sache, etwa die Uhrzeit der Terminerinnerung oder die Antwort auf die Preisfrage, und prüft in der Folgewoche die Wirkung. Wer fünf Dinge gleichzeitig ändert, weiß nicht, was gewirkt hat.</p>
+<h2 id="die-goldene-regel-des-crm">Die goldene Regel des CRM</h2>
+<p>Ohne ein CRM mit sauber gepflegten Daten lässt sich die Wochenkarte nicht füllen. Die goldene Regel ist einfach: Was nicht im CRM steht, ist nicht passiert. Jede Anfrage wird ein Eintrag, jeder Kontakt wird festgehalten, jeder Stufenwechsel am selben Tag aktualisiert und jeder Abschluss mit Grund versehen. Das klingt nach Disziplin, ist aber eine Frage der Gestaltung: Je mühsamer die Eingabe, desto mehr Lücken. Ein Aufbau, bei dem Gespräche automatisch im CRM landen, liefert immer verlässlichere Daten als einer, bei dem eine Koordinatorin alles abtippt. Wie ein Praxis-CRM aufgebaut wird, steht auf der Seite <a href="/de/praxis-crm">Praxis-CRM</a>.</p>
+<h2 id="gesprachsbogen">Gesprächsbogen</h2>
+<p>Zahlen zeigen, was sich verändert hat; Gespräche zeigen, warum. Jede Woche werden einige zufällig gewählte Gesprächsaufzeichnungen oder Nachrichtenverläufe mit dem folgenden Bogen bewertet. Jeder Punkt bekommt 0 (fehlt), 1 (teilweise) oder 2 (vollständig), insgesamt also 20 Punkte.</p>
+<div class="tbl-scroll"><table>
+<thead><tr><th>Nr.</th><th>Kriterium</th><th>0–2</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Begrüßung und Vorstellung</td><td></td></tr>
+<tr><td>2</td><td>Nach Ziel und Sorge der Person fragen</td><td></td></tr>
+<tr><td>3</td><td>Zuhören, nicht unterbrechen</td><td></td></tr>
+<tr><td>4</td><td>Die Worte der Person zusammenfassend zurückgeben</td><td></td></tr>
+<tr><td>5</td><td>Medizinische Fragen an die Ärztin weitergeben</td><td></td></tr>
+<tr><td>6</td><td>Kosten zusammen mit dem Umfang erklären</td><td></td></tr>
+<tr><td>7</td><td>Bei Einwänden nach dem eigentlichen Grund fragen</td><td></td></tr>
+<tr><td>8</td><td>Keine Versprechen, keine Drucksprache</td><td></td></tr>
+<tr><td>9</td><td>Einen klaren nächsten Schritt vorschlagen</td><td></td></tr>
+<tr><td>10</td><td>Das Gespräch korrekt im CRM erfassen</td><td></td></tr>
+</tbody>
+</table></div>
+<p>Der Bogen ist ein Coaching-Werkzeug, kein Benotungsinstrument. Er wird gemeinsam mit der Koordinatorin durchgegangen, und der Punkt mit der niedrigsten Bewertung wird Schwerpunkt der Woche. Gesprächsaufzeichnungen sind nur mit Information und in der Regel Einwilligung der Beteiligten zulässig; die Informationspflichten nach <a href="https://dsgvo-gesetz.de/art-13-dsgvo/" rel="noopener">Art. 13 DSGVO</a> gelten, und das unbefugte Aufzeichnen des nichtöffentlich gesprochenen Wortes ist nach § 201 StGB strafbar. Klären Sie das Vorgehen mit Ihrer Datenschutzberatung.</p>
+<h2 id="haufige-fehler-beim-messen">Häufige Fehler beim Messen</h2>
+<ul>
+<li><strong>Ziele nach Branchenwerten setzen.</strong> Ein „Branchendurchschnitt“ unklarer Herkunft sagt nichts über Ihre Praxis.</li>
+<li><strong>Zeit mit dem Durchschnitt messen.</strong> Ein paar Ausreißer verzerren das Bild.</li>
+<li><strong>Kanäle zusammenwerfen.</strong> Telefon-, WhatsApp-, Instagram- und Formularanfragen verhalten sich unterschiedlich; getrennt erfassen.</li>
+<li><strong>Abschlussgründe nicht festhalten.</strong> „Verloren“ allein lehrt nichts.</li>
+<li><strong>Die Wochenkarte als Strafinstrument nutzen.</strong> Hat das Team Angst vor den Zahlen, sinkt die Datenpflege.</li>
+</ul>
+<h2 id="so-lauft-die-wochenrunde">So läuft die Wochenrunde</h2>
+<p>Für die Wochenkarte braucht es keine lange Besprechung; zwanzig Minuten reichen. Ein Vorschlag: zuerst das Ergebnis der Verbesserung aus der Vorwoche, dann der Vergleich der fünf Quoten mit der 90-Tage-Ausgangslinie, dann gemeinsam ein oder zwei Gespräche zur am stärksten gesunkenen Quote anhören und zum Schluss die eine Verbesserung dieser Woche festlegen und einer Person zuordnen. Besprochen wird der Prozess, nicht einzelne Personen. Nimmt einmal im Monat eine Ärztin teil, versteht das Team die medizinische Seite von Veränderungen bei der Planannahme besser.</p>
+<h2 id="messung-die-von-selbst-lauft">Messung, die von selbst läuft</h2>
+<p>Im <a href="/de/praxis-crm">Praxis-CRM</a> von STOAIX wird jedes Gespräch, ob über WhatsApp, Instagram, Telefon oder Webformular, automatisch einem Anfrage-Eintrag zugeordnet. Stufenwechsel, erste Reaktionszeiten und Einwand-Schlagworte werden erfasst, sodass die Quoten der Wochenkarte ohne Handrechnung sichtbar sind. Die Deutung der Zahlen, die Wahl der Verbesserung und das Coaching bleiben Aufgabe des Teams.</p>
+<h2 id="haufige-fragen">Häufige Fragen</h2>
+<h3 id="wie-hoch-sollte-die-umwandlungsquote-einer-praxis-sein">Wie hoch sollte die Umwandlungsquote einer Praxis sein?</h3>
+<p>Eine für alle gültige Quote gibt es nicht; Behandlungsart, Kanal und Preisniveau verändern das Ergebnis stark. Das sinnvollste Ziel ist, die eigenen letzten 90 Tage als Ausgangslinie zu nehmen und sich Woche für Woche zu verbessern.</p>
+<h3 id="mit-welcher-kennzahl-sollte-ich-anfangen">Mit welcher Kennzahl sollte ich anfangen?</h3>
+<p>Wenn Sie heute nichts messen, beginnen Sie mit dem Median der ersten Reaktionszeit und der Terminquote. Beide lassen sich am schnellsten verbessern und zeigen am schnellsten Wirkung.</p>
+<h3 id="durfen-gesprachsaufzeichnungen-ausgewertet-werden">Dürfen Gesprächsaufzeichnungen ausgewertet werden?</h3>
+<p>Aufzeichnen und Auswerten ist Verarbeitung personenbezogener Daten; Patientinnen und Mitarbeitende müssen vorab informiert werden und in der Regel einwilligen, und Aufzeichnungen müssen sicher und nur zweckgebunden gespeichert werden. Richten Sie das mit Ihrer Datenschutzberatung ein.</p>
+<h3 id="wer-fullt-die-wochenkarte-aus">Wer füllt die Wochenkarte aus?</h3>
+<p>Die Koordinatorin oder Praxismanagerin, die für den Prozess verantwortlich ist, füllt sie aus, und das Team liest sie gemeinsam in der Wochenrunde. Kommen die Daten aus dem CRM, sinkt der Aufwand deutlich.</p>
+<p class="guide-byline">Verfasst vom STOAIX-Team nach unseren <a href="/de/redaktionsrichtlinien">Redaktionsrichtlinien</a>: Zahlen sind mit Quellen verlinkt, Beispiele sind erfunden, die medizinische Entscheidung liegt bei der Ärztin oder dem Arzt.</p>
+<nav class="guide-series" aria-label="Leitfaden-Reihe">
+<p class="eyebrow">Leitfaden-Reihe</p>
+<p class="series-pillar">Hauptleitfaden: <a href="/blog/patientenanfragen-management-leitfaden">Patientenanfragen managen: von der ersten Nachricht bis zum Beratungstermin</a></p>
+<ol class="series-list">
+<li><a href="/blog/reaktionszeit-patientenanfragen">Reaktionszeit bei Patientenanfragen: warum die erste Stunde zählt</a></li>
+<li><a href="/blog/patientenkoordinatorin-praxis">Die Patientenkoordinatorin in der Praxis: Aufgaben, Tagesplan und Kennzahlen</a></li>
+<li><a href="/blog/erste-antwort-patientenanfrage-vorlagen">Erste Antwort auf Patientenanfragen: Vorlagen für WhatsApp, Instagram und Kontaktformular</a></li>
+<li><a href="/blog/patienten-preisfrage-beantworten">„Was kostet das?“ Die Preisfrage von Patientinnen und Patienten beantworten</a></li>
+<li><a href="/blog/heil-und-kostenplan-nachfassen">Heil- und Kostenplan nachfassen: was nach dem Versand zu tun ist</a></li>
+<li><a href="/blog/patienteneinwaende-beantworten">Patienteneinwände beantworten: von „Ich überlege noch“ bis „zu teuer“</a></li>
+<li><a href="/blog/nicht-antwortende-patientenanfragen">Nicht antwortende Patientenanfragen: die Stille-Leiter und die Abschlussnachricht</a></li>
+<li><span aria-current="page">Kennzahlen für Patientenanfragen: Wochenkarte und Gesprächsbogen</span></li>
+</ol>
+</nav>
+  </article>
+</section>
+<!-- ═══ KÜME (tools/seo/articles.mjs) -->
+<section class="pad post-cluster">
+  <p class="eyebrow">Teil des Themas</p>
+  <p class="cluster-hub"><a href="/de/praxis-crm">Praxis-CRM →</a></p>
+  <p class="eyebrow">Mehr zum Thema</p>
+  <ul class="cluster-list">
+    <li><a href="/blog/patientenkoordinatorin-praxis">Die Patientenkoordinatorin in der Praxis: Aufgaben, Tagesplan und Kennzahlen</a></li>
+  </ul>
+</section>
+<!-- ═══ /KÜME -->
+
+<!-- ═══ CTA ═══════════════════════════════════════════════════
+     id="cta": site genelinde 60'tan fazla sayfa bu çapaya bağlanıyor. -->
+<section class="cta" id="cta">
+  <div class="media" aria-hidden="true"></div>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="inner">
+    <h2>Bringen Sie Ihre Zahlen mit. Wir sagen Ihnen, wo sie stehen sollten.</h2>
+    <div>
+      <div class="row">
+        <a href="https://calendly.com/ataulufer1/20" class="btn" target="_blank" rel="noopener">Erstgespräch buchen</a>
+        <a href="https://calendly.com/ataulufer1/20" class="btn-ghost" target="_blank" rel="noopener">Mit dem Vertrieb sprechen</a>
+      </div>
+      <a class="wa" href="https://wa.me/905061185479" target="_blank" rel="noopener"><svg aria-hidden="true" viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12.04 2c-5.46 0-9.9 4.44-9.9 9.9 0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38a9.86 9.86 0 0 0 4.76 1.21h.01c5.46 0 9.9-4.44 9.9-9.9 0-2.64-1.03-5.12-2.9-6.99A9.82 9.82 0 0 0 12.04 2Zm0 1.8c2.16 0 4.19.84 5.72 2.37a8.05 8.05 0 0 1 2.37 5.73c0 4.46-3.63 8.09-8.1 8.09a8.1 8.1 0 0 1-4.12-1.13l-.3-.18-3.05.8.81-2.97-.2-.31a8.02 8.02 0 0 1-1.23-4.3c.01-4.46 3.64-8.09 8.1-8.09Zm4.68 11.44c-.08-.13-.29-.21-.61-.37-.31-.16-1.84-.91-2.13-1.01-.29-.11-.5-.16-.71.16-.21.31-.8 1-.98 1.21-.18.21-.36.24-.67.08-.31-.16-1.31-.48-2.5-1.54-.92-.82-1.55-1.84-1.73-2.15-.18-.31-.02-.48.14-.63.14-.14.31-.36.47-.55.16-.18.21-.31.31-.52.1-.21.05-.39-.03-.55-.08-.16-.7-1.69-.96-2.31-.25-.6-.51-.52-.7-.53l-.6-.01c-.21 0-.55.08-.83.39-.29.31-1.09 1.06-1.09 2.6 0 1.53 1.11 3.01 1.27 3.22.16.21 2.19 3.35 5.32 4.7.74.32 1.32.51 1.77.65.74.24 1.42.2 1.96.12.6-.09 1.84-.75 2.1-1.48.26-.72.26-1.34.18-1.47Z"/></svg><span>Per WhatsApp schreiben</span></a>
+      <div class="leaders">
+        
+        <div>
+          <div class="n">Ata Ulufer</div>
+          <div class="r">Mitgründer &amp; CEO</div>
+        </div>
+        <div>
+          <div class="n">Emir Türköz</div>
+          <div class="r">Mitgründer &amp; CTO</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ═══ FOOTER ════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div>
+    <span class="brand"><span class="mark" style="width:20px;height:20px" aria-hidden="true"></span>STOAIX</span>
+    <div class="copy">© 2026 STOAIX Ltd. — London, Vereinigtes Königreich</div>
+    <div class="copy" style="font-size:.72rem;opacity:.8;margin-top:6px;max-width:380px;">STOAIX LTD · Registered in England and Wales · Company No. 17131250 · Registered office: 4 Raven Road, Unit 1c3-1121, London, E18 1HB</div>
+    <div class="copy" style="font-size:.72rem;margin-top:10px;"><a href="/privacy-policy" style="color:inherit">Datenschutz</a> · <a href="/terms" style="color:inherit">Nutzungsbedingungen</a> · <a href="/cookie-policy" style="color:inherit">Cookies</a></div>
+  </div>
+  <div class="footer-cols">
+    
+    <div>
+      <h4>Plattform</h4>
+      <a href="/en#specification">KI-Assistenten</a>
+      <a href="/en#revenue-calculator">Wachstum</a>
+      <a href="/en#integrations">Integrationen</a>
+      <a href="/en#governance">Sicherheit</a>
+    </div>
+    <div>
+      <h4>KI-Assistenten</h4>
+      <a href="/de/ki-telefonassistent">KI-Telefonassistent</a>
+      <a href="/de/ki-chatbot-whatsapp">KI-Chatbot für WhatsApp und Instagram</a>
+      <a href="/de/lead-nachfassen">Anfragen nachfassen</a>
+      <a href="/de/terminerinnerung">Terminerinnerung</a>
+      <a href="/de/patientenreaktivierung">Patientenreaktivierung</a>
+      <a href="/de/google-bewertungen">Google-Bewertungen</a>
+      <a href="/de/op-vorbereitung">OP-Vorbereitung</a>
+      <a href="/de/nachsorge">Nachsorge</a>
+      <a href="/de/meta-werbung-praxis">Meta-Werbung für Praxen</a>
+      <a href="/de/praxis-seo-google-ads">Praxis-SEO und Google Ads</a>
+    </div>
+    <div>
+      <h4>Unternehmen</h4>
+      <a href="/en/about">Über uns</a>
+      <a href="/en/contact">Kontakt</a>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/v2.js?v=10" defer></script>
+</body>
+</html>

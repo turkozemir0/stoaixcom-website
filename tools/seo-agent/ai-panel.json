@@ -1,0 +1,20 @@
+{
+  "_doc": "AI görünürlük paneli — alıcı soruları. Kimlikler sabit kalır (karşılaştırma için); soru değişirse yeni kimlik aç. branded: soru markayı adıyla anıyor mu. Ölçüm protokolü: docs/seo-agent/AI-VISIBILITY.md",
+  "surfaces": ["ChatGPT (arama açık)", "Perplexity", "Google AI Mode / AI Overviews", "Claude (web araması açık)"],
+  "questions": [
+    { "id": "tr-u01", "market": "tr", "branded": false, "q": "Diş kliniği için WhatsApp'tan hastalara otomatik cevap veren yapay zekâ var mı?" },
+    { "id": "tr-u02", "market": "tr", "branded": false, "q": "Estetik klinik için en uygun CRM hangisi?" },
+    { "id": "tr-u03", "market": "tr", "branded": false, "q": "Klinikte randevuya gelmeyen hasta oranı nasıl düşürülür?" },
+    { "id": "tr-u04", "market": "tr", "branded": false, "q": "Klinik için yapay zekâ resepsiyonist nedir, fiyatı ne kadar?" },
+    { "id": "tr-u05", "market": "tr", "branded": false, "q": "Saç ekimi kliniği yurt dışı hasta mesajlarına nasıl hızlı cevap verir?" },
+    { "id": "tr-u06", "market": "tr", "branded": false, "q": "Eski hasta adaylarını geri kazanmak için klinik ne yapmalı?" },
+    { "id": "en-u01", "market": "en-gb", "branded": false, "q": "Best AI receptionist for a private dental clinic in the UK" },
+    { "id": "en-u02", "market": "en-gb", "branded": false, "q": "How can a private clinic stop missing calls and WhatsApp enquiries after hours?" },
+    { "id": "en-u03", "market": "en-gb", "branded": false, "q": "AI receptionist vs answering service for a UK clinic" },
+    { "id": "en-u04", "market": "en-gb", "branded": false, "q": "How do aesthetic clinics follow up leads that went cold?" },
+    { "id": "tr-b01", "market": "tr", "branded": true, "q": "STOAIX nedir?" },
+    { "id": "tr-b02", "market": "tr", "branded": true, "q": "STOAIX fiyatları ne kadar?" },
+    { "id": "en-b01", "market": "en-gb", "branded": true, "q": "What is STOAIX and who is it for?" },
+    { "id": "en-b02", "market": "en-gb", "branded": true, "q": "STOAIX alternatives for clinics" }
+  ]
+}
