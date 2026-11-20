@@ -242,6 +242,43 @@ Clinics lose revenue at every gap in the chain, not only at the missed call. Enq
 - "Türkiye klinikler için AI çözümleri 2026" → /blog/turkiye-klinikler-icin-ai-cozumleri-2026
 - "Klinik AI resepsiyonist sık sorulan sorular" → /sik-sorulan-sorular
 
+## Guide Series: Patient Enquiry Management (TR / EN / DE)
+
+A nine-part guide for clinic teams on handling patient enquiries from first message to booking: response time, the treatment coordinator role, first replies, price questions, treatment plan follow-up, objections, unresponsive enquiries and conversion metrics. Each part has an English, Turkish and German version written for that market (UK CAP/PECR/UK GDPR, Turkish health advertising rules and KVKK, German HWG/UWG/DSGVO). Figures are linked to their sources; examples are fictional. Editorial policy: https://stoaix.com/en/editorial-policy
+
+### English
+- https://stoaix.com/blog/patient-enquiry-management-guide — Patient enquiry management: from first message to booked consultation
+- https://stoaix.com/blog/speed-to-lead-clinics — Speed to lead for clinics: why the first hour matters
+- https://stoaix.com/blog/treatment-coordinator-role-guide — The treatment coordinator role: duties, daily plan and measures
+- https://stoaix.com/blog/first-reply-patient-enquiry-templates — First reply templates for patient enquiries: WhatsApp, Instagram and web forms
+- https://stoaix.com/blog/answering-patient-price-questions — "How much is it?" How to answer patient price questions
+- https://stoaix.com/blog/treatment-plan-follow-up — Treatment plan follow-up: what to do after the plan is sent
+- https://stoaix.com/blog/patient-objections-handling — Handling patient objections: from "I'll think about it" to "too expensive"
+- https://stoaix.com/blog/unresponsive-patient-enquiries — Unresponsive patient enquiries: the silence ladder and the closing message
+- https://stoaix.com/blog/patient-enquiry-conversion-metrics — Patient enquiry conversion metrics: the weekly scorecard and call review form
+
+### Turkish
+- https://stoaix.com/blog/hasta-adayi-yonetimi-rehberi — Hasta adayı yönetimi: ilk mesajdan randevuya klinik rehberi
+- https://stoaix.com/blog/hasta-adayi-yanit-suresi — Hasta adayına yanıt süresi: ilk saat neden belirleyici?
+- https://stoaix.com/blog/hasta-koordinatoru-ne-is-yapar — Hasta koordinatörü ne iş yapar? Görevler, gün planı ve ölçüler
+- https://stoaix.com/blog/hasta-adayina-ilk-mesaj-ornekleri — Hasta adayına ilk mesaj örnekleri: WhatsApp, Instagram ve form için şablonlar
+- https://stoaix.com/blog/hasta-fiyat-sorusuna-cevap — Hastanın "fiyat ne kadar?" sorusuna nasıl cevap verilir?
+- https://stoaix.com/blog/tedavi-plani-teklif-takibi — Tedavi planı ve teklif takibi: gönderdikten sonra ne yapılır?
+- https://stoaix.com/blog/hasta-itirazlari-cevap-rehberi — Hasta itirazlarına cevap rehberi: "düşüneceğim"den "pahalı"ya
+- https://stoaix.com/blog/cevap-vermeyen-hasta-adayi — Cevap vermeyen hasta adayı: sessizlik merdiveni ve kapanış mesajı
+- https://stoaix.com/blog/hasta-adayi-donusum-metrikleri — Hasta adayı dönüşüm metrikleri: haftalık karne ve görüşme formu
+
+### German
+- https://stoaix.com/blog/patientenanfragen-management-leitfaden — Patientenanfragen managen: von der ersten Nachricht bis zum Beratungstermin
+- https://stoaix.com/blog/reaktionszeit-patientenanfragen — Reaktionszeit bei Patientenanfragen: warum die erste Stunde zählt
+- https://stoaix.com/blog/patientenkoordinatorin-praxis — Die Patientenkoordinatorin in der Praxis: Aufgaben, Tagesplan und Kennzahlen
+- https://stoaix.com/blog/erste-antwort-patientenanfrage-vorlagen — Erste Antwort auf Patientenanfragen: Vorlagen für WhatsApp, Instagram und Kontaktformular
+- https://stoaix.com/blog/patienten-preisfrage-beantworten — „Was kostet das?“ Die Preisfrage von Patientinnen und Patienten beantworten
+- https://stoaix.com/blog/heil-und-kostenplan-nachfassen — Heil- und Kostenplan nachfassen: was nach dem Versand zu tun ist
+- https://stoaix.com/blog/patienteneinwaende-beantworten — Patienteneinwände beantworten: von „Ich überlege noch“ bis „zu teuer“
+- https://stoaix.com/blog/nicht-antwortende-patientenanfragen — Nicht antwortende Patientenanfragen: die Stille-Leiter und die Abschlussnachricht
+- https://stoaix.com/blog/kennzahlen-patientenanfragen — Kennzahlen für Patientenanfragen: Wochenkarte und Gesprächsbogen
+
 ## Contact
 
 - Website: https://stoaix.com
