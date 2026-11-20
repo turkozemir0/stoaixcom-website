@@ -5,6 +5,8 @@
    • "## Sık sorulan sorular" bölümü FAQPage verisine dönüşür.
    • Sayfa v2 blog iskeletiyle yazılır (generator=stoaix-blog-v2), bu yüzden
      migrate-blog-v2 ona dokunmaz; yalnız küme kutusunu ve dizini ekler.
+   • "series/part" ön bilgisi olan yazılar rehber serisine bağlanır (guides/series.mjs).
+   • assets/guides/og/<slug>.png varsa paylaşım görseli odur.
    • Elle yazılmış bir blog dosyasının üstüne asla yazmaz.
 
    Çalıştırma:  node tools/build-guides.mjs [--check]
@@ -15,6 +17,8 @@ import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
 import { loadGuides } from './guides/registry.mjs';
 import { toHtml, faqOf, plainWords } from './guides/markdown.mjs';
+import { seriesOf, seriesBox, seriesNote, byline, GUIDE_CSS } from './guides/series.mjs';
+import { EDITORIAL_PATHS } from './pages/editorial.mjs';
 import { renderPost, ORIGIN } from './blog/render-post.mjs';
 import { byId } from './seo/catalog.mjs';
 import { esc } from './v2-chrome.mjs';
@@ -27,6 +31,7 @@ const WORDS_PER_MINUTE = 200;
 const HTML_LANG = { tr: 'tr', en: 'en', de: 'de' };
 
 const urlOf = (v) => `${ORIGIN}/blog/${v.slug}`;
+const ogOf = (v) => (existsSync(join(ROOT, 'assets/guides/og', `${v.slug}.png`)) ? `${ORIGIN}/assets/guides/og/${v.slug}.png` : undefined);
 
 function alternatesOf(guide) {
   const vs = Object.values(guide.versions);
@@ -46,7 +51,8 @@ function faqLd(v) {
   }];
 }
 
-function render(guide, v) {
+function render(guide, v, guides) {
+  const series = seriesOf(guides, v);
   const html = renderPost({
     lang: v.lang,
     htmlLang: HTML_LANG[v.lang],
@@ -62,8 +68,10 @@ function render(guide, v) {
     lede: v.lede,
     hero: { h1: esc(v.h1) },
     plainH1: v.h1,
-    content: toHtml(v.body),
-    css: '',
+    image: ogOf(v),
+    author: { '@type': 'Organization', name: 'STOAIX', url: ORIGIN, publishingPrinciples: ORIGIN + EDITORIAL_PATHS[v.lang] },
+    content: [seriesNote(series, v), toHtml(v.body), byline(v.lang, EDITORIAL_PATHS[v.lang]), seriesBox(series, v)].filter(Boolean).join('\n'),
+    css: GUIDE_CSS,
   });
   return html.replace(/(<meta name="generator"[^>]*>)/, `$1\n<meta name="${MARK}" content="${guide.id}">`);
 }
@@ -71,6 +79,7 @@ function render(guide, v) {
 function validate(guide, v, seen) {
   const where = `${guide.id}/${v.lang}.md`;
   if (!byId(v.cluster)) throw new Error(`${where}: bilinmeyen küme "${v.cluster}"`);
+  if (v.series && !Number.isInteger(Number(v.part))) throw new Error(`${where}: seride "part" sayı olmalı`);
   if (seen.has(v.slug)) throw new Error(`${where}: slug tekrar ediyor "${v.slug}"`);
   seen.add(v.slug);
   const file = join(BLOG, `${v.slug}.html`);
@@ -98,7 +107,7 @@ for (const g of guides) {
   for (const v of Object.values(g.versions)) {
     validate(g, v, seen);
     dead.push(...deadBlogLinks(g, v, slugs));
-    if (!isCheck) writeFileSync(join(BLOG, `${v.slug}.html`), render(g, v));
+    if (!isCheck) writeFileSync(join(BLOG, `${v.slug}.html`), render(g, v, guides));
     count++;
   }
 }

@@ -1,7 +1,8 @@
 /* ═══════════════════════════════════════════════════════════════════
    Rehber yazıları için küçük Markdown → HTML dönüştürücü.
    Yalnız yazılarda kullandığımız parçalar: ## / ### başlık, paragraf,
-   - ve 1. listeler, > alıntı, | tablo |, **kalın**, *eğik*, [bağlantı](/yol).
+   - ve 1. listeler, > alıntı, | tablo |, **kalın**, *eğik*, [bağlantı](/yol),
+   tek satırlık ![alt](/görsel.svg "alt yazı") → <figure>.
    Bağımlılık yok; çıktı .prose stillerine oturur.
    ═══════════════════════════════════════════════════════════════════ */
 
@@ -14,9 +15,17 @@ export const slugify = (s) => s.toLowerCase()
 
 export function inline(text) {
   return esc(text)
-    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, href) => `<a href="${href}">${t}</a>`)
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (m, t, href) => `<a href="${href}"${/^https?:/.test(href) ? ' rel="noopener"' : ''}>${t}</a>`)
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/(^|[^*])\*([^*\s][^*]*)\*/g, '$1<em>$2</em>');
+}
+
+/* Diyagramlar 16:9 çizilir (viewBox 0 0 1200 675); boyut yer tutsun diye yazılır */
+const FIGURE = /^!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)$/;
+
+function figure([, alt, src, caption]) {
+  const img = `<img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async" width="1200" height="675">`;
+  return `<figure class="guide-fig">${img}${caption ? `<figcaption>${inline(caption)}</figcaption>` : ''}</figure>`;
 }
 
 const isTableRow = (l) => /^\|.*\|$/.test(l.trim());
@@ -51,6 +60,9 @@ export function toHtml(md) {
       const level = h[1].length;
       out.push(`<h${level} id="${slugify(h[2])}">${inline(h[2])}</h${level}>`);
       i++;
+    } else if (FIGURE.test(t)) {
+      out.push(figure(FIGURE.exec(t)));
+      i++;
     } else if (isTableRow(t)) {
       out.push(table(take((l) => isTableRow(l))));
     } else if (/^>\s?/.test(t)) {
@@ -63,7 +75,7 @@ export function toHtml(md) {
       const items = take((l) => /^\d+\.\s+/.test(l.trim())).map((l) => l.trim().replace(/^\d+\.\s+/, ''));
       out.push(`<ol>\n${items.map((x) => `<li>${inline(x)}</li>`).join('\n')}\n</ol>`);
     } else {
-      const para = take((l) => !/^(#{2,4}\s|>|[-*]\s|\d+\.\s|\|)/.test(l.trim()));
+      const para = take((l) => !/^(#{2,4}\s|>|[-*]\s|\d+\.\s|\||!\[)/.test(l.trim()));
       out.push(`<p>${inline(para.map((l) => l.trim()).join(' '))}</p>`);
     }
   }

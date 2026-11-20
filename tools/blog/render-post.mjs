@@ -54,9 +54,9 @@ function langList(lang, alternates) {
     .map(([code, home]) => ({ code, label: code.toUpperCase(), href: hrefs[code] || home, on: code === lang }));
 }
 
-export function pageHead({ lang, htmlLang, title, desc, canonical, alternates = [], robots, ogType = 'article', ld = [], extraCss = '', sheets = [], published, modified }) {
+export function pageHead({ lang, htmlLang, title, desc, canonical, alternates = [], robots, ogType = 'article', ld = [], extraCss = '', sheets = [], published, modified, image }) {
   const c = chromeFor(lang);
-  const og = ogImage(lang);
+  const og = image || ogImage(lang);
   return `<!DOCTYPE html>
 <html lang="${esc(htmlLang)}" class="pal-bone">
 <head>
@@ -171,7 +171,7 @@ function structuredData(post) {
     description: post.desc,
     inLanguage: post.htmlLang,
     mainEntityOfPage: post.canonical,
-    image: ogImage(post.lang),
+    image: post.image || ogImage(post.lang),
     ...(post.published ? { datePublished: post.published, dateModified: post.modified } : {}),
     author: post.author || { '@type': 'Organization', name: 'STOAIX', url: ORIGIN },
     publisher: { '@type': 'Organization', name: 'STOAIX', url: ORIGIN, logo: { '@type': 'ImageObject', url: `${ORIGIN}/assets/images/logo.png` } },
