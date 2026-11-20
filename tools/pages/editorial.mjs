@@ -36,7 +36,7 @@ Yazılardaki örnek hastalar, klinikler ve konuşmalar kurgudur. Gerçek hasta v
 
 ## Sağlık tanıtım kuralları
 
-- Tedavi sonucu vaat eden, "en iyi" gibi üstünlük iddiası taşıyan ya da sahte aciliyet yaratan ifadeler kullanmayız ve önermeyiz.
+- Tedavi sonucu vaat eden, başka kliniklere üstünlük iddiası taşıyan ya da sahte aciliyet yaratan ifadeler kullanmayız ve önermeyiz.
 - Tıbbi karar her zaman hekime aittir. Rehberler satış ve iletişim sürecini anlatır, tıbbi tavsiye vermez.
 - Türkiye için Sağlık Hizmetlerinde Tanıtım ve Bilgilendirme Faaliyetleri Hakkında Yönetmelik, KVKK ve ticari ileti kurallarını; Birleşik Krallık için UK GDPR, PECR ve ASA CAP Code'u; Almanya için HWG, UWG ve DSGVO'yu dikkate alırız. Bu notlar hukuki görüş değildir; uygulamadan önce kendi hukuk danışmanınıza teyit ettirin.
 
@@ -74,7 +74,7 @@ Patients, clinics and conversations used as examples are fictional. We do not us
 
 ## Healthcare advertising rules
 
-- We do not use or recommend wording that promises treatment outcomes, claims superiority such as "the best", or creates false urgency.
+- We do not use or recommend wording that promises treatment outcomes, claims superiority over other clinics, or creates false urgency.
 - Clinical decisions always belong to the clinician. Our guides describe communication and sales processes; they are not medical advice.
 - For the UK we take account of UK GDPR, PECR and the ASA CAP Code; for Germany the HWG, UWG and GDPR; for Türkiye the national health promotion regulation and data protection law. These notes are not legal advice; check them with your own adviser before you act.
 

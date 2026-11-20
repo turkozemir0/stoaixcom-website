@@ -84,7 +84,7 @@ It matters that the assistant introduces itself as an assistant. If the patient 
 - **Promise outcomes.** Lines like "you'll have the smile you've always wanted" are outcome claims and can fall foul of the [CAP Code](https://www.asa.org.uk/codes-and-rulings/advertising-codes/non-broadcast-code.html) when they appear in marketing.
 - **Ask several questions at once.** Three questions in a row usually get no answer at all.
 - **Create false urgency.** "Our offer ends this week" damages trust in a medical decision and is the kind of pressure the ASA and professional regulators look at.
-- **Speak for the clinician.** "The best option for you is…" is the clinician's call, not the coordinator's.
+- **Speak for the clinician.** "This option is right for you" is the clinician's call, not the coordinator's.
 
 ## How to measure the first reply
 
